@@ -11,6 +11,7 @@ import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { environment } from 'src/environments/environment';
 import { SwPush } from '@angular/service-worker';
 import Swal from 'sweetalert2';
+import { MetaService } from 'src/app/core/services/meta.service';
  
 @Component({
   selector: 'app-default',
@@ -70,12 +71,12 @@ export class DefaultComponent implements OnInit, AfterViewInit {
     private invitacionsService: InvitacionsService,
     private route: ActivatedRoute,
     private boletosService: BoletosService,
-    private swPush: SwPush
+    private swPush: SwPush,
+    private metaService: MetaService
 
 
   ) {
-    /*    this.init() */
-    // console.log(this.rol);
+     
 
     this.fiestaId = this.route.snapshot.params['fiesta']
 
@@ -278,7 +279,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
 
   }
   ngOnInit()  {
- 
+    this.metaService.createCanonicalURL();
   }
 
   

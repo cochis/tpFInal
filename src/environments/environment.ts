@@ -22,7 +22,7 @@ export const environment = {
   // text_url: "http://localhost:4200/",
   base_url: "https://tickets.cochisweb.com/api",
   text_url: "https://tickets.cochisweb.com/",
-  version: "1.5.7",
+  version: "1.5.9",
   publicKey: "BJqZ8KY_kguwLf27SsteILLRHlWY2pJOvrKlyZNeFlEg4O15ut0t7oYMgXHcLPSh2WYCRPwTS3WEPnhXCMZO4Wg",
   privateKey: "v04F9j6-aAZRvYl25BtZu1cezaWT-m4P0sHtE0JbE7g"
 };
