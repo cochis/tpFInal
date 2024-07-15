@@ -1,4 +1,4 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Boleto } from 'src/app/core/models/boleto.model';
 import { Fiesta } from 'src/app/core/models/fiesta.model';
@@ -11,12 +11,13 @@ import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { environment } from 'src/environments/environment';
 import { SwPush } from '@angular/service-worker';
 import Swal from 'sweetalert2';
+ 
 @Component({
   selector: 'app-default',
   templateUrl: './default.component.html',
   styleUrls: ['./default.component.css']
 })
-export class DefaultComponent implements AfterViewInit {
+export class DefaultComponent implements OnInit, AfterViewInit {
 
   respuesta: any
   readonly VAPID_PUBLIC_KEY = environment.publicKey
@@ -86,6 +87,10 @@ export class DefaultComponent implements AfterViewInit {
 
       this.boletosService.cargarBoletoById(this.boletoId).subscribe((resp: any) => {
         this.boleto = resp.boleto
+        if(!this.boleto.activated){
+          this.functionsService.alertError({boleto:false},'Boleto eliminado')
+          this.functionsService.navigateTo('/')
+        }
         // console.log(' this.boleto ::: ', this.boleto);
         let countPush: number = this.boleto.pushNotification.length
         // console.log('countPush::: ', countPush);
@@ -93,7 +98,7 @@ export class DefaultComponent implements AfterViewInit {
           this.pushOk = true
         }
 
-        // console.log('this.boleto', this.boleto)
+      
         this.subscribeNotification()
       }, (error) => {
         this.functionsService.alertError(error, 'Boletos')
@@ -104,7 +109,7 @@ export class DefaultComponent implements AfterViewInit {
           this.invitacion = resp.invitacion.data
           this.restParty()
           this.invitacion = await this.dateToNumber(this.invitacion)
-          // console.log('this.invitacion', this.invitacion)
+           
           this.date = this.fiesta.fecha
           this.invitacion.cantidad = this.boleto.cantidadInvitados
           this.invitacion.invitado = this.boleto.nombreGrupo
@@ -272,7 +277,11 @@ export class DefaultComponent implements AfterViewInit {
 
 
   }
+  ngOnInit()  {
+ 
+  }
 
+  
   async dateToNumber(data) {
 
 
@@ -309,11 +318,11 @@ export class DefaultComponent implements AfterViewInit {
   }
   ngAfterViewInit(): void {
     setTimeout(() => {
-
+      
       this.loading = false
     }, 3500);
   }
-
+   
 
 
   getDate(date) {
@@ -458,47 +467,41 @@ export class DefaultComponent implements AfterViewInit {
 
   }
   subscribeNotification() {
-    if (Notification.permission.includes('denied') || Notification.permission.includes('default')) {
-      Swal.fire({
-        title: "Acepta las notificaciones para recibir informacion de la fiesta",
-        showDenyButton: true,
-        confirmButtonText: "Aceptar",
-        denyButtonColor: "#8ad0c7",
-        confirmButtonColor: "#22547b",
-        denyButtonText: `Cancelar`
-      }).then((result) => {
-        /* Read more about isConfirmed, isDenied below */
-        if (result.isConfirmed) {
-          this.swPush.requestSubscription(
-            {
-              serverPublicKey: this.VAPID_PUBLIC_KEY
-            }
-          )
-            .then(respuesta => {
-              (this.boleto.pushNotification.length > 0) ? this.boleto.pushNotification : []
-              this.boleto.pushNotification.push(respuesta)
-              // console.log('this.boleto.pushNotification::: ', this.boleto.pushNotification);
-              setTimeout(() => {
 
-                this.boletosService.registrarPushNotification(this.boleto).subscribe((res) => {
-                  // console.log('res::: ', res);
-                })
-              }, 500);
-            })
-            .catch(err => {
-              // console.log('err', err)
-              return {
-                ok: false,
-                err
+    this.swPush.requestSubscription(
+      {
+        serverPublicKey: this.VAPID_PUBLIC_KEY
+      }
+    )
+      .then(respuesta => {
+        (this.boleto.pushNotification.length > 0) ? this.boleto.pushNotification : []
+        this.boleto.pushNotification.push(respuesta)
+        // console.log('this.boleto.pushNotification::: ', this.boleto.pushNotification);
+        setTimeout(() => {
 
-              }
+          this.boletosService.registrarPushNotification(this.boleto).subscribe((res) => {
+            // console.log('res::: ', res);
+          })
+        }, 500);
+      })
+      .catch(err => {
+        console.log('err', err)
+        return {
+          ok: false,
+          err
 
-            })
-
-        } else if (result.isDenied) {
-          Swal.fire("No recibirás notificaciones", "", "info");
         }
-      });
-    }
+
+      })
+
+
   }
+
+
+
+
+
+
+
+
 }

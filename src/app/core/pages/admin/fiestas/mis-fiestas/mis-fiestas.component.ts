@@ -10,9 +10,10 @@ import { FileService } from 'src/app/core/services/file.service';
 import { SalonsService } from 'src/app/core/services/salon.service';
 import { UsuariosService } from 'src/app/core/services/usuarios.service';
 import { FunctionsService } from 'src/app/shared/services/functions.service';
-import { environment } from 'src/environments/environment';
+
 import { Observable, Subscription, interval } from 'rxjs';
 import { TokenPushsService } from 'src/app/core/services/tokenPush.service';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-mis-fiestas',
   templateUrl: './mis-fiestas.component.html',
@@ -34,6 +35,7 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
   ANF = environment.anf_role
   CHK = environment.chk_role
   url = environment.base_url
+  tUrl = environment.text_url
   rol = this.functionsService.getLocal('role')
   today = this.functionsService.getToday()
   filter = ''
@@ -179,8 +181,7 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.rol === 'ADMROL') {
       this.fiestasService.cargarFiestasAll().subscribe(resp => {
         this.fiestas = resp.fiestas
-
-        console.log(' this.fiestas::: ', this.fiestas);
+ 
         this.fiestasTemp = resp.fiestas
         this.fiestas.forEach((fst, i) => {
           this.blt = {
@@ -191,7 +192,7 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
           // console.log('   this.blt ::: ', fst.uid);
           this.boletosService.cargarBoletoByFiesta(fst.uid).subscribe(res => {
             // console.log('res ::: ', res);
-            this.boletos[i].boletos = res.boleto
+            this.boletos[i].boletos = this.functionsService.getActivos(res.boleto)
           })
         });
         // console.log('this.boletos::: ', this.boletos);
@@ -199,7 +200,7 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
     } else if (this.rol === 'USRROl') {
 
     } else if (this.rol === 'CHCROL') {
-      console.log(this.usuario);
+ 
       this.fiestasService.cargarFiestasBySalon(this.usuario.salon[0]).subscribe(resp => {
         this.fiestas = resp.fiestas
         this.fiestasTemp = resp.fiestas
@@ -348,8 +349,7 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
 
   getBoleto(id: string) {
     this.boletosService.cargarBoletoByFiesta(id).subscribe((resp) => {
-      console.log('resp', resp)
-
+    
 
       let bl = {
         id: id,
@@ -509,48 +509,53 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
 
     boletos.forEach(boleto => {
 
+      if (boleto.activated) {
+
+        let fiesta = this.fiestas.filter(fst => {
+          return fst.uid == boleto.fiesta
+        })
 
 
-      let fiesta = this.fiestas.filter(fst => {
-        return fst.uid == boleto.fiesta
-      })
 
+        let push = {
+          "notification": {
+            "title": "Recuerda que mi fiesta es el  " + this.functionsService.datePush(fiesta[0].fecha),
+            "body": fiesta[0].nombre,
+            "vibrate": [
+              100,
+              50,
+              100
+            ],
+            "icon": this.tUrl + "assets/images/qr.jpeg",
+            "image": this.url + "/upload/fiestas/" + fiesta[0].img,
 
+            "data": {
+              "onActionClick": {
+                "default": {
+                  "operation": "openWindow",
+                  "url": "/core/templates/default/" + boleto.fiesta + "/" + boleto.uid
+                }
 
-
-      let push = {
-        "notification": {
-          "title": "Recuerda que mi fiesta es el  " + this.functionsService.datePush(fiesta[0].fecha),
-          "body": fiesta[0].nombre,
-          "vibrate": [
-            100,
-            50,
-            100
-          ],
-          "icon": "https://tickets.cochisweb.com/assets/images/qr.jpeg",
-          "image": "https://tickets.cochisweb.com/api/upload/invitaciones/" + fiesta[0].img,
-
-          "data": {
-            "onActionClick": {
-              "default": {
-                "operation": "openWindow",
-                "url": "/core/templates/default/" + boleto.fiesta + "/" + boleto.uid
               }
-
             }
           }
         }
-      }
-      console.log('push::: ', push);
-      this.tokenPushService.sendTokenPushsByBoleto(boleto.uid, push).subscribe(resp => {
-        console.log('resp::: ', resp);
-        this.functionsService.alert("Notificaciones enviadas", "Recuerda pedir a tus invitados que activen las notificaciones en su invitación", "success")
-      },
-        (err) => {
-          console.log('err::: ', err);
 
-        })
+        this.tokenPushService.sendTokenPushsByBoleto(boleto.uid, push).subscribe(resp => {
+       
+          this.functionsService.alert("Notificaciones enviadas", "Recuerda pedir a tus invitados que activen las notificaciones en su invitación", "success")
+        },
+          (err) => {
+            console.log('err::: ', err);
+
+          })
+      }
+
     });
+
+    if (boletos.length == 0) {
+      this.functionsService.alert("Importante", "Recuerda pedir a tus invitados que activen las notificaciones en su invitación", "info")
+    }
 
 
 
