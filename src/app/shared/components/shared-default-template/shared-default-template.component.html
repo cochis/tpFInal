@@ -1,0 +1,30 @@
+<app-loading *ngIf="loading"></app-loading>
+<ng-container *ngIf="!loading">
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="row">
+            <div class="col-12 col-md-6 mt-3">
+                <div class="form-group">
+                    <label for="cPrincipal">Color principal</label>
+                    <input type="text" class="form-control upper" id="cPrincipal" formControlName="cPrincipal" required
+                        placeholder="Color principal" [readonly]="edit==='false'">
+                </div>
+            </div>
+
+
+
+        </div>
+
+        <div class="row mt-5 text-center">
+
+            <div class="col-12 col-md-6  mt-3 text-center " *ngIf="edit==='true'">
+                <button type="submit" class="btn btn-lg btn-block but  ">Editar</button>
+
+            </div>
+            <div class="col-12 col-md-6  mt-3 text-center">
+                <button class="btn btn-lg btn-block btn-warning" (click)="back()">Regresar</button>
+
+            </div>
+        </div>
+    </form>
+</ng-container>

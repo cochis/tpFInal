@@ -1,0 +1,57 @@
+<app-loading *ngIf="!boleto"></app-loading>
+<div class="imgFull text-center mb " *ngIf="boleto && boleto.activated">
+
+    <img src="/assets/invitaciones/xv/1.png" class="img-invite mg">
+
+
+    <div class="mg" style="width: 100%;" *ngIf="salon">
+        <a class="btn" [href]="salon.ubicacionGoogle" target="_blank" rel="noopener noreferrer">Como llegar </a>
+    </div>
+
+    <div class="clock mg">
+        <span class="personalColorTitutlo mg" *ngIf="!clockOK"> <b> {{dias}}</b> Días <b> {{horas}} </b> Horas
+            <b>{{minutos}}</b> Minutos <b>{{segundos}} </b>Segundos</span>
+
+        <span class="personalColorTitutlo mg" style="font-size: 35px;" *ngIf="clockOK"> <b>{{textClock}}</b></span>
+
+    </div>
+    <div class="row" *ngIf="clockOK">
+        <div class="col-12">
+            <button class="btn" style="margin-top: 50px;" routerLink="/core/galeria/{{fiestaid}}/{{boletoid}}">Sube tus
+                fotos</button>
+        </div>
+    </div>
+    <img src="/assets/invitaciones/xv/2.png" class="img-invite mg">
+
+    <h3 class="mg" style="color:#153860;font-family: 'Space Grotesk'; font-size: 35px; font-weight: 800;">
+        Tienes {{cantidad}} <b *ngIf="cantidad>1">boletos</b> <b *ngIf="cantidad==1">boleto</b>
+    </h3>
+
+
+    <div class="qrcodeImage text-center mg">
+        <qrcode [qrdata]="getQr(boleto)" [allowEmptyString]="true"
+            [ariaLabel]="'QR Code image with the following content...'" [cssClass]="'center'" [colorDark]="'#153860'"
+            [colorLight]="'#fff'" [elementType]="'canvas'" [errorCorrectionLevel]="'M'" [imageHeight]="75"
+            [imageWidth]="75" [margin]="4" [scale]="1" [colorDark]="'#153860'" [title]="getQr(boleto)" [width]="300">
+        </qrcode>
+
+    </div>
+
+    <ng-container style="margin-bottom: 50px;">
+
+        <button class="btn" (click)="confirmar(getQr(boleto))" *ngIf="!boleto.confirmado" rel="noopener noreferrer mb"
+            style="
+        margin-bottom: 150px;">Confirmar asistencia </button>
+        <button class="btn" (click)="confirmar(getQr(boleto))" *ngIf="boleto.confirmado" rel="noopener noreferrer mb"
+            style="
+        margin-bottom: 150px;">Quitar confirmación </button>
+    </ng-container>
+
+</div>
+
+<div class="imgFull text-center mb " *ngIf="boleto && !boleto.activated">
+
+    <img src="/assets/invitaciones/xv/3.png" class="img-invite mg">
+
+
+</div>

@@ -1,0 +1,367 @@
+<!-- <app-header></app-header> -->
+
+<!-- <input type="datetime-local" class="form form-control" id="birthdaytime" #date (change)="getDate(date.value)">
+s
+
+<br> -->
+
+<div class="row">
+
+    <form [formGroup]="form" (ngSubmit)="submit()" autocomplete="off">
+        <div class="row">
+
+            <div class="col-6">
+                <label for="tamano">
+                    Tamaños
+                </label>
+                <select class="form-select" aria-label="Tamaño" formControlName="tamano" name="tamano" #tamano
+                    (change)="changeDispositivo(tamano.value)">
+                    <option selected>Open this select menu</option>
+                    <option value="480">Movil</option>
+                    <option value="768">Tablet</option>
+                    <option value="1024">PC</option>
+                </select>
+
+            </div>
+            <div class="col-6">
+                <label for="checkForm">
+                    Vista
+                </label>
+                <input type="checkbox" class="form-check-input" formControlName="checkForm" name="checkForm">
+
+            </div>
+        </div>
+
+        <ng-container *ngIf="form.value.checkForm">
+            <div class="row">
+
+                <div class="col-4">
+                    <label for="bgPositionX">
+                        Posición en X imagen
+                    </label>
+                    <input type="number" class="form-control" formControlName="bgPositionX" name="bgPositionX"
+                        #bgPositionX (change)="changeValue('bgPositionX',bgPositionX.value)">
+                </div>
+                <div class="col-4">
+                    <label for="bgPositionY">
+                        Posición en Y imagen
+                    </label>
+                    <input type="number" class="form-control" formControlName="bgPositionY" name="bgPositionY"
+                        #bgPositionY (change)="changeValue('bgPositionY',bgPositionY.value)">
+                </div>
+                <div class="col-4">
+                    <label for="esposa">
+                        Esposa
+                    </label>
+                    <input type="text" class="form-control" formControlName="esposa" name="esposa" placeholder="Esposa">
+                </div>
+                <div class="col-4">
+                    <label for="esposo">
+                        Esposo
+                    </label>
+                    <input type="text" class="form-control" formControlName="esposo" name="esposo" placeholder="Esposo">
+                </div>
+                <div class="col-4">
+                    <label for="evento">
+                        evento
+                    </label>
+                    <input type="text" class="form-control" formControlName="evento" name="evento" placeholder="evento">
+                </div>
+                <div class="col-6">
+                    <label for="fecha">
+                        Fecha
+                    </label>
+                    <input type="datetime-local" class="form-control" formControlName="fecha" name="fecha"
+                        placeholder="Fecha" #date (change)="getDate(date.value)">
+                </div>
+
+                <div class="col-6">
+                    <label for="mensaje">
+                        Mensaje
+                    </label>
+                    <input type="text" class="form-control" formControlName="mensaje" name="mensaje"
+                        placeholder="Mensaje">
+                </div>
+                <div class="col-3">
+                    <label for="checkIglesia">
+                        checkIglesia
+                    </label>
+                    <input type="checkbox" class="form-check-input" formControlName="checkIglesia" name="checkIglesia"
+                        placeholder="checkIglesia">
+                </div>
+                <div class="col-3">
+                    <label for="nombreIglesia">
+                        nombreIglesia
+                    </label>
+                    <input type="text" class="form-control" formControlName="nombreIglesia" name="nombreIglesia"
+                        placeholder="Nombre Iglesia">
+                </div>
+                <div class="col-3">
+                    <label for="direccionIglesia">
+                        direccionIglesia
+                    </label>
+                    <input type="text" class="form-control" formControlName="direccionIglesia" name="direccionIglesia"
+                        placeholder="direccion Iglesia">
+                </div>
+                <div class="col-3">
+                    <label for="fechaIglesia">
+                        fechaIglesia
+                    </label>
+                    <input type="datetime-local" class="form-control" formControlName="fechaIglesia" name="fechaIglesia"
+                        placeholder="fecha Iglesia">
+                </div>
+                <div class="col-3">
+                    <label for="checkCivil">
+                        checkCivil
+                    </label>
+                    <input type="checkbox" class="form-check-input" formControlName="checkCivil" name="checkCivil"
+                        placeholder="checkCivil">
+                </div>
+                <div class="col-3">
+                    <label for="nombreCivil">
+                        nombreCivil
+                    </label>
+                    <input type="text" class="form-control" formControlName="nombreCivil" name="nombreCivil"
+                        placeholder="Nombre Civil">
+                </div>
+                <div class="col-3">
+                    <label for="direccionCivil">
+                        direccionCivil
+                    </label>
+                    <input type="text" class="form-control" formControlName="direccionCivil" name="direccionCivil"
+                        placeholder="direccion Civil">
+                </div>
+                <div class="col-3">
+                    <label for="fechaCivil">
+                        fechaCivil
+                    </label>
+                    <input type="datetime-local" class="form-control" formControlName="fechaCivil" name="fechaCivil"
+                        placeholder="fecha Civil">
+                </div>
+                <div class="col-12">
+                    <input type="submit" value="enviar">
+
+                </div>
+            </div>
+
+        </ng-container>
+
+    </form>
+</div>
+<div>
+
+    <div class="contenedor">
+
+
+
+
+        <div style="height: 100vh;
+        background-image: url('/assets/invitaciones/bodas/boda1.webp');
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        background-position: {{bgX}}% {{bgY}}%;
+        background-color: #FFF;
+        -webkit-transform: translateZ(0);
+        overflow: hidden;">
+            <div class="col-md-offset-1 col-md-10 carousel-caption2 animated-element-1 delay1 my-5 animated fadeIn">
+                <h1 class="titprin personalColorTitutlo" style="font-family: Josefin Slab,Arial,sans-serif !important;">
+                    {{form.value.esposa}}<span class="logo-slider personalColorTitutlo"><b> &amp;
+                        </b></span>{{form.value.esposo}}</h1>
+
+                <h2 class="margin personalColorTitutlo">{{form.value.evento}}</h2>
+                <div class="clock">
+                    <span class="personalColorTitutlo"> <b> {{dias}}</b> Días <b> {{horas}} </b> Horas
+                        <b>{{minutos}}</b> Minutos <b>{{segundos}} </b>Segundos</span>
+                    <br>
+                    <span class="personalColorTitutlo" style="font-size: larger;"> <b> {{form.value.fecha | date:
+                            &apos;short&apos;}}</b> </span>
+
+                </div>
+            </div>
+        </div>
+        <div class="leyenda">
+            <div
+                style="top:-50px;text-shadow: 1px 1px 6px rgba(0,0,0,0.9), 4px 4px 6px rgba(0,0,0,0.5), 8px 8px 11px rgba(0,0,0,0.75), 22px 22px 20px rgba(0,0,0,0.4), -2px -2px 5px rgba(0,0,0,0.2), 2px 2px 5px rgba(0,0,0,0.2);">
+                <div style="font-size: 30px;
+        font-family: great vibes;
+        translate: 0 -150px;
+        max-width: 300px;
+        color: wheat;">{{form.value.mensaje}}
+                </div>
+            </div>
+        </div>
+        <section style="background-color: #f7f0e6">
+            <section id="wedding-header" class="wedding-header-single-page">
+                <div class="text-center">
+
+
+                    <h2 class="headline" style="color: #101010 !important;">Dónde &amp; Cuándo</h2>
+                </div>
+            </section>
+
+
+
+
+
+
+
+
+            <section id="wedding-info" class="onepage">
+                <div class="">
+                    <div class="row" style="width: 100%; margin: auto; justify-content: center;">
+
+                        <div class="col-md-4 pading-text margin1 animated-element-1 animated fadeIn"
+                            *ngIf="form.value.checkIglesia">
+                            <div class="wraper-we onepage alturaTarjetas"
+                                style="color: rgb(16, 16, 16) !important; background-color: rgb(249, 249, 248); height: auto; margin-bottom:15px;padding-bottom:10px;">
+
+                                <h3 class="titleTable">{{form.value.titleIglesia}} </h3>
+
+
+                                <img src="/assets/invitaciones/bodas/boda3.jpeg" class="img-invite">
+
+                                <h3 class="wed-text title titleTable">{{form.value.nombreIglesia}}</h3>
+
+                                <div class="wed-text"><b>Cuándo: </b> {{form.value.fechaIglesia | date :"short"}} </div>
+                                <div class="wed-text"><b>Dirección:</b> {{form.value.direccionIglesia}}</div>
+
+
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-md-4 pading-text margin1 animated-element-1 animated fadeIn"
+                            *ngIf="form.value.checkCivil">
+                            <div class="wraper-we onepage alturaTarjetas"
+                                style="color: rgb(16, 16, 16) !important; background-color: rgb(249, 249, 248); height: auto; margin-bottom:15px;padding-bottom:10px;">
+
+                                <h3 class="titleTable">{{form.value.titleCivil}} </h3>
+
+                                <img src="/assets/invitaciones/bodas/boda4.jpeg" alt="480x320" class="img-invite">
+
+                                <h3 class="wed-text titleTable">{{form.value.nombreCivil}} </h3>
+
+                                <div class="wed-text"><b>Cuándo: </b> {{form.value.fechaCivil | date :'short'}} </div>
+                                <div class="wed-text"><b>Dirección:</b> {{form.value.direccionCivil}}</div>
+
+
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-md-4 pading-text margin1 animated-element-1 animated fadeIn">
+                            <div class="wraper-we onepage alturaTarjetas"
+                                style="color: rgb(16, 16, 16) !important; background-color: rgb(249, 249, 248); height: auto; margin-bottom:15px;padding-bottom:10px;">
+
+                                <h3 class="titleTable">Recepción </h3>
+
+                                <img src="/assets/invitaciones/bodas/boda5.jpeg" alt="480x320" class="img-invite">
+
+                                <h3 class="wed-text titleTable">Jardín Pacifico Kristal </h3>
+
+                                <div class="wed-text"><b>Cuándo: </b> 28 de diciembre de 2024 20:00 hrs. </div>
+                                <div class="wed-text"><b>Dirección:</b> Barra Vieja Kilómetro 33 San Andrés Playa
+                                    Encantada,
+                                    Acapulco de Juárez, Gro., México. </div>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+
+
+
+                </div>
+            </section>
+            <section id="wedding-header" class="wedding-header-single-page">
+                <div class="">
+                    <div class="text-center">
+
+
+                        <h2 style="color: #101010" class="headline">Hospedaje Recomendado</h2>
+                    </div>
+                </div>
+            </section>
+            <div class="row"
+                style="width: 100%; background-color: white; justify-content: center;text-align: center;margin: auto;">
+
+
+
+                <div class="col-md-4 pading-text margin1 animated-element-1 animated fadeIn ">
+                    <div class="wraper-we onepage alturaTarjetas"
+                        style="color: rgb(16, 16, 16) !important;   height: auto; margin-bottom:15px;padding-bottom:10px;">
+                        <img src="/assets/invitaciones/bodas/boda5.jpeg" alt="480x320" class="img-invite"
+                            style="margin-top: 50px;">
+                        <h3 class="wed-text titleTable" style="margin-top: 10px;">Hotel Maravillas</h3>
+
+
+                        <div class="wed-text"><b>Dirección:</b> Barra Vieja Kilómetro 33 San Andrés Playa
+                            Encantada,
+                            Acapulco de Juárez, Gro., México. </div>
+
+
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+        </section>
+        <section id="portfolio" class="container " style="background-color: 
+            #f7f0e6">
+            <div class="text-center" style="    margin-bottom: 0px;">
+
+                <h2 class="titulo" style="color: 
+                        #000000 !important;"> Nosotros </h2>
+
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-sm-6 mb-5">
+                    <ul class=" animated fadeIn  "><a class="my-image-links vbox-item" data-gall="gallery01"><img
+                                src="/assets/invitaciones/bodas/boda1.webp" class="img-invite2"></a></ul>
+                </div>
+                <div class="col-lg-4 col-sm-6 mb-5">
+                    <ul class=" animated fadeIn  "><a class="my-image-links vbox-item" data-gall="gallery01"><img
+                                src="/assets/invitaciones/bodas/boda2.webp" class="img-invite2"></a></ul>
+                </div>
+                <div class="col-lg-4 col-sm-6 mb-5">
+                    <ul class=" animated fadeIn  "><a class="my-image-links vbox-item" data-gall="gallery01"><img
+                                src="/assets/invitaciones/bodas/boda3.jpeg" class="img-invite2"></a></ul>
+                </div>
+                <div class="col-lg-4 col-sm-6 mb-5">
+                    <ul class=" animated fadeIn  "><a class="my-image-links vbox-item" data-gall="gallery01"><img
+                                src="/assets/invitaciones/bodas/boda4.jpeg" class="img-invite2"></a></ul>
+                </div>
+                <div class="col-lg-4 col-sm-6 mb-5">
+                    <ul class=" animated fadeIn  "><a class="my-image-links vbox-item" data-gall="gallery01"><img
+                                src="/assets/invitaciones/bodas/boda5.jpeg" class="img-invite2"></a></ul>
+                </div>
+                <div class="col-lg-4 col-sm-6 mb-5">
+                    <ul class=" animated fadeIn"><a class="my-image-links vbox-item" data-gall="gallery01"><img
+                                src="/assets/invitaciones/bodas/boda3.jpeg" class="img-invite2"></a></ul>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+<!-- 
+
+<app-footer></app-footer> -->

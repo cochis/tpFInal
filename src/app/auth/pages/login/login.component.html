@@ -1,0 +1,56 @@
+<div class="body">
+    <app-header></app-header>
+    <div class="container">
+        <div class="d-flex justify-content-center h-100">
+            <app-loading *ngIf="loading" style="width: 100%;height: 100%;"></app-loading>
+            <div class="card" *ngIf="!loading">
+                <div class="card-header">
+                    <h3>Ingresa</h3>
+                    <div class="d-flex justify-content-end social_icon">
+                        <span><i class="fab fa-facebook-square"></i></span>
+                        <span><i class="fab fa-google-plus-square"></i></span>
+                        <span><i class="fab fa-twitter-square"></i></span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="loginForm" (ngSubmit)="submit()" autocomplete="off">
+                        <div class="input-group form-group mt-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="icon-user"></i></span>
+                            </div>
+                            <input type="text" class="form-control" formControlName="email" name="email"
+                                placeholder="Correo electrónico">
+
+                        </div>
+                        <div class="input-group form-group mt-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="icon-key"></i></span>
+                            </div>
+                            <input type="password" class="form-control" placeholder="Contraseña"
+                                formControlName="password" name="password" *ngIf="!vieWPass">
+                            <input type="text" class="form-control" placeholder="Contraseña" formControlName="password"
+                                name="password" *ngIf="vieWPass">
+                        </div>
+                        <span class="text-white" *ngIf="!vieWPass" (click)="verPass()">Ver contraseña <i
+                                class="icon-eye"></i></span>
+                        <span class="text-white" *ngIf="vieWPass" (click)="verPass()">Ocultar contraseña <i
+                                class="icon-eye"></i></span>
+
+                        <div class="form-group mt-5 text-center">
+                            <input type="submit" value="Ingresa" class="btn  login_btn">
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex justify-content-center links">
+                        ¿No tienes cuenta?<a (click)="register()">Regístrate</a>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <a (click)="resetPassword()">Recordar contraseña</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

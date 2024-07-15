@@ -1,0 +1,182 @@
+<app-header></app-header>
+<main>
+    <app-loading class="animated1 fadeIn" *ngIf="loading"></app-loading>
+    <section class="contact-section section-padding section-bg animated1 fadeIn " id="section_5" *ngIf="!loading">
+        <div class="container bw">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+
+                        <div class="col-12 col-md-4 mt-3">
+
+                            <input type="text" class="form-control" placeholder="Buscar usuario..."
+                                (keyup)="buscar(txtTermino.value)" #txtTermino>
+                        </div>
+                        <div class="col-12 col-md-4 mt-3" *ngIf="rol ===ADM">
+                            <select class="form-control" (change)="buscarCatalogo('rol',rol.value)" #rol>
+                                <option value="">Búsqueda por rol </option>
+                                <option [value]="item.uid" *ngFor="let item of roles">{{item.nombre}}</option>
+
+                            </select>
+                        </div>
+                        <div class="col-12 col-md-4 mt-3" *ngIf="rol ===ADM">
+                            <select class="form-control" (change)="buscarCatalogo('salon',rol.value)" #rol>
+                                <option value="">Búsqueda por salón </option>
+                                <option [value]="item.uid" *ngFor="let item of salones">{{item.nombre}}</option>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="row mt-5 text-center">
+                            <div class="col-12  text-center">
+                                <button class="btn but   " (click)="newUser()">Nuevo Usuario</button>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-lg-12 col-12 text-center">
+                    <h2 class="mb-5">Usuarios</h2>
+                </div>
+
+                <div class="col-12 text-center">
+                    <h5 *ngIf="usuarios.length===0">Sin información</h5>
+                    <div class="table-over">
+
+
+                        <table class="table table-striped table-bordered " *ngIf=" usuarios && usuarios.length >0">
+                            <thead class="thead-dark">
+
+                                <th class="upper">Opciones</th>
+                                <th class="upper">nombre</th>
+                                <th class="upper">apellido Paterno</th>
+                                <th class="upper">apellido Materno</th>
+                                <th class="upper">email</th>
+                                <th class="upper">imagen</th>
+                                <th class="upper">rol</th>
+                                <th class="upper" *ngIf="rol===ADM">salón</th>
+                                <th class="upper" *ngIf="rol===ADM">Paquete</th>
+                                <th class="upper" *ngIf="rol===ADM"># Fiestas</th>
+                                <!--   <th class="upper">google</th> -->
+                                <th class="upper" *ngIf="rol===ADM">Creador</th>
+                                <th class="upper">Activado</th>
+                                <th class="upper">creación</th>
+                                <th class="upper">Edición</th>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let usuario of usuarios; let i=index">
+                                    <ng-container *ngIf="usuario.uid != uid">
+
+                                        <td>
+                                            <div class="opc">
+
+                                                <i class="icon-eye text-primary" *ngIf="usuario.activated"
+                                                    (click)="viewUsuario(usuario.uid)"></i>
+                                            </div>
+                                            <div class="opc">
+
+                                                <i class="icon-ok-circled text-success" *ngIf="!usuario.activated"
+                                                    (click)="isActived(usuario)"></i>
+                                            </div>
+                                            <div class="opc">
+
+                                                <i class="icon-trash text-danger" *ngIf="usuario.activated"
+                                                    (click)="isActived(usuario)"></i>
+                                            </div>
+                                            <div class="opc">
+                                                <i class="icon-pencil text-primary" *ngIf="usuario.activated"
+                                                    (click)="editUsuario(usuario.uid)"></i>
+
+                                            </div>
+
+
+
+                                        </td>
+                                        <td class="upper">{{usuario.nombre}}</td>
+                                        <td class="upper">{{usuario.apellidoPaterno}}</td>
+                                        <td class="upper">{{usuario.apellidoMaterno}}</td>
+                                        <td class="upper">{{usuario.email}}</td>
+
+                                        <td>
+                                            <img [src]="(usuario.img!=='')?url+'/upload/usuarios/'+usuario.img:url+'/upload/usuarios/default.jpg'"
+                                                style="    margin: auto;
+                                                margin-top: 15px;
+                                                width: 32px !important;
+                                                height: 32px !important;" />
+
+
+                                        </td>
+
+                                        <td class="upper" *ngIf="!usuario.role"></td>
+                                        <td class="upper" *ngIf="usuario.role">{{usuario.role.nombre }}</td>
+
+
+                                        <td class="upper" *ngIf=" usuario.salon.length ==0 && rol ===ADM">
+                                        </td>
+                                        <td class="upper"
+                                            *ngIf="usuario.salon && usuario.salon.length >0 && rol ===ADM">
+
+                                            <ng-container *ngFor="let salon of usuario.salon">
+                                                {{( salon)?getCatalog('salon',salon):'' }}
+                                            </ng-container>
+
+                                        </td>
+                                        <td class="upper" *ngIf="  rol ===ADM">
+
+
+                                            {{ getCatalog('paquete',usuario.paqueteActual) }}
+
+
+                                        </td>
+                                        <td class="upper">
+
+
+                                            {{usuario.cantidadFiestas}}
+
+
+                                        </td>
+
+                                        <!-- 
+                                        <td>
+                                            <i *ngIf="usuario.google" class="icon-ok-circled text-success"></i>
+                                            <i *ngIf="!usuario.google" class="icon-cancel-circled text-danger"></i>
+                                        </td> -->
+                                        <td class="upper" class="upper" *ngIf=" !usuario.usuarioCreated && rol ===ADM">
+
+                                        </td>
+                                        <td class="upper" *ngIf="usuario.usuarioCreated && rol ===ADM ">
+                                            <ng-container *ngFor="let user of usuario.usuarioCreated">
+                                                {{( user)?getCatalog('usuario',user._id):'' }}
+
+                                            </ng-container>
+                                        </td>
+
+
+                                        <td>
+                                            <i *ngIf="usuario.activated" class="icon-ok-circled text-success"></i>
+                                            <i *ngIf="!usuario.activated" class="icon-cancel-circled text-danger"></i>
+                                        </td>
+                                        <td>{{usuario.dateCreated | date:'dd/MM/YYYY'}}</td>
+                                        <td>{{usuario.lastEdited | date:'dd/MM/YYYY'}}</td>
+                                    </ng-container>
+
+                                </tr>
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+</main>
+<app-footer></app-footer>

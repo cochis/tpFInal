@@ -1,0 +1,157 @@
+.bw {
+    background-color: white;
+    border-radius: 20px;
+
+
+}
+
+.table-over {
+
+    overflow: scroll;
+    height: auto;
+    width: 100%;
+    max-height: 500px;
+}
+
+.loadImg {
+    width: 50%;
+    max-width: 150px;
+}
+
+.upper {
+    text-transform: uppercase;
+}
+
+.cap {
+    text-transform: capitalize;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.btn {
+
+    width: 80%;
+}
+
+.btn-warning {
+    background: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+    color: white;
+}
+
+.btn-warning:hover {
+    color: white;
+
+    background: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+    opacity: .7;
+
+}
+
+.but {
+    background: var(--primary-color) !important;
+    color: white !important;
+}
+
+.but:hover {
+    color: white;
+
+    background: var(--primary-color);
+
+    opacity: .7;
+
+    ;
+
+}
+
+.card {
+    border: none !important;
+}
+
+.img-avatar {
+    width: 250px;
+    height: 250px;
+    margin: auto;
+}
+
+.primary {
+    color: var(--primary-color)
+}
+
+/* .dropdown-menu .dropdown-menu-light {
+    display: none !important;
+} */
+
+input[type="file"] {
+    display: none;
+}
+
+.error {
+    width: 100%;
+    background-color: white;
+    color: var(--error);
+    padding: 0 15px;
+
+}
+
+.plus {
+    background: green;
+    border-radius: 100%;
+    width: 50px;
+    height: 50px;
+    color: white;
+    margin-top: 18px auto;
+}
+
+.less {
+    background: var(--error);
+    border-radius: 100%;
+    width: 50px;
+    height: 50px;
+    color: white;
+    margin-top: 18px auto;
+}
+
+.list {
+    color: var(--secondary-color)
+}
+
+.danger {
+    padding: 0 10px;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+/* @media screen and (max-width: 991px) {
+    .navbar-nav .dropdown-menu {
+        display: none;
+        transition: all 500ms;
+    }
+
+    .navbar-expand-lg .navbar-nav .nav-link:hover~.dropdown-menu {
+        display: block;
+    }
+} */
+.mt-50 {
+    margin-top: 50px;
+}
+
+.dp-modal-header {
+    display: flex;
+    background-color: #13547a !important;
+    border-radius: 5px 5px 0 0;
+    color: #e2dfdf;
+    padding: 1px 1px 1px 14px;
+    -webkit-border-radius: 5px 5px 0 0;
+    -moz-border-radius: 5px 5px 0 0;
+    -ms-border-radius: 5px 5px 0 0;
+    -o-border-radius: 5px 5px 0 0;
+}

@@ -1,0 +1,184 @@
+<app-header></app-header>
+<main>
+    <app-loading class="animated1 fadeIn" *ngIf="loading"></app-loading>
+    <app-message class="animated1 fadeIn" *ngIf="msnOk"></app-message>
+    <section class="contact-section section-padding section-bg animated1 fadeIn " id="section_5" *ngIf="!loading">
+        <div class="container bw">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-12 col-12 text-center">
+
+                            <h2 class="mb-5" *ngIf="edit=='false'">Perfil</h2>
+                        </div>
+                        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                            <div class="row">
+                                <div class="col-12 col-md-4 mt-3">
+                                    <div class="form-group">
+                                        <label for="nombre">Nombre</label>
+                                        <input type="text" class="form-control upper" id="nombre"
+                                            formControlName="nombre" required placeholder="Nombre"
+                                            [readonly]="edit==='false'">
+                                    </div>
+                                    <span *ngIf="submited && errorControl['nombre'].errors " class="error">Es requerido
+                                    </span>
+                                </div>
+                                <div class="col-12 col-md-4 mt-3">
+
+                                    <div class="form-group">
+                                        <label for="apellidoPaterno">Apellido paterno</label>
+                                        <input type="text" class="form-control upper" id="apellidoPaterno"
+                                            formControlName="apellidoPaterno" placeholder="Apellido paterno"
+                                            [readonly]="edit==='false'">
+                                    </div>
+                                    <span *ngIf="submited && errorControl['apellidoPaterno'].errors " class="error">Es
+                                        requerido
+                                    </span>
+                                </div>
+                                <div class="col-12 col-md-4 mt-3">
+
+                                    <div class="form-group">
+                                        <label for="apellidoMaterno">Apellido materno</label>
+                                        <input type="text" class="form-control upper" id="apellidoMaterno"
+                                            placeholder="Apellido materno" formControlName="apellidoMaterno"
+                                            [readonly]="edit==='false'">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 mt-3">
+
+                                    <div class="form-group">
+                                        <label for="email">Correo electrónico</label>
+                                        <input type="email" class="form-control upper" id="email"
+                                            placeholder="Correo electrónico" formControlName="email"
+                                            [readonly]="edit==='false'">
+                                    </div>
+                                    <span *ngIf="submited && errorControl['email'].errors " class="error">Es requerido
+                                    </span>
+                                </div>
+
+                                <div class="col-12 col-md-6 mt-3">
+
+                                    <div class="form-group" *ngIf="edit ==='true'">
+                                        <label for="rol">Rol</label>
+                                        <select name="" id="rol" formControlName="role" class="form-control upper">
+                                            <option value="">Selecciona un rol</option>
+                                            <option [value]="item.uid" *ngFor="let item of roles">{{item.nombre}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <span *ngIf="submited && errorControl['role'].errors " class="error">Es requerido
+                                    </span>
+                                    <div class="form-group" *ngIf="edit ==='false'">
+
+                                        <div class="form-group">
+                                            <label for="rol">Rol</label>
+                                            <input type="text" class="form-control upper" id="rol" placeholder="Rol"
+                                                formControlName="role" [readonly]="edit==='false'">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 mt-3">
+
+
+                                    <div class="form-group" *ngIf="edit ==='false'">
+
+                                        <div class="form-group">
+                                            <label for="salon">Salones</label>
+
+                                            <input type="text" class="form-control upper" id="salon" placeholder="Salón"
+                                                formControlName="salon" [readonly]="edit==='false'">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-6 mt-3 text-center">
+                                    <div class=" image-upload" class="text-center">
+
+                                        <label for="file-input" class="text-center">
+
+                                            <ng-container *ngIf="usuario" class="text-center">
+                                                <img *ngIf="usuario.img ==='' && !imgTemp   "
+                                                    [src]="url+'/upload/usuarios/default.jpg'+usuario.img"
+                                                    alt="Click aquí para subir tu foto"
+                                                    title="Click aquí para subir tu foto" class="img-avatar">
+                                                <img *ngIf="usuario.img !=='' && !imgTemp   "
+                                                    [src]="url+'/upload/usuarios/'+usuario.img"
+                                                    alt="Click aquí para subir tu foto"
+                                                    title="Click aquí para subir tu foto" class="img-avatar">
+                                                <img *ngIf="usuario.img !=='' && imgTemp  " [src]="imgTemp"
+                                                    [alt]="usuario.nombre" class="img-avatar">
+                                            </ng-container>
+                                        </label>
+
+                                        <input id="file-input" type="file" class="ion-no-border"
+                                            (change)="cambiarImagen($event )" />
+
+
+
+                                    </div>
+                                </div>
+                                <div class="col-12   mt-3 text-center">
+
+                                    <button class="custom-btn  but " (click)="changePass(content)">
+                                        Cambiar contraseña</button>
+                                </div>
+                            </div>
+
+                            <div class="row mt-5 text-center">
+                                <div class="col-12  mt-3 text-center">
+                                    <button class="btn btn-lg btn-block btn-warning" (click)="back()">Regresar</button>
+
+                                </div>
+
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+
+</main>
+
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Cambiar contraseña</h4>
+        <button type="button" class="btn-close" aria-label="Cerrar" (click)="d('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="row">
+
+                <div class="col-12  mt-3">
+                    <div class="form-group">
+                        <label for="newPassword">Nueva contraseña</label>
+                        <input type="password" class="form-control upper" id="newPassword" formControlName="newPassword"
+                            required placeholder="Nueva Contraseña" #newPass>
+                    </div>
+                    <span *ngIf="submited && errorControl['nombre'].errors " class="error">Es requerido
+                    </span>
+                </div>
+
+
+            </div>
+            <div class="row mt-5 text-center">
+                <div class="col-12  mt-3 text-center">
+                    <a class="btn btn-lg btn-block but" (click)="updatePass( newPass.value)">Cambiar contraseña</a>
+
+                </div>
+
+            </div>
+
+
+        </form>
+
+    </div>
+
+</ng-template>
+
+<app-footer></app-footer>

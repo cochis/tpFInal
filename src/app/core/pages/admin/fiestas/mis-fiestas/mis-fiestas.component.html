@@ -1,0 +1,198 @@
+<app-header></app-header>
+<app-loading *ngIf="loading"></app-loading>
+<section class="explore-section section-padding" id="section_2" *ngIf="!loading">
+    <div class="container">
+        <div class="col-12 text-center">
+            <h2 class="mb-4">Mis fiestas</h2>
+        </div>
+        <div class="col-12 col-md-6 mt-3">
+
+            <div class="form-group">
+                <label for="grupo">Filtro </label>
+                <select name="" class="form-control upper" (change)="filterBy(filter.value)" #filter>
+                    <option value="" selected>Selecciona un filtro</option>
+                    <option value="finalizadas">Finalizadas</option>
+                    <option value="true">Activadas</option>
+                    <option value="false">Desactivadas</option>
+
+                </select>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="container-fluid mt-50">
+        <div class="row">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="design-tab" data-bs-toggle="tab"
+                        data-bs-target="#design-tab-pane" type="button" role="tab" aria-controls="design-tab-pane"
+                        aria-selected="true">
+                        Fiestas ({{fiestas.length}})
+
+
+
+                    </button>
+                </li>
+
+
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row" *ngIf="fiestas">
+
+            <div class="col-12">
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="design-tab-pane" role="tabpanel"
+                        aria-labelledby="design-tab" tabindex="0">
+                        <div class="row">
+                            <ng-container *ngFor="let party of fiestas; let i =index">
+                                <div class="col-lg-6 col-md-6 col-12 mt-5">
+
+                                    <div class="custom-block custom-block-overlay" style="max-height: 400px;">
+                                        <div class="d-flex flex-column h-100">
+                                            <img [src]="(party.img!=='')?url+'/upload/fiestas/'+party.img:url+'/upload/fiestas/default.jpg'"
+                                                class="custom-block-image img-fluid" alt="">
+
+                                            <div class="custom-block-overlay-text d-flex">
+                                                <div>
+                                                    <h4 class="text-white mb-2" style="font-size: 18px;">
+                                                        {{party.nombre}}
+                                                        <small
+                                                            style="color:var(--primary-color) ;font-size:15px ;">{{party.salon.nombre}}
+                                                            <b style="color:white">{{party.fecha |
+                                                                date:"shortDate"}}</b>
+                                                        </small>
+
+                                                    </h4>
+
+
+                                                    <!--  <label for="file-input" class="text-center"
+                                                        *ngIf="rol === URS || rol === ADM">
+
+                                                        <i class="social-icon-link icon-picture"></i>
+                                                    </label>
+                                                    
+                                                    {{i}}
+                                                    <input id="file-input" type="file" class="ion-no-border"
+                                                        (change)="cambiarImagen($event,party,i )" />
+
+ -->
+
+
+                                                    <ng-container *ngIf=" boletos.length ==0">
+                                                        <h3>
+
+                                                            No hay boleto registrados para esta fiesta
+                                                        </h3>
+                                                        <a routerLink="/core/boletos/crear-boleto">Crear boleto</a>
+                                                    </ng-container>
+                                                    <ng-container *ngFor="let boleto of boletos">
+                                                        <ng-container *ngIf="boleto.fiesta.uid === party.uid">
+                                                            <ul class="text-white" style="list-style: none;">
+                                                                <li class="list">Tickets
+                                                                    <b class="text-white">{{boleto.fiesta.cantidad}}</b>
+                                                                </li>
+                                                                <li class="list">Invitaciones
+                                                                    creadas
+                                                                    <b class="text-white">{{getActivas(boleto.boletos)
+                                                                        }}</b>
+                                                                </li>
+                                                                <li class="list">Ocupados
+                                                                    <b class="text-white">{{gettotal(boleto.boletos
+                                                                        ,'ocupados')}}</b>
+                                                                </li>
+                                                                <li class="list">Libres
+                                                                    <b class="text-white">{{boleto.fiesta.cantidad
+                                                                        -gettotal(boleto.boletos
+                                                                        ,'ocupados')}}</b>
+                                                                </li>
+                                                                <li class="list">Confirmados
+                                                                    <b
+                                                                        class="text-white">{{getConfirmados(boleto.boletos)}}</b>
+                                                                </li>
+                                                                <li class="list">En fiesta
+                                                                    <b class="text-white"
+                                                                        [ngClass]="{'danger': gettotal(boleto.boletos) === getOnParty(boleto.boletos) }">{{getOnParty(boleto.boletos)}}</b>
+                                                                </li>
+                                                                <li class="list" style="cursor: pointer;"
+                                                                    (click)="enviarPush(boleto.boletos)"
+                                                                    alt="Solo quien activo las notificaciones en sus dispositivos">
+                                                                    <b class="text-white"
+                                                                        style="margin-right:10px">Recordar</b> <i
+                                                                        class="bi bi-send"></i>
+                                                                </li>
+                                                            </ul>
+                                                        </ng-container>
+
+
+                                                    </ng-container>
+
+
+
+
+                                                </div>
+
+                                            </div>
+                                            <br>
+                                            <div class="social-share d-flex"
+                                                *ngIf="(rol === URS || rol === ADM || rol === SLN ) && party.fecha > today && party.activated">
+                                                <p class="text-white  ">Invitados: </p>
+
+                                                <ul class="social-icon">
+                                                    <li class="social-icon-item">
+                                                        <a (click)="setInvitados(party.uid)"
+                                                            class="social-icon-link icon-plus"
+                                                            style="text-decoration: none; font-size: 25px;">
+                                                        </a>
+                                                    </li>
+
+
+                                                </ul>
+
+                                            </div>
+                                            <div class="social-share d-flex" style="left: 40%;"
+                                                *ngIf="(rol === URS || rol === ADM || rol === SLN ) && party.fecha > today && party.activated">
+                                                <p class="text-white  ">Invitacion: </p>
+
+                                                <ul class="social-icon">
+                                                    <li class="social-icon-item">
+                                                        <a routerLink="/core/invitaciones/editar-invitacion/true/{{party.uid}}"
+                                                            class="social-icon-link bi bi-file-earmark-fill "
+                                                            style="text-decoration: none; font-size: 25px;">
+                                                        </a>
+                                                    </li>
+
+
+                                                </ul>
+
+                                            </div>
+
+                                            <div class="section-overlay"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-container>
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row" *ngIf="fiestas.length==0">
+            <h2 class="text-center mt-50">Aun no tienes fiestas</h2>
+        </div>
+    </div>
+</section>
+
+
+
+
+<app-footer></app-footer>

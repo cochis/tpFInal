@@ -1,0 +1,319 @@
+<app-header></app-header>
+<app-loading class="animated1 fadeIn" *ngIf="loading"></app-loading>
+<app-message class="animated1 fadeIn" *ngIf="msnOk"></app-message>
+
+
+
+<section class="contact-section section-padding section-bg animated1 fadeIn " id="section_5" *ngIf="!loading">
+    <div class="container bw">
+        <div class="card">
+
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-12 col-12 text-center">
+                        <h2 class="mb-5" *ngIf="edit=='true'">Editar boletos</h2>
+                        <h2 class="mb-5" *ngIf="edit=='false'">Ver boletos</h2>
+
+
+                        <div class="row text-center">
+                            <div class="col-12">
+
+                                <h3>Cantidad de invitaciones: {{numeroInvitados}} </h3>
+
+                                <h3 *ngIf="form.value.invitados.length>0" class="ion-text-center">Invitados {{total}}
+                                </h3>
+                            </div>
+                            <div class="col-12" color="danger" *ngIf="numeroInvitados<total">
+                                <h3>Ya no tiene boletos disponibles </h3>
+                            </div>
+
+                            <!--   <div class="col-12 col-md-6 mt-50">
+                                <label for="file-input" class="text-center">
+
+                                    <i class="social-icon-link icon-picture"></i>
+                                </label>
+
+
+                                <input id="file-input" type="file" class="ion-no-border"
+                                    (change)="cambiarImagen($event,fiesta)" />
+                            </div> -->
+                            <div class="col-12   mt-50" *ngIf="total >0">
+
+                                <button class="custom-btn  but " (click)="showConfirmados(content)"
+                                    style="margin: auto;">
+                                    Confirmados</button>
+                            </div>
+                        </div>
+                        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+                            <div class="row">
+
+
+
+                                <div class="col-6  mt-3" *ngIf="role !== URS">
+                                    <div class="form-group">
+                                        <label for="nombreGrupo">Fiesta</label>
+                                        <input type="text" class="form-control upper" id="fiesta"
+                                            formControlName="fiesta" required placeholder="Fiesta" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-6   mt-3" *ngIf="role !== URS && edit ==='true'">
+                                    <div class="col-6 col-md-6 mt-3 text-center" *ngIf="this.form.value.fiesta !==''">
+
+
+                                        <a class="custom-btn pr  " (click)="addInvitados()" [disabled]="getDisabled()"
+                                            *ngIf="this.form.value.fiesta !==''"> <i class="icon-plus"></i></a>
+                                        Invitado
+
+
+
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-12 col-md-6 mt-3" *ngIf="role == URS">
+                                    <div class="form-group">
+                                        <label for="nombreGrupo">Fiesta</label>
+                                        <input type="text" class="form-control upper" id="fiesta"
+                                            formControlName="fiesta" required placeholder="Fiesta" readonly>
+                                    </div>
+
+
+                                </div>
+                                <div class="col-6 col-md-6 mt-3" *ngIf="role == URS">
+                                    <div class="col-6 col-md-6 mt-3 text-center" *ngIf="this.form.value.fiesta !==''">
+                                        <div style="width: 100%;">
+
+                                            <a class="btn plus " (click)="addInvitados()"
+                                                [disabled]="(numeroInvitados===0) "
+                                                *ngIf="this.form.value.fiesta !==''"> <i class="icon-plus"></i></a>
+                                        </div>
+                                        <div style="width: 100%;">
+                                            <span>Invitado</span>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <div formArrayName="invitados">
+                                <div *ngFor="let invitado of invitados['controls'] ; let i=index">
+
+                                    <div [formGroupName]="i" *ngIf="  invitado.value.activated ">
+
+                                        <div class="row">
+                                            <div class="col-12 col-md-6 mt-3">
+
+                                                <div class="form-group">
+                                                    <label for="grupo">Grupo</label>
+                                                    <select name="" id="grupo" formControlName="grupo"
+                                                        class="form-control upper">
+                                                        <option value="">Selecciona un grupo</option>
+                                                        <option [value]="item.uid" *ngFor="let item of grupos">
+                                                            {{item.nombre}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                                <span
+                                                    *ngIf="submited && errorControl['invitados']['controls'][i]['controls']['grupo'].errors "
+                                                    class="error">Es
+                                                    requerido
+                                                </span>
+                                            </div>
+
+                                            <div class="col-12 col-md-6 mt-3">
+                                                <div class="form-group">
+                                                    <label for="nombreGrupo">Nombre de Grupo</label>
+                                                    <input type="text" class="form-control upper" id="nombreGrupo"
+                                                        formControlName="nombreGrupo" required
+                                                        placeholder="Nombre de grupo">
+                                                </div>
+                                                <span
+                                                    *ngIf="submited && errorControl['invitados']['controls'][i]['controls']['nombreGrupo'].errors "
+                                                    class="error">Es
+                                                    requerido
+                                                </span>
+                                            </div>
+                                            <div class="col-12 col-md-6 mt-3">
+                                                <div class="form-group">
+                                                    <label for="whatsapp">Teléfono</label>
+                                                    <input type="text" class="form-control upper" id="whatsapp"
+                                                        formControlName="whatsapp" required placeholder="Teléfono">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12 col-md-6 mt-3">
+                                                <div class="form-group">
+                                                    <label for="email">Correo electrónico</label>
+                                                    <input type="email" class="form-control upper" id="email"
+                                                        formControlName="email" placeholder="Correo electrónico">
+                                                </div>
+                                                <span
+                                                    *ngIf="submited && errorControl['invitados']['controls'][i]['controls']['email'].errors "
+                                                    class="error">Correo electrónico invalido
+                                                </span>
+                                            </div>
+
+                                            <div class="col-12 col-md-6 mt-3">
+                                                <div class="form-group">
+                                                    <label for="cantidadInvitados">Cantidad de invitados</label>
+                                                    <input type="number" class="form-control upper"
+                                                        id="cantidadInvitados" min="1"
+                                                        formControlName="cantidadInvitados"
+                                                        placeholder="Cantidad de invitados">
+                                                </div>
+
+
+
+                                                <div class="confirmado" *ngIf=" boleto[i] && boleto[i]. confirmado">
+
+                                                    Confirmado
+                                                </div>
+                                            </div>
+
+
+                                            <div class=" col-12 col-md-6 mt-4 text-center">
+                                                <div class="qrcodeImage text-center">
+
+                                                    <qrcode (qrCodeURL)="onChangeURL($event)" [qrdata]="getQr(invitado)"
+                                                        [allowEmptyString]="true"
+                                                        [ariaLabel]="'QR Code image with the following content...'"
+                                                        [cssClass]="'center'" [colorDark]="'#000000ff'"
+                                                        [colorLight]="'#ffffffff'" [elementType]="'canvas'"
+                                                        [errorCorrectionLevel]="'M'" [imageHeight]="75"
+                                                        [imageWidth]="75" [margin]="4" [scale]="1"
+                                                        [title]="getQr(invitado.value)" [width]="300">
+                                                    </qrcode>
+
+
+                                                </div>
+
+                                                <!--   <a [href]="qrCodeDownloadLink" download="qrcode" (click)="send(qr)"
+                                                    class="btn btn-success">Descargar QR</a> -->
+
+
+
+
+                                            </div>
+
+
+                                            <div class="col-12   mt-3" *ngIf="edit==='true'  ">
+
+                                                <button (click)="saveBoleto(invitado.value)"
+                                                    *ngIf=" invitado.value.uid == ''" class="custom-btn  but   "
+                                                    [disabled]="getDisabled()">Guardar invitado</button>
+                                                <a (click)="enviarInvitacion(i)"
+                                                    *ngIf="boleto[i] && boleto[i].invitacionEnviada == false"
+                                                    class="custom-btn  but   ">Enviar invitación</a>
+                                                <a (click)="enviarInvitacion(i)"
+                                                    *ngIf="boleto[i] && boleto[i].invitacionEnviada != false"
+                                                    class="custom-btn  but   ">Reenviar invitación</a>
+                                            </div>
+
+                                            <div class="col-12   mt-3">
+
+
+                                                <a (click)="removeInvitados(i)" *ngIf="edit==='true'   "
+                                                    class="custom-btn  ">Quitar
+                                                    invitado</a>
+                                            </div>
+
+
+                                        </div>
+                                        <hr>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row mt-5 text-center" *ngIf="role !== URS">
+
+                                <div class="col-12 col-md-6  mt-3 text-center" *ngIf="edit==='true'">
+                                    <button type="submit" class="btn btn-lg btn-block but  "
+                                        [disabled]="getDisabled()">Guardar</button>
+
+                                </div>
+                                <div class="col-12 col-md-6  mt-3 text-center">
+                                    <button class="btn btn-lg btn-block btn-warning" (click)="back()">Regresar</button>
+
+                                </div>
+                            </div>
+                            <div class="row mt-5 text-center" *ngIf="role == URS">
+
+                                <div class="col-12 col-md-6  mt-3 text-center ">
+                                    <button type="submit" class="btn btn-lg btn-block but  "
+                                        [disabled]="getDisabled()">Guardar</button>
+
+                                </div>
+                                <div class="col-12 col-md-6  mt-3 text-center">
+                                    <button class="btn btn-lg btn-block btn-warning"
+                                        (click)="backURS()">Regresar</button>
+
+                                </div>
+                            </div>
+
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Invitados confirmados</h4>
+        <button type="button" class="btn-close" aria-label="Cerrar" (click)="d('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <ul style="list-style: none;">
+
+            <li class="upper" style="font-size: 15px;">
+                <div class="table-responsive">
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Fecha</th>
+                                <th scope="col">Invitado</th>
+
+                            </tr>
+                        </thead>
+                        <tbody *ngIf="boletoTemp ">
+                            <ng-container *ngFor="let  invi of boletoTemp ">
+                                <tr *ngIf="invi.confirmado && invi.activated">
+                                    <ng-container *ngIf="invi.fechaConfirmacion">
+                                        <td>{{invi.fechaConfirmacion |
+                                            date:'short'}}</td>
+                                        <td>{{invi.nombreGrupo}}</td>
+                                    </ng-container>
+                                </tr>
+                            </ng-container>
+
+                        </tbody>
+                        <ng-container *ngIf="!boletoTemp ">
+                            <app-loading></app-loading>
+                        </ng-container>
+                    </table>
+                </div>
+
+
+
+            </li>
+
+        </ul>
+    </div>
+
+</ng-template>
+
+
+
+<app-footer></app-footer>

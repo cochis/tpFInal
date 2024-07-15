@@ -1,0 +1,207 @@
+<nav class="navbar navbar-expand-lg navbar-dark" *ngIf="!rol">
+    <div class="container-fluid">
+        <a class="navbar-brand" routerLink="/">
+            <!-- <i class="bi-back"></i> -->
+            <img src="assets/images/logo.png" class="logo-header" alt="">
+            <img src="assets/images/lg.png" class="" alt="">
+
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" routerLink="/">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/core/about">Nosotros</a>
+                </li>
+                <!--  <li class="nav-item">
+                    <a class="nav-link" routerLink="/core/invitaciones">Invitaciones</a>
+                </li> -->
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/core/contact">Contacto</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/core/pricing">Pricing</a>
+                </li>
+
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Cuenta
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" routerLink="/auth/login" *ngIf="!rol ">Ingresar</a></li>
+                        <li><a class="dropdown-item" routerLink="/auth/register" *ngIf="!rol ">Registrar</a></li>
+                        <li><a class="dropdown-item" routerLink="/auth/perfil" *ngIf="rol && rol!== ''">Perfil</a></li>
+                        <li><a class="dropdown-item" (click)="logout()" *ngIf="rol && rol!== ''">Salir</a></li>
+
+
+                    </ul>
+                </li>
+
+
+            </ul>
+
+        </div>
+    </div>
+</nav>
+<nav class="navbar navbar-expand-lg navbar-dark"
+    *ngIf="rol ===ADM  ||rol ===ANF  || rol ===SLN || rol ===CHK || rol ===URS">
+    <div class="container-fluid">
+        <a class="navbar-brand" routerLink="/">
+            <!-- <i class="bi-back"></i> -->
+            <img src="assets/images/logo.png" class="logo-header" alt="">
+            <img src="assets/images/lg.png" class="" alt="">
+
+
+
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" routerLink="/">Inicio</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/core/salones/vista-salones" *ngIf="rol=== SLN">Salon</a>
+                    <a class="nav-link" routerLink="/core/salones/vista-salones" *ngIf="rol=== ANF">Ubicación</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/core/mis-fiestas" *ngIf="rol">My parties</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/core/check-in"
+                        *ngIf="rol ===ADM || rol ===CHK ||  rol ===SLN ||  rol ===ANF">CheckIn</a>
+                </li>
+                <li class="nav-item dropdown" *ngIf="rol ===ADM ||   rol ===SLN ||   rol ===ANF">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Fiesta
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" routerLink="/core/fiestas/vista-fiestas">Ver fiestas</a></li>
+                        <li *ngIf="rol =='ADM'"><a class="dropdown-item" routerLink="/core/fiestas/crear-fiesta">Crear
+                                fiesta</a></li>
+
+
+                    </ul>
+                </li>
+                <li class="nav-item dropdown" *ngIf="rol ===ADM ||   rol ===SLN ||   rol ===ANF">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Compras
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" routerLink="/core/compras/crear-compra/{{uid}}">Comprar fiestas</a>
+                        </li>
+                        <li *ngIf="rol =='ADM'"><a class="dropdown-item" routerLink="/core/fiestas/crear-fiesta">Crear
+                                fiesta</a></li>
+
+
+                    </ul>
+                </li>
+                <!-- <li class="nav-item dropdown" *ngIf="rol ===ADM ||   rol ===SLN ||   rol ===ANF">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Invitación
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" routerLink="/core/invitaciones/vista-invitaciones">Ver
+                                invitaciones</a></li>
+                        <li><a class="dropdown-item" routerLink="/core/invitaciones/crear-invitación">Crear
+                                invitación</a></li>
+
+
+                    </ul>
+                </li> -->
+                <li class="nav-item dropdown" *ngIf="rol ===ADM ||   rol ===SLN || rol === ANF">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Boleto
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" routerLink="/core/boletos/vista-boletos">Ver boletos</a></li>
+                        <!--    <li><a class="dropdown-item" routerLink="/core/boletos/crear-boleto">Crear boleto</a></li>
+ -->
+
+                    </ul>
+                </li>
+                <li class="nav-item dropdown" *ngIf="rol ===ADM ||   rol ===SLN">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Usuario
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" routerLink="/core/usuarios/vista-usuarios">Ver usuarios</a></li>
+                        <li *ngIf="rol =='ADM'"><a class="dropdown-item" routerLink="/core/usuarios/crear-usuario">Crear
+                                usuario</a></li>
+
+
+                    </ul>
+                </li>
+                <li class="nav-item dropdown" *ngIf="rol ===ADM">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Salón
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" routerLink="/core/salones/vista-salones">Ver salones</a></li>
+                        <li *ngIf="rol =='ADM'"><a class="dropdown-item" routerLink="/core/salones/crear-salon">Crear
+                                salón</a></li>
+
+
+                    </ul>
+                </li>
+                <li class="nav-item dropdown" *ngIf="rol ===ADM ">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Catalogos
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" routerLink="/core/roles/vista-roles">Ver Roles</a></li>
+                        <li><a class="dropdown-item" routerLink="/core/grupos/vista-grupos">Ver grupos</a></li>
+                        <li><a class="dropdown-item" routerLink="/core/eventos/vista-eventos">Ver eventos</a></li>
+                        <li><a class="dropdown-item" routerLink="/core/tipo-cantidad/vista-tipo-cantidades">Ver tipo
+                                paquetes</a></li>
+                        <li><a class="dropdown-item" routerLink="/core/status-compra/vista-status-compra">Ver estatus de
+                                compras</a></li>
+                        <!--<li><a class="dropdown-item" routerLink="/core/tipo-modulos/vista-tipo-modulos">Ver tipo de
+                                modulos</a></li>
+                          <li><a class="dropdown-item" routerLink="/core/modulo-templates/vista-modulo-templates">Ver de
+                                modulos de templates</a></li>
+                        <li><a class="dropdown-item" routerLink="/core/templates/vista-templates">Ver templates</a></li>
+ -->
+
+
+
+
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Cuenta
+                    </a>
+                    <ul class="dropdown-menu">
+
+
+                        <li><a class="dropdown-item" routerLink="/auth/perfil" *ngIf="rol && rol!== ''">Perfil</a></li>
+                        <li><a class="dropdown-item" (click)="logout()" *ngIf="rol && rol!== ''">Salir</a></li>
+
+
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>

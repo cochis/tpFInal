@@ -1,0 +1,29 @@
+.item1 {
+    grid-area: area1;
+}
+
+.item4 {
+    height: 100px;
+}
+
+
+.item5 {
+    grid-area: area5;
+}
+
+
+.grid-container {
+    display: grid;
+    grid-template-areas:
+        'area1 . .'
+        'area1 area4 area5'
+        'area1 . area5'
+        '. . area5';
+    grid-gap: 2px;
+}
+
+.grid-container>div {
+    background-color: #323232;
+    text-align: center;
+    padding: 40px;
+}

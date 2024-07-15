@@ -1,0 +1,145 @@
+<app-header></app-header>
+<main>
+    <app-loading class="animated1 fadeIn" *ngIf="loading"></app-loading>
+    <section class="contact-section section-padding section-bg animated1 fadeIn " id="section_5" *ngIf="!loading">
+        <div class="container bw">
+
+            <div class="card">
+                <div class="card-body">
+                    <!--  <div class="row">
+
+                        <div class="col-12 col-md-4 mt-3">
+
+                            <input type="text" class="form-control" placeholder="Buscar alumno ..."
+                                (keyup)="buscar(txtTermino.value)" #txtTermino>
+                        </div>
+                        <div class="col-12 col-md-4 mt-3">
+                            <select class="form-control" (change)="buscarCatalogo('rol',rol.value)" #rol>
+                                <option value="">Búsqueda por rol </option>
+                                <option [value]="item.uid" *ngFor="let item of roles">{{item.nombre}}</option>
+
+                            </select>
+                        </div>
+                        <div class="col-12 col-md-4 mt-3">
+                            <select class="form-control" (change)="buscarCatalogo('salon',rol.value)" #rol>
+                                <option value="">Búsqueda por salón </option>
+                                <option [value]="item.uid" *ngFor="let item of salones">{{item.nombre}}</option>
+
+                            </select>
+                        </div>
+                    </div> -->
+
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-lg-12 col-12 text-center">
+                    <h2 class="mb-5">Boletos</h2>
+                </div>
+                <div class="col-12 text-center">
+                    <h5 *ngIf=" fiestas.length==0">Sin fiestas</h5>
+                    <div class="table-over" *ngIf="  fiestas.length > 0">
+
+
+                        <table class="table table-striped table-bordered ">
+                            <thead class="thead-dark">
+                                <th class="upper">ID</th>
+                                <th class="upper">Opciones</th>
+                                <th class="upper">Enviar invitaciones por correo</th>
+
+                                <th class="upper">fiesta</th>
+                                <th class="upper">anfitrion</th>
+                                <th class="upper">salón</th>
+                                <th class="upper">Nombre evento</th>
+                                <th class="upper">invitados</th>
+                                <th class="upper">restan</th>
+                                <th class="upper">llena</th>
+                                <th class="upper">Activado</th>
+                                <th class="upper">creación</th>
+                                <th class="upper">Edición</th>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let fiesta of fiestas; let i=index">
+                                    <ng-container *ngIf="fiesta.activated">
+                                        <td>{{i+1}}</td>
+                                        <td>
+                                            <!--
+                                            <div class="opc">
+
+                                                <i class="icon-eye text-primary" *ngIf="fiesta.activated"
+                                                    (click)="viewBoleto(fiesta.uid)"></i>
+                                            </div>
+                                            <div class="opc">
+
+                                                <i class="icon-ok-circled text-success" *ngIf="!fiesta.activated"
+                                                    (click)="isActived(fiesta)"></i>
+                                            </div>
+                                            <div class="opc">
+
+                                                <i class="icon-trash text-danger" *ngIf="fiesta.activated"
+                                                    (click)="isActived(fiesta)"></i>
+                                            </div> -->
+                                            <div class="opc ">
+                                                <i class="icon-pencil text-primary tdn" *ngIf="fiesta.activated"
+                                                    (click)="editBoleto(fiesta.uid)"></i>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <a (click)="EnviarInvitacionesCorreo(fiesta,false)" class="tdn"><i
+                                                    class="icon-mail text-primary tdn ">Enviar</i></a>
+                                            <a (click)="EnviarInvitacionesCorreo(fiesta,true)" class="tdn"><i
+                                                    class="icon-mail text-primary tdn">Reenviar</i></a>
+                                        </td>
+                                        <td class="upper">{{ fiesta.nombre}}</td>
+                                        <td class="upper">
+                                            {{fiesta.usuarioCreated.nombre}}
+                                            {{fiesta.usuarioCreated.apellidoPaterno}}
+                                            {{fiesta.usuarioCreated.apellidoMaterno}}
+                                            {{fiesta.usuarioCreated.email}}
+
+                                        </td>
+                                        <td class="upper" *ngIf="fiesta.salon">{{ getCatalog("salon",fiesta.salon)}}
+                                        </td>
+                                        <td class="upper">{{fiesta.nombre}}</td>
+                                        <td class="upper">{{fiesta.cantidad}}</td>
+                                        <td class="upper">{{fiesta.cantidad -fiterBoletos(fiesta.uid) }}</td>
+                                        <td class="upper">
+                                            <i class="icon-battery-1"></i>
+                                        </td>
+                                        <!-- <td class="upper"
+                                        *ngIf="getPorcentaje(boleto.fiesta.cantidad, getInvitados(boleto.invitados))>0 && getPorcentaje(boleto.fiesta.cantidad, getInvitados(boleto.invitados))<=25">
+                                        <i class="icon-battery-1"></i>
+                                    </td>
+                                    <td class="upper"
+                                        *ngIf="getPorcentaje(boleto.fiesta.cantidad, getInvitados(boleto.invitados))>25 && getPorcentaje(boleto.fiesta.cantidad, getInvitados(boleto.invitados))<=50">
+                                        <i class="icon-battery-2"></i>
+                                    </td>
+                                    <td class="upper"
+                                        *ngIf="getPorcentaje(boleto.fiesta.cantidad, getInvitados(boleto.invitados))>50 && getPorcentaje(boleto.fiesta.cantidad, getInvitados(boleto.invitados))<=75">
+                                        <i class="icon-battery-3"></i>
+                                    </td>
+                                    <td class="upper"
+                                        *ngIf="getPorcentaje(boleto.fiesta.cantidad, getInvitados(boleto.invitados))>75 && getPorcentaje(boleto.fiesta.cantidad, getInvitados(boleto.invitados))<100">
+                                        <i class="icon-battery-3"></i>
+                                    </td>
+                                    <td class="upper"
+                                        *ngIf="getPorcentaje(boleto.fiesta.cantidad, getInvitados(boleto.invitados))>75 && getPorcentaje(boleto.fiesta.cantidad, getInvitados(boleto.invitados))==100">
+                                        <i class="icon-battery-4"></i>
+                                    </td> -->
+                                        <td>
+                                            <i *ngIf="fiesta.activated" class="icon-ok-circled text-success"></i>
+                                            <i *ngIf="!fiesta.activated" class="icon-cancel-circled text-danger"></i>
+                                        </td>
+                                        <td>{{fiesta.dateCreated | date:'dd/MM/YYYY'}}</td>
+                                        <td>{{fiesta.lastEdited | date:'dd/MM/YYYY'}}</td>
+                                    </ng-container>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<app-footer></app-footer>

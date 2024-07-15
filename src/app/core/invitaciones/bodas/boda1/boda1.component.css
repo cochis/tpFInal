@@ -1,0 +1,116 @@
+.contenedor {
+    margin: auto;
+    width: 100%;
+
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+/* .principal {
+    height: 100vh;
+    background-image: url('/assets/invitaciones/bodas/boda1.webp');
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    background-position: 50% 50%;
+    background-color: #FFF;
+    -webkit-transform: translateZ(0);
+    overflow: hidden;
+} */
+
+h1 {
+
+    font-size: 80px;
+}
+
+h2 {
+    font-size: 60px;
+}
+
+.leyenda {
+    height: 100vh;
+    background-image: url('/assets/invitaciones/bodas/boda2.webp');
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    background-position: 50% 50%;
+    background-color: #FFF;
+    -webkit-transform: translateZ(0);
+    overflow: hidden;
+}
+
+
+
+
+
+#homeslider-wrap h1 {
+    font-size: 45px;
+    font-weight: 400;
+    font-family: Josefin Slab,
+        Arial,
+        sans-serif;
+    text-transform: uppercase;
+}
+
+.personalColorTitutlo {
+    color: #fff;
+    font-family: Josefin Slab,
+        Arial,
+        sans-serif !important;
+}
+
+.personalColorTitutlo,
+.wraper-footer,
+.sombra {
+    text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.9),
+        4px 4px 6px rgba(0, 0, 0, 0.5),
+        8px 8px 11px rgba(0, 0, 0, 0.75),
+        22px 22px 20px rgba(0, 0, 0, 0.4),
+        -2px -2px 5px rgba(0, 0, 0, 0.2),
+        2px 2px 5px rgba(0, 0, 0, 0.2) !important;
+}
+
+.personalColorTitutlo b {
+    color: wheat;
+}
+
+.img-invite {
+    margin: auto;
+    width: 90%;
+    height: auto;
+    min-height: 250px;
+    max-height: 350px;
+    overflow: hidden;
+    border-radius: 25px;
+
+}
+
+.wed-text .title {
+    min-height: 80px;
+}
+
+.titleTable {
+    min-height: 70px;
+}
+
+.img-invite2 {
+    width: 100%;
+    height: auto;
+    min-height: 200px;
+    max-height: 250px;
+
+}
+
+@media  (max-width: 499px) {
+    h2 {
+        font-size: 40px;
+    }
+    ul{
+       padding: 0;
+    }
+  ul .img-invite2{
+    width: 100%  !important;
+    max-width: 250px;
+        border-radius: 25px;
+    }
+  }

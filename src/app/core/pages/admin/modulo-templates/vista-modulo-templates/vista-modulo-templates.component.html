@@ -1,0 +1,128 @@
+<app-header></app-header>
+<main>
+    <app-loading class="animated1 fadeIn" *ngIf="loading"></app-loading>
+    <section class="contact-section section-padding section-bg animated1 fadeIn " id="section_5" *ngIf="!loading">
+        <div class="container bw">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+
+                        <div class="col-12 col-md-6 mt-3 margin-auto">
+
+                            <input type="text" class="form-control" placeholder="Buscar moduloTemplate ..."
+                                (keyup)="buscar(txtTermino.value)" #txtTermino>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="row mt-5 text-center">
+                            <div class="col-12  text-center">
+                                <button class="btn but   " (click)="newModuloTemplate()">Nuevo tipo modulo</button>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-lg-12 col-12 text-center">
+                    <h2 class="mb-5">Modulos de template</h2>
+                </div>
+
+                <div class="col-12 text-center">
+                    <h5 *ngIf="moduloTemplates.length==0">Sin información</h5>
+                    <div class="table-over" *ngIf="moduloTemplates.length>0">
+
+
+                        <table class="table table-striped table-bordered ">
+                            <thead class="thead-dark">
+                                <th class="upper">ID</th>
+                                <th class="upper">Opciones</th>
+                                <th class="upper">nombre</th>
+                                <th class="upper">Tipo de modulo</th>
+                                <th class="upper">Variables</th>
+                                <th class="upper">Diseño</th>
+                                <th class="upper">Css</th>
+                                <th class="upper">Creador</th>
+                                <th class="upper">Activado</th>
+                                <th class="upper">Creación</th>
+                                <th class="upper">Edición</th>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let moduloTemplate of moduloTemplates; let i=index">
+                                    <td>{{i+1}}</td>
+                                    <td>
+                                        <div class="opc">
+
+                                            <i class="icon-eye text-primary" *ngIf="moduloTemplate.activated"
+                                                (click)="viewModuloTemplate(moduloTemplate.uid)"></i>
+                                        </div>
+                                        <div class="opc">
+
+                                            <i class="icon-ok-circled text-success" *ngIf="!moduloTemplate.activated"
+                                                (click)="isActived(moduloTemplate)"></i>
+                                        </div>
+                                        <div class="opc">
+
+                                            <i class="icon-trash text-danger" *ngIf="moduloTemplate.activated"
+                                                (click)="isActived(moduloTemplate)"></i>
+                                        </div>
+                                        <div class="opc">
+                                            <i class="icon-pencil text-primary" *ngIf="moduloTemplate.activated"
+                                                (click)="editModuloTemplate(moduloTemplate.uid)"></i>
+
+                                        </div>
+
+
+
+                                    </td>
+                                    <td class="upper">{{moduloTemplate.nombre}}</td>
+                                    <td class="upper">{{getCatalog('tipoModulos',moduloTemplate.tipoModulo)}}</td>
+                                    <td class="upper">
+                                        <label *ngFor="let item of moduloTemplate.values">{{item.name}}</label>,
+                                        
+                                    </td>
+                                     
+
+                                  
+                                    <td class="upper"><i class="bi bi-file-code"
+                                            (click)="showModal('diseno',moduloTemplate.diseno)"
+                                            style="cursor: pointer;">HTML </i>
+                     
+
+
+                                    </td>
+                                    <td class="upper"><i class="bi bi-file-code"
+                                            (click)="showModal('css',moduloTemplate.css)"
+                                            style="cursor: pointer;">CSS </i>
+                             
+
+
+                                    </td>
+
+                                    <td class="upper">{{moduloTemplate.usuarioCreated.email}}</td>
+                                    <td>
+                                        <i *ngIf="moduloTemplate.activated" class="icon-ok-circled text-success"></i>
+                                        <i *ngIf="!moduloTemplate.activated"
+                                            class="icon-cancel-circled text-danger"></i>
+                                    </td>
+                                    <td>{{moduloTemplate.dateCreated | date:'dd/MM/YYYY'}}</td>
+                                    <td>{{moduloTemplate.lastEdited | date:'dd/MM/YYYY'}}</td>
+
+                                </tr>
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+</main>
+<app-footer></app-footer>

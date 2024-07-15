@@ -1,0 +1,280 @@
+<app-header></app-header>
+<main>
+    <app-loading class="animated1 fadeIn" *ngIf="loading"></app-loading>
+    <app-message class="animated1 fadeIn" *ngIf="msnOk"></app-message>
+    <section class="contact-section section-padding section-bg animated1 fadeIn " id="section_5" *ngIf="!loading">
+        <div class="container bw">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-12 col-12 text-center">
+                            <h2 class="mb-5">Crear fiesta</h2>
+                        </div>
+                        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                            <div class="row">
+                                <div class="col-12 col-md-6 mt-3">
+                                    <div class="form-group">
+                                        <label for="nombre">Nombre</label>
+                                        <input type="text" class="form-control upper" id="nombre"
+                                            formControlName="nombre" required placeholder="Nombre">
+                                    </div>
+                                    <span *ngIf="submited && errorControl['nombre'].errors " class="error">Es requerido
+                                    </span>
+                                </div>
+                                <div class="col-12 col-md-6 mt-3">
+
+                                    <div class="form-group" *ngIf="eventos">
+                                        <label for="evento">Evento </label>
+                                        <select name="" id="evento" formControlName="evento" class="form-control upper">
+                                            <option value="">Selecciona un evento</option>
+                                            <option [value]="item.uid" *ngFor="let item of eventos">{{item.nombre }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <span *ngIf="submited && errorControl['evento'].errors " class="error">Es requerido
+                                    </span>
+                                </div>
+                                <div class="col-12 col-md-6 mt-3">
+                                    <div class="form-group">
+                                        <label for="cantidad">Cantidad de invitados</label>
+                                        <input type="number" class="form-control upper" id="cantidad"
+                                            formControlName="cantidad" required placeholder="Cantidad de invitados"
+                                            min="1">
+                                    </div>
+                                    <span *ngIf="submited && errorControl['cantidad'].errors " class="error">El mínimo
+                                        es 50
+                                    </span>
+                                </div>
+                                <div class="col-12 col-md-6 mt-3">
+                                    <div class="form-group">
+                                        <label for="fecha">Fecha</label>
+                                        <input type="datetime-local" class="form-control upper" id="fecha"
+                                            [min]="todayDate" formControlName="fecha" required placeholder="Fecha">
+                                    </div>
+                                    <span *ngIf="submited && errorControl['fecha'].errors " class="error">Es requerido
+                                    </span>
+                                </div>
+                                <div class="col-12 col-md-6 mt-3" *ngIf="usuarios">
+                                    <div class="form-group">
+                                        <label for="usuarioFiesta">Usuario fiesta</label>
+                                        <select name="" id="usuarioFiesta" formControlName="usuarioFiesta"
+                                            class="form-control upper">
+                                            <option value="">Selecciona al anfitrión</option>
+                                            <option [value]="item.uid" *ngFor="let item of usuarios">{{item.nombre }}
+                                                {{item.apellidoPaterno }} {{item.apellidoMaterno }} <b
+                                                    *ngIf="rol ===ADM && usuarios">{{item.usuarioCreated.email}}</b>
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <span *ngIf="submited && errorControl['usuarioFiesta'].errors " class="error">Es
+                                        requerido
+                                    </span>
+                                </div>
+                                <div class="col-12 col-md-4 mt-3">
+                                    <div class="form-group">
+                                        <label for="invitacion">Invitación</label>
+                                        <select name="invitacion" id="invitacion" formControlName="invitacion"
+                                            #invitacion class="form-control upper"
+                                            (change)="showTemplate(invitacion.value)">
+                                            <option value=""></option>
+                                            <option value="default">Default</option>
+                                            <option value="/xv/xv2/">XV años</option>
+                                            
+
+                                        </select>
+                                    </div>
+
+
+                                </div>
+                                <div class="col-12 col-md-4 mt-3" *ngIf="rol != ANF">
+                                    <div class="form-group">
+                                        <label for="salon">Ubicación</label>
+                                        <select name="" id="salon" formControlName="salon" #salon
+                                            class="form-control upper" #sal (change)="selectSalon($event)">
+                                            <option value="">Selecciona una ubicación</option>
+                                            <option [value]="item.uid" *ngFor="let item of salones">{{item.nombre }} <b
+                                                    *ngIf="rol ===ADM && usuarios">{{item.usuarioCreated.email}}</b>
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <span *ngIf="submited && errorControl['salon'].errors " class="error">Es requerido
+                                    </span>
+                                </div>
+
+
+                                <div class="col-12 col-md-4 mt-3" *ngIf="rol == ANF">
+                                    <div class="form-group">
+                                        <label for="salon">Salón</label>
+                                        <select name="" id="salon" formControlName="salon" #salon
+                                            class="form-control upper" #sal (change)="selectSalon($event)">
+                                            <option value="">Selecciona un salon</option>
+                                            <option [value]="item.uid" *ngFor="let item of salones">{{item.nombre }} <b
+                                                    *ngIf="rol ===ADM && usuarios">{{item.usuarioCreated.email}}</b>
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <span *ngIf="submited && errorControl['salon'].errors " class="error">Es requerido
+                                    </span>
+                                </div>
+
+                                <div class="col-12 col-md-6 mt-3" *ngIf="form.value.salon !==''">
+                                    <div class="form-group">
+                                        <label for="calle">Calle</label>
+                                        <input type="text" class="form-control upper" id="calle" formControlName="calle"
+                                            placeholder="Calle" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3 mt-3" *ngIf="form.value.salon !==''">
+                                    <div class="form-group">
+                                        <label for="numeroExt">Número exterior</label>
+                                        <input type="text" class="form-control upper" id="numeroExt"
+                                            formControlName="numeroExt" placeholder="Número exterior" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3 mt-3" *ngIf="form.value.salon !==''">
+                                    <div class="form-group">
+                                        <label for="numeroInt">Número interior</label>
+                                        <input type="text" class="form-control upper" id="numeroInt"
+                                            formControlName="numeroInt" placeholder="Número interior" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3 mt-3" *ngIf="form.value.salon !==''">
+                                    <div class="form-group">
+                                        <label for="municipioDelegacion">Municipio o Delegación</label>
+                                        <input type="text" class="form-control upper" id="municipioDelegacion"
+                                            formControlName="municipioDelegacion" placeholder="Municipio o Delegacion"
+                                            readonly>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3 mt-3" *ngIf="form.value.salon !==''">
+                                    <div class="form-group">
+                                        <label for="coloniaBarrio">Colonia o Barrio</label>
+                                        <input type="text" class="form-control upper" id="coloniaBarrio"
+                                            formControlName="coloniaBarrio" placeholder="Colonia o Barrio" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3 mt-3" *ngIf="form.value.salon !==''">
+                                    <div class="form-group">
+                                        <label for="estado">Estado</label>
+                                        <input type="text" class="form-control upper" id="estado"
+                                            formControlName="estado" placeholder="Estado" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3 mt-3" *ngIf="form.value.salon !==''" readonly>
+                                    <div class="form-group">
+                                        <label for="pais">País</label>
+                                        <input type="text" class="form-control upper" id="pais" formControlName="pais"
+                                            placeholder="País" readonly>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-12 mt-3" *ngIf="form.value.salon !==''">
+
+                                    <div class="form-group">
+                                        <label for="long">Indicaciones adicionales de esta dirección</label>
+                                        <textarea class="form-control upper" id="comoLlegar" rows="4"
+                                            style="resize: none;" placeholder="Como llegar" formControlName="comoLlegar"
+                                            readonly> </textarea>
+                                    </div>
+                                </div>
+
+
+
+
+                                <!-- 
+
+                                <div formArrayName="invitacion">
+                                    <div *ngFor="let invi of invitacion['controls'] ; let i=index">
+                                        <div [formGroupName]="i">
+
+                                            <div class="row">
+                                                <div class="col-12 col-md-6 mt-3">
+
+                                                    <div class="form-group">
+                                                        <label for="grupo">Grupo</label>
+                                                        <select name="" id="grupo" formControlName="grupo"
+                                                            class="form-control upper">
+                                                            <option value="">Selecciona un grupo</option>
+                                                            <option [value]="item.uid" *ngFor="let item of grupos">
+                                                                {{item.nombre}}
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                    <span
+                                                        *ngIf="submited && errorControl['invitacion']['controls'][i]['controls']['grupo'].errors "
+                                                        class="error">Es
+                                                        requerido
+                                                    </span>
+                                                </div>
+
+                                                <div class="col-12 col-md-6 mt-3">
+                                                    <div class="form-group">
+                                                        <label for="nombreGrupo">Nombre de Grupo</label>
+                                                        <input type="text" class="form-control upper" id="nombreGrupo"
+                                                            formControlName="nombreGrupo" required
+                                                            placeholder="Nombre de grupo">
+                                                    </div>
+                                                    <span
+                                                        *ngIf="submited && errorControl['invitados']['controls'][i]['controls']['nombreGrupo'].errors "
+                                                        class="error">Es
+                                                        requerido
+                                                    </span>
+                                                </div>
+
+
+                                                <div class="col-12   mt-3">
+
+                                                    <a *ngIf="edit==='true' " (click)="enviarInvitacion(i)"
+                                                        class="custom-btn  but   ">Enviar
+                                                        invitación</a>
+                                                </div>
+
+                                                <div class="col-12   mt-3">
+
+
+                                                    <a (click)="removeInvitados(i)"
+                                                        *ngIf="edit==='true'  && i == (invitados.length-1)"
+                                                        class="custom-btn  ">Quitar
+                                                        invitado</a>
+                                                </div>
+
+
+                                            </div>
+                                            <hr>
+
+                                        </div>
+                                    </div>
+                                </div>
+ -->
+
+
+
+
+
+
+                            </div>
+
+                            <div class="row mt-5 text-center">
+
+                                <div class="col-12 col-md-6  mt-3 text-center ">
+                                    <button type="submit" class="btn btn-lg btn-block but  ">Crear</button>
+
+                                </div>
+                                <div class="col-12 col-md-6  mt-3 text-center">
+                                    <button class="btn btn-lg btn-block btn-warning" (click)="back()">Regresar</button>
+
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+
+</main>
+<app-footer></app-footer>

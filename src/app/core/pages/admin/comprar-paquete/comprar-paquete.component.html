@@ -1,0 +1,86 @@
+<app-header></app-header>
+<main>
+    <app-loading class="animated1 fadeIn" *ngIf="loading"></app-loading>
+    <app-message class="animated1 fadeIn" *ngIf="msnOk"></app-message>
+    <section class="contact-section section-padding section-bg animated1 fadeIn " id="section_5" *ngIf="!loading">
+        <div class="container bw">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-12 col-12 text-center">
+                            <h2 class="mb-5">Comprar paquete</h2>
+                        </div>
+                        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                            <div class="row">
+
+                                <div class="col-12 col-md-4 mt-3">
+
+                                    <div class="form-group" *ngIf="paquetes">
+                                        <label for="paqueteActual">Paquetes </label>
+                                        <select name="" id="paqueteActual" formControlName="paqueteActual"
+                                            class="form-control upper" #paqueteActual class="form-control upper"
+                                            (change)="selectPaquete(paqueteActual.value)">
+                                            <option value="">Selecciona un paquete</option>
+                                            <option [value]="item.uid" *ngFor="let item of paquetes">{{item.nombre }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <span *ngIf="submited && errorControl['evento'].errors " class="error">Es requerido
+                                    </span>
+                                </div>
+                                <div class="col-12 col-md-4 mt-3">
+                                    <div class="form-group">
+                                        <label for="cantidadFiestas">Cantidad de fiestas</label>
+                                        <input type="text" class="form-control upper" id="cantidadFiestas"
+                                            formControlName="cantidadFiestas" required placeholder="Cantidad de fiestas"
+                                            readonly>
+                                    </div>
+                                    <span *ngIf="submited && errorControl['cantidadFiestas'].errors " class="error">Es
+                                        requerido
+                                    </span>
+                                </div>
+                                <div class="col-12 col-md-4 mt-3">
+                                    <div class="form-group">
+                                        <label for="costo">Costo</label>
+                                        <input type="text" class="form-control upper" id="costo" formControlName="costo"
+                                            required placeholder="Costo" readonly>
+                                    </div>
+                                    <span *ngIf="submited && errorControl['costo'].errors " class="error">Es
+                                        requerido
+                                    </span>
+                                </div>
+
+
+
+
+
+
+
+
+
+                            </div>
+
+                            <div class="row mt-5 text-center">
+
+                                <div class="col-12 col-md-6  mt-3 text-center ">
+                                    <button type="submit" class="btn btn-lg btn-block but  ">Crear</button>
+
+                                </div>
+                                <div class="col-12 col-md-6  mt-3 text-center">
+                                    <button class="btn btn-lg btn-block btn-warning" (click)="back()">Regresar</button>
+
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+
+</main>
+<app-footer></app-footer>

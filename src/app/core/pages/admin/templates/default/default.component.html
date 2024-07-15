@@ -1,0 +1,632 @@
+<app-loading *ngIf="loading"></app-loading>
+<ng-container *ngIf="!loading ">
+
+    <div class="row text-center fixed-top" *ngIf="btnBack">
+
+        <div class="col-6 text-center" style="margin:auto">
+            <button class="btn btn-lg btn-block btn-warning mt-3"
+                routerLink="/core/invitaciones/editar-invitacion/true/{{invitacion.fiestaId}}">
+                Seguir editando
+            </button>
+        </div>
+    </div>
+
+    <hr *ngIf="btnBack">
+
+    <ng-container style=" background-color:{{invitacion.cWhite}} ;">
+
+        <div class="row">
+            <div class="col-12">
+
+                <div class="box"
+                    style="background-image:url({{url+'/upload/invitaciones/'+((invitacion.img1!=='')?invitacion.img1:'notImage')}});background-position: {{invitacion.xImg1}}% 0px !important;height: 750px;"
+                    *ngIf="!vistaTemp">
+
+                    <div class="texto tc" style="top:{{invitacion.topTitle}}%">
+                        <h1 class="dancing ts" style="font-size: 45px;color: {{invitacion.cPrincipal}};">
+                            {{invitacion.tipoFiesta}}
+                        </h1>
+                        <span class="name ts dancing cap"
+                            style="color:{{invitacion.cWhite}}">{{invitacion.nombreFiesta}}</span>
+
+                    </div>
+                    <div class="fecha pacifico tc  " style="top:{{invitacion.topDate}}%">
+                        <table class="tc">
+                            <tr style="color:{{invitacion.cWhite}};">
+                                <th class="wc"><b class="fsc" style="color: {{invitacion.cPrincipal}};">D</b>ias</th>
+                                <th class="wc"><b class="fsc" style="color: {{invitacion.cPrincipal}};">H</b>oras</th>
+                                <th class="wc"><b class="fsc" style="color: {{invitacion.cPrincipal}};">M</b>inutos</th>
+                                <th class="wc"><b class="fsc" style="color: {{invitacion.cPrincipal}};">S</b>egundo</th>
+                            </tr>
+                            <tr class="  ts" style="font-size: 45px;color:{{invitacion.cWhite}};">
+                                <td>{{dias}}</td>
+                                <td>{{horas}}</td>
+                                <td>{{minutos}}</td>
+                                <td>{{segundos}}</td>
+
+                            </tr>
+
+                        </table>
+                    </div>
+
+
+                </div>
+                <div class="box"
+                    style="background-image:url({{invitacion.img1}});background-position: {{invitacion.xImg1}}% 0px !important;height: 750px;"
+                    *ngIf="vistaTemp">
+
+                    <div class="texto tc" style="top:{{invitacion.topTitle}}%">
+                        <h1 class="dancing ts" style="font-size: 45px;color: {{invitacion.cPrincipal}};">
+                            {{invitacion.tipoFiesta}}
+                        </h1>
+                        <span class="name ts dancing cap"
+                            style="color:{{invitacion.cWhite}}">{{invitacion.nombreFiesta}}</span>
+
+                    </div>
+                    <div class="fecha pacifico tc  " style="top:{{invitacion.topDate}}%">
+                        <table class="tc">
+                            <tr style="color:{{invitacion.cWhite}};">
+                                <th class="wc"><b class="fsc" style="color: {{invitacion.cPrincipal}};">D</b>ias</th>
+                                <th class="wc"><b class="fsc" style="color: {{invitacion.cPrincipal}};">H</b>oras</th>
+                                <th class="wc"><b class="fsc" style="color: {{invitacion.cPrincipal}};">M</b>inutos</th>
+                                <th class="wc"><b class="fsc" style="color: {{invitacion.cPrincipal}};">S</b>egundo</th>
+                            </tr>
+                            <tr class="  ts" style="font-size: 45px;color:{{invitacion.cWhite}};">
+                                <td>{{dias}}</td>
+                                <td>{{horas}}</td>
+                                <td>{{minutos}}</td>
+                                <td>{{segundos}}</td>
+
+                            </tr>
+
+                        </table>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card text-center"
+                    style="width: 100%; margin: auto; border: none; background-color: {{invitacion.cPrincipal}};">
+                    <div class="card-body  " style="color:{{invitacion.cWhite}};">
+                        <h1 class="card-title mt-3 pacifico  ">Invitación válida para:</h1>
+                        <h1 class="card-text   lato-bold upper">{{invitacion.invitado}}</h1>
+                        <h2 class="  lato-regular-italic">{{invitacion.cantidad}} pases</h2>
+                        <h3 class="  lato-regular-italic">{{invitacion.textInvitacionValida}}</h3>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="box"
+                    style="background-image:url({{url+'/upload/invitaciones/'+((invitacion.mensajeImg!=='')?invitacion.mensajeImg:'notImage')}}) ;background-position: 78% 0px !important; min-height:450px;height: 100%;"
+                    *ngIf="!vistaTemp">
+                    <div class="texto tc" style="top:50%">
+                        <h5 class="p-5   arsenal-sc-regular-italic" style="color:{{invitacion.cWhite}};">
+                            {{invitacion.mensaje1}}
+                        </h5>
+
+                    </div>
+                </div>
+                <div class="box"
+                    style="background-image:url({{invitacion.mensajeImg}}) ;background-position: 78% 0px !important; min-height:450px; height: 100%;">
+                    <div class="texto tc" style="top:50%" *ngIf="vistaTemp">
+                        <h5 class="p-5   arsenal-sc-regular-italic" style="color:{{invitacion.cWhite}};">
+                            {{invitacion.mensaje1}}
+                        </h5>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="background-color: {{invitacion.cPrincipal}}; margin: auto;"
+            *ngIf=" (donde1Check ||  donde2Check || donde3Check)  &&  !vistaTemp">
+
+            <div class="row text-center" style="margin: auto;">
+                <h1 class="mt-3 pacifico   " style="color:{{invitacion.cWhite}};">Donde y Cuando</h1>
+                <div class="col-12 col-md-4 mt-3" style="text-align: center; margin: auto;" *ngIf="donde1Check">
+
+                    <div class="card text-center bd  mb-3 ">
+                        <h5 class="card-title mt-2 dancing" style="margin: auto; color:{{invitacion.cPrincipal}}">
+                            {{invitacion.donde1Title}}</h5>
+                        <div class="mt-3   bd  img-container ">
+
+                            <img [src]="url+'/upload/invitaciones/'+((invitacion.donde1Img!=='')?invitacion.donde1Img:'notImage') "
+                                class="img-card sombra" alt="...">
+                        </div>
+                        <div class="card-body " style="width: 90%; margin: auto;">
+                            <p class="card-text text-center arsenal-sc-bold-italic" style="height: 80px;"
+                                *ngIf="invitacion.donde1Text!==''">
+                                {{invitacion.donde1Text}}</p>
+                            <p class="card-text text-start" *ngIf="invitacion.donde1Date!==0"><b
+                                    class="arsenal-sc-bold-italic">Cuándo:</b> {{invitacion.donde1Date |
+                                date:'medium'}}.</p>
+                            <p class="card-text text-start" *ngIf="invitacion.donde1Address!==''"><b
+                                    class="arsenal-sc-bold-italic"> Dirección:</b>
+                                {{invitacion.donde1Address }}
+                            </p>
+
+                            <a href="{{invitacion.donde1AddressUbicacion}}" target="_blank"
+                                *ngIf="invitacion.donde1AddressUbicacion!==''"><i [class]="invitacion.donde1Icon "
+                                    style="font-size: 45px;font-weight: 800 ;color:{{invitacion.cPrincipal}};"> </i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 mt-3" style="text-align: center; margin: auto;" *ngIf="donde2Check">
+                    <div class="card text-center bd  mb-3 ">
+                        <h5 class="card-title mt-2 dancing" style="margin: auto; color:{{invitacion.cPrincipal}}">
+                            {{invitacion.donde2Title}}</h5>
+                        <div class="mt-3   bd  img-container ">
+
+                            <img [src]="url+'/upload/invitaciones/'+((invitacion.donde2Img!=='')?invitacion.donde2Img:'notImage') "
+                                class="img-card sombra" alt="...">
+                        </div>
+                        <div class="card-body " style="width: 90%; margin: auto;">
+                            <p class="card-text text-center arsenal-sc-bold-italic" style="height: 80px;"
+                                *ngIf="invitacion.donde2Text!==''">
+                                {{invitacion.donde2Text}}</p>
+                            <p class="card-text text-start" *ngIf="invitacion.donde2Date!==0"><b
+                                    class="arsenal-sc-bold-italic">Cuándo:</b> {{invitacion.donde2Date |
+                                date:'medium'}}.</p>
+                            <p class="card-text text-start" *ngIf="invitacion.donde2Address !==''"><b
+                                    class="arsenal-sc-bold-italic"> Dirección:</b> {{invitacion.donde2Address}}
+                            </p>
+
+                            <a href="{{invitacion.donde2AddressUbicacion}}" target="_blank"
+                                *ngIf="invitacion.donde2AddressUbicacion!==''"><i [class]="invitacion.donde2Icon "
+                                    style="font-size: 45px;font-weight: 800 ;color:{{invitacion.cPrincipal}};"> </i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-4 mt-3" style="text-align: center; margin: auto;" *ngIf="donde3Check">
+                    <div class="card text-center bd  mb-3 ">
+                        <h5 class="card-title mt-3 dancing" style="margin: auto; color:{{invitacion.cPrincipal}}">
+                            {{invitacion.donde3Title}}</h5>
+                        <div class="mt-3   bd  img-container ">
+
+                            <img [src]="url+'/upload/salones/'+invitacion.donde3Img" class="img-card sombra" alt="...">
+                        </div>
+                        <div class="card-body " style="width: 100%; margin: auto;">
+                            <p class="card-text text-center arsenal-sc-bold-italic" style="height: 80px;"
+                                *ngIf="invitacion.donde3Text!==''">
+                                {{invitacion.donde3Text}}</p>
+                            <p class="card-text text-start" *ngIf="invitacion.donde3Date!==0"><b
+                                    class="arsenal-sc-bold-italic">Cuándo:</b> {{invitacion.donde3Date |
+                                date:'medium'}}.</p>
+                            <p class="card-text text-start" *ngIf="invitacion.donde3Address !==''"><b
+                                    class="arsenal-sc-bold-italic"> Dirección:</b> {{invitacion.donde3Address}}
+                            </p>
+
+                            <a href="{{invitacion.donde3AddressUbicacion}}" target="_blank"
+                                *ngIf="invitacion.donde3AddressUbicacion!==''"><i [class]="invitacion.donde3Icon "
+                                    style="font-size: 45px;font-weight: 800 ;color:{{invitacion.cPrincipal}};"> </i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="mt-3" *ngIf="hospedajeCheck"
+                style="width: 100%;text-align: center;margin:auto; background-color: {{invitacion.cWhite}}">
+                <div class="row">
+
+                    <div class="col-12">
+
+                        <h2 class="mt-3 pacifico" style="color:{{invitacion.cPrincipal}}">Hospedaje Recomendado</h2>
+                    </div>
+                </div>
+                <div style="width: 80%; max-width: 450px; min-width: 200px; padding: 15px;margin: auto;">
+                    <div class="card mt-3 p-0 nborder">
+                        <img [src]="url+'/upload/invitaciones/'+((invitacion.hospedajeImg !== '') ? invitacion.hospedajeImg :'notImage') "
+                            class="card-img-top">
+                        <div class="card-body">
+                            <a href="{{invitacion.hospedajeUbicacion}}" class="pointer"
+                                style="color:{{invitacion.cPrincipal}}" target="_blank" rel="noopener noreferrer">
+
+                                <h5 class="card-title mt-2 dancing">{{invitacion.hospedajeName}}</h5>
+                            </a>
+                            <br>
+                            <a type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+                                aria-expanded="false" aria-controls="collapseExample"><i
+                                    [class]="invitacion.hospedajeIcon "
+                                    style="font-size: 45px;font-weight: 800 ;color:{{invitacion.cPrincipal}};"> </i></a>
+
+
+
+                            <div class="collapse" id="collapseExample">
+                                <div class="card card-body nborder">
+                                    <p class="text-left arsenal-sc-bold-italic">{{invitacion.hospedajeAddress}}</p>
+                                    <a class="text-center arsenal-sc-bold-italic  "
+                                        style="color:{{invitacion.cPrincipal}}"
+                                        href="{{invitacion.hospedajeUrl}}">{{invitacion.hospedajeUrl}}</a>
+                                    <a class="text-center arsenal-sc-bold-italic "
+                                        style="color:{{invitacion.cPrincipal}}"
+                                        href="tel:+{{invitacion.hospedajePhone}}">{{invitacion.hospedajePhone}}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+
+
+            <div class="  mt-3 " *ngIf="invitacion.itinerarioCheck"
+                style="width: 100%;text-align: center;margin:auto; background-color: {{invitacion.cPrincipal}};">
+                <div class="row ">
+
+                    <div class="col-12">
+
+                        <h2 class="mt-3 pacifico  " style="color:{{invitacion.cWhite}};">Itinerario</h2>
+                    </div>
+                </div>
+                <div style="width: 60%; max-width: 450px; margin: auto;">
+                    <div class="card  p-0 nborder">
+
+
+                        <h5 class="  card-title mt-2 dancing text-center">{{invitacion.ItinerarioName}}</h5>
+                        <table *ngIf="itinerarios.length >0">
+                            <tr style=" border-top: 2px solid {{invitacion.cPrincipal}} ; height: 60px; line-height: 60px;"
+                                *ngFor="let iti of itinerarios">
+                                <th class="text-start ps-3 ">
+                                    <span class="  lato-regular-italic mt-2"
+                                        style="color:{{invitacion.cPrincipal}}">{{iti.name}}</span>
+                                </th>
+                                <th>
+                                    <span style="color:{{invitacion.cSecond}}">{{iti.hr}}</span>
+                                </th>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="  mt-3"
+                style="width: 100%;text-align: center;margin:auto; background-color: {{invitacion.cWhite}};">
+                <div class="row">
+
+                    <div class="col-12">
+
+                        <h2 class="mt-3 pacifico" style="color:{{invitacion.cPrincipal}}">Este es tu boleto</h2>
+                    </div>
+
+                    <div class="qrcodeImage text-center mg" *ngIf="boleto">
+                        <qrcode [qrdata]="getQr(boleto)" [allowEmptyString]="true"
+                            [ariaLabel]="'QR Code image with the following content...'" [cssClass]="'center'"
+                            [colorDark]="invitacion.cSecond" [colorLight]="invitacion.cPrincipal"
+                            [elementType]="'canvas'" [errorCorrectionLevel]="'M'" [imageHeight]="75" [imageWidth]="75"
+                            [margin]="4" [scale]="1" [colorDark]="invitacion.cSecond"
+                            [colorLight]="invitacion.cPrincipal" [title]="getQr(boleto)" [width]="300">
+                        </qrcode>
+                        <button class="btn "
+                            style="background-color: {{invitacion.cPrincipal}}; color:{{invitacion.cWhite}} ; border: 3px solid {{invitacion.cSecond}}"
+                            type="button" (click)="confirmar(getQr(boleto))" *ngIf="!boleto.confirmado">
+                            Confirma tu asistencia
+                        </button>
+                        <button class="btn "
+                            style="background-color: {{invitacion.cPrincipal}}; color:{{invitacion.cWhite}} ; border: 3px solid {{invitacion.cSecond}}"
+                            type="button" (click)="confirmar(getQr(boleto))" *ngIf="boleto.confirmado">
+                            Quitar conformacion
+                        </button>
+                    </div>
+                </div>
+                <div style="width: 40%; max-width: 450px; min-width: 200px; padding: 15px;margin: auto;">
+                    <div class="card mt-3 p-0 nborder" *ngIf="!vistaTemp && !boleto ">
+                        <qrcode [qrdata]="getQr()" [allowEmptyString]="true"
+                            [ariaLabel]="'QR Code image with the following content...'" [cssClass]="'center'"
+                            [colorDark]="invitacion.cSecond" [colorLight]="invitacion.cPrincipal"
+                            [elementType]="'canvas'" [errorCorrectionLevel]="'M'" [imageHeight]="75" [imageWidth]="75"
+                            [margin]="4" [scale]="1" [colorDark]="invitacion.cSecond"
+                            [colorLight]="invitacion.cPrincipal" [title]="getQr(boleto)" [width]="300">
+                        </qrcode>
+                        <div class="card-body">
+
+                            <button class="btn "
+                                style="background-color: {{invitacion.cPrincipal}}; color:{{invitacion.cWhite}} ; border: 3px solid {{invitacion.cSecond}}"
+                                type="button">
+                                Confirma tu asistencia
+                            </button>
+
+
+                        </div>
+                        <pre>
+                            {{boleto}}
+                        </pre>
+                        <div class="qrcodeImage text-center mg" *ngIf="boleto">
+                            <qrcode [qrdata]="getQr(boleto)" [allowEmptyString]="true"
+                                [ariaLabel]="'QR Code image with the following content...'" [cssClass]="'center'"
+                                [colorDark]="invitacion.cSecond" [colorLight]="invitacion.cPrincipal"
+                                [elementType]="'canvas'" [errorCorrectionLevel]="'M'" [imageHeight]="75"
+                                [imageWidth]="75" [margin]="4" [scale]="1" [colorDark]="invitacion.cSecond"
+                                [colorLight]="invitacion.cPrincipal" [title]="getQr(boleto)" [width]="300">
+                            </qrcode>
+
+                        </div>
+                        <div class="card-body" *ngIf=" boleto ">
+
+                            <button class="btn "
+                                style="background-color: {{invitacion.cPrincipal}}; color:{{invitacion.cWhite}} ; border: 3px solid {{invitacion.cSecond}}"
+                                type="button">
+                                Confirma tu asistencia
+                            </button>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+            <div style="width: 100%;text-align: center;margin:auto; background-color: {{invitacion.cPrincipal}};border:5px solid {{invitacion.cSecond}}"
+                *ngIf="invitacion.notaCheck">
+                <div class="row">
+
+                    <div class="col-12">
+
+                        <h2 class="mt-3 pacifico" style="color:{{invitacion.cWhite}}"> Notas</h2>
+                    </div>
+                </div>
+                <ul style="color:{{invitacion.cWhite}}; list-style: none;">
+                    <li *ngFor="let nota of  notas">{{nota.texto}}</li>
+                </ul>
+
+
+
+
+            </div>
+
+
+
+
+        </div>
+
+
+        <div style="background-color: {{invitacion.cPrincipal}}; margin: auto;" *ngIf="   vistaTemp">
+
+            <div class="row text-center" style="margin: auto;" *ngIf="donde1Check">
+                <h1 class="mt-3 pacifico   " style="color:{{invitacion.cWhite}};">Donde y Cuando</h1>
+                <div class="col-12 col-md-4 mt-3" style="text-align: center; margin: auto;">
+
+                    <div class="card text-center bd  mb-3 ">
+                        <h5 class="card-title mt-2 dancing" style="margin: auto; color:{{invitacion.cPrincipal}}">
+                            {{invitacion.donde1Title}}</h5>
+                        <div class="mt-3   bd  img-container ">
+
+                            <img [src]="invitacion.donde1Img" class="img-card sombra" alt="...">
+                        </div>
+                        <div class="card-body " style="width: 90%; margin: auto;">
+                            <p class="card-text text-center arsenal-sc-bold-italic" style="height: 80px;"
+                                *ngIf="invitacion.donde1Text!==''">
+                                {{invitacion.donde1Text}}</p>
+                            <p class="card-text text-start" *ngIf="invitacion.donde1Date!==0"><b
+                                    class="arsenal-sc-bold-italic">Cuándo:</b> {{invitacion.donde1Date |
+                                date:'medium'}}.</p>
+                            <p class="card-text text-start" *ngIf="invitacion.donde1Address!==''"><b
+                                    class="arsenal-sc-bold-italic"> Dirección:</b>
+                                {{invitacion.donde1Address }}
+                            </p>
+
+                            <a href="{{invitacion.donde1AddressUbicacion}}" target="_blank"
+                                *ngIf="invitacion.donde1AddressUbicacion!==''"><i [class]="invitacion.donde1Icon "
+                                    style="font-size: 45px;font-weight: 800 ;color:{{invitacion.cPrincipal}};"> </i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 mt-3" style="text-align: center; margin: auto;" *ngIf="donde2Check">
+                    <div class="card text-center bd  mb-3 ">
+                        <h5 class="card-title mt-2 dancing" style="margin: auto; color:{{invitacion.cPrincipal}}">
+                            {{invitacion.donde2Title}}</h5>
+                        <div class="mt-3   bd  img-container ">
+
+                            <img [src]="invitacion.donde2Img" class="img-card sombra" alt="...">
+                        </div>
+                        <div class="card-body " style="width: 90%; margin: auto;">
+                            <p class="card-text text-center arsenal-sc-bold-italic" style="height: 80px;"
+                                *ngIf="invitacion.donde2Text!==''">
+                                {{invitacion.donde2Text}}</p>
+                            <p class="card-text text-start" *ngIf="invitacion.donde2Date!==0"><b
+                                    class="arsenal-sc-bold-italic">Cuándo:</b> {{invitacion.donde2Date |
+                                date:'medium'}}.</p>
+                            <p class="card-text text-start" *ngIf="invitacion.donde2Address !==''"><b
+                                    class="arsenal-sc-bold-italic"> Dirección:</b> {{invitacion.donde2Address}}
+                            </p>
+
+                            <a href="{{invitacion.donde2AddressUbicacion}}" target="_blank"
+                                *ngIf="invitacion.donde2AddressUbicacion!==''"><i [class]="invitacion.donde2Icon "
+                                    style="font-size: 45px;font-weight: 800 ;color:{{invitacion.cPrincipal}};"> </i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 mt-3" style="text-align: center; margin: auto;">
+                    <div class="card text-center bd  mb-3 " *ngIf="donde3Check">
+                        <h5 class="card-title mt-3 dancing" style="margin: auto; color:{{invitacion.cPrincipal}}">
+                            {{invitacion.donde3Title}}</h5>
+                        <div class="mt-3   bd  img-container ">
+
+                            <img [src]="invitacion.donde3Img" class="img-card sombra" alt="...">
+                        </div>
+                        <div class="card-body " style="width: 100%; margin: auto;">
+                            <p class="card-text text-center arsenal-sc-bold-italic" style="height: 80px;"
+                                *ngIf="invitacion.donde3Text!==''">
+                                {{invitacion.donde3Text}}</p>
+                            <p class="card-text text-start" *ngIf="invitacion.donde3Date!==0"><b
+                                    class="arsenal-sc-bold-italic">Cuándo:</b> {{invitacion.donde3Date |
+                                date:'medium'}}.</p>
+                            <p class="card-text text-start" *ngIf="invitacion.donde3Address !==''"><b
+                                    class="arsenal-sc-bold-italic"> Dirección:</b> {{invitacion.donde3Address}}
+                            </p>
+
+                            <a href="{{invitacion.donde3AddressUbicacion}}" target="_blank"
+                                *ngIf="invitacion.donde3AddressUbicacion!==''"><i [class]="invitacion.donde3Icon "
+                                    style="font-size: 45px;font-weight: 800 ;color:{{invitacion.cPrincipal}};"> </i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="mt-3"
+                style="width: 100%;text-align: center;margin:auto; background-color: {{invitacion.cWhite}}"
+                *ngIf="hospedajeCheck">
+                <div class="row">
+
+                    <div class="col-12">
+
+                        <h2 class="mt-3 pacifico" style="color:{{invitacion.cPrincipal}}">Hospedaje Recomendado</h2>
+                    </div>
+                </div>
+                <div style="width: 80%; max-width: 450px; min-width: 200px; padding: 15px;margin: auto;">
+                    <div class="card mt-3 p-0 nborder">
+                        <img [src]="invitacion.hospedajeImg" class="card-img-top">
+                        <div class="card-body">
+                            <a href="{{invitacion.hospedajeUbicacion}}" class="pointer"
+                                style="color:{{invitacion.cPrincipal}}" target="_blank" rel="noopener noreferrer">
+
+                                <h5 class="card-title mt-2 dancing">{{invitacion.hospedajeName}}</h5>
+                            </a>
+                            <br>
+                            <a type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+                                aria-expanded="false" aria-controls="collapseExample"><i
+                                    [class]="invitacion.hospedajeIcon "
+                                    style="font-size: 45px;font-weight: 800 ;color:{{invitacion.cPrincipal}};"> </i></a>
+
+
+
+                            <div class="collapse" id="collapseExample">
+                                <div class="card card-body nborder">
+                                    <p class="text-left arsenal-sc-bold-italic">{{invitacion.hospedajeAddress}}</p>
+                                    <a class="text-center arsenal-sc-bold-italic  "
+                                        style="color:{{invitacion.cPrincipal}}"
+                                        href="{{invitacion.hospedajeUrl}}">{{invitacion.hospedajeUrl}}</a>
+                                    <a class="text-center arsenal-sc-bold-italic "
+                                        style="color:{{invitacion.cPrincipal}}"
+                                        href="tel:+{{invitacion.hospedajePhone}}">{{invitacion.hospedajePhone}}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+
+            <div class="  mt-3 " *ngIf="invitacion.itinerarioCheck"
+                style="width: 100%;text-align: center;margin:auto; background-color: {{invitacion.cPrincipal}};">
+                <div class="row ">
+
+                    <div class="col-12">
+
+                        <h2 class="mt-3 pacifico  " style="color:{{invitacion.cWhite}};">Itinerario</h2>
+                    </div>
+                </div>
+                <div style="width: 60%; max-width: 450px; margin: auto;">
+                    <div class="card  p-0 nborder">
+
+
+                        <h5 class="  card-title mt-2 dancing text-center">{{invitacion.ItinerarioName}}</h5>
+                        <table *ngIf="itinerarios.length >0">
+                            <tr style=" border-top: 2px solid {{invitacion.cPrincipal}} ; height: 60px; line-height: 60px;"
+                                *ngFor="let iti of itinerarios">
+                                <th class="text-start ps-3 ">
+                                    <span class="  lato-regular-italic mt-2"
+                                        style="color:{{invitacion.cPrincipal}}">{{iti.name}}</span>
+                                </th>
+                                <th>
+                                    <span style="color:{{invitacion.cSecond}}">{{iti.hr}}</span>
+                                </th>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="  mt-3"
+                style="width: 100%;text-align: center;margin:auto; background-color: {{invitacion.cWhite}};">
+                <div class="row">
+
+                    <div class="col-12">
+
+                        <h2 class="mt-3 pacifico" style="color:{{invitacion.cPrincipal}}">Confirma tu asistencia</h2>
+                    </div>
+                </div>
+                <div style="width: 40%; max-width: 450px; min-width: 200px; padding: 15px;margin: auto;">
+                    <div class="card mt-3 p-0 nborder">
+                        <qrcode [qrdata]="getQr()" [allowEmptyString]="true"
+                            [ariaLabel]="'QR Code image with the following content...'" [cssClass]="'center'"
+                            [colorDark]="invitacion.cSecond" [colorLight]="invitacion.cPrincipal"
+                            [elementType]="'canvas'" [errorCorrectionLevel]="'M'" [imageHeight]="75" [imageWidth]="75"
+                            [margin]="4" [scale]="1" [colorDark]="invitacion.cSecond"
+                            [colorLight]="invitacion.cPrincipal" [title]="getQr(boleto)" [width]="300">
+                        </qrcode>
+                        <div class="card-body">
+
+                            <button class="btn "
+                                style="background-color: {{invitacion.cPrincipal}}; color:{{invitacion.cWhite}} ; border: 3px solid {{invitacion.cSecond}}"
+                                type="button">
+                                Da click aqui
+                            </button>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+            <div style="width: 100%;text-align: center;margin:auto; background-color: {{invitacion.cPrincipal}};border:5px solid {{invitacion.cSecond}}"
+                *ngIf="invitacion.notaCheck">
+                <div class="row">
+
+                    <div class="col-12">
+
+                        <h2 class="mt-3 pacifico" style="color:{{invitacion.cWhite}}"> Notas</h2>
+                    </div>
+                </div>
+                <ul style="color:{{invitacion.cWhite}}; list-style: none;">
+                    <li *ngFor="let nota of  notas">{{nota.texto}}</li>
+                </ul>
+
+
+
+
+            </div>
+
+
+
+
+        </div>
+        <div class="mt-5 text-center"
+            style="width: 100%; background-color: {{invitacion.cPrincipal}}; height: 100px;line-height: 7;">
+            <b style="color: {{invitacion.cWhite}};">
+                <a href="/core" style="color:{{invitacion.cWhite}} ; text-decoration:none">
+
+                    Tickets party
+                </a>
+            </b>
+        </div>
+    </ng-container>
+</ng-container>

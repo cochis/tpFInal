@@ -1,0 +1,336 @@
+<!-- <app-header></app-header> -->
+
+<!-- <input type="datetime-local" class="form form-control" id="birthdaytime" #date (change)="getDate(date.value)">
+s
+
+<br> -->
+
+<app-loading *ngIf="loading"></app-loading>
+<div *ngIf="!loading">
+    <div class="contenedor">
+        <div style="height: 100vh;
+        background-image: url('/assets/invitaciones/xv/xv1.jpeg');
+        display: flex;
+        background-size: cover;
+        justify-content: center;
+        align-items: flex-end;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        background-color: #FFF;
+        -webkit-transform: translateZ(0);
+        overflow: hidden;">
+            <div class="col-md-offset-1 col-md-10 carousel-caption2 animated-element-1 delay1 my-5 animated fadeIn">
+                <h1 class="titprin personalColorTitutlo" style="font-family: Josefin Slab,Arial,sans-serif !important;">
+                    <ng-container *ngFor="let n of nombre ;let i = index">
+
+                        <b>{{initNombre[i]}}</b>{{nombreEvento[i]}}
+                    </ng-container>
+                </h1>
+
+                <h2 class="margin personalColorTitutlo">Mis <b>XV</b> años</h2>
+                <div class="clock">
+                    <span class="personalColorTitutlo"> <b> {{dias}}</b> Días <b> {{horas}} </b> Horas
+                        <b>{{minutos}}</b> Minutos <b>{{segundos}} </b>Segundos</span>
+                    <br>
+                    <span class="personalColorTitutlo" style="font-size: larger;"> <b> {{fiesta.fecha | date:
+                            &apos;short&apos;}}</b> </span>
+
+                </div>
+            </div>
+        </div>
+        <div class="leyenda">
+            <div
+                style="top:-50px;text-shadow: 1px 1px 6px rgba(0,0,0,0.9), 4px 4px 6px rgba(0,0,0,0.5), 8px 8px 11px rgba(0,0,0,0.75), 22px 22px 20px rgba(0,0,0,0.4), -2px -2px 5px rgba(0,0,0,0.2), 2px 2px 5px rgba(0,0,0,0.2);">
+                <div style="font-size: 30px;
+        font-family: great vibes;
+        translate: 0 -150px;
+        max-width: 300px;
+        color: wheat;">{{form.value.mensaje}}
+                </div>
+            </div>
+        </div>
+        <section style="background-color: #f7f0e6">
+            <section id="wedding-header" class="wedding-header-single-page">
+                <div class="text-center">
+
+
+                    <h2 class="headline" style="color: #101010 !important;">Dónde &amp; Cuándo</h2>
+                </div>
+            </section>
+
+
+
+
+
+
+
+
+            <section id="wedding-info" class="onepage">
+                <div class="">
+                    <div class="row" style="width: 100%; margin: auto; justify-content: center;">
+
+                        <div class="col-md-4 pading-text margin1 animated-element-1 animated fadeIn"
+                            *ngIf="form.value.checkIglesia">
+                            <div class="wraper-we onepage alturaTarjetas"
+                                style="color: rgb(16, 16, 16) !important; background-color: rgb(249, 249, 248); height: auto; margin-bottom:15px;padding-bottom:10px;">
+
+                                <h3 class="titleTable">{{form.value.titleRecepccion}} </h3>
+
+
+                                <img src="/assets/invitaciones/xv/xv3.jpeg" class="img-invite">
+
+                                <h3 class="wed-text title titleTable">{{form.value.nombreRecepccion}}</h3>
+
+                                <div class="wed-text"><b>Cuándo: </b> {{form.value.fechaRecepccion | date :"short"}} </div>
+                                <div class="wed-text"><b>Dirección:</b> {{form.value.direccionRecepccion}}</div>
+
+
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-md-4 pading-text margin1 animated-element-1 animated fadeIn"
+                            *ngIf="form.value.checkCivil">
+                            <div class="wraper-we onepage alturaTarjetas"
+                                style="color: rgb(16, 16, 16) !important; background-color: rgb(249, 249, 248); height: auto; margin-bottom:15px;padding-bottom:10px;">
+
+                                <h3 class="titleTable">{{form.value.titleCivil}} </h3>
+
+                                <img src="/assets/invitaciones/xv/xv4.jpeg" alt="480x320" class="img-invite">
+
+                                <h3 class="wed-text titleTable">{{form.value.nombreCivil}} </h3>
+
+                                <div class="wed-text"><b>Cuándo: </b> {{form.value.fechaCivil | date :'short'}} </div>
+                                <div class="wed-text"><b>Dirección:</b> {{form.value.direccionCivil}}</div>
+
+
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-md-4 pading-text margin1 animated-element-1 animated fadeIn">
+                            <div class="wraper-we onepage alturaTarjetas"
+                                style="color: rgb(16, 16, 16) !important; background-color: rgb(249, 249, 248); height: auto; margin-bottom:15px;padding-bottom:10px;">
+
+                                <h3 class="titleTable">{{form.value.titleRecepccion}} </h3>
+                                <img [src]="(salon.img!=='')?url+'/upload/salones/'+salon.img:url+'/upload/salones/default.jpg'"
+                                    class="img-invite" />
+
+
+
+                                <h3 class="wed-text titleTable">{{form.value.nombreRecepccion}} </h3>
+
+                                <div class="wed-text"><b>Cuándo: </b> {{form.value.fechaRecepccion | date :'short'}}
+                                </div>
+                                <div class="wed-text"><b>Dirección:</b> {{form.value.direccionRecepccion}}</div>
+
+                                <a class="custom-btn but" style="background-color: #f7f0e6" (click)="verUbicacion()">Ver
+                                    ubicación</a>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+
+
+
+                </div>
+            </section>
+            <section id="wedding-header" class="wedding-header-single-page" *ngIf="form.value.checkHospedaje">
+                <div class="">
+                    <div class="text-center">
+
+
+                        <h2 style="color: #101010" class="headline">Hospedaje Recomendado</h2>
+                    </div>
+                </div>
+            </section>
+            <div class="row"
+                style="width: 100%; background-color: white; justify-content: center;text-align: center;margin: auto;"
+                *ngIf="form.value.checkHospedaje">
+
+
+
+                <div class="col-md-4 pading-text margin1 animated-element-1 animated fadeIn ">
+                    <div class="wraper-we onepage alturaTarjetas"
+                        style="color: rgb(16, 16, 16) !important;   height: auto; margin-bottom:15px;padding-bottom:10px;">
+                        <img src="/assets/invitaciones/xv/xv5.jpeg" alt="480x320" class="img-invite"
+                            style="margin-top: 50px;">
+                        <h3 class="wed-text titleTable" style="margin-top: 10px;">Hotel Maravillas</h3>
+
+
+                        <div class="wed-text"><b>Dirección:</b> Barra Vieja Kilómetro 33 San Andrés Playa
+                            Encantada,
+                            Acapulco de Juárez, Gro., México. </div>
+
+
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+        </section>
+        <section id="portfolio" class="container " style="background-color: 
+            white">
+            <div class="text-center" style="    margin-bottom: 0px;">
+
+                <h2 class="titulo" style="color: 
+                        #000000 !important;"> {{fiesta.nombre}} </h2>
+
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-sm-6 mb-5">
+                    <ul class=" animated fadeIn  "><a class="my-image-links vbox-item" data-gall="gallery01"><img
+                                src="/assets/invitaciones/xv/xv1.jpeg" class="img-invite2"></a></ul>
+                </div>
+                <div class="col-lg-4 col-sm-6 mb-5">
+                    <ul class=" animated fadeIn  "><a class="my-image-links vbox-item" data-gall="gallery01"><img
+                                src="/assets/invitaciones/xv/xv2.jpeg" class="img-invite2"></a></ul>
+                </div>
+                <div class="col-lg-4 col-sm-6 mb-5">
+                    <ul class=" animated fadeIn  "><a class="my-image-links vbox-item" data-gall="gallery01"><img
+                                src="/assets/invitaciones/xv/xv3.jpeg" class="img-invite2"></a></ul>
+                </div>
+                <div class="col-lg-4 col-sm-6 mb-5">
+                    <ul class=" animated fadeIn  "><a class="my-image-links vbox-item" data-gall="gallery01"><img
+                                src="/assets/invitaciones/xv/xv4.jpeg" class="img-invite2"></a></ul>
+                </div>
+                <div class="col-lg-4 col-sm-6 mb-5">
+                    <ul class=" animated fadeIn  "><a class="my-image-links vbox-item" data-gall="gallery01"><img
+                                src="/assets/invitaciones/xv/xv5.jpeg" class="img-invite2"></a></ul>
+                </div>
+                <div class="col-lg-4 col-sm-6 mb-5">
+                    <ul class=" animated fadeIn"><a class="my-image-links vbox-item" data-gall="gallery01"><img
+                                src="/assets/invitaciones/xv/xv3.jpeg" class="img-invite2"></a></ul>
+                </div>
+            </div>
+        </section>
+
+
+
+        <section style="background-color:  #f7f0e6">
+            <section id="wedding-header" class="wedding-header-single-page">
+                <div class="text-center">
+
+
+                    <h2 class="headline" style="color: #101010 !important;">Invitación QR</h2>
+                </div>
+            </section>
+
+
+
+
+
+
+
+
+            <section id="wedding-info" class="onepage" style="background-color: #f7f0e6" *ngIf="qrOk">
+                <div class="">
+                    <div class="row" style="width: 100%; margin: auto; justify-content: center;">
+
+                        <div class="col-md-6 pading-text margin1 animated-element-1 animated fadeIn">
+                            <div class="wraper-we onepage alturaTarjetas"
+                                style="color: rgb(16, 16, 16) !important; background-color: rgb(249, 249, 248); height: auto; margin-bottom:15px;padding-bottom:10px;">
+
+                                <div class="qrcodeImage text-center">
+
+                                    <qrcode (qrCodeURL)="onChangeURL($event)" [qrdata]="getQr(invitado)"
+                                        [allowEmptyString]="true"
+                                        [ariaLabel]="'QR Code image with the following content...'"
+                                        [cssClass]="'center'" [colorDark]="'#000000ff'" [colorLight]="'#ffffffff'"
+                                        [elementType]="'canvas'" [errorCorrectionLevel]="'M'"
+                                        [imageSrc]="(fiesta.img!=='')?url+'/upload/fiestas/'+fiesta.img:url+'/upload/fiestas/default.jpg'"
+                                        [imageHeight]="75" [imageWidth]="75" [margin]="4" [scale]="1"
+                                        [title]="getQr(boletoid)" [width]="300">
+                                    </qrcode>
+
+
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <div class="row" style="width: 100%; margin: auto; justify-content: center;">
+
+                        <div class="col-md-6">
+                            <div class="wraper-we onepage alturaTarjetas"
+                                style="color: rgb(16, 16, 16) !important; background-color: #f7f0e6; height: auto; margin-bottom:15px;padding-bottom:10px;">
+
+                                <button class="custom-btn but" style="background-color: #f7f0e6" (click)="confirmar(getQr(invitado))">Confirmar invitación</button>
+
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+
+
+
+
+
+                </div>
+            </section>
+            <section id="wedding-header" class="wedding-header-single-page" *ngIf="form.value.checkHospedaje">
+                <div class="">
+                    <div class="text-center">
+
+
+                        <h2 style="color: #101010" class="headline">Hospedaje Recomendado</h2>
+                    </div>
+                </div>
+            </section>
+            <div class="row"
+                style="width: 100%; background-color: white; justify-content: center;text-align: center;margin: auto;"
+                *ngIf="form.value.checkHospedaje">
+
+
+
+                <div class="col-md-4 pading-text margin1 animated-element-1 animated fadeIn ">
+                    <div class="wraper-we onepage alturaTarjetas"
+                        style="color: rgb(16, 16, 16) !important;   height: auto; margin-bottom:15px;padding-bottom:10px;">
+                        <img src="/assets/invitaciones/xv/xv5.jpeg" alt="480x320" class="img-invite"
+                            style="margin-top: 50px;">
+                        <h3 class="wed-text titleTable" style="margin-top: 10px;">Hotel Maravillas</h3>
+
+
+                        <div class="wed-text"><b>Dirección:</b> Barra Vieja Kilómetro 33 San Andrés Playa
+                            Encantada,
+                            Acapulco de Juárez, Gro., México. </div>
+
+
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+        </section>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<!-- 
+
+<app-footer></app-footer> -->

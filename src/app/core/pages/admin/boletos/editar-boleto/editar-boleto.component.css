@@ -1,0 +1,36 @@
+.qrcodeImage {}
+
+/* Add custom styles here */
+.center {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+}
+
+.btnfix {
+    top: 120px;
+    left: 120px;
+    width: 90px;
+    height: 90px;
+    border-radius: 100%;
+}
+
+.pr {
+    background: var(--primary-color)
+}
+
+.pr:hover {
+    opacity: .8;
+}
+
+.confirmado {
+    margin-top: 50px;
+    background-color: #22547b;
+    font-size: 20px;
+    color: #fff;
+    width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 25px;
+    border: 4px solid #8ad0c7;
+}

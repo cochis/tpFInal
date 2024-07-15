@@ -1,0 +1,161 @@
+<app-header></app-header>
+<main>
+    <app-loading class="animated1 fadeIn" *ngIf="loading"></app-loading>
+    <app-message class="animated1 fadeIn" *ngIf="msnOk"></app-message>
+    <section class="contact-section section-padding section-bg animated1 fadeIn " id="section_5" *ngIf="!loading">
+        <div class="container bw">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-12 col-12 text-center">
+                            <h2 class="mb-5">Crear modulo de template</h2>
+                        </div>
+                        <div class="col-6 text-center mt-3" style="margin: auto;">
+
+                            <button type="button" (click)="viewTemplate(this.form.value)"
+                                class="btn btn-lg text-center but" style="margin: auto;">Ver Template</button>
+                        </div>
+                        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                            <div class="row">
+
+                                <div class="col-12 col-md-6 mt-3">
+                                    <div class="form-group">
+                                        <label for="nombre">Nombre</label>
+                                        <input type="text" class="form-control upper" id="nombre"
+                                            formControlName="nombre" required placeholder="Nombre">
+                                    </div>
+                                    <span *ngIf="submited && errorControl['nombre'].errors " class="error">Es requerido
+                                    </span>
+                                </div>
+
+
+                                <div class="col-12 col-md-6 mt-3">
+                                    <div class="form-group">
+                                        <label for="evento">Evento</label>
+                                        <select name="" id="evento" formControlName="evento" #evento
+                                            class="form-control upper">
+                                            <option value="">Selecciona la evento</option>
+                                            <ng-container *ngFor="let item of eventos">
+
+                                                <option [value]="item.uid" *ngIf="!item.realizada">{{item.nombre}}
+                                                </option>
+                                            </ng-container>
+
+                                        </select>
+                                    </div>
+                                    <span *ngIf="submited && errorControl['evento'].errors " class="error">Es
+                                        requerido
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-6 text-center mt-3" style="margin: auto;">
+
+                                <button type="button" (click)="addModulo()" class="btn btn-lg text-center but"
+                                    style="margin: auto;">Agregar modulo</button>
+                            </div>
+                            <div formArrayName="modulos">
+                                <div *ngFor="let employee of modulos().controls; let modIndex=index">
+                                    <div [formGroupName]="modIndex">
+                                        <div class="row">
+                                            <div class="col-12 col-md-6 mt-3">
+                                                <div class="form-group">
+                                                    <label for="moduloTemplate">Modulo de plantilla</label>
+                                                    <select name="" id="moduloTemplate" formControlName="moduloTemplate"
+                                                        #moduloTemplate class="form-control upper"
+                                                        (change)="selectModuleTemplate(moduloTemplate.value,modIndex)">
+                                                        <option value="">
+                                                            Selecciona la moduloTemplate</option>
+                                                        <ng-container *ngFor="let item of moduloTemplates">
+
+                                                            <option [value]="item.uid" *ngIf="!item.realizada">
+                                                                {{item.nombre}}
+                                                            </option>
+                                                        </ng-container>
+
+                                                    </select>
+                                                </div>
+                                                <span *ngIf="submited && errorControl['tipoModulo'].errors "
+                                                    class="error">Es
+                                                    requerido
+                                                </span>
+                                            </div>
+
+                                            <div class="col-6 text-center mt-4" style="margin: auto;">
+
+                                                <button type="button" (click)="removeModulo(modIndex)"
+                                                    class="btn btn-lg text-center btn-warning"
+                                                    style="margin: auto;">Quitar</button>
+                                            </div>
+
+                                        </div>
+
+                                        <div formArrayName="values">
+                                            <div
+                                                *ngFor="let nombre of moduloDatas(modIndex).controls; let dataIndex=index">
+                                                <div [formGroupName]="dataIndex">
+                                                    <div class="row">
+
+
+                                                        <div class="col-12 col-md-4 mt-3">
+                                                            <div class="form-group">
+                                                                <label for="name">Nombre</label>
+                                                                <input type="text" class="form-control " id="name"
+                                                                    formControlName="name" required
+                                                                    placeholder="Nombre">
+                                                            </div>
+                                                            <span *ngIf="submited && errorControl['name'].errors "
+                                                                class="error">Es requerido
+                                                            </span>
+                                                        </div>
+                                                        <div class="col-12 col-md-4 mt-3">
+                                                            <div class="form-group">
+                                                                <label for="type">Tipo</label>
+                                                                <input type="text" class="form-control " id="type"
+                                                                    formControlName="type" required placeholder="Tipo">
+                                                            </div>
+                                                            <span *ngIf="submited && errorControl['type'].errors "
+                                                                class="error">Es requerido
+                                                            </span>
+                                                        </div>
+                                                        <div class="col-12 col-md-4 mt-3">
+                                                            <div class="form-group">
+                                                                <label for="value">Valor</label>
+                                                                <input type="text" class="form-control " id="value"
+                                                                    formControlName="value" required
+                                                                    placeholder="Valor">
+                                                            </div>
+                                                            <span *ngIf="submited && errorControl['value'].errors "
+                                                                class="error">Es requerido
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <!--  
+                                                    <button (click)="removeModuloData(modIndex,dataIndex)">
+                                                        Remove
+                                                    </button> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- <button type="button" (click)="addModuloData(modIndex)">
+                                            Add Skill
+                                        </button> -->
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
+                        </form>
+                        <pre> {{this.form.value | json}} </pre>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+
+</main>
+<app-footer></app-footer>

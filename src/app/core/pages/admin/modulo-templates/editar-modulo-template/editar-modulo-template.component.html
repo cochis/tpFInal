@@ -1,0 +1,141 @@
+<app-header></app-header>
+<main>
+    <app-loading class="animated1 fadeIn" *ngIf="loading"></app-loading>
+    <app-message class="animated1 fadeIn" *ngIf="msnOk"></app-message>
+    <section class="contact-section section-padding section-bg animated1 fadeIn " id="section_5" *ngIf="!loading">
+        <div class="container bw">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-12 col-12 text-center">
+                            <h2 class="mb-5" *ngIf="edit=='true'">Editar modulo de template</h2>
+                            <h2 class="mb-5" *ngIf="edit=='false'">Ver modulo de template</h2>
+                        </div>
+                        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                            <div class="row">
+                                <div class="col-12 col-md-6 mt-3">
+                                    <div class="form-group">
+                                        <label for="nombre">Nombre</label>
+                                        <input type="text" class="form-control upper" id="nombre"
+                                            formControlName="nombre" required placeholder="Nombre">
+                                    </div>
+                                    <span *ngIf="submited && errorControl['nombre'].errors " class="error">Es requerido
+                                    </span>
+                                </div>
+                                <div class="col-12 col-md-6 mt-3">
+                                    <div class="form-group">
+                                        <label for="tipoModulo">Tipo de modulo</label>
+                                        <select name="" id="tipoModulo" formControlName="tipoModulo" #tipoModulo
+                                            class="form-control upper">
+                                            <option value="">Selecciona la tipoModulo</option>
+                                            <ng-container *ngFor="let item of tipoModulos">
+
+                                                <option [value]="item.uid" *ngIf="!item.realizada">{{item.nombre}}
+                                                </option>
+                                            </ng-container>
+
+                                        </select>
+                                    </div>
+                                    <span *ngIf="submited && errorControl['tipoModulo'].errors " class="error">Es
+                                        requerido
+                                    </span>
+                                </div>
+                                <ng-container formArrayName="values">
+                                    <h5 for="value">Campos</h5>
+                                    <div class="col-6 text-center mt-3" style="margin: auto;">
+    
+                                        <button type="button" (click)="addValues()" class="btn btn-lg text-center but" style="margin: auto;"
+                                        
+                                        [disabled]="disabledBtn()"
+                                        
+                                        >Agregar campos</button>
+                                    </div>
+                          
+
+                                    <div *ngFor="let value of values.controls; let i=index">
+                                        <div [formGroupName]="i">
+                                            <div class="row">
+
+                                                <div class="col-3 mt-3">
+                                                    <div class="form-group">
+                                                        <label for="name">Nombre</label>
+                                                        <input type="text" class="form-control  " id="name"
+                                                            formControlName="name" required placeholder="Nombre">
+                                                    </div>
+                                                </div>
+                                                <div class="col-3 mt-3">
+                                                    <div class="form-group">
+                                                        <label for="type">Tipo de modulo</label>
+                                                        <select name="" id="type" formControlName="type" #type
+                                                            class="form-control  ">
+                                                            <option value="">Selecciona la tipo</option>
+                                                            <option value="string">Texto</option>
+                                                            <option value="number">Numérico</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-3 mt-3">
+                                                    <div class="form-group">
+                                                        <label for="value">Valor</label>
+                                                        <input type="text" class="form-control  " id="value"
+                                                            formControlName="value" required placeholder="Valor">
+                                                    </div>
+                                                </div>
+                                                <div class="col-3 mt-3 text-center">
+                                                    <button class="btn btn-lg   btn-warning mt-3" (click)="removeValue(i)">Quitar</button>
+                                                   
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </ng-container>
+                                <div class="col-12 mt-3">
+
+                                    <div class="form-group">
+                                        <label for="diseno">Diseño</label>
+                                        <textarea type="text" class="form-control " id="diseno"
+                                            formControlName="diseno" placeholder="Diseño" rows="8"></textarea>
+                                    </div>
+                                    <span *ngIf="submited && errorControl['diseno'].errors " class="error">Es requerido
+                                    </span>
+                                </div>
+                                <div class="col-12 mt-3">
+
+                                    <div class="form-group">
+                                        <label for="css">CSS</label>
+                                        <textarea type="text" class="form-control" id="css" formControlName="css"
+                                            placeholder="CSS" rows="8"></textarea>
+                                    </div>
+                                    <span *ngIf="submited && errorControl['css'].errors " class="error">Es requerido
+                                    </span>
+                                </div>
+
+
+                            </div>
+
+                            <div class="row mt-5 text-center">
+
+                                <div class="col-12 col-md-6  mt-3 text-center " *ngIf="edit==='true'">
+                                    <button type="submit" class="btn btn-lg btn-block but  ">Editar</button>
+
+                                </div>
+                                <div class="col-12 col-md-6  mt-3 text-center">
+                                    <button class="btn btn-lg btn-block btn-warning" (click)="back()">Regresar</button>
+
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+
+</main>
+<app-footer></app-footer>

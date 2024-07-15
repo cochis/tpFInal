@@ -1,0 +1,65 @@
+.navbar {
+    background-color: #13547a;
+}
+
+.navbar i {
+    color: var(--secondary-color);
+    font-size: 20px;
+    margin-right: 5px;
+
+}
+
+.navbar .navbar-brand {
+    color: var(--white-color);
+}
+
+.navbar-nav .nav-link {
+    cursor: pointer;
+    color: var(--white-color);
+
+    font-size: 18px;
+    margin-right: 5px;
+    transition: all 500ms;
+}
+
+.navbar-nav .nav-link:hover {
+    color: var(--secondary-color)
+}
+
+.dropend .dropdown-toggle {
+    color: var(--primary-color);
+    margin-left: 1em;
+}
+
+.dropdown-item:hover {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+.dropdown .dropdown-menu {
+    display: none;
+}
+
+.dropdown:hover>.dropdown-menu,
+.dropend:hover>.dropdown-menu {
+    display: block;
+    margin-top: .125em;
+    margin-left: .125em;
+}
+
+.logo-header {
+    width: 40px;
+    margin-right: 5px;
+}
+
+@media screen and (min-width:769px) {
+    .dropend:hover>.dropdown-menu {
+        position: absolute;
+        top: 0;
+        left: 100%;
+    }
+
+    .dropend .dropdown-toggle {
+        margin-left: .5em;
+    }
+}

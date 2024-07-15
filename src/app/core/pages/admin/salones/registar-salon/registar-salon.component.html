@@ -1,0 +1,180 @@
+<app-header></app-header>
+<main>
+    <app-loading class="animated1 fadeIn" *ngIf="loading"></app-loading>
+    <app-message class="animated1 fadeIn" *ngIf="msnOk"></app-message>
+    <section class="contact-section section-padding section-bg animated1 fadeIn " id="section_5" *ngIf="!loading">
+        <div class="container bw">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-12 col-12 text-center">
+                            <h2 class="mb-5" *ngIf="role == SLN">Registra salón</h2>
+                            <h2 class="mb-5" *ngIf="role == ANF">Registra ubicación de evento</h2>
+                        </div>
+                        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                            <div class="row">
+                                <div class="col-12 col-md-12 mt-3" *ngIf="role == SLN">
+                                    <div class="form-group">
+                                        <label for="nombre">Nombre</label>
+                                        <input type="text" class="form-control upper" id="nombre"
+                                            formControlName="nombre" placeholder="Nombre">
+                                    </div>
+                                    <span *ngIf="submited && errorControl['nombre'].errors " class="error">Es
+                                        requerido</span>
+                                </div>
+                                <div class="col-12 col-md-6 mt-3">
+                                    <div class="form-group">
+                                        <label for="calle">Calle</label>
+                                        <input type="text" class="form-control upper" id="calle" formControlName="calle"
+                                            placeholder="Calle">
+                                    </div>
+                                    <span *ngIf="submited && errorControl['calle'].errors " class="error">Es
+                                        requerido</span>
+                                </div>
+                                <div class="col-6 col-md-3 mt-3">
+                                    <div class="form-group">
+                                        <label for="numeroExt">Número exterior</label>
+                                        <input type="text" class="form-control upper" id="numeroExt"
+                                            formControlName="numeroExt" placeholder="Número exterior">
+                                    </div>
+                                    <span *ngIf="submited && errorControl['numeroExt'].errors " class="error">Es
+                                        requerido</span>
+                                </div>
+                                <div class="col-6 col-md-3 mt-3">
+                                    <div class="form-group">
+                                        <label for="numeroInt">Número interior</label>
+                                        <input type="text" class="form-control upper" id="numeroInt"
+                                            formControlName="numeroInt" placeholder="Número interior">
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-4 mt-3">
+                                    <div class="form-group">
+                                        <label for="municipioDelegacion">Municipio o Delegación</label>
+                                        <input type="text" class="form-control upper" id="municipioDelegacion"
+                                            formControlName="municipioDelegacion" placeholder="Municipio o Delegacion">
+                                    </div>
+                                    <span *ngIf="submited && errorControl['municipioDelegacion'].errors "
+                                        class="error">Es
+                                        requerido</span>
+                                </div>
+                                <div class="col-6 col-md-4 mt-3">
+                                    <div class="form-group">
+                                        <label for="coloniaBarrio">Colonia o Barrio</label>
+                                        <input type="text" class="form-control upper" id="coloniaBarrio"
+                                            formControlName="coloniaBarrio" placeholder="Colonia o Barrio">
+                                    </div>
+                                    <span *ngIf="submited && errorControl['coloniaBarrio'].errors " class="error">Es
+                                        requerido</span>
+                                </div>
+                                <div class="col-6 col-md-4 mt-3">
+                                    <div class="form-group">
+                                        <label for="cp">Código postal</label>
+                                        <input type="text" class="form-control upper" id="cp" formControlName="cp"
+                                            placeholder="Código postal">
+                                    </div>
+                                    <span *ngIf="submited && errorControl['cp'].errors " class="error">Es
+                                        requerido</span>
+                                </div>
+                                <div class="col-6 col-md-3 mt-3">
+                                    <div class="form-group">
+                                        <label for="estado">Estado</label>
+                                        <input type="text" class="form-control upper" id="estado"
+                                            formControlName="estado" placeholder="Estado">
+                                    </div>
+                                    <span *ngIf="submited && errorControl['estado'].errors " class="error">Es
+                                        requerido</span>
+                                </div>
+                                <div class="col-6 col-md-3 mt-3">
+                                    <div class="form-group">
+                                        <label for="pais">País</label>
+                                        <input type="text" class="form-control upper" id="pais" formControlName="pais"
+                                            placeholder="País">
+                                    </div>
+                                    <span *ngIf="submited && errorControl['pais'].errors " class="error">Es
+                                        requerido</span>
+                                </div>
+
+
+                                <div class="col-6 col-md-3 mt-3">
+
+                                    <div class="form-group">
+                                        <label for="telefono">Teléfono</label>
+                                        <input type="number" class="form-control upper" id="telefono"
+                                            placeholder="Teléfono" formControlName="telefono">
+                                    </div>
+                                    <span *ngIf="submited && errorControl['telefono'].errors " class="error">Es
+                                        requerido</span>
+                                </div>
+                                <div class="col-12 col-md-3 mt-3">
+
+                                    <div class="form-group">
+                                        <label for="email">Correo electrónico</label>
+                                        <input type="email" class="form-control upper" id="telefono"
+                                            placeholder="Correo electrónico" formControlName="email" readonly>
+                                    </div>
+                                </div>
+
+                                <!-- <div class="col-6 col-md-6 mt-3">
+
+                                    <div class="form-group">
+                                        <label for="lat">Latitud</label>
+                                        <input type="number" class="form-control upper" id="lat" placeholder="Latitud"
+                                            formControlName="lat">
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-6 mt-3">
+
+                                    <div class="form-group">
+                                        <label for="long">Longitud</label>
+                                        <input type="number" class="form-control upper" id="long" placeholder="Longitud"
+                                            formControlName="long">
+                                    </div>
+                                </div> -->
+                                <div class="col-12 col-md-12 mt-3">
+                                    <div class="form-group">
+                                        <label for="ubicacionGoogle">Ubicación Maps Google</label>
+                                        <input type="text" class="form-control upper" id="ubicacionGoogle"
+                                            formControlName="ubicacionGoogle" required
+                                            placeholder="Ingresa link de la Ubicación de Google  maps"
+                                            [readonly]="edit==='false'">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-12 mt-3">
+                                    <span *ngIf="submited && errorControl['comoLlegar'].errors " class="error">Es
+                                        requerido</span>
+                                    <div class="form-group">
+                                        <label for="long">Indicaciones adicionales de esta dirección</label>
+                                        <textarea class="form-control upper" id="comoLlegar" rows="4"
+                                            style="resize: none;" placeholder="Como llegar"
+                                            formControlName="comoLlegar"> </textarea>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="row mt-5 text-center">
+
+                                <div class="col-12 col-md-6  mt-3 text-center">
+                                    <button type=" submit" class="btn btn-lg btn-block but  ">Crear</button>
+
+                                </div>
+                                <div class="col-12 col-md-6  mt-3 text-center">
+                                    <button class="btn btn-lg btn-block btn-warning" (click)="back()">Regresar</button>
+
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+
+</main>
+<app-footer></app-footer>

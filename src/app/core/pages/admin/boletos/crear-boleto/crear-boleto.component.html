@@ -1,0 +1,173 @@
+<app-header></app-header>
+<main>
+    <app-loading class="animated1 fadeIn" *ngIf="loading"></app-loading>
+    <app-message class="animated1 fadeIn" *ngIf="msnOk"></app-message>
+    <section class="contact-section section-padding section-bg animated1 fadeIn " id="section_5" *ngIf="!loading">
+        <div class="container bw">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-12 col-12 text-center">
+                            <h2 class="mb-5">Crear boleto</h2>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <h3>Cantidad de invitaciones: {{numeroInvitados}} </h3>
+
+                                <h3 *ngIf="form.value.invitados.length>0" class="ion-text-center">Invitados
+                                    {{total}}</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                        <div class="row">
+                            <div class="col-6 col-md-6 mt-3">
+                                <div class="form-group">
+                                    <label for="fiesta">Fiesta</label>
+                                    <select name="" id="fiesta" formControlName="fiesta" #fiesta
+                                        class="form-control upper" (change)="selectNumero($event)">
+                                        <option value="">Selecciona la fiesta</option>
+                                        <ng-container *ngFor="let item of fiestas">
+
+                                            <option [value]="item.uid" *ngIf="!item.realizada">{{item.nombre}}
+                                            </option>
+                                        </ng-container>
+
+                                    </select>
+                                </div>
+                                <span *ngIf="submited && errorControl['fiesta'].errors " class="error">Es requerido
+                                </span>
+                            </div>
+                            <div class="col-6 col-md-6 mt-3 text-center" *ngIf="this.form.value.fiesta !==''">
+                                <div style="width: 100%;">
+
+                                    <button class="btn plus " (click)="addInvitados()"
+                                        [disabled]="(numeroInvitados===0) " *ngIf="this.form.value.fiesta !==''"> <i
+                                            class="icon-plus"></i></button>
+                                </div>
+                                <div style="width: 100%;">
+                                    <span>Invitado</span>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                        <div formArrayName="invitados">
+                            <div *ngFor="let invitado of invitados['controls'] ; let i=index">
+
+
+                                <div [formGroupName]="i">
+                                    <div class="row">
+
+                                        <div class="col-12 col-md-6 mt-3">
+
+                                            <div class="form-group">
+                                                <label for="grupo">Grupo{{i}}</label> 
+                                                <select name="" id="grupo" formControlName="grupo"
+                                                    class="form-control upper">
+                                                    <option value="">Selecciona un grupo</option>
+                                                    <option [value]="item.uid" *ngFor="let item of grupos">
+                                                        {{item.nombre}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <span
+                                                *ngIf="submited && errorControl['invitados']['controls'][i]['controls']['grupo'].errors "
+                                                class="error">Es
+                                                requerido
+                                            </span>
+                                        </div>
+                                        <div class="col-12 col-md-6 mt-3">
+                                            <div class="form-group">
+                                                <label for="nombreGrupo">Nombre de Grupo</label>
+                                                <input type="text" class="form-control upper" id="nombreGrupo"
+                                                    formControlName="nombreGrupo" required
+                                                    placeholder="Nombre de grupo">
+                                            </div>
+                                            <span
+                                                *ngIf="submited && errorControl['invitados']['controls'][i]['controls']['nombreGrupo'].errors "
+                                                class="error">Es
+                                                requerido
+                                            </span>
+                                        </div>
+                                        <div class="col-12 col-md-6 mt-3">
+                                            <div class="form-group">
+                                                <label for="whatsapp">Teléfono</label>
+                                                <input type="number" class="form-control upper" id="whatsapp"
+                                                    formControlName="whatsapp" required placeholder="Teléfono">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 col-md-6 mt-3">
+                                            <div class="form-group">
+                                                <label for="email">Correo electrónico</label>
+                                                <input type="email" class="form-control upper" id="email"
+                                                    formControlName="email" placeholder="Correo electrónico">
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6 mt-3">
+                                            <div class="form-group">
+                                                <label for="cantidad">Cantidad de invitados</label>
+                                                <input type="number" class="form-control upper" id="cantidad"
+                                                    formControlName="cantidad" placeholder="Cantidad de invitados">
+                                            </div>
+
+
+                                            <span
+                                                *ngIf="submited && errorControl['invitados']['controls'][i]['controls']['cantidad'].errors "
+                                                class="error">Es
+                                                requerido
+                                            </span>
+                                            <span class="dashicons dashicons-admin-appearance"></span>
+
+                                        </div>
+
+
+
+
+
+                                        <div class=" col-12 col-md-6  mt-4 text-center">
+
+                                            <button class="btn less " (click)="removeInvitados(i)"
+                                                *ngIf="this.form.value.fiesta !==''"> <i
+                                                    class="icon-minus"></i></button>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row mt-5 text-center">
+
+                            <div class="col-12 col-md-6  mt-3 text-center ">
+                                <button type="submit" class="btn btn-lg btn-block but  "
+                                    [disabled]="form.valid && total>numeroInvitados  ">Crear</button>
+
+                            </div>
+                            <div class="col-12 col-md-6  mt-3 text-center">
+                                <button class="btn btn-lg btn-block btn-warning" (click)="back()">Regresar</button>
+
+                            </div>
+                        </div>
+
+
+                    </form>
+
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+
+</main>
+<app-footer></app-footer>
