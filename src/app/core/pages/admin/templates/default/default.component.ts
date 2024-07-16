@@ -63,7 +63,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
   hospedajeCheck: boolean
   vistaTemp: boolean
   pushOk: boolean = false
-
+ 
 
   constructor(
     private functionsService: FunctionsService,
@@ -106,6 +106,9 @@ export class DefaultComponent implements OnInit, AfterViewInit {
       })
       this.fiestasService.cargarFiestaById(this.fiestaId).subscribe((resp: any) => {
         this.fiesta = resp.fiesta
+   
+
+
         this.invitacionsService.cargarInvitacionByFiesta(this.fiestaId).subscribe(async (resp: any) => {
           this.invitacion = resp.invitacion.data
           this.restParty()
@@ -280,6 +283,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
   }
   ngOnInit()  {
     this.metaService.createCanonicalURL();
+    
   }
 
   
@@ -315,13 +319,28 @@ export class DefaultComponent implements OnInit, AfterViewInit {
     return await data
   }
   setData(fiesta, boleto) {
+    console.log('fiesta', fiesta)
+    console.log('boleto', boleto)
+  
+    this.metaService.generateTags({
+      title: `${fiesta.nombre} -  ${this.functionsService.datePush(fiesta.fecha) }  `,
+      description:
+        `Hola ${boleto.nombreGrupo} te invito tienes  ${boleto.cantidadInvitados} boletos`  ,
+      keywords:
+        'No faltes, te espero ',
+      slug: `core/templates/default/${fiesta.uid}/${boleto.uid}`,
+      colorBar: this.invitacion.cPrincipal,
+      image:
+      this.url + '/upload/invitaciones/' +this.invitacion.img1,
+    });
 
+ 
   }
   ngAfterViewInit(): void {
     setTimeout(() => {
-      
+      this.setData( this.fiesta,this.boleto)
       this.loading = false
-    }, 3500);
+    }, 1500);
   }
    
 

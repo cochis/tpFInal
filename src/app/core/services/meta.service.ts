@@ -2,11 +2,12 @@
 import { Injectable, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Meta } from '@angular/platform-browser';
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class MetaService {
-
+url= environment.text_url
   constructor(@Inject(DOCUMENT) private doc: any, private meta: Meta) {}
     
    createCanonicalURL() {
@@ -20,17 +21,16 @@ export class MetaService {
     linkAlternate.setAttribute('href', this.doc.URL);
     linkAlternate.setAttribute('hreflang', 'es-mx');
   }
-  generateTags(config: any) {
-    config = {
-      title: 'Tickets Party | Te invito a mi fiesta',
-      description:
-        '¡¡Ven te esperamos!!',
+  generateTags(data: any) {
+    let config = {
+      title: 'Tickets Party | Administra tu fiesta',
+      description:'¡¡Ven te pruebalo!!',
       keywords:
       'Administracion, Fiestas , invitaciones, boletos',
       image: '',
       slug: '',
       colorBar: '#13547a',
-      ...config,
+      ...data,
     };
     this.meta.updateTag({ name: 'description', content: config.description });
     this.meta.updateTag({ name: 'keywords', content: config.keywords });
@@ -56,7 +56,7 @@ export class MetaService {
     this.meta.updateTag({ property: 'og:image', content: config.image });
     this.meta.updateTag({
       property: 'og:url',
-      content: `https://tickets.cochisweb.com/${config.slug}`,
+      content: `${this.url}${config.slug}`,
     });
   }
 }
