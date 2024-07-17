@@ -151,3 +151,8 @@ export interface CargarModuloTemplates {
     total: number
     moduloTemplates: ModuloTemplate[]
 }
+export interface PagingConfig{
+    currentPage: number;
+    itemsPerPage: number;
+    totalItems: number;
+  }
