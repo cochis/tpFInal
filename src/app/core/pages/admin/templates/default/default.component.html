@@ -11,6 +11,7 @@
         </div>
     </div>
 
+
     <hr *ngIf="btnBack">
 
     <ng-container style=" background-color:{{invitacion.cWhite}} ;">
@@ -23,7 +24,8 @@
                     *ngIf="!vistaTemp">
 
                     <div class="texto tc" style="top:{{invitacion.topTitle}}%">
-                        <h1 class="dancing ts animate__bounce " style="font-size: 45px;color: {{invitacion.cPrincipal}};">
+                        <h1 class="dancing ts animate__bounce "
+                            style="font-size: 45px;color: {{invitacion.cPrincipal}};">
                             {{invitacion.tipoFiesta}}
                         </h1>
                         <span class="name ts dancing cap"
@@ -265,7 +267,7 @@
             </div>
 
 
-            <div class="  mt-3 " *ngIf="invitacion.itinerarioCheck"
+            <div class="  mt-3 " *ngIf="invitacion.itinerarioCheck !=='false'"
                 style="width: 100%;text-align: center;margin:auto; background-color: {{invitacion.cPrincipal}};">
                 <div class="row ">
 
@@ -274,7 +276,7 @@
                         <h2 class="mt-3 pacifico  " style="color:{{invitacion.cWhite}};">Itinerario</h2>
                     </div>
                 </div>
-                <div style="width: 60%; max-width: 450px; margin: auto;">
+                <div style="width: 60%; max-width: 450px; margin: auto;" *ngIf="invitacion.itinerarioCheck !=='false'">
                     <div class="card  p-0 nborder">
 
 
@@ -300,18 +302,18 @@
                 style="width: 100%;text-align: center;margin:auto; background-color: {{invitacion.cWhite}};">
                 <div class="row">
 
-                    <div class="col-12">
+                    <div class="col-12  ">
 
                         <h2 class="mt-3 pacifico" style="color:{{invitacion.cPrincipal}}">Este es tu boleto</h2>
                     </div>
 
-                    <div class="qrcodeImage text-center mg" *ngIf="boleto">
+                    <div class="qrcodeImage text-center  mg ma pt-3" *ngIf="boleto">
                         <qrcode [qrdata]="getQr(boleto)" [allowEmptyString]="true"
                             [ariaLabel]="'QR Code image with the following content...'" [cssClass]="'center'"
-                            [colorDark]="invitacion.cSecond" [colorLight]="invitacion.cPrincipal"
-                            [elementType]="'canvas'" [errorCorrectionLevel]="'M'" [imageHeight]="75" [imageWidth]="75"
-                            [margin]="4" [scale]="1" [colorDark]="invitacion.cSecond"
-                            [colorLight]="invitacion.cPrincipal" [title]="getQr(boleto)" [width]="300">
+                            [imageSrc]="url+'/upload/invitaciones/'+invitacion.img1" [elementType]="'canvas'"
+                            [errorCorrectionLevel]="'M'" [imageHeight]="50" [imageWidth]="50" [margin]="4" [scale]="1"
+                            [colorDark]="invitacion.colorQr" [colorLight]="invitacion.colorBgQr" [title]="getQr(boleto)"
+                            [width]="170">
                         </qrcode>
                         <button class="btn "
                             style="background-color: {{invitacion.cPrincipal}}; color:{{invitacion.cWhite}} ; border: 3px solid {{invitacion.cSecond}}"
@@ -327,12 +329,12 @@
                 </div>
                 <div style="width: 40%; max-width: 450px; min-width: 200px; padding: 15px;margin: auto;">
                     <div class="card mt-3 p-0 nborder" *ngIf="!vistaTemp && !boleto ">
-                        <qrcode [qrdata]="getQr()" [allowEmptyString]="true"
-                            [ariaLabel]="'QR Code image with the following content...'" [cssClass]="'center'"
-                            [colorDark]="invitacion.cSecond" [colorLight]="invitacion.cPrincipal"
-                            [elementType]="'canvas'" [errorCorrectionLevel]="'M'" [imageHeight]="75" [imageWidth]="75"
-                            [margin]="4" [scale]="1" [colorDark]="invitacion.cSecond"
-                            [colorLight]="invitacion.cPrincipal" [title]="getQr(boleto)" [width]="300">
+
+                        <qrcode [qrdata]="getQr()" [allowEmptyString]="true" [ariaLabel]="'Visitados '+tUrl"
+                            [cssClass]="'center'" [imageSrc]="url+'/upload/invitaciones/'+invitacion.img1"
+                            [elementType]="'canvas'" [errorCorrectionLevel]="'L'" [imageHeight]="50" [imageWidth]="50"
+                            [margin]="4" [scale]="3" [colorDark]="invitacion.colorQr"
+                            [colorLight]="invitacion.colorBgQr" [title]="getQr(boleto)" [width]="170">
                         </qrcode>
                         <div class="card-body">
 
@@ -347,13 +349,14 @@
                         <pre>
                             {{boleto}}
                         </pre>
-                        <div class="qrcodeImage text-center mg" *ngIf="boleto">
+                        <div class="qrcodeImage text-center mt-3 mg" *ngIf="boleto">
                             <qrcode [qrdata]="getQr(boleto)" [allowEmptyString]="true"
                                 [ariaLabel]="'QR Code image with the following content...'" [cssClass]="'center'"
+                                [imageSrc]="url+'/upload/invitaciones/'+invitacion.img1"
                                 [colorDark]="invitacion.cSecond" [colorLight]="invitacion.cPrincipal"
-                                [elementType]="'canvas'" [errorCorrectionLevel]="'M'" [imageHeight]="75"
-                                [imageWidth]="75" [margin]="4" [scale]="1" [colorDark]="invitacion.cSecond"
-                                [colorLight]="invitacion.cPrincipal" [title]="getQr(boleto)" [width]="300">
+                                [elementType]="'canvas'" [errorCorrectionLevel]="'M'" [imageHeight]="50"
+                                [imageWidth]="50" [margin]="4" [scale]="1" [colorDark]="invitacion.cSecond"
+                                [colorLight]="invitacion.cPrincipal" [title]="getQr(boleto)" [width]="170">
                             </qrcode>
 
                         </div>
@@ -375,7 +378,7 @@
 
             </div>
             <div style="width: 100%;text-align: center;margin:auto; background-color: {{invitacion.cPrincipal}};border:5px solid {{invitacion.cSecond}}"
-                *ngIf="invitacion.notaCheck">
+                *ngIf="invitacion.notaCheck !=='false'">
                 <div class="row">
 
                     <div class="col-12">
@@ -459,7 +462,7 @@
                         <h5 class="card-title mt-3 dancing" style="margin: auto; color:{{invitacion.cPrincipal}}">
                             {{invitacion.donde3Title}}</h5>
                         <div class="mt-3   bd  img-container ">
-
+                            d
                             <img [src]="invitacion.donde3Img" class="img-card sombra" alt="...">
                         </div>
                         <div class="card-body " style="width: 100%; margin: auto;">
@@ -495,7 +498,7 @@
                     </div>
                 </div>
                 <div style="width: 80%; max-width: 450px; min-width: 200px; padding: 15px;margin: auto;">
-                    <div class="card mt-3 p-0 nborder">
+                    <div class="card mt-3 p-0 nborder" style="background-color: {{invitacion.cWhite}}">
                         <img [src]="invitacion.hospedajeImg" class="card-img-top">
                         <div class="card-body">
                             <a href="{{invitacion.hospedajeUbicacion}}" class="pointer"
@@ -531,7 +534,7 @@
 
             </div>
 
-            <div class="  mt-3 " *ngIf="invitacion.itinerarioCheck"
+            <div class="  mt-3 " *ngIf="invitacion.itinerarioCheck !=='false'"
                 style="width: 100%;text-align: center;margin:auto; background-color: {{invitacion.cPrincipal}};">
                 <div class="row ">
 
@@ -540,7 +543,7 @@
                         <h2 class="mt-3 pacifico  " style="color:{{invitacion.cWhite}};">Itinerario</h2>
                     </div>
                 </div>
-                <div style="width: 60%; max-width: 450px; margin: auto;">
+                <div style="width: 60%; max-width: 450px; margin: auto;" *ngIf="invitacion.itinerarioCheck !=='false'">
                     <div class="card  p-0 nborder">
 
 
@@ -571,14 +574,13 @@
                         <h2 class="mt-3 pacifico" style="color:{{invitacion.cPrincipal}}">Confirma tu asistencia</h2>
                     </div>
                 </div>
-                <div style="width: 40%; max-width: 450px; min-width: 200px; padding: 15px;margin: auto;">
-                    <div class="card mt-3 p-0 nborder">
-                        <qrcode [qrdata]="getQr()" [allowEmptyString]="true"
-                            [ariaLabel]="'QR Code image with the following content...'" [cssClass]="'center'"
-                            [colorDark]="invitacion.cSecond" [colorLight]="invitacion.cPrincipal"
-                            [elementType]="'canvas'" [errorCorrectionLevel]="'M'" [imageHeight]="75" [imageWidth]="75"
+                <div style="width: 40%; max-width: 450px; min-width: 200px; padding: 15px;margin: auto;">fdf
+                    <div class="card mt-3 p-0 nborder  ">
+                        <qrcode [qrdata]="getQr()" [allowEmptyString]="true" [ariaLabel]="'Ticketparty.com'"
+                            [cssClass]="'center'" [imageSrc]="url+'/upload/invitaciones/'+invitacion.img1"
+                            [elementType]="'canvas'" [errorCorrectionLevel]="'M'" [imageHeight]="50" [imageWidth]="50"
                             [margin]="4" [scale]="1" [colorDark]="invitacion.cSecond"
-                            [colorLight]="invitacion.cPrincipal" [title]="getQr(boleto)" [width]="300">
+                            [colorLight]="invitacion.cPrincipal" [title]="getQr(boleto)" [width]="170">
                         </qrcode>
                         <div class="card-body">
 
@@ -598,7 +600,7 @@
 
             </div>
             <div style="width: 100%;text-align: center;margin:auto; background-color: {{invitacion.cPrincipal}};border:5px solid {{invitacion.cSecond}}"
-                *ngIf="invitacion.notaCheck">
+                *ngIf="invitacion.notaCheck !=='false'">
                 <div class="row">
 
                     <div class="col-12">

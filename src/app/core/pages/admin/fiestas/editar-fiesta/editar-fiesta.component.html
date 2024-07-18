@@ -154,7 +154,7 @@
                                 <div class="col-12 col-md-12 mt-3 text-center">
                                     <div class=" image-upload" class="text-center">
 
-                                        <label for="file-input" class="text-center">
+                                        <label for="file-input" [ngClass]=" {'pointer':edit ==='true'}">
 
                                             <ng-container *ngIf="fiesta" class="text-center">
                                                 <img *ngIf="fiesta.img ==='' && !imgTemp   "
@@ -274,7 +274,7 @@
                                     <button type="submit" class="btn btn-lg btn-block but  ">Editar</button>
 
                                 </div>
-                                <div class="col-12 col-md-6  mt-3 text-center">
+                                <div class="col-12 col-md-6  mt-3 text-center ma">
                                     <button class="btn btn-lg btn-block btn-warning" (click)="back()">Regresar</button>
 
                                 </div>

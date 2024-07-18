@@ -664,6 +664,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
             ...this.form.value.invitados[i],
             text_url: this.urlT
           }
+          console.log('bol::: ', bol);
           this.emailsService.sendMailByBoleto(bol).subscribe(resp => {
             // console.log('resp::: ', resp);
             this.loading = false

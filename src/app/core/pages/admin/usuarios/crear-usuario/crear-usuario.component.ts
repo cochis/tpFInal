@@ -150,7 +150,7 @@ export class CrearUsuarioComponent {
       role: ['', [Validators.required]],
       salon: ['',],
       google: [false],
-      activated: [false],
+      activated: [true],
       dateCreated: [this.today],
       lastEdited: [this.today],
     })

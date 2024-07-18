@@ -90,6 +90,8 @@ export class EditarInvitacionComponent {
       xImg1: 50,
       topTitle: 40,
       topDate: 50,
+      colorQr: '#c0354e',
+      colorBgQr: '#ffffff',
 
     })
     return
@@ -157,6 +159,8 @@ export class EditarInvitacionComponent {
       notaCheck: [true],
       invitacionTemplate: [false],
       notas: this.fb.array([]),
+      colorQr: ['#ffffff'],
+      colorBgQr: ['#c0354e'],
       usuarioCreated: [this.uid],
       activated: [true],
       dateCreated: [this.today],
@@ -171,7 +175,7 @@ export class EditarInvitacionComponent {
     this.createForm(this.fiesta)
   }
   async setFormWithData(invitacion: any) {
-    // console.log('invitacion', invitacion)
+    console.log('invitacion', invitacion)
     invitacion.data = await this.numberToData(invitacion.data)
     this.form = this.fb.group({
       cPrincipal: [invitacion.data.cPrincipal],
@@ -227,6 +231,8 @@ export class EditarInvitacionComponent {
       notaCheck: [invitacion.data.notaCheck],
       invitacionTemplate: [invitacion.data.invitacionTemplate],
       notas: this.fb.array([]),
+      colorQr: [invitacion.data.colorQr],
+      colorBgQr: [invitacion.data.colorBgQr],
       usuarioCreated: [invitacion.data.usuarioCreated],
       activated: [invitacion.data.activated],
       dateCreated: [invitacion.data.dateCreated],
@@ -234,7 +240,25 @@ export class EditarInvitacionComponent {
     })
     // // console.log('this.form ::: ', this.form.value);
   }
+  getQr() {
+    let qr = {
+      uid: '0000000000',
+      fiesta: 'Muestra',
+      grupo: 'Muestra',
+      salon: 'Muestra',
+      nombreGrupo: 'Muestra',
+      whatsapp: 'Muestra',
+      email: 'Muestra',
+      cantidadInvitados: 'Muestra',
+      ocupados: 'Muestra',
+      confirmado: 'Muestra',
+      invitacionEnviada: 'Muestra',
+      fechaConfirmacion: 'Muestra',
+      activated: true
 
+    }
+    return JSON.stringify(qr)
+  }
 
   setTemp(temp) {
     // // console.log('temp::: ', temp);
@@ -298,6 +322,8 @@ export class EditarInvitacionComponent {
       itinerarioName: [temp.itinerarioName],
       itinerarios: this.fb.array([]),
       notaCheck: [temp.notaCheck],
+      colorQr: [temp.colorQr],
+      colorBgQr: [temp.colorBgQr],
       invitacionTemplate: [temp.invitacionTemplate],
       notas: this.fb.array([]),
       usuarioCreated: [temp.usuarioCreated],
@@ -364,7 +390,7 @@ export class EditarInvitacionComponent {
         lastEdited: this.today
       }
 
-      // console.log('this.invitacionTemp', this.invitacion)
+      console.log('this.invitacionTemp', this.invitacion)
 
       this.actualizarInvitacion(this.invitacion).subscribe((resp: any) => {
         this.invitacion = resp.invitacionActualizado
@@ -398,18 +424,18 @@ export class EditarInvitacionComponent {
     if (this.invitacion) {
 
 
-      // console.log('this.form.value::: ', this.form.value);
+      console.log('this.form.value::: ', this.form.value);
       let data = await this.numberToData(this.form.value)
 
       this.invitacion.data = (data)
-      // console.log('this.invitacion::: ', this.invitacion);
+      console.log('this.invitacion::: ', this.invitacion);
 
 
 
       this.actualizarInvitacion(this.invitacion).subscribe((res: any) => {
         // console.log('res', res)
         this.invitacion = res.invitacionActualizado
-        // console.log('this.invitacion', this.invitacion)
+        console.log('this.invitacion', this.invitacion)
         if (this.rol != this.URS) {
 
           this.functionsService.navigateTo('core/fiestas/vista-fiestas')

@@ -7,18 +7,20 @@
                 <div class="card-body">
                     <div class="row text-center">
 
-                        <div class="col-12 col-md-4 mt-3  "  style="margin: auto;">
-
-                            <input type="text" class="form-control" placeholder="Buscar usuario..."
-                                (keyup)="buscar(txtTermino.value)" #txtTermino>
+                        <div class="col-lg-12 col-12 text-center">
+                            <h2 class="mb-3 second">Usuarios</h2>
                         </div>
-                         
+
                     </div>
                     <div class="row">
-                        <div class="row mt-5 text-center">
-                            <div class="col-12  text-center">
+                        <div class="row  text-center">
+                            <div class="col-12 col-md-6  text-center">
                                 <button class="btn but   " (click)="newUser()">Nuevo Usuario</button>
 
+                            </div>
+                            <div class="col-12 col-md-6  text-center">
+                                <input type="text" class="form-control" placeholder="Buscar usuario..."
+                                    (keyup)="buscar(txtTermino.value)" #txtTermino>
                             </div>
 
                         </div>
@@ -27,9 +29,7 @@
             </div>
             <div class="row">
 
-                <div class="col-lg-12 col-12 text-center">
-                    <h2 class="mb-5 second">Usuarios</h2>
-                </div>
+
 
                 <div class="col-12 text-center">
                     <h5 *ngIf="usuarios.length===0">Sin información</h5>
@@ -56,27 +56,28 @@
                                 <th class="upper">Edición</th>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let usuario of usuarios | paginate: { itemsPerPage: 10, currentPage: p } ; let i=index">
+                                <tr
+                                    *ngFor="let usuario of usuarios | paginate: { itemsPerPage: 10, currentPage: p } ; let i=index">
                                     <ng-container *ngIf="usuario.uid != uid">
 
                                         <td>
                                             <div class="opc">
 
-                                                <i class="icon-eye prima" *ngIf="usuario.activated"
+                                                <i class="icon-eye prima pointer" *ngIf="usuario.activated"
                                                     (click)="viewUsuario(usuario.uid)"></i>
                                             </div>
                                             <div class="opc">
 
-                                                <i class="icon-ok-circled prima" *ngIf="!usuario.activated"
+                                                <i class="icon-ok-circled prima pointer" *ngIf="!usuario.activated"
                                                     (click)="isActived(usuario)"></i>
                                             </div>
                                             <div class="opc">
 
-                                                <i class="icon-trash second" *ngIf="usuario.activated"
+                                                <i class="icon-trash second pointer" *ngIf="usuario.activated"
                                                     (click)="isActived(usuario)"></i>
                                             </div>
                                             <div class="opc">
-                                                <i class="icon-pencil prima" *ngIf="usuario.activated"
+                                                <i class="icon-pencil prima pointer" *ngIf="usuario.activated"
                                                     (click)="editUsuario(usuario.uid)"></i>
 
                                             </div>
@@ -99,20 +100,11 @@
 
                                         </td>
 
-                                        <td class="upper" *ngIf="!usuario.role"></td>
+
                                         <td class="upper" *ngIf="usuario.role">{{usuario.role.nombre }}</td>
 
 
-                                        <td class="upper" *ngIf=" usuario.salon.length ==0 && rol ===ADM">
-                                        </td>
-                                        <td class="upper"
-                                            *ngIf="usuario.salon && usuario.salon.length >0 && rol ===ADM">
 
-                                            <ng-container *ngFor="let salon of usuario.salon">
-                                                {{( salon)?getCatalog('salon',salon):'' }}
-                                            </ng-container>
-
-                                        </td>
                                         <td class="upper" *ngIf="  rol ===ADM">
 
 
@@ -120,13 +112,7 @@
 
 
                                         </td>
-                                        <td class="upper">
 
-
-                                            {{usuario.cantidadFiestas}}
-
-
-                                        </td>
 
                                         <!-- 
                                         <td>
@@ -159,9 +145,8 @@
                     </div>
                     <div class="mt-3">
 
-                        <pagination-controls (pageChange)="p = $event" autoHide="true"  previousLabel="Anterior"
-                        nextLabel="Siguiente"
-                            responsive="true" ></pagination-controls>
+                        <pagination-controls (pageChange)="p = $event" autoHide="true" previousLabel="Anterior"
+                            nextLabel="Siguiente" responsive="true"></pagination-controls>
                     </div>
                 </div>
 

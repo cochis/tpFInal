@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Pacifico&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Arsenal+SC:ital,wght@0,400;0,700;1,400;1,700&display=swap');
- 
+
 textarea {
     width: 100% !important;
 }
@@ -245,6 +245,14 @@ h5 {
     width: 90%;
     height: 150px;
     margin-bottom: 25px;
+}
+
+.qrcodeImage {
+
+    height: 100%;
+    width: 100%;
+    max-width: 350px;
+    min-width: 170px;
 }
 
 @media screen and (max-width: 480px) {

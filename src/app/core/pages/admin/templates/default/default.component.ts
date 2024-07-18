@@ -12,14 +12,14 @@ import { environment } from 'src/environments/environment';
 import { SwPush } from '@angular/service-worker';
 import Swal from 'sweetalert2';
 import { MetaService } from 'src/app/core/services/meta.service';
- 
+
 @Component({
   selector: 'app-default',
   templateUrl: './default.component.html',
   styleUrls: ['./default.component.css']
 })
 export class DefaultComponent implements OnInit, AfterViewInit {
-
+  tUrl = environment.text_url
   respuesta: any
   readonly VAPID_PUBLIC_KEY = environment.publicKey
   loading = false
@@ -63,7 +63,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
   hospedajeCheck: boolean
   vistaTemp: boolean
   pushOk: boolean = false
- 
+
 
   constructor(
     private functionsService: FunctionsService,
@@ -76,20 +76,23 @@ export class DefaultComponent implements OnInit, AfterViewInit {
 
 
   ) {
-     
 
+
+    this.loading = true
     this.fiestaId = this.route.snapshot.params['fiesta']
+    console.log('  this.fiestaId::: ', this.fiestaId);
 
     this.boletoId = this.route.snapshot.params['boleto']
+    console.log('this.boletoId ::: ', this.boletoId);
 
 
     if (this.fiestaId && this.boletoId) {
-      this.loading = true
 
       this.boletosService.cargarBoletoById(this.boletoId).subscribe((resp: any) => {
         this.boleto = resp.boleto
-        if(!this.boleto.activated){
-          this.functionsService.alertError({boleto:false},'Boleto eliminado')
+        console.log(' this.boleto::: ', this.boleto);
+        if (!this.boleto.activated) {
+          this.functionsService.alertError({ boleto: false }, 'Boleto eliminado')
           this.functionsService.navigateTo('/')
         }
         // console.log(' this.boleto ::: ', this.boleto);
@@ -99,21 +102,23 @@ export class DefaultComponent implements OnInit, AfterViewInit {
           this.pushOk = true
         }
 
-      
+
         this.subscribeNotification()
       }, (error) => {
         this.functionsService.alertError(error, 'Boletos')
       })
       this.fiestasService.cargarFiestaById(this.fiestaId).subscribe((resp: any) => {
         this.fiesta = resp.fiesta
-   
+        console.log(' this.fiesta::: ', this.fiesta);
+
 
 
         this.invitacionsService.cargarInvitacionByFiesta(this.fiestaId).subscribe(async (resp: any) => {
           this.invitacion = resp.invitacion.data
+          console.log(' this.invitacion::dd: ', this.invitacion);
           this.restParty()
           this.invitacion = await this.dateToNumber(this.invitacion)
-           
+
           this.date = this.fiesta.fecha
           this.invitacion.cantidad = this.boleto.cantidadInvitados
           this.invitacion.invitado = this.boleto.nombreGrupo
@@ -143,7 +148,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
     } else {
 
       this.restParty()
-      this.loading = true
+
       this.state = this.route.snapshot.queryParams
       for (let key in this.state) {
         ++this.count;
@@ -156,7 +161,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
           cSecond: '#c51132',
           cWhite: 'white',
           img1: '/assets/images/xv/xv3.jpeg',
-          xImg1: 50,
+          xImg1: 76,
           topTitle: 40,
           invitado: 'Familia Ramírez',
           cantidad: 5,
@@ -256,7 +261,10 @@ export class DefaultComponent implements OnInit, AfterViewInit {
               texto: 'Tu Presencia sera el mejo regalo',
 
             },
-          ]
+          ],
+          colorQr: '#ffffff',
+          colorBGQr: '#f82525',
+
         }
         this.itinerarios = this.invitacion.itinerarios
         this.notas = this.invitacion.notas
@@ -270,6 +278,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
         this.donde3Check = (this.state.donde3Check == 'true') ? true : false
         this.hospedajeCheck = (this.state.hospedajeCheck == 'true') ? true : false
         this.invitacion = this.state
+        console.log('this.invitacion::: ', this.invitacion);
         this.date = this.invitacion.fiestaDate
         this.btnBack = true
         // console.log('this.date', this.date)
@@ -281,12 +290,12 @@ export class DefaultComponent implements OnInit, AfterViewInit {
 
 
   }
-  ngOnInit()  {
+  ngOnInit() {
     this.metaService.createCanonicalURL();
-    
+
   }
 
-  
+
   async dateToNumber(data) {
 
 
@@ -321,28 +330,32 @@ export class DefaultComponent implements OnInit, AfterViewInit {
   setData(fiesta, boleto) {
     console.log('fiesta', fiesta)
     console.log('boleto', boleto)
-  
+
     this.metaService.generateTags({
-      title: `${fiesta.nombre} -  ${this.functionsService.datePush(fiesta.fecha) }  `,
+      title: `${fiesta.nombre} -  ${this.functionsService.datePush(fiesta.fecha)}  `,
       description:
-        `Hola ${boleto.nombreGrupo} te invito tienes  ${boleto.cantidadInvitados} boletos`  ,
+        `Hola ${boleto.nombreGrupo} te invito tienes  ${boleto.cantidadInvitados} boletos`,
       keywords:
         'No faltes, te espero ',
       slug: `core/templates/default/${fiesta.uid}/${boleto.uid}`,
       colorBar: this.invitacion.cPrincipal,
       image:
-      this.url + '/upload/invitaciones/' +this.invitacion.img1,
+        this.url + '/upload/invitaciones/' + this.invitacion.img1,
     });
 
- 
+
   }
   ngAfterViewInit(): void {
     setTimeout(() => {
-      this.setData( this.fiesta,this.boleto)
+
+      if (this.boleto && this.fiesta) {
+
+        this.setData(this.fiesta, this.boleto)
+      }
       this.loading = false
     }, 1500);
   }
-   
+
 
 
   getDate(date) {
@@ -403,7 +416,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
 
 
     })
-    this.loading = false
+
 
 
   }

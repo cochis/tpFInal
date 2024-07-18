@@ -1,4 +1,9 @@
-.qrcodeImage {}
+.qrcodeImage {
+
+    width: 100% !important;
+    height: auto !important;
+    max-width: 350px !important;
+}
 
 /* Add custom styles here */
 .center {

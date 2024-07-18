@@ -103,7 +103,8 @@ input[type="file"] {
 }
 
 .plus {
-    background: #5db1c1 !important;;
+    background: #5db1c1 !important;
+    ;
     border-radius: 100%;
     width: 50px;
     height: 50px;
@@ -155,9 +156,27 @@ input[type="file"] {
     -ms-border-radius: 5px 5px 0 0;
     -o-border-radius: 5px 5px 0 0;
 }
-.prima{
+
+.prima {
     color: #13547a !important;
 }
-.second{
-color: #5db1c1 !important;
+
+.second {
+    color: #5db1c1 !important;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.ma {
+    margin: auto;
+}
+
+.dpB {
+    display: block;
+}
+
+.dpN {
+    display: none;
 }

@@ -276,7 +276,7 @@ export class CrearFiestaComponent {
       long: [salon.long],
       salon: [this.form.value.salon, [Validators.required]],
       img: [''],
-      activated: [false],
+      activated: [true],
       dateCreated: [this.today],
       lastEdited: [this.today],
     })
@@ -292,7 +292,7 @@ export class CrearFiestaComponent {
         title: 'Ver invitación',
         size: 1,
         model: id,
-        mode: 'fullScreen'
+        mode: 'default'
       })
     }
   }

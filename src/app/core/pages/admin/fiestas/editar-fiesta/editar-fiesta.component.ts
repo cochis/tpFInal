@@ -59,6 +59,7 @@ export class EditarFiestaComponent {
     this.id = this.route.snapshot.params['id']
 
     this.edit = this.route.snapshot.params['edit']
+
     this.loading = true
     this.getCatalogos()
     this.getId(this.id)

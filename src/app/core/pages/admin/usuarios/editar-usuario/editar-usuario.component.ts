@@ -62,6 +62,7 @@ export class EditarUsuarioComponent {
     this.usuariosService.cargarUsuarioById(id).subscribe((resp: CargarUsuario) => {
 
       this.usuario = resp.usuario
+      console.log('   this.usuario ::: ', this.usuario);
 
       setTimeout(() => {
 
@@ -163,7 +164,7 @@ export class EditarUsuarioComponent {
         apellidoMaterno: [usuario.apellidoMaterno],
         email: [usuario.email, [Validators.required, Validators.email]],
         role: [role, [Validators.required]],
-        /*   salon: [(this.edit == 'true') ? usuario.salon : salon, [Validators.required]], */
+        /*   salon: [(this.edit == 'true') ? usuario.salon : usuario.salon, [Validators.required]], */
         google: [usuario.google],
         activated: [usuario.activated],
         dateCreated: [usuario.dateCreated],

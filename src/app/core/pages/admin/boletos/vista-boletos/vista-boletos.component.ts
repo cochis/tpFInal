@@ -208,19 +208,24 @@ export class VistaBoletosComponent {
     // console.log('fiesta::: ', fiesta);
     // console.log('this.boletos::: ', this.boletos);
     let res = this.boletos.filter((bol: any) => {
-      if (bol.fiesta) {
 
-        bol.fiesta._id === fiesta
-      }
+
+      return bol.fiesta._id === fiesta
+
+
     })
     // console.log('res::: ', res);
     let cantidad = 0
+
     res.forEach(b => {
       cantidad = cantidad + b.cantidadInvitados
     });
+    // console.log('cantidad::: ', cantidad);
     return cantidad
 
   }
+
+
   getCatalog(tipo: string, id: string) {
     if (id === undefined) return
     switch (tipo) {
@@ -273,7 +278,10 @@ export class VistaBoletosComponent {
   }
 
   getPorcentaje(total, ocupados) {
+    // console.log('ocupados::: ', ocupados);
+    // console.log('total::: ', total);
     let res = (ocupados * 100) / total
+    // console.log('res::: ', res);
     return res
   }
 

@@ -58,6 +58,7 @@ export class EditarSalonComponent {
       this.loading = true
 
       this.salon = resp.salon
+      console.log('this.salon::: ', this.salon);
 
       setTimeout(() => {
 
@@ -106,6 +107,7 @@ export class EditarSalonComponent {
   setForm(salon: Salon) {
 
 
+    console.log('this.salon.img::: ', this.salon.img);
     this.form = this.fb.group({
       nombre: [salon.nombre, [Validators.required]],
       calle: [salon.calle, [Validators.required]],
@@ -122,7 +124,7 @@ export class EditarSalonComponent {
       telefono: [salon.telefono, [Validators.required, Validators.pattern(".{10,10}")]],
       email: [salon.email, [Validators.required, Validators.email]],
       ubicacionGoogle: [salon.ubicacionGoogle ? salon.ubicacionGoogle : ''],
-      img: [(this.imgTemp == "") ? this.salon.img : this.imgTemp],
+      img: [this.salon.img],
       activated: [true],
       dateCreated: [salon.dateCreated],
       lastEdited: [this.today],
@@ -152,6 +154,7 @@ export class EditarSalonComponent {
 
         ...this.salon,
         ...this.form.value,
+        img: this.salon.img
 
 
       }
@@ -192,6 +195,7 @@ export class EditarSalonComponent {
       const url64 = reader.readAsDataURL(file.target.files[0])
       reader.onloadend = () => {
         this.imgTemp = reader.result
+        console.log('this.imgTemp ::: ', this.imgTemp);
 
       }
       this.subirImagen()
@@ -205,6 +209,7 @@ export class EditarSalonComponent {
         (img) => {
           //console.log('img::: ', img);
           this.salon.img = img
+          console.log(' this.salon.img ::: ', this.salon.img);
           this.functionsService.alert('Salon', 'Imagen actualizada', 'success')
         },
         (err) => {

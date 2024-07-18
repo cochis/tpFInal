@@ -64,6 +64,7 @@ export class PerfilComponent {
     this.usuariosService.cargarUsuarioById(id).subscribe((resp: CargarUsuario) => {
 
       this.usuario = resp.usuario
+      // console.log(' this.usuario ::: ', this.usuario);
 
       setTimeout(() => {
 
@@ -161,10 +162,11 @@ export class PerfilComponent {
     var role = (this.edit === 'false') ? usr.role.nombre : usr.role._id
     var salon = ''
 
-    usuario.salon.forEach(element => {
+    usuario.salon.forEach((element: any) => {
+      // console.log('element::: ', element);
 
 
-      salon = salon + this.functionsService.getValueCatalog(element, 'nombre', this.salones) + ', '
+      salon = salon + element.nombre + ', '
 
     });
 
@@ -208,8 +210,9 @@ export class PerfilComponent {
       this.usuario.email = this.usuario.email.toLowerCase()
       this.usuariosService.actualizarUsuario(this.usuario).subscribe((resp: any) => {
 
+        this.form.reset()
 
-        this.functionsService.alertUpdate('Usuarios')
+        this.functionsService.alertUpdate('Usuarioss')
 
         this.functionsService.navigateTo('core/usuarios/vista-usuarios')
         this.loading = false
@@ -227,7 +230,7 @@ export class PerfilComponent {
 
       this.loading = false
 
-      return // console.log('Please provide all the required values!');
+      return console.log('Please provide all the required values!');
     }
 
 

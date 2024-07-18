@@ -178,10 +178,11 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
   }
   async getFiestas() {
     this.loading = true
-    if (this.rol === 'ADMROL') {
+    console.log('this.rol ::: ', this.rol);
+    if (this.rol === this.ADM) {
       this.fiestasService.cargarFiestasAll().subscribe(resp => {
         this.fiestas = resp.fiestas
- 
+
         this.fiestasTemp = resp.fiestas
         this.fiestas.forEach((fst, i) => {
           this.blt = {
@@ -197,12 +198,51 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
         });
         // console.log('this.boletos::: ', this.boletos);
       })
-    } else if (this.rol === 'USRROl') {
+    } else if (this.rol === this.URS) {
+      console.log('this.usuario::: ', this.usuario);
+      this.fiestasService.cargarFiestasByanfitrion(this.usuario.uid).subscribe(resp => {
+        this.fiestas = resp.fiestas
 
-    } else if (this.rol === 'CHCROL') {
- 
+        this.fiestasTemp = resp.fiestas
+        this.fiestas.forEach((fst, i) => {
+          this.blt = {
+            fiesta: fst,
+            boletos: []
+          }
+          this.boletos.push(this.blt)
+          // console.log('   this.blt ::: ', fst.uid);
+          this.boletosService.cargarBoletoByFiesta(fst.uid).subscribe(res => {
+            // console.log('res ::: ', res);
+            this.boletos[i].boletos = this.functionsService.getActivos(res.boleto)
+          })
+        });
+        // console.log('this.boletos::: ', this.boletos);
+      })
+    } else if (this.rol === this.CHK) {
+
       this.fiestasService.cargarFiestasBySalon(this.usuario.salon[0]).subscribe(resp => {
         this.fiestas = resp.fiestas
+        this.fiestasTemp = resp.fiestas
+        this.fiestas.forEach((fst, i) => {
+          this.blt = {
+            fiesta: fst,
+            boletos: []
+          }
+          this.boletos.push(this.blt)
+          // console.log('   this.blt ::: ', fst.uid);
+          this.boletosService.cargarBoletoByFiesta(fst.uid).subscribe(res => {
+            // console.log('res ::: ', res);
+            this.boletos[i].boletos = res.boleto
+          })
+        });
+        // console.log('this.boletos::: ', this.boletos);
+      })
+    } else if (this.rol === this.SLN) {
+
+      // console.log('this.usuario::: ', this.usuario);
+      this.fiestasService.cargarFiestasByEmail(this.usuario.uid).subscribe(resp => {
+        this.fiestas = resp.fiestas
+        // console.log(' this.fiestas::: ', this.fiestas);
         this.fiestasTemp = resp.fiestas
         this.fiestas.forEach((fst, i) => {
           this.blt = {
@@ -222,6 +262,7 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
 
       this.fiestasService.cargarFiestasByanfitrion(this.usuario.uid).subscribe(resp => {
         this.fiestas = resp.fiestas
+        // console.log(' this.fiestas::: ', this.fiestas);
         this.fiestasTemp = resp.fiestas
         this.fiestas.forEach((fst, i) => {
           this.blt = {
@@ -349,7 +390,7 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
 
   getBoleto(id: string) {
     this.boletosService.cargarBoletoByFiesta(id).subscribe((resp) => {
-    
+
 
       let bl = {
         id: id,
@@ -542,11 +583,11 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
         }
 
         this.tokenPushService.sendTokenPushsByBoleto(boleto.uid, push).subscribe(resp => {
-       
+
           this.functionsService.alert("Notificaciones enviadas", "Recuerda pedir a tus invitados que activen las notificaciones en su invitación", "success")
         },
           (err) => {
-            console.log('err::: ', err);
+            // console.log('err::: ', err);
 
           })
       }
