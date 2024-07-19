@@ -37,3 +37,8 @@ db.usuarios.deleteOne({ email: "hugo@hugo.com" })
 db.usuarios.deleteOne({ email: "dsa@dffsd.com" })
 db.fiestas.deleteOne({ nombre: "HGO" })
 db.boletos.deleteOne({ dateCreated: 1696143943862 })
+
+db.fiestas.updateOne({nombre:"XV AÑOS SARAH IXCHEL"}, {$set:{_id:ObjectId("65d4f0b24eb88de0bf1b809c")}})
+db.fiestas.find({salon:"65598dfa2c028fe992b4e9e4"})
+
+db.boletos.deleteMany({  fiesta: ObjectId("669a901eeadfce23d2a02163")})

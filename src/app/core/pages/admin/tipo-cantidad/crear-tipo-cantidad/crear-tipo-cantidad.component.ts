@@ -46,6 +46,7 @@ export class CrearTipoCantidadComponent {
   createForm() {
     this.form = this.fb.group({
       nombre: ['', [Validators.required, Validators.minLength(3)]],
+      tipo: ['', [Validators.required, Validators.minLength(3)]],
       clave: ['', [Validators.required, Validators.minLength(3)]],
       costo: ['', [Validators.required, Validators.minLength(3)]],
       value: ['', [Validators.required]],

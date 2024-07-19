@@ -1,0 +1,24 @@
+<button class="info" type="button" (click)="showInfo(content)">
+    <i class="bi bi-info-circle    "></i>
+
+</button>
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Como extraer el link de la ubicacion</h4>
+        <button type="button" class="btn-close" aria-label="Cerrar" (click)="d('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-12">
+
+                <h3 class="mb-5"> Realizar la busqueda en Google Maps</h3>
+                <img style="width: 100%;" src="/assets/images/ubicacion.png" alt="">
+                <h3 class="mb-5">Copiar el link de la barra</h3>
+                <img style="width: 100%;" src="/assets/images/link-ubicacion.png" alt="">
+            </div>
+        </div>
+
+    </div>
+
+</ng-template>

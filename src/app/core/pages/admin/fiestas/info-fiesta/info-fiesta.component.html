@@ -1,0 +1,105 @@
+<app-header></app-header>
+<main>
+    <app-loading class="animated1 fadeIn" *ngIf="loading"></app-loading>
+    <app-message class="animated1 fadeIn" *ngIf="msnOk"></app-message>
+    <section class="contact-section section-padding section-bg animated1 fadeIn " id="section_5" *ngIf="!loading">
+        <div class="container bw">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-12 col-12 text-center">
+                            <h2 class="mb-5">Editar fiesta</h2>
+
+                        </div>
+                        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                            <div class="row">
+                                <div class="col-12 col-md-4 mt-3">
+                                    <div class="form-group">
+                                        <label for="nombre">Nombre</label>
+                                        <input type="text" class="form-control upper" id="nombre"
+                                            formControlName="nombre" required placeholder="Nombre">
+                                    </div>
+                                    <span *ngIf="submited && errorControl['nombre'].errors " class="error">Es
+                                        requerido
+                                    </span>
+                                </div>
+
+                                <div class="col-12 col-md-4 mt-3 text-center">
+                                    <div class=" image-upload " class="text-center">
+
+                                        <label for="file-input" class="pointer">
+
+                                            <ng-container *ngIf="fiesta" class="text-center">
+                                                <img *ngIf="fiesta.img ==='' && !imgTemp   "
+                                                    [src]="url+'/upload/fiestas/default.jpg'+fiesta.img"
+                                                    alt="Click aquí para subir tu foto"
+                                                    title="Click aquí para subir tu foto" class="img-avatar">
+                                                <img *ngIf="fiesta.img !=='' && !imgTemp   "
+                                                    [src]="url+'/upload/fiestas/'+fiesta.img"
+                                                    alt="Click aquí para subir tu foto"
+                                                    title="Click aquí para subir tu foto" class="img-avatar">
+                                                <img *ngIf="fiesta.img !=='' && imgTemp  " [src]="imgTemp"
+                                                    [alt]="fiesta.nombre" class="img-avatar">
+                                            </ng-container>
+                                        </label>
+
+                                        <input id="file-input" type="file" class="ion-no-border"
+                                            (change)="cambiarImagen($event )" />
+
+
+
+                                    </div>
+                                </div>
+
+
+
+
+
+                                <div class="col-12 col-md-4 mt-3">
+                                    <div class="form-group">
+                                        <label for="invitacion">Invitación</label>
+                                        <select name="" id="invitacion" formControlName="invitacion" #invi
+                                            class="form-control upper">
+                                            <option value="">Sin Invitación</option>
+                                            <option value="default">Default</option>
+                                            <option value="/xv/xv2/">XV años</option>
+                                            <!-- <option [value]="item.uid" *ngFor="let item of salones">{{item.nombre }} <b
+                                                    *ngIf="rol ===ADM && usuarios">{{item.usuarioCreated.email}}</b>
+                                            </option> -->
+                                        </select>
+                                    </div>
+                                    <span *ngIf="submited && errorControl['invitacion'].errors " class="error">Es
+                                        requerido
+                                    </span>
+
+                                </div>
+
+
+
+                            </div>
+
+                            <div class="row mt-5 text-center">
+
+                                <div class="col-12 col-md-6  mt-3 ma text-center ">
+                                    <button type="submit" class="btn btn-lg btn-block but  ">Editar</button>
+
+                                </div>
+                                <div class="col-12 col-md-6  mt-3 ma text-center ma">
+                                    <button class="btn btn-lg btn-block btn-warning" (click)="back()">Regresar</button>
+
+                                </div>
+
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+
+</main>
+<app-footer></app-footer>

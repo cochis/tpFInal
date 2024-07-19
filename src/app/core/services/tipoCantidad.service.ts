@@ -34,6 +34,7 @@ export class TipoCantidadesService {
           (tipoCantidad) =>
             new TipoCantidad(
               tipoCantidad.nombre,
+              tipoCantidad.tipo,
               tipoCantidad.clave,
               tipoCantidad.value,
               tipoCantidad.costo,
@@ -61,6 +62,7 @@ export class TipoCantidadesService {
           (tipoCantidad) =>
             new TipoCantidad(
               tipoCantidad.nombre,
+              tipoCantidad.tipo,
               tipoCantidad.clave,
               tipoCantidad.value,
               tipoCantidad.costo,

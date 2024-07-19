@@ -5,11 +5,11 @@
         <div class="col-12 text-center">
             <h2 class="mb-4">Mis fiestas</h2>
         </div>
-        <div class="col-12 col-md-6 mt-3">
+        <div class="col-12 col-md-6 mt-3 ma">
 
-            <div class="form-group">
-                <label for="grupo">Filtro </label>
-                <select name="" class="form-control upper" (change)="filterBy(filter.value)" #filter>
+            <div class="form-group ma">
+                <label for="grupo ma">Filtro </label>
+                <select name="" class="form-control upper ma" (change)="filterBy(filter.value)" #filter>
                     <option value="" selected>Selecciona un filtro</option>
                     <option value="finalizadas">Finalizadas</option>
                     <option value="true">Activadas</option>
@@ -60,11 +60,15 @@
                                             <div class="custom-block-overlay-text d-flex">
                                                 <div>
                                                     <h4 class="text-white mb-2" style="font-size: 18px;">
-                                                        {{party.nombre}}
+                                                        <a class="textDN text-white"
+                                                            routerLink="/core/info-fiesta/{{party.uid}}">
+
+                                                            {{party.nombre}}
+                                                        </a>
                                                         <small
-                                                            style="color:var(--primary-color) ;font-size:15px ;">{{party.salon.nombre}}
-                                                            <b style="color:white">{{party.fecha |
-                                                                date:"shortDate"}}</b>
+                                                            style="color:var(--primary-color) ;font-size:15px ;">&nbsp;{{party.salon.nombre}}
+                                                            <b style="color:white">&nbsp;{{party.fecha |
+                                                                date:"short"}}</b>
                                                         </small>
 
                                                     </h4>
@@ -84,10 +88,7 @@
 
 
                                                     <ng-container *ngIf=" boletos.length ==0">
-                                                        <h3>
 
-                                                            No hay boleto registrados para esta fiesta
-                                                        </h3>
                                                         <a routerLink="/core/boletos/crear-boleto">Crear boleto</a>
                                                     </ng-container>
                                                     <ng-container *ngFor="let boleto of boletos">
@@ -121,8 +122,7 @@
                                                                 <li class="list" style="cursor: pointer;"
                                                                     (click)="enviarPush(boleto.boletos)"
                                                                     alt="Solo quien activo las notificaciones en sus dispositivos"
-                                                                    *ngIf="(rol === URS || rol === ADM  || rol === ANF || rol === SLN ) && party.fecha > today && party.activated"
-                                                                    >
+                                                                    *ngIf="(rol === URS || rol === ADM  || rol === ANF || rol === SLN ) && party.fecha > today && party.activated">
                                                                     <b class="text-white"
                                                                         style="margin-right:10px">Recordar</b> <i
                                                                         class="bi bi-send"></i>
@@ -139,6 +139,7 @@
                                                 </div>
 
                                             </div>
+
                                             <br>
                                             <div class="social-share d-flex"
                                                 *ngIf="(rol === URS || rol === ADM  || rol === ANF || rol === SLN ) && party.fecha > today && party.activated">

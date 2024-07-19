@@ -54,6 +54,7 @@ import { EditarTipoModuloComponent } from './pages/admin/tipo-modulos/editar-tip
 import { CrearTipoModuloComponent } from './pages/admin/tipo-modulos/crear-tipo-modulo/crear-tipo-modulo.component';
 import { VistaTipoModulosComponent } from './pages/admin/tipo-modulos/vista-tipo-modulos/vista-tipo-modulos.component';
 import { DefaultComponent } from './pages/admin/templates/default/default.component';
+import { InfoFiestaComponent } from './pages/admin/fiestas/info-fiesta/info-fiesta.component';
 
 
 const routes: Routes = [
@@ -410,6 +411,12 @@ const routes: Routes = [
         path: 'galeria/:fiesta/:boleto',
         component: GaleriaComponent,
         data: { titulo: 'Sube tu foto' }
+
+      },
+      {
+        path: 'info-fiesta/:id',
+        component: InfoFiestaComponent,
+        data: { titulo: 'Información fiesta' }
 
       },
       {

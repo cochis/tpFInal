@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { CargarTipoCantidad, CargarUsuario } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
 
 import { Salon } from 'src/app/core/models/salon.model';
@@ -43,7 +44,7 @@ export class RegistarSalonComponent {
     private salonesService: SalonsService,
     private usuariosService: UsuariosService,
     private tipoCantidadesService: TipoCantidadesService,
-
+    private modalService: NgbModal,
   ) {
     this.getCatalogos()
     if (this.functionsService.getLocal('uid')) {
@@ -173,5 +174,7 @@ export class RegistarSalonComponent {
   back() {
     this.functionsService.navigateTo('core/salones/vista-salones')
   }
-
+  showInfo(content) {
+    this.modalService.open(content, { fullscreen: true });
+  }
 }

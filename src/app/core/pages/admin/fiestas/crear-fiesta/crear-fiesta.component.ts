@@ -27,6 +27,7 @@ import { DefaultComponent } from '../../templates/default/default.component';
 })
 export class CrearFiestaComponent {
   ADM = environment.admin_role
+  ANF = environment.anf_role
   SLN = environment.salon_role
   URS = environment.user_role
   loading = false
@@ -183,7 +184,7 @@ export class CrearFiestaComponent {
       pais: ['', [Validators.required]],
       comoLlegar: [''],
       salon: ['', [Validators.required]],
-      usuarioFiesta: ['', [Validators.required]],
+      usuarioFiesta: [(this.rol == this.ANF) ? this.uid : '', [Validators.required]],
       img: [''],
       invitacion: ['', [Validators.required]],
       activated: [false],
@@ -213,7 +214,7 @@ export class CrearFiestaComponent {
       this.fiestasService.crearFiesta(this.form.value).subscribe((resp: any) => {
 
         // console.log('this.usuario', this.usuario)
-        this.usuario.cantidadFiestas = this.usuario.cantidadFiestas - 1
+        /*   this.usuario.cantidadFiestas = this.usuario.cantidadFiestas - 1 */
         this.usuariosService.actualizarUsuario(this.usuario).subscribe((resp2: any) => {
           // console.log('resp2', resp2)
           this.loading = false

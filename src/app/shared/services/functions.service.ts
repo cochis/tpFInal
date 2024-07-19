@@ -55,7 +55,8 @@ export class FunctionsService {
 
 
   getValueCatalog(id: string, filter: string, catalogo: any) {
-    if (id !== undefined) {
+
+    if (id && catalogo) {
       let ret = catalogo.filter((cat: any) => {
         return cat.uid === id
       })

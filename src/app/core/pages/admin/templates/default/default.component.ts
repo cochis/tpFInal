@@ -382,37 +382,44 @@ export class DefaultComponent implements OnInit, AfterViewInit {
     }
 
     this.boletosService.registrarAsistencia(this.boleto).subscribe((res: any) => {
-      // console.log('res', res)
+      console.log('res', res)
+      if (res.boletoActualizado.confirmado) {
 
+        this.functionsService.alert('Invitacion', 'Confirmada', 'success')
+      } else {
 
-      // this.boletosService.actualizarBoletoRegistro(this.boleto).subscribe(res => {
-      //   this.functionsService.alertUpdate('Boletos')
-      //   Swal.fire({
-      //     title: "Notificaciones",
-      //     text: "¿Quieres que te enviemos notificaciones de la fiesta?",
-      //     icon: "info",
-      //     showCancelButton: true,
-      //     confirmButtonColor: "#13547a",
-      //     cancelButtonColor: "#80d0c7",
-      //     confirmButtonText: "Si",
-      //     cancelButtonText: "No"
-      //   }).then((result) => {
-      //     if (result.isConfirmed) {
-      //       Swal.fire({
-      //         title: "Permisos",
-      //         text: "Acepta los permisos de notificaciones",
-      //         icon: "success"
-      //       });
+        this.functionsService.alert('Invitacion', 'Se quito la confirmación', 'error')
+      }
+      this.loading = false
 
-      //       this.functionsService.subscribeToPush().then(resp => {
-      //       })
-      //     }
-      //   });
-
-      // },
-      //   (error) => {
-      //     this.functionsService.alertError(error, 'Confirma asistencia')
-      //   })
+      /*    this.boletosService.actualizarBoletoRegistro(this.boleto).subscribe(res => {
+           this.functionsService.alertUpdate('Boletos')
+           Swal.fire({
+             title: "Notificaciones",
+             text: "¿Quieres que te enviemos notificaciones de la fiesta?",
+             icon: "info",
+             showCancelButton: true,
+             confirmButtonColor: "#13547a",
+             cancelButtonColor: "#80d0c7",
+             confirmButtonText: "Si",
+             cancelButtonText: "No"
+           }).then((result) => {
+             if (result.isConfirmed) {
+               Swal.fire({
+                 title: "Permisos",
+                 text: "Acepta los permisos de notificaciones",
+                 icon: "success"
+               });
+   
+               this.functionsService.subscribeToPush().then(resp => {
+               })
+             }
+           });
+   
+         },
+           (error) => {
+             this.functionsService.alertError(error, 'Confirma asistencia')
+           }) */
 
 
     })

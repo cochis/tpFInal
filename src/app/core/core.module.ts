@@ -59,7 +59,8 @@ import { CrearTipoModuloComponent } from './pages/admin/tipo-modulos/crear-tipo-
 import { EditarTipoModuloComponent } from './pages/admin/tipo-modulos/editar-tipo-modulo/editar-tipo-modulo.component';
 import { VistaTipoModulosComponent } from './pages/admin/tipo-modulos/vista-tipo-modulos/vista-tipo-modulos.component';
 import { DefaultComponent } from './pages/admin/templates/default/default.component';
-import { NgxPaginationModule } from 'ngx-pagination'
+import { NgxPaginationModule } from 'ngx-pagination';
+import { InfoFiestaComponent } from './pages/admin/fiestas/info-fiesta/info-fiesta.component'
 
 
 
@@ -121,6 +122,7 @@ import { NgxPaginationModule } from 'ngx-pagination'
     CrearTipoModuloComponent,
     EditarTipoModuloComponent,
     VistaTipoModulosComponent,
+    InfoFiestaComponent,
 
   ],
   imports: [

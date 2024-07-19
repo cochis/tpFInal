@@ -64,16 +64,11 @@ export class VistaUsuariosComponent {
       }
       this.busquedasService.buscar('usuarios', termino, this.functionsService.isAdmin()).subscribe((resp) => {
         this.usuarios = resp
-
         this.setUsuarios()
       })
-
     }, 500);
   }
   buscarCatalogo(tipo: string, value) {
-
-
-
     if (value == '') {
       this.usuarios = this.usuariosTemp
       this.setUsuarios()
@@ -82,11 +77,9 @@ export class VistaUsuariosComponent {
       case 'rol':
         this.busquedasService.buscarCatalogo('usuarios', value).subscribe((resp) => {
           this.usuarios = resp
-
           this.setUsuarios()
         })
         break;
-
       case 'salon':
         break;
     }
@@ -95,44 +88,29 @@ export class VistaUsuariosComponent {
     this.loading = true
     this.salonesService.cargarSalonsAll().subscribe((resp: CargarSalons) => {
       this.salones = resp.salons
-
     },
       (error: any) => {
         this.functionsService.alertError(error, 'Usuarios')
         this.loading = false
-
-
       })
     this.tipoCantidadesService.cargarTipoCantidadesAll().subscribe((resp: CargarTipoCantidades) => {
       this.tipoCantidades = resp.tipoCantidades
-      // console.log('this.tipoCantidades ::: ', this.tipoCantidades);
-
     },
       (error: any) => {
         this.functionsService.alertError(error, 'Paquetes')
         this.loading = false
-
-
       })
     this.rolesService.cargarRolesAll().subscribe((resp: CargarRoles) => {
       this.roles = resp.roles
-
     },
       (error: any) => {
         this.functionsService.alertError(error, 'Usuarios')
         this.loading = false
-
-
       })
-
-
   }
-
-
   setUsuarios() {
     this.loading = true
     setTimeout(() => {
-
       $('#datatableexample').DataTable({
         pagingType: 'full_numbers',
         pageLength: 5,
@@ -140,106 +118,68 @@ export class VistaUsuariosComponent {
         lengthMenu: [5, 10, 25]
       });
       this.loading = false
-
     }, 500);
   }
-
-
   getUsuarios() {
     this.loading = true
     if (this.rol === this.ADM) {
-
       this.usuariosService.cargarAlumnosAll().subscribe((resp: CargarUsuarios) => {
-
         this.usuarios = resp.usuarios
-        // console.log('this.usuarios', this.usuarios)
-
-        setTimeout(() => {
-          this.usuariosTemp = resp.usuarios
-
-          this.loading = false
-        }, 1500);
+        this.usuariosTemp = resp.usuarios
+        this.loading = false
       });
     } else if (this.rol === this.SLN) {
       let usr = this.functionsService.getLocal('uid')
-
       this.usuariosService.cargarUsuarioByCreador(usr).subscribe((resp: CargarUsuarios) => {
-
-
         setTimeout(() => {
           this.usuarios = resp.usuarios
-
           this.usuariosTemp = resp.usuarios
-
           this.loading = false
         }, 1500);
       });
-
     }
   }
   getCatalog(tipo: string, id: string) {
-
-
     if (id) {
-
       switch (tipo) {
         case 'rol':
-
           if (id !== undefined) return this.functionsService.getValueCatalog(id, 'nombre', this.roles)
           break;
-
         case 'salon':
-
           if (id !== undefined) return this.functionsService.getValueCatalog(id, 'nombre', this.salones)
           break;
         case 'usuario':
-
           if (id !== undefined) return this.functionsService.getValueCatalog(id, 'email', this.usuarios)
           break;
         case 'paquete':
-
           if (id !== undefined) return this.functionsService.getValueCatalog(id, 'nombre', this.tipoCantidades)
           break;
       }
     } else {
       return ''
     }
-
   }
-
   editUsuario(id: string) {
-
     this.functionsService.navigateTo(`/core/usuarios/editar-usuario/true/${id}`)
-
   }
   isActived(usuario: Usuario) {
-
     this.usuariosService.isActivedUsuario(usuario).subscribe((resp: any) => {
       this.getUsuarios()
-
-
     },
       (error: any) => {
         this.functionsService.alertError(error, 'Usuarios')
-
       })
   }
   viewUsuario(id: string) {
     this.functionsService.navigateTo(`/core/usuarios/editar-usuario/false/${id}`)
-
   }
-
   newUser() {
-
     this.functionsService.navigateTo('core/usuarios/crear-usuario')
   }
 
   cargarCreador(id: string) {
-
     this.usuariosService.cargarUsuarioById(id).subscribe((resp: CargarUsuario) => {
       return resp.usuario.email
     })
-
   }
-
 }

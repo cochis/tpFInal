@@ -56,6 +56,7 @@ export class EditarTipoCantidadComponent {
   }
   createForm() {
     this.form = this.fb.group({
+      tipo: ['', [Validators.required, Validators.minLength(3)]],
       nombre: ['', [Validators.required, Validators.minLength(3)]],
       clave: ['', [Validators.required, Validators.minLength(3)]],
       value: ['', [Validators.required]],
@@ -67,6 +68,7 @@ export class EditarTipoCantidadComponent {
   }
   setForm(tipoCantidad: TipoCantidad) {
     this.form = this.fb.group({
+      tipo: [(tipoCantidad.tipo) ? tipoCantidad.tipo : '', [Validators.required, Validators.minLength(3)]],
       nombre: [tipoCantidad.nombre, [Validators.required, Validators.minLength(3)]],
       clave: [tipoCantidad.clave, [Validators.required, Validators.minLength(3)]],
       value: [tipoCantidad.value, [Validators.required]],

@@ -77,8 +77,10 @@ body {
 }
 
 .img-avatar {
-    width: 250px;
-    height: 250px;
+    min-width: 150px;
+    width: 100%;
+    max-width: 250px;
+    height: auto;
     margin: auto;
 }
 
@@ -179,4 +181,20 @@ input[type="file"] {
 
 .dpN {
     display: none;
+}
+
+.info {
+    background-color: #13547a;
+    color: #ffffff;
+
+    margin: auto;
+    border: none;
+    border-radius: 20px;
+    font-weight: 800;
+    margin-bottom: 5px;
+    font-size: 25px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
 }

@@ -87,6 +87,14 @@ export class FiestasService {
     }
     return this.http.put(url, data, this.headers)
   }
+  actualizarFiestaByUsr(fiesta: Fiesta) {
+    const url = `${base_url}/fiestas/usuario/${fiesta.uid}`
+    const data = {
+      ...fiesta,
+      lastEdited: Date.now(),
+    }
+    return this.http.put(url, data, this.headers)
+  }
 
   cargarFiestaById(id: string) {
     const url = `${base_url}/fiestas/${id}`

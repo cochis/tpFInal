@@ -19,6 +19,7 @@ import { ModalTemplateComponent } from './components/modals/modal-template/modal
 import { DisenoModalComponent } from './components/modals/diseno-modal/diseno-modal.component';
 import { CssModalComponent } from './components/modals/css-modal/css-modal.component';
 import { SharedDefaultTemplateComponent } from './components/shared-default-template/shared-default-template.component';
+import { InfoUbicacionComponent } from './components/info-ubicacion/info-ubicacion.component';
 
 
 
@@ -39,6 +40,7 @@ import { SharedDefaultTemplateComponent } from './components/shared-default-temp
     DisenoModalComponent,
     CssModalComponent,
     SharedDefaultTemplateComponent,
+    InfoUbicacionComponent,
 
   ],
   exports: [
@@ -52,7 +54,8 @@ import { SharedDefaultTemplateComponent } from './components/shared-default-temp
     NavComponent,
     ScannerComponent,
     ModalComponent,
-    SharedDefaultTemplateComponent
+    SharedDefaultTemplateComponent,
+    InfoUbicacionComponent
 
 
   ],

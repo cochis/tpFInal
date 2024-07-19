@@ -1,6 +1,7 @@
 export class TipoCantidad {
     constructor(
         public nombre: string,
+        public tipo: string,
         public clave: string,
         public value: number,
         public costo: number,

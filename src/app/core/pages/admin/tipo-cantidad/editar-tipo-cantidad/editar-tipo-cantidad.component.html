@@ -13,7 +13,20 @@
                         </div>
                         <form [formGroup]="form" (ngSubmit)="onSubmit()">
                             <div class="row">
-                                <div class="col-12 col-md-6">
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group">
+                                        <label for="tipo">Tipo</label>
+                                        <select name="" id="tipo" formControlName="tipo" class="form-control upper">
+                                            <option value="">Selecciona un tipo</option>
+                                            <option value="fiestas">Fiesta</option>
+                                            <option value="galerias">Galeria</option>
+
+                                        </select>
+                                    </div>
+                                    <span *ngIf="submited && errorControl['tipo'].errors " class="error">Es requerido
+                                    </span>
+                                </div>
+                                <div class="col-12 col-md-4">
                                     <div class="form-group">
                                         <label for="nombre">Nombre</label>
                                         <input type="text" class="form-control upper" id="nombre"
@@ -23,7 +36,7 @@
                                     <span *ngIf="submited && errorControl['nombre'].errors " class="error">Es requerido
                                     </span>
                                 </div>
-                                <div class="col-12 col-md-6">
+                                <div class="col-12 col-md-4">
                                     <div class="form-group">
                                         <label for="clave">Clave</label>
                                         <input type="text" class="form-control upper" id="clave" formControlName="clave"

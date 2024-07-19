@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CargarStatusCompra, CargarTipoCantidades, CargarUsuario } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
 import { Compra } from 'src/app/core/models/compra.model';
@@ -24,7 +24,7 @@ export class CrearCompraComponent {
   loading: boolean = false;
   msnOk: string = ''
   usuario: Usuario
-  paquetes: TipoCantidad[]
+  paquetesTipo: TipoCantidad[]
   statusCompra: StatusCompra
   paqueteSeleccionado: TipoCantidad
   clave = ''
@@ -51,6 +51,8 @@ export class CrearCompraComponent {
   }
   createForm() {
     this.form = this.fb.group({
+
+      paquetes: this.fb.array([]),
       paquete: ['', [Validators.required]],
       cantidadFiestas: [''],
       costo: [''],
@@ -86,23 +88,64 @@ export class CrearCompraComponent {
         this.loading = false
       })
     this.tipoCantidadesService.cargarTipoCantidadesAll().subscribe((resp: CargarTipoCantidades) => {
-      this.paquetes = resp.tipoCantidades
+      this.paquetesTipo = resp.tipoCantidades
 
     })
   }
-  selectPaquete(event) {
-    this.paquetes.forEach(paquete => {
+  setTipos(value, i) {
+    console.log('i::: ', i);
+    console.log('value::: ', value);
+
+  }
+  selectPaquete(event, i) {
+    this.paquetesTipo.forEach(paquete => {
       if (paquete.uid == event) {
         this.paqueteSeleccionado = paquete
       }
     });
-    this.form.patchValue({
+    console.log('this.paqueteSeleccionado ::: ', this.paqueteSeleccionado);
+    /* this.form.patchValue({
       cantidadFiestas: this.paqueteSeleccionado.value,
       costo: this.paqueteSeleccionado.costo,
-    })
+    }) */
+    this.paquetes.controls[i].patchValue({ costo: this.paqueteSeleccionado.costo, cantidad: this.paqueteSeleccionado.value });
   }
   back() {
     this.functionsService.navigateTo('/core/fiestas/vista-fiestas')
+  }
+
+  get paquetes(): FormArray {
+    return this.form.get('paquetes') as FormArray
+  }
+
+
+  newPaquete(paquete?): FormGroup {
+    if (paquete) {
+      return this.fb.group({
+        tipo: paquete.tipo,
+        paqueteActual: paquete.paqueteActual,
+        cantidad: paquete.cantidad,
+        costo: paquete.costo,
+      })
+    } else {
+
+      return this.fb.group({
+        tipo: '',
+        paqueteActual: '',
+        cantidad: '',
+        costo: '',
+      })
+    }
+  }
+
+  addPaquete() {
+    this.paquetes.push(this.newPaquete());
+  }
+  setPaquete(paquete) {
+    this.paquetes.push(this.newPaquete(paquete));
+  }
+  removePaquete(i: number) {
+    this.paquetes.removeAt(i);
   }
   async onSubmit() {
     this.loading = true
@@ -136,38 +179,38 @@ export class CrearCompraComponent {
                 }
 
 
-                this.comprasService.actualizarCompra(compra).subscribe(async (resp2: any) => {
-                  this.compra = resp2.compraActualizado
-                  this.statusComprasService.cargarStatusCompraByStep(3).subscribe(async (resp3: CargarStatusCompra) => {
-                    this.statusCompra = resp3.statusCompra
-                    this.clave = this.statusCompra.clave
-                    await this.setTime(resp3).then((resp3) => {
-                      compra = {
-                        ...compra,
-                        status: this.statusCompra.uid
-                      }
-                      this.comprasService.actualizarCompra(compra).subscribe(async (resp4: any) => {
-                        this.compra = resp4.compraActualizado
+                /*     this.comprasService.actualizarCompra(compra).subscribe(async (resp2: any) => {
+                      this.compra = resp2.compraActualizado
+                      this.statusComprasService.cargarStatusCompraByStep(3).subscribe(async (resp3: CargarStatusCompra) => {
+                        this.statusCompra = resp3.statusCompra
                         this.clave = this.statusCompra.clave
-                        if (this.compra.status == this.statusCompra.uid && this.statusCompra.clave == this.clave) {
-                          this.usuariosService.cargarUsuarioById(this.usuario.uid).subscribe((resp5: any) => {
-                            this.usuario = resp5.usuario
-                            this.usuario.cantidadFiestas = this.usuario.cantidadFiestas + this.compra.cantidadFiestas
-                            this.usuariosService.actualizarUsuario(this.usuario).subscribe((resp6: any) => {
-                              this.functionsService.navigateTo('/core/fiestas/vista-fiestas')
-
-                              this.loading = false
-                            })
-
+                        await this.setTime(resp3).then((resp3) => {
+                          compra = {
+                            ...compra,
+                            status: this.statusCompra.uid
+                          }
+                          this.comprasService.actualizarCompra(compra).subscribe(async (resp4: any) => {
+                            this.compra = resp4.compraActualizado
+                            this.clave = this.statusCompra.clave
+                            if (this.compra.status == this.statusCompra.uid && this.statusCompra.clave == this.clave) {
+                              this.usuariosService.cargarUsuarioById(this.usuario.uid).subscribe((resp5: any) => {
+                                this.usuario = resp5.usuario
+                                this.usuario.cantidadFiestas = this.usuario.cantidadFiestas + this.compra.cantidadFiestas
+                                this.usuariosService.actualizarUsuario(this.usuario).subscribe((resp6: any) => {
+                                  this.functionsService.navigateTo('/core/fiestas/vista-fiestas')
+    
+                                  this.loading = false
+                                })
+    
+                              })
+    
+                            }
                           })
-
-                        }
+    
+                        })
                       })
-
-                    })
-                  })
-
-                })
+    
+                    }) */
               })
             },
               (error: any) => {

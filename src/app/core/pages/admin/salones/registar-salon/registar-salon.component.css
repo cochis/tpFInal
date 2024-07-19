@@ -1,0 +1,62 @@
+.gr-modal-full .modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+}
+
+.gr-modal-full .modal-dialog {
+    position: fixed;
+    margin: 0;
+    min-width: 100%;
+    height: 100%;
+    padding: 0;
+}
+
+.gr-modal-full .modal-content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 0;
+}
+
+.gr-modal-full .modal-header {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 80px;
+    padding: 10px;
+    border-radius: 0;
+
+}
+
+.gr-modal-full .modal-title {
+    font-weight: 300;
+    font-size: 2em;
+    color: #fff;
+    line-height: 30px;
+}
+
+.gr-modal-full .modal-body {
+    position: absolute;
+    top: 81px;
+    bottom: 61px;
+    width: 100%;
+    overflow: auto;
+}
+
+.gr-modal-full .modal-footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 60px;
+    padding: 10px;
+    border-radius: 0;
+
+}

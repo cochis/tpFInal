@@ -40,6 +40,7 @@
                             <thead class="thead-dark">
                                 <th class="upper">ID</th>
                                 <th class="upper">Opciones</th>
+                                <th class="upper">tipo</th>
                                 <th class="upper">nombre</th>
                                 <th class="upper">Clave</th>
                                 <th class="upper">Costo</th>
@@ -56,21 +57,21 @@
                                     <td>
                                         <div class="opc">
 
-                                            <i class="icon-eye text-primary" *ngIf="tipoCantidad.activated"
+                                            <i class="icon-eye prima" *ngIf="tipoCantidad.activated"
                                                 (click)="viewTipoCantidad(tipoCantidad.uid)"></i>
                                         </div>
                                         <div class="opc">
 
-                                            <i class="icon-ok-circled text-success" *ngIf="!tipoCantidad.activated"
+                                            <i class="icon-ok-circled prima" *ngIf="!tipoCantidad.activated"
                                                 (click)="isActived(tipoCantidad)"></i>
                                         </div>
                                         <div class="opc">
 
-                                            <i class="icon-trash text-danger" *ngIf="tipoCantidad.activated"
+                                            <i class="icon-trash second" *ngIf="tipoCantidad.activated"
                                                 (click)="isActived(tipoCantidad)"></i>
                                         </div>
                                         <div class="opc">
-                                            <i class="icon-pencil text-primary" *ngIf="tipoCantidad.activated"
+                                            <i class="icon-pencil prima" *ngIf="tipoCantidad.activated"
                                                 (click)="editTipoCantidad(tipoCantidad.uid)"></i>
 
                                         </div>
@@ -78,6 +79,7 @@
 
 
                                     </td>
+                                    <td class="upper">{{tipoCantidad.tipo}}</td>
                                     <td class="upper">{{tipoCantidad.nombre}}</td>
                                     <td class="upper">{{tipoCantidad.clave}}</td>
                                     <td class="upper">{{tipoCantidad.costo}}</td>
@@ -85,8 +87,8 @@
                                     <td class="upper">{{tipoCantidad.descripcion}}</td>
                                     <td class="upper">{{tipoCantidad.usuarioCreated.email}}</td>
                                     <td>
-                                        <i *ngIf="tipoCantidad.activated" class="icon-ok-circled text-success"></i>
-                                        <i *ngIf="!tipoCantidad.activated" class="icon-cancel-circled text-danger"></i>
+                                        <i *ngIf="tipoCantidad.activated" class="icon-ok-circled prima"></i>
+                                        <i *ngIf="!tipoCantidad.activated" class="icon-cancel-circled second"></i>
                                     </td>
                                     <td>{{tipoCantidad.dateCreated | date:'dd/MM/YYYY'}}</td>
                                     <td>{{tipoCantidad.lastEdited | date:'dd/MM/YYYY'}}</td>

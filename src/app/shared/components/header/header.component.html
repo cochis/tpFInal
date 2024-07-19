@@ -71,10 +71,7 @@
                     <a class="nav-link active" aria-current="page" routerLink="/">Inicio</a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/core/salones/vista-salones" *ngIf="rol=== SLN">Salon</a>
-                    <a class="nav-link" routerLink="/core/salones/vista-salones" *ngIf="rol=== ANF">Ubicación</a>
-                </li>
+
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/core/mis-fiestas" *ngIf="rol">Mis fiestas</a>
                 </li>
@@ -85,7 +82,7 @@
 
 
 
-                <li class="nav-item dropdown" *ngIf="rol ===ADM ||   rol ===SLN">
+                <li class="nav-item dropdown" *ngIf="rol ===ADM ||   rol ===SLN ||   rol ===ANF">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         Admin
@@ -93,11 +90,12 @@
                     <ul class="dropdown-menu">
                         <li *ngIf="rol !==URS"><a class="dropdown-item" routerLink="/core/salones/vista-salones">Ver
                                 salones</a></li>
-                        <li><a class="dropdown-item" routerLink="/core/usuarios/vista-usuarios">Ver usuarios</a></li>
+                        <li><a class="dropdown-item" routerLink="/core/usuarios/vista-usuarios" *ngIf="rol !==ANF">Ver
+                                usuarios</a></li>
                         <li><a class="dropdown-item" routerLink="/core/fiestas/vista-fiestas">Ver fiestas</a></li>
                         <li><a class="dropdown-item" routerLink="/core/boletos/vista-boletos">Ver boletos</a></li>
-                        <li><a class="dropdown-item" routerLink="/core/compras/crear-compra/{{uid}}">Ver Compras</a>
-                        </li>
+                        <!--  <li><a class="dropdown-item" routerLink="/core/compras/crear-compra/{{uid}}">Ver Compras</a>
+                        </li> -->
 
 
 

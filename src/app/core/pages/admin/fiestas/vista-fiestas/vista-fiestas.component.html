@@ -15,14 +15,15 @@
                     <div class="row">
                         <div class="row  text-center">
                             <div class="col-12 col-md-6  text-center">
-                                <button class="btn but   " *ngIf="rol == ADM " (click)="newFiesta()">Nueva
+                                <button class="btn but   " *ngIf="rol == ADM  || rol == ANF || rol == SLN"
+                                    (click)="newFiesta()">Nueva
                                     fiesta</button>
-                                <button class="btn but   " *ngIf="cantidadFiestas>0 &&(rol == ANF || rol== SLN)"
+                                <!--  <button class="btn but   " *ngIf="cantidadFiestas>0 &&(rol == ANF || rol== SLN)"
                                     (click)="newFiesta()">Nueva
                                     fiesta</button>
                                 <button class="btn but   " *ngIf="cantidadFiestas<=0 &&(rol == ANF || rol== SLN)"
                                     routerLink="/core/compras/crear-compra/{{uid}}">Comprar
-                                    paquete</button>
+                                    paquete</button> -->
 
                             </div>
                             <div class="col-12 col-md-6  mt-3 text-center">
@@ -35,10 +36,10 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-12 col-12 text-center mb-3" *ngIf="rol != ADM">
+                <!--    <div class="col-lg-12 col-12 text-center mb-3" *ngIf="rol != ADM">
 
                     <span class="mb-5">Disponibles {{usuario.cantidadFiestas}} </span>
-                </div>
+                </div> -->
 
                 <div class="col-12 text-center">
                     <h5 *ngIf="fiestas.length==0"> Sin información</h5>
@@ -106,7 +107,7 @@
                                     </td>
                                     <td class="upper">{{fiesta.cantidad}}</td>
                                     <td class="upper">{{fiesta.fecha | date:"shortDate"}}</td>
-                                    <td class="upper">{{getCatalog('salon',fiesta.salon)}}</td>
+                                    <td class="upper">{{ fiesta.salon.nombre }}</td>
                                     <td class="upper">{{fiesta.usuarioCreated.email}}</td>
 
                                     <td>

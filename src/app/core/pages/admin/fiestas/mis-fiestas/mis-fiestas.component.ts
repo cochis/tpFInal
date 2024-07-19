@@ -39,7 +39,7 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
   rol = this.functionsService.getLocal('role')
   today = this.functionsService.getToday()
   filter = ''
-  src1 = interval(5000);
+  src1 = interval(10000);
   obs1: Subscription;
 
   public imagenSubir!: File
@@ -62,111 +62,22 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
   }
   ngOnInit() {
     this.filterBy('true')
-    // console.log(this.rol);
-    // this.obs1 = this.src1.subscribe((value: any) => {
+    this.obs1 = this.src1.subscribe((value: any) => {
+      this.loading = true
+      this.boletos = []
 
-    //   if (this.rol === this.URS) {
-    //     this.fiestasService.cargarFiestasByanfitrion(this.uid).subscribe((resp) => {
-    //       this.fiestasTemp = resp.fiestas
-    //       switch (this.filter) {
-    //         case 'true':
-    //           this.fiestas = this.functionsService.getActivos(this.fiestasTemp)
-    //           break;
-    //         case 'false':
-    //           this.fiestas = this.functionsService.getNoActivos(this.fiestasTemp)
-    //           break;
-    //         case 'finalizadas':
-    //           this.fiestas = this.functionsService.getFinished(this.fiestasTemp)
-    //           break;
-
-    //         default:
-    //           this.fiestas = this.fiestasTemp
-    //           break;
-    //       }
-    //       // this.fiestas = this.functionsService.getActivos(resp.fiestas)
-    //       this.fiestas = resp.fiestas
-    //       this.fiestasTemp = resp.fiestas
-    //       this.filterBy('true')
-    //       this.fiestas.forEach((fiesta: any) => {
-    //         this.getBoleto(fiesta.uid)
-    //         this.getSalon(fiesta.salon._id)
-    //         setTimeout(() => {
-    //           this.loading = false
-    //         }, 500);
-    //       });
-    //     })
-    //   }
-    //   else if (this.rol === this.SLN || this.rol === this.ANF) {
-    //     // console.log('this.usuario.salon::: ', this.usuario.salon);
-    //     this.usuario.salon.forEach(salon => {
-
-    //       this.fiestasService.cargarFiestasBySalon(salon).subscribe((resp) => {
-    //         this.fiestas = resp.fiestas
-    //         // console.log('resp.fiestas::: ', resp.fiestas);
-    //         this.fiestasTemp = resp.fiestas
-    //         switch (this.filter) {
-    //           case 'true':
-    //             this.fiestas = this.functionsService.getActivos(this.fiestasTemp)
-    //             break;
-    //           case 'false':
-    //             this.fiestas = this.functionsService.getNoActivos(this.fiestasTemp)
-    //             break;
-    //           case 'finalizadas':
-    //             this.fiestas = this.functionsService.getFinished(this.fiestasTemp)
-    //             break;
-
-    //           default:
-    //             this.fiestas = this.fiestasTemp
-    //             break;
-    //         }
-    //         this.filterBy('true')
-
-    //         this.fiestas.forEach((fiesta: any) => {
+      console.log('this.boletos::: ', this.boletos);
+      console.log('this.fiestas::: ', this.fiestas);
 
 
-    //           this.getBoleto(fiesta.uid)
-    //           this.getSalon(fiesta.salon._id)
-    //           setTimeout(() => {
+      this.getFiestas()
 
-    //             this.loading = false
-    //           }, 1500);
-    //         });
-    //       })
-    //     });
-    //   }
-    //   else if (this.rol === this.ADM) {
-
-    //     this.fiestasService.cargarFiestasAll().subscribe((resp) => {
-    //       this.fiestasTemp = resp.fiestas
-    //       switch (this.filter) {
-    //         case 'true':
-    //           this.fiestas = this.functionsService.getActivos(this.fiestasTemp)
-    //           break;
-    //         case 'false':
-    //           this.fiestas = this.functionsService.getNoActivos(this.fiestasTemp)
-    //           break;
-    //         case 'finalizadas':
-    //           this.fiestas = this.functionsService.getFinished(this.fiestasTemp)
-    //           break;
-    //         default:
-    //           this.fiestas = this.fiestasTemp
-    //           break;
-    //       }
-    //       this.fiestas.forEach((fiesta: any) => {
-    //         this.getBoleto(fiesta.uid)
-    //         this.getSalon(fiesta.salon)
-    //         setTimeout(() => {
-    //           this.loading = false
-    //         }, 1500);
-    //       });
-    //     })
-    //   }
-    // });
+    });
   }
   ngAfterViewInit() {
   }
   ngOnDestroy(): void {
-
+    this.boletos = []
     if (this.obs1) this.obs1.unsubscribe();
   }
   getUsuario(uid) {
@@ -178,11 +89,11 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
   }
   async getFiestas() {
     this.loading = true
-    console.log('this.rol ::: ', this.rol);
+
     if (this.rol === this.ADM) {
       this.fiestasService.cargarFiestasAll().subscribe(resp => {
         this.fiestas = resp.fiestas
-
+        console.log(' this.fiestas ::: ', this.fiestas);
         this.fiestasTemp = resp.fiestas
         this.fiestas.forEach((fst, i) => {
           this.blt = {
@@ -202,6 +113,7 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
       console.log('this.usuario::: ', this.usuario);
       this.fiestasService.cargarFiestasByanfitrion(this.usuario.uid).subscribe(resp => {
         this.fiestas = resp.fiestas
+        console.log(' this.fiestas ::: ', this.fiestas);
 
         this.fiestasTemp = resp.fiestas
         this.fiestas.forEach((fst, i) => {
@@ -222,6 +134,7 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
 
       this.fiestasService.cargarFiestasBySalon(this.usuario.salon[0]).subscribe(resp => {
         this.fiestas = resp.fiestas
+        console.log(' this.fiestas ::: ', this.fiestas);
         this.fiestasTemp = resp.fiestas
         this.fiestas.forEach((fst, i) => {
           this.blt = {
@@ -242,6 +155,7 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
       // console.log('this.usuario::: ', this.usuario);
       this.fiestasService.cargarFiestasByEmail(this.usuario.uid).subscribe(resp => {
         this.fiestas = resp.fiestas
+        console.log(' this.fiestas ::: ', this.fiestas);
         // console.log(' this.fiestas::: ', this.fiestas);
         this.fiestasTemp = resp.fiestas
         this.fiestas.forEach((fst, i) => {
@@ -262,6 +176,7 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
 
       this.fiestasService.cargarFiestasByanfitrion(this.usuario.uid).subscribe(resp => {
         this.fiestas = resp.fiestas
+        console.log(' this.fiestas ::: ', this.fiestas);
         // console.log(' this.fiestas::: ', this.fiestas);
         this.fiestasTemp = resp.fiestas
         this.fiestas.forEach((fst, i) => {
@@ -276,10 +191,10 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
             this.boletos[i].boletos = res.boleto
           })
         });
+
         // console.log('this.boletos::: ', this.boletos);
       })
     }
-
     this.loading = false
 
 

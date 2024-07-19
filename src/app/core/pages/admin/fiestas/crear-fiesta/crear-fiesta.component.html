@@ -54,7 +54,7 @@
                                     <span *ngIf="submited && errorControl['fecha'].errors " class="error">Es requerido
                                     </span>
                                 </div>
-                                <div class="col-12 col-md-6 mt-3" *ngIf="usuarios">
+                                <div class="col-12 col-md-6 mt-3" *ngIf="usuarios" ngIf="rol !==ANF">
                                     <div class="form-group">
                                         <label for="usuarioFiesta">Usuario fiesta</label>
                                         <select name="" id="usuarioFiesta" formControlName="usuarioFiesta"
@@ -79,7 +79,7 @@
                                             <option value=""></option>
                                             <option value="default">Default</option>
                                             <option value="/xv/xv2/">XV años</option>
-                                            
+
 
                                         </select>
                                     </div>

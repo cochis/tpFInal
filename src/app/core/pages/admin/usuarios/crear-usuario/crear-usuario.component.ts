@@ -145,6 +145,7 @@ export class CrearUsuarioComponent {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.pattern(".{6,}")]],
       cantidadFiestas: [''],
+      cantidadGalerias: [''],
       paqueteActual: ['',],
       img: [''],
       role: ['', [Validators.required]],

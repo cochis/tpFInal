@@ -29,7 +29,7 @@
 
 
                 <div class="col-12 text-center">
-                    <h5 *ngIf=" fiestas.length==0">Sin fiestas</h5>
+                    <h5 *ngIf="!fiestas">Sin fiestas</h5>
                     <div class="table-over" *ngIf="  fiestas.length > 0">
 
 
@@ -91,13 +91,18 @@
                                             {{fiesta.usuarioCreated.email}}
 
                                         </td>
-                                        <td class="upper" *ngIf="fiesta.salon">{{ getCatalog("salon",fiesta.salon)}}
+                                        <td class="upper" *ngIf="fiesta.salon">
+
+                                            {{
+                                            (typeOf(fiesta.salon
+                                            )=='string')?getCatalog('salon',fiesta.salon):fiesta.salon.nombre
+                                            }}
                                         </td>
                                         <td class="upper">{{fiesta.nombre}}</td>
                                         <td class="upper">{{fiesta.cantidad}}</td>
                                         <td class="upper">{{fiesta.cantidad -fiterBoletos(fiesta.uid) }}</td>
                                         <td class="upper prima"
-                                            *ngIf="getPorcentaje(fiesta.cantidad,fiterBoletos(fiesta.uid)) == 0 && getPorcentaje(fiesta.cantidad,fiterBoletos(fiesta.uid)) <=24">
+                                            *ngIf="getPorcentaje(fiesta.cantidad,fiterBoletos(fiesta.uid)) >= 0 && getPorcentaje(fiesta.cantidad,fiterBoletos(fiesta.uid)) <=24">
                                             <i class="icon-battery-1"></i>
                                         </td>
                                         <td class="upper prima"

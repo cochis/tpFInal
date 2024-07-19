@@ -47,7 +47,7 @@
                                     <div class="form-group">
                                         <label for="numeroInt">Número interior</label>
                                         <input type="text" class="form-control upper" id="numeroInt"
-                                            formControlName="numeroInt" required placeholder="Número interior"
+                                            formControlName="numeroInt" placeholder="Número interior"
                                             [readonly]="edit==='false'">
                                     </div>
 
@@ -124,7 +124,10 @@
                                 </div>
                                 <div class="col-12 col-md-12 mt-3">
                                     <div class="form-group">
-                                        <label for="ubicacionGoogle">Ubicación Maps Google</label>
+                                        <label for="ubicacionGoogle">Ubicación Maps Google
+                                            <app-info-ubicacion></app-info-ubicacion>
+
+                                        </label>
                                         <input type="text" class="form-control upper" id="ubicacionGoogle"
                                             formControlName="ubicacionGoogle" required
                                             placeholder="Ingresa link de la Ubicación de Google  maps"
@@ -156,12 +159,12 @@
                                 </div>
 
 
-                                <div class="col-12 col-md-6 mt-3 text-center">
+                                <div class="col-12 col-md-6 mt-3 text-center ma">
                                     <div class=" image-upload" class="text-center">
 
-                                        <label for="file-input" class="text-center">
+                                        <label for="file-input" class="text-center ma">
 
-                                            <ng-container *ngIf="salon" class="text-center">
+                                            <ng-container *ngIf="salon" class="text-center ma">
                                                 <img *ngIf="salon.img ==='' && !imgTemp   "
                                                     [src]="url+'/upload/salones/default.jpg'+salon.img"
                                                     alt="Click aquí para subir tu foto"
@@ -191,7 +194,7 @@
                                     <button type="submit" class="btn btn-lg btn-block but  ">Editar</button>
 
                                 </div>
-                                <div class="col-12 col-md-6 mt-3  text-center">
+                                <div class="col-12 col-md-6 mt-3  ma text-center">
                                     <button class="btn btn-lg btn-block btn-warning" (click)="back()">Regresar</button>
 
                                 </div>

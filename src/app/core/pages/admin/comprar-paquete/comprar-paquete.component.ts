@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CargarTipoCantidades, CargarUsuario } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
 import { TipoCantidad } from 'src/app/core/models/tipoCantidad.model';
@@ -19,7 +19,7 @@ export class ComprarPaqueteComponent {
   loading: boolean = false;
   msnOk: string = ''
   usuario: Usuario
-  paquetes: TipoCantidad[]
+  paquetess: TipoCantidad[]
   paqueteSeleccionado: TipoCantidad
   id: string
   today: Number = this.functionsService.getToday()
@@ -38,12 +38,14 @@ export class ComprarPaqueteComponent {
   }
   createForm() {
     this.form = this.fb.group({
+
       paqueteActual: ['', [Validators.required]],
       cantidadFiestas: [''],
       costo: [''],
       lastEdited: [this.today],
     })
   }
+
   async getCatalogos() {
     let res = await this.paypalService.tokenPaypal()
     this.usuariosService.cargarUsuarioById(this.id).subscribe((resp: CargarUsuario) => {
@@ -63,12 +65,12 @@ export class ComprarPaqueteComponent {
         this.loading = false
       })
     this.tipoCantidadesService.cargarTipoCantidadesAll().subscribe((resp: CargarTipoCantidades) => {
-      this.paquetes = resp.tipoCantidades
+      this.paquetess = resp.tipoCantidades
 
     })
   }
   selectPaquete(event) {
-    this.paquetes.forEach(paquete => {
+    this.paquetess.forEach(paquete => {
       if (paquete.uid == event) {
         this.paqueteSeleccionado = paquete
       }
