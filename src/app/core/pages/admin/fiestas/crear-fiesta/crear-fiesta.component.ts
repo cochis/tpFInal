@@ -45,7 +45,6 @@ export class CrearFiestaComponent {
   cargando: boolean = false
   msnOk: boolean = false
   rol = this.functionsService.getLocal('role')
-
   constructor(
     private fb: FormBuilder,
     private functionsService: FunctionsService,
@@ -55,31 +54,17 @@ export class CrearFiestaComponent {
     private usuariosService: UsuariosService,
     private readonly _modalService: ModalService
   ) {
-
-
-
-    this.todayDate = this.functionsService.numberToDate(this.today)
     this.loading = true
     this.getCatalogos()
+    this.todayDate = this.functionsService.numberToDate(this.today)
     this.createForm()
     this.loading = false
-
   }
-
-
-
   getCatalogos() {
     this.loading = true
-
-
     if (this.rol === this.ADM) {
-
-
       this.salonesService.cargarSalonsAll().subscribe((resp: CargarSalons) => {
         this.salones = this.functionsService.getActivos(resp.salons)
-        // console.log('this.salones::: ', this.salones);
-
-
       },
         (error: any) => {
           this.functionsService.alertError(error, 'Fiestas')
@@ -87,83 +72,57 @@ export class CrearFiestaComponent {
         })
       this.eventosService.cargarEventosAll().subscribe((resp: CargarEventos) => {
         this.eventos = this.functionsService.getActivos(resp.eventos)
-
       },
         (error: any) => {
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
-
-
         })
       this.usuariosService.cargarAlumnosAll().subscribe((resp: CargarUsuarios) => {
-
         this.usuarios = this.functionsService.getActivos(resp.usuarios)
-        // console.log('this.uid::: ', this.uid);
         this.usuarios = this.usuarios.filter((usuario) => usuario.uid != this.uid);
-        // console.log(' this.usuarios::: ', this.usuarios);
-
-
       },
         (error: any) => {
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
-
-
         })
       this.usuariosService.cargarUsuarioById(this.uid).subscribe(resp => {
         this.usuario = resp.usuario
-        // console.log('this.usuario ::: ', this.usuario);
       },
         (error) => {
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
         })
     } else if (this.rol !== this.ADM) {
-
-
       this.salonesService.cargarSalonByMail(this.email).subscribe((resp: CargarSalons) => {
         this.salones = this.functionsService.getActivos(resp.salons)
-        // console.log('this.salones::: ', this.salones);
-
       },
         (error: any) => {
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
         })
-
       this.eventosService.cargarEventosAll().subscribe((resp: CargarEventos) => {
         this.eventos = this.functionsService.getActivos(resp.eventos)
-
       },
         (error: any) => {
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
         })
       this.usuariosService.cargarUsuarioByCreador(this.uid).subscribe((resp: CargarUsuarios) => {
-        // console.log('this.email::: ', this.email);
-        // console.log('resp::: ', resp);
-
-
         this.usuarios = this.functionsService.getActivos(resp.usuarios)
-        // console.log('this.uid::: ', this.uid);
         this.usuarios = this.usuarios.filter((usuario) => usuario.uid != this.uid);
-
       },
         (error: any) => {
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
         })
-
       this.usuariosService.cargarUsuarioById(this.uid).subscribe(resp => {
         this.usuario = resp.usuario
-        // console.log('this.usuario ::: ', this.usuario);
       },
         (error) => {
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
         })
     }
-
   }
   get errorControl() {
     return this.form.controls;
@@ -192,15 +151,9 @@ export class CrearFiestaComponent {
       lastEdited: [this.today],
     })
   }
-
-
   onSubmit() {
     this.loading = true
     this.submited = true
-    // console.log('this.form.value::: ', this.form.value.invitacion);
-    // console.log('this.form.value::: ', this.form.value);
-
-
     if (this.form.valid) {
       this.form.value.nombre = this.form.value.nombre.toUpperCase()
       this.form.value.fecha = new Date(this.form.value.fecha).getTime()
@@ -209,14 +162,8 @@ export class CrearFiestaComponent {
         activated: false,
         realizada: false
       }
-
-
       this.fiestasService.crearFiesta(this.form.value).subscribe((resp: any) => {
-
-        // console.log('this.usuario', this.usuario)
-        /*   this.usuario.cantidadFiestas = this.usuario.cantidadFiestas - 1 */
         this.usuariosService.actualizarUsuario(this.usuario).subscribe((resp2: any) => {
-          // console.log('resp2', resp2)
           this.loading = false
           this.functionsService.alert('Fiestas', 'Fiesta creada', 'success')
           this.functionsService.navigateTo(`core/invitaciones/editar-invitacion/true/${resp.fiesta.uid}`)
@@ -229,32 +176,19 @@ export class CrearFiestaComponent {
         (error) => {
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
-
-
         })
     } else {
-
       this.functionsService.alertForm('Fiestas')
       this.loading = false
-      return // console.log('Please provide all the required values!');
+      return console.log('Please provide all the required values!');
     }
-
-
-
-
-
-
   }
   selectSalon(event) {
-
     this.salonesService.cargarSalonById(event.target.value).subscribe((resp) => {
       setTimeout(() => {
-
         this.setSalon(resp.salon)
       }, 500);
-
     })
-
   }
   setSalon(salon) {
     this.form = this.fb.group({
@@ -282,13 +216,11 @@ export class CrearFiestaComponent {
       lastEdited: [this.today],
     })
   }
-
   back() {
     this.functionsService.navigateTo('core/fiestas/vista-fiestas')
   }
   showTemplate(id) {
     if (id == 'default') {
-
       this._modalService.show<Template>(DefaultComponent, {
         title: 'Ver invitación',
         size: 1,

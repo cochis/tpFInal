@@ -107,7 +107,10 @@
                                     </td>
                                     <td class="upper">{{fiesta.cantidad}}</td>
                                     <td class="upper">{{fiesta.fecha | date:"shortDate"}}</td>
-                                    <td class="upper">{{ fiesta.salon.nombre }}</td>
+                                    <td class="upper">{{
+                                        (typeOf(fiesta.salon
+                                        )=='string')?getCatalog('salon',fiesta.salon):fiesta.salon.nombre
+                                        }}</td>
                                     <td class="upper">{{fiesta.usuarioCreated.email}}</td>
 
                                     <td>

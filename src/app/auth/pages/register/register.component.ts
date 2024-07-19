@@ -36,15 +36,12 @@ export class RegisterComponent {
   submited = false
   respuesta: any = undefined
   readonly VAPID_PUBLIC_KEY = environment.publicKey
-
-
   form: FormGroup = this.fb.group({
     nombre: ['', [Validators.required, Validators.minLength(3)]],
     apellidoPaterno: ['', [Validators.required, Validators.minLength(3)]],
     apellidoMaterno: [''],
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.pattern(".{6,}")]],
-
     role: ['', [Validators.required]],
     google: [false],
     activated: [false],
@@ -52,10 +49,6 @@ export class RegisterComponent {
     lastEdited: [this.today],
     uid: [''],
   });
-
-
-
-
   constructor(
     private readonly fb: FormBuilder,
     private readonly router: Router,
@@ -69,15 +62,11 @@ export class RegisterComponent {
     Swal.fire({
       title: "Aceptar las notificaciones para estar mas enterado del evento",
       showDenyButton: true,
-
       confirmButtonText: "Aceptar",
       confirmButtonColor: "#13547a",
       denyButtonText: `Cancelar`,
       denyButtonColor: "#81d0c7"
-
     }).then((result) => {
-      // console.log('result', result)
-      /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         this.swPush.requestSubscription(
           {
@@ -85,50 +74,35 @@ export class RegisterComponent {
           }
         )
           .then(respuesta => {
-            // console.log('respuesta', respuesta)
             this.respuesta = respuesta
             this.submited = true
             if (!this.form.valid) {
               this.loading = false
               return
             }
-
-
-
           })
           .catch(err => {
-            // console.log('err', err)
+            this.functionsService.alertError(err, 'Error')
           })
-
       } else if (result.isDenied) {
-
-
         this.submited = true
         if (!this.form.valid) {
           this.loading = false
           return
         }
-
       }
     });
-
   }
-
   get errorControl() {
     return this.form.controls;
   }
-
   async submit(): Promise<void> {
-
     this.loading = true
     if (this.respuesta) {
       this.register(this.respuesta)
     } else {
-
       this.register()
     }
-
-    /*   this.router.navigateByUrl('core', { replaceUrl: true }); */
   }
   verPass() {
     this.vieWPass = !this.vieWPass;
@@ -148,12 +122,9 @@ export class RegisterComponent {
       })
     this.tipoCantidadesService.cargarTipoCantidadByClave(this.EVTRGL).subscribe((resp: CargarTipoCantidad) => {
       this.tipoCantidad = resp.tipoCantidad
-      // console.log('this.tipoCantidad', this.tipoCantidad)
     },
       (error) => {
         this.functionsService.alertError(error, 'Paquetes')
-        // console.log('error::: ', error);
-
       })
   }
 
@@ -164,27 +135,18 @@ export class RegisterComponent {
       }
     )
       .then(async respuesta => {
-        // console.log('respuesta', respuesta)
         return await {
           ok: true,
           respuesta
-
         }
-
       })
       .catch(err => {
         return {
           ok: false,
           err
-
         }
-
       })
-
-
   }
-
-
   register(push?: object) {
     this.form.value.email = this.form.value.email.toLowerCase()
     this.form.value.nombre = this.form.value.nombre.toUpperCase()
@@ -198,7 +160,6 @@ export class RegisterComponent {
       this.form.value.password == '' ||
       this.form.value.role == ''
     ) {
-
       this.loading = false
       this.functionsService.alertForm('Registro')
       return
@@ -209,7 +170,6 @@ export class RegisterComponent {
       paqueteActual: this.tipoCantidad.uid,
       pushNotification: (push) ? push : null
     }
-    // console.log('user', user)
     this.usuariosService.crearUsuario(user).subscribe((resp: any) => {
       setTimeout(() => {
         this.loading = false
@@ -223,12 +183,8 @@ export class RegisterComponent {
       this.functionsService.alert('Usuario', 'Creado', 'success')
     },
       (error: any) => {
-
-
         this.functionsService.alertError(error, 'Registro')
         this.loading = false
-
-
       })
   }
 }

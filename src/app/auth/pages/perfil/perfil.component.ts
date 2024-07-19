@@ -47,92 +47,60 @@ export class PerfilComponent {
     private route: ActivatedRoute,
     private fileService: FileService,
   ) {
-
     this.edit = 'false'
     this.loading = true
     this.getCatalogos()
     this.getId(this.id)
     this.createForm()
     setTimeout(() => {
-
       this.loading = false
     }, 1500);
   }
   getId(id: string) {
-
-
     this.usuariosService.cargarUsuarioById(id).subscribe((resp: CargarUsuario) => {
-
       this.usuario = resp.usuario
-      // console.log(' this.usuario ::: ', this.usuario);
-
       setTimeout(() => {
-
         this.setForm(this.usuario)
       }, 500);
-
     },
       (error: any) => {
         this.functionsService.alertError(error, 'Perfil')
-
-
       })
   }
-
-
   getCatalogos() {
-
     this.loading = true
     if ((this.rol === this.ADM)) {
-
       this.salonesService.cargarSalonsAll().subscribe((resp: CargarSalons) => {
-
         this.salones = resp.salons
-
       },
         (error: any) => {
           this.functionsService.alertError(error, 'Perfil')
           this.loading = false
-
-
         })
       this.rolesService.cargarRolesAll().subscribe((resp: CargarRoles) => {
         this.roles = resp.roles
-
       },
         (error: any) => {
           this.functionsService.alertError(error, 'Perfil')
           this.loading = false
-
-
         })
     } else {
-
       this.rolesService.cargarRolesSalon().subscribe((resp: CargarRoles) => {
         this.roles = resp.roles
-
       },
         (error: any) => {
           this.functionsService.alertError(error, 'Perfil')
           this.loading = false
-
-
         })
       let mail = this.functionsService.getLocal('email')
       this.salonesService.cargarSalonsAll().subscribe((resp: CargarSalons) => {
-
         this.salones = resp.salons
-
       },
         (error: any) => {
           this.functionsService.alertError(error, 'Perfil')
           this.loading = false
-
-
         })
     }
-
-
   }
   get errorControl() {
     return this.form.controls;
@@ -156,25 +124,14 @@ export class PerfilComponent {
   }
   setForm(usuario: Usuario) {
     this.loading = true
-
     let usr: any = usuario
-
     var role = (this.edit === 'false') ? usr.role.nombre : usr.role._id
     var salon = ''
-
     usuario.salon.forEach((element: any) => {
-      // console.log('element::: ', element);
-
-
       salon = salon + element.nombre + ', '
-
     });
-
     salon.substring(salon.length - (salon.length + 1))
-
-
     setTimeout(() => {
-
       this.form = this.fb.group({
         nombre: [usuario.nombre, [Validators.required, Validators.minLength(3)]],
         apellidoPaterno: [usuario.apellidoPaterno, [Validators.required, Validators.minLength(3)]],
@@ -191,52 +148,31 @@ export class PerfilComponent {
       })
       this.loading = false
     }, 1500);
-
-
   }
-
   onSubmit() {
     this.loading = true
     this.submited = true
     if (this.form.valid) {
-
       this.usuario = {
         ...this.usuario,
         ...this.form.value,
-
-
       }
-
       this.usuario.email = this.usuario.email.toLowerCase()
       this.usuariosService.actualizarUsuario(this.usuario).subscribe((resp: any) => {
-
         this.form.reset()
-
         this.functionsService.alertUpdate('Usuarioss')
-
         this.functionsService.navigateTo('core/usuarios/vista-usuarios')
         this.loading = false
       },
         (error) => {
           this.functionsService.alertError(error, 'Usuarios')
           this.loading = false
-
-
           this.functionsService.alertError(error, 'Perfil')
-
         })
     } else {
-
-
       this.loading = false
-
       return console.log('Please provide all the required values!');
     }
-
-
-
-
-
   }
   cambiarImagen(file: any) {
     this.loading = true
@@ -245,18 +181,13 @@ export class PerfilComponent {
       this.imgTemp = null
       this.functionsService.alert('Usuarios', 'No se encontró imagen', 'error')
       this.loading = false
-
     } else {
-
-
       const reader = new FileReader()
       const url64 = reader.readAsDataURL(file.target.files[0])
       reader.onloadend = () => {
         this.imgTemp = reader.result
-
       }
       this.subirImagen()
-
     }
   }
   subirImagen() {
@@ -267,69 +198,43 @@ export class PerfilComponent {
           this.usuario.img = img
           this.loading = false
           this.functionsService.alertUpdate('Usuarios')
-          //message
         },
         (err) => {
-
           this.loading = false
           this.functionsService.alert('Usuarios', 'Error al subir la imagen', 'error')
         },
       )
   }
-
   back() {
     this.functionsService.navigateTo('/')
   }
-
   getCatalog(tipo: string, id: string) {
-
     if (id) {
-
       switch (tipo) {
-
-
         case 'salon':
-
-
           return this.functionsService.getValueCatalog(id, 'nombre', this.salones).toString()
-
           break;
-
       }
     } else {
       return ''
     }
-
   }
-
   updatePass(newPass: string) {
-
     this.usuario.password = newPass
-
-
     setTimeout(() => {
-
       this.usuariosService.actualizarUsuario(this.usuario).subscribe((resp: any) => {
         this.functionsService.alertUpdate('Usuarios')
-
         this.loading = false
         this.modalService.dismissAll();
       },
         (error) => {
           this.functionsService.alertError(error, 'Usuarios')
           this.loading = false
-
-
-
-
         })
     }, 500);
-
-
     return
   }
   changePass(content) {
     this.modalService.open(content);
   }
 }
-

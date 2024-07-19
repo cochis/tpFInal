@@ -75,7 +75,6 @@ export class DefaultComponent {
     this.invitadoId = Number(this.route.snapshot.params['invitado'])
     this.boletosService.cargarBoletoById(this.boletoid).subscribe((resp: CargarBoleto) => {
       this.boleto = resp.boleto
-      // console.log('this.boleto', this.boleto)
       this.subscribeNotification()
     })
     this.fiestasService.cargarFiestaById(this.fiestaid).subscribe((resp: CargarFiesta) => {
@@ -96,13 +95,9 @@ export class DefaultComponent {
       this.qrOk = true
       this.setForm(this.fiesta, this.boleto, this.fiestaid)
     }, 1000);
-
   }
-
   createForm() {
-
     this.form = this.fb.group({
-
       tamano: [],
       checkForm: [],
       imgInit: [],
@@ -123,19 +118,14 @@ export class DefaultComponent {
       nombreCivil: [],
       direccionCivil: [],
       fechaCivil: [],
-
       checkRecepccion: [true],
       titleRecepccion: [],
       nombreRecepccion: [],
       direccionRecepccion: [],
       fechaRecepccion: [],
       checkHospedaje: [false]
-
-
     });
-
   }
-
   setForm(fiesta, boleto, id) {
     this.form = this.fb.group({
       tamano: [],
@@ -158,27 +148,17 @@ export class DefaultComponent {
       nombreCivil: [],
       direccionCivil: [],
       fechaCivil: [],
-
       checkRecepccion: [true],
       titleRecepccion: ['Salon & Jardin'],
       nombreRecepccion: ['Quinta Alejandra'],
       direccionRecepccion: [this.salon.direccion],
       fechaRecepccion: [this.fiesta.fecha],
       checkHospedaje: [false]
-
-
     });
-
   }
   getDate(date) {
-
     this.date = new Date(date).getTime()
-
   }
-  submit() {
-
-  }
-
   confirmar(data) {
     this.loading = true
     data = JSON.parse(data)
@@ -207,24 +187,17 @@ export class DefaultComponent {
               text: "Acepta los permisos de notificaciones",
               icon: "success"
             });
-
             this.functionsService.subscribeToPush().then(resp => {
             })
           }
         });
-
       },
         (error) => {
           this.functionsService.alertError(error, 'Confirma asistencia')
         })
-
-
     })
     this.loading = false
-
-
   }
-
   changeValue(type: string, value: any) {
     switch (type) {
       case 'bgPositionX':
@@ -233,58 +206,35 @@ export class DefaultComponent {
       case 'bgPositionY':
         this.bgY = value
         break;
-
-
     }
   }
   restParty() {
-
-
     let i = 0
     const interval = setInterval((): void => {
       if (this.date > 0) {
         ++i
-
         let d = (this.date - this.functionsService.getToday()) / 86400000
         this.dias = Math.trunc(d)
-
-
         let hr = ((this.date - this.functionsService.getToday()) % 86400000)
         this.horas = Math.trunc(hr / 3600000)
-
-
         let min = (this.date - this.functionsService.getToday()) - ((this.dias * 86400000) + (this.horas * 3600000))
-
         this.minutos = Math.trunc(min / 60000)
-
         let seg = (this.date - this.functionsService.getToday()) - ((this.dias * 86400000) + (this.horas * 3600000) + (this.minutos * 60000))
-
         this.segundos = Math.trunc(seg / 1000)
-
-
-
       }
     }, 1000);
-
   }
   verUbicacion() {
     let url = this.salon.ubicacionGoogle
     window.open(url, '_blank')
   }
-
   getQr(invitado) {
     let qr = {
       salon: this.fiesta.salon._id,
       fiesta: this.boleto.fiesta,
-
     }
-
     return JSON.stringify(qr)
-
   }
-
-
-
   subscribeNotification() {
     this.swPush.requestSubscription(
       {
@@ -292,22 +242,13 @@ export class DefaultComponent {
       }
     )
       .then(respuesta => {
-
-        // console.log(this.boleto);
-
-
-        // pushNotification 
-
+        console.log('respuesta::: ', respuesta);
       })
       .catch(err => {
         return {
           ok: false,
           err
-
         }
-
       })
-
-
   }
 }
