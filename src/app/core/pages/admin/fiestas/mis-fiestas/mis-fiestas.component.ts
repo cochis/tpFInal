@@ -28,6 +28,7 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
   blts: any = []
   blt: any = []
   salones: Salon[] = []
+  salonesDB: Salon[] = []
   usuario: Usuario
   ADM = environment.admin_role
   SLN = environment.salon_role
@@ -60,11 +61,11 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
   }
   ngOnInit() {
     this.filterBy('true')
-    this.obs1 = this.src1.subscribe((value: any) => {
-      this.loading = true
-      this.boletos = []
-      this.getFiestas()
-    });
+    /*  this.obs1 = this.src1.subscribe((value: any) => {
+       this.loading = true
+       this.boletos = []
+       this.getFiestas()
+     }); */
   }
   ngAfterViewInit() {
   }
@@ -75,6 +76,9 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
   getUsuario(uid) {
     this.usuariosService.cargarUsuarioById(uid).subscribe((resp: CargarUsuario) => {
       this.usuario = resp.usuario
+    })
+    this.salonesService.cargarSalonsAll().subscribe((resp: CargarSalons) => {
+      this.salonesDB = resp.salons
     })
   }
   async getFiestas() {
@@ -311,6 +315,23 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
 
     if (boletos.length == 0) {
       this.functionsService.alert("Importante", "Recuerda pedir a tus invitados que activen las notificaciones en su invitación", "info")
+    }
+  }
+  typeOf(val) {
+    return typeof (val)
+  }
+  getCatalog(tipo: string, id: string) {
+    if (id === undefined) return
+    switch (tipo) {
+      case 'fiesta':
+        if (id !== undefined) return this.functionsService.getValueCatalog(id, 'nombre', this.fiestas)
+        break;
+      case 'salon':
+        if (id !== undefined) return this.functionsService.getValueCatalog(id, 'nombre', this.salonesDB)
+        break;
+      default:
+        return " No se encontró"
+        break
     }
   }
 }

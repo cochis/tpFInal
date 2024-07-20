@@ -66,10 +66,37 @@
                                                             {{party.nombre}}
                                                         </a>
                                                         <small
-                                                            style="color:var(--primary-color) ;font-size:15px ;">&nbsp;{{party.salon.nombre}}
+                                                            style="color:var(--primary-color) ;font-size:15px ;">&nbsp;{{
+
+                                                            (typeOf(party.salon
+                                                            )=='string')?getCatalog('salon',party.salon):party.salon.nombre
+                                                            }}
                                                             <b style="color:white">&nbsp;{{party.fecha |
                                                                 date:"short"}}</b>
+
                                                         </small>
+                                                        <div class="col-12 mt-2 text-center">
+                                                            Galería de Imágenes
+                                                            <a class="text-center ma"
+                                                                style="   
+                                                            margin-left: 15px;width: 30px;height: 30px;background-color: #ffffff;border-radius: 100%;text-align: center !important;"
+                                                                *ngIf="rol===ANF"
+                                                                routerLink="/core/galeria/fst/{{party.uid}}/anf/{{uid}}">
+
+                                                                <i class="bi bi-images ma"
+                                                                    style=" font-size: 20px;margin:auto; color:#13547a ; display: block; "></i>
+                                                            </a>
+                                                            <a class="text-center ma"
+                                                                style="   
+                                                            margin-left: 15px;width: 30px;height: 30px;background-color: #ffffff;border-radius: 100%;text-align: center !important;"
+                                                                *ngIf="rol!==ANF"
+                                                                routerLink="/core/galeria/fst/{{party.uid}}/anf/{{party.usuarioFiesta._id}}">
+
+                                                                <i class="bi bi-images ma"
+                                                                    style=" font-size: 20px;margin:auto; color:#13547a ; display: block; "></i>
+                                                            </a>
+                                                        </div>
+
 
                                                     </h4>
 

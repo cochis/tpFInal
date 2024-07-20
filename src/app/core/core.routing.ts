@@ -55,6 +55,7 @@ import { CrearTipoModuloComponent } from './pages/admin/tipo-modulos/crear-tipo-
 import { VistaTipoModulosComponent } from './pages/admin/tipo-modulos/vista-tipo-modulos/vista-tipo-modulos.component';
 import { DefaultComponent } from './pages/admin/templates/default/default.component';
 import { InfoFiestaComponent } from './pages/admin/fiestas/info-fiesta/info-fiesta.component';
+import { ByImagesComponent } from './pages/admin/templates/by-images/by-images.component';
 
 
 const routes: Routes = [
@@ -401,6 +402,24 @@ const routes: Routes = [
 
       },
       {
+        path: 'templates/by-images/:fiesta',
+        component: ByImagesComponent,
+        data: { titulo: 'Invitacion fiesta' }
+
+      },
+      {
+        path: 'templates/by-images',
+        component: ByImagesComponent,
+        data: { titulo: 'Template by-images' }
+
+      },
+      {
+        path: 'templates/by-images/:fiesta/:boleto',
+        component: ByImagesComponent,
+        data: { titulo: 'Template by-images' }
+
+      },
+      {
         path: 'invitaciones/pc/pc1/:fiesta/:boleto',
         component: Pc1Component,
         data: { titulo: 'Primera comunion' },
@@ -408,7 +427,13 @@ const routes: Routes = [
 
       },
       {
-        path: 'galeria/:fiesta/:boleto',
+        path: 'galeria/fst/:fiesta/blt/:boleto',
+        component: GaleriaComponent,
+        data: { titulo: 'Sube tu foto' }
+
+      },
+      {
+        path: 'galeria/fst/:fiesta/anf/:anfitrion',
         component: GaleriaComponent,
         data: { titulo: 'Sube tu foto' }
 

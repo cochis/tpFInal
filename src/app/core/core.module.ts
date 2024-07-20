@@ -60,7 +60,8 @@ import { EditarTipoModuloComponent } from './pages/admin/tipo-modulos/editar-tip
 import { VistaTipoModulosComponent } from './pages/admin/tipo-modulos/vista-tipo-modulos/vista-tipo-modulos.component';
 import { DefaultComponent } from './pages/admin/templates/default/default.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { InfoFiestaComponent } from './pages/admin/fiestas/info-fiesta/info-fiesta.component'
+import { InfoFiestaComponent } from './pages/admin/fiestas/info-fiesta/info-fiesta.component';
+import { ByImagesComponent } from './pages/admin/templates/by-images/by-images.component'
 
 
 
@@ -123,6 +124,7 @@ import { InfoFiestaComponent } from './pages/admin/fiestas/info-fiesta/info-fies
     EditarTipoModuloComponent,
     VistaTipoModulosComponent,
     InfoFiestaComponent,
+    ByImagesComponent,
 
   ],
   imports: [

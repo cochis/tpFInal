@@ -1,5 +1,4 @@
-<app-loading *ngIf="!boleto"></app-loading>
-<div class="imgFull text-center mb " *ngIf="boleto && boleto.activated">
+<div class="imgFull text-center mb ">
 
     <img src="/assets/invitaciones/xv/1.png" class="img-invite mg">
 
@@ -39,25 +38,16 @@
 
     <ng-container style="margin-bottom: 50px;">
 
-        <button class="btn" (click)="confirmar(getQr(boleto))" *ngIf="!boleto.confirmado"
-            rel="noopener noreferrer mb">Confirmar asistencia </button>
-        <button class="btn" (click)="confirmar(getQr(boleto))" *ngIf="boleto.confirmado"
-            rel="noopener noreferrer mb">Quitar confirmación </button>
-
-
-
-
-        <div class="col-6 mt-3 ma">
-            <button class="btn" style="
-    margin-bottom: 150px; font-size: 25px;">Sube tus fotos <i class="bi bi-images"
-                    style=" font-size: 30px;margin-left:10px; color:#153860"
-                    routerLink="/core/galeria/fst/{{fiestaid}}/blt/{{boletoid}}"></i></button>
-
-        </div>
-
+        <button class="btn" (click)="confirmar(getQr(boleto))" *ngIf="!boleto.confirmado" rel="noopener noreferrer mb"
+            style="
+        margin-bottom: 150px;">Confirmar asistencia </button>
+        <button class="btn" (click)="confirmar(getQr(boleto))" *ngIf="boleto.confirmado" rel="noopener noreferrer mb"
+            style="
+        margin-bottom: 150px;">Quitar confirmación </button>
     </ng-container>
 
 </div>
+
 <div class="imgFull text-center mb " *ngIf="boleto && !boleto.activated">
 
     <img src="/assets/invitaciones/xv/3.png" class="img-invite mg">

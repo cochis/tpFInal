@@ -33,7 +33,7 @@
 
                     </div>
                     <div class="fecha pacifico tc  " style="top:{{invitacion.topDate}}%">
-                        <table class="tc">
+                        <table class="tc" *ngIf="date>functionsService.getToday()">
                             <tr style="color:{{invitacion.cWhite}};">
                                 <th class="wc"><b class="fsc" style="color: {{invitacion.cPrincipal}};">D</b>ias</th>
                                 <th class="wc"><b class="fsc" style="color: {{invitacion.cPrincipal}};">H</b>oras</th>
@@ -49,6 +49,9 @@
                             </tr>
 
                         </table>
+
+                        <h2 class="pacifico tc" *ngIf="date<functionsService.getToday()"><b
+                                style="color: {{invitacion.cPrincipal}};">E</b>mpezamos</h2>
                     </div>
 
 
@@ -324,6 +327,13 @@
                             style="background-color: {{invitacion.cPrincipal}}; color:{{invitacion.cWhite}} ; border: 3px solid {{invitacion.cSecond}}"
                             type="button" (click)="confirmar(getQr(boleto))" *ngIf="boleto.confirmado">
                             Quitar conformacion
+                        </button>
+                        <button class="btn mt-3"
+                            style="background-color: {{invitacion.cPrincipal}}; color:{{invitacion.cWhite}} ; border: 3px solid {{invitacion.cSecond}}"
+                            type="button" *ngIf="!boleto.confirmado"
+                            routerLink="/core/galeria/fst/{{fiestaId}}/blt/{{boletoId}}">
+                            Sube tus fotos <i class="bi bi-images"
+                                style=" font-size: 30px;margin-left:10px; color:{{invitacion.cSecond}}"></i>
                         </button>
                     </div>
                 </div>

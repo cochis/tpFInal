@@ -6,13 +6,11 @@ import { Salon } from 'src/app/core/models/salon.model';
 import { BoletosService } from 'src/app/core/services/boleto.service';
 import { FiestasService } from 'src/app/core/services/fiestas.service';
 import { InvitacionsService } from 'src/app/core/services/invitaciones.service';
-
 import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { environment } from 'src/environments/environment';
 import { SwPush } from '@angular/service-worker';
 import Swal from 'sweetalert2';
 import { MetaService } from 'src/app/core/services/meta.service';
-
 @Component({
   selector: 'app-default',
   templateUrl: './default.component.html',
@@ -25,26 +23,21 @@ export class DefaultComponent implements OnInit, AfterViewInit {
   loading = false
   url = environment.base_url
   today = this.functionsService.getToday()
-
   dias = 0
   horas = 0
   minutos = 0
   segundos = 0
-
   date: number = this.today + 199456789
   res: number
   formCheck: boolean = false
   qrOk = false
   rol = this.functionsService.getLocal('role')
-
   fiestaId: string = undefined
   fiesta: Fiesta
-
   boletoId: string = undefined
   boleto: Boleto
   cPrincipal: 'pink'
   ind = 0
-
   salon: Salon
   invitadoId: any
   invitado: any
@@ -63,8 +56,6 @@ export class DefaultComponent implements OnInit, AfterViewInit {
   hospedajeCheck: boolean
   vistaTemp: boolean
   pushOk: boolean = false
-
-
   constructor(
     private functionsService: FunctionsService,
     private fiestasService: FiestasService,
@@ -73,52 +64,31 @@ export class DefaultComponent implements OnInit, AfterViewInit {
     private boletosService: BoletosService,
     private swPush: SwPush,
     private metaService: MetaService
-
-
   ) {
-
-
     this.loading = true
     this.fiestaId = this.route.snapshot.params['fiesta']
-    console.log('  this.fiestaId::: ', this.fiestaId);
-
     this.boletoId = this.route.snapshot.params['boleto']
-    console.log('this.boletoId ::: ', this.boletoId);
-
-
     if (this.fiestaId && this.boletoId) {
-
       this.boletosService.cargarBoletoById(this.boletoId).subscribe((resp: any) => {
         this.boleto = resp.boleto
-        console.log(' this.boleto::: ', this.boleto);
         if (!this.boleto.activated) {
           this.functionsService.alertError({ boleto: false }, 'Boleto eliminado')
           this.functionsService.navigateTo('/')
         }
-        // console.log(' this.boleto ::: ', this.boleto);
         let countPush: number = this.boleto.pushNotification.length
-        // console.log('countPush::: ', countPush);
         if (countPush == 0) {
           this.pushOk = true
         }
-
-
         this.subscribeNotification()
       }, (error) => {
         this.functionsService.alertError(error, 'Boletos')
       })
       this.fiestasService.cargarFiestaById(this.fiestaId).subscribe((resp: any) => {
         this.fiesta = resp.fiesta
-        console.log(' this.fiesta::: ', this.fiesta);
-
-
-
         this.invitacionsService.cargarInvitacionByFiesta(this.fiestaId).subscribe(async (resp: any) => {
           this.invitacion = resp.invitacion.data
-          console.log(' this.invitacion::dd: ', this.invitacion);
           this.restParty()
           this.invitacion = await this.dateToNumber(this.invitacion)
-
           this.date = this.fiesta.fecha
           this.invitacion.cantidad = this.boleto.cantidadInvitados
           this.invitacion.invitado = this.boleto.nombreGrupo
@@ -128,32 +98,18 @@ export class DefaultComponent implements OnInit, AfterViewInit {
           this.hospedajeCheck = this.invitacion.hospedajeCheck
           this.itinerarios = this.invitacion.itinerarios
           this.notas = this.invitacion.notas
-
-
         }, (error) => {
           this.functionsService.alertError(error, 'Fiestas')
-
         })
-
       }, (error) => {
         this.functionsService.alertError(error, 'Fiestas')
-
       })
-
-
-
-
-
-
     } else {
-
       this.restParty()
-
       this.state = this.route.snapshot.queryParams
       for (let key in this.state) {
         ++this.count;
       }
-
       if (this.count == 0) {
         this.vistaTemp = true
         this.invitacion = {
@@ -207,68 +163,34 @@ export class DefaultComponent implements OnInit, AfterViewInit {
           ItinerarioName: 'Mariana´s Party',
           itinerarios: [
             {
-              name: 'Ceremonia',
+              name: 'Misa',
+              hr: '15:00 hrs'
+            },
+            {
+              name: 'Registro civil',
               hr: '17:00 hrs'
             },
             {
               name: 'Ceremonia',
-              hr: '17:00 hrs'
-            },
-            {
-              name: 'Ceremonia',
-              hr: '17:00 hrs'
-            },
-            {
-              name: 'Ceremonia',
-              hr: '17:00 hrs'
-            },
-            {
-              name: 'Ceremonia',
-              hr: '17:00 hrs'
-            },
-            {
-              name: 'Ceremonia',
-              hr: '17:00 hrs'
-            },
-            {
-              name: 'Ceremonia',
-              hr: '17:00 hrs'
-            },
-            {
-              name: 'Ceremonia',
-              hr: '17:00 hrs'
-            },
+              hr: '18:30 hrs'
+            }
           ],
           notaCheck: true,
           notas: [
             {
-              texto: 'Tu Presencia sera el mejo regalo',
+              texto: 'Tu Presencia sera el mejor regalo',
 
             },
             {
-              texto: 'Tu Presencia sera el mejo regalo',
+              texto: 'No olvides tener cuidado de tus hijos',
 
-            },
-            {
-              texto: 'Tu Presencia sera el mejo regalo',
-
-            },
-            {
-              texto: 'Tu Presencia sera el mejo regalo',
-
-            },
-            {
-              texto: 'Tu Presencia sera el mejo regalo',
-
-            },
+            }
           ],
           colorQr: '#ffffff',
           colorBGQr: '#f82525',
-
         }
         this.itinerarios = this.invitacion.itinerarios
         this.notas = this.invitacion.notas
-
       } else {
         this.vistaTemp = false
         this.itinerarios = JSON.parse(this.state.itinerarios)
@@ -278,59 +200,39 @@ export class DefaultComponent implements OnInit, AfterViewInit {
         this.donde3Check = (this.state.donde3Check == 'true') ? true : false
         this.hospedajeCheck = (this.state.hospedajeCheck == 'true') ? true : false
         this.invitacion = this.state
-        console.log('this.invitacion::: ', this.invitacion);
         this.date = this.invitacion.fiestaDate
         this.btnBack = true
-        // console.log('this.date', this.date)
       }
     }
-
-
-
-
-
   }
   ngOnInit() {
     this.metaService.createCanonicalURL();
-
   }
 
-
   async dateToNumber(data) {
-
-
     data.dateCreated = (typeof (data.dateCreated) == 'string') ? this.functionsService.dateToNumber(data.dateCreated) : data.dateCreated
     data.lastEdited = (data.lastEdited != undefined) ? (typeof (data.lastEdited) == 'string') ? this.functionsService.dateToNumber(data.lastEdited) : data.lastEdited : ''
     data.donde1Date = (typeof (data.donde1Date) == 'string') ? this.functionsService.dateToNumber(data.donde1Date) : data.donde1Date
     data.donde2Date = (typeof (data.donde2Date) == 'string') ? this.functionsService.dateToNumber(data.donde2Date) : data.donde2Date
     data.donde3Date = (typeof (data.donde3Date) == 'string') ? this.functionsService.dateToNumber(data.donde3Date) : data.donde3Date
-
     data.donde1Check = (data.donde1Check == 'true' || data.donde1Check == true) ? true : false
     data.donde2Check = (data.donde2Check == 'true' || data.donde2Check == true) ? true : false
     data.donde3Check = (data.donde3Check == 'true' || data.donde3Check == true) ? true : false
     data.fiestaDate = (typeof (data.donde3Date) == 'string') ? this.functionsService.dateToNumber(data.donde3Date) : data.donde3Date
-
-
     return await data
-
   }
   async numberToData(data) {
     data.dateCreated = (typeof (data.dateCreated) == 'number') ? this.functionsService.numberToDate(data.dateCreated) : data.dateCreated
     data.donde1Date = (typeof (data.donde1Date) == 'number') ? this.functionsService.numberDateTimeLocal(data.donde1Date) : data.donde1Date
     data.donde2Date = (typeof (data.donde2Date) == 'number') ? this.functionsService.numberDateTimeLocal(data.donde2Date) : data.donde2Date
     data.donde3Date = (typeof (data.donde3Date) == 'number') ? this.functionsService.numberDateTimeLocal(data.donde3Date) : data.donde3Date
-
     data.lastEdited = (typeof (data.lastEdited) == 'number') ? this.functionsService.numberDateTimeLocal(data.lastEdited) : data.lastEdited
     data.donde1Check = (data.donde1Check == 'true' || data.donde1Check == true) ? true : false
     data.donde2Check = (data.donde2Check == 'true' || data.donde2Check == true) ? true : false
     data.donde3Check = (data.donde3Check == 'true' || data.donde3Check == true) ? true : false
-
     return await data
   }
   setData(fiesta, boleto) {
-    console.log('fiesta', fiesta)
-    console.log('boleto', boleto)
-
     this.metaService.generateTags({
       title: `${fiesta.nombre} -  ${this.functionsService.datePush(fiesta.fecha)}  `,
       description:
@@ -342,93 +244,36 @@ export class DefaultComponent implements OnInit, AfterViewInit {
       image:
         this.url + '/upload/invitaciones/' + this.invitacion.img1,
     });
-
-
   }
   ngAfterViewInit(): void {
     setTimeout(() => {
-
       if (this.boleto && this.fiesta) {
-
         this.setData(this.fiesta, this.boleto)
       }
       this.loading = false
     }, 1500);
   }
-
-
-
   getDate(date) {
-    // console.log('date', date)
-
     this.date = new Date(date).getTime()
-
   }
-  submit() {
-
-  }
-
   confirmar(data) {
-    // console.log('data', data)
     this.loading = true
     data = JSON.parse(data)
     this.boleto.confirmado = !this.boleto.confirmado
     if (!this.boleto.confirmado) {
-
       this.boleto.fechaConfirmacion = undefined
     } else {
       this.boleto.fechaConfirmacion = this.today
-
     }
-
     this.boletosService.registrarAsistencia(this.boleto).subscribe((res: any) => {
-      console.log('res', res)
       if (res.boletoActualizado.confirmado) {
-
         this.functionsService.alert('Invitacion', 'Confirmada', 'success')
       } else {
-
         this.functionsService.alert('Invitacion', 'Se quito la confirmación', 'error')
       }
       this.loading = false
-
-      /*    this.boletosService.actualizarBoletoRegistro(this.boleto).subscribe(res => {
-           this.functionsService.alertUpdate('Boletos')
-           Swal.fire({
-             title: "Notificaciones",
-             text: "¿Quieres que te enviemos notificaciones de la fiesta?",
-             icon: "info",
-             showCancelButton: true,
-             confirmButtonColor: "#13547a",
-             cancelButtonColor: "#80d0c7",
-             confirmButtonText: "Si",
-             cancelButtonText: "No"
-           }).then((result) => {
-             if (result.isConfirmed) {
-               Swal.fire({
-                 title: "Permisos",
-                 text: "Acepta los permisos de notificaciones",
-                 icon: "success"
-               });
-   
-               this.functionsService.subscribeToPush().then(resp => {
-               })
-             }
-           });
-   
-         },
-           (error) => {
-             this.functionsService.alertError(error, 'Confirma asistencia')
-           }) */
-
-
     })
-
-
-
   }
-
-
   restParty() {
 
 
@@ -463,7 +308,6 @@ export class DefaultComponent implements OnInit, AfterViewInit {
     let url = this.salon.ubicacionGoogle
     window.open(url, '_blank')
   }
-
   getQr(invitado?) {
     var qr
     if (invitado) {
@@ -481,9 +325,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
         invitacionEnviada: this.boleto.invitacionEnviada,
         fechaConfirmacion: this.boleto.fechaConfirmacion,
         activated: this.boleto.activated
-
       }
-
     } else {
       qr = {
         uid: '0000000000',
@@ -502,12 +344,9 @@ export class DefaultComponent implements OnInit, AfterViewInit {
 
       }
     }
-
     return JSON.stringify(qr)
-
   }
   subscribeNotification() {
-
     this.swPush.requestSubscription(
       {
         serverPublicKey: this.VAPID_PUBLIC_KEY
@@ -516,32 +355,17 @@ export class DefaultComponent implements OnInit, AfterViewInit {
       .then(respuesta => {
         (this.boleto.pushNotification.length > 0) ? this.boleto.pushNotification : []
         this.boleto.pushNotification.push(respuesta)
-        // console.log('this.boleto.pushNotification::: ', this.boleto.pushNotification);
         setTimeout(() => {
-
           this.boletosService.registrarPushNotification(this.boleto).subscribe((res) => {
-            // console.log('res::: ', res);
           })
         }, 500);
       })
       .catch(err => {
-        console.log('err', err)
+
         return {
           ok: false,
           err
-
         }
-
       })
-
-
   }
-
-
-
-
-
-
-
-
 }

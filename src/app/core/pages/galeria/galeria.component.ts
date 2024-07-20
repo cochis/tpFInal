@@ -14,6 +14,8 @@ import { ModalService } from '@developer-partners/ngx-modal-dialog';
 import { ModalComponent } from 'src/app/shared/components/modals/modal/modal.component';
 import { Fiesta } from '../../models/fiesta.model';
 import { FiestasService } from '../../services/fiestas.service';
+import { BoletosService } from '../../services/boleto.service';
+import { Boleto } from '../../models/boleto.model';
 
 
 @Component({
@@ -23,8 +25,10 @@ import { FiestasService } from '../../services/fiestas.service';
 })
 export class GaleriaComponent implements OnInit, OnDestroy {
   obs1: Subscription;
-  fiesta: string = ''
-  boleto: string = ''
+  fiestaId: string = ''
+  boletoId: string = ''
+  anfitrionId: string = ''
+  boletoDB: Boleto
   rol = this.functionsService.getLocal('role')
   totalImg = 0
   idx = 0
@@ -49,7 +53,7 @@ export class GaleriaComponent implements OnInit, OnDestroy {
   src1 = interval(5000);
   email = this.functionsService.getLocal('email')
   uid = this.functionsService.getLocal('uid')
-  today: Number = this.functionsService.getToday()
+  today = this.functionsService.getToday()
   constructor(
     private functionsService: FunctionsService,
     private busquedasService: BusquedasService,
@@ -58,16 +62,29 @@ export class GaleriaComponent implements OnInit, OnDestroy {
     private fileService: FileService,
     private route: ActivatedRoute,
     private fiestaService: FiestasService,
+    private boletoService: BoletosService,
     private readonly _modalService: ModalService
   ) {
-    this.fiesta = this.route.snapshot.params['fiesta']
-    this.boleto = this.route.snapshot.params['boleto']
 
-    this.getFiesta()
+    /* http://localhost:4200/core/galeria/669ab9e4396781c9f78cf4e7/669aa51f6497620d8bc20259 */
+    this.fiestaId = this.route.snapshot.params['fiesta']
+    console.log('this.fiestaId ::: ', this.fiestaId);
+    this.boletoId = this.route.snapshot.params['boleto']
+    console.log('this.boletoId ::: ', this.boletoId);
+    this.anfitrionId = this.route.snapshot.params['anfitrion']
+    console.log('this.anfitrionId ::: ', this.anfitrionId);
+    if (!this.boletoId) {
+      this.getFiestaByAnf(this.anfitrionId)
+    } else {
+
+      this.getFiesta()
+    }
   }
   ngOnInit(): void {
 
     this.getPictures()
+
+
 
     this.obs1 = this.src1.subscribe((value: any) => {
       this.getPictures()
@@ -75,26 +92,72 @@ export class GaleriaComponent implements OnInit, OnDestroy {
     }
     )
   }
-
-  getFiesta() {
-    this.fiestaService.cargarFiestaById(this.fiesta).subscribe((resp) => {
+  getFiestaByAnf(anf: string) {
+    console.log('anf::: ', anf);
+    this.fiestaService.cargarFiestaById(this.fiestaId).subscribe((resp) => {
       this.fiestaDB = resp.fiesta
-      // console.log('   this.fiestaDB::: ', this.fiestaDB);
+      console.log('this.fiestaDB ::: ', this.fiestaDB);
+      if (this.fiestaDB.fecha > this.today) {
+        console.log('this.today::: ', this.today);
+        console.log('this.fiestaDB.fecha ::: ', this.fiestaDB.fecha);
+        console.log('cancelos porque la fiesta aun no esta');
+        this.functionsService.alert('Fiesta', 'La fiesta aun no ha empezado', 'error')
+        this.functionsService.navigateTo(`/core/mis-fiestas`)
+      }
 
-    })
+    },
+      (err) => {
+        this.functionsService.alert('Fiesta', 'La fiesta no existe', 'error')
+        this.functionsService.navigateTo('/')
+      }
+    )
+
+
+  }
+  getFiesta() {
+    this.fiestaService.cargarFiestaById(this.fiestaId).subscribe((resp) => {
+      this.fiestaDB = resp.fiesta
+      console.log('this.fiestaDB ::: ', this.fiestaDB);
+      if (this.fiestaDB.fecha > this.today) {
+        console.log('this.today::: ', this.today);
+        console.log('this.fiestaDB.fecha ::: ', this.fiestaDB.fecha);
+
+        this.functionsService.alert('Fiesta', 'La fiesta aun no ha empezado', 'error')
+        this.functionsService.navigateTo(`/core/templates/default/${this.fiestaId}/${this.boletoId}`)
+      }
+
+    },
+      (err) => {
+        this.functionsService.alert('Fiesta', 'La fiesta no existe', 'error')
+        this.functionsService.navigateTo('/')
+      }
+    )
+    this.boletoService.cargarBoletoById(this.boletoId).subscribe((resp) => {
+      this.boletoDB = resp.boleto
+      console.log('this.boleto::: ', this.boletoDB);
+      if (!this.boletoDB.activated) {
+        this.functionsService.alert('Boleto', 'El boleto no existe', 'error')
+        this.functionsService.navigateTo('/')
+
+      }
+
+    },
+      (err) => {
+        this.functionsService.alert('Boleto', 'El boleto no existe', 'error')
+        this.functionsService.navigateTo('/')
+      })
+
   }
 
 
   getPictures() {
 
-
-    // console.log('this.rol ::: ', this.rol);
-    if (this.rol == this.ADM || this.rol == this.ANF || this.rol == this.SLN) {
-      this.galeriaService.cargarGaleriaByFiesta(this.fiesta).subscribe((resp) => {
+    if (!this.boletoId) {
+      this.galeriaService.cargarGaleriaByFiesta(this.fiestaId).subscribe((resp) => {
         this.galerias = resp.galerias
       })
     } else {
-      this.galeriaService.cargarGaleriaByBoleto(this.boleto).subscribe((resp) => {
+      this.galeriaService.cargarGaleriaByBoleto(this.boletoId).subscribe((resp) => {
         this.galerias = resp.galerias
       })
     }
@@ -105,8 +168,8 @@ export class GaleriaComponent implements OnInit, OnDestroy {
     this.totalImg = file.target.files.length
     this.idx = 1
     let galeria: any = {
-      fiesta: this.fiesta,
-      boleto: this.boleto,
+      fiesta: this.fiestaId,
+      boleto: this.boletoId,
       img: null,
       activated: true,
       dateCreated: this.today,
@@ -125,7 +188,7 @@ export class GaleriaComponent implements OnInit, OnDestroy {
                 }
               )
           }, (error) => {
-            // console.log('error::: ', error);
+            console.log('error::: ', error);
           })
           resolve();
         }, 500);
@@ -166,9 +229,9 @@ export class GaleriaComponent implements OnInit, OnDestroy {
 
   }
   download() {
-    // console.log('downloas');
-    this.galeriaService.downloadGaleriaByFiesta(this.fiesta).subscribe((resp: any) => {
-      // console.log('resp::: ', resp);
+
+    this.galeriaService.downloadGaleriaByFiesta(this.fiestaId).subscribe((resp: any) => {
+      console.log('resp::: ', resp);
       if (resp.ok) {
         this.dw = true
         this.dwUrl = resp.url
