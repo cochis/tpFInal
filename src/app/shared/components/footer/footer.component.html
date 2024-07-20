@@ -21,7 +21,7 @@
                         <a routerLink="/core/about" class="site-footer-link">Quienes somos</a>
                     </li>
 
-                    <li class="site-footer-link-item">
+                    <li class="site-footer-link-item" *ngIf="!rol">
                         <a routerLink="/auth/register" class="site-footer-link">Registro</a>
                     </li>
 
@@ -55,8 +55,8 @@
                 <p class="copyright-text mt-lg-5 mt-4">Copyright © <b
                         style="color: #81d0c7; font-weight: 800;">TicketParty</b> .
                     <br>
-                    Creador <a href="https://cochisweb.com"
-                        style="color:#13547a;text-decoration: none; font-weight: 800;">CochisWeb.com</a>
+                    <!--  Creador <a href="https://cochisweb.com"
+                        style="color:#13547a;text-decoration: none; font-weight: 800;">CochisWeb.com</a> -->
                 </p>
 
             </div>

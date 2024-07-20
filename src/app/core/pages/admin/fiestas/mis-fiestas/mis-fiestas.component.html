@@ -2,22 +2,31 @@
 <app-loading *ngIf="loading"></app-loading>
 <section class="explore-section section-padding" id="section_2" *ngIf="!loading">
     <div class="container">
-        <div class="col-12 text-center">
-            <h2 class="mb-4">Mis fiestas</h2>
-        </div>
-        <div class="col-12 col-md-6 mt-3 ma">
+        <div class="row">
 
-            <div class="form-group ma">
-                <label for="grupo ma">Filtro </label>
-                <select name="" class="form-control upper ma" (change)="filterBy(filter.value)" #filter>
-                    <option value="" selected>Selecciona un filtro</option>
-                    <option value="finalizadas">Finalizadas</option>
-                    <option value="true">Activadas</option>
-                    <option value="false">Desactivadas</option>
-
-                </select>
+            <div class="col-12 text-center">
+                <h2 class="mb-4">Mis fiestas</h2>
             </div>
+            <div class="col-12 col-md-6 mt-3 ma">
 
+                <div class="form-group ma">
+                    <label for="grupo ma">Filtro </label>
+                    <select name="" class="form-control upper ma" (change)="filterBy(filter.value)" #filter>
+                        <option value="" selected>Selecciona un filtro</option>
+                        <option value="finalizadas">Finalizadas</option>
+                        <option value="true">Activadas</option>
+                        <option value="false">Desactivadas</option>
+
+                    </select>
+                </div>
+
+            </div>
+            <div class="col-12 col-md-6 mt-4 ma text-center">
+
+                <button type="button" class="btn btn-lg btn-block but" *ngIf="rol == ANF || rol == SLN || rol == ADM"
+                    routerLink="/core/fiestas/crear-fiesta">Nueva fiesta</button>
+
+            </div>
         </div>
 
     </div>
@@ -167,7 +176,7 @@
 
                                             </div>
                                             <div class="social-share d-flex" style="left: 40%;"
-                                                *ngIf="(rol === URS || rol === ADM || rol === ANF || rol === SLN ) && party.fecha > today && party.activated">
+                                                *ngIf="(rol === ADM || rol === ANF || rol === SLN ) && party.fecha > today && party.activated && party.invitacion.includes('default')">
                                                 <p class="text-white  ">Invitacion: </p>
 
                                                 <ul class="social-icon">

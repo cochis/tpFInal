@@ -173,6 +173,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
         this.boleto.forEach((invitado: any) => {
           this.invitados.push(this.setInvitado(invitado))
         });
+        console.log(' this.invitados::: ', this.invitados);
       },
         (error: any) => {
           this.functionsService.alertError(error, 'Boletos')
@@ -244,7 +245,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
   }
   getQr(invitado) {
     if ((invitado.value !== undefined) && typeof (invitado.value.salon) === 'object') {
-      console.log('invitado:::sin invitado form ');
+      // console.log('invitado:::sin invitado form ');
       let qr = {
         uid: '',
 
@@ -256,7 +257,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
       }
       return JSON.stringify(qr)
     } else {
-      console.log('invitado.value::: ', invitado.value);
+      // console.log('invitado.value::: ', invitado.value);
 
       let invi = {
 
@@ -265,7 +266,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
         grupo: invitado.value.grupo,
         salon: invitado.value.salon
       }
-      console.log('invi::: ', invi);
+      // console.log('invi::: ', invi);
       return JSON.stringify(invi)
     }
   }
@@ -495,5 +496,28 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
         this.loading = false
         this.functionsService.alertError(error, 'Boletos')
       })
+  }
+  copiarLink(fiesta, boleto) {
+    this.fiesta.invitacion
+
+    var url = ''
+    if (this.fiesta.invitacion.includes('default')) {
+      url = this.urlT + 'core/templates/default/' + fiesta + '/' + boleto
+    } else {
+      url = this.urlT + 'core/invitaciones/xv/xv2/' + fiesta + '/' + boleto
+
+    }
+    var aux = document.createElement("input");
+    console.log('document.getElementById(url).innerHTML::: ', url);
+
+    aux.setAttribute("value", url);
+
+    document.body.appendChild(aux);
+
+    aux.select();
+
+    document.execCommand("copy");
+    document.body.removeChild(aux);
+    this.functionsService.alert('Liga de fiesta', 'Copiada satisfactoriamente a portapapeles para compartir', 'success')
   }
 }

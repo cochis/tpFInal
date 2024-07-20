@@ -36,8 +36,8 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
   ANF = environment.anf_role
   CHK = environment.chk_role
   url = environment.base_url
-  tUrl = environment.text_url
   rol = this.functionsService.getLocal('role')
+  tUrl = environment.text_url
   today = this.functionsService.getToday()
   filter = ''
   src1 = interval(10000);

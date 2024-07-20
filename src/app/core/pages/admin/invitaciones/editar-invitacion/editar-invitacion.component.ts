@@ -540,8 +540,15 @@ export class EditarInvitacionComponent {
                 data: dt
               }
               this.invitacion.data[type] = img
-              this.actualizarInvitacion(this.invitacion)
-              return
+              this.loading = true
+              setTimeout(() => {
+
+                this.actualizarInvitacion(this.invitacion).subscribe((resp: any) => {
+                  this.invitacion = resp.invitacionActualizado
+                  this.loading = false
+                  return
+                })
+              }, 800);
             },
             (err) => {
               this.functionsService.alertError(err, 'Error')
@@ -579,9 +586,17 @@ export class EditarInvitacionComponent {
             }
             this.invitacion.fiesta = this.fiesta.uid
             this.invitacion.usuarioCreated = this.usuarioCreated
-            this.actualizarInvitacion(this.invitacion).subscribe((resp: any) => {
-              this.invitacion = resp.invitacionActualizado
-            })
+
+
+            setTimeout(() => {
+
+              this.actualizarInvitacion(this.invitacion).subscribe((resp: any) => {
+                this.invitacion = resp.invitacionActualizado
+              })
+              this.loading = false
+              return
+            }, 800);
+
           },
           (err) => {
             this.functionsService.alertError(err, 'Error')
@@ -603,4 +618,6 @@ export class EditarInvitacionComponent {
     }
     return this.invitacionsService.crearInvitacion(invitacion)
   }
+
+
 }

@@ -211,6 +211,13 @@
 
                                             </div>
 
+                                            <button type="button" class="confirmado ma pointer"
+                                                *ngIf="invitado.value.uid"
+                                                (click)="copiarLink(fiesta.uid,invitado.value.uid)">
+                                                Copiar liga de boleto
+
+                                            </button>
+
 
 
 

@@ -73,7 +73,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
         this.boleto = resp.boleto
         console.log('this.boleto::: ', this.boleto);
         if (!this.boleto.activated) {
-          this.functionsService.alertError({ boleto: false }, 'Boleto eliminado')
+          this.functionsService.alert('Boleto eliminado', 'Contactar con el anfitrion', 'info')
           this.functionsService.navigateTo('/')
         }
         let countPush: number = this.boleto.pushNotification.length
