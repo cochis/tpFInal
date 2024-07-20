@@ -209,6 +209,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
       whatsapp: [''],
       email: ['', [Validators.email]],
       cantidadInvitados: [0, [Validators.required, Validators.min(1)]],
+      mesa: [''],
       ocupados: [0],
       confirmado: [false],
       invitacionEnviada: [false],
@@ -226,6 +227,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
       whatsapp: [(invitado.whatsapp !== undefined) ? invitado.whatsapp : ''],
       email: [(invitado.email !== undefined) ? invitado.email : '', [Validators.email]],
       cantidadInvitados: [(invitado.cantidadInvitados !== undefined) ? invitado.cantidadInvitados : 0, [Validators.required, Validators.min(1)]],
+      mesa: [(invitado.mesa !== undefined) ? invitado.mesa : ''],
       ocupados: [(invitado.ocupados !== undefined) ? invitado.ocupados : 0],
       confirmado: [invitado.confirmado],
       invitacionEnviada: [invitado.invitacionEnviada],
@@ -242,24 +244,29 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
   }
   getQr(invitado) {
     if ((invitado.value !== undefined) && typeof (invitado.value.salon) === 'object') {
+      console.log('invitado:::sin invitado form ');
       let qr = {
         uid: '',
-        activated: true,
-        cantidadInvitados: 0,
-        confirmado: false,
-        email: '',
-        fechaConfirmacion: null,
+
         fiesta: this.fiesta.uid,
         grupo: '',
-        invitacionEnviada: false,
-        nombreGrupo: '',
-        ocupados: 0,
+
         salon: invitado.value.salon._id,
-        whatsapp: ''
+
       }
       return JSON.stringify(qr)
     } else {
-      return JSON.stringify(invitado.value)
+      console.log('invitado.value::: ', invitado.value);
+
+      let invi = {
+
+        uid: invitado.value.uid,
+        fiesta: invitado.value.fiesta,
+        grupo: invitado.value.grupo,
+        salon: invitado.value.salon
+      }
+      console.log('invi::: ', invi);
+      return JSON.stringify(invi)
     }
   }
   selectNumero(event: any) {

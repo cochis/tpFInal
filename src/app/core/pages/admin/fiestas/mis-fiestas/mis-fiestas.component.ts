@@ -61,11 +61,11 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
   }
   ngOnInit() {
     this.filterBy('true')
-    /*  this.obs1 = this.src1.subscribe((value: any) => {
-       this.loading = true
-       this.boletos = []
-       this.getFiestas()
-     }); */
+    this.obs1 = this.src1.subscribe((value: any) => {
+      this.loading = true
+      this.boletos = []
+      this.getFiestas()
+    });
   }
   ngAfterViewInit() {
   }

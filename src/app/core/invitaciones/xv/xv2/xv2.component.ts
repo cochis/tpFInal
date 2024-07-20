@@ -12,6 +12,9 @@ import { TokenPushsService } from 'src/app/core/services/tokenPush.service';
 import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
+
+import * as CryptoJS from 'crypto-js'
+
 @Component({
   selector: 'app-xv2',
   templateUrl: './xv2.component.html',
@@ -71,9 +74,13 @@ export class Xv2Component {
     this.invitadoId = Number(this.route.snapshot.params['invitado'])
     this.boletosService.cargarBoletoById(this.boletoid).subscribe((resp: CargarBoleto) => {
       this.boleto = resp.boleto
+      console.log('this.boleto::: ', this.boleto);
       this.cantidad = this.boleto.cantidadInvitados
       this.loading = false
 
+    }, (error) => {
+      this.functionsService.alertError(error, 'No se encontro el boleto')
+      this.functionsService.navigateTo('/')
     })
     this.fiestasService.cargarFiestaById(this.fiestaid).subscribe((resp: CargarFiesta) => {
       this.fiesta = resp.fiesta
@@ -91,6 +98,9 @@ export class Xv2Component {
 
       this.loading = false
 
+    }, (error) => {
+      this.functionsService.alertError(error, 'No se encontro la fiesta')
+      this.functionsService.navigateTo('/')
     })
 
     setTimeout(() => {
@@ -101,24 +111,20 @@ export class Xv2Component {
 
   }
   getQr(boleto) {
-    let qr = {
+    var qr: any = {
+
       uid: boleto.uid,
       fiesta: boleto.fiesta,
       grupo: boleto.grupo,
       salon: boleto.salon,
-      nombreGrupo: boleto.nombreGrupo,
-      whatsapp: boleto.whatsapp,
-      email: boleto.email,
-      cantidadInvitados: boleto.cantidadInvitados,
-      ocupados: boleto.ocupados,
-      confirmado: boleto.confirmado,
-      invitacionEnviada: boleto.invitacionEnviada,
-      fechaConfirmacion: boleto.fechaConfirmacion,
+
       activated: boleto.activated
     }
+    qr = JSON.stringify(qr)
 
 
-    return JSON.stringify(this.boleto)
+
+    return qr
 
   }
   restParty() {
@@ -209,5 +215,8 @@ export class Xv2Component {
 
 
 
+  }
+  goToGaleria() {
+    this.functionsService.navigateTo(`/core/galeria/fst/${this.fiestaid}/blt/${this.boletoid}`);
   }
 }

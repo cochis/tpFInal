@@ -25,8 +25,13 @@
 
     <h3 class="mg" style="color:#153860;font-family: 'Space Grotesk'; font-size: 35px; font-weight: 800;">
         Tienes {{cantidad}} <b *ngIf="cantidad>1">boletos</b> <b *ngIf="cantidad==1">boleto</b>
-    </h3>
 
+
+    </h3>
+    <h2 *ngIf="boleto.mesa!==''" class="mg"
+        style="color:#fff;font-family: 'Space Grotesk'; font-size: 35px; font-weight: 800;">
+        En la mesa {{boleto.mesa}}
+    </h2>
 
     <div class="qrcodeImage text-center mg">
         <qrcode [qrdata]="getQr(boleto)" [allowEmptyString]="true"
@@ -37,7 +42,7 @@
 
     </div>
 
-    <ng-container style="margin-bottom: 50px;">
+    <ng-container style="margin-bottom: 150px;">
 
         <button class="btn" (click)="confirmar(getQr(boleto))" *ngIf="!boleto.confirmado"
             rel="noopener noreferrer mb">Confirmar asistencia </button>
@@ -45,15 +50,12 @@
             rel="noopener noreferrer mb">Quitar confirmación </button>
 
 
+        <br>
+
+        <button class="btn mt-3" style=" margin-bottom: 150px;font-size: 25px;" (click)="goToGaleria()">Sube tus fotos
+            <i class="bi bi-images" style=" font-size: 30px;margin-left:10px; color:#153860"></i></button>
 
 
-        <div class="col-6 mt-3 ma">
-            <button class="btn" style="
-    margin-bottom: 150px; font-size: 25px;">Sube tus fotos <i class="bi bi-images"
-                    style=" font-size: 30px;margin-left:10px; color:#153860"
-                    routerLink="/core/galeria/fst/{{fiestaid}}/blt/{{boletoid}}"></i></button>
-
-        </div>
 
     </ng-container>
 

@@ -36,6 +36,7 @@ export class BoletosService {
               bol.fiesta,
               bol.email,
               bol.cantidadInvitados,
+              bol.mesa,
               bol.grupo,
               bol.salon,
               bol.nombreGrupo,

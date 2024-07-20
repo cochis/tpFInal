@@ -71,6 +71,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
     if (this.fiestaId && this.boletoId) {
       this.boletosService.cargarBoletoById(this.boletoId).subscribe((resp: any) => {
         this.boleto = resp.boleto
+        console.log('this.boleto::: ', this.boleto);
         if (!this.boleto.activated) {
           this.functionsService.alertError({ boleto: false }, 'Boleto eliminado')
           this.functionsService.navigateTo('/')
@@ -87,8 +88,10 @@ export class DefaultComponent implements OnInit, AfterViewInit {
         this.fiesta = resp.fiesta
         this.invitacionsService.cargarInvitacionByFiesta(this.fiestaId).subscribe(async (resp: any) => {
           this.invitacion = resp.invitacion.data
+          console.log('resp.invitacion.data::: ', resp.invitacion.data);
           this.restParty()
           this.invitacion = await this.dateToNumber(this.invitacion)
+          this.invitacion.mesa = this.boleto.mesa
           this.date = this.fiesta.fecha
           this.invitacion.cantidad = this.boleto.cantidadInvitados
           this.invitacion.invitado = this.boleto.nombreGrupo
@@ -100,9 +103,11 @@ export class DefaultComponent implements OnInit, AfterViewInit {
           this.notas = this.invitacion.notas
         }, (error) => {
           this.functionsService.alertError(error, 'Fiestas')
+          this.functionsService.navigateTo('/')
         })
       }, (error) => {
         this.functionsService.alertError(error, 'Fiestas')
+        this.functionsService.navigateTo('/')
       })
     } else {
       this.restParty()
@@ -120,6 +125,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
           xImg1: 76,
           topTitle: 40,
           invitado: 'Familia Ramírez',
+          mesa: '1 y 2 ',
           cantidad: 5,
           tipoFiesta: 'Mis XV',
           topDate: 50,
@@ -359,5 +365,8 @@ export class DefaultComponent implements OnInit, AfterViewInit {
           err
         }
       })
+  }
+  typeOf(val) {
+    return typeof (val)
   }
 }

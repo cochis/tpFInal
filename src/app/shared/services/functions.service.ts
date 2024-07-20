@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
-import * as CryptoJS from 'crypto-js';
+import * as CryptoJS from 'crypto-js'
 import { SwPush } from '@angular/service-worker';
 
 @Injectable({
@@ -15,6 +15,27 @@ export class FunctionsService {
     private router: Router,
     private swPush: SwPush,
   ) { }
+  async encrypt_data(string, clave) {
+    try {
+
+      return await CryptoJS.AES.encrypt(string, clave).toString();
+    } catch (error) {
+      console.log('error::: ', error);
+
+    }
+
+  }
+  async decrypt_data(string, clave) {
+    try {
+
+      var bytes = CryptoJS.AES.decrypt(string, clave);
+      return await bytes.toString(CryptoJS.enc.Utf8);
+    } catch (error) {
+      console.log('error::: ', error);
+
+    }
+  }
+
 
   navigateTo(url: string) {
     this.router.navigateByUrl(url, { replaceUrl: true })
@@ -258,25 +279,6 @@ export class FunctionsService {
       //console.log(e);
     }
   }
-  /* 
-    encrypt_data(string) {
-  
-      var data = string;
-      var _secretKey = environment.secret
-      var ncryptObject = new ncrypt(_secretKey);
-      var encryptedData = ncryptObject.encrypt(data);
-    //console.log("Encryption process...");
-    //console.log("Plain Text    : " + data);
-    //console.log("Cipher Text   : " + encryptedData);
-    }
-    decrypt_data(string) {
-      var _secretKey = environment.secret
-      var ncryptObject = new ncrypt(_secretKey);
-      var decryptedData = ncryptObject.encrypt(string);
-    //console.log("... and then decryption...");
-    //console.log("Decipher Text : " + decryptedData);
-    //console.log("...done.");
-    } */
 
 
   subscribeToPush(): Promise<any> {

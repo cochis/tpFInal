@@ -3,6 +3,7 @@ export class Boleto {
         public fiesta: string,
         public email: string,
         public cantidadInvitados: number,
+        public mesa: string,
         public grupo: string,
         public salon: string,
         public nombreGrupo: string,

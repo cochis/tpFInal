@@ -73,7 +73,7 @@ export class CheckInComponent implements AfterViewInit {
             return salon
           }
         })
-        if (slns.length == 0) {
+        if (slns.length == 0 && this.role !== this.ADM) {
           this.functionsService.alert('Boletos', 'Ese boleto no existe en este salon', 'info')
           this.editBoleto = false
           return
@@ -97,6 +97,8 @@ export class CheckInComponent implements AfterViewInit {
     if (this.boleto.ocupados > this.boleto.cantidadInvitados) {
       this.functionsService.alert('Boletos', 'No tiene disponibles esa cantidad de boletos', 'info')
     }
+    this.boleto.confirmado = true
+    this.boleto.fechaConfirmacion = this.today
     this.boletosService.actualizarBoleto(this.boleto).subscribe(resp => {
       this.functionsService.alertUpdate('Boletos')
       this.form.reset()

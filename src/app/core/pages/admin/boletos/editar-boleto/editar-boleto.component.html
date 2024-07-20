@@ -169,15 +169,19 @@
 
 
 
-                                                <div class="confirmado" *ngIf=" boleto[i] && boleto[i]. confirmado">
-
-                                                    Confirmado
-                                                </div>
                                             </div>
+                                            <div class="col-12 col-md-6 mt-3">
+                                                <div class="form-group">
+                                                    <label for="mesa">Mesa</label>
+                                                    <input type="text" class="form-control upper" id="mesa"
+                                                        formControlName="mesa" placeholder="Mesa">
+                                                </div>
 
 
+
+                                            </div>
                                             <div class=" col-12 col-md-6 mt-4 text-center">
-                                                <div class="qrcodeImage text-center">
+                                                <div class="ma qrcodeImage text-center">
 
                                                     <qrcode (qrCodeURL)="onChangeURL($event)" [qrdata]="getQr(invitado)"
                                                         [allowEmptyString]="true"
@@ -186,19 +190,28 @@
                                                         [colorLight]="'#ffffffff'" [elementType]="'canvas'"
                                                         [errorCorrectionLevel]="'M'" [imageHeight]="75"
                                                         [imageWidth]="75" [margin]="4" [scale]="1"
-                                                        [title]="getQr(invitado.value)" [width]="300">
+                                                        [title]="getQr(invitado)" [width]="250">
                                                     </qrcode>
 
 
                                                 </div>
 
                                                 <!--   <a [href]="qrCodeDownloadLink" download="qrcode" (click)="send(qr)"
-                                                    class="btn btn-success">Descargar QR</a> -->
+                                                                                                class="btn btn-success">Descargar QR</a> -->
 
 
 
 
                                             </div>
+                                            <div class="col-12 col-md-6  " *ngIf=" boleto[i] && boleto[i]. confirmado">
+                                                <div class="confirmado ma">
+                                                    Confirmado
+
+                                                </div>
+
+                                            </div>
+
+
 
 
                                             <div class="col-12   mt-3" *ngIf="edit==='true'  ">

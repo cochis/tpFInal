@@ -92,9 +92,12 @@ export class GaleriaComponent implements OnInit, OnDestroy {
   getFiestaByAnf(anf: string) {
     this.fiestaService.cargarFiestaById(this.fiestaId).subscribe((resp) => {
       this.fiestaDB = resp.fiesta
-
+      console.log('this.fiestaDB ::: ', this.fiestaDB);
       if (this.fiestaDB.fecha > this.today) {
+
         this.functionsService.alert('Fiesta', 'La fiesta aun no ha empezado', 'error')
+
+
         this.functionsService.navigateTo(`/core/mis-fiestas`)
       }
 
@@ -110,10 +113,18 @@ export class GaleriaComponent implements OnInit, OnDestroy {
   getFiesta() {
     this.fiestaService.cargarFiestaById(this.fiestaId).subscribe((resp) => {
       this.fiestaDB = resp.fiesta
+      console.log('this.fiestaDB::: ', this.fiestaDB);
       if (this.fiestaDB.fecha > this.today) {
 
         this.functionsService.alert('Fiesta', 'La fiesta aun no ha empezado', 'error')
-        this.functionsService.navigateTo(`/core/templates/default/${this.fiestaId}/${this.boletoId}`)
+
+        if (this.fiestaDB.invitacion.includes('default')) {
+
+          this.functionsService.navigateTo(`/core/templates/default/${this.fiestaId}/${this.boletoId}`)
+        } else {
+          this.functionsService.navigateTo(`/core/invitaciones/xv/xv2/${this.fiestaId}/${this.boletoId}`)
+
+        }
       }
 
     },
