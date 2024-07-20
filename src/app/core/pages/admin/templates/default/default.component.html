@@ -316,7 +316,7 @@
                             [imageSrc]="url+'/upload/invitaciones/'+invitacion.img1" [elementType]="'canvas'"
                             [errorCorrectionLevel]="'M'" [imageHeight]="50" [imageWidth]="50" [margin]="4" [scale]="1"
                             [colorDark]="invitacion.colorQr" [colorLight]="invitacion.colorBgQr" [title]="getQr(boleto)"
-                            [width]="170">
+                            [width]="250">
                         </qrcode>
                         <button class="btn "
                             style="background-color: {{invitacion.cPrincipal}}; color:{{invitacion.cWhite}} ; border: 3px solid {{invitacion.cSecond}}"
@@ -328,23 +328,22 @@
                             type="button" (click)="confirmar(getQr(boleto))" *ngIf="boleto.confirmado">
                             Quitar conformacion
                         </button>
-                        <button class="btn mt-3"
+                        <button class="btn mt-3 mb-5"
                             style="background-color: {{invitacion.cPrincipal}}; color:{{invitacion.cWhite}} ; border: 3px solid {{invitacion.cSecond}}"
-                            type="button" *ngIf="!boleto.confirmado"
-                            routerLink="/core/galeria/fst/{{fiestaId}}/blt/{{boletoId}}">
+                            type="button" routerLink="/core/galeria/fst/{{fiestaId}}/blt/{{boletoId}}">
                             Sube tus fotos <i class="bi bi-images"
                                 style=" font-size: 30px;margin-left:10px; color:{{invitacion.cSecond}}"></i>
                         </button>
                     </div>
                 </div>
-                <div style="width: 40%; max-width: 450px; min-width: 200px; padding: 15px;margin: auto;">
+                <div>
                     <div class="card mt-3 p-0 nborder" *ngIf="!vistaTemp && !boleto ">
 
                         <qrcode [qrdata]="getQr()" [allowEmptyString]="true" [ariaLabel]="'Visitados '+tUrl"
                             [cssClass]="'center'" [imageSrc]="url+'/upload/invitaciones/'+invitacion.img1"
                             [elementType]="'canvas'" [errorCorrectionLevel]="'L'" [imageHeight]="50" [imageWidth]="50"
                             [margin]="4" [scale]="3" [colorDark]="invitacion.colorQr"
-                            [colorLight]="invitacion.colorBgQr" [title]="getQr(boleto)" [width]="170">
+                            [colorLight]="invitacion.colorBgQr" [title]="getQr(boleto)" [width]="250">
                         </qrcode>
                         <div class="card-body">
 
@@ -354,7 +353,12 @@
                                 Confirma tu asistencia
                             </button>
 
-
+                            <button class="btn mt-3"
+                                style="background-color: {{invitacion.cPrincipal}}; color:{{invitacion.cWhite}} ; border: 3px solid {{invitacion.cSecond}}"
+                                type="button">
+                                Sube tus fotos <i class="bi bi-images"
+                                    style=" font-size: 30px;margin-left:10px; color:{{invitacion.cSecond}}"></i>
+                            </button>
                         </div>
                         <pre>
                             {{boleto}}
@@ -366,7 +370,7 @@
                                 [colorDark]="invitacion.cSecond" [colorLight]="invitacion.cPrincipal"
                                 [elementType]="'canvas'" [errorCorrectionLevel]="'M'" [imageHeight]="50"
                                 [imageWidth]="50" [margin]="4" [scale]="1" [colorDark]="invitacion.cSecond"
-                                [colorLight]="invitacion.cPrincipal" [title]="getQr(boleto)" [width]="170">
+                                [colorLight]="invitacion.cPrincipal" [title]="getQr(boleto)" [width]="250">
                             </qrcode>
 
                         </div>
@@ -378,7 +382,12 @@
                                 Confirma tu asistencia
                             </button>
 
-
+                            <button class="btn mt-3"
+                                style="background-color: {{invitacion.cPrincipal}}; color:{{invitacion.cWhite}} ; border: 3px solid {{invitacion.cSecond}}"
+                                type="button">
+                                Sube tus fotos <i class="bi bi-images"
+                                    style=" font-size: 30px;margin-left:10px; color:{{invitacion.cSecond}}"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -581,16 +590,16 @@
 
                     <div class="col-12">
 
-                        <h2 class="mt-3 pacifico" style="color:{{invitacion.cPrincipal}}">Confirma tu asistencia</h2>
+                        <h2 class="mt-3 pacifico" style="color:{{invitacion.cPrincipal}}">Este es tu boleto</h2>
                     </div>
                 </div>
-                <div style="width: 40%; max-width: 450px; min-width: 200px; padding: 15px;margin: auto;">fdf
+                <div>
                     <div class="card mt-3 p-0 nborder  ">
                         <qrcode [qrdata]="getQr()" [allowEmptyString]="true" [ariaLabel]="'Ticketparty.com'"
-                            [cssClass]="'center'" [imageSrc]="url+'/upload/invitaciones/'+invitacion.img1"
-                            [elementType]="'canvas'" [errorCorrectionLevel]="'M'" [imageHeight]="50" [imageWidth]="50"
-                            [margin]="4" [scale]="1" [colorDark]="invitacion.cSecond"
-                            [colorLight]="invitacion.cPrincipal" [title]="getQr(boleto)" [width]="170">
+                            [cssClass]="'center'" [imageSrc]="invitacion.img1" [elementType]="'canvas'"
+                            [errorCorrectionLevel]="'M'" [imageHeight]="50" [imageWidth]="50" [margin]="4" [scale]="1"
+                            [colorDark]="invitacion.cSecond" [colorLight]="invitacion.cPrincipal"
+                            [title]="getQr(boleto)" [width]="250">
                         </qrcode>
                         <div class="card-body">
 
@@ -601,6 +610,12 @@
                             </button>
 
 
+                            <button class="btn mt-3"
+                                style="background-color: {{invitacion.cPrincipal}}; color:{{invitacion.cWhite}} ; border: 3px solid {{invitacion.cSecond}}"
+                                type="button">
+                                Sube tus fotos <i class="bi bi-images"
+                                    style=" font-size: 30px;margin-left:10px; color:{{invitacion.cSecond}}"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -611,7 +626,7 @@
             </div>
             <div style="width: 100%;text-align: center;margin:auto; background-color: {{invitacion.cPrincipal}};border:5px solid {{invitacion.cSecond}}"
                 *ngIf="invitacion.notaCheck !=='false'">
-                <div class="row">
+                <div class="row" style="width: 100%;margin: auto;">
 
                     <div class="col-12">
 

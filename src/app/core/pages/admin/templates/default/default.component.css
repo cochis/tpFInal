@@ -272,3 +272,8 @@ h5 {
         width: 50%;
     }
 }
+
+.row {
+    width: 100%;
+    margin: auto;
+}

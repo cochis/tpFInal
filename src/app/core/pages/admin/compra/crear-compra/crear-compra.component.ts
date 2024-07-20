@@ -93,8 +93,6 @@ export class CrearCompraComponent {
     })
   }
   setTipos(value, i) {
-    console.log('i::: ', i);
-    console.log('value::: ', value);
 
   }
   selectPaquete(event, i) {

@@ -68,11 +68,8 @@ export class GaleriaComponent implements OnInit, OnDestroy {
 
     /* http://localhost:4200/core/galeria/669ab9e4396781c9f78cf4e7/669aa51f6497620d8bc20259 */
     this.fiestaId = this.route.snapshot.params['fiesta']
-    console.log('this.fiestaId ::: ', this.fiestaId);
     this.boletoId = this.route.snapshot.params['boleto']
-    console.log('this.boletoId ::: ', this.boletoId);
     this.anfitrionId = this.route.snapshot.params['anfitrion']
-    console.log('this.anfitrionId ::: ', this.anfitrionId);
     if (!this.boletoId) {
       this.getFiestaByAnf(this.anfitrionId)
     } else {
@@ -93,14 +90,10 @@ export class GaleriaComponent implements OnInit, OnDestroy {
     )
   }
   getFiestaByAnf(anf: string) {
-    console.log('anf::: ', anf);
     this.fiestaService.cargarFiestaById(this.fiestaId).subscribe((resp) => {
       this.fiestaDB = resp.fiesta
-      console.log('this.fiestaDB ::: ', this.fiestaDB);
+
       if (this.fiestaDB.fecha > this.today) {
-        console.log('this.today::: ', this.today);
-        console.log('this.fiestaDB.fecha ::: ', this.fiestaDB.fecha);
-        console.log('cancelos porque la fiesta aun no esta');
         this.functionsService.alert('Fiesta', 'La fiesta aun no ha empezado', 'error')
         this.functionsService.navigateTo(`/core/mis-fiestas`)
       }
@@ -117,10 +110,7 @@ export class GaleriaComponent implements OnInit, OnDestroy {
   getFiesta() {
     this.fiestaService.cargarFiestaById(this.fiestaId).subscribe((resp) => {
       this.fiestaDB = resp.fiesta
-      console.log('this.fiestaDB ::: ', this.fiestaDB);
       if (this.fiestaDB.fecha > this.today) {
-        console.log('this.today::: ', this.today);
-        console.log('this.fiestaDB.fecha ::: ', this.fiestaDB.fecha);
 
         this.functionsService.alert('Fiesta', 'La fiesta aun no ha empezado', 'error')
         this.functionsService.navigateTo(`/core/templates/default/${this.fiestaId}/${this.boletoId}`)
@@ -134,7 +124,6 @@ export class GaleriaComponent implements OnInit, OnDestroy {
     )
     this.boletoService.cargarBoletoById(this.boletoId).subscribe((resp) => {
       this.boletoDB = resp.boleto
-      console.log('this.boleto::: ', this.boletoDB);
       if (!this.boletoDB.activated) {
         this.functionsService.alert('Boleto', 'El boleto no existe', 'error')
         this.functionsService.navigateTo('/')
@@ -231,7 +220,6 @@ export class GaleriaComponent implements OnInit, OnDestroy {
   download() {
 
     this.galeriaService.downloadGaleriaByFiesta(this.fiestaId).subscribe((resp: any) => {
-      console.log('resp::: ', resp);
       if (resp.ok) {
         this.dw = true
         this.dwUrl = resp.url

@@ -200,7 +200,7 @@ export class EditarInvitacionComponent {
       donde3Icon: [invitacion.data.donde3Icon],
       donde3AddressUbicacion: [invitacion.data.donde3AddressUbicacion],
       donde3Address: [invitacion.data.donde3Address],
-      hospedajeCheck: [true],
+      hospedajeCheck: [invitacion.data.hospedajeCheck],
       hospedajeImg: [invitacion.data.hospedajeImg],
       hospedajeName: [invitacion.data.hospedajeName],
       hospedajeIcon: [invitacion.data.hospedajeIcon],

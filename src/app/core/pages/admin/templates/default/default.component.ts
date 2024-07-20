@@ -269,7 +269,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
       if (res.boletoActualizado.confirmado) {
         this.functionsService.alert('Invitacion', 'Confirmada', 'success')
       } else {
-        this.functionsService.alert('Invitacion', 'Se quito la confirmación', 'error')
+        this.functionsService.alert('Invitacion', 'Se quito la confirmación', 'success')
       }
       this.loading = false
     })
@@ -316,15 +316,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
         fiesta: this.boleto.fiesta,
         grupo: this.boleto.grupo,
         salon: this.boleto.salon,
-        nombreGrupo: this.boleto.nombreGrupo,
-        whatsapp: this.boleto.whatsapp,
-        email: this.boleto.email,
-        cantidadInvitados: this.boleto.cantidadInvitados,
-        ocupados: this.boleto.ocupados,
-        confirmado: this.boleto.confirmado,
-        invitacionEnviada: this.boleto.invitacionEnviada,
-        fechaConfirmacion: this.boleto.fechaConfirmacion,
-        activated: this.boleto.activated
+
       }
     } else {
       qr = {
