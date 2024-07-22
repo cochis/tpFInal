@@ -11,6 +11,8 @@ import { environment } from 'src/environments/environment';
 import { SwPush } from '@angular/service-worker';
 import Swal from 'sweetalert2';
 import { MetaService } from 'src/app/core/services/meta.service';
+import { PushsService } from 'src/app/core/services/push.service';
+import { Push } from 'src/app/core/models/push.model';
 @Component({
   selector: 'app-default',
   templateUrl: './default.component.html',
@@ -63,7 +65,8 @@ export class DefaultComponent implements OnInit, AfterViewInit {
     private route: ActivatedRoute,
     private boletosService: BoletosService,
     private swPush: SwPush,
-    private metaService: MetaService
+    private metaService: MetaService,
+    private pushsService: PushsService
   ) {
     this.loading = true
     this.fiestaId = this.route.snapshot.params['fiesta']
@@ -71,14 +74,9 @@ export class DefaultComponent implements OnInit, AfterViewInit {
     if (this.fiestaId && this.boletoId) {
       this.boletosService.cargarBoletoById(this.boletoId).subscribe((resp: any) => {
         this.boleto = resp.boleto
-        console.log('this.boleto::: ', this.boleto);
         if (!this.boleto.activated) {
           this.functionsService.alert('Boleto eliminado', 'Contactar con el anfitrion', 'info')
           this.functionsService.navigateTo('/')
-        }
-        let countPush: number = this.boleto.pushNotification.length
-        if (countPush == 0) {
-          this.pushOk = true
         }
         this.subscribeNotification()
       }, (error) => {
@@ -88,7 +86,6 @@ export class DefaultComponent implements OnInit, AfterViewInit {
         this.fiesta = resp.fiesta
         this.invitacionsService.cargarInvitacionByFiesta(this.fiestaId).subscribe(async (resp: any) => {
           this.invitacion = resp.invitacion.data
-          console.log('resp.invitacion.data::: ', resp.invitacion.data);
           this.restParty()
           this.invitacion = await this.dateToNumber(this.invitacion)
           this.invitacion.mesa = this.boleto.mesa
@@ -351,12 +348,22 @@ export class DefaultComponent implements OnInit, AfterViewInit {
       }
     )
       .then(respuesta => {
-        (this.boleto.pushNotification.length > 0) ? this.boleto.pushNotification : []
-        this.boleto.pushNotification.push(respuesta)
-        setTimeout(() => {
-          this.boletosService.registrarPushNotification(this.boleto).subscribe((res) => {
-          })
-        }, 500);
+        console.log('respuesta', respuesta)
+        this.pushsService.crearPush(respuesta).subscribe((resp: any) => {
+          if (resp.new) {
+
+            console.log('this.boleto.pushNotification', this.boleto.pushNotification)
+
+            this.boleto.pushNotification.push(resp.push.uid)
+
+            this.boletosService.registrarPushNotification(this.boleto).subscribe((res) => {
+              console.log('res', res)
+            })
+
+          }
+
+
+        })
       })
       .catch(err => {
 

@@ -11,9 +11,7 @@ import { SalonsService } from 'src/app/core/services/salon.service';
 import { TokenPushsService } from 'src/app/core/services/tokenPush.service';
 import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { environment } from 'src/environments/environment';
-import Swal from 'sweetalert2';
-
-import * as CryptoJS from 'crypto-js'
+ 
 
 @Component({
   selector: 'app-xv2',

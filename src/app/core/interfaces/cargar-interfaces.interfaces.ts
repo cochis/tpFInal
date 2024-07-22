@@ -17,6 +17,7 @@ import { Compra } from "../models/compra.model"
 import { TipoModulo } from "../models/tipoModulo.model"
 import { ModuloTemplate } from "../models/moduloTemplate.model"
 import { Template } from "../models/template.model"
+import { Push } from "../models/push.model"
 
 
 
@@ -108,6 +109,13 @@ export interface CargarSalon {
 export interface CargarSalons {
     total: number
     salons: Salon[]
+}
+export interface CargarPush {
+    push: Push
+}
+export interface CargarPushs {
+    total: number
+    pushs: Push[]
 }
 export interface CargarContacto {
     contacto: Contacto

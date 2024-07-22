@@ -59,39 +59,39 @@ export class RegisterComponent {
     private swPush: SwPush
   ) {
     this.getCatalogos()
-    Swal.fire({
-      title: "Aceptar las notificaciones para estar mas enterado del evento",
-      showDenyButton: true,
-      confirmButtonText: "Aceptar",
-      confirmButtonColor: "#13547a",
-      denyButtonText: `Cancelar`,
-      denyButtonColor: "#81d0c7"
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.swPush.requestSubscription(
-          {
-            serverPublicKey: this.VAPID_PUBLIC_KEY
-          }
-        )
-          .then(respuesta => {
-            this.respuesta = respuesta
-            this.submited = true
-            if (!this.form.valid) {
-              this.loading = false
-              return
-            }
-          })
-          .catch(err => {
-            this.functionsService.alertError(err, 'Error')
-          })
-      } else if (result.isDenied) {
-        this.submited = true
-        if (!this.form.valid) {
-          this.loading = false
-          return
-        }
-      }
-    });
+    // Swal.fire({
+    //   title: "Aceptar las notificaciones para estar mas enterado del evento",
+    //   showDenyButton: true,
+    //   confirmButtonText: "Aceptar",
+    //   confirmButtonColor: "#13547a",
+    //   denyButtonText: `Cancelar`,
+    //   denyButtonColor: "#81d0c7"
+    // }).then((result) => {
+    //   if (result.isConfirmed) {
+    //     this.swPush.requestSubscription(
+    //       {
+    //         serverPublicKey: this.VAPID_PUBLIC_KEY
+    //       }
+    //     )
+    //       .then(respuesta => {
+    //         this.respuesta = respuesta
+    //         this.submited = true
+    //         if (!this.form.valid) {
+    //           this.loading = false
+    //           return
+    //         }
+    //       })
+    //       .catch(err => {
+    //         this.functionsService.alertError(err, 'Error')
+    //       })
+    //   } else if (result.isDenied) {
+    //     this.submited = true
+    //     if (!this.form.valid) {
+    //       this.loading = false
+    //       return
+    //     }
+    //   }
+    // });
   }
   get errorControl() {
     return this.form.controls;

@@ -284,7 +284,7 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
         })
         let push = {
           "notification": {
-            "title": "Recuerda que mi fiesta es el  " + this.functionsService.datePush(fiesta[0].fecha),
+            "title": "Hola "+ boleto.nombreGrupo + ", recuerda que mi evento es el  " + this.functionsService.datePush(fiesta[0].fecha),
             "body": fiesta[0].nombre,
             "vibrate": [
               100,

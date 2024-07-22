@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
-import * as CryptoJS from 'crypto-js'
+
 import { SwPush } from '@angular/service-worker';
 
 @Injectable({
@@ -15,26 +15,7 @@ export class FunctionsService {
     private router: Router,
     private swPush: SwPush,
   ) { }
-  async encrypt_data(string, clave) {
-    try {
 
-      return await CryptoJS.AES.encrypt(string, clave).toString();
-    } catch (error) {
-      console.log('error::: ', error);
-
-    }
-
-  }
-  async decrypt_data(string, clave) {
-    try {
-
-      var bytes = CryptoJS.AES.decrypt(string, clave);
-      return await bytes.toString(CryptoJS.enc.Utf8);
-    } catch (error) {
-      console.log('error::: ', error);
-
-    }
-  }
 
 
   navigateTo(url: string) {
@@ -257,30 +238,6 @@ export class FunctionsService {
     this.router.navigateByUrl('/auth/login')
 
   }
-
-  encryptData(data) {
-    var _secretKey = environment.secret
-    try {
-      return CryptoJS.AES.encrypt(JSON.stringify(data), _secretKey).toString();
-    } catch (e) {
-      //console.log(e);
-    }
-  }
-
-  async decryptData(data) {
-    var _secretKey = environment.secret
-    try {
-      const bytes = CryptoJS.AES.decrypt(data, _secretKey);
-      if (bytes.toString()) {
-        return await JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-      }
-      return data;
-    } catch (e) {
-      //console.log(e);
-    }
-  }
-
-
   subscribeToPush(): Promise<any> {
     //console.log('getting device token')
     return new Promise(async (resolve, reject) => {
