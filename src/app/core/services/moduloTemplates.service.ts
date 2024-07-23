@@ -14,7 +14,7 @@ export class ModuloTemplatesService {
 
   constructor(private http: HttpClient,) { }
   get token(): string {
-    return localStorage.getItem('token') || ''
+    return this.functionsService.getLocal('token') || ''
   }
   get headers() {
     return {

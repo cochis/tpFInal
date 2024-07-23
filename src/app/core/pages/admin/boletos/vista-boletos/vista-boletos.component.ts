@@ -36,7 +36,7 @@ export class VistaBoletosComponent {
   loading = false
   url = environment.base_url
   text_url = environment.text_url
-  mail = localStorage.getItem('uid')
+  mail = this.functionsService.getLocal('uid')
   ADM = environment.admin_role
   SLN = environment.salon_role
   ANF = environment.anf_role

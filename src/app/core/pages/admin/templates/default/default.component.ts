@@ -82,9 +82,12 @@ export class DefaultComponent implements OnInit, AfterViewInit {
       }, (error) => {
         this.functionsService.alertError(error, 'Boletos')
       })
+      console.log('this.fiestaId::: ', this.fiestaId);
       this.fiestasService.cargarFiestaById(this.fiestaId).subscribe((resp: any) => {
         this.fiesta = resp.fiesta
+        console.log('this.fiesta::: ', this.fiesta);
         this.invitacionsService.cargarInvitacionByFiesta(this.fiestaId).subscribe(async (resp: any) => {
+          console.log('resp::: ', resp);
           this.invitacion = resp.invitacion.data
           this.restParty()
           this.invitacion = await this.dateToNumber(this.invitacion)
@@ -353,7 +356,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
           if (resp.new) {
 
             console.log('this.boleto.pushNotification', this.boleto.pushNotification)
-
+            this.functionsService.setLocal("pushService", resp)
             this.boleto.pushNotification.push(resp.push.uid)
 
             this.boletosService.registrarPushNotification(this.boleto).subscribe((res) => {

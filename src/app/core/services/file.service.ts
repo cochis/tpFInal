@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Fiesta } from '../models/fiesta.model';
 import { Boleto } from '../models/boleto.model';
+import { FunctionsService } from 'src/app/shared/services/functions.service';
 const base_url = environment.base_url
 @Injectable({
   providedIn: 'root'
 })
 export class FileService {
 
-  constructor() { }
+  constructor(private functionsService: FunctionsService,) { }
   async actualizarFoto(
     archivo: File,
     tipo: 'usuarios' | 'fiestas' | 'salones' | 'galerias' | 'invitaciones',
@@ -23,7 +24,7 @@ export class FileService {
       const resp = await fetch(url, {
         method: 'PUT',
         headers: {
-          'x-token': localStorage.getItem('token') || '',
+          'x-token': this.functionsService.getLocal('token') || '',
         },
         body: formData,
       })
@@ -46,7 +47,7 @@ export class FileService {
     imgTemplate: string
   ) {
 
- 
+
 
     try {
       const url = `${base_url}/upload/${tipo}/${id}/${imgTemplate}`
@@ -55,7 +56,7 @@ export class FileService {
       const resp = await fetch(url, {
         method: 'PUT',
         headers: {
-          'x-token': localStorage.getItem('token') || '',
+          'x-token': this.functionsService.getLocal('token') || '',
         },
         body: formData,
       })

@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment'
 import { CargarSalons, CargarSalon } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
 import { map } from 'rxjs';
 import { Salon } from 'src/app/core/models/salon.model';
+import { FunctionsService } from 'src/app/shared/services/functions.service';
 
 const base_url = environment.base_url
 @Injectable({
@@ -13,9 +14,9 @@ const base_url = environment.base_url
 })
 export class SalonsService {
 
-  constructor(private http: HttpClient,) { }
+  constructor(private http: HttpClient, private functionsService: FunctionsService,) { }
   get token(): string {
-    return localStorage.getItem('token') || ''
+    return this.functionsService.getLocal('token') || ''
   }
   get headers() {
     return {

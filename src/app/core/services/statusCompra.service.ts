@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment'
 import { map } from 'rxjs';
 import { StatusCompra } from 'src/app/core/models/statusCompra.model';
 import { CargarStatusCompra, CargarStatusCompras } from '../interfaces/cargar-interfaces.interfaces';
+import { FunctionsService } from 'src/app/shared/services/functions.service';
 
 const base_url = environment.base_url
 @Injectable({
@@ -14,9 +15,9 @@ const base_url = environment.base_url
 })
 export class StatusComprasService {
 
-  constructor(private http: HttpClient,) { }
+  constructor(private http: HttpClient, private functionsService: FunctionsService,) { }
   get token(): string {
-    return localStorage.getItem('token') || ''
+    return this.functionsService.getLocal('token') || ''
   }
   get headers() {
     return {

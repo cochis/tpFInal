@@ -4,12 +4,13 @@ import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 
 import { SwPush } from '@angular/service-worker';
-
+import * as SecureLS from 'secure-ls';
 @Injectable({
   providedIn: 'root'
 })
 export class FunctionsService {
   device_token: any
+  ls = new SecureLS();
   public readonly VAPID_PUBLICK_KEY = environment.publicKey
   constructor(
     private router: Router,
@@ -27,23 +28,23 @@ export class FunctionsService {
   }
 
   getLocal(name: string) {
-    return localStorage.getItem(name)
+    return this.ls.get(name)
   }
   setLocal(name: string, value: any) {
+    this.ls.set(name, value)
 
-
-    switch (typeof (value)) {
-      case 'object':
-        localStorage.setItem(name, JSON.stringify(value))
-        break;
-      case 'boolean':
-        localStorage.setItem(name, JSON.stringify(value))
-        break;
-
-      default:
-        localStorage.setItem(name, value)
-        break;
-    }
+    /*    switch (typeof (value)) {
+         case 'object':
+           localStorage.setItem(name, JSON.stringify(value))
+           break;
+         case 'boolean':
+           localStorage.setItem(name, JSON.stringify(value))
+           break;
+   
+         default:
+           localStorage.setItem(name, value)
+           break;
+       } */
 
   }
 

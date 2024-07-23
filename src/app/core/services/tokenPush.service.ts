@@ -6,15 +6,16 @@ import { environment } from 'src/environments/environment'
 import { CargarTokenPushs, CargarTokenPush } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
 import { map } from 'rxjs';
 import { TokenPush } from 'src/app/core/models/tokenPush.model';
+import { FunctionsService } from 'src/app/shared/services/functions.service';
 const base_url = environment.base_url
 @Injectable({
   providedIn: 'root'
 })
 export class TokenPushsService {
 
-  constructor(private http: HttpClient,) { }
+  constructor(private http: HttpClient, private functionsService: FunctionsService,) { }
   get token(): string {
-    return localStorage.getItem('token') || ''
+    return this.functionsService.getLocal('token') || ''
   }
   get headers() {
     return {

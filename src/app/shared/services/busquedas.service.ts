@@ -6,13 +6,15 @@ import { Role } from 'src/app/core/models/role.model';
 import { Salon } from 'src/app/core/models/salon.model';
 import { Usuario } from 'src/app/core/models/usuario.model';
 import { environment } from 'src/environments/environment';
+import { FunctionsService } from './functions.service';
 const base_url = environment.base_url
 @Injectable({
   providedIn: 'root'
 })
 export class BusquedasService {
+
   get token(): string {
-    return localStorage.getItem('token') || ''
+    return this.functionsService.getLocal('token') || ''
   }
   get headers() {
     return {
@@ -21,7 +23,8 @@ export class BusquedasService {
       },
     }
   }
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private functionsService: FunctionsService,) { }
   private transformaUsuario(resultado: any): Usuario[] {
     return resultado.map(
       (user) =>

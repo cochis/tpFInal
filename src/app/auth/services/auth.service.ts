@@ -16,10 +16,11 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private functionsService: FunctionsService,
-    private roleService: RolesService
+    private roleService: RolesService,
+
   ) { }
   get token(): string {
-    return localStorage.getItem('token') || ''
+    return this.functionsService.getLocal('token') || ''
   }
   get headers() {
     return {
