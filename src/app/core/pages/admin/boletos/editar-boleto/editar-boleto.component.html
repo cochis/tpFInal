@@ -210,14 +210,20 @@
                                                 </div>
 
                                             </div>
+                                            <div>
 
-                                            <button type="button" class="confirmado ma pointer"
-                                                *ngIf="invitado.value.uid"
-                                                (click)="copiarLink(fiesta.uid,invitado.value.uid)">
-                                                Copiar liga de boleto
+                                                <button type="button" class="confirmado ma pointer"
+                                                    *ngIf="invitado.value.uid"
+                                                    (click)="copiarLink(fiesta.uid,invitado.value.uid)">
+                                                    Copiar liga de boleto
 
-                                            </button>
+                                                </button>
+                                                <button type="button" class="visualizado ma  " *ngIf=" invitado.value.uid && boleto[i].vista">
+                                                    Invitación visualizada
 
+                                                </button>
+
+                                            </div>
 
 
 
@@ -299,30 +305,43 @@
             <li class="upper" style="font-size: 15px;">
                 <div class="table-responsive">
 
-                    <table class="table">
+                    <table class="table" *ngIf="boletoTemp ">
                         <thead>
                             <tr>
                                 <th scope="col">Fecha</th>
                                 <th scope="col">Invitado</th>
+                                
 
                             </tr>
                         </thead>
-                        <tbody *ngIf="boletoTemp ">
-                            <ng-container *ngFor="let  invi of boletoTemp ">
+                        <tbody>
+                            <ng-container
+                                *ngFor="let  invi of boletoTemp  | paginate: { itemsPerPage: 10, currentPage: p }">
                                 <tr *ngIf="invi.confirmado && invi.activated">
                                     <ng-container *ngIf="invi.fechaConfirmacion">
-                                        <td>{{invi.fechaConfirmacion |
+                                        <td  class="ma">{{invi.fechaConfirmacion |
                                             date:'short'}}</td>
-                                        <td>{{invi.nombreGrupo}}</td>
+                                        <td  class="text-center">{{invi.nombreGrupo}}</td>
+
+
+
+ 
                                     </ng-container>
                                 </tr>
                             </ng-container>
 
                         </tbody>
-                        <ng-container *ngIf="!boletoTemp ">
-                            <app-loading></app-loading>
-                        </ng-container>
                     </table>
+
+                    <ng-container style="width: 100%;">
+
+                        <app-loading *ngIf="!boletoTemp "></app-loading>
+                    </ng-container>
+                    <div class="mt-3">
+
+                        <pagination-controls (pageChange)="p = $event" autoHide="true" previousLabel="Anterior"
+                            nextLabel="Siguiente" responsive="true"></pagination-controls>
+                    </div>
                 </div>
 
 

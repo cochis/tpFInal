@@ -78,14 +78,27 @@ export class DefaultComponent implements OnInit, AfterViewInit {
           this.functionsService.alert('Boleto eliminado', 'Contactar con el anfitrion', 'info')
           this.functionsService.navigateTo('/')
         }
-        this.subscribeNotification()
+        this.boleto.vista = true
+        this.boletosService.actualizarBoleto(this.boleto).subscribe((resp:any)=>{
+          console.log('resp', resp)
+          this.boleto = resp.boletoActualizado
+          this.subscribeNotification()
+
+        })
+
+
+
       }, (error) => {
         this.functionsService.alertError(error, 'Boletos')
       })
+
+      // Se carga la fiesta por ID  
+
       console.log('this.fiestaId::: ', this.fiestaId);
       this.fiestasService.cargarFiestaById(this.fiestaId).subscribe((resp: any) => {
         this.fiesta = resp.fiesta
         console.log('this.fiesta::: ', this.fiesta);
+
         this.invitacionsService.cargarInvitacionByFiesta(this.fiestaId).subscribe(async (resp: any) => {
           console.log('resp::: ', resp);
           this.invitacion = resp.invitacion.data
@@ -353,19 +366,24 @@ export class DefaultComponent implements OnInit, AfterViewInit {
       .then(respuesta => {
         console.log('respuesta', respuesta)
         this.pushsService.crearPush(respuesta).subscribe((resp: any) => {
-          if (resp.new) {
+          console.log('resp', resp)
+          console.log('this.boleto.pushNotification', this.boleto.pushNotification)
+          this.functionsService.setLocal("pushService", resp)
 
-            console.log('this.boleto.pushNotification', this.boleto.pushNotification)
-            this.functionsService.setLocal("pushService", resp)
-            this.boleto.pushNotification.push(resp.push.uid)
+          var bl: any
 
-            this.boletosService.registrarPushNotification(this.boleto).subscribe((res) => {
-              console.log('res', res)
-            })
+          this.boleto.pushNotification.forEach((b) => {
+            if (b == resp.pushDB.uid) {
+              bl = true
+            }
+          });
 
+          if (!bl) {
+            this.boleto.pushNotification.push(resp.pushDB.uid)
           }
-
-
+          this.boletosService.registrarPushNotification(this.boleto).subscribe((res) => {
+            console.log('res', res)
+          })
         })
       })
       .catch(err => {

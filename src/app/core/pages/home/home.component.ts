@@ -21,8 +21,8 @@ export class HomeComponent implements AfterViewInit {
   URS = environment.user_role
   ANF = environment.anf_role
   editBoleto = false
-  role = this.functionsService.getLocal('role')
-  uid = this.functionsService.getLocal('uid')
+  role = ''
+  uid = ''
   invitado: any
   idx: number = undefined
   boleto: Boleto
@@ -34,6 +34,12 @@ export class HomeComponent implements AfterViewInit {
     private swpush: SwPush,
 
   ) {
+
+    this.role = this.functionsService.getLocal('role')
+    this.uid = this.functionsService.getLocal('uid')
+    console.log(this.role);
+    console.log(this.uid);
+
   }
   ngAfterViewInit() {
     this.getUser(this.role)

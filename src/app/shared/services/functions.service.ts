@@ -28,6 +28,7 @@ export class FunctionsService {
   }
 
   getLocal(name: string) {
+   
     return this.ls.get(name)
   }
   setLocal(name: string, value: any) {

@@ -46,6 +46,7 @@ export class PaypalService {
               bol.invitacionEnviada,
               bol.activated,
               bol.ocupados,
+              bol.vista,
               bol.pushNotification,
               bol.dateCreated,
               bol.usuarioCreated,
