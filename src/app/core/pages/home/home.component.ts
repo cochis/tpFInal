@@ -8,6 +8,7 @@ import { Boleto } from '../../models/boleto.model';
 import Swal from 'sweetalert2';
 import { TokenPushsService } from '../../services/tokenPush.service';
 import { SwPush } from '@angular/service-worker';
+import { MetaService } from '../../services/meta.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -32,9 +33,12 @@ export class HomeComponent implements AfterViewInit {
     private boletosService: BoletosService,
     private tokenPushService: TokenPushsService,
     private swpush: SwPush,
+    private metaService : MetaService
 
   ) {
-
+    this.metaService.createCanonicalURL()
+     
+    this.metaService.generateTags()
     this.role = this.functionsService.getLocal('role')
     this.uid = this.functionsService.getLocal('uid')
     console.log(this.role);

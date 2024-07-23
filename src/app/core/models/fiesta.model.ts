@@ -18,6 +18,7 @@ export class Fiesta {
         public img: string,
         public invitacion: string,
         public realizada: boolean,
+        public galeria: boolean,
         public usuarioCreated: any,
         public activated: boolean,
         public dateCreated: number,

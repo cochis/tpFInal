@@ -145,13 +145,17 @@ export class CrearFiestaComponent {
       salon: ['', [Validators.required]],
       usuarioFiesta: [(this.rol == this.ANF) ? this.uid : '', [Validators.required]],
       img: [''],
+      galeria: [false],
       invitacion: ['', [Validators.required]],
       activated: [false],
       dateCreated: [this.today],
       lastEdited: [this.today],
     })
+    console.log('this.form.value.galeria', this.form.value )
   }
   onSubmit() {
+   
+    console.log('this.form.value.galeria', this.form.value )
     this.loading = true
     this.submited = true
     if (this.form.valid) {
@@ -159,6 +163,7 @@ export class CrearFiestaComponent {
       this.form.value.fecha = new Date(this.form.value.fecha).getTime()
       let form = {
         ...this.form.value,
+        galeria:this.form.value.galeria.checked,
         activated: false,
         realizada: false
       }

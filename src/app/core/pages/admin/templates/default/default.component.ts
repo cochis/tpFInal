@@ -68,6 +68,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
     private metaService: MetaService,
     private pushsService: PushsService
   ) {
+    this.metaService.createCanonicalURL();
     this.loading = true
     this.fiestaId = this.route.snapshot.params['fiesta']
     this.boletoId = this.route.snapshot.params['boleto']
@@ -79,7 +80,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
           this.functionsService.navigateTo('/')
         }
         this.boleto.vista = true
-        this.boletosService.actualizarBoleto(this.boleto).subscribe((resp:any)=>{
+        this.boletosService.registrarPushNotification(this.boleto).subscribe((resp:any)=>{
           console.log('resp', resp)
           this.boleto = resp.boletoActualizado
           this.subscribeNotification()
@@ -225,7 +226,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
     }
   }
   ngOnInit() {
-    this.metaService.createCanonicalURL();
+    
   }
 
   async dateToNumber(data) {

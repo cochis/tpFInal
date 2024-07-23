@@ -3,7 +3,7 @@
      background-image: url('../../../../assets/images/fiesta.jpeg');
      background-size: cover;
      background-repeat: no-repeat;
-     height: 100%;
+     height: 100vh !important;
 
  }
 

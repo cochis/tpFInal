@@ -79,6 +79,14 @@ export class BoletosService {
     }
     return this.http.put(url, data, this.headers)
   }
+  isVistaBoleto(boleto: Boleto) {
+    const url = `${base_url}/boletos/isVista/${boleto.uid}`
+    const data = {
+      ...boleto,
+      lastEdited: Date.now(),
+    }
+    return this.http.put(url, data, this.headers)
+  }
   actualizarBoleto(boleto: Boleto) {
     const url = `${base_url}/boletos/${boleto.uid}`
 
@@ -103,10 +111,13 @@ export class BoletosService {
   }
   registrarPushNotification(boleto: Boleto) {
     // console.log('boleto::: ', boleto);
+    let bl ={
+      pushNotification: boleto.pushNotification
+    }
     const url = `${base_url}/boletos/registrar-push-notification/${boleto.uid}`
 
     const data = {
-      ...boleto,
+      ...bl,
       lastEdited: Date.now(),
     }
 

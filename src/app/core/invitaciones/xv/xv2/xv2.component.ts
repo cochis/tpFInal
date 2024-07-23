@@ -7,11 +7,12 @@ import { Fiesta } from 'src/app/core/models/fiesta.model';
 import { Salon } from 'src/app/core/models/salon.model';
 import { BoletosService } from 'src/app/core/services/boleto.service';
 import { FiestasService } from 'src/app/core/services/fiestas.service';
+import { MetaService } from 'src/app/core/services/meta.service';
 import { SalonsService } from 'src/app/core/services/salon.service';
 import { TokenPushsService } from 'src/app/core/services/tokenPush.service';
 import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { environment } from 'src/environments/environment';
- 
+
 
 @Component({
   selector: 'app-xv2',
@@ -37,6 +38,7 @@ export class Xv2Component {
   textClock = ' Empezamos '
   form: FormGroup
   url = environment.base_url
+  urlT = environment.text_url
   nombre
   nombreEvento = []
   initNombre = []
@@ -59,8 +61,10 @@ export class Xv2Component {
     private boletosService: BoletosService,
     private salonsService: SalonsService,
     private fiestasService: FiestasService,
-    private tokenPushService: TokenPushsService
+    private tokenPushService: TokenPushsService,
+    private metaService: MetaService,
   ) {
+    this.metaService.createCanonicalURL();
     this.init()
     this.restParty()
   }
@@ -72,6 +76,10 @@ export class Xv2Component {
     this.invitadoId = Number(this.route.snapshot.params['invitado'])
     this.boletosService.cargarBoletoById(this.boletoid).subscribe((resp: CargarBoleto) => {
       this.boleto = resp.boleto
+      this.boleto.vista = true
+      this.boletosService.actualizarBoleto(this.boleto).subscribe((resp: any) => {
+        this.boleto = resp.boletoActualizado
+      })
       console.log('this.boleto::: ', this.boleto);
       this.cantidad = this.boleto.cantidadInvitados
       this.loading = false
@@ -93,7 +101,10 @@ export class Xv2Component {
         }
 
       });
-
+      setTimeout(() => {
+        
+        this.setData(this.fiesta,this.boleto)
+      }, 200);
       this.loading = false
 
     }, (error) => {
@@ -107,6 +118,20 @@ export class Xv2Component {
 
     }, 1000);
 
+  }
+
+  setData(fiesta, boleto) {
+    this.metaService.generateTags({
+      title: `${fiesta.nombre} -  ${this.functionsService.datePush(fiesta.fecha)}  `,
+      description:
+        `Hola ${boleto.nombreGrupo} te invito tienes  ${boleto.cantidadInvitados} boletos`,
+      keywords:
+        'No faltes, te espero ',
+      slug: `core/templates/default/${fiesta.uid}/${boleto.uid}`,
+      colorBar:'#153860',
+      image:
+        this.urlT + 'assets/invitaciones/xv/1.png',
+    });
   }
   getQr(boleto) {
     var qr: any = {

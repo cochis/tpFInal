@@ -14,6 +14,7 @@ import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { Observable, Subscription, interval } from 'rxjs';
 import { TokenPushsService } from 'src/app/core/services/tokenPush.service';
 import { environment } from 'src/environments/environment';
+import { MetaService } from 'src/app/core/services/meta.service';
 @Component({
   selector: 'app-mis-fiestas',
   templateUrl: './mis-fiestas.component.html',
@@ -51,8 +52,23 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
     private boletosService: BoletosService,
     private salonesService: SalonsService,
     private fileService: FileService,
-    private tokenPushService: TokenPushsService
+    private tokenPushService: TokenPushsService,
+    private metaService: MetaService
   ) {
+    this.metaService.createCanonicalURL()
+    let  data = {
+      title: 'Ticket Party  | Mis Fiestas',
+      description:
+        'Visualiza tus eventos en tiempo real, cuantas invitaciones creaste, cuantos lugares tienes disponibles u ocupados, cuantos confirmaron  cuantos están en el evento o puedes enviar las notificaciones push.',
+      keywords:
+        'Eventos sociales públicos privados gestión tiempo real invitados invitaciones personalizadas código QR notificaciones correo electrónico WhatsApp push notification',
+      slug: 'mis-fiestas',
+      colorBar: '#13547a',
+      image:
+        window.location.origin + '/assets/img/logo/l_100.png',
+    }
+    this.metaService.generateTags(data)
+
     this.loading = true
     this.getUsuario(this.uid)
     setTimeout(() => {

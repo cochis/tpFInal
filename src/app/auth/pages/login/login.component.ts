@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { AuthService } from '../../services/auth.service';
+import { MetaService } from 'src/app/core/services/meta.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -20,8 +21,23 @@ export class LoginComponent {
     private readonly fb: FormBuilder,
     private readonly router: Router,
     private authService: AuthService,
-    private functionsService: FunctionsService
-  ) { }
+    private functionsService: FunctionsService,
+    private metaService: MetaService
+  ) { 
+
+    let  data = {
+      title: 'Ticket Party | Login ',
+      description:
+        'Ingresa a nuestra aplicación con usuario y contraseña',
+      keywords:
+        'Eventos sociales públicos privados gestión tiempo real invitados invitaciones personalizadas código QR notificaciones correo electrónico WhatsApp push notification',
+      slug: 'auth/login',
+      colorBar: '#13547a',
+      image:
+        window.location.origin + '/assets/img/logo/l_100.png',
+    }
+    this.metaService.generateTags(data)
+  }
 
   submit(): void {
     this.loading = true

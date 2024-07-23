@@ -14,6 +14,7 @@ import { TipoCantidadesService } from 'src/app/core/services/tipoCantidad.servic
 import { TipoCantidad } from 'src/app/core/models/tipoCantidad.model';
 import { SwPush } from '@angular/service-worker';
 import Swal from 'sweetalert2';
+import { MetaService } from 'src/app/core/services/meta.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -56,8 +57,23 @@ export class RegisterComponent {
     private usuariosService: UsuariosService,
     private functionsService: FunctionsService,
     private tipoCantidadesService: TipoCantidadesService,
-    private swPush: SwPush
+    private swPush: SwPush,
+    private metaService: MetaService
   ) {
+    
+    this.metaService.createCanonicalURL()
+    let  data = {
+      title: 'Ticket Party | Registro ',
+      description:
+        'Puedes registrarte como salon o como anfitrión de tu fiesta',
+      keywords:
+        'Eventos sociales públicos privados gestión tiempo real invitados invitaciones personalizadas código QR notificaciones correo electrónico WhatsApp push notification',
+      slug: 'auth/register',
+      colorBar: '#13547a',
+      image:
+        window.location.origin + '/assets/img/logo/l_100.png',
+    }
+    this.metaService.generateTags(data)
     this.getCatalogos()
     // Swal.fire({
     //   title: "Aceptar las notificaciones para estar mas enterado del evento",

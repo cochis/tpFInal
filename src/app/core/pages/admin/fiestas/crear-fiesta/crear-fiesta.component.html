@@ -21,6 +21,20 @@
                                     <span *ngIf="submited && errorControl['nombre'].errors " class="error">Es requerido
                                     </span>
                                 </div>
+                                     <div class="col-12 col-md-6  mb-3   mt-3 ">
+                                    <div class="form-group">
+                                        <label for="galeria">Galería </label>
+                                        <select name="" id="galeria" formControlName="galeria" class="form-control upper">
+                                            <option value="">Selecciona un galeria</option>
+                                            <option value="true">Si</option>
+                                            <option value="false">No</option>
+                                            
+                                        </select>
+                                  
+                                  
+                                    </div>
+                                  </div>
+
                                 <div class="col-12 col-md-6 mt-3">
 
                                     <div class="form-group" *ngIf="eventos">
@@ -100,6 +114,7 @@
                                     <span *ngIf="submited && errorControl['salon'].errors " class="error">Es requerido
                                     </span>
                                 </div>
+                              
 
 
                                 <div class="col-12 col-md-4 mt-3" *ngIf="rol == ANF">
@@ -117,6 +132,10 @@
                                     </span>
                                 </div>
 
+                           
+
+
+                                
                                 <div class="col-12 col-md-6 mt-3" *ngIf="form.value.salon !==''">
                                     <div class="form-group">
                                         <label for="calle">Calle</label>

@@ -51,6 +51,7 @@ export class FiestasService {
               fie.img,
               fie.invitacion,
               fie.realizada,
+              fie.galeria,
               fie.usuarioCreated,
               fie.activated,
               fie.dateCreated,
