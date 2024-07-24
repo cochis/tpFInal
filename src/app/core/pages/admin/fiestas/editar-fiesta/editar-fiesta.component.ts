@@ -75,25 +75,15 @@ export class EditarFiestaComponent {
     this.fiestasServices.cargarFiestaById(id).subscribe((resp: CargarFiesta) => {
 
       this.fiesta = resp.fiesta
-
-      // console.log('his.fiesta::: ', this.fiesta);
-
-
       setTimeout(() => {
-
         this.setForm(this.fiesta)
       }, 500);
-
     },
       (error: any) => {
-        // console.log('error::: ', error);
-
+    console.log('error::: ', error);
         this.functionsService.alertError(error, 'Fiestas')
-
       })
   }
-
-
   getCatalogos() {
     this.loading = true
 
@@ -103,21 +93,21 @@ export class EditarFiestaComponent {
 
       this.salonesService.cargarSalonsAll().subscribe((resp: CargarSalons) => {
         this.salones = this.functionsService.getActivos(resp.salons)
-        // console.log('this.salones', this.salones)
+        
 
       },
         (error: any) => {
-          // console.log('error::: ', error);
+           console.log('error::: ', error);
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
         })
       this.eventosService.cargarEventosAll().subscribe((resp: CargarEventos) => {
         this.eventos = this.functionsService.getActivos(resp.eventos)
-        // console.log('this.eventos', this.eventos)
+         
 
       },
         (error: any) => {
-          // console.log('error::: ', error);
+            console.log('error::: ', error);
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
 
@@ -126,13 +116,13 @@ export class EditarFiestaComponent {
       this.usuariosService.cargarAlumnosAll().subscribe((resp: CargarUsuarios) => {
 
         this.usuarios = this.functionsService.getActivos(resp.usuarios)
-          // console.log('this.usuarios', this.usuarios)
+         
           ;
 
 
       },
         (error: any) => {
-          // console.log('error::: ', error);
+           console.log('error::: ', error);
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
 
@@ -142,11 +132,9 @@ export class EditarFiestaComponent {
 
       this.salonesService.cargarSalonByMail(this.email).subscribe((resp: CargarSalons) => {
         this.salones = this.functionsService.getActivos(resp.salons)
-        // console.log('this.salones', this.salones)
-
       },
         (error: any) => {
-          // console.log('error::: ', error);
+          console.log('error::: ', error);
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
         })
@@ -157,7 +145,7 @@ export class EditarFiestaComponent {
 
       },
         (error: any) => {
-          // console.log('error::: ', error);
+          console.log('error::: ', error);
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
         })
@@ -169,7 +157,7 @@ export class EditarFiestaComponent {
 
       },
         (error: any) => {
-          // console.log('error::: ', error);
+           console.log('error::: ', error);
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
         })
@@ -268,7 +256,7 @@ export class EditarFiestaComponent {
         this.loading = false
       },
         (error) => {
-          // console.log('error::: ', error);
+          console.log('error::: ', error);
 
           this.loading = true
           this.functionsService.alertError(error, 'Fiestas')
@@ -279,7 +267,7 @@ export class EditarFiestaComponent {
       this.functionsService.alertForm('Fiestas')
       this.loading = false
 
-      return // console.log('Please provide all the required values!');
+      return   console.log('Please provide all the required values!');
     }
 
 

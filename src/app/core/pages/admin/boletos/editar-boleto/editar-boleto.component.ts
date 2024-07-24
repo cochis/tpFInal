@@ -173,7 +173,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
         this.boleto.forEach((invitado: any) => {
           this.invitados.push(this.setInvitado(invitado))
         });
-        console.log(' this.invitados::: ', this.invitados);
+       
       },
         (error: any) => {
           this.functionsService.alertError(error, 'Boletos')
@@ -245,7 +245,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
   }
   getQr(invitado) {
     if ((invitado.value !== undefined) && typeof (invitado.value.salon) === 'object') {
-      // console.log('invitado:::sin invitado form ');
+ ;
       let qr = {
         uid: '',
 
@@ -257,7 +257,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
       }
       return JSON.stringify(qr)
     } else {
-      // console.log('invitado.value::: ', invitado.value);
+      
 
       let invi = {
 
@@ -266,7 +266,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
         grupo: invitado.value.grupo,
         salon: invitado.value.salon
       }
-      // console.log('invi::: ', invi);
+     
       return JSON.stringify(invi)
     }
   }
@@ -508,7 +508,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
 
     }
     var aux = document.createElement("input");
-    console.log('document.getElementById(url).innerHTML::: ', url);
+   
 
     aux.setAttribute("value", url);
 

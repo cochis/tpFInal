@@ -151,7 +151,7 @@ export class CrearFiestaComponent {
       dateCreated: [this.today],
       lastEdited: [this.today],
     })
-    console.log('this.form.value.galeria', this.form.value)
+   
   }
   onSubmit() {
 

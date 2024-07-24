@@ -70,6 +70,8 @@ export class GaleriaComponent implements OnInit, OnDestroy {
     this.fiestaId = this.route.snapshot.params['fiesta']
     this.boletoId = this.route.snapshot.params['boleto']
     this.anfitrionId = this.route.snapshot.params['anfitrion']
+    console.log('this.anfitrionId', this.anfitrionId)
+    console.log('this.uid', this.uid)
     if (!this.boletoId) {
       this.getFiestaByAnf(this.anfitrionId)
     } else {
@@ -237,6 +239,19 @@ export class GaleriaComponent implements OnInit, OnDestroy {
       }
 
     })
+
+  }
+  deleteOne(foto){
+    console.log('foto', foto)
+    console.log('foto', foto.uid)
+    this.fileService.deleteFoto("galerias",foto.uid).subscribe(res=>{
+      console.log('res', res)
+
+    })
+
+  }
+  deleteAll(fiesta){
+    console.log('fiesta', fiesta)
 
   }
 }

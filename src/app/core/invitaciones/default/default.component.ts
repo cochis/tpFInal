@@ -242,7 +242,7 @@ export class DefaultComponent {
       }
     )
       .then(respuesta => {
-        console.log('respuesta::: ', respuesta);
+     
       })
       .catch(err => {
         return {

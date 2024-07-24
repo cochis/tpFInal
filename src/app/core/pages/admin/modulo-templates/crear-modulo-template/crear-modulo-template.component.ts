@@ -100,7 +100,7 @@ export class CrearModuloTemplateComponent {
         (error) => {
           this.functionsService.alertError(error, 'ModuloTemplates')
           this.loading = false
-          // console.log('error::: ', error);
+          console.log('error::: ', error);
 
         })
     } else {

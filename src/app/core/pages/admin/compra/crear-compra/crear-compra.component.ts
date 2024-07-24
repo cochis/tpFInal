@@ -77,11 +77,11 @@ export class CrearCompraComponent {
         this.functionsService.alertError(error, 'Fiestas')
         this.loading = false
       })
-    // console.log('this.INCSC::: ', this.INCSC);
+   ;
     this.statusComprasService.cargarStatusCompraByStep(1).subscribe((resp: CargarStatusCompra) => {
 
       this.statusCompra = resp.statusCompra
-      // console.log(' this.statusCompra ::: ', this.statusCompra);
+  
     },
       (error: any) => {
         this.functionsService.alertError(error, 'Estatus de compra')
@@ -101,11 +101,7 @@ export class CrearCompraComponent {
         this.paqueteSeleccionado = paquete
       }
     });
-    console.log('this.paqueteSeleccionado ::: ', this.paqueteSeleccionado);
-    /* this.form.patchValue({
-      cantidadFiestas: this.paqueteSeleccionado.value,
-      costo: this.paqueteSeleccionado.costo,
-    }) */
+   
     this.paquetes.controls[i].patchValue({ costo: this.paqueteSeleccionado.costo, cantidad: this.paqueteSeleccionado.value });
   }
   back() {
@@ -218,7 +214,7 @@ export class CrearCompraComponent {
           })
 
         } catch (error) {
-          // console.log('error::: ', error);
+          console.log('error::: ', error);
         }
       })
 

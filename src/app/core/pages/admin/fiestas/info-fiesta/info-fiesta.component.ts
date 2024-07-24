@@ -75,24 +75,15 @@ export class InfoFiestaComponent {
     this.fiestasServices.cargarFiestaById(id).subscribe((resp: CargarFiesta) => {
 
       this.fiesta = resp.fiesta
-
-      // console.log('his.fiesta::: ', this.fiesta);
-
-
       setTimeout(() => {
-
         this.setForm(this.fiesta)
       }, 500);
-
     },
       (error: any) => {
-        // console.log('error::: ', error);
-
+        console.log('error::: ', error);
         this.functionsService.alertError(error, 'Fiestas')
-
       })
   }
-
 
   getCatalogos() {
     this.loading = true
@@ -107,7 +98,7 @@ export class InfoFiestaComponent {
 
       },
         (error: any) => {
-          // console.log('error::: ', error);
+          console.log('error::: ', error);
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
         })
@@ -117,7 +108,7 @@ export class InfoFiestaComponent {
 
       },
         (error: any) => {
-          // console.log('error::: ', error);
+          console.log('error::: ', error);
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
 
@@ -132,7 +123,7 @@ export class InfoFiestaComponent {
 
       },
         (error: any) => {
-          // console.log('error::: ', error);
+          console.log('error::: ', error);
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
 
@@ -146,7 +137,7 @@ export class InfoFiestaComponent {
 
       },
         (error: any) => {
-          // console.log('error::: ', error);
+          console.log('error::: ', error);
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
         })
@@ -157,7 +148,7 @@ export class InfoFiestaComponent {
 
       },
         (error: any) => {
-          // console.log('error::: ', error);
+          console.log('error::: ', error);
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
         })
@@ -169,7 +160,7 @@ export class InfoFiestaComponent {
 
       },
         (error: any) => {
-          // console.log('error::: ', error);
+          console.log('error::: ', error);
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
         })
@@ -223,7 +214,7 @@ export class InfoFiestaComponent {
         this.loading = false
       },
         (error) => {
-          // console.log('error::: ', error);
+          console.log('error::: ', error);
 
           this.loading = true
           this.functionsService.alertError(error, 'Fiestas')

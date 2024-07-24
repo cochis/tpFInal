@@ -80,7 +80,7 @@ export class Xv2Component {
       this.boletosService.actualizarBoleto(this.boleto).subscribe((resp: any) => {
         this.boleto = resp.boletoActualizado
       })
-      console.log('this.boleto::: ', this.boleto);
+       
       this.cantidad = this.boleto.cantidadInvitados
       this.loading = false
 
