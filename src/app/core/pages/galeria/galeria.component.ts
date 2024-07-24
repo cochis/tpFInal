@@ -241,17 +241,27 @@ export class GaleriaComponent implements OnInit, OnDestroy {
     })
 
   }
-  deleteOne(foto){
+  deleteOne(foto) {
     console.log('foto', foto)
     console.log('foto', foto.uid)
-    this.fileService.deleteFoto("galerias",foto.uid).subscribe(res=>{
+    this.fileService.deleteFoto("galerias", foto.uid).subscribe(res => {
       console.log('res', res)
 
     })
 
   }
-  deleteAll(fiesta){
+  deleteAll(fiesta) {
     console.log('fiesta', fiesta)
+    this.galeriaService.cargarGaleriaByFiesta(fiesta).subscribe(res => {
+      console.log('res', res.galerias)
+      res.galerias.forEach(galeria => {
+       
+
+          this.deleteOne(galeria )
+       
+      });
+
+    })
 
   }
 }
