@@ -111,6 +111,7 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
           this.boletos.push(this.blt)
           this.boletosService.cargarBoletoByFiesta(fst.uid).subscribe(res => {
             this.boletos[i].boletos = this.functionsService.getActivos(res.boleto)
+            console.log('this.boletos[i]', this.boletos[i])
           })
         });
       })
@@ -126,6 +127,7 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
           this.boletos.push(this.blt)
           this.boletosService.cargarBoletoByFiesta(fst.uid).subscribe(res => {
             this.boletos[i].boletos = this.functionsService.getActivos(res.boleto)
+            console.log('this.boletos', this.boletos)
           })
         });
 
@@ -141,6 +143,7 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
           }
           this.boletos.push(this.blt)
           this.boletosService.cargarBoletoByFiesta(fst.uid).subscribe(res => {
+            console.log('res', res)
             this.boletos[i].boletos = res.boleto
           })
         });
@@ -156,6 +159,7 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
           }
           this.boletos.push(this.blt)
           this.boletosService.cargarBoletoByFiesta(fst.uid).subscribe(res => {
+            console.log('res', res)
             this.boletos[i].boletos = res.boleto
           })
         });

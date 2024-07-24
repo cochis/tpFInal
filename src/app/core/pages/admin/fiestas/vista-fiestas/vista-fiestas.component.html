@@ -96,8 +96,12 @@
                                     </td>
                                     <td class="upper">{{fiesta.nombre}}</td>
                                     <td class="upper pointer"
-                                        routerLink="/core/invitaciones/editar-invitacion/true/{{fiesta.uid}}"><i
+                                        routerLink="/core/invitaciones/editar-invitacion/true/{{fiesta.uid}}" *ngIf="fiesta.invitacion.includes('default')"><i
                                             class="bi bi-file-earmark-fill second "></i></td>
+                                    <td class="upper pointer"
+                                        routerLink="/core/invitaciones/editar-invitacion/true/{{fiesta.uid}}" *ngIf="!fiesta.invitacion.includes('default')">
+                                    Sin template
+                                    </td>
                                     <td class="upper">{{getCatalog('evento',fiesta.evento)}}</td>
                                     <td class="upper">
                                         {{fiesta.usuarioFiesta.nombre}}

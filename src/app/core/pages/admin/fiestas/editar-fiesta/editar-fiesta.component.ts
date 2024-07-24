@@ -197,6 +197,7 @@ export class EditarFiestaComponent {
       salon: ['', [Validators.required]],
       usuarioFiesta: ['', [Validators.required]],
       img: [''],
+      galeria: [''],
       invitacion: [],
       activated: [false],
       dateCreated: [this.today],
@@ -235,6 +236,7 @@ export class EditarFiestaComponent {
         salon: [(this.edit === 'false') ? salon : fiesta.salon._id, [Validators.required]],
         usuarioFiesta: [(this.edit === 'false') ? usuarioFiesta : fiesta.usuarioFiesta._id, [Validators.required]],
         invitacion: [fiesta.invitacion],
+        galeria: [fiesta.galeria],
         activated: [fiesta.activated],
         dateCreated: [fiesta.dateCreated],
         lastEdited: [this.today],
@@ -248,6 +250,11 @@ export class EditarFiestaComponent {
     this.submited = true
 
     if (this.form.valid) {
+      if ( this.rol != this.ADM && Number(this.functionsService.dateToNumber(this.form.value.fecha)) < Number(this.today)) {
+        this.functionsService.alert('Fiesta','La fecha del evento no puede ser menor al dia de hoy','info')
+        this.loading=false
+        return
+      }
       this.form.value.nombre = this.form.value.nombre.toUpperCase().trim()
       this.form.value.fecha = new Date(this.form.value.fecha).getTime()
       this.fiesta = {

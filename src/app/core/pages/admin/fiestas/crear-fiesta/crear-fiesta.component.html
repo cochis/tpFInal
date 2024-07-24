@@ -21,20 +21,6 @@
                                     <span *ngIf="submited && errorControl['nombre'].errors " class="error">Es requerido
                                     </span>
                                 </div>
-                                     <div class="col-12 col-md-6  mb-3   mt-3 ">
-                                    <div class="form-group">
-                                        <label for="galeria">Galería </label>
-                                        <select name="" id="galeria" formControlName="galeria" class="form-control upper">
-                                            <option value="">Selecciona un galeria</option>
-                                            <option value="true">Si</option>
-                                            <option value="false">No</option>
-                                            
-                                        </select>
-                                  
-                                  
-                                    </div>
-                                  </div>
-
                                 <div class="col-12 col-md-6 mt-3">
 
                                     <div class="form-group" *ngIf="eventos">
@@ -63,7 +49,7 @@
                                     <div class="form-group">
                                         <label for="fecha">Fecha</label>
                                         <input type="datetime-local" class="form-control upper" id="fecha"
-                                            [min]="todayDate" formControlName="fecha" required placeholder="Fecha">
+                                            [min]="todayDate" formControlName="fecha" required placeholder="Fecha" [min]="today">
                                     </div>
                                     <span *ngIf="submited && errorControl['fecha'].errors " class="error">Es requerido
                                     </span>
@@ -84,7 +70,7 @@
                                         requerido
                                     </span>
                                 </div>
-                                <div class="col-12 col-md-4 mt-3">
+                                <div class="col-12 col-md-6 mt-3">
                                     <div class="form-group">
                                         <label for="invitacion">Invitación</label>
                                         <select name="invitacion" id="invitacion" formControlName="invitacion"
@@ -100,7 +86,7 @@
 
 
                                 </div>
-                                <div class="col-12 col-md-4 mt-3" *ngIf="rol != ANF">
+                                <div class="col-12 col-md-6 mt-3" *ngIf="rol != ANF">
                                     <div class="form-group">
                                         <label for="salon">Ubicación</label>
                                         <select name="" id="salon" formControlName="salon" #salon
@@ -114,10 +100,10 @@
                                     <span *ngIf="submited && errorControl['salon'].errors " class="error">Es requerido
                                     </span>
                                 </div>
-                              
 
 
-                                <div class="col-12 col-md-4 mt-3" *ngIf="rol == ANF">
+
+                                <div class="col-12 col-md-6 mt-3" *ngIf="rol == ANF">
                                     <div class="form-group">
                                         <label for="salon">Salón</label>
                                         <select name="" id="salon" formControlName="salon" #salon
@@ -132,10 +118,27 @@
                                     </span>
                                 </div>
 
-                           
+                                <div class="col-12 col-md-6  mb-3   mt-3 ">
+                                    <div class="form-group">
+                                        <div style="width: 100%;" class="ma text-center">
+
+                                            <label class="form-check-label ma " for="galeria">
+                                                Galería
+                                            </label>
+                                        </div>
+                                        <div style="width: 100%;" class="ma text-center">
+
+                                            <input class="form-check-input ma mt-4" type="checkbox" id="galeria"
+                                                formControlName="galeria" style="margin-left:50px;margin-right: 50px;">
+                                        </div>
 
 
-                                
+                                    </div>
+                                </div>
+
+
+
+
                                 <div class="col-12 col-md-6 mt-3" *ngIf="form.value.salon !==''">
                                     <div class="form-group">
                                         <label for="calle">Calle</label>

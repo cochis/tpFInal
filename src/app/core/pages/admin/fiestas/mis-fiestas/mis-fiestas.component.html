@@ -84,7 +84,7 @@
                                                                 date:"short"}}</b>
 
                                                         </small>
-                                                        <div class="col-12 mt-2 text-center">
+                                                        <div class="col-12 mt-2 text-center" *ngIf="party.galeria">
                                                             Galería de Imágenes
                                                             <a class="text-center ma"
                                                                 style="   
@@ -176,7 +176,7 @@
 
                                             </div>
                                             <div class="social-share d-flex" style="left: 40%;"
-                                                *ngIf="(rol === ADM || rol === ANF || rol === SLN ) && party.fecha > today && party.activated && party.invitacion.includes('default')">
+                                                *ngIf="(rol   ) && party.fecha > today && party.activated && party.invitacion.includes('default')">
                                                 <p class="text-white  ">Invitacion: </p>
 
                                                 <ul class="social-icon">

@@ -194,7 +194,22 @@ export class CrearUsuarioComponent {
 
         this.usuariosService.crearUsuario(obj).subscribe((resp: any) => {
 
+
+          if (this.rol === this.ADM) {
+            let usr = {
+              ...resp.usuario,
+              usuarioCreated: resp.usuario.uid
+            }
+            this.usuariosService.actualizarUsuario(usr).subscribe((resp) => {
+              console.log('resp', resp)
+              this.functionsService.alertUpdate('Usuarios')
+              this.functionsService.navigateTo('core/usuarios/vista-usuarios')
+              this.loading = false
+
+            })
+          }
           //Message
+          this.functionsService.alertUpdate('Usuarios')
           this.functionsService.navigateTo('core/usuarios/vista-usuarios')
           this.loading = false
         },

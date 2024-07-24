@@ -81,6 +81,7 @@
                                         <label for="salon">Salon</label>
                                         <select name="" id="salon" formControlName="salon" class="form-control upper">
                                             <option value="">Selecciona un salon</option>
+                                            <option value="">Sin Salon</option>
                                             <option [value]="item.uid" *ngFor="let item of salones">{{item.nombre}}
                                             </option>
                                         </select>

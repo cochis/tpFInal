@@ -151,11 +151,19 @@ export class CrearFiestaComponent {
       dateCreated: [this.today],
       lastEdited: [this.today],
     })
-    console.log('this.form.value.galeria', this.form.value )
+    console.log('this.form.value.galeria', this.form.value)
   }
   onSubmit() {
-   
-    console.log('this.form.value.galeria', this.form.value )
+
+
+    if ( this.rol != this.ADM && Number(this.functionsService.dateToNumber(this.form.value.fecha)) < Number(this.today)) {
+      this.functionsService.alert('Fiesta','La fecha del evento no puede ser menor al dia de hoy','info')
+      this.loading=false
+        return
+    }
+
+
+
     this.loading = true
     this.submited = true
     if (this.form.valid) {
@@ -163,15 +171,23 @@ export class CrearFiestaComponent {
       this.form.value.fecha = new Date(this.form.value.fecha).getTime()
       let form = {
         ...this.form.value,
-        galeria:this.form.value.galeria.checked,
-        activated: false,
+        galeria: this.form.value.galeria.checked,
+        activated: true,
         realizada: false
       }
       this.fiestasService.crearFiesta(this.form.value).subscribe((resp: any) => {
         this.usuariosService.actualizarUsuario(this.usuario).subscribe((resp2: any) => {
           this.loading = false
           this.functionsService.alert('Fiestas', 'Fiesta creada', 'success')
-          this.functionsService.navigateTo(`core/invitaciones/editar-invitacion/true/${resp.fiesta.uid}`)
+
+            if(resp.fiesta.invitacion.includes('default')){
+
+              this.functionsService.navigateTo(`core/invitaciones/editar-invitacion/true/${resp.fiesta.uid}`)
+            }else{
+
+              this.functionsService.navigateTo(`core/fiestas/vista-fiestas`)
+            }
+
         },
           (error) => {
             this.functionsService.alertError(error, 'Fiestas')
@@ -196,10 +212,11 @@ export class CrearFiestaComponent {
     })
   }
   setSalon(salon) {
+    console.log('this.form.value', this.form.value)
     this.form = this.fb.group({
       nombre: [this.form.value.nombre, [Validators.required, Validators.minLength(3)]],
       evento: [this.form.value.evento, [Validators.required]],
-      cantidad: [this.form.value.cantidad, [Validators.required]],
+      cantidad: [this.form.value.cantidad, [Validators.required, Validators.min(50)]],
       invitacion: [this.form.value.invitacion, [Validators.required]],
       fecha: [this.form.value.fecha, [Validators.required]],
       usuarioFiesta: [this.form.value.usuarioFiesta, [Validators.required]],
@@ -216,6 +233,7 @@ export class CrearFiestaComponent {
       long: [salon.long],
       salon: [this.form.value.salon, [Validators.required]],
       img: [''],
+      galeria: [this.form.value.galeria],
       activated: [true],
       dateCreated: [this.today],
       lastEdited: [this.today],

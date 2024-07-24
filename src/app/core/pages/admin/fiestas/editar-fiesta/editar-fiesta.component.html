@@ -68,7 +68,7 @@
                                             [readonly]="edit==='false'">
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-4 mt-3" *ngIf="usuarios">
+                                <div class="col-12 col-md-6 mt-3" *ngIf="usuarios">
                                     <div class="form-group" *ngIf="edit=='true'">
                                         <label for="usuarioFiesta">Usuario fiesta</label>
                                         <select name="" id="usuarioFiesta" formControlName="usuarioFiesta"
@@ -105,7 +105,7 @@
 
 
 
-                                <div class="col-12 col-md-4 mt-3">
+                                <div class="col-12 col-md-6 mt-3">
                                     <div class="form-group" *ngIf="edit=='true'">
                                         <label for="salon">Salón</label>
                                         <select name="" id="salon" formControlName="salon" #salon
@@ -125,7 +125,7 @@
                                             formControlName="salon" [readonly]="edit==='false'">
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-4 mt-3">
+                                <div class="col-12 col-md-6 mt-3">
                                     <div class="form-group" *ngIf="edit=='true'">
                                         <label for="invitacion">Invitación</label>
                                         <select name="" id="invitacion" formControlName="invitacion" #invi
@@ -148,7 +148,23 @@
                                             [readonly]="edit==='false'">
                                     </div>
                                 </div>
+                                <div class="col-12 col-md-6  mb-3   mt-3 ">
+                                    <div class="form-group">
+                                        <div style="width: 100%;" class="ma text-center">
 
+                                            <label class="form-check-label ma " for="galeria">
+                                                Galería
+                                            </label>
+                                        </div>
+                                        <div style="width: 100%;" class="ma text-center">
+
+                                            <input class="form-check-input ma mt-4" type="checkbox" id="galeria"
+                                                formControlName="galeria" style="margin-left:50px;margin-right: 50px;">
+                                        </div>
+
+
+                                    </div>
+                                </div>
 
 
                                 <div class="col-12 col-md-12 mt-3 text-center">
