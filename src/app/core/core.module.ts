@@ -61,7 +61,8 @@ import { VistaTipoModulosComponent } from './pages/admin/tipo-modulos/vista-tipo
 import { DefaultComponent } from './pages/admin/templates/default/default.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { InfoFiestaComponent } from './pages/admin/fiestas/info-fiesta/info-fiesta.component';
-import { ByImagesComponent } from './pages/admin/templates/by-images/by-images.component'
+import { ByImagesComponent } from './pages/admin/templates/by-images/by-images.component';
+import { BorradoComponent } from './pages/admin/borrado/borrado.component'
 
 
 
@@ -125,6 +126,7 @@ import { ByImagesComponent } from './pages/admin/templates/by-images/by-images.c
     VistaTipoModulosComponent,
     InfoFiestaComponent,
     ByImagesComponent,
+    BorradoComponent,
 
   ],
   imports: [

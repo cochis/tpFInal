@@ -56,6 +56,7 @@ import { VistaTipoModulosComponent } from './pages/admin/tipo-modulos/vista-tipo
 import { DefaultComponent } from './pages/admin/templates/default/default.component';
 import { InfoFiestaComponent } from './pages/admin/fiestas/info-fiesta/info-fiesta.component';
 import { ByImagesComponent } from './pages/admin/templates/by-images/by-images.component';
+import { BorradoComponent } from './pages/admin/borrado/borrado.component';
 
 
 const routes: Routes = [
@@ -91,6 +92,12 @@ const routes: Routes = [
         path: 'mis-fiestas',
         component: MisFiestasComponent,
         data: { titulo: 'Mis fiestas' },
+        canActivate: [authGuard]
+      },
+      {
+        path: 'borrado',
+        component: BorradoComponent,
+        data: { titulo: 'Borrado' },
         canActivate: [authGuard]
       },
 

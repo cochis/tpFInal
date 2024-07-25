@@ -1,0 +1,110 @@
+<app-header></app-header>
+<main>
+    <app-loading class="animated1 fadeIn" *ngIf="loading"></app-loading>
+    <app-message class="animated1 fadeIn" *ngIf="msnOk"></app-message>
+    <section class="contact-section section-padding section-bg animated1 fadeIn " id="section_5" *ngIf="!loading">
+        <div class="container bw">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-12 col-12 text-center">
+                            <h2 class="mb-5">Borrado de instancias</h2>
+                        </div>
+                        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                            <div class="row">
+                               
+                                <div class="col-12 col-md-6 mt-3">
+                                    <div class="form-group">
+                                        <label for="tipo" class="ma">Tipo</label>
+                                        <select class="form-select" aria-label="Tipo" formControlName="tipo" name="tipo"
+                                            #tipo (change)="changeTipo(tipo.value)">
+                                            <option value="" selected>Selecciona que tipo de entidad a borrar</option>
+                                            <option value="1">Usuario</option>
+                                            <option value="2">Salón</option>
+                                            <option value="3">Fiesta</option>
+                                            <option value="4">Invitación</option>
+                                            <option value="5">Boleto</option>
+
+                                        </select>
+                                    </div>
+                                   
+                                </div>
+                                <div class="col-12 col-md-6 mt-3" *ngIf="tipo.value !==''">
+                                    <div class="form-group">
+
+                                        <label for="tipo" class="ma">Busqueda</label>
+                                            <input type="text" class="form-control" placeholder="Search.." id="search" #search
+                                                (keyup)="filterFunction(search.value)">
+    
+                                      
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 mt-3" *ngIf="tipo.value !==''">
+
+                                    <div class="form-group">
+                                        <label for="entidad" class="ma">Entidad</label>
+
+
+                                        <select class="form-select" aria-label="Entidad" formControlName="entidad"
+                                            name="entidad" #entidad>
+                                            <option value="" selected>Selecciona</option>
+                                            <ng-container *ngIf="typeSelect == '1'">
+
+                                                <option value="{{item.uid}}" *ngFor="let item of items">{{item.nombre }} {{item.apellidoPaterno }} {{item.apellidoMaterno }}-{{item.email }}-{{item.role.nombre }}
+                                                </option>
+                                            </ng-container>
+                                            <ng-container *ngIf="typeSelect == '2'">
+
+                                                <option value="{{item.uid}}" *ngFor="let item of items">{{item.nombre }}
+                                                </option>
+                                            </ng-container>
+                                            <ng-container *ngIf="typeSelect == '3'">
+
+                                                <option value="{{item.uid}}" *ngFor="let item of items">{{item.nombre }}
+                                                </option>
+                                            </ng-container>
+                                            <ng-container *ngIf="typeSelect == '4'">
+
+                                                <option value="{{item.uid}}" *ngFor="let item of items">
+                                                    {{functionsService.getValueCatalog(item.fiesta,'nombre',fiestas) }}
+                                                </option>
+                                            </ng-container>
+                                            <ng-container *ngIf="typeSelect == '5'">
+
+                                                <option value="{{item.uid}}" *ngFor="let item of items">
+                                                    {{functionsService.getValueCatalog(item.uid,'nombreGrupo',boletos)
+                                                    }}
+                                                </option>
+                                            </ng-container>
+
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <div class="row mt-5 text-center">
+
+                                <div class="col-12 col-md-6  mt-3 text-center ">
+                                    <button type="submit" class="btn btn-lg btn-block but  ">Crear</button>
+
+                                </div>
+                                <div class="col-12 col-md-6  mt-3 text-center">
+                                    <button class="btn btn-lg btn-block btn-warning" (click)="back()">Regresar</button>
+
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+
+</main>
+<app-footer></app-footer>
