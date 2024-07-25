@@ -151,15 +151,15 @@ export class CrearFiestaComponent {
       dateCreated: [this.today],
       lastEdited: [this.today],
     })
-   
+
   }
   onSubmit() {
 
 
-    if ( this.rol != this.ADM && Number(this.functionsService.dateToNumber(this.form.value.fecha)) < Number(this.today)) {
-      this.functionsService.alert('Fiesta','La fecha del evento no puede ser menor al dia de hoy','info')
-      this.loading=false
-        return
+    if (this.rol != this.ADM && Number(this.functionsService.dateToNumber(this.form.value.fecha)) < Number(this.today)) {
+      this.functionsService.alert('Fiesta', 'La fecha del evento no puede ser menor al dia de hoy', 'info')
+      this.loading = false
+      return
     }
 
 
@@ -180,13 +180,13 @@ export class CrearFiestaComponent {
           this.loading = false
           this.functionsService.alert('Fiestas', 'Fiesta creada', 'success')
 
-            if(resp.fiesta.invitacion.includes('default')){
+          if (resp.fiesta.invitacion.includes('default')) {
 
-              this.functionsService.navigateTo(`core/invitaciones/editar-invitacion/true/${resp.fiesta.uid}`)
-            }else{
+            this.functionsService.navigateTo(`core/invitaciones/editar-invitacion/true/${resp.fiesta.uid}`)
+          } else {
 
-              this.functionsService.navigateTo(`core/fiestas/vista-fiestas`)
-            }
+            this.functionsService.navigateTo(`core/fiestas/vista-fiestas`)
+          }
 
         },
           (error) => {
@@ -201,7 +201,7 @@ export class CrearFiestaComponent {
     } else {
       this.functionsService.alertForm('Fiestas')
       this.loading = false
-      return console.log('Please provide all the required values!');
+      return // console.log('Please provide all the required values!');
     }
   }
   selectSalon(event) {
@@ -212,7 +212,7 @@ export class CrearFiestaComponent {
     })
   }
   setSalon(salon) {
-    console.log('this.form.value', this.form.value)
+    // console.log('this.form.value', this.form.value)
     this.form = this.fb.group({
       nombre: [this.form.value.nombre, [Validators.required, Validators.minLength(3)]],
       evento: [this.form.value.evento, [Validators.required]],

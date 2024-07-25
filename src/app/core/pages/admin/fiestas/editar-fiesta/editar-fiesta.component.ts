@@ -80,7 +80,7 @@ export class EditarFiestaComponent {
       }, 500);
     },
       (error: any) => {
-    console.log('error::: ', error);
+        // console.logror::: ', error);
         this.functionsService.alertError(error, 'Fiestas')
       })
   }
@@ -93,21 +93,21 @@ export class EditarFiestaComponent {
 
       this.salonesService.cargarSalonsAll().subscribe((resp: CargarSalons) => {
         this.salones = this.functionsService.getActivos(resp.salons)
-        
+
 
       },
         (error: any) => {
-           console.log('error::: ', error);
+          // console.logror::: ', error);
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
         })
       this.eventosService.cargarEventosAll().subscribe((resp: CargarEventos) => {
         this.eventos = this.functionsService.getActivos(resp.eventos)
-         
+
 
       },
         (error: any) => {
-            console.log('error::: ', error);
+          // console.logror::: ', error);
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
 
@@ -116,13 +116,13 @@ export class EditarFiestaComponent {
       this.usuariosService.cargarAlumnosAll().subscribe((resp: CargarUsuarios) => {
 
         this.usuarios = this.functionsService.getActivos(resp.usuarios)
-         
+
           ;
 
 
       },
         (error: any) => {
-           console.log('error::: ', error);
+          // console.logror::: ', error);
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
 
@@ -134,7 +134,7 @@ export class EditarFiestaComponent {
         this.salones = this.functionsService.getActivos(resp.salons)
       },
         (error: any) => {
-          console.log('error::: ', error);
+          // console.logror::: ', error);
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
         })
@@ -145,7 +145,7 @@ export class EditarFiestaComponent {
 
       },
         (error: any) => {
-          console.log('error::: ', error);
+          // console.logror::: ', error);
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
         })
@@ -157,7 +157,7 @@ export class EditarFiestaComponent {
 
       },
         (error: any) => {
-           console.log('error::: ', error);
+          // console.logror::: ', error);
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
         })
@@ -238,9 +238,9 @@ export class EditarFiestaComponent {
     this.submited = true
 
     if (this.form.valid) {
-      if ( this.rol != this.ADM && Number(this.functionsService.dateToNumber(this.form.value.fecha)) < Number(this.today)) {
-        this.functionsService.alert('Fiesta','La fecha del evento no puede ser menor al dia de hoy','info')
-        this.loading=false
+      if (this.rol != this.ADM && Number(this.functionsService.dateToNumber(this.form.value.fecha)) < Number(this.today)) {
+        this.functionsService.alert('Fiesta', 'La fecha del evento no puede ser menor al dia de hoy', 'info')
+        this.loading = false
         return
       }
       this.form.value.nombre = this.form.value.nombre.toUpperCase().trim()
@@ -256,7 +256,7 @@ export class EditarFiestaComponent {
         this.loading = false
       },
         (error) => {
-          console.log('error::: ', error);
+          // console.logror::: ', error);
 
           this.loading = true
           this.functionsService.alertError(error, 'Fiestas')
@@ -267,7 +267,7 @@ export class EditarFiestaComponent {
       this.functionsService.alertForm('Fiestas')
       this.loading = false
 
-      return   console.log('Please provide all the required values!');
+      return   // console.log('Please provide all the required values!');
     }
 
 

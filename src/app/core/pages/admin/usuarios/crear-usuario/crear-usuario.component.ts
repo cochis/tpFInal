@@ -46,8 +46,8 @@ export class CrearUsuarioComponent {
     private tipoCantidadesService: TipoCantidadesService
   ) {
     this.loading = true
-    // console.log(this.rol)
-    // console.log(this.SLN)
+    // // console.log(this.rol)
+    // // console.log(this.SLN)
     this.getCatalogos()
     this.createForm()
     setTimeout(() => {
@@ -111,7 +111,7 @@ export class CrearUsuarioComponent {
     }
     this.tipoCantidadesService.cargarTipoCantidadesAll().subscribe((resp: CargarTipoCantidades) => {
       this.paquetes = this.functionsService.getActivos(resp.tipoCantidades)
-      // console.log('   this.paquetes::: ', this.paquetes);
+      // // console.log('   this.paquetes::: ', this.paquetes);
 
     },
       (error: any) => {
@@ -201,7 +201,7 @@ export class CrearUsuarioComponent {
               usuarioCreated: resp.usuario.uid
             }
             this.usuariosService.actualizarUsuario(usr).subscribe((resp) => {
-              console.log('resp', resp)
+              // console.log('resp', resp)
               this.functionsService.alertUpdate('Usuarios')
               this.functionsService.navigateTo('core/usuarios/vista-usuarios')
               this.loading = false
@@ -227,7 +227,7 @@ export class CrearUsuarioComponent {
 
       //Message
       this.loading = false
-      return // console.log('Please provide all the required values!');
+      return // // console.log('Please provide all the required values!');
     }
 
 

@@ -85,7 +85,7 @@ export class VistaModuloTemplatesComponent {
   }
 
   showModal(type, data) {
-    // console.log('data', data)
+    // // console.log('data', data)
     switch (type) {
       case 'diseno':
         this._modalService.show<Diseno>(DisenoModalComponent, {
@@ -131,7 +131,7 @@ export class VistaModuloTemplatesComponent {
       this.moduloTemplatesService.cargarModuloTemplatesAll().subscribe((resp: CargarModuloTemplates) => {
 
         this.moduloTemplates = resp.moduloTemplates
-        // console.log('this.moduloTemplates', this.moduloTemplates)
+        // // console.log('this.moduloTemplates', this.moduloTemplates)
 
         this.moduloTemplatesTemp = resp.moduloTemplates
         setTimeout(() => {

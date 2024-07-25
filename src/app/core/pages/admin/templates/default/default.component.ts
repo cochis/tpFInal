@@ -80,8 +80,8 @@ export class DefaultComponent implements OnInit, AfterViewInit {
           this.functionsService.navigateTo('/')
         }
         this.boleto.vista = true
-        this.boletosService.registrarPushNotification(this.boleto).subscribe((resp:any)=>{
-          console.log('resp', resp)
+        this.boletosService.registrarPushNotification(this.boleto).subscribe((resp: any) => {
+          // console.log('resp', resp)
           this.boleto = resp.boletoActualizado
           this.subscribeNotification()
 
@@ -95,13 +95,13 @@ export class DefaultComponent implements OnInit, AfterViewInit {
 
       // Se carga la fiesta por ID  
 
-      console.log('this.fiestaId::: ', this.fiestaId);
+      // console.log('this.fiestaId::: ', this.fiestaId);
       this.fiestasService.cargarFiestaById(this.fiestaId).subscribe((resp: any) => {
         this.fiesta = resp.fiesta
-        console.log('this.fiesta::: ', this.fiesta);
+        // console.log('this.fiesta::: ', this.fiesta);
 
         this.invitacionsService.cargarInvitacionByFiesta(this.fiestaId).subscribe(async (resp: any) => {
-          console.log('resp::: ', resp);
+          // console.log('resp::: ', resp);
           this.invitacion = resp.invitacion.data
           this.restParty()
           this.invitacion = await this.dateToNumber(this.invitacion)
@@ -226,7 +226,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
     }
   }
   ngOnInit() {
-    
+
   }
 
   async dateToNumber(data) {
@@ -365,10 +365,10 @@ export class DefaultComponent implements OnInit, AfterViewInit {
       }
     )
       .then(respuesta => {
-        console.log('respuesta', respuesta)
+        // console.log('respuesta', respuesta)
         this.pushsService.crearPush(respuesta).subscribe((resp: any) => {
-          console.log('resp', resp)
-          console.log('this.boleto.pushNotification', this.boleto.pushNotification)
+          // console.log('resp', resp)
+          // console.log('this.boleto.pushNotification', this.boleto.pushNotification)
           this.functionsService.setLocal("pushService", resp)
 
           var bl: any
@@ -383,7 +383,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
             this.boleto.pushNotification.push(resp.pushDB.uid)
           }
           this.boletosService.registrarPushNotification(this.boleto).subscribe((res) => {
-            console.log('res', res)
+            // console.log('res', res)
           })
         })
       })

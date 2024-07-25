@@ -47,17 +47,17 @@ export class FileService {
         return false
       }
     } catch (error) {
-      console.log('error', error)
+      // // console.logror', error)
       return false
     }
   }
-    deleteFoto(
+  deleteFoto(
 
     tipo: 'galerias',
     id: string,
   ) {
     const url = `${base_url}/upload/remove/${tipo}/${id}`
-    console.log('url', url)
+    // // console.log('url', url)
     return this.http.patch(url, this.headers)
   }
   async actualizarFotoTemplate(
@@ -88,7 +88,7 @@ export class FileService {
         return false
       }
     } catch (error) {
-      console.log('error', error)
+      // // console.logror', error)
       return false
     }
   }

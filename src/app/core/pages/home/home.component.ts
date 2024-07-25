@@ -33,16 +33,16 @@ export class HomeComponent implements AfterViewInit {
     private boletosService: BoletosService,
     private tokenPushService: TokenPushsService,
     private swpush: SwPush,
-    private metaService : MetaService
+    private metaService: MetaService
 
   ) {
     this.metaService.createCanonicalURL()
-     
+
     this.metaService.generateTags()
     this.role = this.functionsService.getLocal('role')
     this.uid = this.functionsService.getLocal('uid')
-    console.log(this.role);
-    console.log(this.uid);
+    // console.log(this.role);
+    // console.log(this.uid);
 
   }
   ngAfterViewInit() {
@@ -148,7 +148,7 @@ export class HomeComponent implements AfterViewInit {
                 });
 
                 this.functionsService.subscribeToPush().then(resp => {
-                  // console.log('resp::: ', resp);
+                  // // console.log('resp::: ', resp);
 
 
                   let token = {
@@ -159,7 +159,7 @@ export class HomeComponent implements AfterViewInit {
                   }
 
                   this.tokenPushService.crearTokenPush(token).subscribe(resp => {
-                    // console.log('resp::: ', resp);
+                    // // console.log('resp::: ', resp);
 
                   })
 

@@ -52,7 +52,7 @@ export class BarcodeService {
         return
       }
     } catch (error) {
-      console.log('error::: ', error);
+      // console.logror::: ', error);
 
       document.querySelector('body')!.classList.remove('scanner-active');
 

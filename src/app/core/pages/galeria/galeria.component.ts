@@ -54,6 +54,8 @@ export class GaleriaComponent implements OnInit, OnDestroy {
   email = this.functionsService.getLocal('email')
   uid = this.functionsService.getLocal('uid')
   today = this.functionsService.getToday()
+  total = 0
+  porcentaje = 100
   constructor(
     private functionsService: FunctionsService,
     private busquedasService: BusquedasService,
@@ -70,8 +72,9 @@ export class GaleriaComponent implements OnInit, OnDestroy {
     this.fiestaId = this.route.snapshot.params['fiesta']
     this.boletoId = this.route.snapshot.params['boleto']
     this.anfitrionId = this.route.snapshot.params['anfitrion']
-    console.log('this.anfitrionId', this.anfitrionId)
-    console.log('this.uid', this.uid)
+    // console.log('this.anfitrionId', this.anfitrionId)
+    // console.log('this.uid', this.uid)
+
     if (!this.boletoId) {
       this.getFiestaByAnf(this.anfitrionId)
     } else {
@@ -94,7 +97,7 @@ export class GaleriaComponent implements OnInit, OnDestroy {
   getFiestaByAnf(anf: string) {
     this.fiestaService.cargarFiestaById(this.fiestaId).subscribe((resp) => {
       this.fiestaDB = resp.fiesta
-      console.log('this.fiestaDB ::: ', this.fiestaDB);
+      // console.log('this.fiestaDB ::: ', this.fiestaDB);
       if (this.fiestaDB.fecha > this.today) {
 
         this.functionsService.alert('Fiesta', 'La fiesta aun no ha empezado', 'error')
@@ -115,7 +118,7 @@ export class GaleriaComponent implements OnInit, OnDestroy {
   getFiesta() {
     this.fiestaService.cargarFiestaById(this.fiestaId).subscribe((resp) => {
       this.fiestaDB = resp.fiesta
-      console.log('this.fiestaDB::: ', this.fiestaDB);
+      // console.log('this.fiestaDB::: ', this.fiestaDB);
       if (this.fiestaDB.fecha > this.today) {
 
         this.functionsService.alert('Fiesta', 'La fiesta aun no ha empezado', 'error')
@@ -156,18 +159,21 @@ export class GaleriaComponent implements OnInit, OnDestroy {
 
     if (!this.boletoId) {
       this.galeriaService.cargarGaleriaByFiesta(this.fiestaId).subscribe((resp) => {
-        this.galerias = resp.galerias
+        this.galerias = this.functionsService.getActives(resp.galerias)
       })
     } else {
       this.galeriaService.cargarGaleriaByBoleto(this.boletoId).subscribe((resp) => {
-        this.galerias = resp.galerias
+        this.galerias = this.functionsService.getActives(resp.galerias)
       })
     }
-    // console.log('this.galerias ::: ', this.galerias);
+    // // console.log('this.galerias ::: ', this.galerias);
   }
   async upImages(file) {
+    this.porcentaje = 100
     this.imagens = file.target.files
+
     this.totalImg = file.target.files.length
+    this.total = 100 / this.totalImg
     this.idx = 1
     let galeria: any = {
       fiesta: this.fiestaId,
@@ -177,6 +183,9 @@ export class GaleriaComponent implements OnInit, OnDestroy {
       dateCreated: this.today,
       lastEdited: this.today,
     }
+
+
+
     const myArray = this.imagens;
     const performAsyncTask = async (item) => {
       return new Promise<void>((resolve) => {
@@ -186,11 +195,15 @@ export class GaleriaComponent implements OnInit, OnDestroy {
               .actualizarFoto(item, 'galerias', resp.galeria.uid)
               .then(
                 async (img) => {
+                  this.porcentaje = this.porcentaje - this.total
                   this.idx++
+                  if (this.porcentaje == 0) {
+                    this.getPictures()
+                  }
                 }
               )
           }, (error) => {
-            console.log('error::: ', error);
+            // console.logror::: ', error);
           })
           resolve();
         }, 500);
@@ -201,13 +214,13 @@ export class GaleriaComponent implements OnInit, OnDestroy {
         this.loading = true
         await performAsyncTask(item);
       }
-      // console.log('Imagenes procesadas');
+      // // console.log('Imagenes procesadas');
     };
     processArray(myArray)
       .then(() => {
         this.loading = false
         this.getPictures()
-        // console.log('Processing completed');
+        // // console.log('Processing completed');
       })
       .catch((error) => {
         // console.error('An error occurred:', error);
@@ -242,26 +255,33 @@ export class GaleriaComponent implements OnInit, OnDestroy {
 
   }
   deleteOne(foto) {
-    console.log('foto', foto)
-    console.log('foto', foto.uid)
     this.fileService.deleteFoto("galerias", foto.uid).subscribe(res => {
-      console.log('res', res)
-
+      this.getPictures()
+      return true
     })
 
   }
   deleteAll(fiesta) {
-    console.log('fiesta', fiesta)
-    this.galeriaService.cargarGaleriaByFiesta(fiesta).subscribe(res => {
-      console.log('res', res.galerias)
-      res.galerias.forEach(galeria => {
-       
+    // console.log('fiesta', fiesta)
+    this.porcentaje = 100
+    this.totalImg = this.galerias.length
+    this.total = 100 / this.totalImg
 
-          this.deleteOne(galeria )
-       
-      });
+    // console.log('this.total::: ', this.total);
+    this.loading = true
+    this.galerias.forEach(galeria => {
+      setTimeout(() => {
 
-    })
+        this.porcentaje = this.porcentaje - this.total
+        // console.log('this.porcentaje ::: ', this.porcentaje);
+        this.deleteOne(galeria)
+        if ((this.porcentaje - this.total) < 0) {
+          this.loading = false
+          this.getPictures()
+        }
+      }, 500);
+
+    });
 
   }
 }

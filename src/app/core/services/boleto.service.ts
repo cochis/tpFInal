@@ -110,8 +110,8 @@ export class BoletosService {
     return this.http.post(url, data, this.headers)
   }
   registrarPushNotification(boleto: Boleto) {
-    // console.log('boleto::: ', boleto);
-    let bl ={
+    // // console.log('boleto::: ', boleto);
+    let bl = {
       pushNotification: boleto.pushNotification
     }
     const url = `${base_url}/boletos/registrar-push-notification/${boleto.uid}`
@@ -124,7 +124,7 @@ export class BoletosService {
     return this.http.put(url, data, this.headers)
   }
   registrarAsistencia(boleto: Boleto) {
-    // console.log('boleto::: ', boleto);
+    // // console.log('boleto::: ', boleto);
     const url = `${base_url}/boletos/registrar-asistencias/${boleto.uid}`
 
     const data = {

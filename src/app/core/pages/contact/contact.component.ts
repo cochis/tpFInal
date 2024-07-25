@@ -35,7 +35,7 @@ export class ContactComponent {
     this.loading = true
     this.submited = true
     this.contactoService.sendContacto(this.form.value).subscribe((resp: any) => {
-      // console.log('resp::: ', resp);
+      // // console.log('resp::: ', resp);
       this.loading = false
 
     },

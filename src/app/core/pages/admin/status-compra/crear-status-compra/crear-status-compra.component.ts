@@ -71,14 +71,14 @@ export class CrearStatusCompraComponent {
         (error) => {
           this.functionsService.alertError(error, 'Estatus de compra')
           this.loading = false
-          console.log('error::: ', error);
+          // console.logror::: ', error);
 
         })
     } else {
 
       this.functionsService.alertForm('Estatus de compra')
       this.loading = false
-      return console.log('Please provide all the required values!');
+      return // console.log('Please provide all the required values!');
     }
 
 

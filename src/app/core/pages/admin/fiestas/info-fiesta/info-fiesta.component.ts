@@ -80,7 +80,7 @@ export class InfoFiestaComponent {
       }, 500);
     },
       (error: any) => {
-        console.log('error::: ', error);
+        // console.logror::: ', error);
         this.functionsService.alertError(error, 'Fiestas')
       })
   }
@@ -94,21 +94,21 @@ export class InfoFiestaComponent {
 
       this.salonesService.cargarSalonsAll().subscribe((resp: CargarSalons) => {
         this.salones = this.functionsService.getActivos(resp.salons)
-        // console.log('this.salones', this.salones)
+        // // console.log('this.salones', this.salones)
 
       },
         (error: any) => {
-          console.log('error::: ', error);
+          // console.logror::: ', error);
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
         })
       this.eventosService.cargarEventosAll().subscribe((resp: CargarEventos) => {
         this.eventos = this.functionsService.getActivos(resp.eventos)
-        // console.log('this.eventos', this.eventos)
+        // // console.log('this.eventos', this.eventos)
 
       },
         (error: any) => {
-          console.log('error::: ', error);
+          // console.logror::: ', error);
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
 
@@ -117,13 +117,13 @@ export class InfoFiestaComponent {
       this.usuariosService.cargarAlumnosAll().subscribe((resp: CargarUsuarios) => {
 
         this.usuarios = this.functionsService.getActivos(resp.usuarios)
-          // console.log('this.usuarios', this.usuarios)
+          // // console.log('this.usuarios', this.usuarios)
           ;
 
 
       },
         (error: any) => {
-          console.log('error::: ', error);
+          // console.logror::: ', error);
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
 
@@ -133,11 +133,11 @@ export class InfoFiestaComponent {
 
       this.salonesService.cargarSalonByMail(this.email).subscribe((resp: CargarSalons) => {
         this.salones = this.functionsService.getActivos(resp.salons)
-        // console.log('this.salones', this.salones)
+        // // console.log('this.salones', this.salones)
 
       },
         (error: any) => {
-          console.log('error::: ', error);
+          // console.logror::: ', error);
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
         })
@@ -148,7 +148,7 @@ export class InfoFiestaComponent {
 
       },
         (error: any) => {
-          console.log('error::: ', error);
+          // console.logror::: ', error);
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
         })
@@ -160,7 +160,7 @@ export class InfoFiestaComponent {
 
       },
         (error: any) => {
-          console.log('error::: ', error);
+          // console.logror::: ', error);
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
         })
@@ -214,7 +214,7 @@ export class InfoFiestaComponent {
         this.loading = false
       },
         (error) => {
-          console.log('error::: ', error);
+          // console.logror::: ', error);
 
           this.loading = true
           this.functionsService.alertError(error, 'Fiestas')
@@ -225,7 +225,7 @@ export class InfoFiestaComponent {
       this.functionsService.alertForm('Fiestas')
       this.loading = false
 
-      return // console.log('Please provide all the required values!');
+      return // // console.log('Please provide all the required values!');
     }
 
 
@@ -255,7 +255,7 @@ export class InfoFiestaComponent {
       .then(
         (img) => {
           this.fiesta.img = img
-          console.log('this.fiesta.img ::: ', this.fiesta.img);
+          // console.log('this.fiesta.img ::: ', this.fiesta.img);
           //message
         },
         (err) => {

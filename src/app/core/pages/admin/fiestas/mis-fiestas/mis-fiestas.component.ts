@@ -56,7 +56,7 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
     private metaService: MetaService
   ) {
     this.metaService.createCanonicalURL()
-    let  data = {
+    let data = {
       title: 'Ticket Party  | Mis Fiestas',
       description:
         'Visualiza tus eventos en tiempo real, cuantas invitaciones creaste, cuantos lugares tienes disponibles u ocupados, cuantos confirmaron  cuantos están en el evento o puedes enviar las notificaciones push.',
@@ -111,7 +111,7 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
           this.boletos.push(this.blt)
           this.boletosService.cargarBoletoByFiesta(fst.uid).subscribe(res => {
             this.boletos[i].boletos = this.functionsService.getActivos(res.boleto)
-            console.log('this.boletos[i]', this.boletos[i])
+            // console.log('this.boletos[i]', this.boletos[i])
           })
         });
       })
@@ -127,7 +127,7 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
           this.boletos.push(this.blt)
           this.boletosService.cargarBoletoByFiesta(fst.uid).subscribe(res => {
             this.boletos[i].boletos = this.functionsService.getActivos(res.boleto)
-            console.log('this.boletos', this.boletos)
+            // console.log('this.boletos', this.boletos)
           })
         });
 
@@ -143,7 +143,7 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
           }
           this.boletos.push(this.blt)
           this.boletosService.cargarBoletoByFiesta(fst.uid).subscribe(res => {
-            console.log('res', res)
+            // console.log('res', res)
             this.boletos[i].boletos = res.boleto
           })
         });
@@ -159,7 +159,7 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
           }
           this.boletos.push(this.blt)
           this.boletosService.cargarBoletoByFiesta(fst.uid).subscribe(res => {
-            console.log('res', res)
+            // console.log('res', res)
             this.boletos[i].boletos = res.boleto
           })
         });
@@ -304,7 +304,7 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
         })
         let push = {
           "notification": {
-            "title": "Hola "+ boleto.nombreGrupo + ", recuerda que mi evento es el  " + this.functionsService.datePush(fiesta[0].fecha),
+            "title": "Hola " + boleto.nombreGrupo + ", recuerda que mi evento es el  " + this.functionsService.datePush(fiesta[0].fecha),
             "body": fiesta[0].nombre,
             "vibrate": [
               100,

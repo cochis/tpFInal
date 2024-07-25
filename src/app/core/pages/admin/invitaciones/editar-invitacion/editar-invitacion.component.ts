@@ -605,13 +605,13 @@ export class EditarInvitacionComponent {
     }
   }
   actualizarInvitacion(invitacion) {
-    console.log('actualizarInvitacion');
+    // console.log('actualizarInvitacion');
     invitacion.fiesta = this.fiesta.uid
     invitacion.usuarioCreated = this.usuarioCreated
     return this.invitacionsService.actualizarInvitacion(invitacion)
   }
   crearInvitacion(invitacion) {
-    console.log('crearInvitacion');
+    // console.log('crearInvitacion');
     invitacion.usuarioCreated = this.usuarioCreated
     if (typeof (invitacion.fiesta) == "object") {
       invitacion.fiesta = invitacion.fiesta.uid ? invitacion.fiesta.uid : invitacion.fiesta._id

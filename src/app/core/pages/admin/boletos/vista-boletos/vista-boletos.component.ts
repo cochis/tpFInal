@@ -156,7 +156,7 @@ export class VistaBoletosComponent {
   }
   fiterBoletos(fiesta) {
     let res = this.boletos.filter((bol: any) => {
-      console.log('bol', bol)
+      // console.log('bol', bol)
       return bol.fiesta._id === fiesta
     })
     let cantidad = 0

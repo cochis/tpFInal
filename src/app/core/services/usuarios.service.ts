@@ -96,7 +96,7 @@ export class UsuariosService {
     return this.http.post(`${base_url}/usuarios/salon/${uid}`, formData, this.headers)
   }
   crearUsuario(formData: Usuario) {
-    // console.log('formData::: ', formData);
+    // // console.log('formData::: ', formData);
     return this.http.post(`${base_url}/usuarios`, formData, this.headers)
 
 
@@ -140,7 +140,7 @@ export class UsuariosService {
   cargarUsuarioByEmail(email: string) {
 
     const url = `${base_url}/usuarios/byemail/${email}`
-    // console.log('url::: ', url);
+    // // console.log('url::: ', url);
 
     return this.http.get<CargarUsuarios>(url, this.headers)
   }
@@ -148,7 +148,7 @@ export class UsuariosService {
 
 
     const url = `${base_url}/usuarios/bycreador/${creador}`
-    // console.log('url::: ', url);
+    // // console.log('url::: ', url);
 
     return this.http.get<CargarUsuarios>(url, this.headers)
   }

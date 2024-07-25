@@ -75,14 +75,14 @@ export class CrearTipoCantidadComponent {
         (error) => {
           this.functionsService.alertError(error, 'Tipo de Cantidades')
           this.loading = false
-          console.log('error::: ', error);
+          // console.logror::: ', error);
 
         })
     } else {
 
       this.functionsService.alertForm('Tipo de Cantidades')
       this.loading = false
-      return console.log('Please provide all the required values!');
+      return // console.log('Please provide all the required values!');
     }
 
 
