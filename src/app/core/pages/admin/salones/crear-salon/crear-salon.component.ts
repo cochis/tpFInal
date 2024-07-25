@@ -117,7 +117,7 @@ export class CrearSalonComponent {
 
       this.functionsService.alertForm('Salones')
       this.loading = false
-      return // console.log('Please provide all the required values!');
+      return  console.log('Please provide all the required values!');
     }
 
 

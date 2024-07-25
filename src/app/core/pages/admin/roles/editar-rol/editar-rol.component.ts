@@ -134,7 +134,7 @@ export class EditarRolComponent {
       this.functionsService.alertForm('Roles')
       this.loading = false
 
-      return // console.log('Please provide all the required values!');
+      return  console.log('Please provide all the required values!');
     }
 
 

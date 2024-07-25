@@ -77,7 +77,7 @@ export class CrearEventoComponent {
 
       this.functionsService.alertForm('Eventos')
       this.loading = false
-      return   // console.log('Please provide all the required values!');
+      return    console.log('Please provide all the required values!');
     }
 
 

@@ -80,7 +80,7 @@ export class CrearTipoModuloComponent {
 
       this.functionsService.alertForm('TipoModulos')
       this.loading = false
-      return // console.log('Please provide all the required values!');
+      return  console.log('Please provide all the required values!');
     }
 
 

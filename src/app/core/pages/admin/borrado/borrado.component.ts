@@ -65,7 +65,6 @@ export class BorradoComponent {
     this.loading = true
     this.usuariosService.cargarAlumnosAll().subscribe((resp: CargarUsuarios) => {
       this.usuarios = this.functionsService.getActives(resp.usuarios)
-      console.log('this.usuarios', this.usuarios)
     },
       (error: any) => {
         this.functionsService.alertError(error, 'Usuarios')
@@ -73,7 +72,6 @@ export class BorradoComponent {
       })
     this.invitacionsService.cargarInvitacionsAll().subscribe((resp: CargarInvitacions) => {
       this.invitacions = this.functionsService.getActives(resp.invitacions)
-      console.log('this.invitacions', this.invitacions)
     },
       (error: any) => {
         this.functionsService.alertError(error, 'Invitaciones')
@@ -81,7 +79,6 @@ export class BorradoComponent {
       })
     this.fiestasService.cargarFiestasAll().subscribe((resp: CargarFiestas) => {
       this.fiestas = this.functionsService.getActives(resp.fiestas)
-      console.log('this.fiestas', this.fiestas)
     },
       (error: any) => {
         this.functionsService.alertError(error, 'Fiestas')
@@ -89,7 +86,6 @@ export class BorradoComponent {
       })
     this.salonsService.cargarSalonsAll().subscribe((resp: CargarSalons) => {
       this.salons = this.functionsService.getActives(resp.salons)
-      console.log('this.salons', this.salons)
     },
       (error: any) => {
         this.functionsService.alertError(error, 'Salones')
@@ -97,7 +93,6 @@ export class BorradoComponent {
       })
     this.boletosService.cargarBoletosAll().subscribe((resp: CargarBoletos) => {
       this.boletos = this.functionsService.getActives(resp.boletos)
-      console.log('this.boletos', this.boletos)
     },
       (error: any) => {
         this.functionsService.alertError(error, 'Boletos')
@@ -114,14 +109,14 @@ export class BorradoComponent {
     })
   }
   filterFunction(search) {
-    console.log('search', search)
+   
     this.items = this.itemsTemp
     var res: any
     search = search.toLowerCase()
     if (this.typeSelect == '1') {
 
       res = this.items.filter((item: any) => {
-        console.log('item', item.nombre.toLowerCase())
+        
         return (
           item.nombre.toLowerCase().includes(search) ||
           item.apellidoPaterno.toLowerCase().includes(search) ||
@@ -129,15 +124,14 @@ export class BorradoComponent {
           item.apellidoMaterno.toLowerCase().includes(search)
         )
       })
-
-      console.log('res', res)
+ 
       this.items = res
 
     }
     else if (this.typeSelect == '2') {
 
       res = this.items.filter((item: any) => {
-        console.log('item', item.nombre.toLowerCase())
+      
         return (
           item.nombre.toLowerCase().includes(search) ||
           item.direccion.toLowerCase().includes(search) ||
@@ -158,13 +152,13 @@ export class BorradoComponent {
         )
       })
 
-      console.log('res', res)
+      
       this.items = res
 
     } else if (this.typeSelect == '3') {
 
       res = this.items.filter((item: any) => {
-        console.log('item', item.nombre.toLowerCase())
+        
         return (
           item.nombre.toLowerCase().includes(search) ||
           item.calle.toLowerCase().includes(search) ||
@@ -178,13 +172,13 @@ export class BorradoComponent {
         )
       })
 
-      console.log('res', res)
+      
       this.items = res
 
     } else if (this.typeSelect == '4') {
 
       res = this.items.filter((item: any) => {
-        console.log('item', item)
+     
 
         return (
 
@@ -193,13 +187,13 @@ export class BorradoComponent {
         )
       })
 
-      console.log('res', res)
+      
       this.items = res
 
     } else if (this.typeSelect == '5') {
 
       res = this.items.filter((item: any) => {
-        console.log('item', item.nombre.toLowerCase())
+        
         return (
 
           this.functionsService.getValueCatalog(item.salon, 'nombre', this.salons).toLowerCase().includes(search) ||
@@ -221,33 +215,27 @@ export class BorradoComponent {
 
   }
   changeTipo(tipo) {
-    console.log('tipo', tipo)
     this.typeSelect = tipo
     switch (tipo) {
       case '1':
         this.items = this.usuarios
         this.itemsTemp = this.usuarios
-        console.log('this.items', this.items)
         break;
       case '2':
         this.items = this.salons
         this.itemsTemp = this.salons
-        console.log('this.items', this.items)
         break;
       case '3':
         this.items = this.fiestas
         this.itemsTemp = this.fiestas
-        console.log('this.items', this.items)
         break;
       case '4':
         this.items = this.invitacions
         this.itemsTemp = this.invitacions
-        console.log('this.items', this.items)
         break;
       case '5':
         this.items = this.boletos
         this.itemsTemp = this.boletos
-        console.log('this.items', this.items)
         break;
 
       default:
@@ -259,8 +247,7 @@ export class BorradoComponent {
 
   onSubmit() {
     this.loading = true
-    console.log('this.form', this.form.value)
-    console.log('this.form.valid', this.form)
+ 
     if (this.form.valid) {
       if (this.form.value.tipo == '1') {
       
@@ -286,7 +273,7 @@ export class BorradoComponent {
       //Message
       this.loading = false
       this.functionsService.alertForm('Roles')
-      return // console.log('Please provide all the required values!');
+      return  console.log('Please provide all the required values!');
     }
 
 
