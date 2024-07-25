@@ -108,7 +108,7 @@ export class BorradoComponent {
 
   createForm() {
     this.form = this.fb.group({
-      tipo: ['', [Validators.required, Validators.minLength(3)]],
+      tipo: ['', [Validators.required, Validators.minLength(1)]],
       entidad: ['', [Validators.required, Validators.minLength(3)]],
 
     })
@@ -259,9 +259,16 @@ export class BorradoComponent {
 
   onSubmit() {
     this.loading = true
+    console.log('this.form', this.form.value)
+    console.log('this.form.valid', this.form)
     if (this.form.valid) {
-      this.form.value.nombre = this.form.value.nombre.toUpperCase().trim()
-      this.form.value.clave = this.form.value.clave.toUpperCase().trim()
+      if (this.form.value.tipo == '1') {
+      
+      } else if (this.form.value.tipo == '2') { }
+      else if (this.form.value.tipo == '3') { }
+      else if (this.form.value.tipo == '4') { }
+      else if (this.form.value.tipo == '5') { }
+
       // this.rolesService.crearRole(this.form.value).subscribe((resp: any) => {
       //   this.functionsService.alert('Roles', 'Rol creado', 'success')
       //   this.functionsService.navigateTo('core/roles/vista-roles')
