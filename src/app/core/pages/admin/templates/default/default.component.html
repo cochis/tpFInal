@@ -19,8 +19,7 @@
         <div class="row">
             <div class="col-12">
 
-                <div class="box  "
-                    style="background-image:url({{url+'/upload/invitaciones/'+((invitacion.img1!=='')?invitacion.img1:'notImage')}});
+                <div class="box  " style="background-image:url({{url+'/upload/invitaciones/'+((invitacion.img1!=='')?invitacion.img1:'notImage')}});
                            background-position: {{invitacion.xImg1}}% 0px !important;height: 750px;"
                     *ngIf="!vistaTemp">
 
@@ -214,7 +213,7 @@
                                     class="arsenal-sc-bold-italic"> Dirección:</b> {{invitacion.donde3Address}}
                             </p>
 
-                            <a href="{{invitacion.donde3AddressUbicacion}}" target="_blank"
+                            <a href="{{fiesta.ubicacionGoogle}}" target="_blank"
                                 *ngIf="invitacion.donde3AddressUbicacion!==''"><i [class]="invitacion.donde3Icon "
                                     style="font-size: 45px;font-weight: 800 ;color:{{invitacion.cPrincipal}};"> </i></a>
                         </div>
@@ -358,7 +357,7 @@
                                 Confirma tu asistencia
                             </button>
 
-                            <button class="btn mt-3" 
+                            <button class="btn mt-3"
                                 style="background-color: {{invitacion.cPrincipal}}; color:{{invitacion.cWhite}} ; border: 3px solid {{invitacion.cSecond}}"
                                 type="button">
                                 Sube tus fotos <i class="bi bi-images"
@@ -499,9 +498,9 @@
                                 date:'medium'}}.</p>
                             <p class="card-text text-start" *ngIf="invitacion.donde3Address !==''"><b
                                     class="arsenal-sc-bold-italic"> Dirección:</b> {{invitacion.donde3Address}}
-                            </p>
+                            </p>dsds
 
-                            <a href="{{invitacion.donde3AddressUbicacion}}" target="_blank"
+                            <a href="{{fiesta.ubicacionGoogle}}" target="_blank"
                                 *ngIf="invitacion.donde3AddressUbicacion!==''"><i [class]="invitacion.donde3Icon "
                                     style="font-size: 45px;font-weight: 800 ;color:{{invitacion.cPrincipal}};"> </i></a>
                         </div>
@@ -619,7 +618,7 @@
                             </button>
 
 
-                            <button class="btn mt-3"  
+                            <button class="btn mt-3"
                                 style="background-color: {{invitacion.cPrincipal}}; color:{{invitacion.cWhite}} ; border: 3px solid {{invitacion.cSecond}}"
                                 type="button">
                                 Sube tus fotos <i class="bi bi-images"

@@ -109,14 +109,14 @@ export class BorradoComponent {
     })
   }
   filterFunction(search) {
-   
+
     this.items = this.itemsTemp
     var res: any
     search = search.toLowerCase()
     if (this.typeSelect == '1') {
 
       res = this.items.filter((item: any) => {
-        
+
         return (
           item.nombre.toLowerCase().includes(search) ||
           item.apellidoPaterno.toLowerCase().includes(search) ||
@@ -124,14 +124,14 @@ export class BorradoComponent {
           item.apellidoMaterno.toLowerCase().includes(search)
         )
       })
- 
+
       this.items = res
 
     }
     else if (this.typeSelect == '2') {
 
       res = this.items.filter((item: any) => {
-      
+
         return (
           item.nombre.toLowerCase().includes(search) ||
           item.direccion.toLowerCase().includes(search) ||
@@ -152,13 +152,13 @@ export class BorradoComponent {
         )
       })
 
-      
+
       this.items = res
 
     } else if (this.typeSelect == '3') {
 
       res = this.items.filter((item: any) => {
-        
+
         return (
           item.nombre.toLowerCase().includes(search) ||
           item.calle.toLowerCase().includes(search) ||
@@ -172,13 +172,13 @@ export class BorradoComponent {
         )
       })
 
-      
+
       this.items = res
 
     } else if (this.typeSelect == '4') {
 
       res = this.items.filter((item: any) => {
-     
+
 
         return (
 
@@ -187,13 +187,13 @@ export class BorradoComponent {
         )
       })
 
-      
+
       this.items = res
 
     } else if (this.typeSelect == '5') {
 
       res = this.items.filter((item: any) => {
-        
+
         return (
 
           this.functionsService.getValueCatalog(item.salon, 'nombre', this.salons).toLowerCase().includes(search) ||
@@ -236,6 +236,7 @@ export class BorradoComponent {
       case '5':
         this.items = this.boletos
         this.itemsTemp = this.boletos
+        console.log('this.itemsTemp::: ', this.itemsTemp);
         break;
 
       default:
@@ -247,10 +248,10 @@ export class BorradoComponent {
 
   onSubmit() {
     this.loading = true
- 
+
     if (this.form.valid) {
       if (this.form.value.tipo == '1') {
-      
+
       } else if (this.form.value.tipo == '2') { }
       else if (this.form.value.tipo == '3') { }
       else if (this.form.value.tipo == '4') { }
@@ -273,7 +274,7 @@ export class BorradoComponent {
       //Message
       this.loading = false
       this.functionsService.alertForm('Roles')
-      return  console.log('Please provide all the required values!');
+      return console.log('Please provide all the required values!');
     }
 
 
