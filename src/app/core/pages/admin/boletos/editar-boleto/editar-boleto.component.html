@@ -211,7 +211,10 @@
 
                                             </div>
                                             <div>
+                                                <div class="col-12">
 
+                                                    <small class="error" *ngIf="numeroInvitados<total">Valida la cantidad de invitados </small>
+                                                </div> 
                                                 <button type="button" class="confirmado ma pointer"
                                                     *ngIf="invitado.value.uid"
                                                     (click)="copiarLink(fiesta.uid,invitado.value.uid)">
@@ -228,7 +231,7 @@
 
 
                                             <div class="col-12   mt-3" *ngIf="edit==='true'  ">
-
+                                             
                                                 <button (click)="saveBoleto(invitado.value)"
                                                     *ngIf=" invitado.value.uid == ''" class="custom-btn  but   "
                                                     [disabled]="getDisabled()">Guardar invitado</button>

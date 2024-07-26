@@ -154,7 +154,9 @@ export class VistaFiestasComponent {
         });
     } else if (this.rol === this.SLN || this.rol === this.ANF) {
       let usr = this.functionsService.getLocal('uid')
+      console.log('usr', usr)
       this.fiestasService.cargarFiestasByEmail(usr).subscribe((resp: CargarFiestas) => {
+        console.log('resp', resp)
         this.fiestas = resp.fiestas
         this.fiestasTemp = resp.fiestas
         setTimeout(() => {

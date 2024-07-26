@@ -18,6 +18,7 @@ import { TipoModulo } from "../models/tipoModulo.model"
 import { ModuloTemplate } from "../models/moduloTemplate.model"
 import { Template } from "../models/template.model"
 import { Push } from "../models/push.model"
+import { Log } from "../models/log.model"
 
 
 
@@ -164,3 +165,11 @@ export interface PagingConfig{
     itemsPerPage: number;
     totalItems: number;
   }
+  export interface CargarLog {
+    log: Log
+}
+
+export interface CargarLogs {
+    total: number
+    logs: Log[]
+} 

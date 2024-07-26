@@ -81,27 +81,19 @@ export class DefaultComponent implements OnInit, AfterViewInit {
         }
         this.boleto.vista = true
         this.boletosService.registrarPushNotification(this.boleto).subscribe((resp: any) => {
-          // console.log('resp', resp)
-          this.boleto = resp.boletoActualizado
-          this.subscribeNotification()
-
+          this.boletosService.isVistaBoleto(this.boleto).subscribe((resp2:any)=>{
+            this.boleto = resp.boletoActualizado
+            this.subscribeNotification()
+          })
         })
-
-
-
       }, (error) => {
         this.functionsService.alertError(error, 'Boletos')
       })
 
       // Se carga la fiesta por ID  
-
-      // console.log('this.fiestaId::: ', this.fiestaId);
       this.fiestasService.cargarFiestaById(this.fiestaId).subscribe((resp: any) => {
         this.fiesta = resp.fiesta
-        // console.log('this.fiesta::: ', this.fiesta);
-
         this.invitacionsService.cargarInvitacionByFiesta(this.fiestaId).subscribe(async (resp: any) => {
-          // console.log('resp::: ', resp);
           this.invitacion = resp.invitacion.data
           this.restParty()
           this.invitacion = await this.dateToNumber(this.invitacion)
@@ -287,7 +279,52 @@ export class DefaultComponent implements OnInit, AfterViewInit {
     }
     this.boletosService.registrarAsistencia(this.boleto).subscribe((res: any) => {
       if (res.boletoActualizado.confirmado) {
-        this.functionsService.alert('Invitacion', 'Confirmada', 'success')
+        this.boleto.cantidadInvitados
+        console.log('this.boleto.cantidadInvitados', this.boleto.cantidadInvitados)
+        Swal.fire({
+          title: "Si van a asistir menos personas confirmar la cantidad",
+          input: "number",
+          inputAttributes: {
+            max: this.boleto.cantidadInvitados.toString(),
+            min:'0'
+          },
+          showCancelButton: true,
+          confirmButtonText: "Enviar",
+          showLoaderOnConfirm: true,
+          preConfirm: async (login) => {
+            try {
+              console.log('login', login)
+
+
+
+              return login
+              // const githubUrl = `
+              //   https://api.github.com/users/${login}
+              // `;
+              // const response = await fetch(githubUrl);
+              // if (!response.ok) {
+              //   return Swal.showValidationMessage(`
+              //     ${JSON.stringify(await response.json())}
+              //   `);
+              // }
+              // return response.json();
+            } catch (error) {
+              Swal.showValidationMessage(`
+                Request failed: ${error}
+              `);
+            }
+          },
+          allowOutsideClick: () => !Swal.isLoading()
+        }).then((result) => {
+          if (result.isConfirmed) {
+            Swal.fire({
+              title: `${result.value.login}'s avatar`,
+              imageUrl: result.value.avatar_url
+            });
+          }
+        });
+
+
       } else {
         this.functionsService.alert('Invitacion', 'Se quito la confirmación', 'success')
       }
@@ -365,14 +402,9 @@ export class DefaultComponent implements OnInit, AfterViewInit {
       }
     )
       .then(respuesta => {
-        // console.log('respuesta', respuesta)
         this.pushsService.crearPush(respuesta).subscribe((resp: any) => {
-          // console.log('resp', resp)
-          // console.log('this.boleto.pushNotification', this.boleto.pushNotification)
           this.functionsService.setLocal("pushService", resp)
-
           var bl: any
-
           this.boleto.pushNotification.forEach((b) => {
             if (b == resp.pushDB.uid) {
               bl = true
@@ -383,7 +415,6 @@ export class DefaultComponent implements OnInit, AfterViewInit {
             this.boleto.pushNotification.push(resp.pushDB.uid)
           }
           this.boletosService.registrarPushNotification(this.boleto).subscribe((res) => {
-            // console.log('res', res)
           })
         })
       })

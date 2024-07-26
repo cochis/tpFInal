@@ -159,25 +159,27 @@
                                             </span>
                                         </div>
 
-                                        <div class="row mt-3" *ngIf="invitacion">
+                                        <div class="row mt-3" *ngIf="invitacion" style="width: 100%;">
                                             <b>Valide que su combinación de colores sea legible</b>
-                                            <div class="col-6 ma">
+                                            <!-- [imageSrc]="url+'/upload/invitaciones/'+invitacion.data.img1" -->
+                                            <div class="col-6 ma mt-3">
                                                 <qrcode [qrdata]="getQr()" [allowEmptyString]="true"
                                                     [ariaLabel]="'Saludos...'" [cssClass]="'center'"
-                                                    [imageSrc]="url+'/upload/invitaciones/'+invitacion.data.img1"
+                                                  
                                                     [colorDark]="colorBgQr.value" [colorLight]="colorQr.value"
                                                     [elementType]="'canvas'" [errorCorrectionLevel]="'M'"
                                                     [imageHeight]="50" [imageWidth]="50" [margin]="4" [scale]="1"
-                                                    [width]="250">
+                                                    [width]="200" class="ma mt-3">
                                                 </qrcode>
                                             </div>
                                         </div>
                                         <div class="row mt-3" *ngIf="!invitacion">
                                             <b>Valide que su combinación de colores sea legible</b>
+                                            <!-- [imageSrc]="url+'/upload/invitaciones/notImage.png'" -->
                                             <div class="col-6 ma">
                                                 <qrcode [qrdata]="getQr()" [allowEmptyString]="true"
                                                     [ariaLabel]="'Saludos...'" [cssClass]="'center'"
-                                                    [imageSrc]="url+'/upload/invitaciones/notImage.png'"
+                                                
                                                     [colorDark]="colorQr.value" [colorLight]="colorBgQr.value"
                                                     [elementType]="'canvas'" [errorCorrectionLevel]="'M'"
                                                     [imageHeight]="50" [imageWidth]="50" [margin]="4" [scale]="1"

@@ -47,8 +47,9 @@ export class EditarInvitacionComponent {
     private invitacionsService: InvitacionsService,
     private router: Router,
     private fileService: FileService,
-
+    
   ) {
+   
     this.id = this.route.snapshot.params['id']
     this.edit = this.route.snapshot.params['edit']
     if (this.edit == 'true') {
@@ -372,6 +373,7 @@ export class EditarInvitacionComponent {
     if (this.invitacion) {
       let data = await this.numberToData(this.form.value)
       this.invitacion.data = (data)
+      this.invitacion.usuarioFiesta= this.fiesta.usuarioFiesta
       this.actualizarInvitacion(this.invitacion).subscribe((res: any) => {
         this.invitacion = res.invitacionActualizado
         if (this.rol != this.URS) {
@@ -382,20 +384,26 @@ export class EditarInvitacionComponent {
       })
     } else {
       let dataT = await this.dateToNumber(this.form.value)
-      let invitado = {
+      console.log('this.uid', this.uid)
+      var invitado = {
         tipoTemplate: this.fiesta.invitacion,
         templateActivated: true,
         data: dataT,
+        usuarioFiesta:this.fiesta.usuarioFiesta,
         fiesta: (this.fiesta._id) ? this.fiesta._id : this.fiesta.uid,
-        usuarioCreadted: this.uid,
+        usuarioCreated: this.uid,
         activated: true,
         dateCreated: this.today,
         lastEdited: this.today
       }
-      this.crearInvitacion(invitado).subscribe((res: CargarInvitacion) => {
-        this.invitacion = res.invitacion
-        this.functionsService.navigateTo('core/fiestas/vista-fiestas')
-      })
+      console.log('invitado', invitado)
+      setTimeout(() => {
+        
+        this.crearInvitacion(invitado).subscribe((res: CargarInvitacion) => {
+          this.invitacion = res.invitacion
+          this.functionsService.navigateTo('core/fiestas/vista-fiestas')
+        })
+      }, 500);
     }
   }
   back() {
@@ -546,6 +554,7 @@ export class EditarInvitacionComponent {
                 this.actualizarInvitacion(this.invitacion).subscribe((resp: any) => {
                   this.invitacion = resp.invitacionActualizado
                   this.loading = false
+                  this.getInvitacion(this.id)
                   return
                 })
               }, 800);
@@ -611,8 +620,9 @@ export class EditarInvitacionComponent {
     return this.invitacionsService.actualizarInvitacion(invitacion)
   }
   crearInvitacion(invitacion) {
+    console.log('invitacion', invitacion)
     // console.log('crearInvitacion');
-    invitacion.usuarioCreated = this.usuarioCreated
+ 
     if (typeof (invitacion.fiesta) == "object") {
       invitacion.fiesta = invitacion.fiesta.uid ? invitacion.fiesta.uid : invitacion.fiesta._id
     }

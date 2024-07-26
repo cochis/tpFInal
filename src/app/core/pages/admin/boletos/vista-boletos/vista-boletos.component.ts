@@ -97,7 +97,7 @@ export class VistaBoletosComponent {
         })
     } else {
       this.fiestasService.cargarFiestasAll().subscribe((resp: CargarFiestas) => {
-        this.fiestas = resp.fiestas
+        this.fiestas = resp.fiestas 
       },
         (error: any) => {
           this.functionsService.alertError(error, 'Boletos')

@@ -171,7 +171,11 @@ export class GaleriaComponent implements OnInit, OnDestroy {
   async upImages(file) {
     this.porcentaje = 100
     this.imagens = file.target.files
-
+    if(this.imagens.length >20){
+      this.loading= false
+      this.functionsService.alert('Galeria','Máximo de archivos 20','info')
+      return
+    }
     this.totalImg = file.target.files.length
     this.total = 100 / this.totalImg
     this.idx = 1
