@@ -234,6 +234,16 @@ export class FunctionsService {
     return x
   }
 
+  getTD(array: any) {
+    let x = array.filter((a) => {
+      if (a.fecha > (this.getToday() - 86400000) && a.fecha < (this.getToday() + 86400000)) {
+        return a
+      }
+    })
+    return x
+
+  }
+
 
   logout() {
     localStorage.clear()

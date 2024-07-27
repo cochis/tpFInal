@@ -101,8 +101,8 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
     this.loading = true
     if (this.rol === this.ADM) {
       this.fiestasService.cargarFiestasAll().subscribe(resp => {
-        this.fiestas = resp.fiestas
-        this.fiestasTemp = resp.fiestas
+        this.fiestas = this.functionsService.getActives(resp.fiestas)
+        this.fiestasTemp = this.fiestas
         this.fiestas.forEach((fst, i) => {
           this.blt = {
             fiesta: fst,
@@ -117,8 +117,8 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
       })
     } else if (this.rol === this.URS) {
       this.fiestasService.cargarFiestasByanfitrion(this.usuario.uid).subscribe(resp => {
-        this.fiestas = resp.fiestas
-        this.fiestasTemp = resp.fiestas
+        this.fiestas = this.functionsService.getActives(resp.fiestas)
+        this.fiestasTemp = this.fiestas
         this.fiestas.forEach((fst, i) => {
           this.blt = {
             fiesta: fst,
@@ -134,8 +134,8 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
       })
     } else if (this.rol === this.CHK) {
       this.fiestasService.cargarFiestasBySalon(this.usuario.salon[0]).subscribe(resp => {
-        this.fiestas = resp.fiestas
-        this.fiestasTemp = resp.fiestas
+        this.fiestas = this.functionsService.getActives(resp.fiestas)
+        this.fiestasTemp = this.fiestas
         this.fiestas.forEach((fst, i) => {
           this.blt = {
             fiesta: fst,
@@ -150,8 +150,8 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
       })
     } else if (this.rol === this.SLN) {
       this.fiestasService.cargarFiestasByEmail(this.usuario.uid).subscribe(resp => {
-        this.fiestas = resp.fiestas
-        this.fiestasTemp = resp.fiestas
+        this.fiestas = this.functionsService.getActives(resp.fiestas)
+        this.fiestasTemp = this.fiestas
         this.fiestas.forEach((fst, i) => {
           this.blt = {
             fiesta: fst,
@@ -167,8 +167,8 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
     } else {
 
       this.fiestasService.cargarFiestasByanfitrion(this.usuario.uid).subscribe(resp => {
-        this.fiestas = resp.fiestas
-        this.fiestasTemp = resp.fiestas
+        this.fiestas = this.functionsService.getActives(resp.fiestas)
+        this.fiestasTemp = this.fiestas
         this.fiestas.forEach((fst, i) => {
           this.blt = {
             fiesta: fst,

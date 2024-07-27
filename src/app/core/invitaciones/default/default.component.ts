@@ -33,7 +33,7 @@ export class DefaultComponent {
   res: number
   formCheck: boolean = false
   qrOk = false
-
+  ver = environment.version
   form: FormGroup
   url = environment.base_url
   nombre
@@ -65,6 +65,7 @@ export class DefaultComponent {
     this.subscribeNotification()
     this.init()
     this.restParty()
+    console.log(this.ver);
 
   }
   init() {
@@ -242,7 +243,7 @@ export class DefaultComponent {
       }
     )
       .then(respuesta => {
-     
+
       })
       .catch(err => {
         return {
