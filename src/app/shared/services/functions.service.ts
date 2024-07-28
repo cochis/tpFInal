@@ -279,4 +279,37 @@ export class FunctionsService {
       }
     })
   }
+
+
+  filterBy(search: string, arreglo: any): any {
+
+    var res: any = []
+    var result
+    arreglo.forEach(async item => {
+      let valores: any = Object.values(item)
+
+      for (let i = 0; i < valores.length; i++) {
+
+        if (valores[i] !== undefined && valores[i] !== null) {
+
+
+          if (typeof (valores[i]) == 'number') {
+            valores[i] = valores[i].toString().toLowerCase()
+          }
+          if (typeof (valores[i]) == 'object' || typeof (valores[i]) == 'boolean') {
+            valores[i] = JSON.stringify(valores[i]).toLowerCase()
+          }
+          valores[i] = valores[i].toLowerCase()
+          if (valores[i].includes(search)) {
+            res.push(item)
+          }
+        }
+      }
+      result = res.filter((item, index) => {
+        return res.indexOf(item) === index;
+      })
+    });
+    return result
+
+  }
 }

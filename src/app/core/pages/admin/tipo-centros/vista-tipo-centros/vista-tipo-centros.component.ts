@@ -16,18 +16,17 @@ import { Salon } from 'src/app/core/models/salon.model';
 import { environment } from 'src/environments/environment';
 
 
-
 @Component({
-  selector: 'app-vista-roles',
-  templateUrl: './vista-roles.component.html',
-  styleUrls: ['./vista-roles.component.css']
+  selector: 'app-vista-tipo-centros',
+  templateUrl: './vista-tipo-centros.component.html',
+  styleUrls: ['./vista-tipo-centros.component.css']
 })
-export class VistaRolesComponent {
+export class VistaTipoCentrosComponent {
   data!: any
   usuarios: Usuario[] = [];
   usuariosTemp: Usuario[] = [];
-  roles: any = []
-  rolesTemp: any = []
+  roles: Role[]
+  rolesTemp: Role[]
   salones: Salon[]
   loading = false
   url = environment.base_url
@@ -44,15 +43,18 @@ export class VistaRolesComponent {
   }
 
   buscar(termino) {
-    termino = termino.toLowerCase()
-    if (termino.length === 0) {
-      this.roles = this.rolesTemp
-      return
-    }
-    termino = termino.trim().toLowerCase()
+    termino = termino.trim()
     setTimeout(() => {
-      this.functionsService.filterBy(termino, this.rolesTemp)
-      this.roles = this.functionsService.filterBy(termino, this.rolesTemp)
+      if (termino.length === 0) {
+        this.roles = this.rolesTemp
+        return
+      }
+      this.busquedasService.buscar('roles', termino, this.functionsService.isAdmin()).subscribe((resp) => {
+        this.roles = resp
+
+        this.setRoles()
+      })
+
     }, 500);
   }
 
@@ -117,5 +119,8 @@ export class VistaRolesComponent {
 
     this.functionsService.navigateTo('core/roles/crear-rol')
   }
+
+}
+{
 
 }

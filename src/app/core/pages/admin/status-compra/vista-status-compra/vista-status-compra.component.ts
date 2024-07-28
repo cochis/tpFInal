@@ -37,19 +37,15 @@ export class VistaStatusCompraComponent {
   }
 
   buscar(termino) {
-    termino = termino.trim()
+    termino = termino.toLowerCase()
+    if (termino.length === 0) {
+      this.statusCompras = this.statusComprasTemp
+      return
+    }
+    termino = termino.trim().toLowerCase()
     setTimeout(() => {
-      if (termino.length === 0) {
-        this.statusCompras = this.statusComprasTemp
-        return
-      }
-      this.busquedasService.buscar('statusCompras', termino, this.functionsService.isAdmin()).subscribe((resp) => {
-        this.statusCompras = resp
-
-
-        this.setStatusCompras()
-      })
-
+      this.functionsService.filterBy(termino, this.statusComprasTemp)
+      this.statusCompras = this.functionsService.filterBy(termino, this.statusComprasTemp)
     }, 500);
   }
 

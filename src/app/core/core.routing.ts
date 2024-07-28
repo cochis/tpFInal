@@ -57,6 +57,9 @@ import { DefaultComponent } from './pages/admin/templates/default/default.compon
 import { InfoFiestaComponent } from './pages/admin/fiestas/info-fiesta/info-fiesta.component';
 import { ByImagesComponent } from './pages/admin/templates/by-images/by-images.component';
 import { BorradoComponent } from './pages/admin/borrado/borrado.component';
+import { EditarTipoCentroComponent } from './pages/admin/tipo-centros/editar-tipo-centro/editar-tipo-centro.component';
+import { CrearTipoCentroComponent } from './pages/admin/tipo-centros/crear-tipo-centro/crear-tipo-centro.component';
+import { VistaTipoCentrosComponent } from './pages/admin/tipo-centros/vista-tipo-centros/vista-tipo-centros.component';
 
 
 const routes: Routes = [
@@ -161,6 +164,27 @@ const routes: Routes = [
         path: 'roles/vista-roles',
         component: VistaRolesComponent,
         data: { titulo: 'Vista roles' },
+        canActivate: [authGuard]
+
+      },
+      {
+        path: 'tipo-centros/editar-tipo-centro/:edit/:id',
+        component: EditarTipoCentroComponent,
+        data: { titulo: 'Editar tipo centro' },
+        canActivate: [authGuard]
+
+      },
+      {
+        path: 'tipo-centros/crear-tipo-centro',
+        component: CrearTipoCentroComponent,
+        data: { titulo: 'Crear tipo centro' },
+        canActivate: [authGuard]
+
+      },
+      {
+        path: 'tipo-centros/vista-tipo-centros',
+        component: VistaTipoCentrosComponent,
+        data: { titulo: 'Vista tipo centros' },
         canActivate: [authGuard]
 
       },

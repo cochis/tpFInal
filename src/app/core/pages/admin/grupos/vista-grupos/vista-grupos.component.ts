@@ -36,18 +36,15 @@ export class VistaGruposComponent {
   }
 
   buscar(termino) {
-    termino = termino.trim()
+    termino = termino.toLowerCase()
+    if (termino.length === 0) {
+      this.grupos = this.gruposTemp
+      return
+    }
+    termino = termino.trim().toLowerCase()
     setTimeout(() => {
-      if (termino.length === 0) {
-        this.grupos = this.gruposTemp
-        return
-      }
-      this.busquedasService.buscar('grupos', termino, this.functionsService.isAdmin()).subscribe((resp) => {
-        this.grupos = resp
-
-        this.setGrupos()
-      })
-
+      this.functionsService.filterBy(termino, this.gruposTemp)
+      this.grupos = this.functionsService.filterBy(termino, this.gruposTemp)
     }, 500);
   }
 

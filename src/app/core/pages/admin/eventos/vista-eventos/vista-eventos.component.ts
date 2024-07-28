@@ -37,19 +37,15 @@ export class VistaEventosComponent {
   }
 
   buscar(termino) {
-    termino = termino.trim()
+    termino = termino.toLowerCase()
+    if (termino.length === 0) {
+      this.eventos = this.eventosTemp
+      return
+    }
+    termino = termino.trim().toLowerCase()
     setTimeout(() => {
-      if (termino.length === 0) {
-        this.eventos = this.eventosTemp
-        return
-      }
-      this.busquedasService.buscar('eventos', termino, this.functionsService.isAdmin()).subscribe((resp) => {
-        this.eventos = resp
-
-
-        this.setEventos()
-      })
-
+      this.functionsService.filterBy(termino, this.eventosTemp)
+      this.eventos = this.functionsService.filterBy(termino, this.eventosTemp)
     }, 500);
   }
 

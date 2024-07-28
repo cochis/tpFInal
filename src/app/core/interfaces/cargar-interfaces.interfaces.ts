@@ -19,6 +19,7 @@ import { ModuloTemplate } from "../models/moduloTemplate.model"
 import { Template } from "../models/template.model"
 import { Push } from "../models/push.model"
 import { Log } from "../models/log.model"
+import { TipoCentro } from "../models/tipoCentro.model"
 
 
 
@@ -29,6 +30,14 @@ export interface CargarUsuario {
 export interface CargarUsuarios {
     total: number
     usuarios: Usuario[]
+}
+export interface CargarTipoCentro {
+    tipoCentro: TipoCentro
+}
+
+export interface CargarTipoCentros {
+    total: number
+    tipoCentros: TipoCentro[]
 }
 
 export interface CargarStatusCompra {
@@ -160,12 +169,12 @@ export interface CargarModuloTemplates {
     total: number
     moduloTemplates: ModuloTemplate[]
 }
-export interface PagingConfig{
+export interface PagingConfig {
     currentPage: number;
     itemsPerPage: number;
     totalItems: number;
-  }
-  export interface CargarLog {
+}
+export interface CargarLog {
     log: Log
 }
 

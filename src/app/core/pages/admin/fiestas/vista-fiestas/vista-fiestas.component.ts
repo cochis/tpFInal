@@ -66,16 +66,14 @@ export class VistaFiestasComponent {
     }
   }
   buscar(termino) {
-    termino = termino.trim()
+    termino = termino.toLowerCase()
+    if (termino.length === 0) {
+      this.fiestas = this.fiestasTemp
+      return
+    }
+    termino = termino.trim().toLowerCase()
     setTimeout(() => {
-      if (termino.length === 0) {
-        this.fiestas = this.fiestasTemp
-        return
-      }
-      this.busquedasService.buscar('fiestas', termino, this.functionsService.isAdmin()).subscribe((resp) => {
-        this.fiestas = resp
-        this.setFiestas()
-      })
+      this.fiestas = this.functionsService.filterBy(termino, this.fiestasTemp)
     }, 500);
   }
   buscarCatalogo(tipo: string, value) {
@@ -146,6 +144,7 @@ export class VistaFiestasComponent {
     if (this.rol === this.ADM) {
       this.fiestasService.cargarFiestasAll().subscribe((resp: CargarFiestas) => {
         this.fiestas = resp.fiestas
+        this.fiestasTemp = resp.fiestas
         this.loading = false
       },
         (error) => {
@@ -154,9 +153,9 @@ export class VistaFiestasComponent {
         });
     } else if (this.rol === this.SLN || this.rol === this.ANF) {
       let usr = this.functionsService.getLocal('uid')
-      console.log('usr', usr)
+      // console.log('usr', usr)
       this.fiestasService.cargarFiestasByEmail(usr).subscribe((resp: CargarFiestas) => {
-        console.log('resp', resp)
+        // console.log('resp', resp)
         this.fiestas = resp.fiestas
         this.fiestasTemp = resp.fiestas
         setTimeout(() => {

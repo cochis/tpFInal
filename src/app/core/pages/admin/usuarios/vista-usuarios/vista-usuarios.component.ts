@@ -56,16 +56,14 @@ export class VistaUsuariosComponent {
   }
 
   buscar(termino) {
-    termino = termino.trim()
+    termino = termino.toLowerCase()
+    if (termino.length === 0) {
+      this.usuarios = this.usuariosTemp
+      return
+    }
+    termino = termino.trim().toLowerCase()
     setTimeout(() => {
-      if (termino.length === 0) {
-        this.usuarios = this.usuariosTemp
-        return
-      }
-      this.busquedasService.buscar('usuarios', termino, this.functionsService.isAdmin()).subscribe((resp) => {
-        this.usuarios = resp
-        this.setUsuarios()
-      })
+      this.usuarios = this.functionsService.filterBy(termino, this.usuariosTemp)
     }, 500);
   }
   buscarCatalogo(tipo: string, value) {

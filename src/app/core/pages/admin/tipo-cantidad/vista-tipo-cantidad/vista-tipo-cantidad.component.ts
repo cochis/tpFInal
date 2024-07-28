@@ -37,22 +37,17 @@ export class VistaTipoCantidadComponent {
   }
 
   buscar(termino) {
-    termino = termino.trim()
+    termino = termino.toLowerCase()
+    if (termino.length === 0) {
+      this.tipoCantidades = this.tipoCantidadesTemp
+      return
+    }
+    termino = termino.trim().toLowerCase()
     setTimeout(() => {
-      if (termino.length === 0) {
-        this.tipoCantidades = this.tipoCantidadesTemp
-        return
-      }
-      this.busquedasService.buscar('tipoCantidades', termino, this.functionsService.isAdmin()).subscribe((resp) => {
-        this.tipoCantidades = resp
-
-
-        this.setTipoCantidades()
-      })
-
+      this.functionsService.filterBy(termino, this.tipoCantidadesTemp)
+      this.tipoCantidades = this.functionsService.filterBy(termino, this.tipoCantidadesTemp)
     }, 500);
   }
-
 
 
 

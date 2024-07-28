@@ -16,14 +16,15 @@
                     </div>
                     <div class="row mt-3">
                         <div class="row  text-center">
-                            <div class="col-12 col-md-6  text-center">
-                                <button class="btn but   " (click)="newSalon()" *ngIf="rol==SLN">Nuevo salón</button>
+                            <div class="col-12 col-md-6 mt-3  text-center">
+                                <button class="btn but   " (click)="newSalon()" *ngIf="rol==SLN ">Nuevo salón</button>
+                                <button class="btn but   " (click)="newSalon()" *ngIf="rol==ADM ">Nuevo centro</button>
                                 <button class="btn but   " (click)="newSalon()" *ngIf="rol==ANF">Nueva
                                     ubicación</button>
 
                             </div>
-                            <div class="col-12 col-md-6  text-center mt-3">
-                                <input type="text" class="form-control" placeholder="Buscar salon..."
+                            <div class="col-12 col-md-6  text-center mt-3 ma">
+                                <input type="text" class="form-control" placeholder="Buscar ..."
                                     (keyup)="buscar(txtTermino.value)" #txtTermino>
                             </div>
 

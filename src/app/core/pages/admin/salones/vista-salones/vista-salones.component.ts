@@ -41,20 +41,17 @@ export class VistaSalonesComponent {
   }
 
   buscar(termino) {
-    termino = termino.trim()
+    termino = termino.toLowerCase()
+    if (termino.length === 0) {
+      this.salones = this.salonesTemp
+      return
+    }
+    termino = termino.trim().toLowerCase()
     setTimeout(() => {
-      if (termino.length === 0) {
-        this.salones = this.salonesTemp
-        return
-      }
-      this.busquedasService.buscar('salones', termino, this.functionsService.isAdmin()).subscribe((resp) => {
-        this.salones = resp
-        this.setSalones()
-      })
-
+      this.functionsService.filterBy(termino, this.salonesTemp)
+      this.salones = this.functionsService.filterBy(termino, this.salonesTemp)
     }, 500);
   }
-
 
   setSalones() {
     this.loading = true

@@ -30,6 +30,7 @@ export class VistaBoletosComponent {
   boletos: Boleto[] = [];
   boletosTemp: Boleto[] = [];
   fiestas: Fiesta[]
+  fiestasTemp: Fiesta[]
   usuario: Usuario
   salon: Salon
   salons: Salon[]
@@ -58,16 +59,14 @@ export class VistaBoletosComponent {
     this.getBoletos()
   }
   buscar(termino) {
-    termino = termino.trim()
+    termino = termino.toLowerCase()
+    if (termino.length === 0) {
+      this.fiestas = this.fiestasTemp
+      return
+    }
+    termino = termino.trim().toLowerCase()
     setTimeout(() => {
-      if (termino.length === 0) {
-        this.boletos = this.boletosTemp
-        return
-      }
-      this.busquedasService.buscar('boletos', termino, this.functionsService.isAdmin()).subscribe((resp) => {
-        this.boletos = resp
-        this.setBoletos()
-      })
+      this.fiestas = this.functionsService.filterBy(termino, this.fiestasTemp)
     }, 500);
   }
   buscarCatalogo(tipo: string, value) {
@@ -89,6 +88,7 @@ export class VistaBoletosComponent {
     if (this.rol !== this.ADM) {
       this.fiestasService.cargarFiestasByEmail(this.mail).subscribe((resp: CargarFiestas) => {
         this.fiestas = resp.fiestas
+        this.fiestasTemp = resp.fiestas
         this.loading = false
       },
         (error: any) => {
@@ -97,7 +97,8 @@ export class VistaBoletosComponent {
         })
     } else {
       this.fiestasService.cargarFiestasAll().subscribe((resp: CargarFiestas) => {
-        this.fiestas = resp.fiestas 
+        this.fiestas = resp.fiestas
+        this.fiestasTemp = resp.fiestas
       },
         (error: any) => {
           this.functionsService.alertError(error, 'Boletos')
