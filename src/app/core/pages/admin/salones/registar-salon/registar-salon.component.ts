@@ -127,33 +127,33 @@ export class RegistarSalonComponent {
       this.salonesService.crearSalon(salon).subscribe((resp: any) => {
 
 
-        this.functionsService.alert('Salon', 'salon creado', 'success')
+        this.functionsService.alert('Centro de Eventos', 'Creado', 'success')
 
         this.usuario.salon = resp.salon.uid
         this.usuario.lastEdited = this.functionsService.getToday()
 
         this.usuariosService.actualizarUsuario(this.usuario).subscribe((resp: CargarUsuario) => {
-          this.functionsService.alert('Registro salon', 'Se ha registrado tu salon', 'success')
+          this.functionsService.alert('Centro de Eventos', 'Se ha registrado tu centro de eventos', 'success')
 
           this.loading = false
           this.functionsService.navigateTo('core')
         },
           (error) => {
-            this.functionsService.alertError(error, 'Registro salón')
+            this.functionsService.alertError(error, 'Centro de Eventos')
             this.loading = false
           })
       },
         (error) => {
-          this.functionsService.alertError(error, 'Salones')
+          this.functionsService.alertError(error, 'Centro de Eventos')
           this.loading = false
 
 
         })
     } else {
 
-      this.functionsService.alertForm('Salones')
+      this.functionsService.alertForm('Centro de Eventos')
       this.loading = false
-      return  console.log('Please provide all the required values!');
+      return console.log('Please provide all the required values!');
     }
 
 

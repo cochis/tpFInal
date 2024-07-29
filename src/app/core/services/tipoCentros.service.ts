@@ -26,7 +26,7 @@ export class TipoCentrosService {
   }
 
   cargarTipoCentrosInit() {
-    const url = `${base_url}/tipoCentros/all`
+    const url = `${base_url}/tipo-centros/all`
     return this.http.get<CargarTipoCentros>(url, this.headers).pipe(
       map((resp) => {
         const tipoCentros = resp.tipoCentros.map(
@@ -50,7 +50,7 @@ export class TipoCentrosService {
     )
   }
   cargarTipoCentrosAll() {
-    const url = `${base_url}/tipoCentros/all`
+    const url = `${base_url}/tipo-centros/all`
     return this.http.get<CargarTipoCentros>(url, this.headers).pipe(
       map((resp) => {
         const tipoCentros = resp.tipoCentros.map(
@@ -74,7 +74,7 @@ export class TipoCentrosService {
     )
   }
   cargarTipoCentrosSalon() {
-    const url = `${base_url}/tipoCentros/all/salon`
+    const url = `${base_url}/tipo-centros/all/salon`
     return this.http.get<CargarTipoCentros>(url, this.headers).pipe(
       map((resp) => {
         const tipoCentros = resp.tipoCentros.map(
@@ -121,12 +121,12 @@ export class TipoCentrosService {
     )
   }
   crearTipoCentro(formData: TipoCentro) {
-    return this.http.post(`${base_url}/tipoCentros`, formData, this.headers)
+    return this.http.post(`${base_url}/tipo-centros`, formData, this.headers)
   }
 
 
   isActivedTipoCentro(tipoCentro: TipoCentro) {
-    const url = `${base_url}/tipoCentros/isActive/${tipoCentro.uid}`
+    const url = `${base_url}/tipo-centros/isActive/${tipoCentro.uid}`
     const data = {
       ...tipoCentro,
       lastEdited: Date.now(),
@@ -134,7 +134,7 @@ export class TipoCentrosService {
     return this.http.put(url, data, this.headers)
   }
   actualizarTipoCentro(tipoCentro: TipoCentro) {
-    const url = `${base_url}/tipoCentros/${tipoCentro.uid}`
+    const url = `${base_url}/tipo-centros/${tipoCentro.uid}`
     const data = {
       ...tipoCentro,
       lastEdited: Date.now(),
@@ -143,11 +143,11 @@ export class TipoCentrosService {
   }
 
   cargarTipoCentroById(id: string) {
-    const url = `${base_url}/tipoCentros/${id}`
+    const url = `${base_url}/tipo-centros/${id}`
     return this.http.get<CargarTipoCentro>(url, this.headers)
   }
   cargarTipoCentroByClave(clave: string) {
-    const url = `${base_url}/tipoCentros/clave/${clave}`
+    const url = `${base_url}/tipo-centros/clave/${clave}`
     return this.http.get<CargarTipoCentro>(url, this.headers)
   }
 

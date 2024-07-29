@@ -173,7 +173,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
         this.boleto.forEach((invitado: any) => {
           this.invitados.push(this.setInvitado(invitado))
         });
-       
+
       },
         (error: any) => {
           this.functionsService.alertError(error, 'Boletos')
@@ -207,9 +207,9 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
       grupo: ['', [Validators.required]],
       salon: [this.fiesta.salon, [Validators.required]],
       nombreGrupo: ['', [Validators.required]],
-      whatsapp: [''],
+      whatsapp: ['', [Validators.minLength(10)]],
       email: ['', [Validators.email]],
-      cantidadInvitados: [0, [Validators.required, Validators.min(1)]],
+      cantidadInvitados: [0],
       mesa: [''],
       ocupados: [0],
       confirmado: [false],
@@ -225,9 +225,9 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
       grupo: [(invitado.grupo !== '') ? invitado.grupo : '', [Validators.required]],
       salon: [(invitado.salon !== '') ? invitado.salon : '', [Validators.required]],
       nombreGrupo: [(invitado.nombreGrupo !== '') ? invitado.nombreGrupo : '', [Validators.required]],
-      whatsapp: [(invitado.whatsapp !== undefined) ? invitado.whatsapp : ''],
+      whatsapp: [(invitado.whatsapp !== undefined) ? invitado.whatsapp : '', [Validators.minLength(10)]],
       email: [(invitado.email !== undefined) ? invitado.email : '', [Validators.email]],
-      cantidadInvitados: [(invitado.cantidadInvitados !== undefined) ? invitado.cantidadInvitados : 0, [Validators.required, Validators.min(1)]],
+      cantidadInvitados: [(invitado.cantidadInvitados !== undefined) ? invitado.cantidadInvitados : 0],
       mesa: [(invitado.mesa !== undefined) ? invitado.mesa : ''],
       ocupados: [(invitado.ocupados !== undefined) ? invitado.ocupados : 0],
       confirmado: [invitado.confirmado],
@@ -245,7 +245,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
   }
   getQr(invitado) {
     if ((invitado.value !== undefined) && typeof (invitado.value.salon) === 'object') {
- ;
+      ;
       let qr = {
         uid: '',
 
@@ -257,7 +257,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
       }
       return JSON.stringify(qr)
     } else {
-      
+
 
       let invi = {
 
@@ -266,7 +266,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
         grupo: invitado.value.grupo,
         salon: invitado.value.salon
       }
-     
+
       return JSON.stringify(invi)
     }
   }
@@ -289,6 +289,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
   }
   onSubmit() {
     this.ngOnDestroy()
+    console.log('this.form::: ', this.form.value);
     this.submited = true
     if (this.form.invalid) {
       return
@@ -508,7 +509,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
 
     }
     var aux = document.createElement("input");
-   
+
 
     aux.setAttribute("value", url);
 

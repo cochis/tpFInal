@@ -198,9 +198,13 @@
                     <div class="card text-center bd  mb-3 ">
                         <h5 class="card-title mt-3 dancing" style="margin: auto; color:{{invitacion.cPrincipal}}">
                             {{invitacion.donde3Title}}</h5>
-                        <div class="mt-3   bd  img-container ">
+                        <div class="mt-3   bd  img-container " *ngIf="fiesta">
 
                             <img [src]="url+'/upload/salones/'+fiesta.salon.img" class="img-card sombra" alt="...">
+                        </div>
+                        <div class="mt-3   bd  img-container " *ngIf="!fiesta">
+
+                            <img [src]="url+'/upload/salones/notImage'" class="img-card sombra" alt="...">
                         </div>
                         <div class="card-body " style="width: 100%; margin: auto;">
                             <p class="card-text text-center arsenal-sc-bold-italic" style="height: 80px;"
@@ -212,10 +216,17 @@
                             <p class="card-text text-start" *ngIf="invitacion.donde3Address !==''"><b
                                     class="arsenal-sc-bold-italic"> Dirección:</b> {{invitacion.donde3Address}}
                             </p>
-                          
+
                             <a href="{{fiesta.salon.ubicacionGoogle}}" target="_blank"
-                                *ngIf="invitacion.donde3AddressUbicacion!==''"><i [class]="invitacion.donde3Icon "
-                                    style="font-size: 45px;font-weight: 800 ;color:{{invitacion.cPrincipal}};"> </i></a>
+                                *ngIf="fiesta && invitacion.donde3AddressUbicacion!==''">
+                                <i [class]="invitacion.donde3Icon "
+                                    style="font-size: 45px;font-weight: 800 ;color:{{invitacion.cPrincipal}};"> </i>
+                            </a>
+                            <a href="{{invitacion.ubicacionGoogle}}" target="_blank"
+                                *ngIf="!fiesta && invitacion.donde3AddressUbicacion!==''">
+                                <i [class]="invitacion.donde3Icon "
+                                    style="font-size: 45px;font-weight: 800 ;color:{{invitacion.cPrincipal}};"> </i>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -309,20 +320,22 @@
                 style="width: 100%;text-align: center;margin:auto; background-color: {{invitacion.cWhite}};">
                 <div class="row">
 
-                    <div class="col-12  ">
+
+
+                    <div class="col-12  " *ngIf="fiesta.checking">
 
                         <h2 class="mt-3 pacifico" style="color:{{invitacion.cPrincipal}}">Este es tu boleto</h2>
                     </div>
-
                     <!-- [imageSrc]="url+'/upload/invitaciones/'+invitacion.img1"  -->
                     <div class="qrcodeImage text-center  mg ma pt-3" *ngIf="boleto">
                         <qrcode [qrdata]="getQr(boleto)" [allowEmptyString]="true"
                             [ariaLabel]="'QR Code image with the following content...'" [cssClass]="'center'"
-                            [elementType]="'canvas'"
-                            [errorCorrectionLevel]="'M'" [imageHeight]="50" [imageWidth]="50" [margin]="4" [scale]="1"
-                            [colorDark]="invitacion.colorQr" [colorLight]="invitacion.colorBgQr" [title]="getQr(boleto)"
-                            [width]="280">
+                            [elementType]="'canvas'" [errorCorrectionLevel]="'M'" [imageHeight]="50" [imageWidth]="50"
+                            [margin]="4" [scale]="1" [colorDark]="invitacion.colorQr"
+                            [colorLight]="invitacion.colorBgQr" [title]="getQr(boleto)" [width]="280">
                         </qrcode>
+
+
                         <button class="btn "
                             style="background-color: {{invitacion.cPrincipal}}; color:{{invitacion.cWhite}} ; border: 3px solid {{invitacion.cSecond}}"
                             type="button" (click)="confirmar(getQr(boleto))" *ngIf="!boleto.confirmado">
@@ -346,10 +359,10 @@
 
                         <!-- [imageSrc]="url+'/upload/invitaciones/'+invitacion.img1" -->
                         <qrcode [qrdata]="getQr()" [allowEmptyString]="true" [ariaLabel]="'Visitados '+tUrl"
-                            [cssClass]="'center'"
-                            [elementType]="'canvas'" [errorCorrectionLevel]="'L'" [imageHeight]="50" [imageWidth]="50"
-                            [margin]="4" [scale]="3" [colorDark]="invitacion.colorQr"
-                            [colorLight]="invitacion.colorBgQr" [title]="getQr(boleto)" [width]="280">
+                            [cssClass]="'center'" [elementType]="'canvas'" [errorCorrectionLevel]="'L'"
+                            [imageHeight]="50" [imageWidth]="50" [margin]="4" [scale]="3"
+                            [colorDark]="invitacion.colorQr" [colorLight]="invitacion.colorBgQr" [title]="getQr(boleto)"
+                            [width]="280">
                         </qrcode>
                         <div class="card-body">
 
@@ -366,11 +379,9 @@
                                     style=" font-size: 30px;margin-left:10px; color:{{invitacion.cSecond}}"></i>
                             </button>
                         </div>
-                        <pre>
-                            {{boleto}}
-                        </pre>
+
                         <!-- [imageSrc]="url+'/upload/invitaciones/'+invitacion.img1" -->
-                        <div class="qrcodeImage text-center mt-3 mg" *ngIf="boleto">
+                        <div class="qrcodeImage text-center mt-3 mg" *ngIf="boleto && fiesta.checking">
                             <qrcode [qrdata]="getQr(boleto)" [allowEmptyString]="true"
                                 [ariaLabel]="'QR Code image with the following content...'" [cssClass]="'center'"
                                 [colorDark]="invitacion.cSecond" [colorLight]="invitacion.cPrincipal"
@@ -380,7 +391,7 @@
                             </qrcode>
 
                         </div>
-                        <div class="card-body mt-3" *ngIf=" boleto ">
+                        <div class="card-body mt-3" *ngIf=" boleto && fiesta.checking">
 
                             <button class="btn "
                                 style="background-color: {{invitacion.cPrincipal}}; color:{{invitacion.cWhite}} ; border: 3px solid {{invitacion.cSecond}}"
@@ -501,7 +512,7 @@
                             <p class="card-text text-start" *ngIf="invitacion.donde3Address !==''"><b
                                     class="arsenal-sc-bold-italic"> Dirección:</b> {{invitacion.donde3Address}}
                             </p>dsds
- 
+
                             <a href="{{fiesta.ubicacionGoogle}}" target="_blank"
                                 *ngIf="invitacion.donde3AddressUbicacion!==''"><i [class]="invitacion.donde3Icon "
                                     style="font-size: 45px;font-weight: 800 ;color:{{invitacion.cPrincipal}};"> </i></a>
@@ -607,8 +618,8 @@
                 <div>
                     <div class="card mt-3 p-0 nborder  ">
                         <qrcode [qrdata]="getQr()" [allowEmptyString]="true" [ariaLabel]="'Ticketparty.com'"
-                            [cssClass]="'center'" [elementType]="'canvas'"
-                            [errorCorrectionLevel]="'M'" [imageHeight]="50" [imageWidth]="50" [margin]="4" [scale]="1"
+                            [cssClass]="'center'" [elementType]="'canvas'" [errorCorrectionLevel]="'M'"
+                            [imageHeight]="50" [imageWidth]="50" [margin]="4" [scale]="1"
                             [colorDark]="invitacion.cSecond" [colorLight]="invitacion.cPrincipal"
                             [title]="getQr(boleto)" [width]="280">
                         </qrcode>

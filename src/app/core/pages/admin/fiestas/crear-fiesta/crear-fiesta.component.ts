@@ -131,7 +131,7 @@ export class CrearFiestaComponent {
     this.form = this.fb.group({
       nombre: ['', [Validators.required, Validators.minLength(3)]],
       evento: ['', [Validators.required]],
-      cantidad: ['', [Validators.required, Validators.min(50)]],
+      cantidad: [''],
       fecha: ['', [Validators.required]],
       calle: ['', [Validators.required]],
       numeroExt: ['', [Validators.required]],
@@ -146,6 +146,8 @@ export class CrearFiestaComponent {
       usuarioFiesta: [(this.rol == this.ANF) ? this.uid : '', [Validators.required]],
       img: [''],
       galeria: [false],
+      checking: [false],
+      mesaOk: [false],
       invitacion: ['', [Validators.required]],
       activated: [false],
       dateCreated: [this.today],
@@ -162,16 +164,25 @@ export class CrearFiestaComponent {
       return
     }
 
+    if (this.rol != this.ADM && this.form.value.checking && this.form.value.cantidad < 50) {
+      this.functionsService.alert('Fiesta', 'La cantidad de invitados tiene que ser mayor a 50', 'info')
+      this.loading = false
+      return
+    }
+
 
 
     this.loading = true
     this.submited = true
+    if (!this.form.value.checking.checked) {
+      this.form.value.cantidad = 0
+    }
     if (this.form.valid) {
       this.form.value.nombre = this.form.value.nombre.toUpperCase()
       this.form.value.fecha = new Date(this.form.value.fecha).getTime()
       let form = {
         ...this.form.value,
-        galeria: this.form.value.galeria.checked,
+
         activated: true,
         realizada: false
       }
@@ -201,7 +212,7 @@ export class CrearFiestaComponent {
     } else {
       this.functionsService.alertForm('Fiestas')
       this.loading = false
-      return  console.log('Please provide all the required values!');
+      return console.log('Please provide all the required values!');
     }
   }
   selectSalon(event) {
@@ -216,7 +227,7 @@ export class CrearFiestaComponent {
     this.form = this.fb.group({
       nombre: [this.form.value.nombre, [Validators.required, Validators.minLength(3)]],
       evento: [this.form.value.evento, [Validators.required]],
-      cantidad: [this.form.value.cantidad, [Validators.required, Validators.min(50)]],
+      cantidad: [this.form.value.cantidad],
       invitacion: [this.form.value.invitacion, [Validators.required]],
       fecha: [this.form.value.fecha, [Validators.required]],
       usuarioFiesta: [this.form.value.usuarioFiesta, [Validators.required]],
@@ -234,6 +245,8 @@ export class CrearFiestaComponent {
       salon: [this.form.value.salon, [Validators.required]],
       img: [''],
       galeria: [this.form.value.galeria],
+      checking: [this.form.value.galeria],
+      mesaOk: [this.form.value.mesaOk],
       activated: [true],
       dateCreated: [this.today],
       lastEdited: [this.today],

@@ -81,7 +81,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
         }
         this.boleto.vista = true
         this.boletosService.registrarPushNotification(this.boleto).subscribe((resp: any) => {
-          this.boletosService.isVistaBoleto(this.boleto).subscribe((resp2:any)=>{
+          this.boletosService.isVistaBoleto(this.boleto).subscribe((resp2: any) => {
             this.boleto = resp.boletoActualizado
             this.subscribeNotification()
           })
@@ -93,6 +93,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
       // Se carga la fiesta por ID  
       this.fiestasService.cargarFiestaById(this.fiestaId).subscribe((resp: any) => {
         this.fiesta = resp.fiesta
+
         this.invitacionsService.cargarInvitacionByFiesta(this.fiestaId).subscribe(async (resp: any) => {
           this.invitacion = resp.invitacion.data
           this.restParty()
@@ -286,7 +287,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
           input: "number",
           inputAttributes: {
             max: this.boleto.cantidadInvitados.toString(),
-            min:'0'
+            min: '0'
           },
           showCancelButton: true,
           confirmButtonText: "Enviar",

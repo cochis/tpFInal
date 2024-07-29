@@ -73,7 +73,7 @@
 
 
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/core/mis-fiestas" *ngIf="rol">Mis fiestas</a>
+                    <a class="nav-link" routerLink="/core/mis-fiestas" *ngIf="rol">Mis eventos</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/core/check-in"
@@ -89,10 +89,10 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li *ngIf="rol !==URS"><a class="dropdown-item" routerLink="/core/salones/vista-salones">Ver
-                                salones</a></li>
+                                Centro de eventos</a></li>
                         <li><a class="dropdown-item" routerLink="/core/usuarios/vista-usuarios" *ngIf="rol !==ANF">Ver
                                 usuarios</a></li>
-                        <li><a class="dropdown-item" routerLink="/core/fiestas/vista-fiestas">Ver fiestas</a></li>
+                        <li><a class="dropdown-item" routerLink="/core/fiestas/vista-fiestas">Ver eventos</a></li>
                         <li><a class="dropdown-item" routerLink="/core/boletos/vista-boletos">Ver boletos</a></li>
                         <!--  <li><a class="dropdown-item" routerLink="/core/compras/crear-compra/{{uid}}">Ver Compras</a>
                         </li> -->
@@ -109,6 +109,8 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" routerLink="/core/roles/vista-roles">Ver Roles</a></li>
+                        <li><a class="dropdown-item" routerLink="/core/tipo-centros/vista-tipo-centros">Ver Tipo
+                                centros</a></li>
                         <li><a class="dropdown-item" routerLink="/core/grupos/vista-grupos">Ver grupos</a></li>
                         <li><a class="dropdown-item" routerLink="/core/eventos/vista-eventos">Ver eventos</a></li>
                         <li><a class="dropdown-item" routerLink="/core/tipo-cantidad/vista-tipo-cantidades">Ver tipo

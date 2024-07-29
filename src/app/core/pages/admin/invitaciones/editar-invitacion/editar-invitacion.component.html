@@ -14,7 +14,7 @@
                         <ng-container *ngIf="invitacion || (fiesta && form.valueId!='')   || form.value">
 
 
-                            <ng-container>
+                            <ng-container *ngIf="fiesta">
                                 <button (click)="restaurarAltura()" class="btn btn-lg btn-block but mt-3 mb-3"
                                     style="margin: auto;"> Restaurar</button>
                                 <form [formGroup]="form" (ngSubmit)="onSubmit()">
@@ -132,7 +132,7 @@
                                         </div>
 
                                     </div>
-                                    <div class="row text-center mt-3">
+                                    <div class="row text-center mt-3" *ngIf="fiesta.checking">
                                         <h5>Seccion QR</h5>
                                         <hr class="mt-3 mb-3">
                                         <div class="col-6  mt-3">
@@ -165,7 +165,6 @@
                                             <div class="col-6 ma mt-3">
                                                 <qrcode [qrdata]="getQr()" [allowEmptyString]="true"
                                                     [ariaLabel]="'Saludos...'" [cssClass]="'center'"
-                                                  
                                                     [colorDark]="colorBgQr.value" [colorLight]="colorQr.value"
                                                     [elementType]="'canvas'" [errorCorrectionLevel]="'M'"
                                                     [imageHeight]="50" [imageWidth]="50" [margin]="4" [scale]="1"
@@ -179,7 +178,6 @@
                                             <div class="col-6 ma">
                                                 <qrcode [qrdata]="getQr()" [allowEmptyString]="true"
                                                     [ariaLabel]="'Saludos...'" [cssClass]="'center'"
-                                                
                                                     [colorDark]="colorQr.value" [colorLight]="colorBgQr.value"
                                                     [elementType]="'canvas'" [errorCorrectionLevel]="'M'"
                                                     [imageHeight]="50" [imageWidth]="50" [margin]="4" [scale]="1"

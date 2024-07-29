@@ -29,6 +29,7 @@ export class BusquedasService {
     return resultado.map(
       (user) =>
         new Usuario(
+          user.tipoCentro,
           user.nombre,
           user.apellidoPaterno,
           user.apellidoMaterno,
@@ -51,31 +52,33 @@ export class BusquedasService {
   }
   private transformaFiesta(resultado: any): Fiesta[] {
     return resultado.map(
-      (fiesta) =>
+      (fie) =>
         new Fiesta(
-          fiesta.nombre,
-          fiesta.evento,
-          fiesta.cantidad,
-          fiesta.fecha,
-          fiesta.calle,
-          fiesta.numeroExt,
-          fiesta.numeroInt,
-          fiesta.municipioDelegacion,
-          fiesta.coloniaBarrio,
-          fiesta.cp,
-          fiesta.estado,
-          fiesta.pais,
-          fiesta.comoLlegar,
-          fiesta.salon,
-          fiesta.usuarioFiesta,
-          fiesta.img,
-          fiesta.invitacion,
-          fiesta.realizada,
-          fiesta.usuarioCreated,
-          fiesta.activated,
-          fiesta.dateCreated,
-          fiesta.lastEdited,
-          fiesta.uid,
+          fie.nombre,
+          fie.evento,
+          fie.cantidad,
+          fie.fecha,
+          fie.calle,
+          fie.numeroExt,
+          fie.numeroInt,
+          fie.municipioDelegacion,
+          fie.coloniaBarrio,
+          fie.cp,
+          fie.estado,
+          fie.pais,
+          fie.comoLlegar,
+          fie.salon,
+          fie.usuarioFiesta,
+          fie.img,
+          fie.invitacion,
+          fie.realizada,
+          fie.galeria,
+          fie.checking,
+          fie.usuarioCreated,
+          fie.activated,
+          fie.dateCreated,
+          fie.lastEdited,
+          fie.uid,
 
         ),
     )
@@ -152,7 +155,7 @@ export class BusquedasService {
     )
   }
   buscar(
-    tipo: 'usuarios' | 'grupos' | 'salones' | 'fiestas' | 'boletos' | 'eventos' | 'roles' | 'invitacions' | 'tipoCantidades' | 'statusCompras' | 'tipoModulos' | 'moduloTemplates' | 'templates',
+    tipo: 'usuarios' | 'grupos' | 'salones' | 'fiestas' | 'boletos' | 'eventos' | 'roles' | 'invitacions' | 'tipoCantidades' | 'statusCompras' | 'tipoModulos' | 'moduloTemplates' | 'templates' | 'tipoCentros',
     termino: string = '',
     admin: true | false,
   ): any {

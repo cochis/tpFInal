@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CargarRoles } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
+import { CargarTipoCentros } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
 import { Usuario } from 'src/app/core/models/usuario.model';
 import { UsuariosService } from 'src/app/core/services/usuarios.service';
 import { FunctionsService } from 'src/app/shared/services/functions.service';
@@ -9,11 +9,12 @@ import { HttpClient } from '@angular/common/http';
 
 import { BusquedasService } from 'src/app/shared/services/busquedas.service';
 import { SalonsService } from 'src/app/core/services/salon.service';
-import { RolesService } from 'src/app/core/services/roles.service';
-import { Role } from 'src/app/core/models/role.model';
+import { TipoCentrosService } from 'src/app/core/services/tipoCentros.service';
+
 import { Salon } from 'src/app/core/models/salon.model';
 
 import { environment } from 'src/environments/environment';
+import { TipoCentro } from 'src/app/core/models/tipoCentro.model';
 
 
 @Component({
@@ -23,10 +24,8 @@ import { environment } from 'src/environments/environment';
 })
 export class VistaTipoCentrosComponent {
   data!: any
-  usuarios: Usuario[] = [];
-  usuariosTemp: Usuario[] = [];
-  roles: Role[]
-  rolesTemp: Role[]
+  tipoCentros: TipoCentro[]
+  tipoCentrosTemp: TipoCentro[]
   salones: Salon[]
   loading = false
   url = environment.base_url
@@ -36,32 +35,29 @@ export class VistaTipoCentrosComponent {
   constructor(
     private functionsService: FunctionsService,
     private busquedasService: BusquedasService,
-    private rolesService: RolesService
+    private tipoCentrosService: TipoCentrosService
   ) {
-    this.getRoles()
+    this.getTipoCentros()
 
   }
 
   buscar(termino) {
-    termino = termino.trim()
+    termino = termino.toLowerCase()
+    if (termino.length === 0) {
+      this.tipoCentros = this.tipoCentrosTemp
+      return
+    }
+    termino = termino.trim().toLowerCase()
     setTimeout(() => {
-      if (termino.length === 0) {
-        this.roles = this.rolesTemp
-        return
-      }
-      this.busquedasService.buscar('roles', termino, this.functionsService.isAdmin()).subscribe((resp) => {
-        this.roles = resp
-
-        this.setRoles()
-      })
-
+      this.functionsService.filterBy(termino, this.tipoCentrosTemp)
+      this.tipoCentros = this.functionsService.filterBy(termino, this.tipoCentrosTemp)
     }, 500);
   }
 
 
 
 
-  setRoles() {
+  setTipoCentros() {
     this.loading = true
     setTimeout(() => {
 
@@ -75,12 +71,13 @@ export class VistaTipoCentrosComponent {
 
     }, 500);
   }
-  getRoles() {
+  getTipoCentros() {
     this.loading = true
-    this.rolesService.cargarRolesAll().subscribe((resp: CargarRoles) => {
-      this.roles = resp.roles
+    this.tipoCentrosService.cargarTipoCentrosAll().subscribe((resp: CargarTipoCentros) => {
+      this.tipoCentros = resp.tipoCentros
 
-      this.rolesTemp = resp.roles
+
+      this.tipoCentrosTemp = resp.tipoCentros
       setTimeout(() => {
 
         this.loading = false
@@ -93,34 +90,32 @@ export class VistaTipoCentrosComponent {
   }
 
 
-  editRol(id: string) {
+  editTipoCentro(id: string) {
 
-    this.functionsService.navigateTo(`/core/roles/editar-rol/true/${id}`)
+    this.functionsService.navigateTo(`core/tipo-centros/editar-tipo-centro/true/${id}`)
 
   }
-  isActived(rol: Role) {
+  isActived(rol: TipoCentro) {
 
-    this.rolesService.isActivedRole(rol).subscribe((resp: any) => {
-      this.getRoles()
+    this.tipoCentrosService.isActivedTipoCentro(rol).subscribe((resp: any) => {
+      this.getTipoCentros()
 
 
     },
       (error: any) => {
-        this.functionsService.alertError(error, 'Roles')
+        this.functionsService.alertError(error, 'TipoCentros')
 
       })
   }
-  viewRol(id: string) {
-    this.functionsService.navigateTo(`/core/roles/editar-rol/false/${id}`)
+  viewTipoCentro(id: string) {
+    this.functionsService.navigateTo(`core/tipo-centros/editar-tipo-centro/false/${id}`)
 
   }
 
-  newRol() {
+  newTipoCentro() {
 
-    this.functionsService.navigateTo('core/roles/crear-rol')
+    this.functionsService.navigateTo('core/tipo-centros/crear-tipo-centro')
   }
 
 }
-{
 
-}

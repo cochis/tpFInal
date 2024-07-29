@@ -33,6 +33,7 @@ export class UsuariosService {
         const usuarios = resp.usuarios.map(
           (user) =>
             new Usuario(
+              user.tipoCentro,
               user.nombre,
               user.apellidoPaterno,
               user.apellidoMaterno,
@@ -66,6 +67,7 @@ export class UsuariosService {
         const usuarios = resp.usuarios.map(
           (user) =>
             new Usuario(
+              user.tipoCentro,
               user.nombre,
               user.apellidoPaterno,
               user.apellidoMaterno,

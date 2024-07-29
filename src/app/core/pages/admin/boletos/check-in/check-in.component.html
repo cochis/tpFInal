@@ -63,6 +63,9 @@
                                 <h3 *ngIf="boleto.cantidadInvitados === boleto.ocupados">
                                     Ya no pueden entrar más
                                 </h3>
+                                <h3 *ngIf="fiesta.mesaOk&& boleto.mesa">
+                                    Tu mesa es : {{boleto.mesa}}
+                                </h3>
 
 
 

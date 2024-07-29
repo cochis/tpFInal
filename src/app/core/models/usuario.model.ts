@@ -1,5 +1,6 @@
 export class Usuario {
     constructor(
+        public tipoCentro: string,
         public nombre: string,
         public apellidoPaterno: string,
         public apellidoMaterno: string,

@@ -8,7 +8,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-lg-12 col-12 text-center">
-                            <h2 class="mb-5">Crear fiesta</h2>
+                            <h2 class="mb-5">Crear evento</h2>
                         </div>
                         <form [formGroup]="form" (ngSubmit)="onSubmit()">
                             <div class="row">
@@ -34,7 +34,24 @@
                                     <span *ngIf="submited && errorControl['evento'].errors " class="error">Es requerido
                                     </span>
                                 </div>
-                                <div class="col-12 col-md-6 mt-3">
+                                <div class="col-12 col-md-6  mb-3   mt-3 ">
+                                    <div class="form-group">
+                                        <div style="width: 100%;" class="ma text-center">
+
+                                            <label class="form-check-label ma " for="checking">
+                                                Checking
+                                            </label>
+                                        </div>
+                                        <div style="width: 100%;" class="ma text-center">
+
+                                            <input class="form-check-input ma mt-4" type="checkbox" id="checking"
+                                                formControlName="checking" style="margin-left:50px;margin-right: 50px;">
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 mt-3" *ngIf="this.form.value.checking">
                                     <div class="form-group">
                                         <label for="cantidad">Cantidad de invitados</label>
                                         <input type="number" class="form-control upper" id="cantidad"
@@ -49,7 +66,8 @@
                                     <div class="form-group">
                                         <label for="fecha">Fecha</label>
                                         <input type="datetime-local" class="form-control upper" id="fecha"
-                                            [min]="todayDate" formControlName="fecha" required placeholder="Fecha" [min]="today">
+                                            [min]="todayDate" formControlName="fecha" required placeholder="Fecha"
+                                            [min]="today">
                                     </div>
                                     <span *ngIf="submited && errorControl['fecha'].errors " class="error">Es requerido
                                     </span>
@@ -86,7 +104,7 @@
 
 
                                 </div>
-                                <div class="col-12 col-md-6 mt-3" *ngIf="rol != ANF">
+                                <div class="col-12   mt-3" *ngIf="rol != ANF">
                                     <div class="form-group">
                                         <label for="salon">Ubicación</label>
                                         <select name="" id="salon" formControlName="salon" #salon
@@ -105,7 +123,7 @@
 
                                 <div class="col-12 col-md-6 mt-3" *ngIf="rol == ANF">
                                     <div class="form-group">
-                                        <label for="salon">Salón</label>
+                                        <label for="salon">Ubicación</label>
                                         <select name="" id="salon" formControlName="salon" #salon
                                             class="form-control upper" #sal (change)="selectSalon($event)">
                                             <option value="">Selecciona un salon</option>
@@ -116,6 +134,23 @@
                                     </div>
                                     <span *ngIf="submited && errorControl['salon'].errors " class="error">Es requerido
                                     </span>
+                                </div>
+                                <div class="col-12 col-md-6  mb-3   mt-3 ">
+                                    <div class="form-group">
+                                        <div style="width: 100%;" class="ma text-center">
+
+                                            <label class="form-check-label ma " for="mesaOk">
+                                                Por mesa
+                                            </label>
+                                        </div>
+                                        <div style="width: 100%;" class="ma text-center">
+
+                                            <input class="form-check-input ma mt-4" type="checkbox" id="mesaOk"
+                                                formControlName="mesaOk" style="margin-left:50px;margin-right: 50px;">
+                                        </div>
+
+
+                                    </div>
                                 </div>
 
                                 <div class="col-12 col-md-6  mb-3   mt-3 ">
@@ -135,6 +170,7 @@
 
                                     </div>
                                 </div>
+
 
 
 

@@ -16,7 +16,7 @@
 
 
                         <div class="row text-center">
-                            <div class="col-12">
+                            <div class="col-12" *ngIf="fiesta.checking">
 
                                 <h3>Cantidad de invitaciones: {{numeroInvitados}} </h3>
 
@@ -144,6 +144,10 @@
                                                     <input type="text" class="form-control upper" id="whatsapp"
                                                         formControlName="whatsapp" required placeholder="Teléfono">
                                                 </div>
+                                                <span
+                                                    *ngIf="submited && errorControl['invitados']['controls'][i]['controls']['whatsapp'].errors "
+                                                    class="error">Número de teléfono erróneo
+                                                </span>
                                             </div>
 
                                             <div class="col-12 col-md-6 mt-3">
@@ -158,7 +162,7 @@
                                                 </span>
                                             </div>
 
-                                            <div class="col-12 col-md-6 mt-3">
+                                            <div class="col-12 col-md-6 mt-3" *ngIf="fiesta.checking">
                                                 <div class="form-group">
                                                     <label for="cantidadInvitados">Cantidad de invitados</label>
                                                     <input type="number" class="form-control upper"
@@ -170,7 +174,7 @@
 
 
                                             </div>
-                                            <div class="col-12 col-md-6 mt-3">
+                                            <div class="col-12 col-md-6 mt-3" *ngIf="fiesta.mesaOk">
                                                 <div class="form-group">
                                                     <label for="mesa">Mesa</label>
                                                     <input type="text" class="form-control upper" id="mesa"
@@ -213,15 +217,17 @@
                                             <div>
                                                 <div class="col-12">
 
-                                                    <small class="error" *ngIf="numeroInvitados<total">Valida la cantidad de invitados </small>
-                                                </div> 
+                                                    <small class="error" *ngIf="numeroInvitados<total">Valida la
+                                                        cantidad de invitados </small>
+                                                </div>
                                                 <button type="button" class="confirmado ma pointer"
                                                     *ngIf="invitado.value.uid"
                                                     (click)="copiarLink(fiesta.uid,invitado.value.uid)">
                                                     Copiar liga de boleto
 
                                                 </button>
-                                                <button type="button" class="visualizado ma  " *ngIf=" invitado.value.uid && boleto[i].vista">
+                                                <button type="button" class="visualizado ma  "
+                                                    *ngIf=" invitado.value.uid && boleto[i].vista">
                                                     Invitación visualizada
 
                                                 </button>
@@ -231,7 +237,7 @@
 
 
                                             <div class="col-12   mt-3" *ngIf="edit==='true'  ">
-                                             
+
                                                 <button (click)="saveBoleto(invitado.value)"
                                                     *ngIf=" invitado.value.uid == ''" class="custom-btn  but   "
                                                     [disabled]="getDisabled()">Guardar invitado</button>
@@ -243,12 +249,11 @@
                                                     class="custom-btn  but   ">Reenviar invitación</a>
                                             </div>
 
-                                            <div class="col-12   mt-3">
+                                            <div class="col-12   mt-3" *ngIf="boleto[i]">
 
 
                                                 <a (click)="removeInvitados(i)" *ngIf="edit==='true'   "
-                                                    class="custom-btn  ">Quitar
-                                                    invitado</a>
+                                                    class="custom-btn  ">Quitar invitado</a>
                                             </div>
 
 
@@ -258,7 +263,11 @@
                                     </div>
                                 </div>
                             </div>
-
+                            <div class="col-6 ma" *ngIf="this.form.value.invitados.length >0">
+                                <a class="custom-btn pr  " (click)="addInvitados()" [disabled]="getDisabled()"
+                                    *ngIf="this.form.value.fiesta !==''"> <i class="icon-plus"></i></a>
+                                Invitado
+                            </div>
 
                             <div class="row mt-5 text-center" *ngIf="role !== URS">
 
@@ -313,7 +322,7 @@
                             <tr>
                                 <th scope="col">Fecha</th>
                                 <th scope="col">Invitado</th>
-                                
+
 
                             </tr>
                         </thead>
@@ -322,13 +331,13 @@
                                 *ngFor="let  invi of boletoTemp  | paginate: { itemsPerPage: 10, currentPage: p }">
                                 <tr *ngIf="invi.confirmado && invi.activated">
                                     <ng-container *ngIf="invi.fechaConfirmacion">
-                                        <td  class="ma">{{invi.fechaConfirmacion |
+                                        <td class="ma">{{invi.fechaConfirmacion |
                                             date:'short'}}</td>
-                                        <td  class="text-center">{{invi.nombreGrupo}}</td>
+                                        <td class="text-center">{{invi.nombreGrupo}}</td>
 
 
 
- 
+
                                     </ng-container>
                                 </tr>
                             </ng-container>

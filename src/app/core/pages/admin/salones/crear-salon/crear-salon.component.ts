@@ -103,21 +103,21 @@ export class CrearSalonComponent {
 
       this.salonesService.crearSalon(this.form.value).subscribe((resp: any) => {
 
-        this.functionsService.alert('Salon', 'salon creado', 'success')
+        this.functionsService.alert('Centro de eventos', 'Creado', 'success')
         this.functionsService.navigateTo('core/salones/vista-salones')
         this.loading = false
       },
         (error) => {
-          this.functionsService.alertError(error, 'Salones')
+          this.functionsService.alertError(error, 'Centro de eventos')
           this.loading = false
-          this.functionsService.alertError(error, 'Salones')
+          this.functionsService.alertError(error, 'Centro de eventos')
 
         })
     } else {
 
-      this.functionsService.alertForm('Salones')
+      this.functionsService.alertForm('Centro de eventos')
       this.loading = false
-      return  console.log('Please provide all the required values!');
+      return console.log('Please provide all the required values!');
     }
 
 
@@ -133,7 +133,7 @@ export class CrearSalonComponent {
 
     },
       (error: any) => {
-        this.functionsService.alertError(error, 'Salones')
+        this.functionsService.alertError(error, 'Centro de eventos')
         this.loading = false
       })
   }

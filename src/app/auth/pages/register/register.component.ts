@@ -7,7 +7,7 @@ import { AuthService } from '../../services/auth.service';
 import { UsuariosService } from 'src/app/core/services/usuarios.service';
 import { environment } from 'src/environments/environment';
 import { RolesService } from 'src/app/core/services/roles.service';
-import { CargarRole, CargarRoles, CargarTipoCantidad } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
+import { CargarRole, CargarRoles, CargarTipoCantidad, CargarTipoCentros } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
 import { error } from 'jquery';
 import { Role } from 'src/app/core/models/role.model';
 import { TipoCantidadesService } from 'src/app/core/services/tipoCantidad.service';
@@ -15,6 +15,8 @@ import { TipoCantidad } from 'src/app/core/models/tipoCantidad.model';
 import { SwPush } from '@angular/service-worker';
 import Swal from 'sweetalert2';
 import { MetaService } from 'src/app/core/services/meta.service';
+import { TipoCentrosService } from 'src/app/core/services/tipoCentros.service';
+import { TipoCentro } from 'src/app/core/models/tipoCentro.model';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -34,10 +36,12 @@ export class RegisterComponent {
   usrRole: Role
   anfRole: Role
   roles: Role[]
+  tipoCentros: TipoCentro[]
   submited = false
   respuesta: any = undefined
   readonly VAPID_PUBLIC_KEY = environment.publicKey
   form: FormGroup = this.fb.group({
+    tipoCentro: [''],
     nombre: ['', [Validators.required, Validators.minLength(3)]],
     apellidoPaterno: ['', [Validators.required, Validators.minLength(3)]],
     apellidoMaterno: [''],
@@ -57,12 +61,13 @@ export class RegisterComponent {
     private usuariosService: UsuariosService,
     private functionsService: FunctionsService,
     private tipoCantidadesService: TipoCantidadesService,
+    private tipoCentrosService: TipoCentrosService,
     private swPush: SwPush,
     private metaService: MetaService
   ) {
-    
+
     this.metaService.createCanonicalURL()
-    let  data = {
+    let data = {
       title: 'Ticket Party | Registro ',
       description:
         'Puedes registrarte como salon o como anfitrión de tu fiesta',
@@ -75,39 +80,39 @@ export class RegisterComponent {
     }
     this.metaService.generateTags(data)
     this.getCatalogos()
-    // Swal.fire({
-    //   title: "Aceptar las notificaciones para estar mas enterado del evento",
-    //   showDenyButton: true,
-    //   confirmButtonText: "Aceptar",
-    //   confirmButtonColor: "#13547a",
-    //   denyButtonText: `Cancelar`,
-    //   denyButtonColor: "#81d0c7"
-    // }).then((result) => {
-    //   if (result.isConfirmed) {
-    //     this.swPush.requestSubscription(
-    //       {
-    //         serverPublicKey: this.VAPID_PUBLIC_KEY
-    //       }
-    //     )
-    //       .then(respuesta => {
-    //         this.respuesta = respuesta
-    //         this.submited = true
-    //         if (!this.form.valid) {
-    //           this.loading = false
-    //           return
-    //         }
-    //       })
-    //       .catch(err => {
-    //         this.functionsService.alertError(err, 'Error')
-    //       })
-    //   } else if (result.isDenied) {
-    //     this.submited = true
-    //     if (!this.form.valid) {
-    //       this.loading = false
-    //       return
-    //     }
-    //   }
-    // });
+    Swal.fire({
+      title: "Aceptar las notificaciones para estar mas enterado del evento",
+      showDenyButton: true,
+      confirmButtonText: "Aceptar",
+      confirmButtonColor: "#13547a",
+      denyButtonText: `Cancelar`,
+      denyButtonColor: "#81d0c7"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.swPush.requestSubscription(
+          {
+            serverPublicKey: this.VAPID_PUBLIC_KEY
+          }
+        )
+          .then(respuesta => {
+            this.respuesta = respuesta
+            this.submited = true
+            if (!this.form.valid) {
+              this.loading = false
+              return
+            }
+          })
+          .catch(err => {
+            this.functionsService.alertError(err, 'Error')
+          })
+      } else if (result.isDenied) {
+        this.submited = true
+        if (!this.form.valid) {
+          this.loading = false
+          return
+        }
+      }
+    });
   }
   get errorControl() {
     return this.form.controls;
@@ -141,6 +146,13 @@ export class RegisterComponent {
     },
       (error) => {
         this.functionsService.alertError(error, 'Paquetes')
+      })
+    this.tipoCentrosService.cargarTipoCentrosAll().subscribe((resp: CargarTipoCentros) => {
+      this.tipoCentros = resp.tipoCentros
+      console.log(' this.tipoCentros::: ', this.tipoCentros);
+    },
+      (error) => {
+        this.functionsService.alertError(error, 'Tipo de centros de eventos')
       })
   }
 

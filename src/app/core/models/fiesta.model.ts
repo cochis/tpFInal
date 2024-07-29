@@ -19,6 +19,8 @@ export class Fiesta {
         public invitacion: string,
         public realizada: boolean,
         public galeria: boolean,
+        public checking: boolean,
+        public mesaOk: boolean,
         public usuarioCreated: any,
         public activated: boolean,
         public dateCreated: number,

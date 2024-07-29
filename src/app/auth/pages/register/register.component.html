@@ -35,6 +35,24 @@
                         </div>
                         <span *ngIf="submited && errorControl['role'].errors " class="error">Debe se seleccionar
                             rol</span>
+
+                        <div class="input-group form-group mb-1"
+                            *ngIf="functionsService.getValueCatalog(this.form.value.role, 'clave',roles) == SLN">
+
+                            <select name="" id="tipoCentro" formControlName="tipoCentro" #tipoCentro
+                                class="form-control upper">
+                                <option value="">Selecciona la tipoCentro</option>
+                                <ng-container *ngFor="let item of tipoCentros">
+
+                                    <option [value]="item.uid" *ngIf="!item.realizada">{{item.nombre}}
+                                    </option>
+                                </ng-container>
+
+                            </select>
+                        </div>
+
+
+
                         <div class="input-group form-group mb-1">
 
                             <input type="text" class="form-control" formControlName="nombre" name="nombre"

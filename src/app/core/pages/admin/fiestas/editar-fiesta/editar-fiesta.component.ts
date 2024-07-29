@@ -186,6 +186,8 @@ export class EditarFiestaComponent {
       usuarioFiesta: ['', [Validators.required]],
       img: [''],
       galeria: [''],
+      checking: [''],
+      mesaOk: [''],
       invitacion: [],
       activated: [false],
       dateCreated: [this.today],
@@ -210,7 +212,7 @@ export class EditarFiestaComponent {
       this.form = this.fb.group({
         nombre: [fiesta.nombre, [Validators.required, Validators.minLength(3)]],
         evento: [(this.edit === 'false') ? evento : fiesta.evento, [Validators.required]],
-        cantidad: [fiesta.cantidad, [Validators.required]],
+        cantidad: [fiesta.cantidad],
         fecha: [fecha, [Validators.required]],
         calle: [fiesta.salon.calle, [Validators.required]],
         numeroExt: [fiesta.salon.numeroExt, [Validators.required]],
@@ -225,6 +227,8 @@ export class EditarFiestaComponent {
         usuarioFiesta: [(this.edit === 'false') ? usuarioFiesta : fiesta.usuarioFiesta._id, [Validators.required]],
         invitacion: [fiesta.invitacion],
         galeria: [fiesta.galeria],
+        checking: [fiesta.checking],
+        mesaOk: [fiesta.mesaOk],
         activated: [fiesta.activated],
         dateCreated: [fiesta.dateCreated],
         lastEdited: [this.today],
@@ -238,8 +242,17 @@ export class EditarFiestaComponent {
     this.submited = true
 
     if (this.form.valid) {
+      if (!this.form.value.checking) {
+        this.form.value.cantidad = 0
+        console.log('this.form.value::: ', this.form.value);
+      }
       if (this.rol != this.ADM && Number(this.functionsService.dateToNumber(this.form.value.fecha)) < Number(this.today)) {
         this.functionsService.alert('Fiesta', 'La fecha del evento no puede ser menor al dia de hoy', 'info')
+        this.loading = false
+        return
+      }
+      if (this.rol != this.ADM && this.form.value.checking && this.form.value.cantidad < 50) {
+        this.functionsService.alert('Fiesta', 'La cantidad de invitados tiene que ser mayor a 50', 'info')
         this.loading = false
         return
       }
@@ -267,7 +280,7 @@ export class EditarFiestaComponent {
       this.functionsService.alertForm('Fiestas')
       this.loading = false
 
-      return    console.log('Please provide all the required values!');
+      return console.log('Please provide all the required values!');
     }
 
 

@@ -5,7 +5,13 @@
         <div class="row">
 
             <div class="col-12 text-center">
-                <h2 class="mb-4">Mis fiestas</h2>
+                <h2 class="mb-4">Mis eventos</h2>
+            </div>
+            <div class="col-12 col-md-6 mt-4 ma text-center mt-3">
+
+                <button type="button" class="btn btn-lg btn-block but" *ngIf="rol == ANF || rol == SLN || rol == ADM"
+                    routerLink="/core/fiestas/crear-fiesta">Nuevo evento</button>
+
             </div>
             <div class="col-12 col-md-6 mt-3 ma">
 
@@ -22,12 +28,7 @@
                 </div>
 
             </div>
-            <div class="col-12 col-md-6 mt-4 ma text-center">
 
-                <button type="button" class="btn btn-lg btn-block but" *ngIf="rol == ANF || rol == SLN || rol == ADM"
-                    routerLink="/core/fiestas/crear-fiesta">Nueva fiesta</button>
-
-            </div>
         </div>
 
     </div>
@@ -38,7 +39,7 @@
                     <button class="nav-link active" id="design-tab" data-bs-toggle="tab"
                         data-bs-target="#design-tab-pane" type="button" role="tab" aria-controls="design-tab-pane"
                         aria-selected="true">
-                        Fiestas ({{fiestas.length}})
+                        Eventos ({{fiestas.length}})
 
 
 
@@ -113,7 +114,7 @@
                                                     <ng-container *ngFor="let boleto of boletos">
                                                         <ng-container *ngIf="boleto.fiesta.uid === party.uid">
                                                             <ul class="text-white" style="list-style: none;">
-                                                                <li class="list">Tickets
+                                                                <li class="list" *ngIf="party.checking">Tickets
                                                                     <b class="text-white">{{boleto.fiesta.cantidad}}</b>
                                                                 </li>
                                                                 <li class="list">Invitaciones
@@ -121,11 +122,11 @@
                                                                     <b class="text-white">{{getActivas(boleto.boletos)
                                                                         }}</b>
                                                                 </li>
-                                                                <li class="list">Ocupados
+                                                                <li class="list" *ngIf=" party.checking">Ocupados
                                                                     <b class="text-white">{{gettotal(boleto.boletos
                                                                         ,'ocupados')}}</b>
                                                                 </li>
-                                                                <li class="list">Libres
+                                                                <li class="list" *ngIf=" party.checking">Libres
                                                                     <b class="text-white">{{boleto.fiesta.cantidad
                                                                         -gettotal(boleto.boletos
                                                                         ,'ocupados')}}</b>
