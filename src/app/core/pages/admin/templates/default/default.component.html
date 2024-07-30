@@ -18,18 +18,18 @@
 
         <div class="row">
             <div class="col-12">
-
+ 
                 <div class="box  " style="background-image:url({{url+'/upload/invitaciones/'+((invitacion.img1!=='')?invitacion.img1:'notImage')}});
                            background-position: {{invitacion.xImg1}}% 0px !important;height: 750px;"
                     *ngIf="!vistaTemp">
 
                     <div class="texto tc" style="top:{{invitacion.topTitle}}%">
                         <h1 class="dancing ts animate__bounce "
-                            style="font-size: 45px;color: {{invitacion.cPrincipal}};">
-                            {{invitacion.tipoFiesta}}
+                            style="font-size:{{invitacion.tipoSize}}px !important;color: {{invitacion.cPrincipal}};">
+                            {{invitacion.tipoFiesta}}  
                         </h1>
                         <span class="name ts dancing cap"
-                            style="color:{{invitacion.cWhite}}">{{invitacion.nombreFiesta}}</span>
+                            style="color:{{invitacion.cWhite}};font-size:{{invitacion.nombreSize}}px">{{invitacion.nombreFiesta}}</span>
 
                     </div>
                     <div class="fecha pacifico tc  " style="top:{{invitacion.topDate}}%">
@@ -61,11 +61,11 @@
                     *ngIf="vistaTemp">
 
                     <div class="texto tc" style="top:{{invitacion.topTitle}}%">
-                        <h1 class="dancing ts" style="font-size: 45px;color: {{invitacion.cPrincipal}};">
+                        <h1 class="dancing ts" style="font-size:   {{invitacion.tipoSize}}px;color: {{invitacion.cPrincipal}};">
                             {{invitacion.tipoFiesta}}
                         </h1>
                         <span class="name ts dancing cap"
-                            style="color:{{invitacion.cWhite}}">{{invitacion.nombreFiesta}}</span>
+                            style="color:{{invitacion.cWhite}};font-size:   {{invitacion.nombreSize}}px;">{{invitacion.nombreFiesta}}</span>
 
                     </div>
                     <div class="fecha pacifico tc  " style="top:{{invitacion.topDate}}%">
