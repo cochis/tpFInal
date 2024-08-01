@@ -167,7 +167,7 @@ export class RegistarSalonComponent {
     },
       (error) => {
         this.functionsService.alertError(error, 'Paquetes')
-        // console.logror::: ', error);
+        console.error('Error', error)
 
       })
   }

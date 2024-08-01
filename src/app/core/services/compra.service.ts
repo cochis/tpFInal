@@ -8,6 +8,7 @@ import { map } from 'rxjs';
 import { Compra } from 'src/app/core/models/compra.model';
 import { CargarCompra, CargarCompras } from '../interfaces/cargar-interfaces.interfaces';
 import { FunctionsService } from 'src/app/shared/services/functions.service';
+import { loadStripe } from '@stripe/stripe-js';
 
 const base_url = environment.base_url
 @Injectable({
@@ -84,9 +85,15 @@ export class ComprasService {
       }),
     )
   }
-  crearCompra(formData: Compra) {
+  crearCompra(compra: any) {
+    console.log('compra::: ', compra);
 
-    return this.http.post(`${base_url}/compras`, formData, this.headers)
+    return this.http.post(`${base_url}/stripes`, compra, this.headers).pipe(
+      map(async (res: any) => {
+        const stripe = await loadStripe(environment.stripeKey)
+        stripe.redirectToCheckout({ sessionId: res.id })
+      })
+    )
   }
 
 

@@ -80,7 +80,7 @@ export class InfoFiestaComponent {
       }, 500);
     },
       (error: any) => {
-        // console.logror::: ', error);
+        console.error('Error', error)
         this.functionsService.alertError(error, 'Fiestas')
       })
   }
@@ -98,7 +98,7 @@ export class InfoFiestaComponent {
 
       },
         (error: any) => {
-          // console.logror::: ', error);
+          console.error('Error', error)
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
         })
@@ -108,7 +108,7 @@ export class InfoFiestaComponent {
 
       },
         (error: any) => {
-          // console.logror::: ', error);
+          console.error('Error', error)
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
 
@@ -123,7 +123,7 @@ export class InfoFiestaComponent {
 
       },
         (error: any) => {
-          // console.logror::: ', error);
+          console.error('Error', error)
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
 
@@ -137,7 +137,7 @@ export class InfoFiestaComponent {
 
       },
         (error: any) => {
-          // console.logror::: ', error);
+          console.error('Error', error)
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
         })
@@ -148,7 +148,7 @@ export class InfoFiestaComponent {
 
       },
         (error: any) => {
-          // console.logror::: ', error);
+          console.error('Error', error)
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
         })
@@ -160,7 +160,7 @@ export class InfoFiestaComponent {
 
       },
         (error: any) => {
-          // console.logror::: ', error);
+          console.error('Error', error)
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
         })
@@ -214,7 +214,7 @@ export class InfoFiestaComponent {
         this.loading = false
       },
         (error) => {
-          // console.logror::: ', error);
+          console.error('Error', error)
 
           this.loading = true
           this.functionsService.alertError(error, 'Fiestas')

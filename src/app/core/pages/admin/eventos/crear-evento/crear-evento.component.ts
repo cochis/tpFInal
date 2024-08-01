@@ -70,14 +70,14 @@ export class CrearEventoComponent {
         (error) => {
           this.functionsService.alertError(error, 'Eventos')
           this.loading = false
-          // console.logror::: ', error);
+          console.error('Error', error)
 
         })
     } else {
 
       this.functionsService.alertForm('Eventos')
       this.loading = false
-      return    console.log('Please provide all the required values!');
+      return console.log('Please provide all the required values!');
     }
 
 

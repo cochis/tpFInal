@@ -80,7 +80,7 @@ export class EditarFiestaComponent {
       }, 500);
     },
       (error: any) => {
-        // console.logror::: ', error);
+        console.error('Error', error)
         this.functionsService.alertError(error, 'Fiestas')
       })
   }
@@ -97,7 +97,7 @@ export class EditarFiestaComponent {
 
       },
         (error: any) => {
-          // console.logror::: ', error);
+          console.error('Error', error)
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
         })
@@ -107,7 +107,7 @@ export class EditarFiestaComponent {
 
       },
         (error: any) => {
-          // console.logror::: ', error);
+          console.error('Error', error)
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
 
@@ -122,7 +122,7 @@ export class EditarFiestaComponent {
 
       },
         (error: any) => {
-          // console.logror::: ', error);
+          console.error('Error', error)
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
 
@@ -134,7 +134,7 @@ export class EditarFiestaComponent {
         this.salones = this.functionsService.getActivos(resp.salons)
       },
         (error: any) => {
-          // console.logror::: ', error);
+          console.error('Error', error)
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
         })
@@ -145,7 +145,7 @@ export class EditarFiestaComponent {
 
       },
         (error: any) => {
-          // console.logror::: ', error);
+          console.error('Error', error)
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
         })
@@ -157,7 +157,7 @@ export class EditarFiestaComponent {
 
       },
         (error: any) => {
-          // console.logror::: ', error);
+          console.error('Error', error)
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
         })
@@ -269,7 +269,7 @@ export class EditarFiestaComponent {
         this.loading = false
       },
         (error) => {
-          // console.logror::: ', error);
+          console.error('Error', error)
 
           this.loading = true
           this.functionsService.alertError(error, 'Fiestas')

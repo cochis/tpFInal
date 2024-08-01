@@ -1,18 +1,20 @@
 import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { CargarStatusCompra, CargarTipoCantidades, CargarUsuario } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
+import { CargarStatusCompra, CargarPaquetes, CargarUsuario } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
 import { Compra } from 'src/app/core/models/compra.model';
 import { StatusCompra } from 'src/app/core/models/statusCompra.model';
-import { TipoCantidad } from 'src/app/core/models/tipoCantidad.model';
+import { Paquete } from 'src/app/core/models/paquete.model';
 import { Usuario } from 'src/app/core/models/usuario.model';
 import { ComprasService } from 'src/app/core/services/compra.service';
 import { PaypalService } from 'src/app/core/services/paypal.service';
 import { StatusComprasService } from 'src/app/core/services/statusCompra.service';
-import { TipoCantidadesService } from 'src/app/core/services/tipoCantidad.service';
+import { PaquetesService } from 'src/app/core/services/paquete.service';
 import { UsuariosService } from 'src/app/core/services/usuarios.service';
 import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { environment } from 'src/environments/environment';
+
+
 
 @Component({
   selector: 'app-crear-compra',
@@ -24,46 +26,52 @@ export class CrearCompraComponent {
   loading: boolean = false;
   msnOk: string = ''
   usuario: Usuario
-  paquetesTipo: TipoCantidad[]
+  paquetesTipo: Paquete[]
   statusCompra: StatusCompra
-  paqueteSeleccionado: TipoCantidad
+  paqueteSeleccionado: Paquete
   clave = ''
   compra: Compra
   id: string
   uid = this.functionsService.getLocal('uid')
   PAGSC = environment.PAGSC
-
+  url = environment.text_url
+  urlImg = environment.base_url = environment.base_url
   today: Number = this.functionsService.getToday()
+  readOn = false
   constructor(
     private fb: FormBuilder,
     private usuariosService: UsuariosService,
     private statusComprasService: StatusComprasService,
-    private tipoCantidadesService: TipoCantidadesService,
+    private paquetesService: PaquetesService,
     private comprasService: ComprasService,
     private route: ActivatedRoute,
     private functionsService: FunctionsService,
     private paypalService: PaypalService,
   ) {
     this.id = this.route.snapshot.params['usuario']
+    // console.log(' this.id ::: ', this.id);
 
     this.getCatalogos()
     this.createForm()
   }
   createForm() {
     this.form = this.fb.group({
-
-      paquetes: this.fb.array([]),
-      paquete: ['', [Validators.required]],
-      cantidadFiestas: [''],
-      costo: [''],
+      usuario: [this.uid],
+      paquetes: this.fb.array([], Validators.required),
       dateCreated: [this.today],
       lastEdited: [this.today],
     })
   }
   getCatalogos() {
+    this.paquetesService.cargarPaquetesAll().subscribe(resp => {
+      this.paquetesTipo = resp.paquetes
+      // console.log('this.paquetesTipo::: ', this.paquetesTipo);
+
+    })
     this.usuariosService.cargarUsuarioById(this.id).subscribe((resp: CargarUsuario) => {
 
       this.usuario = resp.usuario
+      // console.log('this.usuario::: ', this.usuario);
 
       if (this.usuario.activated) {
       }
@@ -77,32 +85,72 @@ export class CrearCompraComponent {
         this.functionsService.alertError(error, 'Fiestas')
         this.loading = false
       })
-      ;
+
     this.statusComprasService.cargarStatusCompraByStep(1).subscribe((resp: CargarStatusCompra) => {
+      // console.log('resp::: ', resp);
 
       this.statusCompra = resp.statusCompra
+      // console.log('this.statusCompra::: ', this.statusCompra);
 
     },
       (error: any) => {
+        // console.log('error::: ', error);
         this.functionsService.alertError(error, 'Estatus de compra')
         this.loading = false
       })
-    this.tipoCantidadesService.cargarTipoCantidadesAll().subscribe((resp: CargarTipoCantidades) => {
-      this.paquetesTipo = resp.tipoCantidades
-
-    })
-  }
-  setTipos(value, i) {
 
   }
-  selectPaquete(event, i) {
-    this.paquetesTipo.forEach(paquete => {
-      if (paquete.uid == event) {
+  setTipos(event, i) {
+
+    this.paquetesTipo.forEach((paquete: any) => {
+
+      if (paquete.tipo == event) {
         this.paqueteSeleccionado = paquete
+
       }
     });
 
-    this.paquetes.controls[i].patchValue({ costo: this.paqueteSeleccionado.costo, cantidad: this.paqueteSeleccionado.value });
+
+    this.paquetes.controls[i].patchValue({ paquete: '', costo: '', img: '', cantidad: '' });
+
+
+
+  }
+  selectPaquete(event, i) {
+
+    if (event !== '') {
+
+      this.paquetesTipo.forEach(paquete => {
+        if (paquete.uid == event) {
+          this.paqueteSeleccionado = paquete
+
+        }
+      });
+
+      // console.log('this.paqueteSeleccionado::: ', this.paqueteSeleccionado);
+      var cantidad = 0
+      if (this.paqueteSeleccionado.tipoCosto.includes('mensual')) {
+        cantidad = 12
+
+      }
+      this.paquetes.controls[i].patchValue(
+        {
+          costo: this.paqueteSeleccionado.costo,
+          tipoCosto: this.paqueteSeleccionado.tipoCosto,
+          cantidad: this.paqueteSeleccionado.tipoCosto.includes('mensual') ? 12 : 1,
+          img: this.paqueteSeleccionado.img
+        });
+    } else {
+      this.paquetes.controls[i].patchValue(
+        {
+          costo: '',
+          tipoCosto: '',
+          cantidad: '',
+          img: ''
+        });
+
+    }
+    // console.log('this.paquetes.controls[i]::: ', this.paquetes.controls[i].value);
   }
   back() {
     this.functionsService.navigateTo('/core/fiestas/vista-fiestas')
@@ -119,6 +167,8 @@ export class CrearCompraComponent {
         tipo: paquete.tipo,
         paqueteActual: paquete.paqueteActual,
         cantidad: paquete.cantidad,
+        tipoCosto: paquete.tipoCosto,
+        img: paquete.img,
         costo: paquete.costo,
       })
     } else {
@@ -127,6 +177,8 @@ export class CrearCompraComponent {
         tipo: '',
         paqueteActual: '',
         cantidad: '',
+        tipoCosto: '',
+        img: '',
         costo: '',
       })
     }
@@ -141,91 +193,38 @@ export class CrearCompraComponent {
   removePaquete(i: number) {
     this.paquetes.removeAt(i);
   }
-  async onSubmit() {
+  onSubmit() {
     this.loading = true
     if (this.form.valid) {
-      let compra = {
-        ...this.form.value,
+      var paqs = []
+      this.paquetesTipo.forEach((pt, i) => {
+        this.form.value.paquetes.forEach((el, j) => {
+          if (el.paqueteActual === this.paquetesTipo[i].uid) {
+            pt.img = this.urlImg + '/upload/paquetes/' + pt.img
+            pt.value = el.cantidad
+            paqs.push(pt)
+          }
+        });
 
-        usuario: this.uid,
-        status: this.statusCompra.uid,
-        iva: (this.form.value.costo * .16),
-        paypalData: null,
+      });
+      let compra = {
+
+        items: paqs,
+        url_success: this.url + 'core/fiestas/vista-fiestas',
+        url_cancel: this.url + 'core/compras/crear-compra/' + this.uid,
         usuarioCreated: this.uid,
+        lastEdited: this.today,
+        dateCreated: this.today,
         activated: true,
       }
-      this.clave = this.statusCompra.clave
 
-      this.comprasService.crearCompra(compra).subscribe(async (resp) => {
-        try {
-          await this.setTime(resp).then((res: any) => {
-
-            this.compra = res.compra
-            this.statusComprasService.cargarStatusCompraByStep(2).subscribe(async (resp: CargarStatusCompra) => {
-              this.statusCompra = resp.statusCompra
-              this.clave = this.statusCompra.clave
-
-              await this.setTime(resp).then((resp2) => {
-                let compra = {
-                  ...res.compra,
-                  status: this.statusCompra.uid,
-                  lastEdited: this.today
-                }
-
-
-                /*     this.comprasService.actualizarCompra(compra).subscribe(async (resp2: any) => {
-                      this.compra = resp2.compraActualizado
-                      this.statusComprasService.cargarStatusCompraByStep(3).subscribe(async (resp3: CargarStatusCompra) => {
-                        this.statusCompra = resp3.statusCompra
-                        this.clave = this.statusCompra.clave
-                        await this.setTime(resp3).then((resp3) => {
-                          compra = {
-                            ...compra,
-                            status: this.statusCompra.uid
-                          }
-                          this.comprasService.actualizarCompra(compra).subscribe(async (resp4: any) => {
-                            this.compra = resp4.compraActualizado
-                            this.clave = this.statusCompra.clave
-                            if (this.compra.status == this.statusCompra.uid && this.statusCompra.clave == this.clave) {
-                              this.usuariosService.cargarUsuarioById(this.usuario.uid).subscribe((resp5: any) => {
-                                this.usuario = resp5.usuario
-                                this.usuario.cantidadFiestas = this.usuario.cantidadFiestas + this.compra.cantidadFiestas
-                                this.usuariosService.actualizarUsuario(this.usuario).subscribe((resp6: any) => {
-                                  this.functionsService.navigateTo('/core/fiestas/vista-fiestas')
-    
-                                  this.loading = false
-                                })
-    
-                              })
-    
-                            }
-                          })
-    
-                        })
-                      })
-    
-                    }) */
-              })
-            },
-              (error: any) => {
-                this.functionsService.alertError(error, 'Estatus de compra')
-                this.loading = false
-              })
-          })
-
-        } catch (error) {
-          // console.logror::: ', error);
-        }
+      this.comprasService.crearCompra(compra).subscribe({
+        error: (err) => console.error('Error', err)
       })
-
     }
   }
   async setTime(data) {
-
-
     return await data
-
-
   }
 
 }

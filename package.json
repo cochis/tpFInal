@@ -1,13 +1,13 @@
 {
   "name": "TicketParty",
-  "version": "1.2.9",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "start-pwa": "ng build --prod && http-server -p 8080 -c-1 dist/tp"
+    "pwa": "ng build && http-server -p 8080 -c-1 dist/tp"
   },
   "private": true,
   "dependencies": {
@@ -23,8 +23,10 @@
     "@angular/service-worker": "^16.1.0",
     "@developer-partners/ngx-modal-dialog": "^1.0.5",
     "@ks89/ngx-codemirror": "^6.0.0",
+    "@mercadopago/sdk-js": "^0.0.3",
     "@ng-bootstrap/ng-bootstrap": "^15.1.1",
     "@popperjs/core": "^2.11.6",
+    "@stripe/stripe-js": "^4.1.0",
     "@zxing/ngx-scanner": "^16.0.1",
     "angular-datatables": "^16.0.0",
     "angular-material-data-table": "^0.10.10",

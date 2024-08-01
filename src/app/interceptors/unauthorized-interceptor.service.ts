@@ -18,7 +18,7 @@ export class UnauthorizedInterceptorService implements HttpInterceptor {
     private logsService: LogsService,
 
   ) { }
-  
+
   uid = this.functionService.getLocal('uid')
   intercept(
     request: any,
@@ -27,8 +27,7 @@ export class UnauthorizedInterceptorService implements HttpInterceptor {
     const funtionsService = inject(FunctionsService)
     return next.handle(request).pipe(
       tap((event: any) => {
- 
-        if ( !request.url.includes('api/logs') && request.method != 'GET') {
+        if (!request.url.includes('api/logs') && request.method != 'GET') {
           if (event.body && !request.url.includes('log')) {
             let log = {
               url: request.url,
@@ -37,21 +36,20 @@ export class UnauthorizedInterceptorService implements HttpInterceptor {
               request: request.body,
               response: event.body,
               statusCode: event.status,
-              usuarioCreated: this.uid? this.uid:undefined,
+              usuarioCreated: this.uid ? this.uid : undefined,
               dateCreated: this.functionService.getToday(),
               lastEdited: this.functionService.getToday(),
             }
-            
-          
+
+
             this.logsService.crearLog(log).subscribe((resp) => {
-            
-            } )
+
+            })
           }
         }
       }),
       catchError((err) => {
-        
-        if (err && err.error ) {
+        if (err && err.error.msg !== 'Error inesperado...  revisar logs') {
           funtionsService.alert('Error', 'Sucedió algo extraño', 'error')
           this.functionService.logout()
         }

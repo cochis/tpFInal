@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TipoCantidad } from 'src/app/core/models/tipoCantidad.model';
 
 import { TipoCantidadesService } from 'src/app/core/services/tipoCantidad.service';
@@ -41,7 +41,34 @@ export class CrearTipoCantidadComponent {
   get errorControl() {
     return this.form.controls;
   }
+  get descripciones(): FormArray {
+    return this.form.get('descripciones') as FormArray
+  }
+  newDescripcion(descripcion?): FormGroup {
+    if (descripcion) {
+      return this.fb.group({
+        info: descripcion.info
+      })
+    } else {
 
+      return this.fb.group({
+        info: ''
+      })
+    }
+  }
+
+  addPaquete() {
+    this.descripciones.push(this.newDescripcion());
+  }
+  addDescripcion() {
+    this.descripciones.push(this.newDescripcion());
+  }
+  setDescripcion(paquete) {
+    this.descripciones.push(this.newDescripcion(paquete));
+  }
+  ub(i: number) {
+    this.descripciones.removeAt(i);
+  }
 
   createForm() {
     this.form = this.fb.group({
@@ -49,9 +76,10 @@ export class CrearTipoCantidadComponent {
       tipo: ['', [Validators.required, Validators.minLength(3)]],
       clave: ['', [Validators.required, Validators.minLength(3)]],
       costo: ['', [Validators.required, Validators.minLength(3)]],
+      tipoCosto: ['', [Validators.required, Validators.minLength(3)]],
+      tipoPaquete: ['', [Validators.required, Validators.minLength(3)]],
       value: ['', [Validators.required]],
-      descripcion: ['', [Validators.required, Validators.minLength(3)]],
-
+      descripciones: this.fb.array([]),
       activated: [true],
       dateCreated: [this.today],
       lastEdited: [this.today],
@@ -62,6 +90,11 @@ export class CrearTipoCantidadComponent {
   onSubmit() {
     this.loading = true
     this.submited = true
+
+
+    console.log('this.form.value::: ', this.form.value);
+
+
     if (this.form.valid) {
       this.form.value.nombre = this.form.value.nombre.toUpperCase().trim()
       this.form.value.clave = this.form.value.clave.toUpperCase().trim()
@@ -75,14 +108,14 @@ export class CrearTipoCantidadComponent {
         (error) => {
           this.functionsService.alertError(error, 'Tipo de Cantidades')
           this.loading = false
-          // console.logror::: ', error);
+          console.error('Error', error)
 
         })
     } else {
 
       this.functionsService.alertForm('Tipo de Cantidades')
       this.loading = false
-      return  console.log('Please provide all the required values!');
+      return console.log('Please provide all the required values!');
     }
 
 

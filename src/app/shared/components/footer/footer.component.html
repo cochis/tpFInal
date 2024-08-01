@@ -3,7 +3,7 @@
         <div class="row">
 
             <div class="col-lg-3 col-12 mb-4 pb-2">
-                <a class="navbar-brand mb-2" href="index.html">
+                <a class="navbar-brand mb-2" routerLink="/">
 
                     <img src="assets/images/logo.png" style="width:100px" alt="">
                     <span> {{ver}}</span>
@@ -24,11 +24,11 @@
                     <li class="site-footer-link-item" *ngIf="!rol">
                         <a routerLink="/auth/register" class="site-footer-link">Registro</a>
                     </li>
-
+                    <!-- 
                     <li class="site-footer-link-item">
-                        <a href="#" class="site-footer-link">FAQs</a>
+                        <a routerLink="/core/faqs" class="site-footer-link">FAQs</a>
                     </li>
-
+ -->
 
                 </ul>
             </div>

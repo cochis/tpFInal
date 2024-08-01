@@ -60,6 +60,10 @@ import { BorradoComponent } from './pages/admin/borrado/borrado.component';
 import { EditarTipoCentroComponent } from './pages/admin/tipo-centros/editar-tipo-centro/editar-tipo-centro.component';
 import { CrearTipoCentroComponent } from './pages/admin/tipo-centros/crear-tipo-centro/crear-tipo-centro.component';
 import { VistaTipoCentrosComponent } from './pages/admin/tipo-centros/vista-tipo-centros/vista-tipo-centros.component';
+import { FaqsComponent } from './pages/faqs/faqs.component';
+import { VistaPaquetesComponent } from './pages/admin/paquete/vista-paquetes/vista-paquetes.component';
+import { EditarPaqueteComponent } from './pages/admin/paquete/editar-paquete/editar-paquete.component';
+import { CrearPaqueteComponent } from './pages/admin/paquete/crear-paquete/crear-paquete.component';
 
 
 const routes: Routes = [
@@ -77,6 +81,12 @@ const routes: Routes = [
         path: 'about',
         component: AboutComponent,
         data: { titulo: 'Quienes somos' }
+
+      },
+      {
+        path: 'faqs',
+        component: FaqsComponent,
+        data: { titulo: 'Preguntas frecuentes' }
 
       },
       {
@@ -307,9 +317,29 @@ const routes: Routes = [
 
       },
       {
-        path: 'tipo-cantidad/vista-tipo-cantidades',
+        path: 'paquete/vista-paquetes',
+        component: VistaPaquetesComponent,
+        data: { titulo: 'Vista paquetes' }
+
+      },
+      {
+        path: 'paquete/editar-paquete/:edit/:id',
+        component: EditarPaqueteComponent,
+        data: { titulo: 'Editar paquete' },
+        canActivate: [authGuard]
+
+      },
+      {
+        path: 'paquete/crear-paquete',
+        component: CrearPaqueteComponent,
+        data: { titulo: 'Crear paquete' },
+        canActivate: [authGuard]
+
+      },
+      {
+        path: 'paquete/vista-paquetes',
         component: VistaTipoCantidadComponent,
-        data: { titulo: 'Vista tipo-cantidads' }
+        data: { titulo: 'Vista paquetes' }
 
       },
       {

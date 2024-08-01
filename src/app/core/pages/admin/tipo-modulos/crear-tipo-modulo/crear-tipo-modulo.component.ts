@@ -73,14 +73,14 @@ export class CrearTipoModuloComponent {
         (error) => {
           this.functionsService.alertError(error, 'TipoModulos')
           this.loading = false
-          // console.logror::: ', error);
+          console.error('Error', error)
 
         })
     } else {
 
       this.functionsService.alertForm('TipoModulos')
       this.loading = false
-      return  console.log('Please provide all the required values!');
+      return console.log('Please provide all the required values!');
     }
 
 

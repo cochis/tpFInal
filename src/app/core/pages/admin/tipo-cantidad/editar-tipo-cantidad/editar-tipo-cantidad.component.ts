@@ -73,7 +73,7 @@ export class EditarTipoCantidadComponent {
       clave: [tipoCantidad.clave, [Validators.required, Validators.minLength(3)]],
       value: [tipoCantidad.value, [Validators.required]],
       costo: [tipoCantidad.costo, [Validators.required]],
-      descripcion: [tipoCantidad.descripcion, [Validators.required, Validators.minLength(3)]],
+      descripcion: [tipoCantidad.descripciones, [Validators.required, Validators.minLength(3)]],
       activated: [tipoCantidad.activated],
       dateCreated: [tipoCantidad.dateCreated],
       lastEdited: [this.today],
@@ -107,7 +107,7 @@ export class EditarTipoCantidadComponent {
     } else {
       //message
       this.loading = false
-      return  console.log('Please provide all the required values!');
+      return console.log('Please provide all the required values!');
     }
   }
   back() {

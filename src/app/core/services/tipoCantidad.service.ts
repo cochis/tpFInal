@@ -36,15 +36,18 @@ export class TipoCantidadesService {
             new TipoCantidad(
               tipoCantidad.nombre,
               tipoCantidad.tipo,
+              tipoCantidad.tipoCosto,
+              tipoCantidad.tipoPaquete,
               tipoCantidad.clave,
               tipoCantidad.value,
               tipoCantidad.costo,
-              tipoCantidad.descripcion,
+              tipoCantidad.descripciones,
               tipoCantidad.usuarioCreated,
               tipoCantidad.activated,
               tipoCantidad.dateCreated,
               tipoCantidad.lastEdited,
               tipoCantidad.uid,
+
 
             ),
         )
@@ -64,10 +67,12 @@ export class TipoCantidadesService {
             new TipoCantidad(
               tipoCantidad.nombre,
               tipoCantidad.tipo,
+              tipoCantidad.tipoCosto,
+              tipoCantidad.tipoPaquete,
               tipoCantidad.clave,
               tipoCantidad.value,
               tipoCantidad.costo,
-              tipoCantidad.descripcion,
+              tipoCantidad.descripciones,
               tipoCantidad.usuarioCreated,
               tipoCantidad.activated,
               tipoCantidad.dateCreated,

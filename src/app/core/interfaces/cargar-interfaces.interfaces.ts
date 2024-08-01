@@ -20,6 +20,7 @@ import { Template } from "../models/template.model"
 import { Push } from "../models/push.model"
 import { Log } from "../models/log.model"
 import { TipoCentro } from "../models/tipoCentro.model"
+import { Paquete } from "../models/paquete.model"
 
 
 
@@ -79,6 +80,14 @@ export interface CargarTipoCantidad {
 export interface CargarTipoCantidades {
     total: number
     tipoCantidades: TipoCantidad[]
+}
+export interface CargarPaquete {
+    paquete: Paquete
+}
+
+export interface CargarPaquetes {
+    total: number
+    paquetes: Paquete[]
 }
 export interface CargarGrupo {
     grupo: Grupo

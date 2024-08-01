@@ -11,48 +11,9 @@
                             <h2 class="mb-5">Comprar paquete</h2>
                         </div>
                         <form [formGroup]="form">
+
                             <div class="row">
 
-                                <!--     <div class="col-12 col-md-4 mt-3">
-
-                                    <div class="form-group" *ngIf="paquetes">
-                                        <label for="paquetess">Paquetes </label>
-                                        <select name="" id="paquetess" formControlName="paquetess"
-                                            class="form-control upper" #paquetess class="form-control upper"
-                                            (change)="selectPaquete(paquetess.value)">
-                                            <option value="">Selecciona un paquetess</option>
-                                            <ng-container *ngFor="let item of paquetesss">
-
-                                                <option [value]="item.uid" *ngIf="item.costo!=0">{{item.nombre }}
-                                                </option>
-                                            </ng-container>
-                                        </select>
-                                    </div>
-                                    <span *ngIf="submited && errorControl['evento'].errors " class="error">Es requerido
-                                    </span>
-                                </div>
-                                <div class="col-12 col-md-4 mt-3">
-                                    <div class="form-group">
-                                        <label for="cantidadFiestas">Cantidad de fiestas</label>
-                                        <input type="text" class="form-control upper" id="cantidadFiestas"
-                                            formControlName="cantidadFiestas" required placeholder="Cantidad de fiestas"
-                                            readonly>
-                                    </div>
-                                    <span *ngIf="submited && errorControl['cantidadFiestas'].errors " class="error">Es
-                                        requerido
-                                    </span>
-                                </div>
-                                <div class="col-12 col-md-4 mt-3">
-                                    <div class="form-group">
-                                        <label for="costo">Costo</label>
-                                        <input type="text" class="form-control upper" id="costo" formControlName="costo"
-                                            required placeholder="Costo" readonly>
-                                    </div>
-                                    <span *ngIf="submited && errorControl['costo'].errors " class="error">Es
-                                        requerido
-                                    </span>
-                                </div>
- -->
                                 <div class="row">
 
                                     <div class="col-12 ma" style="text-align: center;">
@@ -62,42 +23,43 @@
                                         </button>
                                     </div>
                                 </div>
+                                <div class="table-over mt-3">
 
-                                <div formArrayName="paquetes">
-                                    <div *ngFor="let paquete of paquetes['controls'] ; let i=index">
 
-                                        <div [formGroupName]="i">
-                                            <div class="row">
+                                    <table class="table table-striped table-bordered ">
+                                        <thead class="thead-dark">
 
-                                                <div class="col-12 col-md-6 mt-3">
+                                            <th class="upper">tipo</th>
+                                            <th class="upper">paquete</th>
+                                            <th class="upper">img</th>
+                                            <th class="upper">Tipo de costo</th>
 
-                                                    <div class="form-group">
-                                                        <label for="tipo">Tipo</label> 
+                                            <th class="upper">Costo</th>
+                                            <th class="upper">Cantidad</th>
+                                            <th class="upper">Quitar</th>
+
+                                        </thead>
+                                        <tbody formArrayName="paquetes">
+                                            <tr *ngFor="let paquete of paquetes['controls'] ; let i=index">
+                                                <ng-container [formGroupName]="i">
+
+                                                    <td class="upper" style="min-width: 150px;">
                                                         <select name="" id="tipo" formControlName="tipo"
                                                             class="form-control upper"
-                                                            (change)="setTipos(form.value.paquetes[i].tipo ,i)">
+                                                            (change)="setTipos(form.value.paquetes[i].tipo ,i)"
+                                                            style="margin-top: 25px;">
                                                             <option value="">Selecciona un tipo</option>
-                                                            <option value="fiestas">Fiesta</option>
+                                                            <option value="eventos">Evento</option>
                                                             <option value="galerias">Galeria</option>
 
                                                         </select>
-                                                    </div>
-
-
-                                                    <span
-                                                        *ngIf="submited && errorControl['paquetes']['controls'][i]['controls']['tipo'].errors "
-                                                        class="error">Es
-                                                        requerido
-                                                    </span>
-                                                </div>
-                                                <div class="col-12 col-md-6 mt-3">
-
-                                                    <div class="form-group">
-                                                        <label for="paqueteActual">Paquete</label> 
+                                                    </td>
+                                                    <td class="upper" style="min-width: 200px;">
                                                         <select name="" id="paqueteActual"
                                                             formControlName="paqueteActual" class="form-control upper"
                                                             #paqueteActual class="form-control upper"
-                                                            (change)="selectPaquete(paqueteActual.value,i)">
+                                                            (change)="selectPaquete(paqueteActual.value,i)"
+                                                            style="margin-top: 25px;">
                                                             <option value="">Selecciona un paquete </option>
                                                             <ng-container *ngFor="let item of paquetesTipo">
 
@@ -107,61 +69,55 @@
                                                                 </option>
                                                             </ng-container>
                                                         </select>
-                                                    </div>
-                                                    <span
-                                                        *ngIf="submited && errorControl['paquetes']['controls'][i]['controls']['paqueteActual'].errors "
-                                                        class="error">Es
-                                                        requerido
-                                                    </span>
-                                                </div>
-                                                <div class="col-12 col-md-4 mt-3">
+                                                    </td>
+                                                    <td>
 
-                                                    <div class="form-group">
-                                                        <label for="cantidad">Cantidad</label> 
-                                                        <input name="" id="cantidad" formControlName="cantidad"
-                                                            class="form-control upper" readonly />
+                                                        <ng-container *ngIf="form.value.paquetes[i].img ==''">
 
-                                                    </div>
+                                                            <img class=" avatar"
+                                                                [src]=" urlImg + '/upload/paquetes/nonImage' " alt="">
+                                                        </ng-container>
+                                                        <ng-container *ngIf="form.value.paquetes[i].img !=''">
 
+                                                            <img class=" avatar"
+                                                                [src]=" urlImg + '/upload/paquetes/'+form.value.paquetes[i].img "
+                                                                alt="">
+                                                        </ng-container>
+                                                    </td>
+                                                    <td class="upper">
+                                                        {{form.value.paquetes[i].tipoCosto}}
+                                                    </td>
 
-                                                    <span
-                                                        *ngIf="submited && errorControl['paquetes']['controls'][i]['controls']['cantidad'].errors "
-                                                        class="error">Es
-                                                        requerido
-                                                    </span>
-                                                </div>
-                                                <div class="col-12 col-md-4 mt-3">
-
-                                                    <div class="form-group">
-                                                        <label for="costo">Costo</label> 
+                                                    <td class="upper" style="min-width: 80px;">
                                                         <input name="" id="costo" formControlName="costo"
-                                                            class="form-control upper" readonly />
+                                                            class="form-control upper" readonly
+                                                            style="margin-top: 25px;" />
+                                                    </td>
+                                                    <td class="upper" style="min-width: 80px;">
+                                                        <input name="" type="number" id="cantidad"
+                                                            formControlName="cantidad" class="form-control upper"
+                                                            style="margin-top: 25px;" min="1"
+                                                            [readonly]="form.value.paquetes[i].tipoCosto && form.value.paquetes[i].tipoCosto.includes('mensual')?true:false" />
+                                                    </td>
+                                                    <td class="upper"><button class="btn less "
+                                                            (click)="removePaquete(i)"
+                                                            *ngIf="this.form.value.fiesta !==''"
+                                                            style="margin-top: 20px;"> <i
+                                                                class="icon-minus"></i></button>
+                                                    </td>
+                                                </ng-container>
 
-                                                    </div>
-
-
-                                                    <span
-                                                        *ngIf="submited && errorControl['paquetes']['controls'][i]['controls']['costo'].errors "
-                                                        class="error">Es
-                                                        requerido
-                                                    </span>
-                                                </div>
 
 
 
 
-                                                <div class=" col-12 col-md-4 mt-4 text-center">
 
-                                                    <button class="btn less " (click)="removePaquete(i)"
-                                                        *ngIf="this.form.value.fiesta !==''"> <i
-                                                            class="icon-minus"></i></button>
 
-                                                </div>
 
-                                            </div>
+                                            </tr>
+                                        </tbody>
 
-                                        </div>
-                                    </div>
+                                    </table>
                                 </div>
 
 
@@ -184,6 +140,7 @@
 
                                 </div>
                             </div>
+
                         </form>
 
                     </div>

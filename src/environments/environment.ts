@@ -22,8 +22,9 @@ export const environment = {
   text_url: "http://localhost:4200/",
   //base_url: "https://tickets.cochisweb.com/api",
   //text_url: "https://tickets.cochisweb.com/",
-  version: "1.8.1",
+  version: "-1.0.1",
   publicKey: "BJqZ8KY_kguwLf27SsteILLRHlWY2pJOvrKlyZNeFlEg4O15ut0t7oYMgXHcLPSh2WYCRPwTS3WEPnhXCMZO4Wg",
-  privateKey: "v04F9j6-aAZRvYl25BtZu1cezaWT-m4P0sHtE0JbE7g"
+  privateKey: "v04F9j6-aAZRvYl25BtZu1cezaWT-m4P0sHtE0JbE7g",
+  stripeKey: 'pk_test_51PipskAbE4XYrXNxNi1oiwylWr7B9mNMfUfQ070Cy09dDPj5HBFYObSajMGjNzlAynX23dT8thcx8sdJxpnP7Vov00wzIocDLR'
 };
 

@@ -84,6 +84,16 @@ body {
     margin: auto;
 }
 
+.avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    -ms-border-radius: 100%;
+    -o-border-radius: 100%;
+}
+
 .primary {
     color: var(--primary-color)
 }
@@ -105,7 +115,7 @@ input[type="file"] {
 }
 
 .plus {
-    background: #5db1c1 !important;
+    background: #81d0c7 !important;
     ;
     border-radius: 100%;
     width: 50px;
@@ -125,6 +135,10 @@ input[type="file"] {
 
 .list {
     color: var(--secondary-color)
+}
+
+.lsn {
+    list-style: none;
 }
 
 .danger {
@@ -164,7 +178,19 @@ input[type="file"] {
 }
 
 .second {
-    color: #5db1c1 !important;
+    color: #81d0c7 !important;
+}
+
+.secondB {
+    background-color: #81d0c7 !important;
+}
+
+.white {
+    color: white;
+}
+
+.whiteB {
+    background-color: white;
 }
 
 .pointer {
@@ -197,4 +223,23 @@ input[type="file"] {
     -moz-border-radius: 20px;
     -ms-border-radius: 20px;
     -o-border-radius: 20px;
+}
+
+.tdn {
+    text-decoration: none;
+}
+
+.title {
+    background-color: var(--primary-color);
+    padding: 10px;
+    color: white;
+    border-radius: 20px;
+    line-height: 17px;
+    border: 4px solid var(--secondary-color);
+    margin-bottom: 25px;
+}
+
+.img-fluid {
+    margin: auto;
+    max-width: 300px;
 }

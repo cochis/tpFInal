@@ -1,0 +1,217 @@
+<app-header></app-header>
+<main>
+    <app-loading class="animated1 fadeIn" *ngIf="loading"></app-loading>
+    <app-message class="animated1 fadeIn" *ngIf="msnOk"></app-message>
+    <section class="contact-section section-padding section-bg animated1 fadeIn " id="section_5" *ngIf="!loading">
+        <div class="container bw">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-12 col-12 text-center">
+                            <h2 class="mb-5" *ngIf="edit=='true'">Editar paquete</h2>
+                            <h2 class="mb-5" *ngIf="edit=='false'">Ver paquete</h2>
+                        </div>
+                        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                            <div class="row">
+                                <div class="col-12 col-md-4 mt-3">
+                                    <div class="form-group">
+                                        <label for="tipo">Tipo</label>
+                                        <select name="" id="tipo" formControlName="tipo" class="form-control upper">
+                                            <option value="">Selecciona un tipo</option>
+                                            <option value="eventos">Evento</option>
+                                            <option value="galerias">Galeria</option>
+
+                                        </select>
+                                    </div>
+                                    <span *ngIf="submited && errorControl['tipo'].errors " class="error">Es requerido
+                                    </span>
+                                </div>
+                                <div class="col-12 col-md-4 mt-3">
+                                    <div class="form-group">
+                                        <label for="tipoPaquete">Tipo de paquete</label>
+                                        <select name="" id="tipoPaquete" formControlName="tipoPaquete"
+                                            class="form-control upper">
+                                            <option value="">Selecciona un tipo de paquete</option>
+                                            <option value="number">Por cantidad</option>
+                                            <option value="ilimitado">Ilimitado</option>
+
+                                        </select>
+                                    </div>
+                                    <span *ngIf="submited && errorControl['tipoPaquete'].errors " class="error">Es
+                                        requerido
+                                    </span>
+                                </div>
+                                <div class="col-12 col-md-4 mt-3">
+                                    <div class="form-group">
+                                        <label for="tipoCosto">Tipo de costo</label>
+                                        <select name="" id="tipoCosto" formControlName="tipoCosto"
+                                            class="form-control upper">
+                                            <option value="">Selecciona un tipo de paquete</option>
+                                            <option value="único">Pago único</option>
+                                            <option value="mensualidad">Mensualidad</option>
+
+                                        </select>
+                                    </div>
+                                    <span *ngIf="submited && errorControl['tipoCosto'].errors " class="error">Es
+                                        requerido
+                                    </span>
+                                </div>
+                                <div class="col-12 col-md-4 mt-3">
+                                    <div class="form-group">
+                                        <label for="nombre">Nombre</label>
+                                        <input type="text" class="form-control upper" id="nombre"
+                                            formControlName="nombre" required placeholder="Nombre">
+                                    </div>
+                                    <span *ngIf="submited && errorControl['nombre'].errors " class="error">Es requerido
+                                    </span>
+                                </div>
+                                <div class="col-12 col-md-4 mt-3">
+
+                                    <div class="form-group">
+                                        <label for="clave">Clave</label>
+                                        <input type="text" class="form-control upper" id="clave" formControlName="clave"
+                                            placeholder="Clave">
+                                    </div>
+                                    <span *ngIf="submited && errorControl['clave'].errors " class="error">Es requerido
+                                    </span>
+                                </div>
+                                <div class="col-12 col-md-6 mt-3">
+
+                                    <div class="form-group">
+                                        <label for="costo">Costo</label>
+                                        <input type="number" class="form-control upper" id="costo"
+                                            formControlName="costo" placeholder="Costo">
+                                    </div>
+                                    <span *ngIf="submited && errorControl['costo'].errors " class="error">Es requerido
+                                    </span>
+                                </div>
+                                <div class="col-12 col-md-6 mt-3">
+
+                                    <div class="form-group">
+                                        <label for="value">Valor</label>
+                                        <input type="number" class="form-control upper" id="value"
+                                            formControlName="value" placeholder="Valor">
+                                    </div>
+                                    <span *ngIf="submited && errorControl['value'].errors " class="error">Es requerido
+                                    </span>
+                                </div>
+                                <div class="row ma mt-3">
+
+                                    <button class="btn btn-block but   ma " type="button" (click)="addDescripcion()">
+                                        Agregar información</button>
+                                </div>
+                                <div formArrayName="descripciones">
+                                    <div *ngFor="let descripcion of descripciones['controls'] ; let i=index">
+
+
+                                        <div [formGroupName]="i">
+                                            <div class="row">
+
+
+                                                <div class="col-12 col-md-6 mt-3">
+                                                    <div class="form-group">
+                                                        <label for="info">Información</label>
+                                                        <input type="text" class="form-control upper" id="info"
+                                                            formControlName="info" required placeholder="Información">
+                                                    </div>
+                                                    <span
+                                                        *ngIf="submited && errorControl['descripciones']['controls'][i]['controls']['info'].errors "
+                                                        class="error">Es
+                                                        requerido
+                                                    </span>
+                                                </div>
+
+
+
+
+
+                                                <div class=" col-12 col-md-6  mt-4 text-center">
+
+                                                    <button class="btn secondB white" (click)="removeDescripcion(i)"
+                                                        *ngIf="this.form.value.paquete !==''"> <i
+                                                            class="icon-minus"></i></button>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-12 mt-3 text-center">
+                                    <div class=" image-upload" class="text-center">
+
+                                        <label for="file-input" [ngClass]=" {'pointer':edit ==='true'}">
+
+                                            <ng-container *ngIf="paquete" class="text-center">
+                                                <img *ngIf="paquete.img ==='' && !imgTemp   "
+                                                    [src]="url+'/upload/paquetes/default.jpg'+paquete.img"
+                                                    alt="Click aquí para subir tu foto"
+                                                    title="Click aquí para subir tu foto" class="img-avatar">
+                                                <img *ngIf="paquete.img !=='' && !imgTemp   "
+                                                    [src]="url+'/upload/paquetes/'+paquete.img"
+                                                    alt="Click aquí para subir tu foto"
+                                                    title="Click aquí para subir tu foto" class="img-avatar">
+                                                <img *ngIf="paquete.img !=='' && imgTemp  " [src]="imgTemp"
+                                                    [alt]="paquete.nombre" class="img-avatar">
+                                            </ng-container>
+                                        </label>
+
+                                        <input id="file-input" type="file" class="ion-no-border"
+                                            (change)="cambiarImagen($event )" *ngIf="edit ==='true'" />
+
+
+
+                                    </div>
+                                </div>
+
+                                <!--    <div class="col-12 col-md-4 mt-3">
+                        
+                                                            <div class="form-group" *ngIf="descripciones">
+                                                                <label for="descripciones">Descripciones </label>
+                                                                <input type="text" class="form-control upper" id="info" formControlName="info"
+                                                                    placeholder="Costo">
+                                                            </div>
+                                                            <span *ngIf="submited && errorControl['evento'].errors " class="error">Es requerido
+                                                            </span>
+                                                        </div>
+                                                        <div class="col-12 ">
+                        
+                                                            <div class="form-group">
+                                                                <label for="descripcion">Descripción</label>
+                                                                <textarea type="text" class="form-control upper" id="descripcion"
+                                                                    formControlName="descripcion" placeholder="Descripción">
+                                                                    </textarea>
+                                                            </div>
+                                                            <span *ngIf="submited && errorControl['descripcion'].errors " class="error">Es
+                                                                requerido
+                                                            </span>
+                                                        </div> -->
+
+
+                            </div>
+
+                            <div class="row mt-5 text-center">
+
+                                <div class="col-12 col-md-6  mt-3 text-center ">
+                                    <button type="submit" class="btn btn-lg btn-block but  ">Editar</button>
+
+                                </div>
+                                <div class="col-12 col-md-6 mt-3 text-center">
+                                    <button class="btn btn-lg btn-block btn-warning" (click)="back()">Regresar</button>
+
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+
+</main>
+<app-footer></app-footer>

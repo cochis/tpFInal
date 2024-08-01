@@ -17,6 +17,7 @@ import Swal from 'sweetalert2';
 import { MetaService } from 'src/app/core/services/meta.service';
 import { TipoCentrosService } from 'src/app/core/services/tipoCentros.service';
 import { TipoCentro } from 'src/app/core/models/tipoCentro.model';
+import { PushsService } from 'src/app/core/services/push.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -60,6 +61,7 @@ export class RegisterComponent {
     private rolesService: RolesService,
     private usuariosService: UsuariosService,
     private functionsService: FunctionsService,
+    private pushsService: PushsService,
     private tipoCantidadesService: TipoCantidadesService,
     private tipoCentrosService: TipoCentrosService,
     private swPush: SwPush,
@@ -80,39 +82,7 @@ export class RegisterComponent {
     }
     this.metaService.generateTags(data)
     this.getCatalogos()
-    Swal.fire({
-      title: "Aceptar las notificaciones para estar mas enterado del evento",
-      showDenyButton: true,
-      confirmButtonText: "Aceptar",
-      confirmButtonColor: "#13547a",
-      denyButtonText: `Cancelar`,
-      denyButtonColor: "#81d0c7"
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.swPush.requestSubscription(
-          {
-            serverPublicKey: this.VAPID_PUBLIC_KEY
-          }
-        )
-          .then(respuesta => {
-            this.respuesta = respuesta
-            this.submited = true
-            if (!this.form.valid) {
-              this.loading = false
-              return
-            }
-          })
-          .catch(err => {
-            this.functionsService.alertError(err, 'Error')
-          })
-      } else if (result.isDenied) {
-        this.submited = true
-        if (!this.form.valid) {
-          this.loading = false
-          return
-        }
-      }
-    });
+
   }
   get errorControl() {
     return this.form.controls;
@@ -149,7 +119,7 @@ export class RegisterComponent {
       })
     this.tipoCentrosService.cargarTipoCentrosAll().subscribe((resp: CargarTipoCentros) => {
       this.tipoCentros = resp.tipoCentros
-      console.log(' this.tipoCentros::: ', this.tipoCentros);
+      // console.log(' this.tipoCentros::: ', this.tipoCentros);
     },
       (error) => {
         this.functionsService.alertError(error, 'Tipo de centros de eventos')
@@ -205,7 +175,57 @@ export class RegisterComponent {
         this.functionsService.setLocal('token', resp.token)
         usr.usuarioCreated = usr.uid
         this.usuariosService.actualizarUsuario(usr).subscribe((resp: any) => {
-          this.functionsService.navigateTo('auth/login')
+          // console.log('resp::: ', resp);
+          Swal.fire({
+            title: "Aceptar las notificaciones para estar mas enterado del evento",
+            showDenyButton: true,
+            confirmButtonText: "Aceptar",
+            confirmButtonColor: "#13547a",
+            denyButtonText: `Cancelar`,
+            denyButtonColor: "#81d0c7"
+          }).then((result) => {
+            // console.log('result::: ', result);
+            if (result.isConfirmed) {
+              this.swPush.requestSubscription(
+                {
+                  serverPublicKey: this.VAPID_PUBLIC_KEY
+                }
+              )
+                .then(respuesta => {
+                  this.pushsService.crearPush(respuesta).subscribe((res: any) => {
+                    // console.log('res::: ', res);
+
+                    var bl: any
+                    let usr = {
+                      ...resp.usuarioActualizado,
+                      pushNotification: (res.pushDB) ? res.pushDB.uid : res.push.uid
+                    }
+                    // console.log('usr::: ', usr);
+                    this.usuariosService.actualizarUsuario(usr).subscribe(resA => {
+                      this.loading = false
+                      this.functionsService.navigateTo('auth/login')
+                    },
+                      (err) => {
+                        console.error('err::: ', err);
+                        this.functionsService.alertError(error, 'Registro')
+                        this.loading = false
+                      })
+                  })
+
+                })
+                .catch(err => {
+                  console.error('err::: ', err);
+                  this.functionsService.alertError(err, 'Error')
+                })
+            } else if (result.isDenied) {
+              this.submited = true
+              if (!this.form.valid) {
+                this.loading = false
+                this.functionsService.navigateTo('auth/login')
+              }
+            }
+          });
+
         })
       }, 1500);
       this.functionsService.alert('Usuario', 'Creado', 'success')

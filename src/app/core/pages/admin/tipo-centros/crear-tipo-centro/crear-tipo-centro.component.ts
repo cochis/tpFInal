@@ -71,7 +71,7 @@ export class CrearTipoCentroComponent {
         (error) => {
           this.functionsService.alertError(error, 'Tipo de centro de eventos')
           this.loading = false
-          // console.logror::: ', error);
+          console.error('Error', error)
 
         })
     } else {

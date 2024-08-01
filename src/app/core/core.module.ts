@@ -69,6 +69,10 @@ import { VistaTipoCentrosComponent } from './pages/admin/tipo-centros/vista-tipo
 import { VistaInvitadosRecurrentesComponent } from './pages/admin/invitados-recurrentes/vista-invitados-recurrentes/vista-invitados-recurrentes.component';
 import { EditarInvitadosRecurrentesComponent } from './pages/admin/invitados-recurrentes/editar-invitados-recurrentes/editar-invitados-recurrentes.component';
 import { CrearInvitadosRecurrentesComponent } from './pages/admin/invitados-recurrentes/crear-invitados-recurrentes/crear-invitados-recurrentes.component';
+import { FaqsComponent } from './pages/faqs/faqs.component';
+import { CrearPaqueteComponent } from './pages/admin/paquete/crear-paquete/crear-paquete.component';
+import { EditarPaqueteComponent } from './pages/admin/paquete/editar-paquete/editar-paquete.component';
+import { VistaPaquetesComponent } from './pages/admin/paquete/vista-paquetes/vista-paquetes.component';
 
 
 
@@ -141,7 +145,11 @@ import { CrearInvitadosRecurrentesComponent } from './pages/admin/invitados-recu
     EditarTipoCentroComponent,
     VistaInvitadosRecurrentesComponent,
     EditarInvitadosRecurrentesComponent,
-    CrearInvitadosRecurrentesComponent
+    CrearInvitadosRecurrentesComponent,
+    FaqsComponent,
+    CrearPaqueteComponent,
+    EditarPaqueteComponent,
+    VistaPaquetesComponent
 
   ],
   imports: [
