@@ -35,19 +35,13 @@ export class ComprasService {
         const compras = resp.compras.map(
           (compra) =>
             new Compra(
-              compra.usuario,
-              compra.status,
-              compra.paquete,
-              compra.cantidadFiestas,
-              compra.costo,
-              compra.iva,
-              compra.paypalData,
+              compra.compra,
+              compra.session,
               compra.usuarioCreated,
               compra.activated,
               compra.dateCreated,
               compra.lastEdited,
               compra.uid,
-
             ),
         )
         return {
@@ -64,13 +58,8 @@ export class ComprasService {
         const compras = resp.compras.map(
           (compra) =>
             new Compra(
-              compra.usuario,
-              compra.status,
-              compra.paquete,
-              compra.cantidadFiestas,
-              compra.costo,
-              compra.iva,
-              compra.paypalData,
+              compra.compra,
+              compra.session,
               compra.usuarioCreated,
               compra.activated,
               compra.dateCreated,
@@ -94,6 +83,11 @@ export class ComprasService {
         stripe.redirectToCheckout({ sessionId: res.id })
       })
     )
+  }
+  verStatus(id: any) {
+    let url = `${base_url}/stripes/${id}`
+    console.log('url::: ', url);
+    return this.http.get(url, this.headers)
   }
 
 

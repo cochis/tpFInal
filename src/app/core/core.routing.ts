@@ -512,6 +512,12 @@ const routes: Routes = [
 
       },
       {
+        path: 'mis-compras',
+        component: VistaComprasComponent,
+        data: { titulo: 'Mis compras' }
+
+      },
+      {
         path: 'templates/default/:fiesta',
         component: DefaultComponent,
         data: { titulo: 'Invitacion fiesta' }

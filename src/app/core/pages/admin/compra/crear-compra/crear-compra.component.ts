@@ -153,7 +153,7 @@ export class CrearCompraComponent {
     // console.log('this.paquetes.controls[i]::: ', this.paquetes.controls[i].value);
   }
   back() {
-    this.functionsService.navigateTo('/core/fiestas/vista-fiestas')
+    this.functionsService.navigateTo('/core/mis-compras')
   }
 
   get paquetes(): FormArray {
@@ -218,6 +218,7 @@ export class CrearCompraComponent {
         activated: true,
       }
 
+      console.log('compra::: ', compra);
       this.comprasService.crearCompra(compra).subscribe({
         error: (err) => console.error('Error', err)
       })
