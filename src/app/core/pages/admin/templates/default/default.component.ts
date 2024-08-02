@@ -135,10 +135,10 @@ export class DefaultComponent implements OnInit, AfterViewInit {
           mesa: '1 y 2 ',
           cantidad: 5,
           tipoFiesta: 'Mis XV',
-          tipoSize:85,
+          tipoSize: 85,
           topDate: 50,
           nombreFiesta: 'Mariana',
-          nombreSize:87,
+          nombreSize: 87,
           textInvitacionValida: '¡Los esperamos!',
           mensajeImg: '/assets/images/xv/xv3.jpeg',
           mensaje1: 'Tengo el vestido, la ilusión, la felicidad, el lugar y todo lo que se pueda soñar. Sólo me falta que ustedes estén conmigo en este día.',
@@ -283,7 +283,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
     this.boletosService.registrarAsistencia(this.boleto).subscribe((res: any) => {
       if (res.boletoActualizado.confirmado) {
         this.boleto.cantidadInvitados
-        console.log('this.boleto.cantidadInvitados', this.boleto.cantidadInvitados)
+        // console.log('this.boleto.cantidadInvitados', this.boleto.cantidadInvitados)
         Swal.fire({
           title: "Si van a asistir menos personas confirmar la cantidad",
           input: "number",
@@ -296,7 +296,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
           showLoaderOnConfirm: true,
           preConfirm: async (login) => {
             try {
-              console.log('login', login)
+              // console.log('login', login)
 
 
 

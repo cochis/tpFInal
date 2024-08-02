@@ -69,7 +69,7 @@ export class CrearRolComponent {
       //Message
       this.loading = false
       this.functionsService.alertForm('Roles')
-      return  console.log('Please provide all the required values!');
+      return console.info('Please provide all the required values!');
     }
 
 

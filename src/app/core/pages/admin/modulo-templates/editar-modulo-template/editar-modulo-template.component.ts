@@ -133,7 +133,7 @@ export class EditarModuloTemplateComponent {
 
     this.tipoModulosService.cargarTipoModulosAll().subscribe((resp: CargarTipoModulos) => {
       this.tipoModulos = resp.tipoModulos
-      // // console.log('this.tipoModulos', this.tipoModulos)
+      // console.log('this.tipoModulos', this.tipoModulos)
 
     },
       (error: any) => {
@@ -146,7 +146,7 @@ export class EditarModuloTemplateComponent {
     this.loading = true
     this.submited = true
     this.form.value.nombre = this.form.value.nombre.toUpperCase().trim()
-    // // console.log(' this.form.value::: ', this.form.value);
+    // console.log(' this.form.value::: ', this.form.value);
 
     if (this.form.value.nombre === '' || this.form.value.clave === '') {
       this.functionsService.alertForm('ModuloTemplates')
@@ -179,7 +179,7 @@ export class EditarModuloTemplateComponent {
       //message
       this.loading = false
 
-      return //  console.log('Please provide all the required values!');
+      return //  console.info('Please provide all the required values!');
     }
 
 

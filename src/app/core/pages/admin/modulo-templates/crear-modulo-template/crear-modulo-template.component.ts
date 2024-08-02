@@ -107,7 +107,7 @@ export class CrearModuloTemplateComponent {
 
       this.functionsService.alertForm('ModuloTemplates')
       this.loading = false
-      return //  console.log('Please provide all the required values!');
+      return //  console.info('Please provide all the required values!');
     }
 
 

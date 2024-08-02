@@ -75,7 +75,7 @@ export class VistaTipoModulosComponent {
       this.tipoModulosService.cargarTipoModulosAll().subscribe((resp: CargarTipoModulos) => {
 
         this.tipoModulos = resp.tipoModulos
-        // // console.log('this.tipoModulos ::: ', this.tipoModulos);
+        // console.log('this.tipoModulos ::: ', this.tipoModulos);
         this.tipoModulosTemp = resp.tipoModulos
         setTimeout(() => {
 

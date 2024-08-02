@@ -289,7 +289,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
   }
   onSubmit() {
     this.ngOnDestroy()
-    console.log('this.form::: ', this.form.value);
+    // console.log('this.form::: ', this.form.value);
     this.submited = true
     if (this.form.invalid) {
       return

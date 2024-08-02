@@ -35,7 +35,7 @@ export class PricingComponent {
   getPaquetes() {
     this.paquetesService.cargarPaquetesAll().subscribe(resp => {
       this.paquetes = resp.paquetes
-      console.log('this.paquetes ::: ', this.paquetes);
+      // console.log('this.paquetes ::: ', this.paquetes);
     },
       (error) => {
         this.functionsService.alertError(error, 'Paquetes')

@@ -212,7 +212,7 @@ export class CrearFiestaComponent {
     } else {
       this.functionsService.alertForm('Fiestas')
       this.loading = false
-      return console.log('Please provide all the required values!');
+      return console.info('Please provide all the required values!');
     }
   }
   selectSalon(event) {

@@ -88,7 +88,7 @@ export class TipoCantidadesService {
     )
   }
   crearTipoCantidad(formData: TipoCantidad) {
-    // // console.log('formData::: ', formData);
+    // console.log('formData::: ', formData);
     return this.http.post(`${base_url}/tipo-cantidades`, formData, this.headers)
   }
 
@@ -107,7 +107,7 @@ export class TipoCantidadesService {
       ...tipoCantidad,
       lastEdited: Date.now(),
     }
-    // // console.log('data::: ', data);
+    // console.log('data::: ', data);
     return this.http.put(url, data, this.headers)
   }
 

@@ -114,12 +114,12 @@ export class CrearTemplateComponent {
     this.moduloDatas(modIndex).removeAt(dataIndex);
   }
   selectModuleTemplate(id: string, i: number) {
-    // // console.log('i::: ', i);
-    // // console.log('id::: ', id);
+    // console.log('i::: ', i);
+    // console.log('id::: ', id);
     let res = this.moduloTemplates.filter(mt => {
       return mt.uid == id
     })
-    // // console.log('res::: ', res[0]);
+    // console.log('res::: ', res[0]);
 
     res[0].values.forEach((value: any) => {
       this.moduloDatas(i).push(this.setData(value));
@@ -133,7 +133,7 @@ export class CrearTemplateComponent {
 
   }
   onSubmit() {
-    // // console.log(this.form.value);
+    // console.log(this.form.value);
   }
   createForm() {
     this.form = this.fb.group({
@@ -173,7 +173,7 @@ export class CrearTemplateComponent {
      } */
   }
   viewTemplate(template) {
-    // // console.log('template::: ', template);
+    // console.log('template::: ', template);
     this._modalService.show<Template>(ModalTemplateComponent, {
       title: 'Ver Diseño',
       size: 1,
@@ -197,7 +197,7 @@ export class CrearTemplateComponent {
       })
     this.eventosService.cargarEventosAll().subscribe((resp: CargarEventos) => {
       this.eventos = this.functionsService.getActives(resp.eventos)
-      // // console.log('this.eventos ::: ', this.eventos);
+      // console.log('this.eventos ::: ', this.eventos);
 
     },
       (error: any) => {

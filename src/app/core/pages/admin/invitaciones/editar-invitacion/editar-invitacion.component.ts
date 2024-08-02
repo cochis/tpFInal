@@ -67,7 +67,7 @@ export class EditarInvitacionComponent {
     this.loading = true
     this.fiestasService.cargarFiestaById(id).subscribe((resp: CargarFiesta) => {
       this.fiesta = resp.fiesta
-      console.log('this.fiesta::: ', this.fiesta);
+      // console.log('this.fiesta::: ', this.fiesta);
       this.invitacionId = this.fiesta.invitacion
     },
       (error: any) => {
@@ -392,7 +392,7 @@ export class EditarInvitacionComponent {
       })
     } else {
       let dataT = await this.dateToNumber(this.form.value)
-      console.log('this.uid', this.uid)
+      // console.log('this.uid', this.uid)
       var invitado = {
         tipoTemplate: this.fiesta.invitacion,
         templateActivated: true,
@@ -404,7 +404,7 @@ export class EditarInvitacionComponent {
         dateCreated: this.today,
         lastEdited: this.today
       }
-      console.log('invitado', invitado)
+      // console.log('invitado', invitado)
       setTimeout(() => {
 
         this.crearInvitacion(invitado).subscribe((res: CargarInvitacion) => {
@@ -628,7 +628,7 @@ export class EditarInvitacionComponent {
     return this.invitacionsService.actualizarInvitacion(invitacion)
   }
   crearInvitacion(invitacion) {
-    console.log('invitacion', invitacion)
+    // console.log('invitacion', invitacion)
     // console.log('crearInvitacion');
 
     if (typeof (invitacion.fiesta) == "object") {

@@ -44,7 +44,7 @@ export class EditarPaqueteComponent {
   getId(id: string) {
     this.paquetesService.cargarPaqueteById(id).subscribe((resp: CargarPaquete) => {
       this.paquete = resp.paquete
-      console.log('this.paquete ::: ', this.paquete);
+      // console.log('this.paquete ::: ', this.paquete);
       setTimeout(() => {
         this.setForm(this.paquete)
       }, 500);
@@ -78,8 +78,8 @@ export class EditarPaqueteComponent {
     this.descripciones.push(this.newDescripcion());
   }
   setDescripcion(paquete) {
-    console.log('this.descripciones::: ', this.descripciones);
-    console.log('{ info: paquete }::: ', { info: paquete });
+    // console.log('this.descripciones::: ', this.descripciones);
+    // console.log('{ info: paquete }::: ', { info: paquete });
     this.descripciones.push(this.newDescripcion({ info: paquete }));
   }
   removeDescripcion(i: number) {
@@ -118,7 +118,7 @@ export class EditarPaqueteComponent {
 
 
     paquete.descripciones.forEach(desc => {
-      console.log('desc::: ', desc.info);
+      // console.log('desc::: ', desc.info);
       this.setDescripcion(desc.info)
     });
 
@@ -154,7 +154,7 @@ export class EditarPaqueteComponent {
     } else {
       //message
       this.loading = false
-      return console.log('Please provide all the required values!');
+      return console.info('Please provide all the required values!');
     }
   }
   cambiarImagen(file: any) {

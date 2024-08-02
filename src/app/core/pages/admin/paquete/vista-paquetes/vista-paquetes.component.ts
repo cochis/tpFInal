@@ -69,7 +69,7 @@ export class VistaPaquetesComponent {
     this.loading = true
     if (this.rol === this.ADM) {
       this.paquetesService.cargarPaquetesAll().subscribe((resp: CargarPaquetes) => {
-        // // console.log('resp::: ', resp);
+        // console.log('resp::: ', resp);
 
         this.paquetes = resp.paquetes
         this.paquetesTemp = resp.paquetes

@@ -94,7 +94,7 @@ export class InfoFiestaComponent {
 
       this.salonesService.cargarSalonsAll().subscribe((resp: CargarSalons) => {
         this.salones = this.functionsService.getActivos(resp.salons)
-        // // console.log('this.salones', this.salones)
+        // console.log('this.salones', this.salones)
 
       },
         (error: any) => {
@@ -104,7 +104,7 @@ export class InfoFiestaComponent {
         })
       this.eventosService.cargarEventosAll().subscribe((resp: CargarEventos) => {
         this.eventos = this.functionsService.getActivos(resp.eventos)
-        // // console.log('this.eventos', this.eventos)
+        // console.log('this.eventos', this.eventos)
 
       },
         (error: any) => {
@@ -117,7 +117,7 @@ export class InfoFiestaComponent {
       this.usuariosService.cargarAlumnosAll().subscribe((resp: CargarUsuarios) => {
 
         this.usuarios = this.functionsService.getActivos(resp.usuarios)
-          // // console.log('this.usuarios', this.usuarios)
+          // console.log('this.usuarios', this.usuarios)
           ;
 
 
@@ -133,7 +133,7 @@ export class InfoFiestaComponent {
 
       this.salonesService.cargarSalonByMail(this.email).subscribe((resp: CargarSalons) => {
         this.salones = this.functionsService.getActivos(resp.salons)
-        // // console.log('this.salones', this.salones)
+        // console.log('this.salones', this.salones)
 
       },
         (error: any) => {
@@ -225,7 +225,7 @@ export class InfoFiestaComponent {
       this.functionsService.alertForm('Fiestas')
       this.loading = false
 
-      return //  console.log('Please provide all the required values!');
+      return //  console.info('Please provide all the required values!');
     }
 
 

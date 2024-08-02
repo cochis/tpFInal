@@ -47,7 +47,8 @@ export class FileService {
         return false
       }
     } catch (error) {
-      // // console.logror', error)
+      console.error('error::: ', error);
+
       return false
     }
   }
@@ -57,7 +58,7 @@ export class FileService {
     id: string,
   ) {
     const url = `${base_url}/upload/remove/${tipo}/${id}`
-    // // console.log('url', url)
+
     return this.http.patch(url, this.headers)
   }
   async actualizarFotoTemplate(
@@ -88,7 +89,8 @@ export class FileService {
         return false
       }
     } catch (error) {
-      // // console.logror', error)
+      console.error('error::: ', error);
+
       return false
     }
   }

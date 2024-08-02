@@ -148,7 +148,7 @@ export class HomeComponent implements AfterViewInit {
                 });
 
                 this.functionsService.subscribeToPush().then(resp => {
-                  // // console.log('resp::: ', resp);
+                 // console.log('resp::: ', resp);
 
 
                   let token = {
@@ -159,7 +159,7 @@ export class HomeComponent implements AfterViewInit {
                   }
 
                   this.tokenPushService.crearTokenPush(token).subscribe(resp => {
-                    // // console.log('resp::: ', resp);
+                   // console.log('resp::: ', resp);
 
                   })
 

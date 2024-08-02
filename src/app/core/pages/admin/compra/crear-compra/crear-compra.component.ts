@@ -94,7 +94,7 @@ export class CrearCompraComponent {
 
     },
       (error: any) => {
-        // console.log('error::: ', error);
+        console.error('error::: ', error);
         this.functionsService.alertError(error, 'Estatus de compra')
         this.loading = false
       })
@@ -218,7 +218,7 @@ export class CrearCompraComponent {
         activated: true,
       }
 
-      console.log('compra::: ', compra);
+      // console.log('compra::: ', compra);
       this.comprasService.crearCompra(compra).subscribe({
         error: (err) => console.error('Error', err)
       })

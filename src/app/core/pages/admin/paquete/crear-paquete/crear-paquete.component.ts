@@ -93,7 +93,7 @@ export class CrearPaqueteComponent {
     this.submited = true
 
 
-    console.log('this.form.value::: ', this.form.value);
+    // console.log('this.form.value::: ', this.form.value);
 
 
     if (this.form.valid) {
@@ -116,7 +116,7 @@ export class CrearPaqueteComponent {
 
       this.functionsService.alertForm('Tipo de Cantidades')
       this.loading = false
-      return console.log('Please provide all the required values!');
+      return console.info('Please provide all the required values!');
     }
 
 

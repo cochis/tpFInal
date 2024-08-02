@@ -236,7 +236,7 @@ export class BorradoComponent {
       case '5':
         this.items = this.boletos
         this.itemsTemp = this.boletos
-        console.log('this.itemsTemp::: ', this.itemsTemp);
+        // console.log('this.itemsTemp::: ', this.itemsTemp);
         break;
 
       default:
@@ -274,7 +274,7 @@ export class BorradoComponent {
       //Message
       this.loading = false
       this.functionsService.alertForm('Roles')
-      return console.log('Please provide all the required values!');
+      return console.info('Please provide all the required values!');
     }
 
 

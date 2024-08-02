@@ -244,7 +244,7 @@ export class EditarFiestaComponent {
     if (this.form.valid) {
       if (!this.form.value.checking) {
         this.form.value.cantidad = 0
-        console.log('this.form.value::: ', this.form.value);
+        // console.log('this.form.value::: ', this.form.value);
       }
       if (this.rol != this.ADM && Number(this.functionsService.dateToNumber(this.form.value.fecha)) < Number(this.today)) {
         this.functionsService.alert('Fiesta', 'La fecha del evento no puede ser menor al dia de hoy', 'info')
@@ -280,7 +280,7 @@ export class EditarFiestaComponent {
       this.functionsService.alertForm('Fiestas')
       this.loading = false
 
-      return console.log('Please provide all the required values!');
+      return console.info('Please provide all the required values!');
     }
 
 

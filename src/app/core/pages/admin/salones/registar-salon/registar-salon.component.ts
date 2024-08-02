@@ -68,7 +68,7 @@ export class RegistarSalonComponent {
 
     this.usuariosService.cargarUsuarioById(this.uid).subscribe((resp: CargarUsuario) => {
       this.usuario = resp.usuario
-      //// console.log('this.usuario ::: ', this.usuario);
+      //console.log('this.usuario ::: ', this.usuario);
 
 
     },
@@ -153,7 +153,7 @@ export class RegistarSalonComponent {
 
       this.functionsService.alertForm('Centro de Eventos')
       this.loading = false
-      return console.log('Please provide all the required values!');
+      return console.info('Please provide all the required values!');
     }
 
 

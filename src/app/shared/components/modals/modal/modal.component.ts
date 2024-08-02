@@ -20,6 +20,6 @@ export class ModalComponent {
   ) {
     this.sendRes = new EventEmitter();
     this.img = this._modalReference.config.model
-    // // console.log('  this.img::: ', this.img.img);
+    // console.log('  this.img::: ', this.img.img);
   }
 }

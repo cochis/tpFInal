@@ -111,7 +111,7 @@ export class FiestasService {
   }
   cargarFiestasByanfitrion(uid: string) {
     const url = `${base_url}/fiestas/anfitrion/${uid}`
-    // // console.log('url::: ', url);
+
     return this.http.get<CargarFiestas>(url, this.headers)
   }
   cargarFiestasBySalon(uid: string) {

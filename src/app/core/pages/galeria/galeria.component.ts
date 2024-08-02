@@ -166,7 +166,7 @@ export class GaleriaComponent implements OnInit, OnDestroy {
         this.galerias = this.functionsService.getActives(resp.galerias)
       })
     }
-    // // console.log('this.galerias ::: ', this.galerias);
+    // console.log('this.galerias ::: ', this.galerias);
   }
   async upImages(file) {
     this.porcentaje = 100
@@ -218,13 +218,13 @@ export class GaleriaComponent implements OnInit, OnDestroy {
         this.loading = true
         await performAsyncTask(item);
       }
-      // // console.log('Imagenes procesadas');
+      // console.log('Imagenes procesadas');
     };
     processArray(myArray)
       .then(() => {
         this.loading = false
         this.getPictures()
-        // // console.log('Processing completed');
+        // console.log('Processing completed');
       })
       .catch((error) => {
         // console.error('An error occurred:', error);

@@ -90,7 +90,7 @@ export class PaquetesService {
     )
   }
   crearPaquete(formData: Paquete) {
-    // // console.log('formData::: ', formData);
+    // console.log('formData::: ', formData);
     return this.http.post(`${base_url}/paquetes`, formData, this.headers)
   }
 
@@ -109,7 +109,7 @@ export class PaquetesService {
       ...paquete,
       lastEdited: Date.now(),
     }
-    // // console.log('data::: ', data);
+    // console.log('data::: ', data);
     return this.http.put(url, data, this.headers)
   }
 

@@ -160,11 +160,11 @@ export class VistaComprasComponent {
   }
 
   getStatus(compras) {
-    console.log('compras::: ', compras);
+    // console.log('compras::: ', compras);
     compras.forEach(element => {
-      console.log('element.session.id::: ', element.session.id);
+      // console.log('element.session.id::: ', element.session.id);
       this.comprasService.verStatus(element.session.id).subscribe(res => {
-        console.log('res::: ', res);
+        // console.log('res::: ', res);
 
       })
 

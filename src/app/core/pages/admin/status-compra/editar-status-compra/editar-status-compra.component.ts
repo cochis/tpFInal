@@ -130,7 +130,7 @@ export class EditarStatusCompraComponent {
       //message
       this.loading = false
 
-      return  console.log('Please provide all the required values!');
+      return console.info('Please provide all the required values!');
     }
 
 

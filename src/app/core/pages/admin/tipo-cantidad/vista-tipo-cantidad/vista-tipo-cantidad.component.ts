@@ -69,7 +69,7 @@ export class VistaTipoCantidadComponent {
     this.loading = true
     if (this.rol === this.ADM) {
       this.tipoCantidadesService.cargarTipoCantidadesAll().subscribe((resp: CargarTipoCantidades) => {
-        // // console.log('resp::: ', resp);
+        // console.log('resp::: ', resp);
 
         this.tipoCantidades = resp.tipoCantidades
         this.tipoCantidadesTemp = resp.tipoCantidades

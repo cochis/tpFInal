@@ -80,7 +80,7 @@ export class EditarTipoModuloComponent {
     })
   }
   setForm(tipoModulo: TipoModulo) {
-    // // console.log('tipoModulo::: ', tipoModulo);
+    // console.log('tipoModulo::: ', tipoModulo);
 
 
 
@@ -133,7 +133,7 @@ export class EditarTipoModuloComponent {
       //message
       this.loading = false
 
-      return //  console.log('Please provide all the required values!');
+      return //  console.info('Please provide all the required values!');
     }
 
 

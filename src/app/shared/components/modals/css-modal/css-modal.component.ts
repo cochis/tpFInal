@@ -18,7 +18,7 @@ export class CssModalComponent {
   ) {
     this.sendRes = new EventEmitter();
     this.data = this._modalReference.config.model
-    // // console.log('this.data', this.data)
+    // console.log('this.data', this.data)
 
   }
 }

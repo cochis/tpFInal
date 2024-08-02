@@ -11,12 +11,24 @@ import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { loadStripe } from '@stripe/stripe-js';
 
 const base_url = environment.base_url
+var stp = ''
+var ev = ''
 @Injectable({
   providedIn: 'root'
 })
 export class ComprasService {
 
-  constructor(private http: HttpClient, private functionsService: FunctionsService,) { }
+  constructor(private http: HttpClient, private functionsService: FunctionsService,) {
+    if (base_url.includes('localhost')) {
+      stp = environment.stripeKeyD
+      ev = 'D'
+    } else {
+      stp = environment.stripeKeyP
+      ev = 'P'
+    }
+
+
+  }
   get token(): string {
     return this.functionsService.getLocal('token') || ''
   }
@@ -75,18 +87,22 @@ export class ComprasService {
     )
   }
   crearCompra(compra: any) {
-    console.log('compra::: ', compra);
+    compra = {
+      ...compra,
+      ev
+    }
 
-    return this.http.post(`${base_url}/stripes`, compra, this.headers).pipe(
+
+    return this.http.post(`${base_url}/stripes/`, compra, this.headers).pipe(
       map(async (res: any) => {
-        const stripe = await loadStripe(environment.stripeKey)
+        const stripe = await loadStripe(stp)
         stripe.redirectToCheckout({ sessionId: res.id })
       })
     )
   }
   verStatus(id: any) {
-    let url = `${base_url}/stripes/${id}`
-    console.log('url::: ', url);
+    let url = `${base_url}/${ev}/stripes/${id}`
+
     return this.http.get(url, this.headers)
   }
 
