@@ -41,31 +41,31 @@
                             <thead class="thead-dark">
                                 <th class="upper">ID</th>
                                 <th class="upper">Opciones</th>
+                                <th class="upper" *ngIf="rol == ADM">Usuario</th>
                                 <th class="upper">Compra</th>
                                 <th class="upper">Costo</th>
                                 <th class="upper">Total</th>
-
-
+                                <th class="upper">Estatus </th>
                                 <th class="upper">Fecha </th>
 
                             </thead>
                             <tbody>
                                 <tr *ngFor="let compra of compras; let i=index">
-                                    <td style="position: relative;min-width: 30px ;">
-                                        <div style=" position: absolute;top: 50%;">
+                                    <td>
+                                        <div>
                                             <h3 class="primary ">{{i+1}}</h3>
 
                                         </div>
                                     </td>
-                                    <td style="position: relative; ">
-                                        <div style=" position: absolute;top: 50%;  ;">
+                                    <td>
+                                        <div>
 
                                             <div class="opc">
 
-                                                <i class="icon-eye text-primary" *ngIf="compra.activated"
+                                                <i class="icon-eye prima pointer" *ngIf="compra.activated"
                                                     (click)="viewCompra(compra.uid)"></i>
                                             </div>
-                                            <div class="opc" *ngIf="rol === ADM ">
+                                            <!--  <div class="opc" *ngIf="rol === ADM ">
 
                                                 <i class="icon-ok-circled text-success" *ngIf="!compra.activated"
                                                     (click)="isActived(compra)"></i>
@@ -74,17 +74,18 @@
 
                                                 <i class="icon-trash text-danger" *ngIf="compra.activated"
                                                     (click)="isActived(compra)"></i>
-                                            </div>
+                                            </div> 
                                             <div class="opc" *ngIf="rol === ADM ">
                                                 <i class="icon-pencil text-primary" *ngIf="compra.activated"
                                                     (click)="editCompra(compra.uid)"></i>
 
-                                            </div>
+                                            </div>-->
                                         </div>
 
 
 
                                     </td>
+                                    <td class="upper" *ngIf="rol == ADM">{{compra.usuarioCreated.email}}</td>
                                     <td class="upper" style="min-width: 250px;">
                                         <ng-container *ngFor="let item of compra.compra.line_items">
                                             <div>
@@ -94,7 +95,7 @@
                                                     alt="">
                                                 {{item.price_data.product_data.name}}
                                             </div>
-                                            <hr>
+
                                         </ng-container>
 
                                     </td>
@@ -102,17 +103,27 @@
                                     <td class="upper" style="width: 250px;">
                                         <ng-container *ngFor="let item of compra.compra.line_items">
                                             <div style="height: 81px; line-height: 81px;">
-                                                {{item.price_data.unit_amount | currency}}
+                                                {{(item.price_data.unit_amount/100 )| currency}}
                                             </div>
-                                            <hr>
+
                                         </ng-container>
 
                                     </td>
 
                                     <td style="position: relative;min-width: 150px;" class="secondB white">
-                                        <div style=" position: absolute;top: 50%;  ;">
+                                        <div style=" position: absolute;top: 50%;  ;" class="white">
 
                                             {{getTotal(i) | currency}}
+                                        </div>
+                                    </td>
+                                    <td style="position: relative;min-width: 150px;" class="but white upper">
+                                        <div style=" position: absolute;top: 50%;  ;" *ngIf="compra.status">
+
+                                            {{( compra.status=='complete')?'Pagado':'Sin estado'}}
+                                        </div>
+                                        <div style=" position: absolute;top: 50%;  ;" *ngIf="!compra.status">
+
+                                            Incompleta
                                         </div>
                                     </td>
 

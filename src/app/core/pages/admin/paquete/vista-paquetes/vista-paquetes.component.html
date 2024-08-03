@@ -46,6 +46,8 @@
                                 <th class="upper">Clave</th>
                                 <th class="upper">Costo</th>
                                 <th class="upper">Valor</th>
+                                <th class="upper">Vigencia por</th>
+                                <th class="upper">Vigencia</th>
                                 <th class="upper">Creador</th>
                                 <th class="upper">Activado</th>
                                 <th class="upper">Creación</th>
@@ -86,8 +88,27 @@
                                     <td class="upper">{{paquete.clave}}</td>
                                     <td class="upper">{{paquete.costo | currency}}</td>
                                     <td class="upper">{{(paquete.value>=0)?paquete.value:'Ilimitados'}}</td>
+                                    <td class="upper">
 
-                                    <td class="upper">{{paquete.usuarioCreated.email}}</td>
+                                        <i class="bi bi-alarm-fill primary"
+                                            *ngIf="paquete.typeOfVigencia=='string'"></i>
+                                        <i class="bi bi-1-square-fill primary"
+                                            *ngIf="paquete.typeOfVigencia=='number'"></i>
+
+                                    </td>
+                                    <td class="upper">
+                                        <ng-container *ngIf="paquete.typeOfVigencia=='number'">
+
+                                            Hasta ahogar sus usos
+                                        </ng-container>
+                                        <ng-container *ngIf="paquete.typeOfVigencia=='string'">
+
+                                            {{paquete.vigencia}} Meses de Vigencia
+                                        </ng-container>
+
+                                    </td>
+                                    <td class="upper">{{paquete.clave}}</td>
+
                                     <td>
                                         <i *ngIf="paquete.activated" class="icon-ok-circled prima"></i>
                                         <i *ngIf="!paquete.activated" class="icon-cancel-circled second"></i>

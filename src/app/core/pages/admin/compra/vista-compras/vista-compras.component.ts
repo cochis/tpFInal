@@ -25,8 +25,8 @@ import { ComprasService } from 'src/app/core/services/compra.service';
 })
 export class VistaComprasComponent {
   data!: any
-  usuarios: Usuario[] = [];
-  usuariosTemp: Usuario[] = [];
+  usuario: Usuario
+
   compras: any = []
   comprasTemp: any = []
   salones: Salon[]
@@ -42,8 +42,10 @@ export class VistaComprasComponent {
     private functionsService: FunctionsService,
     private busquedasService: BusquedasService,
     private comprasService: ComprasService,
+    private usuariosService: UsuariosService,
 
   ) {
+    this.getUsuario(this.uid)
     this.getCompras()
 
   }
@@ -60,7 +62,16 @@ export class VistaComprasComponent {
       this.compras = this.functionsService.filterBy(termino, this.comprasTemp)
     }, 500);
   }
+  getUsuario(id) {
+    this.usuariosService.cargarUsuarioById(id).subscribe(res => {
+      this.usuario = res.usuario
+      console.log('this.usuario::: ', this.usuario);
+    },
+      (error) => {
+        console.error('error::: ', error);
 
+      })
+  }
 
 
 
@@ -120,7 +131,7 @@ export class VistaComprasComponent {
 
   editRol(id: string) {
 
-    this.functionsService.navigateTo(`/core/compras/editar-rol/true/${id}`)
+    this.functionsService.navigateTo(`/core/mis-compras/editar-compra/true/${id}`)
 
   }
   isActived(rol: Compra) {
@@ -135,8 +146,8 @@ export class VistaComprasComponent {
 
       })
   }
-  viewRol(id: string) {
-    this.functionsService.navigateTo(`/core/compras/editar-rol/false/${id}`)
+  viewCompra(id: string) {
+    this.functionsService.navigateTo(`/core/mis-compras/editar-compra/false/${id}`)
 
   }
 
@@ -145,14 +156,11 @@ export class VistaComprasComponent {
     this.functionsService.navigateTo('core/compras/crear-compra/' + this.uid)
   }
   getTotal(i) {
-    // console.log('i::: ', i);
+
     var total = 0
-    this.compras[i].compra.line_items
+
     this.compras[i].compra.line_items.forEach(element => {
-      // console.log('element::: ', element);
-      total = total + (element.price_data.unit_amount)
-
-
+      total += (((element.price_data.unit_amount) * element.quantity)) / 100
     });
     return total
 
@@ -161,10 +169,33 @@ export class VistaComprasComponent {
 
   getStatus(compras) {
     // console.log('compras::: ', compras);
-    compras.forEach(element => {
-      // console.log('element.session.id::: ', element.session.id);
-      this.comprasService.verStatus(element.session.id).subscribe(res => {
-        // console.log('res::: ', res);
+    var act = false
+    compras.forEach((element, i) => {
+      this.comprasService.verStatus(element.session.id).subscribe((res: any) => {
+        this.compras[i].status = res.status
+        var infoCompra = this.usuario.compras.filter((compra, j) => {
+          if (compra.id == this.compras[i].session.id) {
+            if (!this.usuario.compras[j].activated) {
+              act = true
+            }
+            this.usuario.compras[j].activated = true
+
+
+
+            return compra
+          }
+        });
+        infoCompra = infoCompra[0]
+        if (act) {
+          this.usuariosService.actualizarUsuario(this.usuario).subscribe((resp: any) => {
+            this.usuario = resp.usuario
+            console.log('this.usuario::: ', this.usuario);
+            console.log('infoCompra::: ', infoCompra);
+          }, (error: any) => {
+            this.functionsService.alertError(error, 'Usuario')
+          })
+        }
+
 
       })
 

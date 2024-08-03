@@ -43,7 +43,7 @@ export class CrearUsuarioComponent {
     private salonesService: SalonsService,
     private rolesService: RolesService,
     private usuariosService: UsuariosService,
-    private tipoCantidadesService: TipoCantidadesService
+
   ) {
     this.loading = true
     // console.log(this.rol)
@@ -109,17 +109,7 @@ export class CrearUsuarioComponent {
 
         })
     }
-    this.tipoCantidadesService.cargarTipoCantidadesAll().subscribe((resp: CargarTipoCantidades) => {
-      this.paquetes = this.functionsService.getActivos(resp.tipoCantidades)
-      // console.log('   this.paquetes::: ', this.paquetes);
 
-    },
-      (error: any) => {
-        this.functionsService.alertError(error, 'Paquetes')
-        this.loading = false
-
-
-      })
 
 
   }

@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
-import { CargarTipoCantidad, CargarUsuario } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
+import { CargarPaquete, CargarUsuario } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
 
 import { Salon } from 'src/app/core/models/salon.model';
-import { TipoCantidad } from 'src/app/core/models/tipoCantidad.model';
+import { Paquete } from 'src/app/core/models/paquete.model';
 import { Usuario } from 'src/app/core/models/usuario.model';
 
 import { RolesService } from 'src/app/core/services/roles.service';
 import { SalonsService } from 'src/app/core/services/salon.service';
-import { TipoCantidadesService } from 'src/app/core/services/tipoCantidad.service';
+import { PaquetesService } from 'src/app/core/services/paquete.service';
 import { UsuariosService } from 'src/app/core/services/usuarios.service';
 import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { environment } from 'src/environments/environment';
@@ -35,7 +35,7 @@ export class RegistarSalonComponent {
   SLN = environment.salon_role
   URS = environment.user_role
   ANF = environment.anf_role
-  tipoCantidad: TipoCantidad
+  paquete: Paquete
   role = this.functionsService.getLocal('role')
   uid = this.functionsService.getLocal('uid')
   constructor(
@@ -43,7 +43,7 @@ export class RegistarSalonComponent {
     private functionsService: FunctionsService,
     private salonesService: SalonsService,
     private usuariosService: UsuariosService,
-    private tipoCantidadesService: TipoCantidadesService,
+    private paquetesService: PaquetesService,
     private modalService: NgbModal,
   ) {
     this.getCatalogos()
@@ -162,8 +162,8 @@ export class RegistarSalonComponent {
   }
 
   getCatalogos() {
-    this.tipoCantidadesService.cargarTipoCantidadByClave(this.EVTRGL).subscribe((resp: CargarTipoCantidad) => {
-      this.tipoCantidad = resp.tipoCantidad
+    this.paquetesService.cargarPaqueteByClave(this.EVTRGL).subscribe((resp: CargarPaquete) => {
+      this.paquete = resp.paquete
     },
       (error) => {
         this.functionsService.alertError(error, 'Paquetes')

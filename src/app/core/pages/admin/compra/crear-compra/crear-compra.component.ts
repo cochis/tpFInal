@@ -210,8 +210,9 @@ export class CrearCompraComponent {
       let compra = {
 
         items: paqs,
-        url_success: this.url + 'core/fiestas/vista-fiestas',
-        url_cancel: this.url + 'core/compras/crear-compra/' + this.uid,
+        url_success: this.url + 'core/congrats',
+
+        url_cancel: this.url + 'core/cancel',
         usuarioCreated: this.uid,
         lastEdited: this.today,
         dateCreated: this.today,

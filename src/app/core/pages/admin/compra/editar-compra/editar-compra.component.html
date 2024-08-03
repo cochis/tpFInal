@@ -1,1 +1,272 @@
-<p>editar-compra works!</p>
+<app-header></app-header>
+<main>
+    <app-loading class="animated1 fadeIn" *ngIf="loading"></app-loading>
+    <app-message class="animated1 fadeIn" *ngIf="msnOk"></app-message>
+    <section class="contact-section section-padding section-bg animated1 fadeIn " id="section_5" *ngIf="!loading">
+        <div class="container bw">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-12 col-12 text-center">
+                            <h2 class="mb-5" *ngIf="edit=='true'">Editar compra</h2>
+                            <h2 class="mb-5" *ngIf="edit=='false'">Ver compra</h2>
+                        </div>
+                        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                            <div class="row">
+                                <div class="col-12 col-md-6 mt-3">
+                                    <div class="form-group text-center">
+                                        <label for="activa ma m-2 primary" *ngIf="form.value.activa">
+
+                                            <i class="icon-ok-circled primary"></i>
+
+                                        </label>
+                                        <label for="activa ma m-2 primary" *ngIf="!form.value.activa">
+
+                                            <i class="icon-cancel-circled second"></i>
+
+                                        </label>
+
+
+
+
+                                    </div>
+                                    <span *ngIf="submited && errorControl['activa'].errors " class="error">Es requerido
+                                    </span>
+                                </div>
+                                <div class="col-12 col-md-6 mt-3">
+                                    <div class="form-group">
+                                        <label for="fechaCompra">Fecha de compra</label>
+                                        <input type="date" class="form-control upper" id="fechaCompra"
+                                            formControlName="fechaCompra" required placeholder="Fecha de compra"
+                                            [readonly]="edit==='false'">
+                                    </div>
+                                    <span *ngIf="submited && errorControl['fechaCompra'].errors " class="error">Es
+                                        requerido
+                                    </span>
+                                </div>
+                                <div class="col-12 col-md-6 mt-3">
+                                    <div class="form-group text-center">
+                                        <label for="total">Total</label>
+
+                                        {{form.value.total | currency}}
+
+                                    </div>
+                                    <span *ngIf="submited && errorControl['total'].errors " class="error">Es requerido
+                                    </span>
+                                </div>
+                                <div class="col-12 col-md-6 mt-3">
+                                    <div class="form-group">
+                                        <label for="iva">Iva</label>
+                                        <input type="text" class="form-control upper" id="iva" formControlName="iva"
+                                            required placeholder="Iva" [readonly]="edit==='false'">
+                                    </div>
+                                    <span *ngIf="submited && errorControl['iva'].errors " class="error">Es requerido
+                                    </span>
+                                </div>
+
+
+                            </div>
+
+
+                            <div class="row mt-3">
+                                <div class="table-over">
+                                    <table class="table table-striped table-bordered ">
+                                        <thead class="thead-dark">
+
+                                            <th class="upper text-center">nombre</th>
+                                            <th class="upper text-center">tipo</th>
+                                            <th class="upper text-center">valor</th>
+                                            <th class="upper text-center">cantidad venta</th>
+                                            <th class="upper text-center">costo</th>
+                                            <th class="upper text-center">tipo de vigencia</th>
+                                            <th class="upper text-center">vigencia</th>
+                                            <th class="upper text-center">Imagen</th>
+                                            <th class="upper text-center">Utilizables</th>
+
+
+                                        </thead>
+                                        <tbody formArrayName="paquetes">
+                                            <tr *ngFor="let paquete of paquetes['controls'] ; let i=index">
+                                                <ng-container [formGroupName]="i">
+                                                    <td class="upper text-center">
+                                                        {{form.value.paquetes[i].nombre}}
+                                                    </td>
+
+                                                    <td class="upper text-center">
+                                                        {{form.value.paquetes[i].tipo}}
+                                                    </td>
+                                                    <td class="upper text-center">
+                                                        <ng-container
+                                                            *ngIf="form.value.paquetes[i].tipo=='eventos' && edit=='false'">
+
+                                                            {{form.value.paquetes[i].cantidad}}
+                                                        </ng-container>
+                                                        <ng-container
+                                                            *ngIf="form.value.paquetes[i].tipo!='eventos' && edit=='false'">
+                                                            <ng-container *ngIf=" (form.value.paquetes[i].value) >=0">
+
+                                                                {{form.value.paquetes[i].cantidad}}
+                                                            </ng-container>
+                                                            <ng-container *ngIf=" (form.value.paquetes[i].value) < 0">
+
+                                                                Fotos ilimitadas
+                                                            </ng-container>
+
+                                                        </ng-container>
+                                                    </td>
+                                                    <td class="upper text-center">
+                                                        {{form.value.paquetes[i].cantidad}}
+                                                    </td>
+                                                    <td class="upper text-center">
+                                                        {{form.value.paquetes[i].costo}}
+                                                    </td>
+                                                    <td class="upper text-center ">
+
+                                                        <i class="bi bi-alarm-fill primary ma"
+                                                            *ngIf="form.value.paquetes[i].typeOfVigencia=='string'">
+                                                        </i>
+                                                        <i class="bi bi-1-square-fill primary ma"
+                                                            *ngIf="form.value.paquetes[i].typeOfVigencia=='number'">
+                                                        </i>
+
+                                                    </td>
+                                                    <td class="upper">
+                                                        <ng-container
+                                                            *ngIf="form.value.paquetes[i].typeOfVigencia=='number'">
+
+                                                            Hasta ahogar sus usos
+                                                        </ng-container>
+                                                        <ng-container
+                                                            *ngIf="form.value.paquetes[i].typeOfVigencia=='string'">
+
+                                                            {{form.value.paquetes[i].vigencia}} Meses de Vigencia
+                                                        </ng-container>
+
+                                                    </td>
+
+                                                    <td class="text-center">
+
+                                                        <ng-container *ngIf="form.value.paquetes[i].img ==''">
+
+                                                            <img class=" avatar"
+                                                                [src]=" urlImg + '/upload/paquetes/nonImage' " alt="">
+                                                        </ng-container>
+                                                        <ng-container *ngIf="form.value.paquetes[i].img !=''">
+
+                                                            <img class=" avatar"
+                                                                [src]=" urlImg + '/upload/paquetes/'+form.value.paquetes[i].img "
+                                                                alt="">
+                                                        </ng-container>
+                                                    </td>
+
+                                                    <td class="upper text-center">
+                                                        <ng-container *ngIf="form.value.paquetes[i].tipo=='eventos'">
+                                                            <ng-container *ngIf="form.value.paquetes[i].value>0">
+
+                                                                <ng-container
+                                                                    *ngIf="form.value.paquetes[i].typeOfVigencia=='string'">
+                                                                    Tienes {{form.value.paquetes[i].value}} por cada
+                                                                    mes
+                                                                    durante {{form.value.paquetes[i].vigencia}} Meses de
+                                                                    Vigencia
+
+                                                                </ng-container>
+                                                                <ng-container
+                                                                    *ngIf="form.value.paquetes[i].typeOfVigencia=='number'">
+
+                                                                    {{form.value.paquetes[i].value*form.value.paquetes[i].cantidad}}
+                                                                </ng-container>
+
+                                                            </ng-container>
+                                                            <ng-container *ngIf="form.value.paquetes[i].value<0">
+                                                                <ng-container
+                                                                    *ngIf="form.value.paquetes[i].typeOfVigencia=='string'">
+                                                                    Eventos ilimitados
+                                                                    {{form.value.paquetes[i].vigencia}} Meses de
+                                                                    Vigencia con 30 persona por evento
+                                                                </ng-container>
+                                                                <ng-container
+                                                                    *ngIf="form.value.paquetes[i].typeOfVigencia=='number'">
+                                                                    {{ form.value.paquetes[i].value}}
+                                                                </ng-container>
+
+
+                                                            </ng-container>
+                                                        </ng-container>
+                                                        <ng-container *ngIf="form.value.paquetes[i].tipo!='eventos'">
+
+                                                            <ng-container *ngIf="form.value.paquetes[i].value>0">
+                                                                <ng-container
+                                                                    *ngIf="form.value.paquetes[i].typeOfVigencia=='number'">
+                                                                    {{form.value.paquetes[i].value*form.value.paquetes[i].cantidad}}
+                                                                </ng-container>
+                                                                <ng-container
+                                                                    *ngIf="form.value.paquetes[i].typeOfVigencia=='string'">
+                                                                    {{form.value.paquetes[i].cantidad}} al mes por 1 año
+                                                                </ng-container>
+
+
+
+                                                            </ng-container>
+                                                            <ng-container *ngIf="form.value.paquetes[i].value<0">
+                                                                <ng-container
+                                                                    *ngIf="form.value.paquetes[i].typeOfVigencia=='number'">
+
+                                                                    {{ form.value.paquetes[i].cantidad}}
+
+                                                                </ng-container>
+                                                                <ng-container
+                                                                    *ngIf="form.value.paquetes[i].typeOfVigencia=='string'">
+                                                                    {{form.value.paquetes[i].typeOfVigencia}}4
+
+                                                                </ng-container>
+                                                            </ng-container>
+                                                        </ng-container>
+
+                                                    </td>
+
+
+
+                                                </ng-container>
+
+
+
+
+
+
+
+
+                                            </tr>
+                                        </tbody>
+
+                                    </table>
+                                </div>
+
+
+
+                            </div>
+
+                            <div class="row mt-5 text-center">
+
+                                <div class="col-12 col-md-6  mt-3 text-center ma" *ngIf="edit==='true'">
+                                    <button type="submit" class="btn btn-lg btn-block but  ">Editar</button>
+
+                                </div>
+                                <div class="col-12 col-md-6  mt-3 text-center ma">
+                                    <button class="btn btn-lg btn-block btn-warning" (click)="back()">Regresar</button>
+
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+
+</main>
+<app-footer></app-footer>

@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { CargarEventos, CargarFiestas, CargarRoles, CargarSalons, CargarUsuario, CargarUsuarios } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
+import { CargarEventos, CargarFiestas, CargarPaquetes, CargarRoles, CargarSalons, CargarUsuario, CargarUsuarios } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
 import { Usuario } from 'src/app/core/models/usuario.model';
 import { UsuariosService } from 'src/app/core/services/usuarios.service';
 import { FunctionsService } from 'src/app/shared/services/functions.service';
@@ -14,6 +14,9 @@ import { Fiesta } from 'src/app/core/models/fiesta.model';
 import { FiestasService } from 'src/app/core/services/fiestas.service';
 import { EventosService } from 'src/app/core/services/evento.service';
 import { Evento } from 'src/app/core/models/evento.model';
+import { ComprasService } from 'src/app/core/services/compra.service';
+import { PaquetesService } from 'src/app/core/services/paquete.service';
+import { Paquete } from 'src/app/core/models/paquete.model';
 @Component({
   selector: 'app-vista-fiestas',
   templateUrl: './vista-fiestas.component.html',
@@ -37,6 +40,8 @@ export class VistaFiestasComponent {
   email = this.functionsService.getLocal('email')
   uid = this.functionsService.getLocal('uid')
   cantidadFiestas = 0
+  cantidadGalerias = 0
+  paquetes: Paquete[]
   constructor(
     private functionsService: FunctionsService,
     private usuariosService: UsuariosService,
@@ -46,6 +51,8 @@ export class VistaFiestasComponent {
     private rolesService: RolesService,
     private eventosService: EventosService,
     private fiestasService: FiestasService,
+    private comprasService: ComprasService,
+    private paquetesService: PaquetesService,
 
   ) {
 
@@ -56,14 +63,61 @@ export class VistaFiestasComponent {
     }, 800);
   }
   getUser() {
+    var items = []
     if (this.rol !== 'ADMROL') {
       this.usuariosService.cargarUsuarioById(this.uid).subscribe((resp: CargarUsuario) => {
         this.usuario = resp.usuario
-        this.cantidadFiestas = resp.usuario.cantidadFiestas
+        this.cantidadFiestas = this.usuario.cantidadFiestas
+        this.cantidadGalerias = this.usuario.cantidadGalerias
+
+        this.calcularItems(this.usuario.compras)
+
       })
     } else {
       this.cantidadFiestas = -1
     }
+  }
+
+  calcularItems(items) {
+
+    this.cantidadFiestas = this.cantidadFiestas
+    this.cantidadGalerias = this.cantidadGalerias
+    var data: any
+    var uso = []
+    var time = []
+
+    items.forEach((compra, i) => {
+
+      compra.uso.forEach(us => {
+        console.log('us::: ', us);
+
+        if (us.value > 0) {
+
+          this.cantidadFiestas += (Number(us.cantidad) * Number(us.value))
+          this.cantidadFiestas -= Number(us.cantidadUsada)
+        } else {
+
+          this.cantidadGalerias += Number(us.cantidad)
+          this.cantidadGalerias -= Number(us.cantidadUsada)
+
+        }
+      });
+
+
+
+    });
+    // console.log(' this.cantidadGalerias::: ', this.cantidadGalerias);
+    // console.log('this.cantidadFiestas::: ', this.cantidadFiestas);
+
+
+
+
+
+
+
+
+
+
   }
   buscar(termino) {
     termino = termino.toLowerCase()
@@ -107,6 +161,14 @@ export class VistaFiestasComponent {
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
         })
+      this.paquetesService.cargarPaquetesAll().subscribe((resp: CargarPaquetes) => {
+        this.paquetes = resp.paquetes
+        // console.log(' this.paquetes::: ', this.paquetes);
+      },
+        (error: any) => {
+          this.functionsService.alertError(error, 'Paquetes')
+          this.loading = false
+        })
     } else {
       this.eventosService.cargarEventosAll().subscribe((resp: CargarEventos) => {
         this.eventos = resp.eventos
@@ -120,6 +182,14 @@ export class VistaFiestasComponent {
       },
         (error: any) => {
           this.functionsService.alertError(error, 'Fiestas')
+          this.loading = false
+        })
+      this.paquetesService.cargarPaquetesAll().subscribe((resp: CargarPaquetes) => {
+        this.paquetes = resp.paquetes
+        // console.log(' this.paquetes::: ', this.paquetes);
+      },
+        (error: any) => {
+          this.functionsService.alertError(error, 'Paquetes')
           this.loading = false
         })
     }

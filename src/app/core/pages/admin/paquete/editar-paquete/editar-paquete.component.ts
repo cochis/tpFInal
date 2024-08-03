@@ -91,6 +91,9 @@ export class EditarPaqueteComponent {
       tipo: ['', [Validators.required, Validators.minLength(3)]],
       clave: ['', [Validators.required, Validators.minLength(3)]],
       costo: ['', [Validators.required, Validators.minLength(3)]],
+      tipoVigencia: ['', [Validators.required]],
+      typeOfVigencia: ['', [Validators.required]],
+      vigencia: ['', [Validators.required]],
       tipoCosto: ['', [Validators.required, Validators.minLength(3)]],
       tipoPaquete: ['', [Validators.required, Validators.minLength(3)]],
       value: ['', [Validators.required]],
@@ -102,6 +105,7 @@ export class EditarPaqueteComponent {
   }
 
   setForm(paquete: Paquete) {
+    console.log('paquete::: ', paquete);
     this.form = this.fb.group({
       tipo: [(paquete.tipo) ? paquete.tipo : '', [Validators.required, Validators.minLength(3)]],
       tipoPaquete: [(paquete.tipoPaquete) ? paquete.tipoPaquete : '', [Validators.required, Validators.minLength(3)]],
@@ -110,6 +114,9 @@ export class EditarPaqueteComponent {
       clave: [paquete.clave, [Validators.required, Validators.minLength(3)]],
       value: [paquete.value, [Validators.required]],
       costo: [paquete.costo, [Validators.required]],
+      tipoVigencia: [paquete.tipoVigencia, [Validators.required]],
+      typeOfVigencia: [paquete.typeOfVigencia, [Validators.required]],
+      vigencia: [paquete.vigencia, [Validators.required]],
       descripciones: this.fb.array([]),
       activated: [paquete.activated],
       dateCreated: [paquete.dateCreated],
@@ -136,6 +143,7 @@ export class EditarPaqueteComponent {
       this.loading = false
       return
     }
+    console.log('this.form.::: ', this.form.value);
     if (this.form.valid) {
       this.paquete = {
         ...this.paquete,
@@ -155,6 +163,15 @@ export class EditarPaqueteComponent {
       //message
       this.loading = false
       return console.info('Please provide all the required values!');
+    }
+  }
+  changeTypeOfVigencia(type) {
+    console.log('type::: ', type);
+    if (type == 'Uso') {
+      this.form.patchValue({ typeOfVigencia: 'number' })
+    } else {
+      this.form.patchValue({ typeOfVigencia: 'string' })
+
     }
   }
   cambiarImagen(file: any) {

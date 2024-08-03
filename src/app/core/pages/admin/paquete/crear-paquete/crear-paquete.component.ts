@@ -76,6 +76,9 @@ export class CrearPaqueteComponent {
       tipo: ['', [Validators.required, Validators.minLength(3)]],
       clave: ['', [Validators.required, Validators.minLength(3)]],
       costo: ['', [Validators.required, Validators.minLength(3)]],
+      tipoVigencia: ['', [Validators.required]],
+      typeOfVigencia: ['', [Validators.required]],
+      vigencia: ['', [Validators.required]],
       img: [''],
       tipoCosto: ['', [Validators.required, Validators.minLength(3)]],
       tipoPaquete: ['', [Validators.required, Validators.minLength(3)]],
@@ -93,7 +96,7 @@ export class CrearPaqueteComponent {
     this.submited = true
 
 
-    // console.log('this.form.value::: ', this.form.value);
+    console.log('this.form.value::: ', this.form.value);
 
 
     if (this.form.valid) {
@@ -125,6 +128,15 @@ export class CrearPaqueteComponent {
 
   }
 
+  changeTypeOfVigencia(type) {
+    console.log('type::: ', type);
+    if (type == 'use') {
+      this.form.patchValue({ typeOfVigencia: 'number' })
+    } else {
+      this.form.patchValue({ typeOfVigencia: 'string' })
+
+    }
+  }
   cambiarImagen(file: any) {
     this.imagenSubir = file.target.files[0]
     if (!file.target.files[0]) {

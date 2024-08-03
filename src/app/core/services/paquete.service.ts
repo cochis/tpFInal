@@ -38,6 +38,9 @@ export class PaquetesService {
               paquete.tipo,
               paquete.tipoCosto,
               paquete.tipoPaquete,
+              paquete.tipoVigencia,
+              paquete.typeOfVigencia,
+              paquete.vigencia,
               paquete.clave,
               paquete.value,
               paquete.costo,
@@ -70,6 +73,9 @@ export class PaquetesService {
               paquete.tipo,
               paquete.tipoCosto,
               paquete.tipoPaquete,
+              paquete.tipoVigencia,
+              paquete.typeOfVigencia,
+              paquete.vigencia,
               paquete.clave,
               paquete.value,
               paquete.costo,
@@ -80,6 +86,12 @@ export class PaquetesService {
               paquete.dateCreated,
               paquete.lastEdited,
               paquete.uid,
+
+
+
+
+
+
             ),
         )
         return {

@@ -20,6 +20,8 @@ import { DisenoModalComponent } from './components/modals/diseno-modal/diseno-mo
 import { CssModalComponent } from './components/modals/css-modal/css-modal.component';
 import { SharedDefaultTemplateComponent } from './components/shared-default-template/shared-default-template.component';
 import { InfoUbicacionComponent } from './components/info-ubicacion/info-ubicacion.component';
+import { CongratsComponent } from './pages/congrats/congrats.component';
+import { CancelComponent } from './pages/cancel/cancel.component';
 
 
 
@@ -41,6 +43,8 @@ import { InfoUbicacionComponent } from './components/info-ubicacion/info-ubicaci
     CssModalComponent,
     SharedDefaultTemplateComponent,
     InfoUbicacionComponent,
+    CongratsComponent,
+    CancelComponent,
 
   ],
   exports: [

@@ -1,6 +1,6 @@
 
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { CargarRoles, CargarSalons, CargarTipoCantidades, CargarUsuario, CargarUsuarios } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
+import { CargarRoles, CargarSalons, CargarPaquetes, CargarUsuario, CargarUsuarios } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
 import { Usuario } from 'src/app/core/models/usuario.model';
 import { UsuariosService } from 'src/app/core/services/usuarios.service';
 import { FunctionsService } from 'src/app/shared/services/functions.service';
@@ -15,8 +15,9 @@ import { Role } from 'src/app/core/models/role.model';
 import { Salon } from 'src/app/core/models/salon.model';
 
 import { environment } from 'src/environments/environment';
-import { TipoCantidadesService } from 'src/app/core/services/tipoCantidad.service';
-import { TipoCantidad } from 'src/app/core/models/tipoCantidad.model';
+
+import { PaquetesService } from 'src/app/core/services/paquete.service';
+import { Paquete } from 'src/app/core/models/paquete.model';
 
 
 
@@ -38,7 +39,7 @@ export class VistaUsuariosComponent {
   salones: Salon[]
   loading = false
   url = environment.base_url
-  tipoCantidades: TipoCantidad[] = []
+  paquetes: Paquete[] = []
 
 
 
@@ -48,7 +49,7 @@ export class VistaUsuariosComponent {
     private http: HttpClient,
     private busquedasService: BusquedasService,
     private salonesService: SalonsService,
-    private tipoCantidadesService: TipoCantidadesService,
+    private paquetesService: PaquetesService,
     private rolesService: RolesService
   ) {
     this.getUsuarios()
@@ -91,8 +92,8 @@ export class VistaUsuariosComponent {
         this.functionsService.alertError(error, 'Usuarios')
         this.loading = false
       })
-    this.tipoCantidadesService.cargarTipoCantidadesAll().subscribe((resp: CargarTipoCantidades) => {
-      this.tipoCantidades = resp.tipoCantidades
+    this.paquetesService.cargarPaquetesAll().subscribe((resp: CargarPaquetes) => {
+      this.paquetes = resp.paquetes
     },
       (error: any) => {
         this.functionsService.alertError(error, 'Paquetes')
@@ -150,7 +151,7 @@ export class VistaUsuariosComponent {
           if (id !== undefined) return this.functionsService.getValueCatalog(id, 'email', this.usuarios)
           break;
         case 'paquete':
-          if (id !== undefined) return this.functionsService.getValueCatalog(id, 'nombre', this.tipoCantidades)
+          if (id !== undefined) return this.functionsService.getValueCatalog(id, 'nombre', this.paquetes)
           break;
       }
     } else {

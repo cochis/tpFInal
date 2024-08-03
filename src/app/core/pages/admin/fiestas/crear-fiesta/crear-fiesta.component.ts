@@ -35,6 +35,7 @@ export class CrearFiestaComponent {
   uid = this.functionsService.getLocal('uid')
   eventos: Evento[]
   usuarios: Usuario[]
+
   salones: Salon[]
   roles: Role[]
   usuario: Usuario
@@ -45,6 +46,8 @@ export class CrearFiestaComponent {
   cargando: boolean = false
   msnOk: boolean = false
   rol = this.functionsService.getLocal('role')
+  cantidadFiestas = 0
+  cantidadGalerias = 0
   constructor(
     private fb: FormBuilder,
     private functionsService: FunctionsService,
@@ -117,11 +120,16 @@ export class CrearFiestaComponent {
         })
       this.usuariosService.cargarUsuarioById(this.uid).subscribe(resp => {
         this.usuario = resp.usuario
+        this.cantidadFiestas = this.usuario.cantidadFiestas
+        this.cantidadGalerias = this.usuario.cantidadGalerias
+
+        this.calcularItems(this.usuario.compras)
       },
         (error) => {
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
         })
+
     }
   }
   get errorControl() {
@@ -188,16 +196,69 @@ export class CrearFiestaComponent {
       }
       this.fiestasService.crearFiesta(this.form.value).subscribe((resp: any) => {
         this.usuariosService.actualizarUsuario(this.usuario).subscribe((resp2: any) => {
-          this.loading = false
-          this.functionsService.alert('Fiestas', 'Fiesta creada', 'success')
+          if (this.usuario.compras.length == 0) {
+            this.usuario.cantidadFiestas = this.usuario.cantidadFiestas - 1
 
-          if (resp.fiesta.invitacion.includes('default')) {
+            if (this.form.value.galeria) {
+              this.usuario.cantidadGalerias = this.usuario.cantidadGalerias - 1
+            }
+            this.usuariosService.actualizarUsuario(this.usuario).subscribe(resU => {
+              this.loading = false
+              this.functionsService.alert('Fiestas', 'Fiesta creada', 'success')
 
-            this.functionsService.navigateTo(`core/invitaciones/editar-invitacion/true/${resp.fiesta.uid}`)
+              if (resp.fiesta.invitacion.includes('default')) {
+
+                this.functionsService.navigateTo(`core/invitaciones/editar-invitacion/true/${resp.fiesta.uid}`)
+              } else {
+
+                this.functionsService.navigateTo(`core/fiestas/vista-fiestas`)
+              }
+            })
+
           } else {
+            if (this.form.value.galeria && this.usuario.cantidadGalerias > 0) {
+              this.usuario.cantidadGalerias = this.usuario.cantidadGalerias - 1
+            }
+            this.usuario.compras.forEach((cp, i) => {
+              console.log('compra::: ', cp);
+              cp.uso.forEach((uso, j) => {
+                console.log('uso::: ', uso);
+                if (this.usuario.cantidadGalerias == 0 && this.usuario.cantidadFiestas == 0) {
 
-            this.functionsService.navigateTo(`core/fiestas/vista-fiestas`)
+                  if ((this.usuario.compras[i].uso[j].cantidad - this.usuario.compras[i].uso[j].cantidadUsada) > 0) {
+
+                    this.usuario.compras[i].uso[j].cantidadUsada = this.usuario.compras[i].uso[j].cantidadUsada + 1
+                    if (this.usuario.compras[i].uso[j].cantidad == 0) {
+                      this.usuario.compras[i].activated = false
+                      return
+                    }
+                  }
+                }
+
+
+              });
+              console.log('this.usuario.::: ', this.usuario);
+              this.usuariosService.actualizarUsuario(this.usuario).subscribe(resU => {
+                this.loading = false
+                this.functionsService.alert('Fiestas', 'Fiesta creada', 'success')
+
+                if (resp.fiesta.invitacion.includes('default')) {
+
+                  this.functionsService.navigateTo(`core/invitaciones/editar-invitacion/true/${resp.fiesta.uid}`)
+                } else {
+
+                  this.functionsService.navigateTo(`core/fiestas/vista-fiestas`)
+                }
+              })
+
+
+            });
+
           }
+
+
+
+
 
         },
           (error) => {
@@ -245,7 +306,8 @@ export class CrearFiestaComponent {
       salon: [this.form.value.salon, [Validators.required]],
       img: [''],
       galeria: [this.form.value.galeria],
-      checking: [this.form.value.galeria],
+      checking: [this.form.value.checking
+      ],
       mesaOk: [this.form.value.mesaOk],
       activated: [true],
       dateCreated: [this.today],
@@ -264,5 +326,45 @@ export class CrearFiestaComponent {
         mode: 'default'
       })
     }
+  }
+  calcularItems(items) {
+
+    this.cantidadFiestas = this.cantidadFiestas
+    this.cantidadGalerias = this.cantidadGalerias
+    var data: any
+    var uso = []
+    var time = []
+
+    items.forEach((compra, i) => {
+
+      compra.uso.forEach(us => {
+
+        if (us.value > 0) {
+
+          this.cantidadFiestas += (Number(us.cantidad) * Number(us.value))
+          this.cantidadFiestas -= Number(us.cantidadUsada)
+        } else {
+          console.log('us::: ', us);
+          this.cantidadGalerias += Number(us.cantidad)
+          this.cantidadGalerias -= Number(us.cantidadUsada)
+
+        }
+      });
+
+
+
+    });
+    console.log(' this.cantidadGalerias::: ', this.cantidadGalerias);
+    console.log('this.cantidadFiestas::: ', this.cantidadFiestas);
+
+
+
+
+
+
+
+
+
+
   }
 }

@@ -69,7 +69,7 @@ export class VistaPaquetesComponent {
     this.loading = true
     if (this.rol === this.ADM) {
       this.paquetesService.cargarPaquetesAll().subscribe((resp: CargarPaquetes) => {
-        // console.log('resp::: ', resp);
+        console.log('resp::: ', resp);
 
         this.paquetes = resp.paquetes
         this.paquetesTemp = resp.paquetes
@@ -87,6 +87,7 @@ export class VistaPaquetesComponent {
       this.paquetesService.cargarPaquetesByEmail(usr).subscribe((resp: CargarPaquetes) => {
 
         this.paquetes = resp.paquetes
+        console.log('this.paquetes::: ', this.paquetes);
         this.paquetesTemp = resp.paquetes
         setTimeout(() => {
 

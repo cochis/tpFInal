@@ -7,17 +7,18 @@ import { AuthService } from '../../services/auth.service';
 import { UsuariosService } from 'src/app/core/services/usuarios.service';
 import { environment } from 'src/environments/environment';
 import { RolesService } from 'src/app/core/services/roles.service';
-import { CargarRole, CargarRoles, CargarTipoCantidad, CargarTipoCentros } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
+import { CargarRole, CargarRoles, CargarPaquete, CargarTipoCentros } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
 import { error } from 'jquery';
 import { Role } from 'src/app/core/models/role.model';
-import { TipoCantidadesService } from 'src/app/core/services/tipoCantidad.service';
-import { TipoCantidad } from 'src/app/core/models/tipoCantidad.model';
+
 import { SwPush } from '@angular/service-worker';
 import Swal from 'sweetalert2';
 import { MetaService } from 'src/app/core/services/meta.service';
 import { TipoCentrosService } from 'src/app/core/services/tipoCentros.service';
 import { TipoCentro } from 'src/app/core/models/tipoCentro.model';
 import { PushsService } from 'src/app/core/services/push.service';
+import { Paquete } from 'src/app/core/models/paquete.model';
+import { PaquetesService } from 'src/app/core/services/paquete.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -28,7 +29,7 @@ export class RegisterComponent {
   loading = false
   vieWPass = false
   EVTRGL = environment.EVTRGL
-  tipoCantidad: TipoCantidad
+  paquete: Paquete
   ADM = environment.admin_role
   SLN = environment.salon_role
   URS = environment.user_role
@@ -62,7 +63,7 @@ export class RegisterComponent {
     private usuariosService: UsuariosService,
     private functionsService: FunctionsService,
     private pushsService: PushsService,
-    private tipoCantidadesService: TipoCantidadesService,
+    private paquetesService: PaquetesService,
     private tipoCentrosService: TipoCentrosService,
     private swPush: SwPush,
     private metaService: MetaService
@@ -111,15 +112,17 @@ export class RegisterComponent {
       (error) => {
         this.functionsService.alertError(error, 'Registro')
       })
-    this.tipoCantidadesService.cargarTipoCantidadByClave(this.EVTRGL).subscribe((resp: CargarTipoCantidad) => {
-      this.tipoCantidad = resp.tipoCantidad
+    console.log('this.EVTRGL::: ', this.EVTRGL);
+    this.paquetesService.cargarPaqueteByClave(this.EVTRGL).subscribe((resp: CargarPaquete) => {
+      this.paquete = resp.paquete
+      console.log('this.paquete::: ', this.paquete);
     },
       (error) => {
         this.functionsService.alertError(error, 'Paquetes')
       })
     this.tipoCentrosService.cargarTipoCentrosAll().subscribe((resp: CargarTipoCentros) => {
       this.tipoCentros = resp.tipoCentros
-      // console.log(' this.tipoCentros::: ', this.tipoCentros);
+      console.log(' this.tipoCentros::: ', this.tipoCentros);
     },
       (error) => {
         this.functionsService.alertError(error, 'Tipo de centros de eventos')
@@ -160,14 +163,15 @@ export class RegisterComponent {
     ) {
       this.loading = false
       this.functionsService.alertForm('Registro')
-      return
+
     }
     let user = {
       ...this.form.value,
-      cantidadFiestas: this.tipoCantidad.value,
-      paqueteActual: this.tipoCantidad.uid,
+      cantidadFiestas: 1,
+      cantidadGalerias: 1,
       pushNotification: (push) ? push : null
     }
+    console.log('user::: ', user);
     this.usuariosService.crearUsuario(user).subscribe((resp: any) => {
       setTimeout(() => {
         this.loading = false

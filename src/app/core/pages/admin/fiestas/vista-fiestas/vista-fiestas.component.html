@@ -15,15 +15,18 @@
                     <div class="row">
                         <div class="row  text-center">
                             <div class="col-12 col-md-6  text-center mt-3">
-                                <button class="btn but   " *ngIf="rol == ADM  || rol == ANF || rol == SLN"
+                                <!--   <button class="btn but   " *ngIf="rol == ADM  || rol == ANF || rol == SLN"
                                     (click)="newFiesta()">Nuevo
-                                    evento</button>
-                                <!--  <button class="btn but   " *ngIf="cantidadFiestas>0 &&(rol == ANF || rol== SLN)"
+                                    evento</button> -->
+
+                                Fiestas {{cantidadFiestas}}
+                                Galerisas {{cantidadGalerias }}
+                                <button class="btn but   " *ngIf="cantidadFiestas>0 &&(rol == ANF || rol== SLN)"
                                     (click)="newFiesta()">Nueva
                                     fiesta</button>
                                 <button class="btn but   " *ngIf="cantidadFiestas<=0 &&(rol == ANF || rol== SLN)"
                                     routerLink="/core/compras/crear-compra/{{uid}}">Comprar
-                                    paquete</button> -->
+                                    paquete</button>
 
                             </div>
                             <div class="col-12 col-md-6  mt-3 text-center">
@@ -107,7 +110,10 @@
                                         Sin template
                                     </td>
                                     <td class="upper">{{getCatalog('evento',fiesta.evento)}}</td>
-                                    <td class="upper">
+                                    <td class="upper second" *ngIf="!fiesta.usuarioFiesta">
+                                        Usuario Borrado
+                                    </td>
+                                    <td class="upper" *ngIf="fiesta.usuarioFiesta">
                                         {{fiesta.usuarioFiesta.nombre}}
                                         {{fiesta.usuarioFiesta.apellidoPaterno}}
                                         {{fiesta.usuarioFiesta.apellidoMaterno}}

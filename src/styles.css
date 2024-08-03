@@ -241,5 +241,10 @@ input[type="file"] {
 
 .img-fluid {
     margin: auto;
+
+}
+
+.img-fluid-300 {
+    margin: auto;
     max-width: 300px;
 }

@@ -56,7 +56,9 @@
                                         requerido
                                     </span>
                                 </div>
-                                <div class="col-12 col-md-4 mt-3">
+
+
+                                <div class="col-12 col-md-6 mt-3">
                                     <div class="form-group">
                                         <label for="nombre">Nombre</label>
                                         <input type="text" class="form-control upper" id="nombre"
@@ -65,7 +67,7 @@
                                     <span *ngIf="submited && errorControl['nombre'].errors " class="error">Es requerido
                                     </span>
                                 </div>
-                                <div class="col-12 col-md-4 mt-3">
+                                <div class="col-12 col-md-6 mt-3">
 
                                     <div class="form-group">
                                         <label for="clave">Clave</label>
@@ -75,6 +77,37 @@
                                     <span *ngIf="submited && errorControl['clave'].errors " class="error">Es requerido
                                     </span>
                                 </div>
+                                <div class="col-12 col-md-6 mt-3">
+                                    <div class="form-group">
+                                        <label for="tipoVIgencia">Tipo de vigencia</label>
+                                        <select name="" id="tipoVigencia" formControlName="tipoVigencia" #tipoVigencia
+                                            class="form-control upper"
+                                            (change)="changeTypeOfVigencia(tipoVigencia.value)">
+                                            <option value="">Selecciona un tipo de paquete</option>
+                                            <option value="Tiempo">Tiempo</option>
+                                            <option value="Uso">Uso</option>
+
+                                        </select>
+                                    </div>
+                                    <span *ngIf="submited && errorControl['tipoVigencia'].errors " class="error">Es
+                                        requerido
+                                    </span>
+                                </div>
+                                <div class="col-12 col-md-6 mt-3">
+                                    <div class="form-group">
+                                        <label for="vigencia">Vigencia</label>
+                                        <input type="number" class="form-control upper" id="vigencia"
+                                            formControlName="vigencia" required placeholder="Vigencia" min="-1">
+                                    </div>
+                                    <span *ngIf="submited && errorControl['vigencia'].errors " class="error">Es
+                                        requerido
+                                    </span>
+                                </div>
+
+
+
+
+
                                 <div class="col-12 col-md-6 mt-3">
 
                                     <div class="form-group">

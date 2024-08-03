@@ -64,6 +64,8 @@ import { FaqsComponent } from './pages/faqs/faqs.component';
 import { VistaPaquetesComponent } from './pages/admin/paquete/vista-paquetes/vista-paquetes.component';
 import { EditarPaqueteComponent } from './pages/admin/paquete/editar-paquete/editar-paquete.component';
 import { CrearPaqueteComponent } from './pages/admin/paquete/crear-paquete/crear-paquete.component';
+import { CongratsComponent } from '../shared/pages/congrats/congrats.component';
+import { CancelComponent } from '../shared/pages/cancel/cancel.component';
 
 
 const routes: Routes = [
@@ -518,6 +520,13 @@ const routes: Routes = [
 
       },
       {
+        path: 'mis-compras/editar-compra/:edit/:id',
+        component: EditarCompraComponent,
+        data: { titulo: 'Editar compra' },
+        canActivate: [authGuard]
+
+      },
+      {
         path: 'templates/default/:fiesta',
         component: DefaultComponent,
         data: { titulo: 'Invitacion fiesta' }
@@ -533,6 +542,18 @@ const routes: Routes = [
         path: 'templates/default/:fiesta/:boleto',
         component: DefaultComponent,
         data: { titulo: 'Template default' }
+
+      },
+      {
+        path: 'congrats',
+        component: CongratsComponent,
+        data: { titulo: 'Congrats' }
+
+      },
+      {
+        path: 'cancel',
+        component: CancelComponent,
+        data: { titulo: 'Cancel' }
 
       },
 
