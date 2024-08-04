@@ -41,8 +41,7 @@ export class HomeComponent implements AfterViewInit {
     this.metaService.generateTags()
     this.role = this.functionsService.getLocal('role')
     this.uid = this.functionsService.getLocal('uid')
-    // console.log(this.role);
-    // console.log(this.uid);
+
 
   }
   ngAfterViewInit() {
@@ -130,45 +129,11 @@ export class HomeComponent implements AfterViewInit {
           this.boletosService.actualizarBoletoRegistro(this.boleto).subscribe(res => {
 
             this.functionsService.alertUpdate('Confirmaste tu asistencia')
-            /* Swal.fire({
-              title: "Notificaciones",
-              text: "¿Quieres que te enviemos notificaciones de la fiesta?",
-              icon: "info",
-              showCancelButton: true,
-              confirmButtonColor: "#13547a",
-              cancelButtonColor: "#80d0c7",
-              confirmButtonText: "Si",
-              cancelButtonText: "No"
-            }).then((result) => {
-              if (result.isConfirmed) {
-                Swal.fire({
-                  title: "Permisos",
-                  text: "Acepta los permisos de notificaciones",
-                  icon: "success"
-                });
 
-                this.functionsService.subscribeToPush().then(resp => {
-                 // console.log('resp::: ', resp);
-
-
-                  let token = {
-                    tokenPush: resp,
-                    fiesta: qr.data.fiesta,
-                    activated: true,
-
-                  }
-
-                  this.tokenPushService.crearTokenPush(token).subscribe(resp => {
-                   // console.log('resp::: ', resp);
-
-                  })
-
-                })
-              }
-            }); */
 
           },
             (error) => {
+              console.error('Error', error)
               this.functionsService.alertError(error, 'Confirma asistencia')
             })
         } else {

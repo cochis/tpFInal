@@ -101,11 +101,7 @@ export class ComprasService {
     )
   }
   verStatus(id: any) {
-
     let url = `${base_url}/stripes/${ev}/${id}`
-    console.log('url::: ', url);
-
-
     return this.http.get(url, this.headers)
   }
 

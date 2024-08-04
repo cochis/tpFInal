@@ -289,7 +289,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
   }
   onSubmit() {
     this.ngOnDestroy()
-    // console.log('this.form::: ', this.form.value);
+
     this.submited = true
     if (this.form.invalid) {
       return
@@ -311,6 +311,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
         },
           (error) => {
             this.loading = false
+            console.error('error::: ', error);
             this.functionsService.alertError(error, 'Boletos')
           })
       } else {
@@ -327,6 +328,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
         },
           (error) => {
             this.loading = false
+            console.error('error::: ', error);
             this.functionsService.alertError(error, 'Boletos')
           })
       }
@@ -347,6 +349,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
     this.fiestasService.cargarFiestasAll().subscribe((resp: CargarFiestas) => {
       this.fiestas = this.functionsService.getActives(resp.fiestas)
     }, (error) => {
+      console.error('error::: ', error);
       this.functionsService.alertError(error, 'Boletos')
     })
   }
@@ -448,6 +451,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
             this.functionsService.alertUpdate('Boletos')
           },
             (error) => {
+              console.error('error::: ', error);
               this.loading = false
               this.functionsService.alertError(error, 'Boletos')
             })
@@ -462,6 +466,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
             Swal.fire({ title: "Enviado por Correo!", text: "", icon: "success", confirmButtonColor: "#13547a" });
           },
             (error) => {
+              console.error('error::: ', error);
               this.loading = false
               this.functionsService.alertError(error, 'Boletos')
             })
@@ -483,6 +488,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
       this.setForm(this.fiesta)
     },
       (error) => {
+        console.error('error::: ', error);
         this.loading = false
         this.functionsService.alertError(error, 'Boletos')
       })
@@ -494,6 +500,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
       this.functionsService.alertUpdate('Boletos')
     },
       (error) => {
+        console.error('error::: ', error);
         this.loading = false
         this.functionsService.alertError(error, 'Boletos')
       })

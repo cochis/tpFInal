@@ -110,21 +110,22 @@ export class RegisterComponent {
       this.roles = resp.roles
     },
       (error) => {
+        console.error('error::: ', error);
         this.functionsService.alertError(error, 'Registro')
       })
-    console.log('this.EVTRGL::: ', this.EVTRGL);
     this.paquetesService.cargarPaqueteByClave(this.EVTRGL).subscribe((resp: CargarPaquete) => {
       this.paquete = resp.paquete
-      console.log('this.paquete::: ', this.paquete);
     },
       (error) => {
+        console.error('error::: ', error);
         this.functionsService.alertError(error, 'Paquetes')
       })
     this.tipoCentrosService.cargarTipoCentrosAll().subscribe((resp: CargarTipoCentros) => {
       this.tipoCentros = resp.tipoCentros
-      console.log(' this.tipoCentros::: ', this.tipoCentros);
+
     },
       (error) => {
+        console.error('error::: ', error);
         this.functionsService.alertError(error, 'Tipo de centros de eventos')
       })
   }
@@ -142,6 +143,7 @@ export class RegisterComponent {
         }
       })
       .catch(err => {
+        console.error('error::: ', err);
         return {
           ok: false,
           err
@@ -165,21 +167,25 @@ export class RegisterComponent {
       this.functionsService.alertForm('Registro')
 
     }
+
     let user = {
       ...this.form.value,
+      tipoCentro: (this.form.value.tipoCentro == '') ? undefined : this.form.value.tipoCentro,
       cantidadFiestas: 1,
       cantidadGalerias: 1,
       pushNotification: (push) ? push : null
     }
-    console.log('user::: ', user);
+
+
     this.usuariosService.crearUsuario(user).subscribe((resp: any) => {
+
       setTimeout(() => {
         this.loading = false
         let usr = resp.usuario
         this.functionsService.setLocal('token', resp.token)
         usr.usuarioCreated = usr.uid
         this.usuariosService.actualizarUsuario(usr).subscribe((resp: any) => {
-          // console.log('resp::: ', resp);
+
           Swal.fire({
             title: "Aceptar las notificaciones para estar mas enterado del evento",
             showDenyButton: true,
@@ -188,7 +194,7 @@ export class RegisterComponent {
             denyButtonText: `Cancelar`,
             denyButtonColor: "#81d0c7"
           }).then((result) => {
-            // console.log('result::: ', result);
+
             if (result.isConfirmed) {
               this.swPush.requestSubscription(
                 {
@@ -197,14 +203,14 @@ export class RegisterComponent {
               )
                 .then(respuesta => {
                   this.pushsService.crearPush(respuesta).subscribe((res: any) => {
-                    // console.log('res::: ', res);
+
 
                     var bl: any
                     let usr = {
                       ...resp.usuarioActualizado,
                       pushNotification: (res.pushDB) ? res.pushDB.uid : res.push.uid
                     }
-                    // console.log('usr::: ', usr);
+
                     this.usuariosService.actualizarUsuario(usr).subscribe(resA => {
                       this.loading = false
                       this.functionsService.navigateTo('auth/login')
@@ -223,18 +229,19 @@ export class RegisterComponent {
                 })
             } else if (result.isDenied) {
               this.submited = true
-              if (!this.form.valid) {
-                this.loading = false
-                this.functionsService.navigateTo('auth/login')
-              }
+
+              this.loading = false
+              this.functionsService.navigateTo('auth/login')
+
             }
           });
 
         })
-      }, 1500);
-      this.functionsService.alert('Usuario', 'Creado', 'success')
+      }, 3500);
+      this.functionsService.alert('Ticket Party', 'Se ha enviado un correo  para la validación de tu correo', 'success')
     },
       (error: any) => {
+        console.error('error::: ', error);
         this.functionsService.alertError(error, 'Registro')
         this.loading = false
       })

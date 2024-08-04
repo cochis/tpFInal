@@ -18,7 +18,20 @@
                     <form [formGroup]="form" (ngSubmit)="submit()" autocomplete="off">
 
 
+                        <div class="input-group form-group mb-1">
 
+                            <select name="" id="tipoCentro" formControlName="tipoCentro" #tipoCentro
+                                class="form-control upper">
+                                <option value="">Selecciona el tipo</option>
+                                <ng-container *ngFor="let item of tipoCentros">
+
+                                    <option [value]="item.uid" *ngIf="!item.realizada">{{item.nombre}}
+                                        - {{item.descripcion}}
+                                    </option>
+                                </ng-container>
+
+                            </select>
+                        </div>
                         <div class="checks" *ngIf="roles ">
 
                             <ng-container *ngFor="let item of roles">
@@ -36,20 +49,7 @@
                         <span *ngIf="submited && errorControl['role'].errors " class="error">Debe se seleccionar
                             rol</span>
 
-                        <div class="input-group form-group mb-1"
-                            *ngIf="functionsService.getValueCatalog(this.form.value.role, 'clave',roles) == SLN">
 
-                            <select name="" id="tipoCentro" formControlName="tipoCentro" #tipoCentro
-                                class="form-control upper">
-                                <option value="">Selecciona la tipoCentro</option>
-                                <ng-container *ngFor="let item of tipoCentros">
-
-                                    <option [value]="item.uid" *ngIf="!item.realizada">{{item.nombre}}
-                                    </option>
-                                </ng-container>
-
-                            </select>
-                        </div>
 
 
 

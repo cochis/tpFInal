@@ -92,9 +92,6 @@ export class CrearTipoCantidadComponent {
     this.submited = true
 
 
-    // console.log('this.form.value::: ', this.form.value);
-
-
     if (this.form.valid) {
       this.form.value.nombre = this.form.value.nombre.toUpperCase().trim()
       this.form.value.clave = this.form.value.clave.toUpperCase().trim()
@@ -106,6 +103,7 @@ export class CrearTipoCantidadComponent {
         this.loading = false
       },
         (error) => {
+
           this.functionsService.alertError(error, 'Tipo de Cantidades')
           this.loading = false
           console.error('Error', error)

@@ -69,7 +69,7 @@ export class VistaTipoCantidadComponent {
     this.loading = true
     if (this.rol === this.ADM) {
       this.tipoCantidadesService.cargarTipoCantidadesAll().subscribe((resp: CargarTipoCantidades) => {
-        // console.log('resp::: ', resp);
+
 
         this.tipoCantidades = resp.tipoCantidades
         this.tipoCantidadesTemp = resp.tipoCantidades
@@ -79,6 +79,7 @@ export class VistaTipoCantidadComponent {
         }, 1500);
       },
         (error) => {
+          console.error('Error', error)
           this.loading = false
           this.functionsService.alertError(error, 'TipoCantidades')
         });
@@ -109,6 +110,7 @@ export class VistaTipoCantidadComponent {
 
     },
       (error: any) => {
+        console.error('Error', error)
         this.functionsService.alertError(error, 'TipoCantidades')
 
       })

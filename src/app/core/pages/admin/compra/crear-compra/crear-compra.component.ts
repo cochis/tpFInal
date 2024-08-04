@@ -49,7 +49,7 @@ export class CrearCompraComponent {
     private paypalService: PaypalService,
   ) {
     this.id = this.route.snapshot.params['usuario']
-    // console.log(' this.id ::: ', this.id);
+
 
     this.getCatalogos()
     this.createForm()
@@ -65,13 +65,11 @@ export class CrearCompraComponent {
   getCatalogos() {
     this.paquetesService.cargarPaquetesAll().subscribe(resp => {
       this.paquetesTipo = resp.paquetes
-      // console.log('this.paquetesTipo::: ', this.paquetesTipo);
 
     })
     this.usuariosService.cargarUsuarioById(this.id).subscribe((resp: CargarUsuario) => {
 
       this.usuario = resp.usuario
-      // console.log('this.usuario::: ', this.usuario);
 
       if (this.usuario.activated) {
       }
@@ -82,15 +80,15 @@ export class CrearCompraComponent {
 
     },
       (error: any) => {
+        console.error('error::: ', error);
         this.functionsService.alertError(error, 'Fiestas')
         this.loading = false
       })
 
     this.statusComprasService.cargarStatusCompraByStep(1).subscribe((resp: CargarStatusCompra) => {
-      // console.log('resp::: ', resp);
 
       this.statusCompra = resp.statusCompra
-      // console.log('this.statusCompra::: ', this.statusCompra);
+
 
     },
       (error: any) => {
@@ -127,7 +125,7 @@ export class CrearCompraComponent {
         }
       });
 
-      // console.log('this.paqueteSeleccionado::: ', this.paqueteSeleccionado);
+
       var cantidad = 0
       if (this.paqueteSeleccionado.tipoCosto.includes('mensual')) {
         cantidad = 12
@@ -150,7 +148,7 @@ export class CrearCompraComponent {
         });
 
     }
-    // console.log('this.paquetes.controls[i]::: ', this.paquetes.controls[i].value);
+
   }
   back() {
     this.functionsService.navigateTo('/core/mis-compras')
@@ -219,7 +217,7 @@ export class CrearCompraComponent {
         activated: true,
       }
 
-      // console.log('compra::: ', compra);
+
       this.comprasService.crearCompra(compra).subscribe({
         error: (err) => console.error('Error', err)
       })

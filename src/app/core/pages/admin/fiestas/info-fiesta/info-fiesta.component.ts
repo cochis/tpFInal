@@ -94,7 +94,6 @@ export class InfoFiestaComponent {
 
       this.salonesService.cargarSalonsAll().subscribe((resp: CargarSalons) => {
         this.salones = this.functionsService.getActivos(resp.salons)
-        // console.log('this.salones', this.salones)
 
       },
         (error: any) => {
@@ -104,7 +103,7 @@ export class InfoFiestaComponent {
         })
       this.eventosService.cargarEventosAll().subscribe((resp: CargarEventos) => {
         this.eventos = this.functionsService.getActivos(resp.eventos)
-        // console.log('this.eventos', this.eventos)
+
 
       },
         (error: any) => {
@@ -117,8 +116,7 @@ export class InfoFiestaComponent {
       this.usuariosService.cargarAlumnosAll().subscribe((resp: CargarUsuarios) => {
 
         this.usuarios = this.functionsService.getActivos(resp.usuarios)
-          // console.log('this.usuarios', this.usuarios)
-          ;
+
 
 
       },
@@ -133,7 +131,7 @@ export class InfoFiestaComponent {
 
       this.salonesService.cargarSalonByMail(this.email).subscribe((resp: CargarSalons) => {
         this.salones = this.functionsService.getActivos(resp.salons)
-        // console.log('this.salones', this.salones)
+
 
       },
         (error: any) => {
@@ -255,12 +253,11 @@ export class InfoFiestaComponent {
       .then(
         (img) => {
           this.fiesta.img = img
-          // console.log('this.fiesta.img ::: ', this.fiesta.img);
-          //message
+
         },
         (err) => {
 
-          //message
+          console.error('Error', err)
 
         },
       )

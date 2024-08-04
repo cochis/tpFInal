@@ -102,7 +102,9 @@
                                                                 data-bs-parent="#accordion{{i}}">
                                                                 <div class="accordion-body">
                                                                     <strong>{{paquete.costo | currency}}</strong> -
-                                                                    <small>Pago {{paquete.tipoCosto}}</small>
+                                                                    <small class="primary">Pago {{paquete.tipoCosto}} <b
+                                                                            class="second">IVA
+                                                                            Incluido</b></small>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -130,7 +132,7 @@
                                                                     <strong
                                                                         *ngIf="paquete.tipo =='galerias'">{{((paquete.value>=0)?(paquete.value
                                                                         + ' fotos'):'Fotos ilimitadas')}}</strong>
-                                                                    <ul>
+                                                                    <ul class="lsn">
                                                                         <li *ngFor="let desc of paquete.descripciones">
                                                                             {{desc.info}}
                                                                         </li>

@@ -79,6 +79,31 @@
                                 </div>
                                 <div class="col-12 col-md-6 mt-3">
 
+                                    <div class="form-group" *ngIf="edit ==='true'">
+                                        <label for="tipoCentro">Tipo de centro</label>
+                                        <select name="" id="tipoCentro" formControlName="role"
+                                            class="form-control upper">
+                                            <option value="">Selecciona un tipoCentro</option>
+                                            <option [value]="item.uid" *ngFor="let item of roles">{{item.nombre}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <span *ngIf="submited && errorControl['role'].errors " class="error">Es requerido
+                                    </span>
+                                    <div class="form-group" *ngIf="edit ==='false'">
+
+                                        <div class="form-group">
+                                            <label for="tipoCentro">Tipo de centro</label>
+                                            <input type="text" class="form-control upper" id="tipoCentro"
+                                                placeholder="Tipo de centro" formControlName="role"
+                                                [readonly]="edit==='false'">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-12 col-md-6 mt-3">
+
 
                                     <div class="form-group" *ngIf="edit ==='false'">
 
@@ -91,12 +116,12 @@
                                     </div>
                                 </div>
 
-                                <div class="col-12 col-md-6 mt-3 text-center">
-                                    <div class=" image-upload" class="text-center">
+                                <div class="col-12 col-md-6 mt-3 text-center ma">
+                                    <div class=" image-upload ma" class="text-center">
 
                                         <label for="file-input" class="text-center">
 
-                                            <ng-container *ngIf="usuario" class="text-center">
+                                            <ng-container *ngIf="usuario" class="text-center ma">
                                                 <img *ngIf="usuario.img ==='' && !imgTemp   "
                                                     [src]="url+'/upload/usuarios/default.jpg'+usuario.img"
                                                     alt="Click aquí para subir tu foto"
@@ -117,7 +142,7 @@
 
                                     </div>
                                 </div>
-                                <div class="col-12   mt-3 text-center">
+                                <div class="col-12   mt-5 text-center">
 
                                     <button class="custom-btn  but " (click)="changePass(content)">
                                         Cambiar contraseña</button>

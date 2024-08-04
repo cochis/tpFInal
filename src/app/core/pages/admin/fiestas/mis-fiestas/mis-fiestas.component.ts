@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit, OnDestroy } from '@angular/core';
-import { CargarBoletos, CargarSalons, CargarUsuario } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
+import { CargarBoletos, CargarPaquetes, CargarSalons, CargarUsuario } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
 import { Boleto } from 'src/app/core/models/boleto.model';
 import { Fiesta } from 'src/app/core/models/fiesta.model';
 import { Salon } from 'src/app/core/models/salon.model';
@@ -15,6 +15,8 @@ import { Observable, Subscription, interval } from 'rxjs';
 import { TokenPushsService } from 'src/app/core/services/tokenPush.service';
 import { environment } from 'src/environments/environment';
 import { MetaService } from 'src/app/core/services/meta.service';
+import { Paquete } from 'src/app/core/models/paquete.model';
+import { PaquetesService } from 'src/app/core/services/paquete.service';
 @Component({
   selector: 'app-mis-fiestas',
   templateUrl: './mis-fiestas.component.html',
@@ -30,6 +32,7 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
   blt: any = []
   salones: Salon[] = []
   salonesDB: Salon[] = []
+  paquetes: Paquete[] = []
   usuario: Usuario
   ADM = environment.admin_role
   SLN = environment.salon_role
@@ -43,11 +46,14 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
   filter = ''
   src1 = interval(10000);
   obs1: Subscription;
+  cantidadFiestas = 0
+  cantidadGalerias = 0
   public imagenSubir!: File
   public imgTemp: any = undefined
   constructor(
     private fiestasService: FiestasService,
     private usuariosService: UsuariosService,
+    private paquetesServices: PaquetesService,
     private functionsService: FunctionsService,
     private boletosService: BoletosService,
     private salonesService: SalonsService,
@@ -73,7 +79,7 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
     this.getUsuario(this.uid)
     setTimeout(() => {
       this.getFiestas()
-    }, 800);
+    }, 1000);
   }
   ngOnInit() {
     this.filterBy('true')
@@ -90,12 +96,24 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.obs1) this.obs1.unsubscribe();
   }
   getUsuario(uid) {
-    this.usuariosService.cargarUsuarioById(uid).subscribe((resp: CargarUsuario) => {
-      this.usuario = resp.usuario
+
+
+    this.paquetesServices.cargarPaquetesAll().subscribe((resp: CargarPaquetes) => {
+      this.paquetes = resp.paquetes
+
     })
+
+
     this.salonesService.cargarSalonsAll().subscribe((resp: CargarSalons) => {
       this.salonesDB = resp.salons
     })
+    this.usuariosService.cargarUsuarioById(uid).subscribe((resp: CargarUsuario) => {
+      this.usuario = resp.usuario
+      this.cantidadFiestas = this.usuario.cantidadFiestas
+      this.cantidadGalerias = this.usuario.cantidadGalerias
+      this.calcularItems(this.usuario.compras)
+    })
+
   }
   async getFiestas() {
     this.loading = true
@@ -111,7 +129,7 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
           this.boletos.push(this.blt)
           this.boletosService.cargarBoletoByFiesta(fst.uid).subscribe(res => {
             this.boletos[i].boletos = this.functionsService.getActivos(res.boleto)
-            // console.log('this.boletos[i]', this.boletos[i])
+
           })
         });
       })
@@ -127,7 +145,7 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
           this.boletos.push(this.blt)
           this.boletosService.cargarBoletoByFiesta(fst.uid).subscribe(res => {
             this.boletos[i].boletos = this.functionsService.getActivos(res.boleto)
-            // console.log('this.boletos', this.boletos)
+
           })
         });
 
@@ -143,7 +161,7 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
           }
           this.boletos.push(this.blt)
           this.boletosService.cargarBoletoByFiesta(fst.uid).subscribe(res => {
-            // console.log('res', res)
+
             this.boletos[i].boletos = res.boleto
           })
         });
@@ -159,7 +177,7 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
           }
           this.boletos.push(this.blt)
           this.boletosService.cargarBoletoByFiesta(fst.uid).subscribe(res => {
-            // console.log('res', res)
+
             this.boletos[i].boletos = res.boleto
           })
         });
@@ -275,6 +293,7 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
           this.functionsService.alertUpdate('Imagen actualizada')
         },
         (err) => {
+          console.error('Error', err)
           this.functionsService.alertError(err, 'Subir imagen')
         },
       )
@@ -327,6 +346,7 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
           this.functionsService.alert("Notificaciones enviadas", "Recuerda pedir a tus invitados que activen las notificaciones en su invitación", "success")
         },
           (err) => {
+            console.error('Error', err)
             this.functionsService.alertError(err, 'Push Notifiactions')
           })
       }
@@ -353,5 +373,30 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
         return " No se encontró"
         break
     }
+  }
+
+
+  calcularItems(items) {
+    this.cantidadFiestas = this.cantidadFiestas
+    this.cantidadGalerias = this.cantidadGalerias
+    items.forEach((compra, i) => {
+      compra.uso.forEach(us => {
+        this.paquetes.forEach(paq => {
+          if (paq.uid == us.infoPaq._id) {
+            if (paq.tipo == 'eventos') {
+              this.cantidadFiestas += (Number(us.cantidad))
+              this.cantidadFiestas -= Number(us.cantidadUsada)
+            } else {
+              this.cantidadGalerias += (Number(us.cantidad))
+              this.cantidadGalerias -= Number(us.cantidadUsada)
+            }
+          }
+        });
+      });
+    });
+    setTimeout(() => {
+      this.cantidadGalerias = this.cantidadGalerias
+      this.cantidadFiestas = this.cantidadFiestas
+    }, 500);
   }
 }

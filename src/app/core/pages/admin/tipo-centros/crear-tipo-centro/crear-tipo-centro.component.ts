@@ -47,6 +47,7 @@ export class CrearTipoCentroComponent {
     this.form = this.fb.group({
       nombre: ['', [Validators.required, Validators.minLength(3)]],
       clave: ['', [Validators.required, Validators.minLength(3)]],
+      descripcion: [''],
 
       activated: [true],
       dateCreated: [this.today],
@@ -88,7 +89,7 @@ export class CrearTipoCentroComponent {
   }
 
   back() {
-    this.functionsService.navigateTo('core/tipoCentros/vista-tipoCentros')
+    this.functionsService.navigateTo('core/tipo-centros/vista-tipo-centros')
   }
 
 }

@@ -30,11 +30,11 @@ export class ModalTemplateComponent implements AfterViewInit {
 
 
     this.template = this._modalReference.config.model
-    // console.log('template::: ', this.template);
+
 
     this.template.modulos.forEach(element => {
       this.css += element.css
-      // console.log('  this.css ::: ', this.css);
+
       this.diseno += element.diseno
     });
     this.cssContent = this.css

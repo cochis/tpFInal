@@ -42,7 +42,7 @@ export class SharedDefaultTemplateComponent implements AfterViewInit {
       let not2 = 'Nota 2'
       this.addNotas(not)
       this.addNotas(not2)
-      // console.log(this.form);
+
       this.loading = false
     }, 1800);
 
@@ -118,8 +118,7 @@ export class SharedDefaultTemplateComponent implements AfterViewInit {
       dateCreated: [this.today],
       lastEdited: [this.today],
     })
-    // console.log('this.itinerarios::: ', this.itinerarios);
-    // console.log(this.form);
+
 
 
   }
@@ -160,7 +159,7 @@ export class SharedDefaultTemplateComponent implements AfterViewInit {
     })
   }
   addItinerarios(item?) {
-    // console.log('item::: ', item);
+
     if (item) {
       this.itinerarios.push(this.setItinerario(item));
     } else {
@@ -168,7 +167,7 @@ export class SharedDefaultTemplateComponent implements AfterViewInit {
     }
   }
   addNotas(item?) {
-    // console.log('item::: ', item);
+
     if (item) {
       this.notas.push(this.setNota(item));
     } else {
@@ -182,11 +181,11 @@ export class SharedDefaultTemplateComponent implements AfterViewInit {
     this.notas.removeAt(i);
   }
   onSubmit() {
-    // console.log(this.form.value);
+
 
   }
   back() {
-    // console.log(this.form.value);
+
 
   }
 }

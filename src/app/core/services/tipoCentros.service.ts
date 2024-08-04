@@ -30,15 +30,16 @@ export class TipoCentrosService {
     return this.http.get<CargarTipoCentros>(url, this.headers).pipe(
       map((resp) => {
         const tipoCentros = resp.tipoCentros.map(
-          (rol) =>
+          (tipoCentro) =>
             new TipoCentro(
-              rol.nombre,
-              rol.clave,
-              rol.activated,
-              rol.usuarioCreated,
-              rol.dateCreated,
-              rol.lastEdited,
-              rol.uid,
+              tipoCentro.nombre,
+              tipoCentro.clave,
+              tipoCentro.descripcion,
+              tipoCentro.activated,
+              tipoCentro.usuarioCreated,
+              tipoCentro.dateCreated,
+              tipoCentro.lastEdited,
+              tipoCentro.uid,
 
             ),
         )
@@ -54,15 +55,16 @@ export class TipoCentrosService {
     return this.http.get<CargarTipoCentros>(url, this.headers).pipe(
       map((resp) => {
         const tipoCentros = resp.tipoCentros.map(
-          (rol) =>
+          (tipoCentro) =>
             new TipoCentro(
-              rol.nombre,
-              rol.clave,
-              rol.activated,
-              rol.usuarioCreated,
-              rol.dateCreated,
-              rol.lastEdited,
-              rol.uid,
+              tipoCentro.nombre,
+              tipoCentro.clave,
+              tipoCentro.descripcion,
+              tipoCentro.activated,
+              tipoCentro.usuarioCreated,
+              tipoCentro.dateCreated,
+              tipoCentro.lastEdited,
+              tipoCentro.uid,
 
             ),
         )
@@ -78,15 +80,16 @@ export class TipoCentrosService {
     return this.http.get<CargarTipoCentros>(url, this.headers).pipe(
       map((resp) => {
         const tipoCentros = resp.tipoCentros.map(
-          (rol) =>
+          (tipoCentro) =>
             new TipoCentro(
-              rol.nombre,
-              rol.clave,
-              rol.activated,
-              rol.usuarioCreated,
-              rol.dateCreated,
-              rol.lastEdited,
-              rol.uid,
+              tipoCentro.nombre,
+              tipoCentro.clave,
+              tipoCentro.descripcion,
+              tipoCentro.activated,
+              tipoCentro.usuarioCreated,
+              tipoCentro.dateCreated,
+              tipoCentro.lastEdited,
+              tipoCentro.uid,
 
             ),
         )
@@ -102,15 +105,16 @@ export class TipoCentrosService {
     return this.http.get<CargarTipoCentros>(url, this.headers).pipe(
       map((resp) => {
         const tipoCentros = resp.tipoCentros.map(
-          (rol) =>
+          (tipoCentro) =>
             new TipoCentro(
-              rol.nombre,
-              rol.clave,
-              rol.usuarioCreated,
-              rol.activated,
-              rol.dateCreated,
-              rol.lastEdited,
-              rol.uid,
+              tipoCentro.nombre,
+              tipoCentro.clave,
+              tipoCentro.descripcion,
+              tipoCentro.usuarioCreated,
+              tipoCentro.activated,
+              tipoCentro.dateCreated,
+              tipoCentro.lastEdited,
+              tipoCentro.uid,
             ),
         )
         return {

@@ -62,7 +62,7 @@ export class EditarCompraComponent {
 
     this.comprasService.cargarCompraById(id).subscribe((resp: CargarCompra) => {
       this.compra = resp.compra
-      console.log('this.compra::: ', this.compra);
+
       this.info = this.compra.compra.info;
       this.info.paquetes.forEach((paq: any, i: number) => {
         this.paquetesService.cargarPaqueteById(paq.uid).subscribe((resp: CargarPaquete) => {
@@ -79,7 +79,7 @@ export class EditarCompraComponent {
 
     },
       (error: any) => {
-
+        console.error('error::: ', error);
         this.functionsService.alertError(error, 'Compras')
         this.loading = false
 
@@ -95,6 +95,7 @@ export class EditarCompraComponent {
 
     },
       (error: any) => {
+        console.error('error::: ', error);
         this.functionsService.alertError(error, 'Paquetes')
         this.loading = false
       })
@@ -111,7 +112,7 @@ export class EditarCompraComponent {
   }
   newPaquete(paquete?): FormGroup {
     if (paquete) {
-      console.log('paquete::: ', paquete);
+
 
       return this.fb.group({
         nombre: paquete.infoPaq.nombre,
@@ -155,7 +156,6 @@ export class EditarCompraComponent {
     })
   }
   setForm(compra: any) {
-    // console.log('compra::: ', compra.paquetes);
 
 
 
@@ -168,11 +168,11 @@ export class EditarCompraComponent {
 
     })
     compra.paquetes.forEach(paq => {
-      // console.log('paq::: ', paq);
+
       this.paquetes.push(this.newPaquete(paq));
 
     });
-    console.log('this.paquetes::: ', this.paquetes.value);
+
 
   }
 
@@ -200,8 +200,7 @@ export class EditarCompraComponent {
         this.loading = false
       },
         (error) => {
-
-          //message
+          console.error('error::: ', error);
           this.loading = false
           this.functionsService.alertError(error, 'Compras')
 
@@ -212,7 +211,7 @@ export class EditarCompraComponent {
       //message
       this.loading = false
 
-      return // console.info('Please provide all the required values!');
+      return console.info('Please provide all the required values!');
     }
 
 

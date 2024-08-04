@@ -57,7 +57,7 @@ export class EditarTipoModuloComponent {
 
     },
       (error: any) => {
-
+        console.error('Error', error)
         this.functionsService.alertError(error, 'TipoModulos')
         this.loading = false
 
@@ -80,7 +80,7 @@ export class EditarTipoModuloComponent {
     })
   }
   setForm(tipoModulo: TipoModulo) {
-    // console.log('tipoModulo::: ', tipoModulo);
+
 
 
 
@@ -122,7 +122,7 @@ export class EditarTipoModuloComponent {
       },
         (error) => {
 
-          //message
+          console.error('Error', error)
           this.loading = false
           this.functionsService.alertError(error, 'TipoModulos')
 

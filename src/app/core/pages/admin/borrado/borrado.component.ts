@@ -236,7 +236,7 @@ export class BorradoComponent {
       case '5':
         this.items = this.boletos
         this.itemsTemp = this.boletos
-        // console.log('this.itemsTemp::: ', this.itemsTemp);
+
         break;
 
       default:
@@ -257,18 +257,6 @@ export class BorradoComponent {
       else if (this.form.value.tipo == '4') { }
       else if (this.form.value.tipo == '5') { }
 
-      // this.rolesService.crearRole(this.form.value).subscribe((resp: any) => {
-      //   this.functionsService.alert('Roles', 'Rol creado', 'success')
-      //   this.functionsService.navigateTo('core/roles/vista-roles')
-      //   this.loading = false
-      // },
-      //   (error) => {
-      //     this.functionsService.alertError(error, 'Roles')
-
-      //     this.loading = false
-      //     this.functionsService.alertError(error, 'Roles')
-
-      //   })
     } else {
 
       //Message

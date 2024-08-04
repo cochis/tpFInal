@@ -42,3 +42,15 @@ db.fiestas.updateOne({nombre:"XV AÑOS SARAH IXCHEL"}, {$set:{_id:ObjectId("65d4
 db.fiestas.find({salon:"65598dfa2c028fe992b4e9e4"})
 
 db.boletos.deleteMany({  fiesta: ObjectId("669a901eeadfce23d2a02163")})
+
+
+////////Borrar usuario 
+ db.boletos.deleteMany({ usuarioCreated: ObjectId(" ") })
+    db.fiestas.deleteMany({ usuarioCreated: ObjectId(" ") })
+    db.galerias.deleteMany({ usuarioCreated: ObjectId(" ") })
+    db.invitacions.deleteMany({ usuarioCreated: ObjectId(" ") })
+    db.pushes.deleteMany({ usuarioCreated: ObjectId(" ") })
+    db.salons.deleteMany({ usuarioCreated: ObjectId(" ") })
+    db.templates.deleteMany({ usuarioCreated: ObjectId(" ") })
+    db.tickets.deleteMany({ usuarioCreated: ObjectId(" ") })
+    db.usuarios.deleteMany({ usuarioCreated: ObjectId(" ") })

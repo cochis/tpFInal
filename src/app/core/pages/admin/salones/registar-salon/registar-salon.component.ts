@@ -68,11 +68,12 @@ export class RegistarSalonComponent {
 
     this.usuariosService.cargarUsuarioById(this.uid).subscribe((resp: CargarUsuario) => {
       this.usuario = resp.usuario
-      //console.log('this.usuario ::: ', this.usuario);
+
 
 
     },
       (error) => {
+        console.error('Error', error)
         this.functionsService.alertError(error, 'Home')
       })
 
@@ -139,11 +140,13 @@ export class RegistarSalonComponent {
           this.functionsService.navigateTo('core')
         },
           (error) => {
+            console.error('Error', error)
             this.functionsService.alertError(error, 'Centro de Eventos')
             this.loading = false
           })
       },
         (error) => {
+          console.error('Error', error)
           this.functionsService.alertError(error, 'Centro de Eventos')
           this.loading = false
 

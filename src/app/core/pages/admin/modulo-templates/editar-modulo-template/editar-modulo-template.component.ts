@@ -61,7 +61,7 @@ export class EditarModuloTemplateComponent {
 
     },
       (error: any) => {
-
+        console.error('Error', error)
         this.functionsService.alertError(error, 'ModuloTemplates')
         this.loading = false
 
@@ -133,10 +133,11 @@ export class EditarModuloTemplateComponent {
 
     this.tipoModulosService.cargarTipoModulosAll().subscribe((resp: CargarTipoModulos) => {
       this.tipoModulos = resp.tipoModulos
-      // console.log('this.tipoModulos', this.tipoModulos)
+
 
     },
       (error: any) => {
+        console.error('Error', error)
         this.functionsService.alertError(error, 'Tipo de modulos')
         this.loading = false
       })
@@ -146,7 +147,6 @@ export class EditarModuloTemplateComponent {
     this.loading = true
     this.submited = true
     this.form.value.nombre = this.form.value.nombre.toUpperCase().trim()
-    // console.log(' this.form.value::: ', this.form.value);
 
     if (this.form.value.nombre === '' || this.form.value.clave === '') {
       this.functionsService.alertForm('ModuloTemplates')
@@ -167,8 +167,7 @@ export class EditarModuloTemplateComponent {
         this.loading = false
       },
         (error) => {
-
-          //message
+          console.error('Error', error)
           this.loading = false
           this.functionsService.alertError(error, 'Modulo de templates')
 

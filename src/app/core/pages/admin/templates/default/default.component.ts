@@ -87,6 +87,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
           })
         })
       }, (error) => {
+        console.error('Error', error)
         this.functionsService.alertError(error, 'Boletos')
       })
 
@@ -109,10 +110,12 @@ export class DefaultComponent implements OnInit, AfterViewInit {
           this.itinerarios = this.invitacion.itinerarios
           this.notas = this.invitacion.notas
         }, (error) => {
+          console.error('Error', error)
           this.functionsService.alertError(error, 'Fiestas')
           this.functionsService.navigateTo('/')
         })
       }, (error) => {
+        console.error('Error', error)
         this.functionsService.alertError(error, 'Fiestas')
         this.functionsService.navigateTo('/')
       })
@@ -283,7 +286,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
     this.boletosService.registrarAsistencia(this.boleto).subscribe((res: any) => {
       if (res.boletoActualizado.confirmado) {
         this.boleto.cantidadInvitados
-        // console.log('this.boleto.cantidadInvitados', this.boleto.cantidadInvitados)
+
         Swal.fire({
           title: "Si van a asistir menos personas confirmar la cantidad",
           input: "number",
@@ -296,22 +299,13 @@ export class DefaultComponent implements OnInit, AfterViewInit {
           showLoaderOnConfirm: true,
           preConfirm: async (login) => {
             try {
-              // console.log('login', login)
 
 
 
               return login
-              // const githubUrl = `
-              //   https://api.github.com/users/${login}
-              // `;
-              // const response = await fetch(githubUrl);
-              // if (!response.ok) {
-              //   return Swal.showValidationMessage(`
-              //     ${JSON.stringify(await response.json())}
-              //   `);
-              // }
-              // return response.json();
+
             } catch (error) {
+              console.error('Error', error)
               Swal.showValidationMessage(`
                 Request failed: ${error}
               `);
@@ -422,7 +416,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
         })
       })
       .catch(err => {
-
+        console.error('Error', err)
         return {
           ok: false,
           err

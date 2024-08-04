@@ -87,7 +87,7 @@ export class PaypalService {
     fetch("https://api-m.sandbox.paypal.com/v1/oauth2/token", requestOptions)
       .then((response) => response.text())
       .then((result) => {
-        // console.log('result::: ', result);
+
         return result
       })
       .catch((error) => console.error(error));

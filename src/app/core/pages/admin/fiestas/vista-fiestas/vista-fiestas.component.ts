@@ -79,44 +79,27 @@ export class VistaFiestasComponent {
   }
 
   calcularItems(items) {
-
     this.cantidadFiestas = this.cantidadFiestas
     this.cantidadGalerias = this.cantidadGalerias
-    var data: any
-    var uso = []
-    var time = []
-
     items.forEach((compra, i) => {
-
       compra.uso.forEach(us => {
-        console.log('us::: ', us);
-
-        if (us.value > 0) {
-
-          this.cantidadFiestas += (Number(us.cantidad) * Number(us.value))
-          this.cantidadFiestas -= Number(us.cantidadUsada)
-        } else {
-
-          this.cantidadGalerias += Number(us.cantidad)
-          this.cantidadGalerias -= Number(us.cantidadUsada)
-
-        }
+        this.paquetes.forEach(paq => {
+          if (paq.uid == us.infoPaq._id) {
+            if (paq.tipo == 'eventos') {
+              this.cantidadFiestas += (Number(us.cantidad))
+              this.cantidadFiestas -= Number(us.cantidadUsada)
+            } else {
+              this.cantidadGalerias += (Number(us.cantidad))
+              this.cantidadGalerias -= Number(us.cantidadUsada)
+            }
+          }
+        });
       });
-
-
-
     });
-    // console.log(' this.cantidadGalerias::: ', this.cantidadGalerias);
-    // console.log('this.cantidadFiestas::: ', this.cantidadFiestas);
-
-
-
-
-
-
-
-
-
+    setTimeout(() => {
+      this.cantidadGalerias = this.cantidadGalerias
+      this.cantidadFiestas = this.cantidadFiestas
+    }, 500);
 
   }
   buscar(termino) {
@@ -151,6 +134,7 @@ export class VistaFiestasComponent {
         this.eventos = resp.eventos
       },
         (error: any) => {
+          console.error('Error', error)
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
         })
@@ -158,14 +142,16 @@ export class VistaFiestasComponent {
         this.salones = resp.salons
       },
         (error: any) => {
+          console.error('Error', error)
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
         })
       this.paquetesService.cargarPaquetesAll().subscribe((resp: CargarPaquetes) => {
         this.paquetes = resp.paquetes
-        // console.log(' this.paquetes::: ', this.paquetes);
+
       },
         (error: any) => {
+          console.error('Error', error)
           this.functionsService.alertError(error, 'Paquetes')
           this.loading = false
         })
@@ -174,6 +160,7 @@ export class VistaFiestasComponent {
         this.eventos = resp.eventos
       },
         (error: any) => {
+          console.error('Error', error)
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
         })
@@ -181,14 +168,16 @@ export class VistaFiestasComponent {
         this.salones = resp.salons
       },
         (error: any) => {
+          console.error('Error', error)
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
         })
       this.paquetesService.cargarPaquetesAll().subscribe((resp: CargarPaquetes) => {
         this.paquetes = resp.paquetes
-        // console.log(' this.paquetes::: ', this.paquetes);
+
       },
         (error: any) => {
+          console.error('Error', error)
           this.functionsService.alertError(error, 'Paquetes')
           this.loading = false
         })
@@ -218,14 +207,15 @@ export class VistaFiestasComponent {
         this.loading = false
       },
         (error) => {
+          console.error('Error', error)
           this.loading = false
           this.functionsService.alertError(error, 'Eventos')
         });
     } else if (this.rol === this.SLN || this.rol === this.ANF) {
       let usr = this.functionsService.getLocal('uid')
-      // console.log('usr', usr)
+
       this.fiestasService.cargarFiestasByEmail(usr).subscribe((resp: CargarFiestas) => {
-        // console.log('resp', resp)
+
         this.fiestas = resp.fiestas
         this.fiestasTemp = resp.fiestas
         setTimeout(() => {
@@ -252,6 +242,7 @@ export class VistaFiestasComponent {
       this.getFiestas()
     },
       (error: any) => {
+        console.error('Error', error)
         this.functionsService.alertError(error, 'Fiestas')
       })
   }

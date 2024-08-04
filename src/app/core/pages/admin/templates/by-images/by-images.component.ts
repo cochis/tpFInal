@@ -65,8 +65,6 @@ export class ByImagesComponent {
   }
   init() {
 
-    /*     this.loading = true */
-    // console.log('   this.loading = true::: ', this.loading = true);
     this.fiestaid = this.route.snapshot.params['fiesta']
     this.boletoid = this.route.snapshot.params['boleto']
     this.invitadoId = Number(this.route.snapshot.params['invitado'])

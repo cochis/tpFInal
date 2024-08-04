@@ -95,10 +95,6 @@ export class CrearPaqueteComponent {
     this.loading = true
     this.submited = true
 
-
-    console.log('this.form.value::: ', this.form.value);
-
-
     if (this.form.valid) {
       this.form.value.nombre = this.form.value.nombre.toUpperCase().trim()
       this.form.value.clave = this.form.value.clave.toUpperCase().trim()
@@ -110,9 +106,9 @@ export class CrearPaqueteComponent {
         this.loading = false
       },
         (error) => {
-          this.functionsService.alertError(error, 'Tipo de Cantidades')
-          this.loading = false
           console.error('Error', error)
+          this.functionsService.alertError(error, 'Tipo de Cantidades')
+
 
         })
     } else {
@@ -129,7 +125,7 @@ export class CrearPaqueteComponent {
   }
 
   changeTypeOfVigencia(type) {
-    console.log('type::: ', type);
+
     if (type == 'use') {
       this.form.patchValue({ typeOfVigencia: 'number' })
     } else {
@@ -164,8 +160,8 @@ export class CrearPaqueteComponent {
           //message
         },
         (err) => {
-
-          //message
+          this.functionsService.alertError(err, 'Subir imagen')
+          console.error('Error', err)
 
         },
       )

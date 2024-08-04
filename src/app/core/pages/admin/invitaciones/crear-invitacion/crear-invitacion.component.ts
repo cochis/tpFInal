@@ -59,6 +59,6 @@ export class CrearInvitacionComponent {
   }
 
   onSubmit() {
-    // console.log(this.empForm.value);
+
   }
 }

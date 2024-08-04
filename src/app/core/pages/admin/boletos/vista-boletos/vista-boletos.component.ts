@@ -152,12 +152,13 @@ export class VistaBoletosComponent {
       this.loading = false
     },
       (error) => {
+        console.error('error::: ', error);
         this.functionsService.alertError(error, 'Boletos')
       });
   }
   fiterBoletos(fiesta) {
     let res = this.boletos.filter((bol: any) => {
-      // console.log('bol', bol)
+
       return bol.fiesta._id === fiesta
     })
     let cantidad = 0
@@ -250,6 +251,7 @@ export class VistaBoletosComponent {
               this.functionsService.alert("Boletos", "Se han enviado las invitaciones por correo electronico", "success")
             }
           }, (error) => {
+            console.error('error::: ', error);
             correos.push(error.error)
             ind++
           })

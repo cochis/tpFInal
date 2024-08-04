@@ -80,7 +80,7 @@ export class VistaInvitacionesComponent {
   getInvitacions() {
     this.loading = true
     this.invitacionsService.cargarInvitacionsAll().subscribe((resp: CargarInvitacions) => {
-      //console.log('resp::: ', resp);
+
       this.invitacions = resp.invitacions
 
       this.invitacionsTemp = resp.invitacions

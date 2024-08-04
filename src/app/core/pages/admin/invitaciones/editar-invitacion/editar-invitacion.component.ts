@@ -67,10 +67,11 @@ export class EditarInvitacionComponent {
     this.loading = true
     this.fiestasService.cargarFiestaById(id).subscribe((resp: CargarFiesta) => {
       this.fiesta = resp.fiesta
-      // console.log('this.fiesta::: ', this.fiesta);
+
       this.invitacionId = this.fiesta.invitacion
     },
       (error: any) => {
+        console.error('Error', error)
         this.loading = false
         this.functionsService.alert('Fiesta', 'Por favor intente mas tarde', 'error')
       })
@@ -392,7 +393,7 @@ export class EditarInvitacionComponent {
       })
     } else {
       let dataT = await this.dateToNumber(this.form.value)
-      // console.log('this.uid', this.uid)
+
       var invitado = {
         tipoTemplate: this.fiesta.invitacion,
         templateActivated: true,
@@ -404,7 +405,7 @@ export class EditarInvitacionComponent {
         dateCreated: this.today,
         lastEdited: this.today
       }
-      // console.log('invitado', invitado)
+
       setTimeout(() => {
 
         this.crearInvitacion(invitado).subscribe((res: CargarInvitacion) => {
@@ -479,6 +480,7 @@ export class EditarInvitacionComponent {
       }
     },
       (error) => {
+        console.error('Error', error)
         this.functionsService.alertError(error, 'Invitacion')
       })
   }
@@ -568,6 +570,7 @@ export class EditarInvitacionComponent {
               }, 800);
             },
             (err) => {
+              console.error('Error', err)
               this.functionsService.alertError(err, 'Error')
             },
           )
@@ -616,20 +619,19 @@ export class EditarInvitacionComponent {
 
           },
           (err) => {
+            console.error('Error', err)
             this.functionsService.alertError(err, 'Error')
           },
         )
     }
   }
   actualizarInvitacion(invitacion) {
-    // console.log('actualizarInvitacion');
+
     invitacion.fiesta = this.fiesta.uid
     invitacion.usuarioCreated = this.usuarioCreated
     return this.invitacionsService.actualizarInvitacion(invitacion)
   }
   crearInvitacion(invitacion) {
-    // console.log('invitacion', invitacion)
-    // console.log('crearInvitacion');
 
     if (typeof (invitacion.fiesta) == "object") {
       invitacion.fiesta = invitacion.fiesta.uid ? invitacion.fiesta.uid : invitacion.fiesta._id

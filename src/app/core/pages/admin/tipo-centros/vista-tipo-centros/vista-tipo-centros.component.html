@@ -44,6 +44,7 @@
                                 <th class="upper">Opciones</th>
                                 <th class="upper">nombre</th>
                                 <th class="upper">Clave</th>
+                                <th class="upper">descripción</th>
                                 <th class="upper">Creador</th>
                                 <th class="upper">Activado</th>
                                 <th class="upper">Creación</th>
@@ -80,6 +81,8 @@
                                     </td>
                                     <td class="upper">{{tipoCentro.nombre}}</td>
                                     <td class="upper">{{tipoCentro.clave}}</td>
+                                    <td class="upper" *ngIf="tipoCentro.descripcion">{{tipoCentro.descripcion}}</td>
+                                    <td class="upper" *ngIf="!tipoCentro.descripcion">Sin descripción</td>
                                     <td class="upper">{{tipoCentro.usuarioCreated.email}}</td>
                                     <td>
                                         <i *ngIf="tipoCentro.activated" class="icon-ok-circled text-success"></i>

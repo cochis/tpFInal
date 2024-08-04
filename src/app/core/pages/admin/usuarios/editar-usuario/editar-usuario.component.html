@@ -44,7 +44,7 @@
                                             [readonly]="edit==='false'">
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6 mt-3">
+                                <div class="col-12 col-md-4 mt-3">
 
                                     <div class="form-group">
                                         <label for="email">Correo electrónico</label>
@@ -56,7 +56,7 @@
                                     </span>
                                 </div>
 
-                                <div class="col-12 col-md-6 mt-3">
+                                <div class="col-12 col-md-4 mt-3">
 
                                     <div class="form-group" *ngIf="edit ==='true'">
                                         <label for="rol">Rol</label>
@@ -74,6 +74,30 @@
                                             <label for="rol">Rol</label>
                                             <input type="text" class="form-control upper" id="rol" placeholder="Rol"
                                                 formControlName="role" [readonly]="edit==='false'">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4 mt-3">
+
+                                    <div class="form-group" *ngIf="edit ==='true'">
+                                        <label for="tipoCentro">Tipo de centro</label>
+                                        <select name="" id="tipoCentro" formControlName="tipoCentro"
+                                            class="form-control upper">
+                                            <option value="">Selecciona un tipoCentro</option>
+                                            <option [value]="item.uid" *ngFor="let item of tipoCentros">{{item.nombre}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <span *ngIf="submited && errorControl['tipoCentro'].errors " class="error">Es
+                                        requerido
+                                    </span>
+                                    <div class="form-group" *ngIf="edit ==='false'">
+
+                                        <div class="form-group">
+                                            <label for="tipoCentro">Tipo de centro</label>
+                                            <input type="text" class="form-control upper" id="tipoCentro"
+                                                placeholder="Tipo de centro" formControlName="role"
+                                                [readonly]="edit==='false'">
                                         </div>
                                     </div>
                                 </div>

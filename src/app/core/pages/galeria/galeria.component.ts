@@ -68,12 +68,10 @@ export class GaleriaComponent implements OnInit, OnDestroy {
     private readonly _modalService: ModalService
   ) {
 
-    /* http://localhost:4200/core/galeria/669ab9e4396781c9f78cf4e7/669aa51f6497620d8bc20259 */
     this.fiestaId = this.route.snapshot.params['fiesta']
     this.boletoId = this.route.snapshot.params['boleto']
     this.anfitrionId = this.route.snapshot.params['anfitrion']
-    // console.log('this.anfitrionId', this.anfitrionId)
-    // console.log('this.uid', this.uid)
+
 
     if (!this.boletoId) {
       this.getFiestaByAnf(this.anfitrionId)
@@ -97,7 +95,7 @@ export class GaleriaComponent implements OnInit, OnDestroy {
   getFiestaByAnf(anf: string) {
     this.fiestaService.cargarFiestaById(this.fiestaId).subscribe((resp) => {
       this.fiestaDB = resp.fiesta
-      // console.log('this.fiestaDB ::: ', this.fiestaDB);
+
       if (this.fiestaDB.fecha > this.today) {
 
         this.functionsService.alert('Fiesta', 'La fiesta aun no ha empezado', 'error')
@@ -108,6 +106,7 @@ export class GaleriaComponent implements OnInit, OnDestroy {
 
     },
       (err) => {
+        console.error('Error', err)
         this.functionsService.alert('Fiesta', 'La fiesta no existe', 'error')
         this.functionsService.navigateTo('/')
       }
@@ -118,7 +117,7 @@ export class GaleriaComponent implements OnInit, OnDestroy {
   getFiesta() {
     this.fiestaService.cargarFiestaById(this.fiestaId).subscribe((resp) => {
       this.fiestaDB = resp.fiesta
-      // console.log('this.fiestaDB::: ', this.fiestaDB);
+
       if (this.fiestaDB.fecha > this.today) {
 
         this.functionsService.alert('Fiesta', 'La fiesta aun no ha empezado', 'error')
@@ -134,6 +133,7 @@ export class GaleriaComponent implements OnInit, OnDestroy {
 
     },
       (err) => {
+        console.error('Error', err)
         this.functionsService.alert('Fiesta', 'La fiesta no existe', 'error')
         this.functionsService.navigateTo('/')
       }
@@ -148,6 +148,7 @@ export class GaleriaComponent implements OnInit, OnDestroy {
 
     },
       (err) => {
+        console.error('Error', err)
         this.functionsService.alert('Boleto', 'El boleto no existe', 'error')
         this.functionsService.navigateTo('/')
       })
@@ -160,13 +161,24 @@ export class GaleriaComponent implements OnInit, OnDestroy {
     if (!this.boletoId) {
       this.galeriaService.cargarGaleriaByFiesta(this.fiestaId).subscribe((resp) => {
         this.galerias = this.functionsService.getActives(resp.galerias)
-      })
+
+
+      },
+        (error) => {
+          console.error('error::: ', error);
+          this.functionsService.alertError(error, 'Galerias')
+        })
     } else {
       this.galeriaService.cargarGaleriaByBoleto(this.boletoId).subscribe((resp) => {
         this.galerias = this.functionsService.getActives(resp.galerias)
-      })
+
+      },
+        (error) => {
+          console.error('error::: ', error);
+          this.functionsService.alertError(error, 'Galerias')
+        })
     }
-    // console.log('this.galerias ::: ', this.galerias);
+
   }
   async upImages(file) {
     this.porcentaje = 100
@@ -218,16 +230,16 @@ export class GaleriaComponent implements OnInit, OnDestroy {
         this.loading = true
         await performAsyncTask(item);
       }
-      // console.log('Imagenes procesadas');
+
     };
     processArray(myArray)
       .then(() => {
         this.loading = false
         this.getPictures()
-        // console.log('Processing completed');
+
       })
       .catch((error) => {
-        // console.error('An error occurred:', error);
+        console.error('An error occurred:', error);
       });
 
 
@@ -266,18 +278,18 @@ export class GaleriaComponent implements OnInit, OnDestroy {
 
   }
   deleteAll(fiesta) {
-    // console.log('fiesta', fiesta)
+
     this.porcentaje = 100
     this.totalImg = this.galerias.length
     this.total = 100 / this.totalImg
 
-    // console.log('this.total::: ', this.total);
+
     this.loading = true
     this.galerias.forEach(galeria => {
       setTimeout(() => {
 
         this.porcentaje = this.porcentaje - this.total
-        // console.log('this.porcentaje ::: ', this.porcentaje);
+
         this.deleteOne(galeria)
         if ((this.porcentaje - this.total) < 0) {
           this.loading = false

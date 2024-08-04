@@ -44,12 +44,13 @@ export class EditarPaqueteComponent {
   getId(id: string) {
     this.paquetesService.cargarPaqueteById(id).subscribe((resp: CargarPaquete) => {
       this.paquete = resp.paquete
-      // console.log('this.paquete ::: ', this.paquete);
+
       setTimeout(() => {
         this.setForm(this.paquete)
       }, 500);
     },
       (error: any) => {
+        console.error('Error', error)
         this.functionsService.alertError(error, 'Paquetes')
         this.loading = false
       })
@@ -78,8 +79,7 @@ export class EditarPaqueteComponent {
     this.descripciones.push(this.newDescripcion());
   }
   setDescripcion(paquete) {
-    // console.log('this.descripciones::: ', this.descripciones);
-    // console.log('{ info: paquete }::: ', { info: paquete });
+
     this.descripciones.push(this.newDescripcion({ info: paquete }));
   }
   removeDescripcion(i: number) {
@@ -105,7 +105,7 @@ export class EditarPaqueteComponent {
   }
 
   setForm(paquete: Paquete) {
-    console.log('paquete::: ', paquete);
+
     this.form = this.fb.group({
       tipo: [(paquete.tipo) ? paquete.tipo : '', [Validators.required, Validators.minLength(3)]],
       tipoPaquete: [(paquete.tipoPaquete) ? paquete.tipoPaquete : '', [Validators.required, Validators.minLength(3)]],
@@ -125,7 +125,7 @@ export class EditarPaqueteComponent {
 
 
     paquete.descripciones.forEach(desc => {
-      // console.log('desc::: ', desc.info);
+
       this.setDescripcion(desc.info)
     });
 
@@ -143,7 +143,7 @@ export class EditarPaqueteComponent {
       this.loading = false
       return
     }
-    console.log('this.form.::: ', this.form.value);
+
     if (this.form.valid) {
       this.paquete = {
         ...this.paquete,
@@ -155,18 +155,18 @@ export class EditarPaqueteComponent {
         this.loading = false
       },
         (error) => {
-          //message
+          console.error('Error', error)
           this.loading = true
           this.functionsService.alertError(error, 'Paquetes')
         })
     } else {
       //message
       this.loading = false
-      return console.info('Please provide all the required values!');
+      return // console.info('Please provide all the required values!');
     }
   }
   changeTypeOfVigencia(type) {
-    console.log('type::: ', type);
+
     if (type == 'Uso') {
       this.form.patchValue({ typeOfVigencia: 'number' })
     } else {
@@ -201,6 +201,7 @@ export class EditarPaqueteComponent {
           //message
         },
         (err) => {
+          this.functionsService.alertError(err, 'Subir imagen')
           console.error('err::: ', err);
 
 

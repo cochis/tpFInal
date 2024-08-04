@@ -32,6 +32,17 @@
                                     <span *ngIf="submited && errorControl['clave'].errors " class="error">Es requerido
                                     </span>
                                 </div>
+                                <div class="col-12 col-md-12 mt-3">
+                                    <div class="form-group">
+                                        <label for="descripcion">Descripción</label>
+                                        <input type="text" class="form-control upper" id="descripcion"
+                                            formControlName="descripcion" required placeholder="Descripción"
+                                            [readonly]="edit==='false'">
+                                    </div>
+                                    <span *ngIf="submited && errorControl['descripcion'].errors " class="error">Es
+                                        requerido
+                                    </span>
+                                </div>
 
 
                             </div>

@@ -35,7 +35,7 @@ export class VistaSalonesComponent {
     private salonesService: SalonsService,
   ) {
     this.getSalones()
-    // console.log(this.rol);
+
 
 
   }
@@ -69,12 +69,12 @@ export class VistaSalonesComponent {
   }
   getSalones() {
     this.loading = true
-    // console.log('this.rol::: ', this.rol);
+
     switch (this.rol) {
       case this.ADM:
         this.salonesService.cargarSalonsAll().subscribe((resp: CargarSalons) => {
           this.salones = resp.salons
-          // console.log('  this.salones::: ', this.salones);
+
 
           this.salonesTemp = resp.salons
           setTimeout(() => {
@@ -89,7 +89,7 @@ export class VistaSalonesComponent {
 
         this.salonesService.cargarSalonByMail(this.email).subscribe((resp: any) => {
           this.salones = resp.salons
-          // console.log('  this.salones::: ', this.salones);
+
 
           this.salonesTemp = resp.salons
           setTimeout(() => {
@@ -104,14 +104,18 @@ export class VistaSalonesComponent {
       default:
         this.salonesService.cargarSalonByCreador(this.uid).subscribe((resp: CargarSalons) => {
           this.salones = resp.salons
-          // console.log('this.salones ::: ', this.salones);
+
 
           this.salonesTemp = resp.salons
           setTimeout(() => {
 
             this.loading = false
           }, 1500);
-        });
+        },
+          (error) => {
+            this.functionsService.alertError(error, 'Salones')
+            console.error('Error', error)
+          });
         break;
     }
   }
@@ -130,6 +134,7 @@ export class VistaSalonesComponent {
 
     },
       (error: any) => {
+        console.error('Error', error)
         this.functionsService.alertError(error, 'Salones')
 
       })

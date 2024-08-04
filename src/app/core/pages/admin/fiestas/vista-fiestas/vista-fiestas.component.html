@@ -12,18 +12,37 @@
                         </div>
 
                     </div>
+                    <div class="row" *ngIf="rol !== ADM">
+                        <div class="row  text-center ">
+                            <div class="col-12  ma text-center mt-3">
+                                <ul class="lsn ma">
+                                    <li>
+                                        <small class="primary">
+                                            Fiestas disponibles <b class="second">{{cantidadFiestas}}</b>
+                                        </small>
+                                    </li>
+                                    <li>
+                                        <small class="primary">
+                                            Galerias disponibles <b class="second">{{cantidadGalerias}}</b>
+                                        </small>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="row">
                         <div class="row  text-center">
                             <div class="col-12 col-md-6  text-center mt-3">
+                                <button class="btn but   " *ngIf="  rol == ADM  " (click)="newFiesta()">Nuevo
+                                    evento</button>
                                 <!--   <button class="btn but   " *ngIf="rol == ADM  || rol == ANF || rol == SLN"
                                     (click)="newFiesta()">Nuevo
                                     evento</button> -->
 
-                                Fiestas {{cantidadFiestas}}
-                                Galerisas {{cantidadGalerias }}
                                 <button class="btn but   " *ngIf="cantidadFiestas>0 &&(rol == ANF || rol== SLN)"
-                                    (click)="newFiesta()">Nueva
-                                    fiesta</button>
+                                    (click)="newFiesta()">Nuevo
+                                    evento</button>
                                 <button class="btn but   " *ngIf="cantidadFiestas<=0 &&(rol == ANF || rol== SLN)"
                                     routerLink="/core/compras/crear-compra/{{uid}}">Comprar
                                     paquete</button>
@@ -135,7 +154,8 @@
                                         (typeOf(fiesta.salon
                                         )=='string')?getCatalog('salon',fiesta.salon):fiesta.salon.nombre
                                         }}</td>
-                                    <td class="upper">{{fiesta.usuarioCreated.email}}</td>
+                                    <td class="upper">{{(fiesta.usuarioCreated)?fiesta.usuarioCreated.email:''}}
+                                    </td>
 
                                     <td>
                                         <img [src]="(fiesta.img!=='')?url+'/upload/fiestas/'+fiesta.img:url+'/upload/fiestas/default.jpg'"

@@ -46,8 +46,7 @@ export class CrearUsuarioComponent {
 
   ) {
     this.loading = true
-    // console.log(this.rol)
-    // console.log(this.SLN)
+
     this.getCatalogos()
     this.createForm()
     setTimeout(() => {
@@ -69,6 +68,7 @@ export class CrearUsuarioComponent {
 
       },
         (error: any) => {
+          console.error('Error', error)
           this.functionsService.alertError(error, 'Usuarios')
           this.loading = false
 
@@ -79,6 +79,7 @@ export class CrearUsuarioComponent {
 
       },
         (error: any) => {
+          console.error('Error', error)
           this.functionsService.alertError(error, 'Usuarios')
           this.loading = false
 
@@ -91,6 +92,7 @@ export class CrearUsuarioComponent {
 
       },
         (error: any) => {
+          console.error('Error', error)
           this.functionsService.alertError(error, 'Usuarios')
           this.loading = false
 
@@ -103,6 +105,7 @@ export class CrearUsuarioComponent {
 
       },
         (error: any) => {
+          console.error('Error', error)
           this.functionsService.alertError(error, 'Usuarios')
           this.loading = false
 
@@ -172,7 +175,7 @@ export class CrearUsuarioComponent {
           this.loading = false
         },
           (error) => {
-            //Message
+            console.error('Error', error)
             this.loading = false
             if (error.error.msg) {
               this.functionsService.alert('Usuarios', error.error.msg, 'error')
@@ -191,7 +194,7 @@ export class CrearUsuarioComponent {
               usuarioCreated: resp.usuario.uid
             }
             this.usuariosService.actualizarUsuario(usr).subscribe((resp) => {
-              // console.log('resp', resp)
+
               this.functionsService.alertUpdate('Usuarios')
               this.functionsService.navigateTo('core/usuarios/vista-usuarios')
               this.loading = false
@@ -204,7 +207,7 @@ export class CrearUsuarioComponent {
           this.loading = false
         },
           (error) => {
-            //Message
+            console.error('Error', error)
             this.loading = false
             if (error.error.msg) {
               this.functionsService.alert('Usuarios', error.error.msg, 'error')

@@ -30,9 +30,7 @@ export class HeaderComponent {
     private functionsService: FunctionsService,
     private fiestasService: FiestasService
   ) {
-
-    //console.log('Version ::::  ', this.ver);
-    //console.log('Rol ::::  ', this.rol);
+    console.info(this.ver)
     if (this.functionsService.getLocal('email')) {
       this.email = this.functionsService.getLocal('email')
     }

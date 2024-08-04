@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { CargarRoles, CargarSalons, CargarUsuario } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
+import { CargarRoles, CargarSalons, CargarTipoCentros, CargarUsuario } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
 import { Role } from 'src/app/core/models/role.model';
 import { Salon } from 'src/app/core/models/salon.model';
+import { TipoCentro } from 'src/app/core/models/tipoCentro.model';
 import { Usuario } from 'src/app/core/models/usuario.model';
 import { FileService } from 'src/app/core/services/file.service';
 import { RolesService } from 'src/app/core/services/roles.service';
 import { SalonsService } from 'src/app/core/services/salon.service';
+import { TipoCentrosService } from 'src/app/core/services/tipoCentros.service';
 import { UsuariosService } from 'src/app/core/services/usuarios.service';
 import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { environment } from 'src/environments/environment';
@@ -22,6 +24,7 @@ export class EditarUsuarioComponent {
   public imgTemp: any = undefined
   salones: Salon[]
   roles: Role[]
+  tipoCentros: TipoCentro[]
   usuario: Usuario
   public form!: FormGroup
   today: Number = this.functionsService.getToday()
@@ -41,6 +44,7 @@ export class EditarUsuarioComponent {
     private salonesService: SalonsService,
     private rolesService: RolesService,
     private usuariosService: UsuariosService,
+    private tipoCentrosService: TipoCentrosService,
     private route: ActivatedRoute,
     private fileService: FileService,
   ) {
@@ -63,6 +67,7 @@ export class EditarUsuarioComponent {
       }, 500);
     },
       (error: any) => {
+        console.error('Error', error)
         this.functionsService.alertError(error, 'Usuarios')
       })
   }
@@ -73,6 +78,7 @@ export class EditarUsuarioComponent {
         this.salones = resp.salons
       },
         (error: any) => {
+          console.error('Error', error)
           this.functionsService.alertError(error, 'Usuarios')
           this.loading = false
         })
@@ -80,14 +86,26 @@ export class EditarUsuarioComponent {
         this.roles = resp.roles
       },
         (error: any) => {
+          console.error('Error', error)
           this.functionsService.alertError(error, 'Usuarios')
           this.loading = false
         })
+      this.tipoCentrosService.cargarTipoCentrosAll().subscribe((resp: CargarTipoCentros) => {
+        this.tipoCentros = this.functionsService.getActives(resp.tipoCentros)
+      },
+        (error: any) => {
+          console.error('Error', error)
+          this.functionsService.alertError(error, 'Tipo de centros de eventos')
+          this.loading = false
+        })
+
+
     } else {
       this.rolesService.cargarRolesSalon().subscribe((resp: CargarRoles) => {
         this.roles = resp.roles
       },
         (error: any) => {
+          console.error('Error', error)
           this.functionsService.alertError(error, 'Usuarios')
           this.loading = false
         })
@@ -96,7 +114,23 @@ export class EditarUsuarioComponent {
         this.salones = resp.salons
       },
         (error: any) => {
+          console.error('Error', error)
           this.functionsService.alertError(error, 'Usuarios')
+          this.loading = false
+        })
+      this.tipoCentrosService.cargarTipoCentrosAll().subscribe((resp: CargarTipoCentros) => {
+        this.tipoCentrosService.cargarTipoCentrosAll().subscribe((resp: CargarTipoCentros) => {
+          this.tipoCentros = this.functionsService.getActives(resp.tipoCentros)
+        },
+          (error: any) => {
+            console.error('Error', error)
+            this.functionsService.alertError(error, 'Tipo de centros de eventos')
+            this.loading = false
+          })
+      },
+        (error: any) => {
+          console.error('Error', error)
+          this.functionsService.alertError(error, 'Tipo de centros de eventos')
           this.loading = false
         })
     }
@@ -112,6 +146,7 @@ export class EditarUsuarioComponent {
       email: ['', [Validators.required, Validators.email]],
       img: [''],
       role: ['', [Validators.required, Validators.minLength(3)]],
+      tipoCentro: ['', [Validators.required, Validators.minLength(3)]],
       google: [false],
       activated: [false],
       dateCreated: [this.today],
@@ -119,9 +154,12 @@ export class EditarUsuarioComponent {
     })
   }
   setForm(usuario: Usuario) {
+
     this.loading = true
     let usr: any = usuario
     var role = (this.edit === 'false') ? usr.role.nombre : usr.role._id
+
+    var tipoCentro = (usr.tipoCentro) ? (this.edit === 'false') ? usr.tipoCentro.nombre : usr.tipoCentro._id : ''
     setTimeout(() => {
       this.form = this.fb.group({
         nombre: [usuario.nombre, [Validators.required, Validators.minLength(3)]],
@@ -129,6 +167,7 @@ export class EditarUsuarioComponent {
         apellidoMaterno: [usuario.apellidoMaterno],
         email: [usuario.email, [Validators.required, Validators.email]],
         role: [role, [Validators.required]],
+        tipoCentro: [tipoCentro, [Validators.required]],
         google: [usuario.google],
         activated: [usuario.activated],
         dateCreated: [usuario.dateCreated],
@@ -152,7 +191,7 @@ export class EditarUsuarioComponent {
         this.loading = false
       },
         (error) => {
-          this.functionsService.alertError(error, 'Usuarios')
+          console.error('Error', error)
           this.loading = false
           this.functionsService.alertError(error, 'Usuarios')
         })
@@ -187,6 +226,7 @@ export class EditarUsuarioComponent {
           this.functionsService.alertUpdate('Usuarios')
         },
         (err) => {
+          console.error('Error', err)
           this.loading = false
           this.functionsService.alert('Usuarios', 'Error al subir la imagen', 'error')
         },

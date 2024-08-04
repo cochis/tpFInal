@@ -75,7 +75,7 @@ export class VistaTipoModulosComponent {
       this.tipoModulosService.cargarTipoModulosAll().subscribe((resp: CargarTipoModulos) => {
 
         this.tipoModulos = resp.tipoModulos
-        // console.log('this.tipoModulos ::: ', this.tipoModulos);
+
         this.tipoModulosTemp = resp.tipoModulos
         setTimeout(() => {
 
@@ -83,6 +83,7 @@ export class VistaTipoModulosComponent {
         }, 1500);
       },
         (error) => {
+          console.error('Error', error)
           this.loading = false
           this.functionsService.alertError(error, 'TipoModulos')
         });
@@ -102,6 +103,7 @@ export class VistaTipoModulosComponent {
 
     },
       (error: any) => {
+        console.error('Error', error)
         this.functionsService.alertError(error, 'TipoModulos')
 
       })

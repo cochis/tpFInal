@@ -96,7 +96,7 @@ export class GaleriasService {
   downloadGaleriaByFiesta(fiesta: string) {
 
     let env = ''
-    // console.log('base_url.includ ', base_url.includes('localhost'));
+
     if (base_url.includes('localhost')) {
 
       env = 'false'

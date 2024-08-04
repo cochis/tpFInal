@@ -44,9 +44,6 @@ export class CrearSalonComponent {
 
   ) {
 
-    //console.log(this.rol);
-    //console.log(this.ANF);
-    //console.log(this.ANF);
 
     this.loading = true
     this.getCatalogos()
@@ -108,7 +105,7 @@ export class CrearSalonComponent {
         this.loading = false
       },
         (error) => {
-          this.functionsService.alertError(error, 'Centro de eventos')
+          console.error('Error', error)
           this.loading = false
           this.functionsService.alertError(error, 'Centro de eventos')
 
@@ -129,10 +126,11 @@ export class CrearSalonComponent {
     this.loading = true
     this.usuariosService.cargarAlumnosAll().subscribe((resp: CargarUsuarios) => {
       this.usuarios = resp.usuarios
-      //console.log(' this.usuarios ::: ', this.usuarios);
+
 
     },
       (error: any) => {
+        console.error('Error', error)
         this.functionsService.alertError(error, 'Centro de eventos')
         this.loading = false
       })

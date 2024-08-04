@@ -34,6 +34,7 @@ export class VistaUsuariosComponent {
   rol = this.functionsService.getLocal('role')
   data!: any
   usuarios: Usuario[] = [];
+  usuariosShow: Usuario[] = [];
   usuariosTemp: Usuario[] = [];
   roles: Role[]
   salones: Salon[]
@@ -123,16 +124,21 @@ export class VistaUsuariosComponent {
     this.loading = true
     if (this.rol === this.ADM) {
       this.usuariosService.cargarAlumnosAll().subscribe((resp: CargarUsuarios) => {
+
+        this.usuariosShow = resp.usuarios.filter(usuario => usuario.uid !== this.uid)
         this.usuarios = resp.usuarios
         this.usuariosTemp = resp.usuarios
+
         this.loading = false
       });
     } else if (this.rol === this.SLN) {
       let usr = this.functionsService.getLocal('uid')
       this.usuariosService.cargarUsuarioByCreador(usr).subscribe((resp: CargarUsuarios) => {
         setTimeout(() => {
+          this.usuariosShow = resp.usuarios.filter(usuario => usuario.uid !== this.uid)
           this.usuarios = resp.usuarios
           this.usuariosTemp = resp.usuarios
+
           this.loading = false
         }, 1500);
       });
@@ -180,5 +186,33 @@ export class VistaUsuariosComponent {
     this.usuariosService.cargarUsuarioById(id).subscribe((resp: CargarUsuario) => {
       return resp.usuario.email
     })
+  }
+  getItems(items, usr, type) {
+    usr
+    var cantidadFiestas = usr.cantidadFiestas
+    var cantidadGalerias = usr.cantidadGalerias
+    items.forEach((compra, i) => {
+      compra.uso.forEach(us => {
+        this.paquetes.forEach(paq => {
+          if (paq.uid == us.infoPaq._id) {
+
+            if (paq.tipo == 'eventos') {
+              cantidadFiestas += (Number(us.cantidad))
+              cantidadFiestas -= Number(us.cantidadUsada)
+            } else {
+              cantidadGalerias += (Number(us.cantidad))
+              cantidadGalerias -= Number(us.cantidadUsada)
+            }
+          }
+        });
+      });
+    });
+    if (type == 'eventos') {
+
+      return cantidadFiestas
+    } else if (type == 'galerias') {
+
+      return cantidadGalerias
+    }
   }
 }

@@ -166,7 +166,7 @@ export class FunctionsService {
     Swal.fire({ title: tipo, text: 'Información actualizada', icon: 'success', confirmButtonColor: "#13547a" })
   }
   alertError(data: object, tipo: string) {
-    //console.log('data::: ', data);
+
 
     Swal.fire({ title: tipo, text: 'Algo extraño paso intente mas tarde', icon: 'error', confirmButtonColor: "#13547a" })
   }
@@ -251,30 +251,30 @@ export class FunctionsService {
 
   }
   subscribeToPush(): Promise<any> {
-    //console.log('getting device token')
+
     return new Promise(async (resolve, reject) => {
       if (this.swPush.isEnabled) {
-        //console.log('before subscription')
+
         let sub = await this.swPush.requestSubscription({
           serverPublicKey: this.VAPID_PUBLICK_KEY
         })
-        //console.log('temp --------', sub)
+
         if (sub) {
           this.device_token = sub;
           this.setLocal('tokenPush', JSON.stringify(this.device_token))
-          //console.log('this.device_token ::: ', this.device_token);
+
           if (sub) {
-            //console.log('if sub')
+
             resolve(this.device_token);
           } else {
-            //console.log('else sub')
+
             reject({ message: "Error getting device id" });
           }
         } else {
           reject({ message: "Error getting device id" });
         }
       } else {
-        //console.log('sw is not enabled');
+
         reject({ message: "Error getting device id" });
       }
     })

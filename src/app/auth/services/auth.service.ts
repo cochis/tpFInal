@@ -35,7 +35,7 @@ export class AuthService {
     const url = `${base_url}/login`
     return this.http.post(url, loginForm).pipe(
       tap((resp: any) => {
-        console.log('resp::: ', resp);
+
         this.functionsService.setLocal('token', resp.token)
         this.functionsService.setLocal('uid', resp.uid)
         this.functionsService.setLocal('email', resp.email)

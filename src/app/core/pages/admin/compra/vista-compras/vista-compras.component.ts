@@ -65,7 +65,7 @@ export class VistaComprasComponent {
   getUsuario(id) {
     this.usuariosService.cargarUsuarioById(id).subscribe(res => {
       this.usuario = res.usuario
-      console.log('this.usuario::: ', this.usuario);
+
     },
       (error) => {
         console.error('error::: ', error);
@@ -95,7 +95,7 @@ export class VistaComprasComponent {
 
       this.comprasService.cargarComprasAll().subscribe((resp: CargarCompras) => {
         this.compras = resp.compras
-        // console.log(' this.compras::: ', this.compras);
+
 
         this.comprasTemp = resp.compras
         this.getStatus(this.compras)
@@ -105,6 +105,7 @@ export class VistaComprasComponent {
         }, 1500);
       },
         (error) => {
+          console.error('error::: ', error);
           this.loading = false
           this.functionsService.errorInfo()
         });
@@ -112,7 +113,7 @@ export class VistaComprasComponent {
 
       this.comprasService.cargarComprasByEmail(this.uid).subscribe((resp: CargarCompras) => {
         this.compras = resp.compras
-        // console.log(' this.compras::: ', this.compras);
+
         this.getStatus(this.compras)
         this.comprasTemp = resp.compras
         setTimeout(() => {
@@ -121,6 +122,7 @@ export class VistaComprasComponent {
         }, 1500);
       },
         (error) => {
+          console.error('error::: ', error);
           this.loading = false
           this.functionsService.errorInfo()
         });
@@ -142,6 +144,7 @@ export class VistaComprasComponent {
 
     },
       (error: any) => {
+        console.error('error::: ', error);
         this.functionsService.alertError(error, 'Compras')
 
       })
@@ -168,7 +171,7 @@ export class VistaComprasComponent {
   }
 
   getStatus(compras) {
-    // console.log('compras::: ', compras);
+
     var act = false
     compras.forEach((element, i) => {
       this.comprasService.verStatus(element.session.id).subscribe((res: any) => {
@@ -189,9 +192,9 @@ export class VistaComprasComponent {
         if (act) {
           this.usuariosService.actualizarUsuario(this.usuario).subscribe((resp: any) => {
             this.usuario = resp.usuario
-            console.log('this.usuario::: ', this.usuario);
-            console.log('infoCompra::: ', infoCompra);
+
           }, (error: any) => {
+            console.error('error::: ', error);
             this.functionsService.alertError(error, 'Usuario')
           })
         }

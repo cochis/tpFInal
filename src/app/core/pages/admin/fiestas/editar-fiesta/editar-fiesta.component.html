@@ -150,8 +150,9 @@
                                         <select name="" id="salon" formControlName="salon" #salon
                                             class="form-control upper" #sal (change)="selectSalon($event)">
                                             <option value="">Selecciona una ubicación</option>
-                                            <option [value]="item.uid" *ngFor="let item of salones">{{item.nombre }} <b
-                                                    *ngIf="rol ===ADM && usuarios">{{item.usuarioCreated.email}}</b>
+                                            <option [value]="item.uid" *ngFor="let item of salones">{{item.nombre }}
+                                                <b *ngIf="rol ===ADM && usuarios && item.usuarioCreated">{{item.usuarioCreated?item.usuarioCreated.email
+                                                    :"Usuario borrado"}}</b>
                                             </option>
                                         </select>
                                     </div>
@@ -189,8 +190,16 @@
                                             <label class="form-check-label ma " for="galeria">
                                                 Galería
                                             </label>
+                                            <i *ngIf="this.form.value.galeria && rol != ADM"
+                                                class="icon-ok-circled prima"></i>
+                                            <i *ngIf="!this.form.value.galeria && rol != ADM"
+                                                class="icon-cancel-circled second"></i>
                                         </div>
-                                        <div style="width: 100%;" class="ma text-center">
+                                        <div class="secondB white text-center" style="padding:5px; border-radius: 20px;"
+                                            *ngIf="rol != ADM">
+                                            <b>Si desea cambiar la galería contactar con nosotros</b>
+                                        </div>
+                                        <div style="width: 100%;  " class="ma text-center" *ngIf="rol == ADM">
 
                                             <input class="form-check-input ma mt-4" type="checkbox" id="galeria"
                                                 formControlName="galeria" style="margin-left:50px;margin-right: 50px;">

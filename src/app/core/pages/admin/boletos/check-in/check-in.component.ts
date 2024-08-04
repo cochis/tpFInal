@@ -56,6 +56,7 @@ export class CheckInComponent implements AfterViewInit {
         }
       },
         (error) => {
+          console.error('error::: ', error);
           this.functionsService.alertError(error, 'Home')
         })
     }
@@ -86,9 +87,9 @@ export class CheckInComponent implements AfterViewInit {
           this.boletosService.cargarBoletoById(qr.data.uid).subscribe((res: any) => {
             this.idx = undefined
             this.boleto = res.boleto
-            // console.log('  this.boleto ::: ', this.boleto);
+
             this.fiestasService.cargarFiestaById(this.boleto.fiesta).subscribe((resp) => {
-              // console.log('resp::: ', resp);
+
               this.fiesta = resp.fiesta
 
               if (this.fiesta.checking) {
@@ -108,7 +109,7 @@ export class CheckInComponent implements AfterViewInit {
                   confirmButtonColor: "#13547a",
                   preConfirm: async (cantidad) => {
                     try {
-                      // console.log('cantidad::: ', cantidad);
+
                       this.boleto.confirmado = true
                       this.boleto.ocupados = Number(this.boleto.ocupados) + Number(cantidad)
                       this.boleto.fechaConfirmacion = this.today
@@ -121,6 +122,7 @@ export class CheckInComponent implements AfterViewInit {
                         }
                       })
                     } catch (error) {
+                      console.error('error::: ', error);
                       Swal.showValidationMessage(`
         Request failed: ${error}
       `);
@@ -162,6 +164,7 @@ export class CheckInComponent implements AfterViewInit {
       this.loading = false
     },
       (error) => {
+        console.error('error::: ', error);
         this.functionsService.alertError(error, 'Check in')
       })
   }

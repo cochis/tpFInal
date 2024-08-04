@@ -75,6 +75,7 @@ export class EditarTipoCentroComponent {
     this.form = this.fb.group({
       nombre: ['', [Validators.required, Validators.minLength(3)]],
       clave: ['', [Validators.required, Validators.minLength(3)]],
+      descripcion: [''],
       dateCreated: [this.today],
       lastEdited: [this.today],
     })
@@ -86,6 +87,7 @@ export class EditarTipoCentroComponent {
     this.form = this.fb.group({
       nombre: [tipoCentro.nombre, [Validators.required, Validators.minLength(3)]],
       clave: [tipoCentro.clave, [Validators.required, Validators.minLength(3)]],
+      descripcion: [tipoCentro.descripcion],
       activated: [tipoCentro.activated],
       dateCreated: [tipoCentro.dateCreated],
       lastEdited: [this.today],

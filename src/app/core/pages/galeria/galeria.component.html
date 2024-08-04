@@ -84,6 +84,15 @@
                                     *ngIf="anfitrionId ===uid || rol == ADM">
                                     <i class="bi bi-trash ma prima" (click)="deleteOne(item)"></i>
                                 </div>
+                                <div style="width: 100%;" class="text-center mt-1"
+                                    *ngIf="anfitrionId ===uid || rol == ADM">
+                                    <small class="primary upper ma">
+                                        <b>
+
+                                            {{item.boleto.nombreGrupo}}
+                                        </b>
+                                    </small>
+                                </div>
                             </div>
                         </ng-container>
                     </div>

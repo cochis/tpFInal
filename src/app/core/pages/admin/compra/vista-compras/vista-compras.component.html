@@ -111,25 +111,29 @@
                                     </td>
 
                                     <td style="position: relative;min-width: 150px;" class="secondB white">
-                                        <div style=" position: absolute;top: 50%;  ;" class="white">
+                                        <div style=" position: absolute;top: 50%; left: 28%;  ;" class="white">
 
                                             {{getTotal(i) | currency}}
                                         </div>
                                     </td>
                                     <td style="position: relative;min-width: 150px;" class="but white upper">
-                                        <div style=" position: absolute;top: 50%;  ;" *ngIf="compra.status">
+                                        <div style=" position: absolute;top: 50%; left: 28%;  ;" *ngIf="compra.status">
 
                                             {{( compra.status=='complete')?'Pagado':'Sin estado'}}
                                         </div>
-                                        <div style=" position: absolute;top: 50%;  ;" *ngIf="!compra.status">
+                                        <div style="  " *ngIf="!compra.status">
+                                            Pago Incompleto
+                                            <a class="btn btn-lg btn-block btn-warning"
+                                                href="{{compra.session.url}}">Pagar</a>
 
-                                            Incompleta
+
+
                                         </div>
                                     </td>
 
 
                                     <td style="position: relative;min-width: 150px;">
-                                        <div style=" position: absolute;top: 50%;  ;">
+                                        <div style=" position: absolute;top: 50%; left: 28%;  ;">
                                             {{compra.dateCreated | date:'dd/MM/YYYY'}}
                                         </div>
                                     </td>

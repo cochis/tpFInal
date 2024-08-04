@@ -9,8 +9,13 @@
             </div>
             <div class="col-12 col-md-6 mt-4 ma text-center mt-3">
 
-                <button type="button" class="btn btn-lg btn-block but" *ngIf="rol == ANF || rol == SLN || rol == ADM"
-                    routerLink="/core/fiestas/crear-fiesta">Nuevo evento</button>
+                <button type="button" class="btn btn-lg btn-block but"
+                    *ngIf="cantidadFiestas>0 &&(rol == ANF || rol== SLN) " routerLink="/core/fiestas/crear-fiesta">Nuevo
+                    evento</button>
+                <button class="btn but   " *ngIf="cantidadFiestas<=0 &&(rol == ANF || rol== SLN) "
+                    routerLink="/core/compras/crear-compra/{{uid}}">Comprar
+                    paquete</button>
+
 
             </div>
             <div class="col-12 col-md-6 mt-3 ma">
