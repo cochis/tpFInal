@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CargarEventos, CargarRoles, CargarSalons, CargarUsuarios } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
+import { CargarEventos, CargarPaquetes, CargarRoles, CargarSalons, CargarUsuarios } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
 import { Evento } from 'src/app/core/models/evento.model';
 import { Role } from 'src/app/core/models/role.model';
 import { Salon } from 'src/app/core/models/salon.model';
@@ -17,6 +17,8 @@ import { ModalService } from '@developer-partners/ngx-modal-dialog';
 import { ModalTemplateComponent } from 'src/app/shared/components/modals/modal-template/modal-template.component';
 import { Template } from 'src/app/core/models/template.model';
 import { DefaultComponent } from '../../templates/default/default.component';
+import { PaquetesService } from 'src/app/core/services/paquete.service';
+import { Paquete } from 'src/app/core/models/paquete.model';
 
 
 
@@ -38,6 +40,7 @@ export class CrearFiestaComponent {
 
   salones: Salon[]
   roles: Role[]
+  paquetes: Paquete[]
   usuario: Usuario
   public form!: FormGroup
   today: Number = this.functionsService.getToday()
@@ -48,6 +51,8 @@ export class CrearFiestaComponent {
   rol = this.functionsService.getLocal('role')
   cantidadFiestas = 0
   cantidadGalerias = 0
+  salonSelect = ''
+  usuarioSelect: Usuario
   constructor(
     private fb: FormBuilder,
     private functionsService: FunctionsService,
@@ -55,21 +60,33 @@ export class CrearFiestaComponent {
     private eventosService: EventosService,
     private salonesService: SalonsService,
     private usuariosService: UsuariosService,
+    private paquetesService: PaquetesService,
     private readonly _modalService: ModalService
   ) {
+    this.getUsersById()
     this.loading = true
     this.getCatalogos()
     this.todayDate = this.functionsService.numberToDate(this.today)
     this.createForm()
     this.loading = false
+
   }
   getCatalogos() {
     this.loading = true
+    this.paquetesService.cargarPaquetesAll().subscribe((resp: CargarPaquetes) => {
+      this.paquetes = this.functionsService.getActivos(resp.paquetes)
+    },
+      (error: any) => {
+        console.error('error::: ', error);
+        this.functionsService.alertError(error, 'Paquetes')
+        this.loading = false
+      })
     if (this.rol === this.ADM) {
       this.salonesService.cargarSalonsAll().subscribe((resp: CargarSalons) => {
         this.salones = this.functionsService.getActivos(resp.salons)
       },
         (error: any) => {
+          console.error('error::: ', error);
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
         })
@@ -77,6 +94,7 @@ export class CrearFiestaComponent {
         this.eventos = this.functionsService.getActivos(resp.eventos)
       },
         (error: any) => {
+          console.error('error::: ', error);
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
         })
@@ -85,6 +103,7 @@ export class CrearFiestaComponent {
         this.usuarios = this.usuarios.filter((usuario) => usuario.uid != this.uid);
       },
         (error: any) => {
+          console.error('error::: ', error);
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
         })
@@ -92,14 +111,17 @@ export class CrearFiestaComponent {
         this.usuario = resp.usuario
       },
         (error) => {
+          console.error('error::: ', error);
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
         })
     } else if (this.rol !== this.ADM) {
+
       this.salonesService.cargarSalonByMail(this.email).subscribe((resp: CargarSalons) => {
         this.salones = this.functionsService.getActivos(resp.salons)
       },
         (error: any) => {
+          console.error('error::: ', error);
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
         })
@@ -107,6 +129,7 @@ export class CrearFiestaComponent {
         this.eventos = this.functionsService.getActivos(resp.eventos)
       },
         (error: any) => {
+          console.error('error::: ', error);
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
         })
@@ -115,17 +138,26 @@ export class CrearFiestaComponent {
         this.usuarios = this.usuarios.filter((usuario) => usuario.uid != this.uid);
       },
         (error: any) => {
+          console.error('error::: ', error);
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
         })
+
       this.usuariosService.cargarUsuarioById(this.uid).subscribe(resp => {
         this.usuario = resp.usuario
         this.cantidadFiestas = this.usuario.cantidadFiestas
         this.cantidadGalerias = this.usuario.cantidadGalerias
 
         this.calcularItems(this.usuario.compras)
+
+
+
+
+
+
       },
         (error) => {
+          console.error('error::: ', error);
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
         })
@@ -166,6 +198,7 @@ export class CrearFiestaComponent {
   onSubmit() {
 
 
+
     if (this.rol != this.ADM && Number(this.functionsService.dateToNumber(this.form.value.fecha)) < Number(this.today)) {
       this.functionsService.alert('Fiesta', 'La fecha del evento no puede ser menor al dia de hoy', 'info')
       this.loading = false
@@ -190,101 +223,84 @@ export class CrearFiestaComponent {
       this.form.value.fecha = new Date(this.form.value.fecha).getTime()
       let form = {
         ...this.form.value,
-
+        usuarioCreated: this.salonSelect,
         activated: true,
         realizada: false
       }
-      this.fiestasService.crearFiesta(this.form.value).subscribe((resp: any) => {
-        this.usuariosService.actualizarUsuario(this.usuario).subscribe((resp2: any) => {
-          if (this.usuario.compras.length == 0) {
-            this.usuario.cantidadFiestas = this.usuario.cantidadFiestas - 1
 
-            if (this.form.value.galeria) {
-              this.usuario.cantidadGalerias = this.usuario.cantidadGalerias - 1
-            }
-            this.usuariosService.actualizarUsuario(this.usuario).subscribe(resU => {
-              this.loading = false
-              this.functionsService.alert('Fiestas', 'Fiesta creada', 'success')
 
-              if (resp.fiesta.invitacion.includes('default')) {
+      this.fiestasService.crearFiesta(form).subscribe((resp: any) => {
+        var rp = resp
+        if (this.usuario.cantidadFiestas == 0 && this.usuario.cantidadGalerias == 0) {
 
-                this.functionsService.navigateTo(`core/invitaciones/editar-invitacion/true/${resp.fiesta.uid}`)
-              } else {
+          this.restarItems(this.usuarioSelect.compras, this.form.value.galeria)
+          this.loading = false
+          this.functionsService.alert('Fiestas', 'Fiesta creada', 'success')
 
-                this.functionsService.navigateTo(`core/fiestas/vista-fiestas`)
-              }
-            })
+          if (rp.fiesta.invitacion.includes('default')) {
 
+            this.functionsService.navigateTo(`core/invitaciones/editar-invitacion/true/${resp.fiesta.uid}`)
           } else {
-            if (this.form.value.galeria && this.usuario.cantidadGalerias > 0) {
-              this.usuario.cantidadGalerias = this.usuario.cantidadGalerias - 1
-            }
-            this.usuario.compras.forEach((cp, i) => {
-              console.log('compra::: ', cp);
-              cp.uso.forEach((uso, j) => {
-                console.log('uso::: ', uso);
-                if (this.usuario.cantidadGalerias == 0 && this.usuario.cantidadFiestas == 0) {
 
-                  if ((this.usuario.compras[i].uso[j].cantidad - this.usuario.compras[i].uso[j].cantidadUsada) > 0) {
-
-                    this.usuario.compras[i].uso[j].cantidadUsada = this.usuario.compras[i].uso[j].cantidadUsada + 1
-                    if (this.usuario.compras[i].uso[j].cantidad == 0) {
-                      this.usuario.compras[i].activated = false
-                      return
-                    }
-                  }
-                }
-
-
-              });
-              console.log('this.usuario.::: ', this.usuario);
-              this.usuariosService.actualizarUsuario(this.usuario).subscribe(resU => {
-                this.loading = false
-                this.functionsService.alert('Fiestas', 'Fiesta creada', 'success')
-
-                if (resp.fiesta.invitacion.includes('default')) {
-
-                  this.functionsService.navigateTo(`core/invitaciones/editar-invitacion/true/${resp.fiesta.uid}`)
-                } else {
-
-                  this.functionsService.navigateTo(`core/fiestas/vista-fiestas`)
-                }
-              })
-
-
-            });
-
+            this.functionsService.navigateTo(`core/fiestas/vista-fiestas`)
           }
 
+        } else {
+          this.usuario.cantidadFiestas--
+          this.usuario.cantidadGalerias--
 
-
-
-
-        },
-          (error) => {
-            this.functionsService.alertError(error, 'Fiestas')
+          this.usuariosService.actualizarUsuario(this.usuario).subscribe((respU: any) => {
             this.loading = false
+            this.functionsService.alert('Fiestas', 'Fiesta creada', 'success')
+
+            if (rp.fiesta.invitacion.includes('default')) {
+
+              this.functionsService.navigateTo(`core/invitaciones/editar-invitacion/true/${resp.fiesta.uid}`)
+            } else {
+
+              this.functionsService.navigateTo(`core/fiestas/vista-fiestas`)
+            }
+
           })
+        }
+
+
+
+
       },
         (error) => {
+          console.error('error::: ', error);
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
         })
     } else {
       this.functionsService.alertForm('Fiestas')
       this.loading = false
-      return console.info('Please provide all the required values!');
+      return // console.info('Please provide all the required values!');
     }
   }
   selectSalon(event) {
     this.salonesService.cargarSalonById(event.target.value).subscribe((resp) => {
       setTimeout(() => {
+
+        this.salonSelect = resp.salon.usuarioCreated
+        this.usuariosService.cargarUsuarioById(this.salonSelect).subscribe(resp => {
+
+          this.usuarioSelect = resp.usuario
+
+          this.cantidadFiestas = this.usuarioSelect.cantidadFiestas
+          this.cantidadGalerias = this.usuarioSelect.cantidadGalerias
+          this.calcularItems(this.usuarioSelect.compras)
+        })
+
+
+
         this.setSalon(resp.salon)
       }, 500);
     })
   }
   setSalon(salon) {
-    // console.log('this.form.value', this.form.value)
+
     this.form = this.fb.group({
       nombre: [this.form.value.nombre, [Validators.required, Validators.minLength(3)]],
       evento: [this.form.value.evento, [Validators.required]],
@@ -327,44 +343,99 @@ export class CrearFiestaComponent {
       })
     }
   }
-  calcularItems(items) {
+  calcularItems(items = []) {
 
-    this.cantidadFiestas = this.cantidadFiestas
-    this.cantidadGalerias = this.cantidadGalerias
-    var data: any
-    var uso = []
-    var time = []
+    this.loading = true
 
-    items.forEach((compra, i) => {
+    setTimeout(() => {
+      this.cantidadFiestas = this.cantidadFiestas
+      this.cantidadGalerias = this.cantidadGalerias
+      items.forEach((compra, i) => {
+        compra.uso.forEach(us => {
+          this.paquetes.forEach(paq => {
+            if (paq.uid == us.infoPaq._id) {
 
-      compra.uso.forEach(us => {
+              if (paq.tipo == 'eventos') {
+                this.cantidadFiestas += (Number(us.cantidad))
+                this.cantidadFiestas -= Number(us.cantidadUsada)
+              } else {
+                this.cantidadGalerias += (Number(us.cantidad))
+                this.cantidadGalerias -= Number(us.cantidadUsada)
+              }
+            }
+          });
+        });
+      });
+      this.cantidadGalerias = this.cantidadGalerias
+      this.cantidadFiestas = this.cantidadFiestas
 
-        if (us.value > 0) {
 
-          this.cantidadFiestas += (Number(us.cantidad) * Number(us.value))
-          this.cantidadFiestas -= Number(us.cantidadUsada)
-        } else {
-          console.log('us::: ', us);
-          this.cantidadGalerias += Number(us.cantidad)
-          this.cantidadGalerias -= Number(us.cantidadUsada)
+      if (this.rol == this.ADM) {
+
+        if (this.cantidadFiestas <= 0) {
+          this.functionsService.alert('Fiestas', 'Ese  salon no tiene fiestas disponibles', 'error')
 
         }
-      });
-
-
-
-    });
-    console.log(' this.cantidadGalerias::: ', this.cantidadGalerias);
-    console.log('this.cantidadFiestas::: ', this.cantidadFiestas);
-
-
-
-
-
-
-
-
-
+        if (this.cantidadFiestas <= 0) {
+          this.form.patchValue({
+            galeria: false
+          })
+        }
+      }
+      this.loading = false
+    }, 500);
 
   }
+
+  restarItems(items, galeria: boolean) {
+    this.cantidadFiestas = 0
+    this.cantidadGalerias = 0
+    var restadoE = true
+    var restadoG = true
+    for (let i = 0; i < items.length; i++) {
+      for (let j = 0; j < items[i].uso.length; j++) {
+
+
+        this.paquetes.forEach(paq => {
+
+          if (paq.uid == items[i].uso[j].infoPaq._id) {
+            if (this.usuario.compras[i].uso[j].cantidad - this.usuario.compras[i].uso[j].cantidadUsada == 0) {
+              this.usuario.compras[i].activated == false
+            }
+            if (paq.tipo == 'eventos' && restadoE && (this.usuario.compras[i].uso[j].cantidad - this.usuario.compras[i].uso[j].cantidadUsada) > 0 && this.usuario.compras[i].activated) {
+              this.usuario.compras[i].uso[j].cantidadUsada = this.usuario.compras[i].uso[j].cantidadUsada + 1
+              restadoE = false
+
+
+            } else if (paq.tipo == "galerias" && galeria && restadoG && (this.usuario.compras[i].uso[j].cantidad - this.usuario.compras[i].uso[j].cantidadUsada) > 0 && this.usuario.compras[i].activated) {
+              this.usuario.compras[i].uso[j].cantidadUsada = this.usuario.compras[i].uso[j].cantidadUsada + 1
+              galeria = false
+              restadoG = false
+
+
+            }
+          }
+
+        });
+
+      }
+    }
+    this.usuariosService.actualizarUsuario(this.usuario).subscribe(async (resp: any) => {
+
+      this.calcularItems(resp.usuarioActualizado.compras)
+      return await resp.usuario
+    })
+  }
+
+  getUsersById() {
+    this.usuariosService.cargarUsuarioByCreador(this.uid).subscribe((resp) => {
+      if (resp.usuarios.length == 1 && this.rol == this.SLN) {
+
+        this.functionsService.alert('Usuarios', 'No tienes ningún anfitrión ', 'info')
+        this.functionsService.navigateTo('/core/usuarios/crear-usuario')
+      }
+
+    })
+  }
+
 }

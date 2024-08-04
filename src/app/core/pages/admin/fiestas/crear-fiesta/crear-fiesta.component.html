@@ -95,8 +95,8 @@
                                             #invitacion class="form-control upper"
                                             (change)="showTemplate(invitacion.value)">
                                             <option value=""></option>
-                                            <option value="default">Default</option>
-                                            <option value="/xv/xv2/">XV años</option>
+                                            <option value="default">Principal</option>
+                                            <!--    <option value="/xv/xv2/">XV años</option> -->
 
 
                                         </select>
@@ -111,7 +111,7 @@
                                             class="form-control upper" #sal (change)="selectSalon($event)">
                                             <option value="">Selecciona una ubicación</option>
                                             <option [value]="item.uid" *ngFor="let item of salones">{{item.nombre }} <b
-                                                    *ngIf="rol ===ADM && usuarios">{{item.usuarioCreated.email}}</b>
+                                                    *ngIf="rol ===ADM && usuarios && item.usuarioCreated">{{item.usuarioCreated.email}}</b>
                                             </option>
                                         </select>
                                     </div>
@@ -126,7 +126,7 @@
                                         <label for="salon">Ubicación</label>
                                         <select name="" id="salon" formControlName="salon" #salon
                                             class="form-control upper" #sal (change)="selectSalon($event)">
-                                            <option value="">Selecciona un salon</option>
+                                            <option value="">Selecciona una ubicación</option>
                                             <option [value]="item.uid" *ngFor="let item of salones">{{item.nombre }} <b
                                                     *ngIf="rol ===ADM && usuarios">{{item.usuarioCreated.email}}</b>
                                             </option>
@@ -153,7 +153,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-12 col-md-6  mb-3   mt-3 " *ngIf="cantidadGalerias>0">
+                                <div class="col-12 col-md-6  mb-3   mt-3 " *ngIf=" rol  && cantidadGalerias>0  ">
                                     <div class="form-group">
                                         <div style="width: 100%;" class="ma text-center">
 
