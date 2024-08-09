@@ -287,39 +287,39 @@ export class DefaultComponent implements OnInit, AfterViewInit {
       if (res.boletoActualizado.confirmado) {
         this.boleto.cantidadInvitados
 
-        Swal.fire({
-          title: "Si van a asistir menos personas confirmar la cantidad",
-          input: "number",
-          inputAttributes: {
-            max: this.boleto.cantidadInvitados.toString(),
-            min: '0'
-          },
-          showCancelButton: true,
-          confirmButtonText: "Enviar",
-          showLoaderOnConfirm: true,
-          preConfirm: async (login) => {
-            try {
-
-
-
-              return login
-
-            } catch (error) {
-              console.error('Error', error)
-              Swal.showValidationMessage(`
-                Request failed: ${error}
-              `);
+        /*   Swal.fire({
+            title: "Si van a asistir menos personas confirmar la cantidad",
+            input: "number",
+            inputAttributes: {
+              max: this.boleto.cantidadInvitados.toString(),
+              min: '0'
+            },
+            showCancelButton: true,
+            confirmButtonText: "Enviar",
+            showLoaderOnConfirm: true,
+            preConfirm: async (login) => {
+              try {
+  
+  
+  
+                return login
+  
+              } catch (error) {
+                console.error('Error', error)
+                Swal.showValidationMessage(`
+                  Request failed: ${error}
+                `);
+              }
+            },
+            allowOutsideClick: () => !Swal.isLoading()
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire({
+                title: `${result.value.login}'s avatar`,
+                imageUrl: result.value.avatar_url
+              });
             }
-          },
-          allowOutsideClick: () => !Swal.isLoading()
-        }).then((result) => {
-          if (result.isConfirmed) {
-            Swal.fire({
-              title: `${result.value.login}'s avatar`,
-              imageUrl: result.value.avatar_url
-            });
-          }
-        });
+          }); */
 
 
       } else {
