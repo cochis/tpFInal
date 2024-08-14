@@ -37,17 +37,17 @@
                             <ng-container *ngFor="let item of roles">
                                 <div class="form-check" *ngIf="  item.clave == SLN || item.clave == ANF">
                                     <input class="form-check-input" type="radio" formControlName="role" name="role"
-                                        [value]="item.uid" id="invitadoRadio" checked>
-                                    <label class="form-check-label" style="color:#fff" for="invitadoRadio">
+                                        [value]="item.uid" id="role" checked>
+                                    <label class="form-check-label" style="color:#fff" for="role">
                                         {{item.nombre}}
                                     </label>
 
                                 </div>
                             </ng-container>
 
+                            <span *ngIf="submited && errorControl['role'].errors " class="error">Debe se seleccionar
+                                rol</span>
                         </div>
-                        <span *ngIf="submited && errorControl['role'].errors " class="error">Debe se seleccionar
-                            rol</span>
 
 
 
@@ -97,17 +97,49 @@
 
                             Debe contener al menos 6 caracteres</span>
                         <br>
+
+
+
                         <span class="text-white" *ngIf="!vieWPass" (click)="verPass()">Ver contraseña <i
                                 class="icon-eye"></i></span>
                         <span class="text-white" *ngIf="vieWPass" (click)="verPass()">Ocultar contraseña <i
                                 class="icon-eye"></i></span>
+                        <div class="checks mt-3">
 
+                            <ng-container>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" formControlName="aceptoTerminos"
+                                        #aceptoTerminos name="aceptoTerminos" id="aceptoTerminos"
+                                        (click)="uncheck(aceptoTerminos)">
+                                    <label class="form-check-label" style="color:#fff" for="aceptoTerminos"
+                                        (click)="viewInfo('terminos')">
+                                        Acepto Términos y condiciones
+                                    </label>
+
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" formControlName="aceptoPolitica"
+                                        #aceptoPolitica name="aceptoPolitica" id="aceptoPolitica"
+                                        (click)="uncheck(aceptoPolitica.value)">
+                                    <label class="form-check-label" style="color:#fff" for="aceptoPolitica"
+                                        (click)="viewInfo('politica')">
+                                        Acepto Política de privacidad
+                                    </label>
+
+                                </div>
+                            </ng-container>
+
+                            <span *ngIf="submited && errorControl['role'].errors " class="error">Debe se seleccionar
+                                rol</span>
+                        </div>
                         <div class="form-group mt-5 text-center">
                             <input type="submit" value="Registrar" class="btn  login_btn">
                         </div>
 
+
                     </form>
                 </div>
+
                 <div class="card-footer">
                     <div class="d-flex justify-content-center links">
                         ¿Tienes cuenta?<a (click)="login()">Ingresa</a>

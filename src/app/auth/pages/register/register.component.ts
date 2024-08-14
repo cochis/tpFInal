@@ -19,6 +19,10 @@ import { TipoCentro } from 'src/app/core/models/tipoCentro.model';
 import { PushsService } from 'src/app/core/services/push.service';
 import { Paquete } from 'src/app/core/models/paquete.model';
 import { PaquetesService } from 'src/app/core/services/paquete.service';
+import { ModalService } from '@developer-partners/ngx-modal-dialog';
+import { Template } from 'src/app/core/models/template.model';
+import { TerminosYCondicionesComponent } from 'src/app/core/pages/terminos-y-condiciones/terminos-y-condiciones.component';
+import { PoliticaDePrivacidadComponent } from 'src/app/core/pages/politica-de-privacidad/politica-de-privacidad.component';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -51,6 +55,8 @@ export class RegisterComponent {
     password: ['', [Validators.required, Validators.pattern(".{6,}")]],
     role: ['', [Validators.required]],
     google: [false],
+    aceptoTerminos: [''],
+    aceptoPolitica: [''],
     activated: [false],
     dateCreated: [this.today],
     lastEdited: [this.today],
@@ -66,7 +72,8 @@ export class RegisterComponent {
     private paquetesService: PaquetesService,
     private tipoCentrosService: TipoCentrosService,
     private swPush: SwPush,
-    private metaService: MetaService
+    private metaService: MetaService,
+    private readonly _modalService: ModalService
   ) {
 
     this.metaService.createCanonicalURL()
@@ -89,6 +96,21 @@ export class RegisterComponent {
     return this.form.controls;
   }
   async submit(): Promise<void> {
+
+
+    if (this.form.value.aceptoPolitica == false) {
+      this.functionsService.alert('Registro', 'Debe de aceptar  politica de privacidad', 'info')
+
+      return
+    } else {
+      this.form.value.aceptoPolitica = true
+    }
+    if (this.form.value.aceptoTerminos == false) {
+      this.functionsService.alert('Registro', 'Debe de aceptar terminos y condiciones', 'info')
+      return
+    } else {
+      this.form.value.aceptoTerminos = true
+    }
     this.loading = true
     if (this.respuesta) {
       this.register(this.respuesta)
@@ -151,6 +173,9 @@ export class RegisterComponent {
       })
   }
   register(push?: object) {
+
+
+
     this.form.value.email = this.form.value.email.toLowerCase()
     this.form.value.nombre = this.form.value.nombre.toUpperCase()
     this.form.value.apellidoPaterno = this.form.value.apellidoPaterno.toUpperCase()
@@ -168,6 +193,7 @@ export class RegisterComponent {
 
     }
 
+    // console.log('this.form.value::: ', this.form.value);
     let user = {
       ...this.form.value,
       tipoCentro: (this.form.value.tipoCentro == '') ? undefined : this.form.value.tipoCentro,
@@ -175,6 +201,11 @@ export class RegisterComponent {
       cantidadGalerias: 1,
       pushNotification: (push) ? push : null
     }
+
+    // console.log('user::: ', user);
+
+
+
 
 
     this.usuariosService.crearUsuario(user).subscribe((resp: any) => {
@@ -226,6 +257,7 @@ export class RegisterComponent {
                 .catch(err => {
                   console.error('err::: ', err);
                   this.functionsService.alertError(err, 'Error')
+                  this.functionsService.navigateTo('auth/login')
                 })
             } else if (result.isDenied) {
               this.submited = true
@@ -245,5 +277,34 @@ export class RegisterComponent {
         this.functionsService.alertError(error, 'Registro')
         this.loading = false
       })
+  }
+  uncheck(value) {
+
+    if (value == 'on') {
+      this.form.value.aceptoTerminos == 'off'
+    }
+
+
+  }
+
+
+  viewInfo(value) {
+    console.log('value::: ', value);
+    if (value == 'terminos') {
+      this._modalService.show<Template>(TerminosYCondicionesComponent, {
+        title: 'Términos y condiciones',
+        size: 1,
+        model: value,
+        mode: 'default'
+      })
+    } else {
+      this._modalService.show<Template>(PoliticaDePrivacidadComponent, {
+        title: 'Política de privacidad',
+        size: 1,
+        model: value,
+        mode: 'default'
+      })
+    }
+
   }
 }

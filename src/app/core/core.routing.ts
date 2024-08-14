@@ -66,6 +66,8 @@ import { EditarPaqueteComponent } from './pages/admin/paquete/editar-paquete/edi
 import { CrearPaqueteComponent } from './pages/admin/paquete/crear-paquete/crear-paquete.component';
 import { CongratsComponent } from '../shared/pages/congrats/congrats.component';
 import { CancelComponent } from '../shared/pages/cancel/cancel.component';
+import { PoliticaDePrivacidadComponent } from './pages/politica-de-privacidad/politica-de-privacidad.component';
+import { TerminosYCondicionesComponent } from './pages/terminos-y-condiciones/terminos-y-condiciones.component';
 
 
 const routes: Routes = [
@@ -101,6 +103,18 @@ const routes: Routes = [
         path: 'pricing',
         component: PricingComponent,
         data: { titulo: 'Pricing' }
+
+      },
+      {
+        path: 'politica-de-privacidad',
+        component: PoliticaDePrivacidadComponent,
+        data: { titulo: 'Política de privacidad' }
+
+      },
+      {
+        path: 'terminos-y-condiciones',
+        component: TerminosYCondicionesComponent,
+        data: { titulo: 'Términos y condiciones' }
 
       },
       {

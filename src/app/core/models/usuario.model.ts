@@ -14,6 +14,9 @@ export class Usuario {
         public paqueteActual: string,
         public google: boolean,
         public compras: any,
+        public pushNotification: object,
+        public aceptoPolitica: boolean,
+        public aceptoTerminos: boolean,
         public usuarioCreated: any,
         public activated: boolean,
         public dateCreated: number,
@@ -21,3 +24,9 @@ export class Usuario {
         public uid: string
     ) { }
 }
+
+
+
+
+
+

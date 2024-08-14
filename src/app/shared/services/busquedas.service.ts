@@ -38,16 +38,21 @@ export class BusquedasService {
           user.img,
           user.role,
           user.salon,
-          user.google,
-          user.compras,
-          user.usuarioCreated,
-          user.activated,
           user.cantidadFiestas,
           user.cantidadGalerias,
           user.paqueteActual,
+          user.google,
+          user.compras,
+          user.pushNotification,
+          user.aceptoPolitica,
+          user.aceptoTerminos,
+          user.usuarioCreated,
+          user.activated,
           user.dateCreated,
           user.lastEdited,
           user.uid,
+
+
 
         ),
     )

@@ -73,6 +73,8 @@ import { FaqsComponent } from './pages/faqs/faqs.component';
 import { CrearPaqueteComponent } from './pages/admin/paquete/crear-paquete/crear-paquete.component';
 import { EditarPaqueteComponent } from './pages/admin/paquete/editar-paquete/editar-paquete.component';
 import { VistaPaquetesComponent } from './pages/admin/paquete/vista-paquetes/vista-paquetes.component';
+import { TerminosYCondicionesComponent } from './pages/terminos-y-condiciones/terminos-y-condiciones.component';
+import { PoliticaDePrivacidadComponent } from './pages/politica-de-privacidad/politica-de-privacidad.component';
 
 
 
@@ -149,7 +151,9 @@ import { VistaPaquetesComponent } from './pages/admin/paquete/vista-paquetes/vis
     FaqsComponent,
     CrearPaqueteComponent,
     EditarPaqueteComponent,
-    VistaPaquetesComponent
+    VistaPaquetesComponent,
+    TerminosYCondicionesComponent,
+    PoliticaDePrivacidadComponent
 
   ],
   imports: [

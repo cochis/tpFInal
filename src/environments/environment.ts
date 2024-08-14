@@ -27,8 +27,8 @@ export const environment = {
   ESCTCE: "ESCTCE",  // Escuela de baile
   SLETCE: "SLETCE",  // Salon de eventos
   //DEV
-  //base_url: "http://localhost:3008/api",
-  //text_url: "http://localhost:4200/",
+  // base_url: "http://localhost:3008/api",
+  // text_url: "http://localhost:4200/",
   //QA
   //base_url: "https://tickets.cochisweb.com/api",
   //text_url: "https://tickets.cochisweb.com/",
