@@ -68,6 +68,9 @@ import { CongratsComponent } from '../shared/pages/congrats/congrats.component';
 import { CancelComponent } from '../shared/pages/cancel/cancel.component';
 import { PoliticaDePrivacidadComponent } from './pages/politica-de-privacidad/politica-de-privacidad.component';
 import { TerminosYCondicionesComponent } from './pages/terminos-y-condiciones/terminos-y-condiciones.component';
+import { EditarParametroComponent } from './pages/admin/parametros/editar-parametro/editar-parametro.component';
+import { CrearParametroComponent } from './pages/admin/parametros/crear-parametro/crear-parametro.component';
+import { VistaParametrosComponent } from './pages/admin/parametros/vista-parametros/vista-parametros.component';
 
 
 const routes: Routes = [
@@ -274,6 +277,26 @@ const routes: Routes = [
         path: 'eventos/vista-eventos',
         component: VistaEventosComponent,
         data: { titulo: 'Vista eventos' }
+
+      },
+      {
+        path: 'parametros/editar-parametro/:edit/:id',
+        component: EditarParametroComponent,
+        data: { titulo: 'Editar parametro' },
+        canActivate: [authGuard]
+
+      },
+      {
+        path: 'parametros/crear-parametro',
+        component: CrearParametroComponent,
+        data: { titulo: 'Crear parametro' },
+        canActivate: [authGuard]
+
+      },
+      {
+        path: 'parametros/vista-parametros',
+        component: VistaParametrosComponent,
+        data: { titulo: 'Vista parametros' }
 
       },
 

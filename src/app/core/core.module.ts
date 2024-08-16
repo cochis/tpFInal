@@ -75,6 +75,9 @@ import { EditarPaqueteComponent } from './pages/admin/paquete/editar-paquete/edi
 import { VistaPaquetesComponent } from './pages/admin/paquete/vista-paquetes/vista-paquetes.component';
 import { TerminosYCondicionesComponent } from './pages/terminos-y-condiciones/terminos-y-condiciones.component';
 import { PoliticaDePrivacidadComponent } from './pages/politica-de-privacidad/politica-de-privacidad.component';
+import { VistaParametrosComponent } from './pages/admin/parametros/vista-parametros/vista-parametros.component';
+import { CrearParametroComponent } from './pages/admin/parametros/crear-parametro/crear-parametro.component';
+import { EditarParametroComponent } from './pages/admin/parametros/editar-parametro/editar-parametro.component';
 
 
 
@@ -153,7 +156,10 @@ import { PoliticaDePrivacidadComponent } from './pages/politica-de-privacidad/po
     EditarPaqueteComponent,
     VistaPaquetesComponent,
     TerminosYCondicionesComponent,
-    PoliticaDePrivacidadComponent
+    PoliticaDePrivacidadComponent,
+    VistaParametrosComponent,
+    CrearParametroComponent,
+    EditarParametroComponent
 
   ],
   imports: [

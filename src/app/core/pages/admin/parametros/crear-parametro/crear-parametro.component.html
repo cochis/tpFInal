@@ -8,8 +8,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-lg-12 col-12 text-center">
-                            <h2 class="mb-5" *ngIf="edit=='true'">Editar evento</h2>
-                            <h2 class="mb-5" *ngIf="edit=='false'">Ver evento</h2>
+                            <h2 class="mb-5">Crear parametro</h2>
                         </div>
                         <form [formGroup]="form" (ngSubmit)="onSubmit()">
                             <div class="row">
@@ -17,17 +16,44 @@
                                     <div class="form-group">
                                         <label for="nombre">Nombre</label>
                                         <input type="text" class="form-control upper" id="nombre"
-                                            formControlName="nombre" required placeholder="Nombre"
-                                            [readonly]="edit==='false'">
+                                            formControlName="nombre" required placeholder="Nombre">
                                     </div>
                                     <span *ngIf="submited && errorControl['nombre'].errors " class="error">Es requerido
                                     </span>
                                 </div>
                                 <div class="col-12 col-md-6 mt-3">
+
+                                    <div class="form-group">
+                                        <label for="type">Tipo</label>
+                                        <select name="" id="type" formControlName="type" class="form-control upper">
+                                            <option value="">Selecciona un tipo</option>
+                                            <option value="string">Texto</option>
+                                            <option value="number">Numérico</option>
+                                            <option value="boolean">Boleano</option>
+                                            <option value="array">Arreglo</option>
+
+
+                                        </select>
+                                    </div>
+                                    <span *ngIf="submited && errorControl['type'].errors " class="error">Es requerido
+                                    </span>
+                                </div>
+                                <div class="col-12 col-md-6 mt-3">
+
+                                    <div class="form-group">
+                                        <label for="value">Valor</label>
+                                        <input type="text" class="form-control upper" id="value" formControlName="value"
+                                            placeholder="Valor">
+                                    </div>
+                                    <span *ngIf="submited && errorControl['value'].errors " class="error">Es requerido
+                                    </span>
+                                </div>
+                                <div class="col-12 col-md-6 mt-3">
+
                                     <div class="form-group">
                                         <label for="clave">Clave</label>
                                         <input type="text" class="form-control upper" id="clave" formControlName="clave"
-                                            required placeholder="Clave" [readonly]="edit==='false'">
+                                            placeholder="Clave">
                                     </div>
                                     <span *ngIf="submited && errorControl['clave'].errors " class="error">Es requerido
                                     </span>
@@ -38,11 +64,11 @@
 
                             <div class="row mt-5 text-center">
 
-                                <div class="col-12 col-md-6  mt-3 text-center " *ngIf="edit==='true'">
-                                    <button type="submit" class="btn btn-lg btn-block but  ">Editar</button>
+                                <div class="col-12 col-md-6  mt-3 text-center ">
+                                    <button type="submit" class="btn btn-lg btn-block but  ">Crear</button>
 
                                 </div>
-                                <div class="col-12 col-md-6  mt-3 text-center">
+                                <div class="col-12 col-md-6 mt-3 text-center">
                                     <button class="btn btn-lg btn-block btn-warning" (click)="back()">Regresar</button>
 
                                 </div>

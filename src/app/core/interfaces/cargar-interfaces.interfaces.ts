@@ -21,6 +21,7 @@ import { Push } from "../models/push.model"
 import { Log } from "../models/log.model"
 import { TipoCentro } from "../models/tipoCentro.model"
 import { Paquete } from "../models/paquete.model"
+import { Parametro } from "../models/parametro.model"
 
 
 
@@ -106,6 +107,13 @@ export interface CargarEvento {
 export interface CargarEventos {
     total: number
     eventos: Evento[]
+}
+export interface CargarParametro {
+    parametro: Parametro
+}
+export interface CargarParametros {
+    total: number
+    parametros: Parametro[]
 }
 
 export interface CargarFiesta {
