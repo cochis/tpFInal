@@ -11,10 +11,12 @@ import { environment } from 'src/environments/environment';
 export class AppComponent {
 
   title = 'TicketParty';
-
+  ver = environment.version
   constructor(
     private update: SwUpdate,
     private functionsService: FunctionsService) {
+
+    console.log('this.ver::: ', this.ver);
     this.updateClient()
 
 

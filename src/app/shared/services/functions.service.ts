@@ -5,16 +5,20 @@ import Swal from 'sweetalert2';
 
 import { SwPush } from '@angular/service-worker';
 import * as SecureLS from 'secure-ls';
+import { Parametro } from 'src/app/core/models/parametro.model';
+
 @Injectable({
   providedIn: 'root'
 })
 export class FunctionsService {
   device_token: any
   ls = new SecureLS();
+
   public readonly VAPID_PUBLICK_KEY = environment.publicKey
   constructor(
     private router: Router,
     private swPush: SwPush,
+
   ) { }
 
 
@@ -311,5 +315,35 @@ export class FunctionsService {
     });
     return result
 
+  }
+
+
+  getParametro(parametro: Parametro) {
+
+
+
+
+
+
+    switch (parametro.type) {
+      case 'string':
+        return parametro.value
+        break;
+      case 'number':
+        return Number(parametro.value)
+        break;
+      case 'boolean':
+        if (parametro.value == 'true') {
+          return true
+        } else {
+          return false
+        }
+
+        break;
+      case 'number':
+        return JSON.parse(parametro.value)
+        break;
+
+    }
   }
 }

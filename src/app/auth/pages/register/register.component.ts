@@ -23,6 +23,8 @@ import { ModalService } from '@developer-partners/ngx-modal-dialog';
 import { Template } from 'src/app/core/models/template.model';
 import { TerminosYCondicionesComponent } from 'src/app/core/pages/terminos-y-condiciones/terminos-y-condiciones.component';
 import { PoliticaDePrivacidadComponent } from 'src/app/core/pages/politica-de-privacidad/politica-de-privacidad.component';
+import { ParametrosService } from 'src/app/core/services/parametro.service';
+import { Parametro } from 'src/app/core/models/parametro.model';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -38,6 +40,10 @@ export class RegisterComponent {
   SLN = environment.salon_role
   URS = environment.user_role
   ANF = environment.anf_role
+  PCANFI = environment.CANTIDADFIESTAS
+  PCANGA = environment.CANTIDADGALERIAS
+  parCantFi: Parametro
+  parCantGa: Parametro
   slnRole: Role
   usrRole: Role
   anfRole: Role
@@ -67,6 +73,7 @@ export class RegisterComponent {
     private readonly router: Router,
     private rolesService: RolesService,
     private usuariosService: UsuariosService,
+    private parametrosService: ParametrosService,
     private functionsService: FunctionsService,
     private pushsService: PushsService,
     private paquetesService: PaquetesService,
@@ -75,7 +82,7 @@ export class RegisterComponent {
     private metaService: MetaService,
     private readonly _modalService: ModalService
   ) {
-
+    this.getParams()
     this.metaService.createCanonicalURL()
     let data = {
       title: 'Ticket Party | Registro ',
@@ -197,12 +204,13 @@ export class RegisterComponent {
     let user = {
       ...this.form.value,
       tipoCentro: (this.form.value.tipoCentro == '') ? undefined : this.form.value.tipoCentro,
-      cantidadFiestas: 1,
-      cantidadGalerias: 1,
+      cantidadFiestas: this.functionsService.getParametro(this.parCantFi),
+
+      cantidadGalerias: this.functionsService.getParametro(this.parCantGa),
       pushNotification: (push) ? push : null
     }
 
-    // console.log('user::: ', user);
+    console.log('user::: ', user);
 
 
 
@@ -306,5 +314,25 @@ export class RegisterComponent {
       })
     }
 
+  }
+
+
+  getParams() {
+    this.parametrosService.cargarParametrosByClave(this.PCANFI).subscribe(resp => {
+      this.parCantFi = resp.parametro
+
+    },
+      (error) => {
+        this.functionsService.alertError(error, 'Parametros')
+        console.error(error)
+      })
+    this.parametrosService.cargarParametrosByClave(this.PCANGA).subscribe(resp => {
+      this.parCantGa = resp.parametro
+      console.log(' this.parCantGa ::: ', this.parCantGa);
+    },
+      (error) => {
+        this.functionsService.alertError(error, 'Parametros')
+        console.error(error)
+      })
   }
 }

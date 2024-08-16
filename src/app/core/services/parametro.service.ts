@@ -108,4 +108,8 @@ export class ParametrosService {
     const url = `${base_url}/parametros/email/${email}`
     return this.http.get<CargarParametros>(url, this.headers)
   }
+  cargarParametrosByClave(clave: string) {
+    const url = `${base_url}/parametros/clave/${clave}`
+    return this.http.get<CargarParametro>(url, this.headers)
+  }
 }

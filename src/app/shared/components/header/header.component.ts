@@ -30,7 +30,7 @@ export class HeaderComponent {
     private functionsService: FunctionsService,
     private fiestasService: FiestasService
   ) {
-    console.info(this.ver)
+
     if (this.functionsService.getLocal('email')) {
       this.email = this.functionsService.getLocal('email')
     }
