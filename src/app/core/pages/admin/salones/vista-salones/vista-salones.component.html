@@ -117,7 +117,7 @@
 
 
                                     </td>
-                                    <td class="upper">{{salon.usuarioCreated.email}}</td>
+                                    <td class="upper">{{salon.usuarioCreated?salon.usuarioCreated.email:''}}</td>
 
                                     <td>
                                         <i *ngIf="salon.activated" class="icon-ok-circled prima"></i>
