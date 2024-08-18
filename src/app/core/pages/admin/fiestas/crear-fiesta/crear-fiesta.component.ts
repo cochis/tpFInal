@@ -215,7 +215,9 @@ export class CrearFiestaComponent {
 
     this.loading = true
     this.submited = true
-    if (!this.form.value.checking.checked) {
+
+
+    if (!this.form.value.checking) {
       this.form.value.cantidad = 0
     }
     if (this.form.valid) {

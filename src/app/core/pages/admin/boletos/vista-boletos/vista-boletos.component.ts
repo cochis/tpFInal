@@ -89,6 +89,7 @@ export class VistaBoletosComponent {
       this.fiestasService.cargarFiestasByEmail(this.mail).subscribe((resp: CargarFiestas) => {
         this.fiestas = resp.fiestas
         this.fiestasTemp = resp.fiestas
+
         this.loading = false
       },
         (error: any) => {
@@ -148,6 +149,7 @@ export class VistaBoletosComponent {
   getBoletos() {
     this.boletosService.cargarBoletosAll().subscribe((resp: any) => {
       this.boletos = resp.boletos
+
       this.boletosTemp = resp.boletos
       this.loading = false
     },
@@ -158,8 +160,7 @@ export class VistaBoletosComponent {
   }
   fiterBoletos(fiesta) {
     let res = this.boletos.filter((bol: any) => {
-
-      return bol.fiesta._id === fiesta
+      return bol.fiesta._id ? bol.fiesta._id : bol.fiesta.uid === fiesta
     })
     let cantidad = 0
     res.forEach(b => {

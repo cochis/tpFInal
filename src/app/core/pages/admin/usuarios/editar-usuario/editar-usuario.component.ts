@@ -145,6 +145,8 @@ export class EditarUsuarioComponent {
       apellidoMaterno: [''],
       email: ['', [Validators.required, Validators.email]],
       img: [''],
+      cantidadFiestas: [0],
+      cantidadGalerias: [0],
       role: ['', [Validators.required, Validators.minLength(3)]],
       tipoCentro: ['', [Validators.required, Validators.minLength(3)]],
       google: [false],
@@ -154,6 +156,7 @@ export class EditarUsuarioComponent {
     })
   }
   setForm(usuario: Usuario) {
+
 
     this.loading = true
     let usr: any = usuario
@@ -166,6 +169,8 @@ export class EditarUsuarioComponent {
         apellidoPaterno: [usuario.apellidoPaterno, [Validators.required, Validators.minLength(3)]],
         apellidoMaterno: [usuario.apellidoMaterno],
         email: [usuario.email, [Validators.required, Validators.email]],
+        cantidadFiestas: [usuario.cantidadFiestas],
+        cantidadGalerias: [usuario.cantidadGalerias],
         role: [role, [Validators.required]],
         tipoCentro: [tipoCentro, [Validators.required]],
         google: [usuario.google],

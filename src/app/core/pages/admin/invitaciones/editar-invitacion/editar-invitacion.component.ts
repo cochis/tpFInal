@@ -103,7 +103,7 @@ export class EditarInvitacionComponent {
       tipoFiesta: [''],
       tipoSize: [90],
       topDate: [50],
-
+      checking: [this.fiesta.checking],
       fiestaDate: [Number(this.fiesta.fecha)],
       nombreFiesta: [this.fiesta.nombre],
       nombresSize: [187],
@@ -165,10 +165,12 @@ export class EditarInvitacionComponent {
     this.createForm(this.fiesta)
   }
   async setFormWithData(invitacion: any) {
+
     invitacion.data = await this.numberToData(invitacion.data)
     this.form = this.fb.group({
       cPrincipal: [invitacion.data.cPrincipal],
       cSecond: [invitacion.data.cSecond],
+      checking: [invitacion.fiesta.checking],
       cWhite: [invitacion.data.cWhite],
       img1: [invitacion.data.img1],
       xImg1: [invitacion.data.xImg1],
@@ -255,6 +257,7 @@ export class EditarInvitacionComponent {
     temp.fiestaDate = (typeof (temp.fiestaDate) == 'number') ? this.functionsService.numberToDate(temp.fiestaDate) : temp.fiestaDate
     temp.lastEdited = (typeof (temp.lastEdited) == 'number') ? this.functionsService.numberToDate(temp.lastEdited) : temp.lastEdited
     this.form = this.fb.group({
+      checking: [this.fiesta.checking],
       cPrincipal: [temp.cPrincipal],
       cSecond: [temp.cSecond],
       cWhite: [temp.cWhite],
@@ -334,6 +337,7 @@ export class EditarInvitacionComponent {
         lastEdited: this.today,
         dateCreated: this.today
       }
+      this.invitacion.data.donde3Img = this.fiesta.salon.img
       this.crearInvitacion((invitacion)).subscribe((resp: any) => {
         this.invitacion = resp.invitacion
         this.invitacion.data.fiestaId = this.fiesta.uid
@@ -358,6 +362,8 @@ export class EditarInvitacionComponent {
         usuarioCreated: this.usuarioCreated,
         lastEdited: this.today
       }
+      this.invitacion.data.donde3Img = this.fiesta.salon.img
+
       this.actualizarInvitacion(this.invitacion).subscribe((resp: any) => {
         this.invitacion = resp.invitacionActualizado
         this.invitacion.data.fiestaId = this.fiesta.uid
@@ -373,13 +379,37 @@ export class EditarInvitacionComponent {
     }
   }
   async onSubmit() {
-    if (this.form.value.itinerarios.length > 0) {
-      this.form.value.itinerarioCheck = true
-    }
-    if (this.form.value.notas.length > 0) {
-      this.form.value.notaCheck = true
-    }
+
+    this.loading = true
+
+
     if (this.invitacion) {
+
+
+      if (this.form.value.img1 == '' && this.invitacion.data.img1 !== '') {
+        this.form.value.img1 = this.invitacion.data.img1
+      }
+      if (this.form.value.mensajeImg == '' && this.invitacion.data.mensajeImg !== '') {
+        this.form.value.mensajeImg = this.invitacion.data.mensajeImg
+      }
+      if (this.form.value.donde1Img == '' && this.invitacion.data.donde1Img !== '') {
+        this.form.value.donde1Img = this.invitacion.data.donde1Img
+      }
+      if (this.form.value.donde2Img == '' && this.invitacion.data.donde2Img !== '') {
+        this.form.value.donde2Img = this.invitacion.data.donde2Img
+      }
+      if (this.form.value.donde3Img == '' && this.invitacion.data.donde3Img !== '') {
+        this.form.value.donde3Img = this.invitacion.data.donde3Img
+      }
+      if (this.form.value.hospedajeImg == '' && this.invitacion.data.hospedajeImg !== '') {
+        this.form.value.hospedajeImg = this.invitacion.data.hospedajeImg
+      }
+      if (this.form.value.itinerarios.length > 0) {
+        this.form.value.itinerarioCheck = true
+      }
+      if (this.form.value.notas.length > 0) {
+        this.form.value.notaCheck = true
+      }
       let data = await this.numberToData(this.form.value)
       this.invitacion.data = (data)
       this.invitacion.usuarioFiesta = this.fiesta.usuarioFiesta
@@ -392,6 +422,7 @@ export class EditarInvitacionComponent {
         }
       })
     } else {
+
       let dataT = await this.dateToNumber(this.form.value)
 
       var invitado = {
@@ -521,6 +552,7 @@ export class EditarInvitacionComponent {
     this.notas.removeAt(i);
   }
   cambiarImagen(file: any, type: string) {
+
     this.imagenSubir = file.target.files[0]
     if (!file.target.files[0]) {
       this.imgTemp = null

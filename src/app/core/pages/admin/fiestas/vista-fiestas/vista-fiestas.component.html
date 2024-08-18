@@ -128,7 +128,7 @@
                                         *ngIf="!fiesta.invitacion.includes('default')">
                                         Sin template
                                     </td>
-                                    <td class="upper">{{getCatalog('evento',fiesta.evento)}}</td>
+                                    <td class="upper">{{fiesta.evento.nombre}}</td>
                                     <td class="upper second" *ngIf="!fiesta.usuarioFiesta">
                                         Usuario Borrado
                                     </td>

@@ -14,10 +14,10 @@ export class GetparamsService {
 
 
   getParams(param: string) {
-    console.log('param::: ', param);
+
     this.parametrosServices.cargarParametrosByClave(param).subscribe(resp => {
       const parametro = resp.parametro
-      console.log('parametro::: ', parametro);
+
       switch (parametro.type) {
         case 'string':
           return parametro.value

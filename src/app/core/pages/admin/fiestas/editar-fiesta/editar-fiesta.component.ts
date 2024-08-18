@@ -86,7 +86,7 @@ export class EditarFiestaComponent {
       }, 500);
     },
       (error: any) => {
-        console.error('Error', error)
+        // console.error('Error', error)
         this.functionsService.alertError(error, 'Fiestas')
       })
   }
@@ -104,7 +104,7 @@ export class EditarFiestaComponent {
 
       },
         (error: any) => {
-          console.error('Error', error)
+          // console.error('Error', error)
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
         })
@@ -114,7 +114,7 @@ export class EditarFiestaComponent {
 
       },
         (error: any) => {
-          console.error('Error', error)
+          // console.error('Error', error)
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
 
@@ -129,7 +129,7 @@ export class EditarFiestaComponent {
 
       },
         (error: any) => {
-          console.error('Error', error)
+          // console.error('Error', error)
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
 
@@ -142,7 +142,7 @@ export class EditarFiestaComponent {
 
       },
         (error: any) => {
-          console.error('Error', error)
+          // console.error('Error', error)
           this.functionsService.alertError(error, 'Paquetes')
           this.loading = false
         })
@@ -150,7 +150,7 @@ export class EditarFiestaComponent {
         this.salones = this.functionsService.getActivos(resp.salons)
       },
         (error: any) => {
-          console.error('Error', error)
+          // console.error('Error', error)
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
         })
@@ -161,7 +161,7 @@ export class EditarFiestaComponent {
 
       },
         (error: any) => {
-          console.error('Error', error)
+          // console.error('Error', error)
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
         })
@@ -173,7 +173,7 @@ export class EditarFiestaComponent {
 
       },
         (error: any) => {
-          console.error('Error', error)
+          // console.error('Error', error)
           this.functionsService.alertError(error, 'Usuarios')
           this.loading = false
         })
@@ -186,7 +186,7 @@ export class EditarFiestaComponent {
 
       },
         (error: any) => {
-          console.error('Error', error)
+          // console.error('Error', error)
           this.functionsService.alertError(error, 'Usuario')
           this.loading = false
         })
@@ -223,24 +223,15 @@ export class EditarFiestaComponent {
       lastEdited: [this.today],
     })
   }
-  setForm(fiesta: Fiesta) {
+  setForm(fiesta: any) {
     let fecha = this.functionsService.numberDateTimeLocal(fiesta.fecha)
-
-
-
     let usuarioFiesta = fiesta.usuarioFiesta.nombre
-    var evento = this.functionsService.getValueCatalog(fiesta.evento, 'nombre', this.eventos)
+    var evento = fiesta.evento.nombre
     var salon = fiesta.salon.nombre
-
-    /* let usuarioFiesta = this.functionsService.getValueCatalog(fiesta.usuarioFiesta, 'nombre', this.usuarios)
-    var evento = this.functionsService.getValueCatalog(fiesta.evento, 'nombre', this.eventos)
-    var salon = this.functionsService.getValueCatalog(fiesta.salon, 'nombre', this.salones) */
-
     setTimeout(() => {
-
       this.form = this.fb.group({
         nombre: [fiesta.nombre, [Validators.required, Validators.minLength(3)]],
-        evento: [(this.edit === 'false') ? evento : fiesta.evento, [Validators.required]],
+        evento: [(this.edit === 'false') ? evento : fiesta.evento._id, [Validators.required]],
         cantidad: [fiesta.cantidad],
         fecha: [fecha, [Validators.required]],
         calle: [fiesta.salon.calle, [Validators.required]],
@@ -299,7 +290,7 @@ export class EditarFiestaComponent {
         this.loading = false
       },
         (error) => {
-          console.error('Error', error)
+          // console.error('Error', error)
 
           this.loading = true
           this.functionsService.alertError(error, 'Fiestas')
@@ -343,7 +334,7 @@ export class EditarFiestaComponent {
           //message
         },
         (err) => {
-          console.error('error::: ', err);
+          // console.error('error::: ', err);
 
         },
       )

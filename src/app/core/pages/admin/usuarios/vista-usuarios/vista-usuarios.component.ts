@@ -194,6 +194,7 @@ export class VistaUsuariosComponent {
     items.forEach((compra, i) => {
       compra.uso.forEach(us => {
         this.paquetes.forEach(paq => {
+          console.log('paq::: ', paq);
           if (paq.uid == us.infoPaq._id) {
 
             if (paq.tipo == 'eventos') {

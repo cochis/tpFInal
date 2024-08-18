@@ -55,6 +55,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
   donde1Check: boolean
   donde2Check: boolean
   donde3Check: boolean
+  checking: boolean
   hospedajeCheck: boolean
   vistaTemp: boolean
   pushOk: boolean = false
@@ -94,6 +95,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
       // Se carga la fiesta por ID  
       this.fiestasService.cargarFiestaById(this.fiestaId).subscribe((resp: any) => {
         this.fiesta = resp.fiesta
+        this.checking = this.fiesta.checking
 
         this.invitacionsService.cargarInvitacionByFiesta(this.fiestaId).subscribe(async (resp: any) => {
           this.invitacion = resp.invitacion.data
@@ -128,6 +130,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
       if (this.count == 0) {
         this.vistaTemp = true
         this.invitacion = {
+          checking: true,
           cPrincipal: 'pink',
           cSecond: '#c51132',
           cWhite: 'white',
@@ -210,6 +213,8 @@ export class DefaultComponent implements OnInit, AfterViewInit {
         this.itinerarios = this.invitacion.itinerarios
         this.notas = this.invitacion.notas
       } else {
+
+
         this.vistaTemp = false
         this.itinerarios = JSON.parse(this.state.itinerarios)
         this.notas = JSON.parse(this.state.notas)
@@ -220,6 +225,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
         this.invitacion = this.state
         this.date = this.invitacion.fiestaDate
         this.btnBack = true
+        this.checking = (this.state.checking == 'true') ? true : false
       }
     }
   }
@@ -251,6 +257,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
     return await data
   }
   setData(fiesta, boleto) {
+
     this.metaService.generateTags({
       title: `${fiesta.nombre} -  ${this.functionsService.datePush(fiesta.fecha)}  `,
       description:
@@ -269,7 +276,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
         this.setData(this.fiesta, this.boleto)
       }
       this.loading = false
-    }, 1500);
+    }, 2000);
   }
   getDate(date) {
     this.date = new Date(date).getTime()
@@ -305,7 +312,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
                 return login
   
               } catch (error) {
-                console.error('Error', error)
+                 console.error('Error', error)
                 Swal.showValidationMessage(`
                   Request failed: ${error}
                 `);
@@ -325,7 +332,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
       } else {
         this.functionsService.alert('Invitacion', 'Se quito la confirmación', 'success')
       }
-      this.loading = false
+
     })
   }
   restParty() {

@@ -75,7 +75,7 @@ export class CrearSalonComponent {
       email: [this.functionsService.getLocal('email'), [Validators.required, Validators.email]],
       ubicacionGoogle: [''],
       img: [''],
-      activated: [false],
+      activated: [true],
       dateCreated: [this.today],
       lastEdited: [this.today],
     })

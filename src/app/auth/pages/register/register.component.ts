@@ -200,7 +200,7 @@ export class RegisterComponent {
 
     }
 
-    // console.log('this.form.value::: ', this.form.value);
+
     let user = {
       ...this.form.value,
       tipoCentro: (this.form.value.tipoCentro == '') ? undefined : this.form.value.tipoCentro,
@@ -209,8 +209,6 @@ export class RegisterComponent {
       cantidadGalerias: this.functionsService.getParametro(this.parCantGa),
       pushNotification: (push) ? push : null
     }
-
-    console.log('user::: ', user);
 
 
 
@@ -297,7 +295,7 @@ export class RegisterComponent {
 
 
   viewInfo(value) {
-    console.log('value::: ', value);
+
     if (value == 'terminos') {
       this._modalService.show<Template>(TerminosYCondicionesComponent, {
         title: 'Términos y condiciones',
@@ -328,7 +326,7 @@ export class RegisterComponent {
       })
     this.parametrosService.cargarParametrosByClave(this.PCANGA).subscribe(resp => {
       this.parCantGa = resp.parametro
-      console.log(' this.parCantGa ::: ', this.parCantGa);
+
     },
       (error) => {
         this.functionsService.alertError(error, 'Parametros')
