@@ -192,9 +192,10 @@ export class VistaUsuariosComponent {
     var cantidadFiestas = usr.cantidadFiestas
     var cantidadGalerias = usr.cantidadGalerias
     items.forEach((compra, i) => {
+      console.log('compra::: ', compra);
       compra.uso.forEach(us => {
         this.paquetes.forEach(paq => {
-          console.log('paq::: ', paq);
+
           if (paq.uid == us.infoPaq._id) {
 
             if (paq.tipo == 'eventos') {

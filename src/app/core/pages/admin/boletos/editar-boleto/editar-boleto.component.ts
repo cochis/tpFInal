@@ -20,13 +20,14 @@ import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2';
 import { Observable, Subscription, interval } from 'rxjs';
 import { EmailsService } from 'src/app/core/services/email.service';
+import * as XLSX from 'xlsx'
 @Component({
   selector: 'app-editar-boleto',
   templateUrl: './editar-boleto.component.html',
   styleUrls: ['./editar-boleto.component.css']
 })
 export class EditarBoletoComponent implements OnInit, OnDestroy {
-
+  convertedJson = []
   ADM = environment.admin_role
   SLN = environment.salon_role
   URS = environment.user_role
@@ -93,6 +94,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
       let restore = false
       this.boletosService.cargarBoletoByFiesta(this.id).subscribe((resp: CargarBoleto) => {
         this.boletoTemp = resp.boleto
+        console.log(' this.boletoTemp::: ', this.boletoTemp);
         this.boletoTemp.forEach((blt, i) => {
           if (
             this.boletoTemp[i].activated == blt.activated &&
@@ -105,6 +107,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
             this.boletoTemp[i].whatsapp == blt.whatsapp
           ) {
           } else {
+            console.log('this.fiesta::: ', this.fiesta);
             this.setForm(this.fiesta)
           }
         });
@@ -129,6 +132,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
   getFiesta(id: string) {
     this.fiestasService.cargarFiestaById(id).subscribe((resp: any) => {
       this.fiesta = resp.fiesta
+      console.log('this.fiesta::: ', this.fiesta);
       this.gruposService.cargarGruposAll().subscribe((resp: CargarGrupos) => {
         this.grupos = resp.grupos
       },
@@ -406,8 +410,10 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
     if (this.role === this.URS) {
       this.form.value.fiesta = this.boleto.fiesta
     }
+    console.log('this.form.value.invitados[i]::: ', this.form.value.invitados[i]);
     if (this.form.value.invitados[i].uid) {
       this.actualizarBoleto(this.form.value.invitados[i])
+
     } else {
       this.saveBoleto(this.form.value.invitados[i])
     }
@@ -482,6 +488,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
     this.modalService.open(content);
   }
   saveBoleto(boleto) {
+    console.log('boleto::: ', boleto);
     this.boletosService.crearBoleto(boleto).subscribe((resp: any) => {
       this.idBoleto = resp.boleto.uid
       this.functionsService.alertUpdate('Boletos')
@@ -495,6 +502,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
 
   }
   actualizarBoleto(boleto) {
+    console.log('boleto::: ', boleto);
     this.boletosService.actualizarBoleto(boleto).subscribe((resp: any) => {
       this.idBoleto = resp.boletoActualizado.uid
       this.functionsService.alertUpdate('Boletos')
@@ -527,5 +535,60 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
     document.execCommand("copy");
     document.body.removeChild(aux);
     this.functionsService.alert('Liga de fiesta', 'Copiada satisfactoriamente a portapapeles para compartir', 'success')
+  }
+
+
+
+
+  upload(event) {
+    const selectedFile = event.target.files[0]
+    const fileReader = new FileReader()
+    fileReader.readAsBinaryString(selectedFile)
+    fileReader.onload = (event) => {
+      let binaryData = event.target.result
+      let workbook = XLSX.read(binaryData, { type: 'binary' })
+      workbook.SheetNames.forEach(sheet => {
+        const data = XLSX.utils.sheet_to_json(workbook.Sheets[sheet])
+        this.convertedJson.push(data)
+      })
+      this.convertedJson.forEach((element, i) => {
+        element.forEach((ele, j) => {
+          if (typeof (this.convertedJson[i][j].options) == 'string' && this.convertedJson[i][j].options) {
+            this.convertedJson[i][j].options = JSON.parse(this.convertedJson[i][j].options)
+          }
+        });
+      });
+      this.boletosService.deleteBoletos().subscribe(resp => {
+        console.log('resp::: ', resp);
+
+        this.convertedJson[0].forEach(bol => {
+          this.loading = false
+          let gpo = this.grupos.filter(f => f.nombre.toLowerCase().trim() === bol.Grupo.toLowerCase().trim())
+          let boleto = {
+            activated: true,
+            cantidadInvitados: bol.Cantidad,
+            confirmado: false,
+            email: bol.Correo,
+            fechaConfirmacion: null,
+            fiesta: this.id,
+            grupo: gpo[0].uid,
+            nombreGrupo: bol.Nombre,
+            invitacionEnviada: false,
+            mesa: bol.Mesa,
+            ocupados: 0,
+            salon: this.fiesta.salon._id,
+            whatsapp: bol.Telefono,
+            vista: false
+          }
+          this.saveBoleto(boleto)
+          this.loading = false
+        });
+        this.loading = false
+        setTimeout(() => {
+
+          window.location.reload()
+        }, 1500);
+      })
+    }
   }
 }

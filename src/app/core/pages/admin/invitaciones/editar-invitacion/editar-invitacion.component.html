@@ -53,7 +53,7 @@
                                     </div>
                                     <div class="row text-center mt-3">
                                         <h5>Seccion inicial</h5>
-                                        <div class="col-12  col-sm-4 col-md-4   mt-3">
+                                        <div class="col-12      mt-3">
                                             <div class="form-group ">
                                                 <label for="img1">Imagen de fondo
                                                     <img src="/assets/images/tp.png" alt="" class="pointer"
@@ -71,8 +71,16 @@
                                         </div>
                                         <div class="col-6  col-md-4   mt-3">
                                             <div class="form-group ">
-                                                <label for="xImg1 ">Posicion de la imagen </label>
-                                                <input type="range" id="xImg1" #xImg1 formControlName="xImg1">
+                                                <label for="xImg1 ">Posicion X de la imagen </label>
+                                                <input type="range" id="xImg1" #xImg1 formControlName="xImg1" min="-200"
+                                                    max="200">
+                                            </div>
+                                        </div>
+                                        <div class="col-6  col-md-4   mt-3">
+                                            <div class="form-group ">
+                                                <label for="yImg1 ">Posicion Y de la imagen </label>
+                                                <input type="range" id="yImg1" #yImg1 formControlName="yImg1" min="-100"
+                                                    max="100">
                                             </div>
                                         </div>
                                         <div class="col-6  col-md-4   mt-3">
@@ -123,6 +131,11 @@
                                                     (change)="cambiarImagen($event,'mensajeImg' )">
                                             </div>
                                         </div>
+
+
+
+
+
                                         <div class="col-12  col-md-6  mt-3">
                                             <div class="form-group ">
                                                 <label for="mensaje1 ">Mensaje </label>
@@ -130,7 +143,20 @@
                                                     formControlName="mensaje1"></textarea>
                                             </div>
                                         </div>
-
+                                        <div class="col-12  col-md-6  mt-3">
+                                            <div class="form-group ">
+                                                <label for="bxMensajeImg ">Horizontal imagen mensaje </label>
+                                                <input type="range" id="bxMensajeImg" #bxMensajeImg
+                                                    formControlName="bxMensajeImg" />
+                                            </div>
+                                        </div>
+                                        <div class="col-12  col-md-6  mt-3">
+                                            <div class="form-group ">
+                                                <label for="byMensajeImg ">Vertical imagen mensaje </label>
+                                                <input type="range" id="byMensajeImg" #byMensajeImg
+                                                    formControlName="byMensajeImg" />
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="row text-center mt-3" *ngIf="fiesta.checking">
                                         <h5>Seccion QR</h5>
@@ -252,6 +278,7 @@
                                         <div class="col-12   mt-3">
                                             <div class="form-group ">
                                                 <label for="donde1AddressUbicacion ">Ubicación </label>
+                                                <app-info-ubicacion></app-info-ubicacion>
                                                 <input type="text" id="donde1AddressUbicacion" #donde1AddressUbicacion
                                                     formControlName="donde1AddressUbicacion"
                                                     style="width: 100% !important;">
@@ -313,6 +340,7 @@
                                         <div class="col-12   mt-3">
                                             <div class="form-group ">
                                                 <label for="donde2AddressUbicacion ">Ubicación </label>
+                                                <app-info-ubicacion></app-info-ubicacion>
                                                 <input type="text" id="donde2AddressUbicacion" #donde2AddressUbicacion
                                                     formControlName="donde2AddressUbicacion"
                                                     style="width: 100% !important;">
@@ -369,6 +397,7 @@
                                         <div class="col-12   mt-3">
                                             <div class="form-group ">
                                                 <label for="donde3AddressUbicacion ">Ubicación </label>
+                                                <app-info-ubicacion></app-info-ubicacion>
                                                 <input type="text" id="donde3AddressUbicacion" #donde3AddressUbicacion
                                                     formControlName="donde3AddressUbicacion" readonly
                                                     style="width: 100% !important;">
@@ -438,6 +467,7 @@
                                         <div class="col-12   mt-3">
                                             <div class="form-group ">
                                                 <label for="hospedajeUbicacion ">Ubicación </label>
+                                                <app-info-ubicacion></app-info-ubicacion>
                                                 <input type="text" id="hospedajeUbicacion" #hospedajeUbicacion
                                                     formControlName="hospedajeUbicacion" style="width: 100%;">
                                             </div>

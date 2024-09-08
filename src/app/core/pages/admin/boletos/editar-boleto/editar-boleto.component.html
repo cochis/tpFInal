@@ -37,6 +37,13 @@
                                 <input id="file-input" type="file" class="ion-no-border"
                                     (change)="cambiarImagen($event,fiesta)" />
                             </div> -->
+                            <div class="col-12   mt-50">
+
+                                <input type="file" name="invitadosXls" id="invitadosXls" #invitadosXls
+                                    (change)="upload($event)">
+                                <label for="invitadosXls" class="custom-btn  but "> Agregar por archivo</label>
+                            </div>
+
                             <div class="col-12   mt-50" *ngIf="total >0">
 
                                 <button class="custom-btn  but " (click)="showConfirmados(content)"

@@ -130,4 +130,11 @@ export class BoletosService {
     return this.http.get<CargarBoletos>(url, this.headers)
   }
 
+  deleteBoletos() {
+    const url = `${base_url}/boletos/delete-boletos`
+    console.log('url::: ', url);
+
+    return this.http.delete(url, this.headers)
+  }
+
 }

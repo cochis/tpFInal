@@ -82,6 +82,9 @@ export class EditarInvitacionComponent {
       cSecond: '#c0354e',
       cWhite: '#ffffff',
       xImg1: 50,
+      yImg1: 0,
+      bxMensajeImg: 50,
+      byMensajeImg: 0,
       topTitle: 40,
       topDate: 50,
       colorQr: '#c0354e',
@@ -97,6 +100,7 @@ export class EditarInvitacionComponent {
       cWhite: ['#ffffff'],
       img1: [''],
       xImg1: [50],
+      yImg1: [0],
       topTitle: [40],
       invitado: [''],
       cantidad: [this.fiesta.cantidad],
@@ -110,6 +114,8 @@ export class EditarInvitacionComponent {
       textInvitacionValida: ['¡Los esperamos!'],
       mensajeCheck: [true],
       mensajeImg: [''],
+      bxMensajeImg: [50],
+      byMensajeImg: [0],
       mensaje1: [''],
       donde1Check: [true],
       donde1Img: [''],
@@ -174,6 +180,7 @@ export class EditarInvitacionComponent {
       cWhite: [invitacion.data.cWhite],
       img1: [invitacion.data.img1],
       xImg1: [invitacion.data.xImg1],
+      yImg1: [invitacion.data.yImg1],
       topTitle: [invitacion.data.topTitle],
       invitado: ['Invitado'],
       cantidad: [invitacion.fiesta.cantidad],
@@ -185,6 +192,8 @@ export class EditarInvitacionComponent {
       nombreSize: [invitacion.fiesta.nombreSize],
       textInvitacionValida: [invitacion.data.textInvitacionValida],
       mensajeImg: [invitacion.data.mensajeImg],
+      bxMensajeImg: [invitacion.data.bxMensajeImg],
+      byMensajeImg: [invitacion.data.byMensajeImg],
       mensaje1: [invitacion.data.mensaje1],
       donde1Check: [invitacion.data.donde1Check],
       donde1Img: [invitacion.data.donde1Img],
@@ -263,6 +272,7 @@ export class EditarInvitacionComponent {
       cWhite: [temp.cWhite],
       img1: [temp.img1],
       xImg1: [temp.xImg1],
+      yImg1: [temp.yImg1],
       topTitle: [temp.topTitle],
       invitado: [temp.invitado],
       cantidad: [temp.cantidad],
@@ -274,6 +284,8 @@ export class EditarInvitacionComponent {
       nombreSize: [temp.nombreSize],
       textInvitacionValida: [temp.textInvitacionValida],
       mensajeImg: [temp.mensajeImg],
+      bxMensajeImg: [temp.bxMensajeImg],
+      byMensajeImg: [temp.byMensajeImg],
       mensaje1: [temp.mensaje1],
       donde1Check: [temp.donde1Check],
       donde1Img: [temp.donde1Img],
@@ -321,6 +333,7 @@ export class EditarInvitacionComponent {
     })
   }
   async VerTemplate(form) {
+
     if (!this.invitacion) {
       this.loading = true
       let data = {

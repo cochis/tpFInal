@@ -16,14 +16,14 @@
 
     <ng-container style=" background-color:{{invitacion.cWhite}} ;">
 
-        <div class="row">
+        <div class="row" class="animated pulse">
             <div class="col-12">
 
                 <div class="box  " style="background-image:url({{url+'/upload/invitaciones/'+((invitacion.img1!=='')?invitacion.img1:'notImage')}});
-                           background-position: {{invitacion.xImg1}}% 0px !important;height: 750px;"
+                           background-position: {{invitacion.xImg1}}%  {{invitacion.yImg1}}% !important;height: 750px;"
                     *ngIf="!vistaTemp">
 
-                    <div class="texto tc" style="top:{{invitacion.topTitle}}%">
+                    <div class="animated backInDown texto tc" style="top:{{invitacion.topTitle}}%">
                         <h1 class="dancing ts animate__bounce "
                             style="font-size:{{invitacion.tipoSize}}px !important;color: {{invitacion.cPrincipal}};">
                             {{invitacion.tipoFiesta}}
@@ -38,13 +38,14 @@
                                 <th class="wc"><b class="fsc" style="color: {{invitacion.cPrincipal}};">D</b>ias</th>
                                 <th class="wc"><b class="fsc" style="color: {{invitacion.cPrincipal}};">H</b>oras</th>
                                 <th class="wc"><b class="fsc" style="color: {{invitacion.cPrincipal}};">M</b>inutos</th>
-                                <th class="wc"><b class="fsc" style="color: {{invitacion.cPrincipal}};">S</b>egundo</th>
+                                <th class="wc "><b class="fsc" style="color: {{invitacion.cPrincipal}};">S</b>egundo
+                                </th>
                             </tr>
                             <tr class="  ts" style="font-size: 45px;color:{{invitacion.cWhite}};">
                                 <td>{{dias}}</td>
                                 <td>{{horas}}</td>
                                 <td>{{minutos}}</td>
-                                <td>{{segundos}}</td>
+                                <td class="animated infinite pulse">{{segundos}}</td>
 
                             </tr>
 
@@ -57,7 +58,7 @@
 
                 </div>
                 <div class="box"
-                    style="background-image:url({{invitacion.img1}});background-position: {{invitacion.xImg1}}% 0px !important;height: 750px;"
+                    style="background-image:url({{invitacion.img1}});background-position: {{invitacion.xImg1}}% {{invitacion.yImg1}}% !important;height: 750px;"
                     *ngIf="vistaTemp">
 
                     <div class="texto tc" style="top:{{invitacion.topTitle}}%">
@@ -114,7 +115,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="box"
-                    style="background-image:url({{url+'/upload/invitaciones/'+((invitacion.mensajeImg!=='')?invitacion.mensajeImg:'notImage')}}) ;background-position: 78% 0px !important; min-height:450px;height: 100%;"
+                    style="background-image:url({{url+'/upload/invitaciones/'+((invitacion.mensajeImg!=='')?invitacion.mensajeImg:'notImage')}}) ;background-position: {{invitacion.bxMensajeImg}}% {{invitacion.byMensajeImg}}px !important; min-height:450px;height: 100%;"
                     *ngIf="!vistaTemp">
                     <div class="texto tc" style="top:50%">
                         <h5 class="p-5   arsenal-sc-regular-italic" style="color:{{invitacion.cWhite}};">
@@ -124,7 +125,7 @@
                     </div>
                 </div>
                 <div class="box"
-                    style="background-image:url({{invitacion.mensajeImg}}) ;background-position: 78% 0px !important; min-height:450px; height: 100%;">
+                    style="background-image:url({{invitacion.mensajeImg}}) ;background-position: {{invitacion.bxMensajeImg}}% {{invitacion.byMensajeImg}}px !important; min-height:450px; height: 100%;">
                     <div class="texto tc" style="top:50%" *ngIf="vistaTemp">
                         <h5 class="p-5   arsenal-sc-regular-italic" style="color:{{invitacion.cWhite}};">
                             {{invitacion.mensaje1}}

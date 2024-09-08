@@ -258,6 +258,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
   }
   setData(fiesta, boleto) {
 
+
     this.metaService.generateTags({
       title: `${fiesta.nombre} -  ${this.functionsService.datePush(fiesta.fecha)}  `,
       description:
