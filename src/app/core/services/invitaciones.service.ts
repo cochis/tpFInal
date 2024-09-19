@@ -145,6 +145,7 @@ export class InvitacionsService {
     return this.http.put(url, data, this.headers)
   }
   actualizarInvitacion(invitacion: Invitacion) {
+    console.log('invitacion::: ', invitacion);
     const url = `${base_url}/invitacions/${invitacion.uid}`
     const data = {
       ...invitacion,

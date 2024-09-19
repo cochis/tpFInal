@@ -14,11 +14,11 @@ import { MetaService } from 'src/app/core/services/meta.service';
 import { PushsService } from 'src/app/core/services/push.service';
 import { Push } from 'src/app/core/models/push.model';
 @Component({
-  selector: 'app-default',
-  templateUrl: './default.component.html',
-  styleUrls: ['./default.component.css']
+  selector: 'app-by-file',
+  templateUrl: './by-file.component.html',
+  styleUrls: ['./by-file.component.css']
 })
-export class DefaultComponent implements OnInit, AfterViewInit {
+export class ByFileComponent {
   tUrl = environment.text_url
   respuesta: any
   readonly VAPID_PUBLIC_KEY = environment.publicKey
@@ -89,14 +89,14 @@ export class DefaultComponent implements OnInit, AfterViewInit {
           })
         })
       }, (error) => {
-        console.error('Error', error)
+        // console.error('Error', error)
         this.functionsService.alertError(error, 'Boletos')
       })
 
       // Se carga la fiesta por ID  
       this.fiestasService.cargarFiestaById(this.fiestaId).subscribe((resp: any) => {
         this.fiesta = resp.fiesta
-        console.log('this.fiesta ::: ', this.fiesta);
+        // console.log('this.fiesta ::: ', this.fiesta);
         this.checking = this.fiesta.checking
 
         this.invitacionsService.cargarInvitacionByFiesta(this.fiestaId).subscribe(async (resp: any) => {
@@ -114,12 +114,12 @@ export class DefaultComponent implements OnInit, AfterViewInit {
           this.itinerarios = this.invitacion.itinerarios
           this.notas = this.invitacion.notas
         }, (error) => {
-          console.error('Error', error)
+          // console.error('Error', error)
           this.functionsService.alertError(error, 'Fiestas')
           this.functionsService.navigateTo('/')
         })
       }, (error) => {
-        console.error('Error', error)
+        // console.error('Error', error)
         this.functionsService.alertError(error, 'Fiestas')
         this.functionsService.navigateTo('/')
       })
@@ -130,6 +130,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
       for (let key in this.state) {
         ++this.count;
       }
+      console.log('this.count::: ', this.count);
       if (this.count == 0) {
         this.vistaTemp = true
         this.invitacion = {
@@ -227,6 +228,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
         this.donde3Check = (this.state.donde3Check == 'true') ? true : false
         this.hospedajeCheck = (this.state.hospedajeCheck == 'true') ? true : false
         this.invitacion = this.state
+        console.log('this.invitacion::: ', this.invitacion);
         this.date = this.invitacion.fiestaDate
         this.btnBack = true
         this.checking = (this.state.checking == 'true') ? true : false
@@ -317,7 +319,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
                 return login
   
               } catch (error) {
-                 console.error('Error', error)
+                 // console.error('Error', error)
                 Swal.showValidationMessage(`
                   Request failed: ${error}
                 `);
@@ -429,7 +431,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
         })
       })
       .catch(err => {
-        console.error('Error', err)
+        // console.error('Error', err)
         return {
           ok: false,
           err

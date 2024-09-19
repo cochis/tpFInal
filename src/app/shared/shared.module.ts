@@ -46,6 +46,7 @@ import { CancelComponent } from './pages/cancel/cancel.component';
     CongratsComponent,
     CancelComponent,
 
+
   ],
   exports: [
     NopagefoundComponent,
@@ -59,8 +60,7 @@ import { CancelComponent } from './pages/cancel/cancel.component';
     ScannerComponent,
     ModalComponent,
     SharedDefaultTemplateComponent,
-    InfoUbicacionComponent
-
+    InfoUbicacionComponent,
 
   ],
   imports: [

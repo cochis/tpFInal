@@ -78,6 +78,7 @@ import { PoliticaDePrivacidadComponent } from './pages/politica-de-privacidad/po
 import { VistaParametrosComponent } from './pages/admin/parametros/vista-parametros/vista-parametros.component';
 import { CrearParametroComponent } from './pages/admin/parametros/crear-parametro/crear-parametro.component';
 import { EditarParametroComponent } from './pages/admin/parametros/editar-parametro/editar-parametro.component';
+import { ByFileComponent } from './pages/admin/templates/by-file/by-file.component';
 
 
 
@@ -159,7 +160,8 @@ import { EditarParametroComponent } from './pages/admin/parametros/editar-parame
     PoliticaDePrivacidadComponent,
     VistaParametrosComponent,
     CrearParametroComponent,
-    EditarParametroComponent
+    EditarParametroComponent,
+    ByFileComponent
 
   ],
   imports: [

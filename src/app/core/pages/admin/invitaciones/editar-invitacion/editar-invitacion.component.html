@@ -14,10 +14,16 @@
                         <ng-container *ngIf="invitacion || (fiesta && form.valueId!='')   || form.value">
 
 
-                            <ng-container *ngIf="fiesta">
+                            <ng-container *ngIf="fiesta && fiesta.invitacion == 'default'">
                                 <button (click)="restaurarAltura()" class="btn btn-lg btn-block but mt-3 mb-3"
                                     style="margin: auto;"> Restaurar</button>
+
+
+
+
+
                                 <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
                                     <div class="row text-center">
                                         <h5>Colores</h5>
                                         <div class="col-4   mt-3">
@@ -33,7 +39,7 @@
                                         </div>
                                         <div class="col-4   mt-3">
                                             <div class="form-group ">
-                                                <label for="cSecond ">Secundario</label>
+                                                <label for="byFileColorFr ">Secundario</label>
                                                 <input type="color" class="form-control upper" id="cSecond"
                                                     formControlName="cSecond" required placeholder="Color secundario"
                                                     [readonly]="edit==='false'">
@@ -69,24 +75,18 @@
                                                     (change)="cambiarImagen($event,'img1' )">
                                             </div>
                                         </div>
-                                        <div class="col-6  col-md-4   mt-3">
+                                        <div class="col-6  col-md-6  mt-3">
                                             <div class="form-group ">
-                                                <label for="xImg1 ">Posicion X de la imagen </label>
+                                                <label for="xImg1 ">Posición horizontal de la imagen </label>
                                                 <input type="range" id="xImg1" #xImg1 formControlName="xImg1" min="-200"
                                                     max="200">
                                             </div>
                                         </div>
-                                        <div class="col-6  col-md-4   mt-3">
+                                        <div class="col-6  col-md-6  mt-3">
                                             <div class="form-group ">
-                                                <label for="yImg1 ">Posicion Y de la imagen </label>
+                                                <label for="yImg1 ">Posición vertical de la imagen </label>
                                                 <input type="range" id="yImg1" #yImg1 formControlName="yImg1" min="-100"
                                                     max="100">
-                                            </div>
-                                        </div>
-                                        <div class="col-6  col-md-4   mt-3">
-                                            <div class="form-group ">
-                                                <label for="topTitle ">Altura del titulo </label>
-                                                <input type="range" id="topTitle" #topTitle formControlName="topTitle">
                                             </div>
                                         </div>
                                         <div class="col-12  col-sm-6 col-md-4   mt-3">
@@ -96,6 +96,27 @@
                                                     formControlName="nombreFiesta">
                                             </div>
                                         </div>
+
+
+                                        <div class="col-12  col-sm-6 col-md-4   mt-3">
+                                            <div class="form-group ">
+                                                <label for="nombreSize ">Tamaño titulo de invitación
+                                                    {{form.value.nombreSize}} </label>
+                                                <input type="range" id="nombreSize" #nombreSize
+                                                    formControlName="nombreSize">
+                                            </div>
+                                        </div>
+
+
+
+
+                                        <div class="col-6  col-md-4   mt-3">
+                                            <div class="form-group ">
+                                                <label for="topTitle ">Altura del titulo </label>
+                                                <input type="range" id="topTitle" #topTitle formControlName="topTitle">
+                                            </div>
+                                        </div>
+
                                         <div class="col-12  col-sm-6 col-md-4   mt-3">
                                             <div class="form-group ">
                                                 <label for="tipoFiesta ">subtitulo invitación </label>
@@ -103,6 +124,14 @@
                                                     formControlName="tipoFiesta">
                                             </div>
                                         </div>
+
+                                        <div class="col-6  col-md-4   mt-3">
+                                            <div class="form-group ">
+                                                <label for="tipoSize ">Tamaño de subtitulo </label>
+                                                <input type="range" id="tipoSize" #tipoSize formControlName="tipoSize">
+                                            </div>
+                                        </div>
+
                                         <div class="col-12  col-sm-6 col-md-4   mt-3">
                                             <div class="form-group ">
                                                 <label for="topDate ">Altura fecha </label>
@@ -143,14 +172,21 @@
                                                     formControlName="mensaje1"></textarea>
                                             </div>
                                         </div>
-                                        <div class="col-12  col-md-6  mt-3">
+                                        <div class="col-12  col-md-4  mt-3">
+                                            <div class="form-group ">
+                                                <label for="mensajeSize ">Tamaño letra mensaje </label>
+                                                <input type="range" id="mensajeSize" #mensajeSize
+                                                    formControlName="mensajeSize" />
+                                            </div>
+                                        </div>
+                                        <div class="col-12  col-md-4  mt-3">
                                             <div class="form-group ">
                                                 <label for="bxMensajeImg ">Horizontal imagen mensaje </label>
                                                 <input type="range" id="bxMensajeImg" #bxMensajeImg
                                                     formControlName="bxMensajeImg" />
                                             </div>
                                         </div>
-                                        <div class="col-12  col-md-6  mt-3">
+                                        <div class="col-12  col-md-4  mt-3">
                                             <div class="form-group ">
                                                 <label for="byMensajeImg ">Vertical imagen mensaje </label>
                                                 <input type="range" id="byMensajeImg" #byMensajeImg
@@ -215,266 +251,917 @@
 
 
                                     </div>
+                                    <ng-container class="text-center  ma">
+
+                                        <div class="row text-center mt-3 ma">
+                                            <h5>Seccion Donde y Cuando</h5>
+                                            <hr class="mt-3 mb-3">
+                                            <div class="col-12 col-md-6     mt-3">
+
+
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    Fiesta
+                                                </label>
+
+
+                                            </div>
+                                            <div class="col-12  col-md-6  mt-3 text-center ">
+                                                <div class="form-group    image-upload ">
+                                                    <label for="donde3Img">Imagen de fiesta
+                                                        <br>
+
+
+                                                        <img [src]="url+'/upload/salones/'+invitacion.data.donde3Img"
+                                                            alt="" *ngIf="invitacion" style="width: 150px;">
+                                                        <!-- invitacion.data.mensajeImg!='' -->
+
+                                                    </label>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="col-6  col-md-6   mt-3">
+                                                <div class="form-group ">
+                                                    <label for="donde3Text ">Nombre </label>
+                                                    <input type="text" id="donde3Text" #donde3Text
+                                                        formControlName="donde3Text" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="col-6  col-md-6   mt-3">
+                                                <div class="form-group ">
+                                                    <label for="donde3Date ">Fecha </label>
+                                                    <input type="datetime-local" id="donde3Date" #donde3Date
+                                                        formControlName="donde3Date" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="col-12   mt-3">
+                                                <div class="form-group ">
+                                                    <label for="donde3Address ">Dirección </label>
+                                                    <input type="text" id="donde3Address" #donde3Address
+                                                        formControlName="donde3Address" readonly style="width: 100%;">
+                                                </div>
+                                            </div>
+                                            <div class="col-12   mt-3">
+                                                <div class="form-group ">
+                                                    <label for="donde3AddressUbicacion ">Ubicación </label>
+                                                    <app-info-ubicacion></app-info-ubicacion>
+                                                    <input type="text" id="donde3AddressUbicacion"
+                                                        #donde3AddressUbicacion formControlName="donde3AddressUbicacion"
+                                                        readonly style="width: 100% !important;">
+                                                </div>
+                                            </div>
+
+
+                                            <hr class="mt-3 mb-3">
+
+
+                                            <div class="col-12 col-md-6     mt-3 ma">
+                                                <label class="form-check-label" for="donde1Check">
+                                                    Iglesia
+                                                </label>
+                                                <input class="form-check-input" type="checkbox" id="donde1Check"
+                                                    #donde1Check formControlName="donde1Check">
+
+
+                                            </div>
+
+                                            <div class="col-12  col-md-6  mt-3 text-center "
+                                                *ngIf="form.value.donde1Check">
+                                                <div class="form-group    image-upload ">
+                                                    <label for="donde1Img">Imagen de iglesia
+                                                        <br>
+
+                                                        <img src="/assets/images/tp.png" alt="" class="pointer"
+                                                            *ngIf="invitacion==undefined || invitacion.data.donde1Img=='' "
+                                                            style="width: 150px;">
+
+                                                        <img [src]="url+'/upload/invitaciones/'+invitacion.data.donde1Img"
+                                                            alt="" class=" pointer" *ngIf="invitacion"
+                                                            style="width: 150px;">
+                                                        <!-- invitacion.data.mensajeImg!='' -->
+
+                                                    </label>
+                                                    <input type="file" id="donde1Img" #donde1Img
+                                                        (change)="cambiarImagen($event,'donde1Img' )">
+                                                </div>
+                                            </div>
+                                            <!-- <div class="col-6  col-md-6   mt-3">
+                                                <div class="form-group ">
+                                                    <label for="donde1Title ">Nombre de la Iglesia </label>
+                                                    <input type="text" id="donde1Title" #donde1Title
+                                                        formControlName="donde1Title">
+                                                </div>
+                                            </div> -->
+                                            <div class="col-6  col-md-6   mt-3" *ngIf="form.value.donde1Check">
+                                                <div class="form-group ">
+                                                    <label for="donde1Text ">Nombre de la iglesia </label>
+                                                    <input type="text" id="donde1Text" #donde1Text
+                                                        formControlName="donde1Text">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-6  col-md-6   mt-3" *ngIf="form.value.donde1Check">
+                                                <div class="form-group ">
+                                                    <label for="donde1Date ">Fecha </label>
+                                                    <input type="datetime-local" id="donde1Date" #donde1Date
+                                                        formControlName="donde1Date">
+                                                </div>
+                                            </div>
+                                            <div class="col-12  mt-3" *ngIf="form.value.donde1Check">
+                                                <div class="form-group ">
+                                                    <label for="donde1Address ">Dirección </label>
+                                                    <input type="text" id="donde1Address" #donde1Address
+                                                        formControlName="donde1Address" style="width: 100%;">
+                                                </div>
+                                            </div>
+                                            <div class="col-12   mt-3" *ngIf="form.value.donde1Check">
+                                                <div class="form-group ">
+                                                    <label for="donde1AddressUbicacion ">Ubicación </label>
+                                                    <app-info-ubicacion></app-info-ubicacion>
+                                                    <input type="text" id="donde1AddressUbicacion"
+                                                        #donde1AddressUbicacion formControlName="donde1AddressUbicacion"
+                                                        style="width: 100% !important;">
+                                                </div>
+                                            </div>
+                                            <hr class="mt-3 mb-3">
+                                            <div class="col-12  col-md-6     mt-3 ma">
+
+
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    Registro civil
+                                                </label>
+                                                <input class="form-check-input" type="checkbox" id="donde2Check"
+                                                    #donde2Check formControlName="donde2Check">
+
+
+                                            </div>
+
+                                            <div class="col-12  col-md-6  mt-3 text-center ma"
+                                                *ngIf="form.value.donde2Check">
+                                                <div class="form-group    image-upload ">
+                                                    <label for="donde2Img">Imagen de registro civil
+                                                        <br>
+
+                                                        <img src="/assets/images/tp.png" alt="" class="pointer"
+                                                            *ngIf="invitacion==undefined || invitacion.data.donde2Img=='' "
+                                                            style="width: 150px;">
+
+                                                        <img [src]="url+'/upload/invitaciones/'+invitacion.data.donde2Img"
+                                                            alt="" class=" pointer" *ngIf="invitacion"
+                                                            style="width: 150px;">
+                                                        <!-- invitacion.data.mensajeImg!='' -->
+
+                                                    </label>
+                                                    <input type="file" id="donde2Img" #donde2Img
+                                                        (change)="cambiarImagen($event,'donde2Img' )">
+                                                </div>
+                                            </div>
+                                            <div class="col-6  col-md-6   mt-3" *ngIf="form.value.donde2Check">
+                                                <div class="form-group ">
+                                                    <label for="donde2Text ">Nombre del registro </label>
+                                                    <input type="text" id="donde2Text" #donde2Text
+                                                        formControlName="donde2Text">
+                                                </div>
+                                            </div>
+                                            <div class="col-6  col-md-6   mt-3" *ngIf="form.value.donde2Check">
+                                                <div class="form-group ">
+                                                    <label for="donde2Date ">Fecha </label>
+                                                    <input type="datetime-local" id="donde2Date" #donde2Date
+                                                        formControlName="donde2Date">
+                                                </div>
+                                            </div>
+                                            <div class="col-12   mt-3" *ngIf="form.value.donde2Check">
+                                                <div class="form-group ">
+                                                    <label for="donde2Address ">Dirección </label>
+                                                    <input type="text" id="donde2Address" #donde2Address
+                                                        formControlName="donde2Address" style="width: 100%;">
+                                                </div>
+                                            </div>
+                                            <div class="col-12   mt-3" *ngIf="form.value.donde2Check">
+                                                <div class="form-group ">
+                                                    <label for="donde2AddressUbicacion ">Ubicación </label>
+                                                    <app-info-ubicacion></app-info-ubicacion>
+                                                    <input type="text" id="donde2AddressUbicacion"
+                                                        #donde2AddressUbicacion formControlName="donde2AddressUbicacion"
+                                                        style="width: 100% !important;">
+                                                </div>
+                                            </div>
+
+
+
+
+                                        </div>
+                                        <hr class="mt-3 mb-3">
+                                        <div class="row text-center mt-3">
+                                            <h5>Hospedaje</h5>
+
+
+                                            <div class="col-6  col-md-4     mt-3 ma ">
+
+
+                                                <label class="form-check-label" for="hospedajeCheck">
+                                                    Hospedaje
+                                                </label>
+                                                <input class="form-check-input" type="checkbox" id="hospedajeCheck"
+                                                    #hospedajeCheck formControlName="hospedajeCheck">
+
+
+                                            </div>
+                                            <div class="col-12  col-md-6  mt-3 text-center "
+                                                *ngIf="form.value.hospedajeCheck">
+                                                <div class="form-group    image-upload ">
+                                                    <label for="hospedajeImg">Imagen de hospedaje
+                                                        <br>
+
+                                                        <img src="/assets/images/tp.png" alt="" class="pointer"
+                                                            *ngIf="invitacion==undefined || invitacion.data.hospedajeImg=='' "
+                                                            style="width: 150px;">
+
+                                                        <img [src]="url+'/upload/invitaciones/'+invitacion.data.hospedajeImg"
+                                                            alt="" class=" pointer" *ngIf="invitacion"
+                                                            style="width: 150px;">
+                                                        <!-- invitacion.data.mensajeImg!='' -->
+
+                                                    </label>
+                                                    <input type="file" id="hospedajeImg" #hospedajeImg
+                                                        (change)="cambiarImagen($event,'hospedajeImg' )">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-6   mt-3" *ngIf="form.value.hospedajeCheck">
+                                                <div class="form-group ">
+                                                    <label for="hospedajeName ">Nombre de hotel </label>
+                                                    <input type="text" id="hospedajeName" #hospedajeName
+                                                        formControlName="hospedajeName">
+                                                </div>
+                                            </div>
+                                            <div class="col-6  col-md-4   mt-3" *ngIf="form.value.hospedajeCheck">
+                                                <div class="form-group ">
+                                                    <label for="hospedajePhone ">Teléfono </label>
+                                                    <input type="text" id="hospedajePhone" #hospedajePhone
+                                                        formControlName="hospedajePhone">
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-12   mt-3" *ngIf="form.value.hospedajeCheck">
+                                                <div class="form-group ">
+                                                    <label for="hospedajeAddress ">Dirección </label>
+                                                    <input type="text" id="hospedajeAddress" #hospedajeAddress
+                                                        formControlName="hospedajeAddress" style="width: 100%;">
+                                                </div>
+                                            </div>
+                                            <div class="col-12   mt-3" *ngIf="form.value.hospedajeCheck">
+                                                <div class="form-group ">
+                                                    <label for="hospedajeUbicacion ">Ubicación </label>
+                                                    <app-info-ubicacion></app-info-ubicacion>
+                                                    <input type="text" id="hospedajeUbicacion" #hospedajeUbicacion
+                                                        formControlName="hospedajeUbicacion" style="width: 100%;">
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <hr class="mt-3 mb-3">
+
+                                        <div class="row text-center mt-3">
+                                            <h5>Itinerarios</h5>
+                                            <div class="row">
+                                                <div class="col-6 ma">
+
+                                                    <input class="form-check-input" type="checkbox" id="itinerarioCheck"
+                                                        #itinerarioCheck formControlName="itinerarioCheck">
+                                                </div>
+                                            </div>
+
+                                            <div class="row" *ngIf="itinerarioCheck.checked">
+
+                                                <div class="col-6 text-center" style="margin:auto">
+
+                                                    <button type="button" class="btn btn-lg btn-block but "
+                                                        (click)="addItinerarios()">Agregar itinerario</button>
+                                                </div>
+                                            </div>
+                                            <ng-container formArrayName="itinerarios" *ngIf="itinerarioCheck.checked">
+
+                                                <ng-container
+                                                    *ngFor="let itinerario of itinerarios.controls; let i=index">
+                                                    <ng-container [formGroupName]="i">
+                                                        <div class="col-4   mt-3">
+                                                            <div class="form-group ">
+                                                                <label for="name ">Texto</label>
+                                                                <input type="text" class="form-control upper" id="name"
+                                                                    formControlName="name" required placeholder="Texto"
+                                                                    [readonly]="edit==='false'">
+                                                            </div>
+                                                            <span *ngIf="submited && errorControl['name'].errors "
+                                                                class="error">Es requerido
+                                                            </span>
+                                                        </div>
+                                                        <div class="col-4   mt-3">
+                                                            <div class="form-group ">
+                                                                <label for="hr ">Hora</label>
+                                                                <input type="text" class="form-control upper" id="hr"
+                                                                    formControlName="hr" required placeholder="Hora"
+                                                                    [readonly]="edit==='false'">
+                                                            </div>
+                                                            <span *ngIf="submited && errorControl['hr'].errors "
+                                                                class="error">Es requerido
+                                                            </span>
+                                                        </div>
+
+                                                        <div class="col-4 mt-3">
+                                                            <button class="btn btn-lg btn-block btn-warning mt-3"
+                                                                (click)="removeItinerario(i)">Quitar</button>
+                                                        </div>
+
+
+
+                                                    </ng-container>
+                                                </ng-container>
+                                            </ng-container>
+                                        </div>
+                                        <hr class="mt-3 mb-3">
+                                        <div class="row text-center mt-3">
+                                            <h5>Notas</h5>
+                                            <div class="row">
+                                                <div class="col-6 ma">
+
+                                                    <input class="form-check-input" type="checkbox" id="notaCheck"
+                                                        #notaCheck formControlName="notaCheck">
+                                                </div>
+                                                <div class="row">
+                                                </div>
+                                                <div class="col-6 text-center" style="margin:auto"
+                                                    *ngIf="notaCheck.checked">
+
+                                                    <button type="button" class="btn btn-lg btn-block but "
+                                                        (click)="addNotas()">Agregar nota</button>
+                                                </div>
+                                            </div>
+                                            <ng-container formArrayName="notas" *ngIf="notaCheck.checked">
+
+                                                <ng-container *ngFor="let nota of notas.controls; let i=index">
+                                                    <ng-container [formGroupName]="i">
+                                                        <div class="col-6   mt-3">
+                                                            <div class="form-group ">
+                                                                <label for="texto ">Texto</label>
+                                                                <input type="text" class="form-control upper" id="texto"
+                                                                    formControlName="texto" required placeholder="Nota"
+                                                                    [readonly]="edit==='false'">
+                                                            </div>
+                                                            <span *ngIf="submited && errorControl['texto'].errors "
+                                                                class="error">Es requerido
+                                                            </span>
+                                                        </div>
+
+
+                                                        <div class="col-6 mt-3">
+                                                            <button class="btn btn-lg btn-block btn-warning mt-3"
+                                                                (click)="removeNota(i)">Quitar</button>
+                                                        </div>
+
+
+
+                                                    </ng-container>
+                                                </ng-container>
+                                            </ng-container>
+                                        </div>
+                                    </ng-container>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    <div class="row mt-5 text-center">
+                                        <div class="col-12 col-md-4  mt-3 text-center " *ngIf="edit ">
+                                            <button type="submit" class="btn btn-lg btn-block but  ">Guardar</button>
+                                        </div>
+                                        <div class="col-12 col-md-4  mt-3 text-center">
+                                            <button class="btn btn-lg btn-block btn-warning"
+                                                (click)="back()">Regresar</button>
+                                        </div>
+                                        <div class="col-12 col-md-4  mt-3 text-center">
+                                            <button class="btn btn-lg btn-block but " type="button"
+                                                (click)="VerTemplate(this.form)">Ver Template</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </ng-container>
+
+                            <ng-container *ngIf="fiesta && fiesta.invitacion == 'byFile'">
+                                <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                                    <div class="row text-center">
+                                        <h5>Colores</h5>
+                                        <div class="col-6 col-md-3   mt-3">
+                                            <div class="form-group ">
+                                                <label for="byFileColorBG ">Color de fondo</label>
+                                                <input type="color" class="form-control upper" id="byFileColorBG"
+                                                    formControlName="byFileColorBG" required
+                                                    placeholder="Color de fondo" [readonly]="edit==='false'">
+                                            </div>
+                                            <span *ngIf="submited && errorControl['byFileColorBG'].errors "
+                                                class="error">Es requerido
+                                            </span>
+                                        </div>
+                                        <div class="col-6 col-md-3   mt-3">
+                                            <div class="form-group ">
+                                                <label for="byFileColorFr ">Color de marco</label>
+                                                <input type="color" class="form-control upper" id="byFileColorFr"
+                                                    formControlName="byFileColorFr" required
+                                                    placeholder="Color de marco" [readonly]="edit==='false'">
+                                            </div>
+                                        </div>
+                                        <div class="col-6 col-md-3   mt-3">
+                                            <div class="form-group ">
+                                                <label for="byFileColorTx ">Color de texto</label>
+                                                <input type="color" class="form-control upper" id="byFileColorTx"
+                                                    formControlName="byFileColorTx" required
+                                                    placeholder="Color de marco" [readonly]="edit==='false'">
+                                            </div>
+                                        </div>
+                                        <div class="col-6 col-md-3   mt-3">
+                                            <div class="form-group ">
+                                                <label for="byFileColorQr ">Color de QR</label>
+                                                <input type="color" class="form-control upper" id="byFileColorQr"
+                                                    formControlName="byFileColorQr" required placeholder="Color de QR"
+                                                    [readonly]="edit==='false'">
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+
+
                                     <div class="row text-center mt-3">
-                                        <h5>Seccion Donde y Cuando</h5>
-                                        <hr class="mt-3 mb-3">
-                                        <div class="col-12 col-md-6     mt-3">
-                                            <label class="form-check-label" for="donde1Check">
-                                                Iglesia
-                                            </label>
-                                            <input class="form-check-input" type="checkbox" id="donde1Check"
-                                                #donde1Check formControlName="donde1Check">
+                                        <h5>Seccion inicial</h5>
 
+
+                                        <div class="col-6 mt-3 ma">
+                                            <div class="form-group">
+                                                <label for="typeFile">Invitación</label>
+                                                <select name="" id="typeFile" formControlName="typeFile" #typeFile
+                                                    class="form-control upper" (change)="selectType(typeFile.value)">
+                                                    <option value="">Seleccione el tipo de invitacion</option>
+                                                    <option value="img">Imagen</option>
+                                                    <option value="video">Video</option>
+                                                    <option value="url">url</option>
+
+                                                    <!-- <option [value]="item.uid" *ngFor="let item of salones">{{item.nombre }} <b
+                                                                                                *ngIf="rol ===ADM && usuarios">{{item.usuarioCreated.email}}</b>
+                                                                                        </option> -->
+                                                </select>
+                                            </div>
+                                            <span *ngIf="submited && errorControl['typeFile'].errors " class="error">Es
+                                                requerido
+                                            </span>
 
                                         </div>
-                                        <div class="col-12  col-md-6  mt-3 text-center ">
-                                            <div class="form-group    image-upload ">
-                                                <label for="donde1Img">Imagen de iglesia
-                                                    <br>
 
+
+                                        <div class="col-12      mt-3 ma text-center">
+                                            <div class="form-group ">
+                                                <label for="byFileInvitacion" *ngIf="!viewVideo">Selecciona el archivo
+                                                    de tu invitación
+                                                    <br>
                                                     <img src="/assets/images/tp.png" alt="" class="pointer"
-                                                        *ngIf="invitacion==undefined || invitacion.data.donde1Img=='' "
-                                                        style="width: 150px;">
-
-                                                    <img [src]="url+'/upload/invitaciones/'+invitacion.data.donde1Img"
-                                                        alt="" class=" pointer" *ngIf="invitacion"
-                                                        style="width: 150px;">
-                                                    <!-- invitacion.data.mensajeImg!='' -->
-
-                                                </label>
-                                                <input type="file" id="donde1Img" #donde1Img
-                                                    (change)="cambiarImagen($event,'donde1Img' )">
-                                            </div>
-                                        </div>
-                                        <!-- <div class="col-6  col-md-6   mt-3">
-                                            <div class="form-group ">
-                                                <label for="donde1Title ">Nombre de la Iglesia </label>
-                                                <input type="text" id="donde1Title" #donde1Title
-                                                    formControlName="donde1Title">
-                                            </div>
-                                        </div> -->
-                                        <div class="col-6  col-md-6   mt-3">
-                                            <div class="form-group ">
-                                                <label for="donde1Text ">Nombre de la iglesia </label>
-                                                <input type="text" id="donde1Text" #donde1Text
-                                                    formControlName="donde1Text">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-6  col-md-6   mt-3">
-                                            <div class="form-group ">
-                                                <label for="donde1Date ">Fecha </label>
-                                                <input type="datetime-local" id="donde1Date" #donde1Date
-                                                    formControlName="donde1Date">
-                                            </div>
-                                        </div>
-                                        <div class="col-12  mt-3">
-                                            <div class="form-group ">
-                                                <label for="donde1Address ">Dirección </label>
-                                                <input type="text" id="donde1Address" #donde1Address
-                                                    formControlName="donde1Address" style="width: 100%;">
-                                            </div>
-                                        </div>
-                                        <div class="col-12   mt-3">
-                                            <div class="form-group ">
-                                                <label for="donde1AddressUbicacion ">Ubicación </label>
-                                                <app-info-ubicacion></app-info-ubicacion>
-                                                <input type="text" id="donde1AddressUbicacion" #donde1AddressUbicacion
-                                                    formControlName="donde1AddressUbicacion"
-                                                    style="width: 100% !important;">
-                                            </div>
-                                        </div>
-                                        <hr class="mt-3 mb-3">
-                                        <div class="col-12  col-md-6     mt-3">
-
-
-                                            <label class="form-check-label" for="flexCheckDefault">
-                                                Registro civil
-                                            </label>
-                                            <input class="form-check-input" type="checkbox" id="donde2Check"
-                                                #donde2Check formControlName="donde2Check">
-
-
-                                        </div>
-
-                                        <div class="col-12  col-md-6  mt-3 text-center ">
-                                            <div class="form-group    image-upload ">
-                                                <label for="donde2Img">Imagen de registro civil
+                                                        style="width: 150px;"
+                                                        *ngIf="invitacion==undefined || invitacion.data.byFileInvitacion ==''">
                                                     <br>
+                                                    <ng-container
+                                                        *ngIf="invitacion.data.byFileInvitacion.split('.')[1].includes('mp4') && form.value.typeFile =='video'">
+                                                        <br> <video style="width: 80%; max-width: 400px;" controls>
+                                                            <source
+                                                                [src]="url+'/upload/invitaciones/'+invitacion.data.byFileInvitacion"
+                                                                type="video/mp4">
 
-                                                    <img src="/assets/images/tp.png" alt="" class="pointer"
-                                                        *ngIf="invitacion==undefined || invitacion.data.donde2Img=='' "
-                                                        style="width: 150px;">
+                                                        </video>
+                                                    </ng-container>
 
-                                                    <img [src]="url+'/upload/invitaciones/'+invitacion.data.donde2Img"
-                                                        alt="" class=" pointer" *ngIf="invitacion"
-                                                        style="width: 150px;">
-                                                    <!-- invitacion.data.mensajeImg!='' -->
-
-                                                </label>
-                                                <input type="file" id="donde2Img" #donde2Img
-                                                    (change)="cambiarImagen($event,'donde2Img' )">
-                                            </div>
-                                        </div>
-                                        <div class="col-6  col-md-6   mt-3">
-                                            <div class="form-group ">
-                                                <label for="donde2Text ">Nombre del registro </label>
-                                                <input type="text" id="donde2Text" #donde2Text
-                                                    formControlName="donde2Text">
-                                            </div>
-                                        </div>
-                                        <div class="col-6  col-md-6   mt-3">
-                                            <div class="form-group ">
-                                                <label for="donde2Date ">Fecha </label>
-                                                <input type="datetime-local" id="donde2Date" #donde2Date
-                                                    formControlName="donde2Date">
-                                            </div>
-                                        </div>
-                                        <div class="col-12   mt-3">
-                                            <div class="form-group ">
-                                                <label for="donde2Address ">Dirección </label>
-                                                <input type="text" id="donde2Address" #donde2Address
-                                                    formControlName="donde2Address" style="width: 100%;">
-                                            </div>
-                                        </div>
-                                        <div class="col-12   mt-3">
-                                            <div class="form-group ">
-                                                <label for="donde2AddressUbicacion ">Ubicación </label>
-                                                <app-info-ubicacion></app-info-ubicacion>
-                                                <input type="text" id="donde2AddressUbicacion" #donde2AddressUbicacion
-                                                    formControlName="donde2AddressUbicacion"
-                                                    style="width: 100% !important;">
-                                            </div>
-                                        </div>
+                                                    <ng-container *ngIf="(invitacion.data.byFileInvitacion.split('.')[1].includes('jpg') ||
+                                                        invitacion.data.byFileInvitacion.split('.')[1].includes('jpeg')) && form.value.typeFile =='img'
+                                                        ">
+                                                        <img [src]="url+'/upload/invitaciones/'+invitacion.data.byFileInvitacion"
+                                                            alt="" class=" pointer" *ngIf="invitacion"
+                                                            style="width: 150px;">
+                                                    </ng-container>
 
 
-                                        <hr class="mt-3 mb-3">
-                                        <div class="col-12 col-md-6     mt-3">
-
-
-                                            <label class="form-check-label" for="flexCheckDefault">
-                                                Fiesta
-                                            </label>
-
-
-                                        </div>
-                                        <div class="col-12  col-md-6  mt-3 text-center ">
-                                            <div class="form-group    image-upload ">
-                                                <label for="donde3Img">Imagen de fiesta
-                                                    <br>
-
-
-                                                    <img [src]="url+'/upload/salones/'+invitacion.data.donde3Img" alt=""
-                                                        *ngIf="invitacion" style="width: 150px;">
-                                                    <!-- invitacion.data.mensajeImg!='' -->
 
                                                 </label>
 
-                                            </div>
-                                        </div>
+                                                <input type="file" id="byFileInvitacion" #byFileInvitacion
+                                                    (change)="cambiarImagen($event,'byFileInvitacion' )"
+                                                    accept="video/*" *ngIf="form.value.typeFile=='video'">
+                                                <input type="file" id="byFileInvitacion" #byFileInvitacion
+                                                    (change)="cambiarImagen($event,'byFileInvitacion' )"
+                                                    accept="image/*" *ngIf="form.value.typeFile=='img'">
+                                                <br>
+                                                <input type="text" id="byFileUrl" #byFileUrl
+                                                    (change)="cambiarImagen($event,'byFileInvitacion' )"
+                                                    formControlName="byFileUrl" *ngIf="form.value.typeFile=='url'">
+                                                <br>
+                                                <ng-container *ngIf="viewVideo && form.value.byFileUrl !==''">
+                                                    <video [src]="form.value.byFileUrl" autoplay
+                                                        poster="posterimage.jpg"
+                                                        style="width: 80%; max-width: 450px;margin-top: 20px;">
+                                                        Tu navegador no admite el elemento <code>video</code>.
+                                                    </video>
+                                                </ng-container>
 
-                                        <div class="col-6  col-md-6   mt-3">
-                                            <div class="form-group ">
-                                                <label for="donde3Text ">Nombre </label>
-                                                <input type="text" id="donde3Text" #donde3Text
-                                                    formControlName="donde3Text" readonly>
-                                            </div>
-                                        </div>
-                                        <div class="col-6  col-md-6   mt-3">
-                                            <div class="form-group ">
-                                                <label for="donde3Date ">Fecha </label>
-                                                <input type="datetime-local" id="donde3Date" #donde3Date
-                                                    formControlName="donde3Date" readonly>
-                                            </div>
-                                        </div>
-                                        <div class="col-12   mt-3">
-                                            <div class="form-group ">
-                                                <label for="donde3Address ">Dirección </label>
-                                                <input type="text" id="donde3Address" #donde3Address
-                                                    formControlName="donde3Address" readonly style="width: 100%;">
-                                            </div>
-                                        </div>
-                                        <div class="col-12   mt-3">
-                                            <div class="form-group ">
-                                                <label for="donde3AddressUbicacion ">Ubicación </label>
-                                                <app-info-ubicacion></app-info-ubicacion>
-                                                <input type="text" id="donde3AddressUbicacion" #donde3AddressUbicacion
-                                                    formControlName="donde3AddressUbicacion" readonly
-                                                    style="width: 100% !important;">
                                             </div>
                                         </div>
 
                                     </div>
                                     <hr class="mt-3 mb-3">
-                                    <div class="row text-center mt-3">
-                                        <h5>Hospedaje</h5>
+                                    <ng-container class="text-center  ma">
+
+                                        <div class="row text-center mt-3 ma">
+                                            <h5>Seccion Donde y Cuando</h5>
+                                            <hr class="mt-3 mb-3">
+                                            <div class="col-12 col-md-6     mt-3">
 
 
-                                        <div class="col-6  col-md-4     mt-3">
-
-
-                                            <label class="form-check-label" for="hospedajeCheck">
-                                                Hospedaje
-                                            </label>
-                                            <input class="form-check-input" type="checkbox" id="hospedajeCheck"
-                                                #hospedajeCheck formControlName="hospedajeCheck">
-
-
-                                        </div>
-                                        <div class="col-12  col-md-6  mt-3 text-center ">
-                                            <div class="form-group    image-upload ">
-                                                <label for="hospedajeImg">Imagen de hospedaje
-                                                    <br>
-
-                                                    <img src="/assets/images/tp.png" alt="" class="pointer"
-                                                        *ngIf="invitacion==undefined || invitacion.data.hospedajeImg=='' "
-                                                        style="width: 150px;">
-
-                                                    <img [src]="url+'/upload/invitaciones/'+invitacion.data.hospedajeImg"
-                                                        alt="" class=" pointer" *ngIf="invitacion"
-                                                        style="width: 150px;">
-                                                    <!-- invitacion.data.mensajeImg!='' -->
-
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    Fiesta
                                                 </label>
-                                                <input type="file" id="hospedajeImg" #hospedajeImg
-                                                    (change)="cambiarImagen($event,'hospedajeImg' )">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-6   mt-3">
-                                            <div class="form-group ">
-                                                <label for="hospedajeName ">Nombre de hotel </label>
-                                                <input type="text" id="hospedajeName" #hospedajeName
-                                                    formControlName="hospedajeName">
-                                            </div>
-                                        </div>
-                                        <div class="col-6  col-md-4   mt-3">
-                                            <div class="form-group ">
-                                                <label for="hospedajePhone ">Teléfono </label>
-                                                <input type="text" id="hospedajePhone" #hospedajePhone
-                                                    formControlName="hospedajePhone">
-                                            </div>
-                                        </div>
 
 
-                                        <div class="col-12   mt-3">
-                                            <div class="form-group ">
-                                                <label for="hospedajeAddress ">Dirección </label>
-                                                <input type="text" id="hospedajeAddress" #hospedajeAddress
-                                                    formControlName="hospedajeAddress" style="width: 100%;">
                                             </div>
+                                            <div class="col-12  col-md-6  mt-3 text-center ">
+                                                <div class="form-group    image-upload ">
+                                                    <label for="donde3Img">Imagen de fiesta
+                                                        <br>
+
+
+                                                        <img [src]="url+'/upload/salones/'+invitacion.data.donde3Img"
+                                                            alt="" *ngIf="invitacion" style="width: 150px;">
+                                                        <!-- invitacion.data.mensajeImg!='' -->
+
+                                                    </label>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="col-6  col-md-6   mt-3">
+                                                <div class="form-group ">
+                                                    <label for="donde3Text ">Nombre </label>
+                                                    <input type="text" id="donde3Text" #donde3Text
+                                                        formControlName="donde3Text" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="col-6  col-md-6   mt-3">
+                                                <div class="form-group ">
+                                                    <label for="donde3Date ">Fecha </label>
+                                                    <input type="datetime-local" id="donde3Date" #donde3Date
+                                                        formControlName="donde3Date" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="col-12   mt-3">
+                                                <div class="form-group ">
+                                                    <label for="donde3Address ">Dirección </label>
+                                                    <input type="text" id="donde3Address" #donde3Address
+                                                        formControlName="donde3Address" readonly style="width: 100%;">
+                                                </div>
+                                            </div>
+                                            <div class="col-12   mt-3">
+                                                <div class="form-group ">
+                                                    <label for="donde3AddressUbicacion ">Ubicación </label>
+                                                    <app-info-ubicacion></app-info-ubicacion>
+                                                    <input type="text" id="donde3AddressUbicacion"
+                                                        #donde3AddressUbicacion formControlName="donde3AddressUbicacion"
+                                                        readonly style="width: 100% !important;">
+                                                </div>
+                                            </div>
+
+
+                                            <hr class="mt-3 mb-3">
+
+
+                                            <div class="col-12 col-md-6     mt-3 ma">
+                                                <label class="form-check-label" for="donde1Check">
+                                                    Iglesia
+                                                </label>
+                                                <input class="form-check-input" type="checkbox" id="donde1Check"
+                                                    #donde1Check formControlName="donde1Check">
+
+
+                                            </div>
+
+                                            <div class="col-12  col-md-6  mt-3 text-center "
+                                                *ngIf="form.value.donde1Check">
+                                                <div class="form-group    image-upload ">
+                                                    <label for="donde1Img">Imagen de iglesia
+                                                        <br>
+
+                                                        <img src="/assets/images/tp.png" alt="" class="pointer"
+                                                            *ngIf="invitacion==undefined || invitacion.data.donde1Img=='' "
+                                                            style="width: 150px;">
+
+                                                        <img [src]="url+'/upload/invitaciones/'+invitacion.data.donde1Img"
+                                                            alt="" class=" pointer" *ngIf="invitacion"
+                                                            style="width: 150px;">
+                                                        <!-- invitacion.data.mensajeImg!='' -->
+
+                                                    </label>
+                                                    <input type="file" id="donde1Img" #donde1Img
+                                                        (change)="cambiarImagen($event,'donde1Img' )">
+                                                </div>
+                                            </div>
+                                            <!-- <div class="col-6  col-md-6   mt-3">
+                                                                                    <div class="form-group ">
+                                                                                        <label for="donde1Title ">Nombre de la Iglesia </label>
+                                                                                        <input type="text" id="donde1Title" #donde1Title
+                                                                                            formControlName="donde1Title">
+                                                                                    </div>
+                                                                                </div> -->
+                                            <div class="col-6  col-md-6   mt-3" *ngIf="form.value.donde1Check">
+                                                <div class="form-group ">
+                                                    <label for="donde1Text ">Nombre de la iglesia </label>
+                                                    <input type="text" id="donde1Text" #donde1Text
+                                                        formControlName="donde1Text">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-6  col-md-6   mt-3" *ngIf="form.value.donde1Check">
+                                                <div class="form-group ">
+                                                    <label for="donde1Date ">Fecha </label>
+                                                    <input type="datetime-local" id="donde1Date" #donde1Date
+                                                        formControlName="donde1Date">
+                                                </div>
+                                            </div>
+                                            <div class="col-12  mt-3" *ngIf="form.value.donde1Check">
+                                                <div class="form-group ">
+                                                    <label for="donde1Address ">Dirección </label>
+                                                    <input type="text" id="donde1Address" #donde1Address
+                                                        formControlName="donde1Address" style="width: 100%;">
+                                                </div>
+                                            </div>
+                                            <div class="col-12   mt-3" *ngIf="form.value.donde1Check">
+                                                <div class="form-group ">
+                                                    <label for="donde1AddressUbicacion ">Ubicación </label>
+                                                    <app-info-ubicacion></app-info-ubicacion>
+                                                    <input type="text" id="donde1AddressUbicacion"
+                                                        #donde1AddressUbicacion formControlName="donde1AddressUbicacion"
+                                                        style="width: 100% !important;">
+                                                </div>
+                                            </div>
+                                            <hr class="mt-3 mb-3">
+                                            <div class="col-12  col-md-6     mt-3 ma">
+
+
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    Registro civil
+                                                </label>
+                                                <input class="form-check-input" type="checkbox" id="donde2Check"
+                                                    #donde2Check formControlName="donde2Check">
+
+
+                                            </div>
+
+                                            <div class="col-12  col-md-6  mt-3 text-center ma"
+                                                *ngIf="form.value.donde2Check">
+                                                <div class="form-group    image-upload ">
+                                                    <label for="donde2Img">Imagen de registro civil
+                                                        <br>
+
+                                                        <img src="/assets/images/tp.png" alt="" class="pointer"
+                                                            *ngIf="invitacion==undefined || invitacion.data.donde2Img=='' "
+                                                            style="width: 150px;">
+
+                                                        <img [src]="url+'/upload/invitaciones/'+invitacion.data.donde2Img"
+                                                            alt="" class=" pointer" *ngIf="invitacion"
+                                                            style="width: 150px;">
+                                                        <!-- invitacion.data.mensajeImg!='' -->
+
+                                                    </label>
+                                                    <input type="file" id="donde2Img" #donde2Img
+                                                        (change)="cambiarImagen($event,'donde2Img' )">
+                                                </div>
+                                            </div>
+                                            <div class="col-6  col-md-6   mt-3" *ngIf="form.value.donde2Check">
+                                                <div class="form-group ">
+                                                    <label for="donde2Text ">Nombre del registro </label>
+                                                    <input type="text" id="donde2Text" #donde2Text
+                                                        formControlName="donde2Text">
+                                                </div>
+                                            </div>
+                                            <div class="col-6  col-md-6   mt-3" *ngIf="form.value.donde2Check">
+                                                <div class="form-group ">
+                                                    <label for="donde2Date ">Fecha </label>
+                                                    <input type="datetime-local" id="donde2Date" #donde2Date
+                                                        formControlName="donde2Date">
+                                                </div>
+                                            </div>
+                                            <div class="col-12   mt-3" *ngIf="form.value.donde2Check">
+                                                <div class="form-group ">
+                                                    <label for="donde2Address ">Dirección </label>
+                                                    <input type="text" id="donde2Address" #donde2Address
+                                                        formControlName="donde2Address" style="width: 100%;">
+                                                </div>
+                                            </div>
+                                            <div class="col-12   mt-3" *ngIf="form.value.donde2Check">
+                                                <div class="form-group ">
+                                                    <label for="donde2AddressUbicacion ">Ubicación </label>
+                                                    <app-info-ubicacion></app-info-ubicacion>
+                                                    <input type="text" id="donde2AddressUbicacion"
+                                                        #donde2AddressUbicacion formControlName="donde2AddressUbicacion"
+                                                        style="width: 100% !important;">
+                                                </div>
+                                            </div>
+
+
+
+
                                         </div>
-                                        <div class="col-12   mt-3">
-                                            <div class="form-group ">
-                                                <label for="hospedajeUbicacion ">Ubicación </label>
-                                                <app-info-ubicacion></app-info-ubicacion>
-                                                <input type="text" id="hospedajeUbicacion" #hospedajeUbicacion
-                                                    formControlName="hospedajeUbicacion" style="width: 100%;">
+                                        <hr class="mt-3 mb-3">
+                                        <div class="row text-center mt-3">
+                                            <h5>Hospedaje</h5>
+
+
+                                            <div class="col-6  col-md-4     mt-3 ma ">
+
+
+                                                <label class="form-check-label" for="hospedajeCheck">
+                                                    Hospedaje
+                                                </label>
+                                                <input class="form-check-input" type="checkbox" id="hospedajeCheck"
+                                                    #hospedajeCheck formControlName="hospedajeCheck">
+
+
                                             </div>
+                                            <div class="col-12  col-md-6  mt-3 text-center "
+                                                *ngIf="form.value.hospedajeCheck">
+                                                <div class="form-group    image-upload ">
+                                                    <label for="hospedajeImg">Imagen de hospedaje
+                                                        <br>
+
+                                                        <img src="/assets/images/tp.png" alt="" class="pointer"
+                                                            *ngIf="invitacion==undefined || invitacion.data.hospedajeImg=='' "
+                                                            style="width: 150px;">
+
+                                                        <img [src]="url+'/upload/invitaciones/'+invitacion.data.hospedajeImg"
+                                                            alt="" class=" pointer" *ngIf="invitacion"
+                                                            style="width: 150px;">
+                                                        <!-- invitacion.data.mensajeImg!='' -->
+
+                                                    </label>
+                                                    <input type="file" id="hospedajeImg" #hospedajeImg
+                                                        (change)="cambiarImagen($event,'hospedajeImg' )">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-6   mt-3" *ngIf="form.value.hospedajeCheck">
+                                                <div class="form-group ">
+                                                    <label for="hospedajeName ">Nombre de hotel </label>
+                                                    <input type="text" id="hospedajeName" #hospedajeName
+                                                        formControlName="hospedajeName">
+                                                </div>
+                                            </div>
+                                            <div class="col-6  col-md-4   mt-3" *ngIf="form.value.hospedajeCheck">
+                                                <div class="form-group ">
+                                                    <label for="hospedajePhone ">Teléfono </label>
+                                                    <input type="text" id="hospedajePhone" #hospedajePhone
+                                                        formControlName="hospedajePhone">
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-12   mt-3" *ngIf="form.value.hospedajeCheck">
+                                                <div class="form-group ">
+                                                    <label for="hospedajeAddress ">Dirección </label>
+                                                    <input type="text" id="hospedajeAddress" #hospedajeAddress
+                                                        formControlName="hospedajeAddress" style="width: 100%;">
+                                                </div>
+                                            </div>
+                                            <div class="col-12   mt-3" *ngIf="form.value.hospedajeCheck">
+                                                <div class="form-group ">
+                                                    <label for="hospedajeUbicacion ">Ubicación </label>
+                                                    <app-info-ubicacion></app-info-ubicacion>
+                                                    <input type="text" id="hospedajeUbicacion" #hospedajeUbicacion
+                                                        formControlName="hospedajeUbicacion" style="width: 100%;">
+                                                </div>
+                                            </div>
+
                                         </div>
 
-                                    </div>
+                                        <hr class="mt-3 mb-3">
 
+                                        <div class="row text-center mt-3">
+                                            <h5>Itinerarios</h5>
+                                            <div class="row">
+                                                <div class="col-6 ma">
+
+                                                    <input class="form-check-input" type="checkbox" id="itinerarioCheck"
+                                                        #itinerarioCheck formControlName="itinerarioCheck">
+                                                </div>
+                                            </div>
+
+                                            <div class="row" *ngIf="itinerarioCheck.checked">
+
+                                                <div class="col-6 text-center" style="margin:auto">
+
+                                                    <button type="button" class="btn btn-lg btn-block but "
+                                                        (click)="addItinerarios()">Agregar
+                                                        itinerario</button>
+                                                </div>
+                                            </div>
+                                            <ng-container formArrayName="itinerarios" *ngIf="itinerarioCheck.checked">
+
+                                                <ng-container
+                                                    *ngFor="let itinerario of itinerarios.controls; let i=index">
+                                                    <ng-container [formGroupName]="i">
+                                                        <div class="col-4   mt-3">
+                                                            <div class="form-group ">
+                                                                <label for="name ">Texto</label>
+                                                                <input type="text" class="form-control upper" id="name"
+                                                                    formControlName="name" required placeholder="Texto"
+                                                                    [readonly]="edit==='false'">
+                                                            </div>
+                                                            <span *ngIf="submited && errorControl['name'].errors "
+                                                                class="error">Es requerido
+                                                            </span>
+                                                        </div>
+                                                        <div class="col-4   mt-3">
+                                                            <div class="form-group ">
+                                                                <label for="hr ">Hora</label>
+                                                                <input type="text" class="form-control upper" id="hr"
+                                                                    formControlName="hr" required placeholder="Hora"
+                                                                    [readonly]="edit==='false'">
+                                                            </div>
+                                                            <span *ngIf="submited && errorControl['hr'].errors "
+                                                                class="error">Es requerido
+                                                            </span>
+                                                        </div>
+
+                                                        <div class="col-4 mt-3">
+                                                            <button class="btn btn-lg btn-block btn-warning mt-3"
+                                                                (click)="removeItinerario(i)">Quitar</button>
+                                                        </div>
+
+
+
+                                                    </ng-container>
+                                                </ng-container>
+                                            </ng-container>
+                                        </div>
+                                        <hr class="mt-3 mb-3">
+                                        <div class="row text-center mt-3">
+                                            <h5>Notas</h5>
+                                            <div class="row">
+                                                <div class="col-6 ma">
+
+                                                    <input class="form-check-input" type="checkbox" id="notaCheck"
+                                                        #notaCheck formControlName="notaCheck">
+                                                </div>
+                                                <div class="row">
+                                                </div>
+                                                <div class="col-6 text-center" style="margin:auto"
+                                                    *ngIf="notaCheck.checked">
+
+                                                    <button type="button" class="btn btn-lg btn-block but "
+                                                        (click)="addNotas()">Agregar nota</button>
+                                                </div>
+                                            </div>
+                                            <ng-container formArrayName="notas" *ngIf="notaCheck.checked">
+
+                                                <ng-container *ngFor="let nota of notas.controls; let i=index">
+                                                    <ng-container [formGroupName]="i">
+                                                        <div class="col-6   mt-3">
+                                                            <div class="form-group ">
+                                                                <label for="texto ">Texto</label>
+                                                                <input type="text" class="form-control upper" id="texto"
+                                                                    formControlName="texto" required placeholder="Nota"
+                                                                    [readonly]="edit==='false'">
+                                                            </div>
+                                                            <span *ngIf="submited && errorControl['texto'].errors "
+                                                                class="error">Es requerido
+                                                            </span>
+                                                        </div>
+
+
+                                                        <div class="col-6 mt-3">
+                                                            <button class="btn btn-lg btn-block btn-warning mt-3"
+                                                                (click)="removeNota(i)">Quitar</button>
+                                                        </div>
+
+
+
+                                                    </ng-container>
+                                                </ng-container>
+                                            </ng-container>
+                                        </div>
+                                    </ng-container>
 
 
                                     <div class="row text-center mt-3">
@@ -492,7 +1179,8 @@
                                             <div class="col-6 text-center" style="margin:auto">
 
                                                 <button type="button" class="btn btn-lg btn-block but "
-                                                    (click)="addItinerarios()">Agregar itinerario</button>
+                                                    (click)="addItinerarios()">Agregar
+                                                    itinerario</button>
                                             </div>
                                         </div>
                                         <ng-container formArrayName="itinerarios" *ngIf="itinerarioCheck.checked">
@@ -592,17 +1280,19 @@
 
 
 
+
                                     <div class="row mt-5 text-center">
-                                        <div class="col-12 col-md-4  mt-3 text-center " *ngIf="edit ">
+                                        <div class="col-12 col-md-4  mt-3 text-center ">
                                             <button type="submit" class="btn btn-lg btn-block but  ">Guardar</button>
                                         </div>
                                         <div class="col-12 col-md-4  mt-3 text-center">
-                                            <button class="btn btn-lg btn-block btn-warning"
-                                                (click)="back()">Regresar</button>
+                                            <button class="btn btn-lg btn-block btn-warning" (click)="back()">Regresar
+                                            </button>
                                         </div>
                                         <div class="col-12 col-md-4  mt-3 text-center">
                                             <button class="btn btn-lg btn-block but " type="button"
-                                                (click)="VerTemplate(this.form)">Ver Template</button>
+                                                (click)="VerTemplate(this.form)">Ver
+                                                Template</button>
                                         </div>
                                     </div>
                                 </form>

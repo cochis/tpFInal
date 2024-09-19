@@ -517,12 +517,13 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
     this.fiesta.invitacion
 
     var url = ''
-    if (this.fiesta.invitacion.includes('default')) {
-      url = this.urlT + 'core/templates/default/' + fiesta + '/' + boleto
-    } else {
-      url = this.urlT + 'core/invitaciones/xv/xv2/' + fiesta + '/' + boleto
-
-    }
+    //if (this.fiesta.invitacion.includes('default')) {
+    //  url = this.urlT + 'core/templates/' + this.fiesta.invitacion + '/' + fiesta + '/' + boleto
+    //} else {
+    //  
+    //  url = this.urlT + 'core/invitaciones/xv/xv2/' + fiesta + '/' + boleto
+    //}
+    url = this.urlT + 'core/templates/' + this.fiesta.invitacion + '/' + fiesta + '/' + boleto
     var aux = document.createElement("input");
 
 

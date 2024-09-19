@@ -39,6 +39,7 @@ export class EditarInvitacionComponent {
   usuarioCreated = ''
   public form!: FormGroup
   invi: any
+  viewVideo = false
   constructor(
     private fb: FormBuilder,
     private functionsService: FunctionsService,
@@ -52,11 +53,13 @@ export class EditarInvitacionComponent {
 
     this.id = this.route.snapshot.params['id']
     this.edit = this.route.snapshot.params['edit']
+    console.log('    this.edit ::: ', this.edit);
     if (this.edit == 'true') {
       this.edit = true
     } else {
       this.edit = false
     }
+    console.log('this.edit ::: ', this.edit);
     this.getInvitacion(this.id)
     this.getFiesta(this.id)
   }
@@ -67,11 +70,13 @@ export class EditarInvitacionComponent {
     this.loading = true
     this.fiestasService.cargarFiestaById(id).subscribe((resp: CargarFiesta) => {
       this.fiesta = resp.fiesta
+      // console.log('this.fiesta::: ', this.fiesta);
 
       this.invitacionId = this.fiesta.invitacion
+      // console.log('this.invitacionId::: ', this.invitacionId);
     },
       (error: any) => {
-        console.error('Error', error)
+        // console.error('Error', error)
         this.loading = false
         this.functionsService.alert('Fiesta', 'Por favor intente mas tarde', 'error')
       })
@@ -93,6 +98,7 @@ export class EditarInvitacionComponent {
     return
   }
   createForm(fiesta: Fiesta) {
+    console.log('fiesta::: ', fiesta);
     this.functionsService.numberDateTimeLocal(this.fiesta.fecha)
     this.form = this.fb.group({
       cPrincipal: ['#ffc0cb'],
@@ -117,6 +123,7 @@ export class EditarInvitacionComponent {
       bxMensajeImg: [50],
       byMensajeImg: [0],
       mensaje1: [''],
+      mensajeSize: [0],
       donde1Check: [true],
       donde1Img: [''],
       donde1Title: ['Iglesia'],
@@ -164,13 +171,35 @@ export class EditarInvitacionComponent {
       activated: [true],
       dateCreated: [this.today],
       lastEdited: [this.today],
+
+
+      //byFIle
+
+      typeFile: [''],
+      byFileColorTx: [''],
+      byFileColorBG: [''],
+      byFileColorFr: [''],
+      byFileColorQr: [''],
+      byFileInvitacionType: [''],
+      byFileInvitacion: [''],
+      byFileUrl: [''],
+      byFileWidth: [''],
+
+      byFileHeight: [''],
+      byFileFrame: [''],
+      byFileFrameWidth: [''],
     })
+
+    console.log(this.form);
+
     this.loading = false
   }
   setForm(fiesta: Fiesta) {
+
     this.createForm(this.fiesta)
   }
   async setFormWithData(invitacion: any) {
+    // console.log('invitacion::: ', invitacion);
 
     invitacion.data = await this.numberToData(invitacion.data)
     this.form = this.fb.group({
@@ -189,12 +218,13 @@ export class EditarInvitacionComponent {
       topDate: [invitacion.data.topDate],
       fiestaDate: [invitacion.fiesta.fecha],
       nombreFiesta: [invitacion.fiesta.nombre],
-      nombreSize: [invitacion.fiesta.nombreSize],
+      nombreSize: [invitacion.data.nombreSize],
       textInvitacionValida: [invitacion.data.textInvitacionValida],
       mensajeImg: [invitacion.data.mensajeImg],
       bxMensajeImg: [invitacion.data.bxMensajeImg],
       byMensajeImg: [invitacion.data.byMensajeImg],
       mensaje1: [invitacion.data.mensaje1],
+      mensajeSize: [invitacion.data.mensajeSize],
       donde1Check: [invitacion.data.donde1Check],
       donde1Img: [invitacion.data.donde1Img],
       donde1Title: [invitacion.data.donde1Title],
@@ -234,11 +264,37 @@ export class EditarInvitacionComponent {
       notas: this.fb.array([]),
       colorQr: [invitacion.data.colorQr],
       colorBgQr: [invitacion.data.colorBgQr],
+
+      //Invitacion byFile
+      typeFile: [invitacion.data.typeFile],
+      byFileColorTx: [invitacion.data.byFileColorTx],
+      byFileColorBG: [invitacion.data.byFileColorBG],
+      byFileColorFr: [invitacion.data.byFileColorFr],
+      byFileColorQr: [invitacion.data.byFileColorQr],
+      byFileInvitacionType: [invitacion.data.byFileInvitacionType],
+      byFileInvitacion: [invitacion.data.byFileInvitacion],
+      byFileWidth: [invitacion.data.byFileWidth],
+      byFileUrl: [invitacion.data.byFileUrl],
+      byFileHeight: [invitacion.data.byFileHeight],
+      byFileFrame: [invitacion.data.byFileFrame],
+      byFileFrameWidth: [invitacion.data.byFileFrameWidth],
+
+
+
+
+
+
+
+
       usuarioCreated: [invitacion.data.usuarioCreated],
       activated: [invitacion.data.activated],
       dateCreated: [invitacion.data.dateCreated],
       lastEdited: [this.today],
     })
+
+    if (invitacion.data.byFileUrl) {
+      this.viewVideo = true
+    }
   }
   getQr() {
     let qr = {
@@ -259,6 +315,7 @@ export class EditarInvitacionComponent {
     return JSON.stringify(qr)
   }
   setTemp(temp) {
+    console.log('temp::: ', temp);
     temp.dateCreated = (typeof (temp.dateCreated) == 'number') ? this.functionsService.numberToDate(temp.dateCreated) : temp.dateCreated
     temp.donde1Date = (typeof (temp.donde1Date) == 'number') ? this.functionsService.numberToDate(temp.donde1Date) : temp.donde1Date
     temp.donde2Date = (typeof (temp.donde2Date) == 'number') ? this.functionsService.numberToDate(temp.donde2Date) : temp.donde2Date
@@ -287,6 +344,7 @@ export class EditarInvitacionComponent {
       bxMensajeImg: [temp.bxMensajeImg],
       byMensajeImg: [temp.byMensajeImg],
       mensaje1: [temp.mensaje1],
+      mensajeSize: [temp.mensajeSize],
       donde1Check: [temp.donde1Check],
       donde1Img: [temp.donde1Img],
       donde1Title: [temp.donde1Title],
@@ -342,6 +400,7 @@ export class EditarInvitacionComponent {
       }
       let invitacion = {
         fiesta: this.fiesta.uid,
+
         data: data,
         tipoTemplate: this.fiesta.invitacion,
         templateActivated: true,
@@ -361,7 +420,7 @@ export class EditarInvitacionComponent {
           itinerarios: iti,
           notas: not
         }
-        this.router.navigate(['/core/templates/default'], { queryParams: this.invitacion.data })
+
       })
     } else {
       this.form.value.donde3Img = this.fiesta.salon.img
@@ -379,6 +438,7 @@ export class EditarInvitacionComponent {
 
       this.actualizarInvitacion(this.invitacion).subscribe((resp: any) => {
         this.invitacion = resp.invitacionActualizado
+        console.log('this.invitacion ::: ', this.fiesta);
         this.invitacion.data.fiestaId = this.fiesta.uid
         let iti = JSON.stringify(form.value.itinerarios)
         let not = JSON.stringify(form.value.notas)
@@ -387,9 +447,13 @@ export class EditarInvitacionComponent {
           itinerarios: iti,
           notas: not
         }
-        this.router.navigate(['/core/templates/default'], { queryParams: this.invitacion.data })
       })
     }
+
+    setTimeout(() => {
+
+      this.router.navigate(['/core/templates/' + this.fiesta.invitacion], { queryParams: this.invitacion.data })
+    }, 100);
   }
   async onSubmit() {
 
@@ -417,6 +481,9 @@ export class EditarInvitacionComponent {
       if (this.form.value.hospedajeImg == '' && this.invitacion.data.hospedajeImg !== '') {
         this.form.value.hospedajeImg = this.invitacion.data.hospedajeImg
       }
+      if (this.form.value.byFileInvitacion == '' && this.invitacion.data.byFileInvitacion !== '') {
+        this.form.value.byFileInvitacion = this.invitacion.data.byFileInvitacion
+      }
       if (this.form.value.itinerarios.length > 0) {
         this.form.value.itinerarioCheck = true
       }
@@ -424,8 +491,10 @@ export class EditarInvitacionComponent {
         this.form.value.notaCheck = true
       }
       let data = await this.numberToData(this.form.value)
+      // console.log('data::: ', data);
       this.invitacion.data = (data)
       this.invitacion.usuarioFiesta = this.fiesta.usuarioFiesta
+      // console.log('this.invitacion::: ', this.invitacion);
       this.actualizarInvitacion(this.invitacion).subscribe((res: any) => {
         this.invitacion = res.invitacionActualizado
         if (this.rol != this.URS) {
@@ -442,7 +511,7 @@ export class EditarInvitacionComponent {
         tipoTemplate: this.fiesta.invitacion,
         templateActivated: true,
         data: dataT,
-        usuarioFiesta: this.fiesta.usuarioFiesta,
+        usuarioFiesta: (this.fiesta.usuarioFiesta._id) ? this.fiesta.usuarioFiesta._id : this.fiesta.usuarioFiesta.uid,
         fiesta: (this.fiesta._id) ? this.fiesta._id : this.fiesta.uid,
         usuarioCreated: this.uid,
         activated: true,
@@ -500,8 +569,11 @@ export class EditarInvitacionComponent {
     this.loading = true
     this.invitacionsService.cargarInvitacionByFiesta(id).subscribe(async resp => {
       this.invitacion = resp.invitacion
+      console.log('resp.invitacion::: ', resp.invitacion);
+      console.log('this.invitacion ::: ', this.invitacion);
       if (!this.invitacion) {
         setTimeout(() => {
+          console.log('this.fiesta::: ', this.fiesta);
           this.setForm(this.fiesta)
         }, 800);
       } else {
@@ -564,18 +636,37 @@ export class EditarInvitacionComponent {
   removeNota(i: number) {
     this.notas.removeAt(i);
   }
-  cambiarImagen(file: any, type: string) {
-
-    this.imagenSubir = file.target.files[0]
-    if (!file.target.files[0]) {
-      this.imgTemp = null
+  selectType(type) {
+    if (type == 'url') {
+      this.viewVideo = true
     } else {
-      const reader = new FileReader()
-      const url64 = reader.readAsDataURL(file.target.files[0])
-      reader.onloadend = () => {
-        this.imgTemp = reader.result
+
+      this.viewVideo = false
+    }
+
+  }
+  cambiarImagen(file: any, type: string) {
+    console.log('type::: ', type);
+
+    this.viewVideo = false
+    if (file.target.files) {
+
+      this.imagenSubir = file.target.files[0]
+      // console.log('this.imagenSubir::: ', this.imagenSubir);
+      if (!file.target.files[0]) {
+        this.imgTemp = null
+      } else {
+        const reader = new FileReader()
+        const url64 = reader.readAsDataURL(file.target.files[0])
+        reader.onloadend = () => {
+          this.imgTemp = reader.result
+        }
+        this.subirImagen(type)
       }
-      this.subirImagen(type)
+    } else {
+
+      console.log('this.form.value::: ', this.form);
+      this.viewVideo = true
     }
   }
   async subirImagen(type) {
@@ -587,11 +678,13 @@ export class EditarInvitacionComponent {
         data: data,
         tipoTemplate: this.fiesta.invitacion,
         templateActivated: false,
+        usuarioFiesta: (this.fiesta.usuarioFiesta._id) ? this.fiesta.usuarioFiesta._id : this.fiesta.usuarioFiesta.uid,
         usuarioCreated: this.uid,
         activated: true,
         dateCreated: this.today,
         lastEdited: this.today
       }
+      // console.log('invi::: ', invi);
       this.invitacionsService.crearInvitacion(invi).subscribe((resp: any) => {
         this.invitacion = resp.invitacion
         this.fileService.actualizarFotoTemplate(this.imagenSubir, 'invitaciones', this.invitacion.fiesta, type)
@@ -605,17 +698,19 @@ export class EditarInvitacionComponent {
               this.invitacion.data[type] = img
               this.loading = true
               setTimeout(() => {
+                console.log('entro');
 
+                console.log('this.invitacion::: ', this.invitacion);
                 this.actualizarInvitacion(this.invitacion).subscribe((resp: any) => {
                   this.invitacion = resp.invitacionActualizado
                   this.loading = false
                   this.getInvitacion(this.id)
-                  return
+
                 })
               }, 800);
             },
             (err) => {
-              console.error('Error', err)
+              // console.error('Error', err)
               this.functionsService.alertError(err, 'Error')
             },
           )
@@ -648,6 +743,9 @@ export class EditarInvitacionComponent {
               case 'hospedajeImg':
                 this.invitacion.data.hospedajeImg = img
                 break;
+              case 'byFileInvitacion':
+                this.invitacion.data.byFileInvitacion = img
+                break;
             }
             this.invitacion.fiesta = this.fiesta.uid
             this.invitacion.usuarioCreated = this.usuarioCreated
@@ -655,6 +753,7 @@ export class EditarInvitacionComponent {
 
             setTimeout(() => {
 
+              // console.log('this.invitacion::: ', this.invitacion);
               this.actualizarInvitacion(this.invitacion).subscribe((resp: any) => {
                 this.invitacion = resp.invitacionActualizado
               })
@@ -664,7 +763,7 @@ export class EditarInvitacionComponent {
 
           },
           (err) => {
-            console.error('Error', err)
+            // console.error('Error', err)
             this.functionsService.alertError(err, 'Error')
           },
         )
@@ -681,6 +780,7 @@ export class EditarInvitacionComponent {
     if (typeof (invitacion.fiesta) == "object") {
       invitacion.fiesta = invitacion.fiesta.uid ? invitacion.fiesta.uid : invitacion.fiesta._id
     }
+
     return this.invitacionsService.crearInvitacion(invitacion)
   }
 

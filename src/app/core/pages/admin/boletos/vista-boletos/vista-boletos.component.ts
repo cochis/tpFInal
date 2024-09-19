@@ -149,6 +149,7 @@ export class VistaBoletosComponent {
   getBoletos() {
     this.boletosService.cargarBoletosAll().subscribe((resp: any) => {
       this.boletos = resp.boletos
+      console.log(' this.boletos::: ', this.boletos);
 
       this.boletosTemp = resp.boletos
       this.loading = false
@@ -159,6 +160,7 @@ export class VistaBoletosComponent {
       });
   }
   fiterBoletos(fiesta) {
+    console.log('fiesta::: ', fiesta);
     let res = this.boletos.filter((bol: any) => {
       return bol.fiesta._id ? bol.fiesta._id : bol.fiesta.uid === fiesta
     })

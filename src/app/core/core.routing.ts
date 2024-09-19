@@ -71,6 +71,7 @@ import { TerminosYCondicionesComponent } from './pages/terminos-y-condiciones/te
 import { EditarParametroComponent } from './pages/admin/parametros/editar-parametro/editar-parametro.component';
 import { CrearParametroComponent } from './pages/admin/parametros/crear-parametro/crear-parametro.component';
 import { VistaParametrosComponent } from './pages/admin/parametros/vista-parametros/vista-parametros.component';
+import { ByFileComponent } from './pages/admin/templates/by-file/by-file.component';
 
 
 const routes: Routes = [
@@ -579,6 +580,18 @@ const routes: Routes = [
         path: 'templates/default/:fiesta/:boleto',
         component: DefaultComponent,
         data: { titulo: 'Template default' }
+
+      },
+      {
+        path: 'templates/byFile',
+        component: ByFileComponent,
+        data: { titulo: 'Template ByFile' }
+
+      },
+      {
+        path: 'templates/byFile/:fiesta/:boleto',
+        component: ByFileComponent,
+        data: { titulo: 'Template ByFile' }
 
       },
       {

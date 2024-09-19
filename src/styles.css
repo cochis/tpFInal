@@ -248,3 +248,7 @@ input[type="file"] {
     margin: auto;
     max-width: 300px;
 }
+
+.ma {
+    margin: auto;
+}
