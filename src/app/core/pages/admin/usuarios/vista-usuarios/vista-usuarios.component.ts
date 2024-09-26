@@ -145,6 +145,8 @@ export class VistaUsuariosComponent {
     }
   }
   getCatalog(tipo: string, id: string) {
+    console.log('id::: ', id);
+    console.log('tipo::: ', tipo);
     if (id) {
       switch (tipo) {
         case 'rol':

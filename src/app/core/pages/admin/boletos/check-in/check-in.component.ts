@@ -24,13 +24,16 @@ export class CheckInComponent implements AfterViewInit {
   ANF = environment.anf_role
   idx: number = undefined
   boleto: Boleto
+  boletosFind: any = []
   fiesta: Fiesta
+  fiestas: Fiesta[]
   editBoleto = false
   invitado: any
   today = this.functionsService.getToday()
   role = this.functionsService.getLocal('role')
   uid = this.functionsService.getLocal('uid')
   public form!: FormGroup
+  public formInit!: FormGroup
   constructor(
     private functionsService: FunctionsService,
     private usuariosService: UsuariosService,
@@ -38,15 +41,24 @@ export class CheckInComponent implements AfterViewInit {
     private fiestasService: FiestasService,
     private fb: FormBuilder,
   ) {
+    this.formInit = this.fb.group({
+      tipo: ['', [Validators.required]],
+      fiesta: ['', [Validators.required]],
+      nombreGrupo: ['', [Validators.required]],
+      mesa: ['', [Validators.required]],
+      boleto: ['', [Validators.required]],
+    })
   }
   ngAfterViewInit() {
     this.getUser(this.role)
     this.createForm()
+    this.getFiestas()
   }
   createForm() {
     this.form = this.fb.group({
       cantidad: ['', [Validators.required]],
     })
+
   }
   getUser(role) {
     if (role == this.SLN) {
@@ -59,6 +71,29 @@ export class CheckInComponent implements AfterViewInit {
           console.error('error::: ', error);
           this.functionsService.alertError(error, 'Home')
         })
+    }
+  }
+
+  getFiestas() {
+    if (this.role == this.SLN) {
+
+      this.fiestasService.cargarFiestasByEmail(this.uid).subscribe(resp => {
+
+        this.fiestas = this.functionsService.getActives(resp.fiestas)
+
+      })
+    } else if (this.role == this.ANF) {
+      this.fiestasService.cargarFiestasByanfitrion(this.uid).subscribe(resp => {
+
+        this.fiestas = this.functionsService.getActives(resp.fiestas)
+
+      })
+    } else if (this.role == this.ADM) {
+      this.fiestasService.cargarFiestasAll().subscribe(resp => {
+
+        this.fiestas = this.functionsService.getActives(resp.fiestas)
+
+      })
     }
   }
   scan() {
@@ -159,6 +194,7 @@ export class CheckInComponent implements AfterViewInit {
     this.boletosService.actualizarBoleto(this.boleto).subscribe(resp => {
       this.functionsService.alert('Bienvenidos', 'Los estábamos esperando ', 'success')
       this.form.reset()
+      this.formInit.reset()
       this.functionsService.alertUpdate('Check in')
       this.editBoleto = false
       this.loading = false
@@ -167,6 +203,46 @@ export class CheckInComponent implements AfterViewInit {
         console.error('error::: ', error);
         this.functionsService.alertError(error, 'Check in')
       })
+  }
+  findInvite() {
+    this.editBoleto = true
+  }
+
+  setBoleto(boleto) {
+    this.idx = boleto
+
+    this.boletosService.cargarBoletoById(this.idx).subscribe((resp) => {
+
+      this.boleto = resp.boleto
+      console.log(' this.boleto ::: ', this.boleto);
+
+    })
+
+  }
+  setFiesta(fiesta) {
+
+    this.editBoleto = false
+    let res = this.fiestas.filter(res => {
+      return res.uid == fiesta
+    })
+
+    this.fiesta = res[0]
+    console.log('this.fiesta ::: ', this.fiesta);
+    this.formInit.patchValue({
+      tipo: '',
+      boleto: ''
+    })
+
+  }
+  filterBy(form: any) {
+
+    this.boletosService.cargarBoletoByFiesta(form.fiesta).subscribe(resp => {
+
+      this.boletosFind = resp.boleto
+
+
+    })
+
   }
 
   back() {

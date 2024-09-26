@@ -44,7 +44,77 @@
 
             </div>
         </div>
+
     </section>
+    <div class="container mt-2">
+        <form [formGroup]="formInit" (ngSubmit)="findInvite()">
+            <div class="row">
+
+
+                <div class="col-12 col-md-3 mt-3">
+                    <div class="form-group">
+                        <label for="fiesta">Fiesta</label>
+                        <select name="fiesta" id="fiesta" formControlName="fiesta" #fiesta class="form-control upper"
+                            (change)="setFiesta(fiesta.value)">
+                            <option value="">Selecciona un fiesta</option>
+                            <option [value]="item.uid" *ngFor="let item of fiestas">
+                                {{item.nombre}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12 col-md-3 mt-3" *ngIf="formInit.value.fiesta != ''">
+                    <div class="form-group">
+                        <label for="tipo">Tipo</label>
+                        <select name="tipo" id="tipo" formControlName="tipo" class="form-control upper"
+                            (change)="filterBy(formInit.value)">
+                            <option value="">Selecciona un tipo</option>
+                            <option value="nombre">Nombre</option>
+                            <option value="mesa">Mesa</option>
+
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12 col-md-3 mt-3" *ngIf="formInit.value.fiesta != '' && formInit.value.tipo =='nombre'">
+                    <div class="form-group">
+                        <label for="boleto">Boleto</label>
+                        <select name="boleto" id="boleto" formControlName="boleto" #boleto class="form-control upper"
+                            (change)="setBoleto(boleto.value)">
+                            <option value="">Selecciona un boleto</option>
+                            <option [value]="item.uid" *ngFor="let item of boletosFind">{{item.nombreGrupo}}</option>
+
+
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12 col-md-3 mt-3" *ngIf="formInit.value.fiesta != '' && formInit.value.tipo =='mesa'">
+                    <div class="form-group">
+                        <label for="boleto">Boleto</label>
+                        <select name="boleto" id="boleto" formControlName="boleto" #boleto class="form-control upper"
+                            (change)="setBoleto(boleto.value)">
+                            <option value="">Selecciona un boleto</option>
+                            <option [value]="item.uid" *ngFor="let item of boletosFind">{{item.mesa}}</option>
+
+
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12 col-md-3 mt-3" *ngIf="formInit.value.fiesta != '' && formInit.value.tipo !=''">
+                    <div class="form-group mt-3">
+                        <button type="submit" class="btn btn-lg btn-block but  ">CheckIn</button>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+
+
+        </form>
+
+    </div>
 
     <section class="contact-section section-padding section-bg animated1 fadeIn " id="section_5" *ngIf="editBoleto">
 
@@ -63,7 +133,8 @@
                                 <h3 *ngIf="boleto.cantidadInvitados === boleto.ocupados">
                                     Ya no pueden entrar más
                                 </h3>
-                                <h3 *ngIf="fiesta.mesaOk&& boleto.mesa">
+
+                                <h3 *ngIf="boleto.mesa!=''">
                                     Tu mesa es : {{boleto.mesa}}
                                 </h3>
 

@@ -10,7 +10,7 @@ const base_url = environment.base_url
   providedIn: 'root'
 })
 export class BoletosService {
-  constructor(private http: HttpClient, private functionsService: FunctionsService,) { }
+  constructor(private http: HttpClient, private functionsService: FunctionsService) { }
   get token(): string {
     return this.functionsService.getLocal('token') || ''
   }
@@ -112,7 +112,7 @@ export class BoletosService {
     }
     return this.http.put(url, data, this.headers)
   }
-  cargarBoletoById(id: string) {
+  cargarBoletoById(id: any) {
     const url = `${base_url}/boletos/${id}`
     return this.http.get<CargarBoleto>(url, this.headers)
   }

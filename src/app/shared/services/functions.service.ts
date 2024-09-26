@@ -68,9 +68,12 @@ export class FunctionsService {
       let ret = catalogo.filter((cat: any) => {
         return cat.uid === id
       })
-      return ret[0][filter]
+      if (ret[0][filter]) {
+
+        return ret[0][filter]
+      }
     } else {
-      return 'UNDEFINED '
+      return ''
     }
 
   }

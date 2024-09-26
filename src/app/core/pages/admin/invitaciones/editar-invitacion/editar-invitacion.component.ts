@@ -53,13 +53,13 @@ export class EditarInvitacionComponent {
 
     this.id = this.route.snapshot.params['id']
     this.edit = this.route.snapshot.params['edit']
-    console.log('    this.edit ::: ', this.edit);
+    // console.log('    this.edit ::: ', this.edit);
     if (this.edit == 'true') {
       this.edit = true
     } else {
       this.edit = false
     }
-    console.log('this.edit ::: ', this.edit);
+    // console.log('this.edit ::: ', this.edit);
     this.getInvitacion(this.id)
     this.getFiesta(this.id)
   }
@@ -98,7 +98,7 @@ export class EditarInvitacionComponent {
     return
   }
   createForm(fiesta: Fiesta) {
-    console.log('fiesta::: ', fiesta);
+    // console.log('fiesta::: ', fiesta);
     this.functionsService.numberDateTimeLocal(this.fiesta.fecha)
     this.form = this.fb.group({
       cPrincipal: ['#ffc0cb'],
@@ -190,7 +190,7 @@ export class EditarInvitacionComponent {
       byFileFrameWidth: [''],
     })
 
-    console.log(this.form);
+    // console.log(this.form);
 
     this.loading = false
   }
@@ -315,7 +315,7 @@ export class EditarInvitacionComponent {
     return JSON.stringify(qr)
   }
   setTemp(temp) {
-    console.log('temp::: ', temp);
+    // console.log('temp::: ', temp);
     temp.dateCreated = (typeof (temp.dateCreated) == 'number') ? this.functionsService.numberToDate(temp.dateCreated) : temp.dateCreated
     temp.donde1Date = (typeof (temp.donde1Date) == 'number') ? this.functionsService.numberToDate(temp.donde1Date) : temp.donde1Date
     temp.donde2Date = (typeof (temp.donde2Date) == 'number') ? this.functionsService.numberToDate(temp.donde2Date) : temp.donde2Date
@@ -438,7 +438,7 @@ export class EditarInvitacionComponent {
 
       this.actualizarInvitacion(this.invitacion).subscribe((resp: any) => {
         this.invitacion = resp.invitacionActualizado
-        console.log('this.invitacion ::: ', this.fiesta);
+        // console.log('this.invitacion ::: ', this.fiesta);
         this.invitacion.data.fiestaId = this.fiesta.uid
         let iti = JSON.stringify(form.value.itinerarios)
         let not = JSON.stringify(form.value.notas)
@@ -569,11 +569,11 @@ export class EditarInvitacionComponent {
     this.loading = true
     this.invitacionsService.cargarInvitacionByFiesta(id).subscribe(async resp => {
       this.invitacion = resp.invitacion
-      console.log('resp.invitacion::: ', resp.invitacion);
-      console.log('this.invitacion ::: ', this.invitacion);
+      // console.log('resp.invitacion::: ', resp.invitacion);
+      // console.log('this.invitacion ::: ', this.invitacion);
       if (!this.invitacion) {
         setTimeout(() => {
-          console.log('this.fiesta::: ', this.fiesta);
+          // console.log('this.fiesta::: ', this.fiesta);
           this.setForm(this.fiesta)
         }, 800);
       } else {
@@ -596,7 +596,7 @@ export class EditarInvitacionComponent {
       }
     },
       (error) => {
-        console.error('Error', error)
+        // console.error('Error', error)
         this.functionsService.alertError(error, 'Invitacion')
       })
   }
@@ -646,7 +646,7 @@ export class EditarInvitacionComponent {
 
   }
   cambiarImagen(file: any, type: string) {
-    console.log('type::: ', type);
+    // console.log('type::: ', type);
 
     this.viewVideo = false
     if (file.target.files) {
@@ -665,7 +665,7 @@ export class EditarInvitacionComponent {
       }
     } else {
 
-      console.log('this.form.value::: ', this.form);
+      // console.log('this.form.value::: ', this.form);
       this.viewVideo = true
     }
   }
@@ -698,9 +698,9 @@ export class EditarInvitacionComponent {
               this.invitacion.data[type] = img
               this.loading = true
               setTimeout(() => {
-                console.log('entro');
+                // console.log('entro');
 
-                console.log('this.invitacion::: ', this.invitacion);
+                // console.log('this.invitacion::: ', this.invitacion);
                 this.actualizarInvitacion(this.invitacion).subscribe((resp: any) => {
                   this.invitacion = resp.invitacionActualizado
                   this.loading = false

@@ -36,13 +36,13 @@
 
                                 <input id="file-input" type="file" class="ion-no-border"
                                     (change)="cambiarImagen($event,fiesta)" />
-                            </div> -->
+                            </div> 
                             <div class="col-12   mt-50">
 
                                 <input type="file" name="invitadosXls" id="invitadosXls" #invitadosXls
                                     (change)="upload($event)">
                                 <label for="invitadosXls" class="custom-btn  but "> Agregar por archivo</label>
-                            </div>
+                            </div>-->
 
                             <div class="col-12   mt-50" *ngIf="total >0">
 
@@ -246,8 +246,9 @@
                                             <div class="col-12   mt-3" *ngIf="edit==='true'  ">
 
                                                 <button (click)="saveBoleto(invitado.value)"
-                                                    *ngIf=" invitado.value.uid == ''" class="custom-btn  but   "
-                                                    [disabled]="getDisabled()">Guardar invitado</button>
+                                                    *ngIf=" invitado.value.uid == '' && !getDisabled()"
+                                                    class="custom-btn  but   " [disabled]="getDisabled()">Guardar
+                                                    invitado</button>
                                                 <a (click)="enviarInvitacion(i)"
                                                     *ngIf="boleto[i] && boleto[i].invitacionEnviada == false"
                                                     class="custom-btn  but   ">Enviar invitación</a>

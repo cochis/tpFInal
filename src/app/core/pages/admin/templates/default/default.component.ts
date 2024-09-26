@@ -89,14 +89,14 @@ export class DefaultComponent implements OnInit, AfterViewInit {
           })
         })
       }, (error) => {
-        console.error('Error', error)
+        // console.error('Error', error)
         this.functionsService.alertError(error, 'Boletos')
       })
 
       // Se carga la fiesta por ID  
       this.fiestasService.cargarFiestaById(this.fiestaId).subscribe((resp: any) => {
         this.fiesta = resp.fiesta
-        console.log('this.fiesta ::: ', this.fiesta);
+        // console.log('this.fiesta ::: ', this.fiesta);
         this.checking = this.fiesta.checking
 
         this.invitacionsService.cargarInvitacionByFiesta(this.fiestaId).subscribe(async (resp: any) => {
@@ -114,19 +114,19 @@ export class DefaultComponent implements OnInit, AfterViewInit {
           this.itinerarios = this.invitacion.itinerarios
           this.notas = this.invitacion.notas
         }, (error) => {
-          console.error('Error', error)
+          // console.error('Error', error)
           this.functionsService.alertError(error, 'Fiestas')
           this.functionsService.navigateTo('/')
         })
       }, (error) => {
-        console.error('Error', error)
+        // console.error('Error', error)
         this.functionsService.alertError(error, 'Fiestas')
         this.functionsService.navigateTo('/')
       })
     } else {
       this.restParty()
       this.state = this.route.snapshot.queryParams
-      console.log('this.state::: ', this.state);
+      // console.log('this.state::: ', this.state);
       for (let key in this.state) {
         ++this.count;
       }
@@ -317,7 +317,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
                 return login
   
               } catch (error) {
-                 console.error('Error', error)
+                 // console.error('Error', error)
                 Swal.showValidationMessage(`
                   Request failed: ${error}
                 `);
@@ -429,7 +429,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
         })
       })
       .catch(err => {
-        console.error('Error', err)
+        // console.error('Error', err)
         return {
           ok: false,
           err
