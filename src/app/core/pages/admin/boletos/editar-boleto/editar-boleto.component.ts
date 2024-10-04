@@ -438,10 +438,12 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
           let textoP = (cantP == 1) ? 'invitado' : 'invitados'
           let evento = this.fiesta.nombre
           let boletoP = (cantP == 1) ? 'boleto' : 'boletos'
+
+          let bl = (cantP > 0) ? ` con  *${cantP}* ${boletoP} ` : ``
           if (this.fiesta.invitacion.includes('default')) {
-            texto = `Hola ${nGrupo.toLocaleUpperCase()} ${cantT} ${textoP} a *${evento.toLocaleUpperCase()}*  ${this.urlT}core/templates/default/${this.fiesta.uid}/${this.idBoleto} con  *${cantP}* ${boletoP} dddd*FAVOR DE CONFIRMAR ASISTENCIA*`
+            texto = `Hola ${nGrupo.toLocaleUpperCase()} ${cantT} ${textoP} a *${evento.toLocaleUpperCase()}*  ${this.urlT}core/templates/default/${this.fiesta.uid}/${this.idBoleto} ${bl}  *FAVOR DE CONFIRMAR ASISTENCIA*`
           } else {
-            texto = `Hola ${nGrupo.toLocaleUpperCase()} ${cantT} ${textoP} a *${evento.toLocaleUpperCase()}*  ${this.urlT}core/invitaciones${this.fiesta.invitacion}${this.fiesta.uid}/${this.idBoleto} con  *${cantP}* ${boletoP} *FAVOR DE CONFIRMAR ASISTENCIA*`
+            texto = `Hola ${nGrupo.toLocaleUpperCase()} ${cantT} ${textoP} a *${evento.toLocaleUpperCase()}*  ${this.urlT}core/invitaciones${this.fiesta.invitacion}${this.fiesta.uid}/${this.idBoleto} ${bl}  *FAVOR DE CONFIRMAR ASISTENCIA*`
           }
           let url = `https://api.whatsapp.com/send?phone=${tel}&text=${encodeURIComponent(texto)}`
           Swal.fire({ title: "Enviado por whatsapp!", text: "", icon: "success", confirmButtonColor: "#13547a" });

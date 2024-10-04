@@ -160,15 +160,18 @@ export class VistaBoletosComponent {
       });
   }
   fiterBoletos(fiesta) {
-    // console.log('fiesta::: ', fiesta);
+
     let res = this.boletos.filter((bol: any) => {
-      return bol.fiesta._id ? bol.fiesta._id : bol.fiesta.uid === fiesta
+
+      return bol.fiesta.uid ? bol.fiesta.uid : bol.fiesta._id === fiesta
     })
     let cantidad = 0
     res.forEach(b => {
       cantidad = cantidad + b.cantidadInvitados
     });
+
     return cantidad
+
   }
   typeOf(val) {
     return typeof (val)

@@ -99,8 +99,14 @@
                                             }}
                                         </td>
 
-                                        <td class="upper">{{fiesta.cantidad}}</td>
-                                        <td class="upper">{{fiesta.cantidad -fiterBoletos(fiesta.uid) }}</td>
+                                        <td class="upper">{{(fiesta.cantidad>0)?fiesta.cantidad:'N/A'}}</td>
+                                        <td class="upper">{{(fiesta.cantidad>0)?fiesta.cantidad
+                                            -fiterBoletos(fiesta.uid):'N/A' }}</td>
+
+
+                                        <td class="upper prima" *ngIf=" fiterBoletos(fiesta.uid) == 0">
+                                            <i class="icon-battery-0"></i>
+                                        </td>
                                         <td class="upper prima"
                                             *ngIf="getPorcentaje(fiesta.cantidad,fiterBoletos(fiesta.uid)) >= 0 && getPorcentaje(fiesta.cantidad,fiterBoletos(fiesta.uid)) <=24">
                                             <i class="icon-battery-1"></i>
