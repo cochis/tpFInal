@@ -101,7 +101,7 @@
                                         <div class="col-12  col-sm-6 col-md-4   mt-3">
                                             <div class="form-group ">
                                                 <label for="nombreSize ">Tamaño titulo de invitación
-                                                    {{form.value.nombreSize}} </label>
+                                                </label>
                                                 <input type="range" id="nombreSize" #nombreSize
                                                     formControlName="nombreSize">
                                             </div>
@@ -716,7 +716,7 @@
                                                     <option value="">Seleccione el tipo de invitacion</option>
                                                     <option value="img">Imagen</option>
                                                     <option value="video">Video</option>
-                                                    <option value="url">url</option>
+                                                    <!-- <option value="url">url</option>-->
 
                                                     <!-- <option [value]="item.uid" *ngFor="let item of salones">{{item.nombre }} <b
                                                                                                 *ngIf="rol ===ADM && usuarios">{{item.usuarioCreated.email}}</b>
@@ -728,7 +728,6 @@
                                             </span>
 
                                         </div>
-
 
                                         <div class="col-12      mt-3 ma text-center">
                                             <div class="form-group ">
@@ -749,12 +748,9 @@
                                                         </video>
                                                     </ng-container>
 
-                                                    <ng-container *ngIf="(invitacion.data.byFileInvitacion.split('.')[1].includes('jpg') ||
-                                                        invitacion.data.byFileInvitacion.split('.')[1].includes('jpeg')) && form.value.typeFile =='img'
-                                                        ">
+                                                    <ng-container *ngIf="form.value.typeFile =='img'">
                                                         <img [src]="url+'/upload/invitaciones/'+invitacion.data.byFileInvitacion"
-                                                            alt="" class=" pointer" *ngIf="invitacion"
-                                                            style="width: 150px;">
+                                                            alt="" class=" pointer" style="width: 150px;">
                                                     </ng-container>
 
 

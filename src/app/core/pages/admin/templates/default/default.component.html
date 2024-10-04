@@ -1,4 +1,5 @@
 <app-loading *ngIf="loading"></app-loading>
+
 <ng-container *ngIf="!loading ">
 
     <div class="row text-center fixed-top" *ngIf="btnBack">
@@ -278,6 +279,7 @@
 
                             <div class="collapse" id="collapseExample">
                                 <div class="card card-body nborder">
+
                                     <p class="text-left arsenal-sc-bold-italic">
                                         {{invitacion.hospedajeAddress}}</p>
                                     <a class="text-center arsenal-sc-bold-italic  "
@@ -344,35 +346,38 @@
                             boleto</h2>
                     </div>
                     <!-- [imageSrc]="url+'/upload/invitaciones/'+invitacion.img1"  -->
-                    <div class="qrcodeImage text-center  mg ma pt-3" *ngIf="boleto && checking">
-                        <qrcode [qrdata]="getQr(boleto)" [allowEmptyString]="true"
-                            [ariaLabel]="'QR Code image with the following content...'" [cssClass]="'center'"
-                            [elementType]="'canvas'" [errorCorrectionLevel]="'M'" [imageHeight]="50" [imageWidth]="50"
-                            [margin]="4" [scale]="1" [colorDark]="invitacion.colorQr"
-                            [colorLight]="invitacion.colorBgQr" [title]="getQr(boleto)" [width]="280">
-                        </qrcode>
+
+                    <ng-container *ngIf="boleto && checking">
+                        <div class="qrcodeImage text-center  mg ma pt-3" *ngIf="boleto && checking">
+                            <qrcode [qrdata]="getQr(boleto)" [allowEmptyString]="true"
+                                [ariaLabel]="'QR Code image with the following content...'" [cssClass]="'center'"
+                                [elementType]="'canvas'" [errorCorrectionLevel]="'M'" [imageHeight]="50"
+                                [imageWidth]="50" [margin]="4" [scale]="1" [colorDark]="invitacion.colorQr"
+                                [colorLight]="invitacion.colorBgQr" [title]="getQr(boleto)" [width]="280">
+                            </qrcode>
 
 
-                        <button class="btn "
-                            style="background-color: {{invitacion.cPrincipal}}; color:{{invitacion.cWhite}} ; border: 3px solid {{invitacion.cSecond}}"
-                            type="button" (click)="confirmar(getQr(boleto))" *ngIf="!boleto.confirmado">
-                            Confirma tu asistencia
-                        </button>
-                        <button class="btn "
-                            style="background-color: {{invitacion.cPrincipal}}; color:{{invitacion.cWhite}} ; border: 3px solid {{invitacion.cSecond}}"
-                            type="button" (click)="confirmar(getQr(boleto))" *ngIf="boleto.confirmado">
-                            Quitar conformacion
-                        </button>
-                        <button class="btn mt-3 mb-5" *ngIf="fiesta.galeria"
-                            style="background-color: {{invitacion.cPrincipal}}; color:{{invitacion.cWhite}} ; border: 3px solid {{invitacion.cSecond}}"
-                            type="button" routerLink="/core/galeria/fst/{{fiestaId}}/blt/{{boletoId}}">
-                            Sube tus fotos <i class="bi bi-images"
-                                style=" font-size: 30px;margin-left:10px; color:{{invitacion.cSecond}}"></i>
-                        </button>
-                    </div>
+                            <button class="btn "
+                                style="background-color: {{invitacion.cPrincipal}}; color:{{invitacion.cWhite}} ; border: 3px solid {{invitacion.cSecond}}"
+                                type="button" (click)="confirmar(getQr(boleto))" *ngIf="!boleto.confirmado">
+                                Confirma tu asistencia
+                            </button>
+                            <button class="btn "
+                                style="background-color: {{invitacion.cPrincipal}}; color:{{invitacion.cWhite}} ; border: 3px solid {{invitacion.cSecond}}"
+                                type="button" (click)="confirmar(getQr(boleto))" *ngIf="boleto.confirmado">
+                                Quitar conformacion
+                            </button>
+                            <button class="btn mt-3 mb-5" *ngIf="fiesta.galeria"
+                                style="background-color: {{invitacion.cPrincipal}}; color:{{invitacion.cWhite}} ; border: 3px solid {{invitacion.cSecond}}"
+                                type="button" routerLink="/core/galeria/fst/{{fiestaId}}/blt/{{boletoId}}">
+                                Sube tus fotos <i class="bi bi-images"
+                                    style=" font-size: 30px;margin-left:10px; color:{{invitacion.cSecond}}"></i>
+                            </button>
+                        </div>
+                    </ng-container>
                 </div>
                 <div>
-                    <div class="card mt-3 p-0 nborder" *ngIf="!vistaTemp && !boleto ">
+                    <div class="card mt-3 p-0 nborder" *ngIf="!vistaTemp && !boleto  && checking">
 
                         <!-- [imageSrc]="url+'/upload/invitaciones/'+invitacion.img1" -->
                         <qrcode [qrdata]="getQr()" [allowEmptyString]="true" [ariaLabel]="'Visitados '+tUrl"
@@ -381,8 +386,7 @@
                             [colorDark]="invitacion.colorQr" [colorLight]="invitacion.colorBgQr" [title]="getQr(boleto)"
                             [width]="280">
                         </qrcode>
-                        <div class="card-body">
-
+                        <div class="card-body" *ngIf="checking">
                             <button class="btn "
                                 style="background-color: {{invitacion.cPrincipal}}; color:{{invitacion.cWhite}} ; border: 3px solid {{invitacion.cSecond}}"
                                 type="button">

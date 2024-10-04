@@ -149,18 +149,18 @@ export class VistaBoletosComponent {
   getBoletos() {
     this.boletosService.cargarBoletosAll().subscribe((resp: any) => {
       this.boletos = resp.boletos
-      console.log(' this.boletos::: ', this.boletos);
+      // console.log(' this.boletos::: ', this.boletos);
 
       this.boletosTemp = resp.boletos
       this.loading = false
     },
       (error) => {
-        console.error('error::: ', error);
+        // console.error('error::: ', error);
         this.functionsService.alertError(error, 'Boletos')
       });
   }
   fiterBoletos(fiesta) {
-    console.log('fiesta::: ', fiesta);
+    // console.log('fiesta::: ', fiesta);
     let res = this.boletos.filter((bol: any) => {
       return bol.fiesta._id ? bol.fiesta._id : bol.fiesta.uid === fiesta
     })
@@ -254,7 +254,7 @@ export class VistaBoletosComponent {
               this.functionsService.alert("Boletos", "Se han enviado las invitaciones por correo electronico", "success")
             }
           }, (error) => {
-            console.error('error::: ', error);
+            // console.error('error::: ', error);
             correos.push(error.error)
             ind++
           })

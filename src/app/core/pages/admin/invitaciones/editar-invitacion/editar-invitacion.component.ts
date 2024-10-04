@@ -123,7 +123,7 @@ export class EditarInvitacionComponent {
       bxMensajeImg: [50],
       byMensajeImg: [0],
       mensaje1: [''],
-      mensajeSize: [0],
+      mensajeSize: [25],
       donde1Check: [true],
       donde1Img: [''],
       donde1Title: ['Iglesia'],
@@ -292,8 +292,9 @@ export class EditarInvitacionComponent {
       lastEdited: [this.today],
     })
 
-    if (invitacion.data.byFileUrl) {
+    if (invitacion.data.byFileUrl && (this.form.value.typeFile == 'video' || this.form.value.typeFile == 'url')) {
       this.viewVideo = true
+
     }
   }
   getQr() {

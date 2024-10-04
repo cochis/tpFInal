@@ -34,6 +34,7 @@ export class CheckInComponent implements AfterViewInit {
   uid = this.functionsService.getLocal('uid')
   public form!: FormGroup
   public formInit!: FormGroup
+  checking: boolean = false
   constructor(
     private functionsService: FunctionsService,
     private usuariosService: UsuariosService,
@@ -214,7 +215,6 @@ export class CheckInComponent implements AfterViewInit {
     this.boletosService.cargarBoletoById(this.idx).subscribe((resp) => {
 
       this.boleto = resp.boleto
-      console.log(' this.boleto ::: ', this.boleto);
 
     })
 
@@ -227,7 +227,8 @@ export class CheckInComponent implements AfterViewInit {
     })
 
     this.fiesta = res[0]
-    console.log('this.fiesta ::: ', this.fiesta);
+
+    this.checking = this.fiesta.checking
     this.formInit.patchValue({
       tipo: '',
       boleto: ''

@@ -191,7 +191,7 @@
 
 
                                             </div>
-                                            <div class=" col-12 col-md-6 mt-4 text-center">
+                                            <div class=" col-12 col-md-6 mt-4 text-center" *ngIf="fiesta.checking">
                                                 <div class="ma qrcodeImage text-center">
 
                                                     <qrcode (qrCodeURL)="onChangeURL($event)" [qrdata]="getQr(invitado)"

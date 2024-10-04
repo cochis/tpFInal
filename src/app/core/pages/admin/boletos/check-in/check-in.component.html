@@ -70,7 +70,7 @@
                             (change)="filterBy(formInit.value)">
                             <option value="">Selecciona un tipo</option>
                             <option value="nombre">Nombre</option>
-                            <option value="mesa">Mesa</option>
+                            <option value="mesa" *ngIf="fiesta.mesaOk">Mesa</option>
 
                         </select>
                     </div>
@@ -123,7 +123,7 @@
 
                 <div class="card-body">
                     <div class="row">
-                        <div class="row text-center">
+                        <div class="row text-center" *ngIf="checking">
                             <div class="col-12">
 
                                 <h3>Cantidad de invitaciones: {{boleto.cantidadInvitados}} </h3>
@@ -168,7 +168,7 @@
                                 <div class="col-12 col-md-6  mt-3 text-center ">
 
                                     <button type="submit" class="btn btn-lg btn-block but  "
-                                        [disabled]="(boleto.cantidadInvitados < (boleto.ocupados + this.form.value.cantidad)) || boleto.ocupados == boleto.cantidadInvitados">Editar</button>
+                                        [disabled]="((boleto.cantidadInvitados < (boleto.ocupados + this.form.value.cantidad)) || boleto.ocupados == boleto.cantidadInvitados) && checking">Editar</button>
 
                                 </div>
                                 <div class="col-12 col-md-6  mt-3 text-center">

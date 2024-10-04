@@ -145,8 +145,8 @@ export class VistaUsuariosComponent {
     }
   }
   getCatalog(tipo: string, id: string) {
-    console.log('id::: ', id);
-    console.log('tipo::: ', tipo);
+    // console.log('id::: ', id);
+    // console.log('tipo::: ', tipo);
     if (id) {
       switch (tipo) {
         case 'rol':
@@ -194,7 +194,7 @@ export class VistaUsuariosComponent {
     var cantidadFiestas = usr.cantidadFiestas
     var cantidadGalerias = usr.cantidadGalerias
     items.forEach((compra, i) => {
-      console.log('compra::: ', compra);
+      // console.log('compra::: ', compra);
       compra.uso.forEach(us => {
         this.paquetes.forEach(paq => {
 

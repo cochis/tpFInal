@@ -101,6 +101,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
 
         this.invitacionsService.cargarInvitacionByFiesta(this.fiestaId).subscribe(async (resp: any) => {
           this.invitacion = resp.invitacion.data
+
           this.restParty()
           this.invitacion = await this.dateToNumber(this.invitacion)
           this.invitacion.mesa = this.boleto.mesa

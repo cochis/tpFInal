@@ -39,12 +39,13 @@
                                         invitacion.byFileInvitacion.includes('.gif') ||
                                         invitacion.byFileInvitacion.includes('.jpeg') ||
                                         invitacion.byFileInvitacion.includes('.jpg') ||
+                                        invitacion.byFileInvitacion.includes('.webp') ||
                                         invitacion.byFileInvitacion.includes('.tiff') 
                                         ">
 
                     <img [src]="url+'/upload/invitaciones/'+invitacion.byFileInvitacion" alt="" class=" pointer"
                         *ngIf="invitacion"
-                        style="margin-top: 50px ;width: 80%; max-width: 400px; margin-bottom:50px; border: 10px solid {{invitacion.byFileColorFr}};">
+                        style="margin-top: 50px ;width: 80%;   margin-bottom:50px; border: 10px solid {{invitacion.byFileColorFr}};">
 
 
                 </ng-container>
@@ -94,7 +95,7 @@
                     <h1 class="card-title mt-3 pacifico  ">Invitación válida para:</h1>
                     <h1 class="card-text   lato-bold upper" style="color:{{invitacion.cWhite}}">{{invitacion.invitado}}
                     </h1>
-                    <h2 class="  lato-regular-italic"> <b
+                    <h2 class="  lato-regular-italic" *ngIf="invitacion.cantidad >0"> <b
                             style="color:{{invitacion.cWhite}}">{{invitacion.cantidad}}</b> pases</h2>
                     <h1 class="card-text   lato-bold upper" *ngIf="invitacion.mesa">Mesa <b>{{invitacion.mesa}}</b>
                     </h1>
@@ -316,7 +317,7 @@
                             boleto</h2>
                     </div>
                     <!-- [imageSrc]="url+'/upload/invitaciones/'+invitacion.img1"  -->
-                    <div class="qrcodeImage text-center  mg ma pt-3" *ngIf="boleto">
+                    <div class="qrcodeImage text-center  mg ma pt-3" *ngIf="boleto && checking">
                         <qrcode [qrdata]="getQr(boleto)" [allowEmptyString]="true"
                             [ariaLabel]="'QR Code image with the following content...'" [cssClass]="'center'"
                             [elementType]="'canvas'" [errorCorrectionLevel]="'M'" [imageHeight]="50" [imageWidth]="50"
@@ -344,7 +345,7 @@
                     </div>
                 </div>
                 <div>
-                    <div class="card mt-3 p-0 nborder" *ngIf="!vistaTemp && !boleto ">
+                    <div class="card mt-3 p-0 nborder" *ngIf="!vistaTemp && !boleto  && checking">
 
                         <!-- [imageSrc]="url+'/upload/invitaciones/'+invitacion.img1" -->
                         <qrcode [qrdata]="getQr()" [allowEmptyString]="true" [ariaLabel]="'Visitados '+tUrl"
@@ -413,7 +414,7 @@
                     </div>
                 </div>
                 <ul style="color:{{invitacion.cWhite}}; list-style: none;">
-                    <li *ngFor="let nota of  notas">{{nota.texto}}</li>
+                    <li *ngFor="let nota of  notas" class="upper">{{nota.texto}}</li>
                 </ul>
 
 
@@ -614,7 +615,7 @@
                 </div>
                 <!-- [imageSrc]="invitacion.img1"  -->
                 <div>
-                    <div class="card mt-3 p-0 nborder  ">
+                    <div class="card mt-3 p-0 nborder  " *ngIf="checking">
                         <qrcode [qrdata]="getQr()" [allowEmptyString]="true" [ariaLabel]="'Ticketparty.com'"
                             [cssClass]="'center'" [elementType]="'canvas'" [errorCorrectionLevel]="'M'"
                             [imageHeight]="50" [imageWidth]="50" [margin]="4" [scale]="1"

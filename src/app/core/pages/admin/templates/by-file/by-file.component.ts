@@ -126,11 +126,11 @@ export class ByFileComponent {
     } else {
       this.restParty()
       this.state = this.route.snapshot.queryParams
-      console.log('this.state::: ', this.state);
+      // console.log('this.state::: ', this.state);
       for (let key in this.state) {
         ++this.count;
       }
-      console.log('this.count::: ', this.count);
+      // console.log('this.count::: ', this.count);
       if (this.count == 0) {
         this.vistaTemp = true
         this.invitacion = {
@@ -228,7 +228,7 @@ export class ByFileComponent {
         this.donde3Check = (this.state.donde3Check == 'true') ? true : false
         this.hospedajeCheck = (this.state.hospedajeCheck == 'true') ? true : false
         this.invitacion = this.state
-        console.log('this.invitacion::: ', this.invitacion);
+        // console.log('this.invitacion::: ', this.invitacion);
         this.date = this.invitacion.fiestaDate
         this.btnBack = true
         this.checking = (this.state.checking == 'true') ? true : false
