@@ -431,7 +431,7 @@ export class CrearFiestaComponent {
 
   getUsersById() {
     this.usuariosService.cargarUsuarioByCreador(this.uid).subscribe((resp) => {
-      console.log('resp::: ', resp);
+
       if (resp.usuarios.length == 1 && this.rol == this.SLN) {
 
         this.functionsService.alert('Usuarios', 'No tienes ningún anfitrión ', 'info')

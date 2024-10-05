@@ -77,6 +77,7 @@ export class ByFileComponent {
     if (this.fiestaId && this.boletoId) {
       this.boletosService.cargarBoletoById(this.boletoId).subscribe((resp: any) => {
         this.boleto = resp.boleto
+
         if (!this.boleto.activated) {
           this.functionsService.alert('Boleto eliminado', 'Contactar con el anfitrion', 'info')
           this.functionsService.navigateTo('/')
@@ -89,18 +90,19 @@ export class ByFileComponent {
           })
         })
       }, (error) => {
-        // console.error('Error', error)
+        console.error('Error', error)
         this.functionsService.alertError(error, 'Boletos')
       })
 
       // Se carga la fiesta por ID  
       this.fiestasService.cargarFiestaById(this.fiestaId).subscribe((resp: any) => {
         this.fiesta = resp.fiesta
-        // console.log('this.fiesta ::: ', this.fiesta);
+
         this.checking = this.fiesta.checking
 
         this.invitacionsService.cargarInvitacionByFiesta(this.fiestaId).subscribe(async (resp: any) => {
           this.invitacion = resp.invitacion.data
+
           this.restParty()
           this.invitacion = await this.dateToNumber(this.invitacion)
           this.invitacion.mesa = this.boleto.mesa
@@ -114,23 +116,23 @@ export class ByFileComponent {
           this.itinerarios = this.invitacion.itinerarios
           this.notas = this.invitacion.notas
         }, (error) => {
-          // console.error('Error', error)
+          console.error('Error', error)
           this.functionsService.alertError(error, 'Fiestas')
           this.functionsService.navigateTo('/')
         })
       }, (error) => {
-        // console.error('Error', error)
+        console.error('Error', error)
         this.functionsService.alertError(error, 'Fiestas')
         this.functionsService.navigateTo('/')
       })
     } else {
       this.restParty()
       this.state = this.route.snapshot.queryParams
-      // console.log('this.state::: ', this.state);
+
       for (let key in this.state) {
         ++this.count;
       }
-      // console.log('this.count::: ', this.count);
+
       if (this.count == 0) {
         this.vistaTemp = true
         this.invitacion = {
@@ -228,7 +230,7 @@ export class ByFileComponent {
         this.donde3Check = (this.state.donde3Check == 'true') ? true : false
         this.hospedajeCheck = (this.state.hospedajeCheck == 'true') ? true : false
         this.invitacion = this.state
-        // console.log('this.invitacion::: ', this.invitacion);
+
         this.date = this.invitacion.fiestaDate
         this.btnBack = true
         this.checking = (this.state.checking == 'true') ? true : false
@@ -292,6 +294,7 @@ export class ByFileComponent {
     this.loading = true
     data = JSON.parse(data)
     this.boleto.confirmado = !this.boleto.confirmado
+
     if (!this.boleto.confirmado) {
       this.boleto.fechaConfirmacion = undefined
     } else {
@@ -300,6 +303,7 @@ export class ByFileComponent {
     this.boletosService.registrarAsistencia(this.boleto).subscribe((res: any) => {
       if (res.boletoActualizado.confirmado) {
         this.boleto.cantidadInvitados
+
         this.loading = false
         /*   Swal.fire({
             title: "Si van a asistir menos personas confirmar la cantidad",
@@ -319,7 +323,7 @@ export class ByFileComponent {
                 return login
   
               } catch (error) {
-                 // console.error('Error', error)
+                 console.error('Error', error)
                 Swal.showValidationMessage(`
                   Request failed: ${error}
                 `);
@@ -431,7 +435,7 @@ export class ByFileComponent {
         })
       })
       .catch(err => {
-        // console.error('Error', err)
+        console.error('Error', err)
         return {
           ok: false,
           err

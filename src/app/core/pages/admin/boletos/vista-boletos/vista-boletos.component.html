@@ -104,7 +104,8 @@
                                             -fiterBoletos(fiesta.uid):'N/A' }}</td>
 
 
-                                        <td class="upper prima" *ngIf=" fiterBoletos(fiesta.uid) == 0">
+                                        <td class="upper prima" *ngIf=" fiesta.cantidad
+                                        -fiterBoletos(fiesta.uid) < 0">
                                             <i class="icon-battery-0"></i>
                                         </td>
                                         <td class="upper prima"

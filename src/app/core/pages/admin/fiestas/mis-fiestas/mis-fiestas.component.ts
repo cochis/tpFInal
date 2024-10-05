@@ -139,7 +139,7 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
       this.fiestasService.cargarFiestasByanfitrion(this.usuario.uid).subscribe(resp => {
         this.fiestas = this.functionsService.getActives(resp.fiestas)
         this.fiestasTemp = this.fiestas
-        // console.log('this.fiestas::: ', this.fiestas);
+
         this.fiestas.forEach((fst, i) => {
           this.blt = {
             fiesta: fst,
@@ -157,7 +157,7 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
       this.fiestasService.cargarFiestasBySalon(this.usuario.salon[0]).subscribe(resp => {
         this.fiestas = this.functionsService.getActives(resp.fiestas)
         this.fiestasTemp = this.fiestas
-        // console.log('this.fiestas::: ', this.fiestas);
+
         this.fiestas.forEach((fst, i) => {
           this.blt = {
             fiesta: fst,
@@ -174,7 +174,7 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
       this.fiestasService.cargarFiestasByEmail(this.usuario.uid).subscribe(resp => {
         this.fiestas = this.functionsService.getActives(resp.fiestas)
         this.fiestasTemp = this.fiestas
-        // console.log('this.fiestas::: ', this.fiestas);
+
         this.fiestas.forEach((fst, i) => {
           this.blt = {
             fiesta: fst,
@@ -298,7 +298,7 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
           this.functionsService.alertUpdate('Imagen actualizada')
         },
         (err) => {
-          // console.error('Error', err)
+          console.error('Error', err)
           this.functionsService.alertError(err, 'Subir imagen')
         },
       )
@@ -351,7 +351,7 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
           this.functionsService.alert("Notificaciones enviadas", "Recuerda pedir a tus invitados que activen las notificaciones en su invitación", "success")
         },
           (err) => {
-            // console.error('Error', err)
+            console.error('Error', err)
             this.functionsService.alertError(err, 'Push Notifiactions')
           })
       }

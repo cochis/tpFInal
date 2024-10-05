@@ -45,7 +45,7 @@
 
                     <img [src]="url+'/upload/invitaciones/'+invitacion.byFileInvitacion" alt="" class=" pointer"
                         *ngIf="invitacion"
-                        style="margin-top: 50px ;width: 80%;   margin-bottom:50px; border: 10px solid {{invitacion.byFileColorFr}};">
+                        style="margin-top: 50px ;width: 80%; max-width: 600px ; margin-bottom:50px; border: 10px solid {{invitacion.byFileColorFr}};">
 
 
                 </ng-container>
@@ -93,7 +93,7 @@
                 style="width: 100%; margin: auto; border: none; background-color: {{invitacion.byFileColorBG}};">
                 <div class="card-body  " style="color:{{invitacion.byFileColorTx}};">
                     <h1 class="card-title mt-3 pacifico  ">Invitación válida para:</h1>
-                    <h1 class="card-text   lato-bold upper" style="color:{{invitacion.cWhite}}">{{invitacion.invitado}}
+                    <h1 class="card-text   lato-bold upper" style="color:{{invitacion.cWhite}}"> {{boleto.nombreGrupo}}
                     </h1>
                     <h2 class="  lato-regular-italic" *ngIf="invitacion.cantidad >0"> <b
                             style="color:{{invitacion.cWhite}}">{{invitacion.cantidad}}</b> pases</h2>
@@ -317,12 +317,13 @@
                             boleto</h2>
                     </div>
                     <!-- [imageSrc]="url+'/upload/invitaciones/'+invitacion.img1"  -->
-                    <div class="qrcodeImage text-center  mg ma pt-3" *ngIf="boleto && checking">
+                    <div class="qrcodeImage text-center  mg ma pt-3" *ngIf="boleto  ">
                         <qrcode [qrdata]="getQr(boleto)" [allowEmptyString]="true"
                             [ariaLabel]="'QR Code image with the following content...'" [cssClass]="'center'"
                             [elementType]="'canvas'" [errorCorrectionLevel]="'M'" [imageHeight]="50" [imageWidth]="50"
                             [margin]="4" [scale]="1" [colorDark]="invitacion.byFileColorQr"
-                            [colorLight]="invitacion.byFileColorBG" [title]="getQr(boleto)" [width]="280">
+                            [colorLight]="invitacion.byFileColorBG" [title]="getQr(boleto)" [width]="280"
+                            *ngIf="boleto && checking">
                         </qrcode>
 
 
@@ -334,7 +335,7 @@
                         <button class="btn "
                             style="background-color: {{invitacion.byFileColorFr}}; color:{{invitacion.byFileColorTx}} ; border: 3px solid {{invitacion.byFileColorBG}}"
                             type="button" (click)="confirmar(getQr(boleto))" *ngIf="boleto.confirmado">
-                            Quitar conformacion
+                            Quitar conformación
                         </button>
                         <button class="btn mt-3 mb-5" *ngIf="fiesta.galeria"
                             style="background-color: {{invitacion.byFileColorFr}}; color:{{invitacion.byFileColorTx}} ; border: 3px solid {{invitacion.byFileColorBG}}"

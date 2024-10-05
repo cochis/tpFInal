@@ -53,13 +53,13 @@ export class EditarInvitacionComponent {
 
     this.id = this.route.snapshot.params['id']
     this.edit = this.route.snapshot.params['edit']
-    // console.log('    this.edit ::: ', this.edit);
+
     if (this.edit == 'true') {
       this.edit = true
     } else {
       this.edit = false
     }
-    // console.log('this.edit ::: ', this.edit);
+
     this.getInvitacion(this.id)
     this.getFiesta(this.id)
   }
@@ -70,13 +70,13 @@ export class EditarInvitacionComponent {
     this.loading = true
     this.fiestasService.cargarFiestaById(id).subscribe((resp: CargarFiesta) => {
       this.fiesta = resp.fiesta
-      // console.log('this.fiesta::: ', this.fiesta);
+
 
       this.invitacionId = this.fiesta.invitacion
-      // console.log('this.invitacionId::: ', this.invitacionId);
+
     },
       (error: any) => {
-        // console.error('Error', error)
+        console.error('Error', error)
         this.loading = false
         this.functionsService.alert('Fiesta', 'Por favor intente mas tarde', 'error')
       })
@@ -98,7 +98,7 @@ export class EditarInvitacionComponent {
     return
   }
   createForm(fiesta: Fiesta) {
-    // console.log('fiesta::: ', fiesta);
+
     this.functionsService.numberDateTimeLocal(this.fiesta.fecha)
     this.form = this.fb.group({
       cPrincipal: ['#ffc0cb'],
@@ -190,7 +190,7 @@ export class EditarInvitacionComponent {
       byFileFrameWidth: [''],
     })
 
-    // console.log(this.form);
+
 
     this.loading = false
   }
@@ -199,7 +199,7 @@ export class EditarInvitacionComponent {
     this.createForm(this.fiesta)
   }
   async setFormWithData(invitacion: any) {
-    // console.log('invitacion::: ', invitacion);
+
 
     invitacion.data = await this.numberToData(invitacion.data)
     this.form = this.fb.group({
@@ -316,7 +316,7 @@ export class EditarInvitacionComponent {
     return JSON.stringify(qr)
   }
   setTemp(temp) {
-    // console.log('temp::: ', temp);
+
     temp.dateCreated = (typeof (temp.dateCreated) == 'number') ? this.functionsService.numberToDate(temp.dateCreated) : temp.dateCreated
     temp.donde1Date = (typeof (temp.donde1Date) == 'number') ? this.functionsService.numberToDate(temp.donde1Date) : temp.donde1Date
     temp.donde2Date = (typeof (temp.donde2Date) == 'number') ? this.functionsService.numberToDate(temp.donde2Date) : temp.donde2Date
@@ -439,7 +439,7 @@ export class EditarInvitacionComponent {
 
       this.actualizarInvitacion(this.invitacion).subscribe((resp: any) => {
         this.invitacion = resp.invitacionActualizado
-        // console.log('this.invitacion ::: ', this.fiesta);
+
         this.invitacion.data.fiestaId = this.fiesta.uid
         let iti = JSON.stringify(form.value.itinerarios)
         let not = JSON.stringify(form.value.notas)
@@ -492,10 +492,10 @@ export class EditarInvitacionComponent {
         this.form.value.notaCheck = true
       }
       let data = await this.numberToData(this.form.value)
-      // console.log('data::: ', data);
+
       this.invitacion.data = (data)
       this.invitacion.usuarioFiesta = this.fiesta.usuarioFiesta
-      // console.log('this.invitacion::: ', this.invitacion);
+
       this.actualizarInvitacion(this.invitacion).subscribe((res: any) => {
         this.invitacion = res.invitacionActualizado
         if (this.rol != this.URS) {
@@ -570,11 +570,9 @@ export class EditarInvitacionComponent {
     this.loading = true
     this.invitacionsService.cargarInvitacionByFiesta(id).subscribe(async resp => {
       this.invitacion = resp.invitacion
-      // console.log('resp.invitacion::: ', resp.invitacion);
-      // console.log('this.invitacion ::: ', this.invitacion);
       if (!this.invitacion) {
         setTimeout(() => {
-          // console.log('this.fiesta::: ', this.fiesta);
+
           this.setForm(this.fiesta)
         }, 800);
       } else {
@@ -597,7 +595,7 @@ export class EditarInvitacionComponent {
       }
     },
       (error) => {
-        // console.error('Error', error)
+        console.error('Error', error)
         this.functionsService.alertError(error, 'Invitacion')
       })
   }
@@ -647,13 +645,13 @@ export class EditarInvitacionComponent {
 
   }
   cambiarImagen(file: any, type: string) {
-    // console.log('type::: ', type);
+
 
     this.viewVideo = false
     if (file.target.files) {
 
       this.imagenSubir = file.target.files[0]
-      // console.log('this.imagenSubir::: ', this.imagenSubir);
+
       if (!file.target.files[0]) {
         this.imgTemp = null
       } else {
@@ -666,7 +664,7 @@ export class EditarInvitacionComponent {
       }
     } else {
 
-      // console.log('this.form.value::: ', this.form);
+
       this.viewVideo = true
     }
   }
@@ -685,7 +683,7 @@ export class EditarInvitacionComponent {
         dateCreated: this.today,
         lastEdited: this.today
       }
-      // console.log('invi::: ', invi);
+
       this.invitacionsService.crearInvitacion(invi).subscribe((resp: any) => {
         this.invitacion = resp.invitacion
         this.fileService.actualizarFotoTemplate(this.imagenSubir, 'invitaciones', this.invitacion.fiesta, type)
@@ -699,9 +697,7 @@ export class EditarInvitacionComponent {
               this.invitacion.data[type] = img
               this.loading = true
               setTimeout(() => {
-                // console.log('entro');
 
-                // console.log('this.invitacion::: ', this.invitacion);
                 this.actualizarInvitacion(this.invitacion).subscribe((resp: any) => {
                   this.invitacion = resp.invitacionActualizado
                   this.loading = false
@@ -711,7 +707,7 @@ export class EditarInvitacionComponent {
               }, 800);
             },
             (err) => {
-              // console.error('Error', err)
+              console.error('Error', err)
               this.functionsService.alertError(err, 'Error')
             },
           )
@@ -754,7 +750,7 @@ export class EditarInvitacionComponent {
 
             setTimeout(() => {
 
-              // console.log('this.invitacion::: ', this.invitacion);
+
               this.actualizarInvitacion(this.invitacion).subscribe((resp: any) => {
                 this.invitacion = resp.invitacionActualizado
               })
@@ -764,7 +760,7 @@ export class EditarInvitacionComponent {
 
           },
           (err) => {
-            // console.error('Error', err)
+            console.error('Error', err)
             this.functionsService.alertError(err, 'Error')
           },
         )

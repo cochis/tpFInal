@@ -94,7 +94,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
       let restore = false
       this.boletosService.cargarBoletoByFiesta(this.id).subscribe((resp: CargarBoleto) => {
         this.boletoTemp = resp.boleto
-        // console.log(' this.boletoTemp::: ', this.boletoTemp);
+
         this.boletoTemp.forEach((blt, i) => {
           if (
             this.boletoTemp[i].activated == blt.activated &&
@@ -107,7 +107,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
             this.boletoTemp[i].whatsapp == blt.whatsapp
           ) {
           } else {
-            // console.log('this.fiesta::: ', this.fiesta);
+
             this.setForm(this.fiesta)
           }
         });
@@ -132,7 +132,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
   getFiesta(id: string) {
     this.fiestasService.cargarFiestaById(id).subscribe((resp: any) => {
       this.fiesta = resp.fiesta
-      // console.log('this.fiesta::: ', this.fiesta);
+
       this.gruposService.cargarGruposAll().subscribe((resp: CargarGrupos) => {
         this.grupos = resp.grupos
       },
@@ -315,7 +315,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
         },
           (error) => {
             this.loading = false
-            // console.error('error::: ', error);
+            console.error('error::: ', error);
             this.functionsService.alertError(error, 'Boletos')
           })
       } else {
@@ -332,7 +332,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
         },
           (error) => {
             this.loading = false
-            // console.error('error::: ', error);
+            console.error('error::: ', error);
             this.functionsService.alertError(error, 'Boletos')
           })
       }
@@ -353,7 +353,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
     this.fiestasService.cargarFiestasAll().subscribe((resp: CargarFiestas) => {
       this.fiestas = this.functionsService.getActives(resp.fiestas)
     }, (error) => {
-      // console.error('error::: ', error);
+      console.error('error::: ', error);
       this.functionsService.alertError(error, 'Boletos')
     })
   }
@@ -410,7 +410,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
     if (this.role === this.URS) {
       this.form.value.fiesta = this.boleto.fiesta
     }
-    // console.log('this.form.value.invitados[i]::: ', this.form.value.invitados[i]);
+
     if (this.form.value.invitados[i].uid) {
       this.actualizarBoleto(this.form.value.invitados[i])
 
@@ -443,7 +443,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
           if (this.fiesta.invitacion.includes('default')) {
             texto = `Hola ${nGrupo.toLocaleUpperCase()} ${cantT} ${textoP} a *${evento.toLocaleUpperCase()}*  ${this.urlT}core/templates/default/${this.fiesta.uid}/${this.idBoleto} ${bl}  *FAVOR DE CONFIRMAR ASISTENCIA*`
           } else {
-            texto = `Hola ${nGrupo.toLocaleUpperCase()} ${cantT} ${textoP} a *${evento.toLocaleUpperCase()}*  ${this.urlT}core/invitaciones${this.fiesta.invitacion}${this.fiesta.uid}/${this.idBoleto} ${bl}  *FAVOR DE CONFIRMAR ASISTENCIA*`
+            texto = `Hola ${nGrupo.toLocaleUpperCase()} ${cantT} ${textoP} a *${evento.toLocaleUpperCase()}*  ${this.urlT}core/templates/${this.fiesta.invitacion}/${this.fiesta.uid}/${this.idBoleto} ${bl}  *FAVOR DE CONFIRMAR ASISTENCIA*`
           }
           let url = `https://api.whatsapp.com/send?phone=${tel}&text=${encodeURIComponent(texto)}`
           Swal.fire({ title: "Enviado por whatsapp!", text: "", icon: "success", confirmButtonColor: "#13547a" });
@@ -459,7 +459,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
             this.functionsService.alertUpdate('Boletos')
           },
             (error) => {
-              // console.error('error::: ', error);
+              console.error('error::: ', error);
               this.loading = false
               this.functionsService.alertError(error, 'Boletos')
             })
@@ -474,7 +474,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
             Swal.fire({ title: "Enviado por Correo!", text: "", icon: "success", confirmButtonColor: "#13547a" });
           },
             (error) => {
-              // console.error('error::: ', error);
+              console.error('error::: ', error);
               this.loading = false
               this.functionsService.alertError(error, 'Boletos')
             })
@@ -490,27 +490,27 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
     this.modalService.open(content);
   }
   saveBoleto(boleto) {
-    // console.log('boleto::: ', boleto);
+
     this.boletosService.crearBoleto(boleto).subscribe((resp: any) => {
       this.idBoleto = resp.boleto.uid
       this.functionsService.alertUpdate('Boletos')
       this.setForm(this.fiesta)
     },
       (error) => {
-        // console.error('error::: ', error);
+        console.error('error::: ', error);
         this.loading = false
         this.functionsService.alertError(error, 'Boletos')
       })
 
   }
   actualizarBoleto(boleto) {
-    // console.log('boleto::: ', boleto);
+
     this.boletosService.actualizarBoleto(boleto).subscribe((resp: any) => {
       this.idBoleto = resp.boletoActualizado.uid
       this.functionsService.alertUpdate('Boletos')
     },
       (error) => {
-        // console.error('error::: ', error);
+        console.error('error::: ', error);
         this.loading = false
         this.functionsService.alertError(error, 'Boletos')
       })
@@ -562,7 +562,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
         });
       });
       this.boletosService.deleteBoletos().subscribe(resp => {
-        // console.log('resp::: ', resp);
+
 
         this.convertedJson[0].forEach(bol => {
           this.loading = false
