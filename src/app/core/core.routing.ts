@@ -72,6 +72,7 @@ import { EditarParametroComponent } from './pages/admin/parametros/editar-parame
 import { CrearParametroComponent } from './pages/admin/parametros/crear-parametro/crear-parametro.component';
 import { VistaParametrosComponent } from './pages/admin/parametros/vista-parametros/vista-parametros.component';
 import { ByFileComponent } from './pages/admin/templates/by-file/by-file.component';
+import { EjemplosComponent } from './pages/ejemplos/ejemplos.component';
 
 
 const routes: Routes = [
@@ -89,6 +90,12 @@ const routes: Routes = [
         path: 'about',
         component: AboutComponent,
         data: { titulo: 'Quienes somos' }
+
+      },
+      {
+        path: 'examples',
+        component: EjemplosComponent,
+        data: { titulo: 'Ejemplos' }
 
       },
       {

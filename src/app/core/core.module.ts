@@ -79,6 +79,7 @@ import { VistaParametrosComponent } from './pages/admin/parametros/vista-paramet
 import { CrearParametroComponent } from './pages/admin/parametros/crear-parametro/crear-parametro.component';
 import { EditarParametroComponent } from './pages/admin/parametros/editar-parametro/editar-parametro.component';
 import { ByFileComponent } from './pages/admin/templates/by-file/by-file.component';
+import { EjemplosComponent } from './pages/ejemplos/ejemplos.component';
 
 
 
@@ -161,7 +162,8 @@ import { ByFileComponent } from './pages/admin/templates/by-file/by-file.compone
     VistaParametrosComponent,
     CrearParametroComponent,
     EditarParametroComponent,
-    ByFileComponent
+    ByFileComponent,
+    EjemplosComponent
 
   ],
   imports: [

@@ -46,12 +46,18 @@
         </div>
 
     </section>
-    <div class="container mt-2">
+
+
+    <div class="container mt-2 ma text-center">
+        <div class="justify-content-center text-center">
+            <h5 class=" mb-2">Búsqueda por lista</h5>
+
+        </div>
         <form [formGroup]="formInit" (ngSubmit)="findInvite()">
-            <div class="row">
+            <div class="row ma">
 
 
-                <div class="col-12 col-md-3 mt-3">
+                <div class="col-12 col-md-3 mt-3 ma">
                     <div class="form-group">
                         <label for="fiesta">Fiesta</label>
                         <select name="fiesta" id="fiesta" formControlName="fiesta" #fiesta class="form-control upper"
@@ -63,7 +69,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-12 col-md-3 mt-3" *ngIf="formInit.value.fiesta != ''">
+                <div class="col-12 col-md-3 mt-3 ma" *ngIf="formInit.value.fiesta != ''">
                     <div class="form-group">
                         <label for="tipo">Tipo</label>
                         <select name="tipo" id="tipo" formControlName="tipo" class="form-control upper"
@@ -75,19 +81,22 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-12 col-md-3 mt-3" *ngIf="formInit.value.fiesta != '' && formInit.value.tipo =='nombre'">
+                <div class="col-12 col-md-3 mt-3 ma"
+                    *ngIf="formInit.value.fiesta != '' && formInit.value.tipo =='nombre'">
                     <div class="form-group">
                         <label for="boleto">Boleto</label>
                         <select name="boleto" id="boleto" formControlName="boleto" #boleto class="form-control upper"
                             (change)="setBoleto(boleto.value)">
                             <option value="">Selecciona un boleto</option>
-                            <option [value]="item.uid" *ngFor="let item of boletosFind">{{item.nombreGrupo}}</option>
+                            <option [value]="item.uid" *ngFor="let item of boletosFind">{{item.nombreGrupo}}
+                            </option>
 
 
                         </select>
                     </div>
                 </div>
-                <div class="col-12 col-md-3 mt-3" *ngIf="formInit.value.fiesta != '' && formInit.value.tipo =='mesa'">
+                <div class="col-12 col-md-3 mt-3 ma"
+                    *ngIf="formInit.value.fiesta != '' && formInit.value.tipo =='mesa'">
                     <div class="form-group">
                         <label for="boleto">Boleto</label>
                         <select name="boleto" id="boleto" formControlName="boleto" #boleto class="form-control upper"
@@ -99,7 +108,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-12 col-md-3 mt-3" *ngIf="formInit.value.fiesta != '' && formInit.value.tipo !=''">
+                <div class="col-12 col-md-3 mt-3 ma" *ngIf="formInit.value.fiesta != '' && formInit.value.tipo !=''">
                     <div class="form-group mt-3">
                         <button type="submit" class="btn btn-lg btn-block but  ">CheckIn</button>
                     </div>
@@ -115,6 +124,7 @@
         </form>
 
     </div>
+
 
     <section class="contact-section section-padding section-bg animated1 fadeIn " id="section_5" *ngIf="editBoleto">
 

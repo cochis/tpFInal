@@ -69,8 +69,14 @@ export class GaleriaComponent implements OnInit, OnDestroy {
   ) {
 
     this.fiestaId = this.route.snapshot.params['fiesta']
+    console.log('this.fiestaId::: ', this.fiestaId);
+
     this.boletoId = this.route.snapshot.params['boleto']
+    console.log(' this.boletoId::: ', this.boletoId);
+
     this.anfitrionId = this.route.snapshot.params['anfitrion']
+    console.log('this.anfitrionId::: ', this.anfitrionId);
+
 
 
     if (!this.boletoId) {
@@ -126,7 +132,7 @@ export class GaleriaComponent implements OnInit, OnDestroy {
 
           this.functionsService.navigateTo(`/core/templates/default/${this.fiestaId}/${this.boletoId}`)
         } else {
-          this.functionsService.navigateTo(`/core/invitaciones/xv/xv2/${this.fiestaId}/${this.boletoId}`)
+          this.functionsService.navigateTo(`/core/templates/byFile/${this.fiestaId}/${this.boletoId}`)
 
         }
       }
