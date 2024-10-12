@@ -298,6 +298,38 @@
 
 
             </div>
+            <div class="mt-3" *ngIf="mesaRegalosCheck"
+                style="width: 100%;text-align: center;margin:auto; background-color: {{invitacion.cWhite}}">
+                <div class="row">
+
+                    <div class="col-12">
+
+                        <h2 class="mt-3 pacifico" style="color:{{invitacion.cPrincipal}}">Mesa de regalos</h2>
+                    </div>
+                </div>
+                <div style="width: 80%; max-width: 450px; min-width: 200px; padding: 15px;margin: auto;">
+                    <div class="card mt-3 p-0 nborder">
+                        <img [src]="url+'/upload/invitaciones/'+((invitacion.mesaRegalosImg !== '') ? invitacion.mesaRegalosImg :'notImage') "
+                            class="card-img-top">
+                        <div class="card-body">
+                            <a href="{{invitacion.mesaRegalosUrl}}" class="pointer"
+                                style="color:{{invitacion.cPrincipal}}" target="_blank" rel="noopener noreferrer">
+
+                                <h5 class="card-title mt-2 dancing upper">{{invitacion.mesaRegalosLugar}}</h5>
+                            </a>
+                            <br>
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
 
 
             <div class="  mt-3 "
@@ -318,14 +350,19 @@
                         <h5 class="  card-title mt-2 dancing text-center">{{invitacion.ItinerarioName}}
                         </h5>
                         <table *ngIf="itinerarios.length >0">
+                            <tr>
+                                <th class="upper text-center" style="color:{{invitacion.cSecond}}">Evento</th>
+                                <th class="upper text-center" style="color:{{invitacion.cSecond}}">
+                                    Horario</th>
+                            </tr>
                             <tr style=" border-top: 2px solid {{invitacion.cPrincipal}} ; height: 60px; line-height: 60px;"
                                 *ngFor="let iti of itinerarios">
-                                <th class="text-start ps-3 ">
+                                <th class="text-center ps-3  upper">
                                     <span class="  lato-regular-italic mt-2"
                                         style="color:{{invitacion.cPrincipal}}">{{iti.name}}</span>
                                 </th>
-                                <th>
-                                    <span style="color:{{invitacion.cSecond}}">{{iti.hr}}</span>
+                                <th class="upper">
+                                    <span style="color:{{invitacion.cPrincipal}}">{{iti.hr}}</span>
                                 </th>
                             </tr>
                         </table>
@@ -357,12 +394,12 @@
                             </qrcode>
 
 
-                            <button class="btn "
+                            <button class="btn  upper"
                                 style="background-color: {{invitacion.cPrincipal}}; color:{{invitacion.cWhite}} ; border: 3px solid {{invitacion.cSecond}}"
                                 type="button" (click)="confirmar(getQr(boleto))" *ngIf="!boleto.confirmado">
                                 Confirma tu asistencia
                             </button>
-                            <button class="btn "
+                            <button class="btn upper "
                                 style="background-color: {{invitacion.cPrincipal}}; color:{{invitacion.cWhite}} ; border: 3px solid {{invitacion.cSecond}}"
                                 type="button" (click)="confirmar(getQr(boleto))" *ngIf="boleto.confirmado">
                                 Quitar conformacion
@@ -387,13 +424,13 @@
                             [width]="280">
                         </qrcode>
                         <div class="card-body" *ngIf="checking">
-                            <button class="btn "
+                            <button class="btn upper"
                                 style="background-color: {{invitacion.cPrincipal}}; color:{{invitacion.cWhite}} ; border: 3px solid {{invitacion.cSecond}}"
                                 type="button">
                                 Confirma tu asistencia
                             </button>
 
-                            <button class="btn mt-3"
+                            <button class="btn upper mt-3"
                                 style="background-color: {{invitacion.cPrincipal}}; color:{{invitacion.cWhite}} ; border: 3px solid {{invitacion.cSecond}}"
                                 type="button">
                                 Sube tus fotos <i class="bi bi-images"
@@ -445,7 +482,7 @@
                     </div>
                 </div>
                 <ul style="color:{{invitacion.cWhite}}; list-style: none;">
-                    <li *ngFor="let nota of  notas">{{nota.texto}}</li>
+                    <li class="upper" *ngFor="let nota of  notas">{{nota.texto}}</li>
                 </ul>
 
 
@@ -599,9 +636,40 @@
 
 
             </div>
+            <div class="mt-3" *ngIf="mesaRegalosCheck"
+                style="width: 100%;text-align: center;margin:auto; background-color: {{invitacion.cWhite}}">
+                <div class="row">
 
+                    <div class="col-12">
+
+                        <h2 class="mt-3 pacifico" style="color:{{invitacion.cPrincipal}}">Mesa de regalos</h2>
+                    </div>
+                </div>
+                <div style="width: 80%; max-width: 450px; min-width: 200px; padding: 15px;margin: auto;">
+                    <div class="card mt-3 p-0 nborder">
+                        <img [src]="url+'/upload/invitaciones/'+((invitacion.mesaRegalosImg !== '') ? invitacion.mesaRegalosImg :'notImage') "
+                            class="card-img-top">
+                        <div class="card-body">
+                            <a href="{{invitacion.mesaRegalosUrl}}" class="pointer"
+                                style="color:{{invitacion.cPrincipal}}" target="_blank" rel="noopener noreferrer">
+
+                                <h5 class="card-title mt-2 dancing upper">{{invitacion.mesaRegalosLugar}}</h5>
+                            </a>
+                            <br>
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
             <div class="  mt-3 "
-                *ngIf="typeOf(invitacion.itinerarioCheck)=='boolean'? invitacion.itinerarioCheck!==false:invitacion.itinerarioCheck!=='false'"
+                *ngIf="(typeOf(invitacion.itinerarioCheck)=='boolean')? invitacion.itinerarioCheck!==false:invitacion.itinerarioCheck!=='false'"
                 style="width: 100%;text-align: center;margin:auto; background-color: {{invitacion.cPrincipal}};">
                 <div class="row ">
 
@@ -610,21 +678,27 @@
                         <h2 class="mt-3 pacifico  " style="color:{{invitacion.cWhite}};">Itinerario</h2>
                     </div>
                 </div>
-
                 <div style="width: 60%; max-width: 450px; margin: auto;"
                     *ngIf="typeOf(invitacion.itinerarioCheck)=='boolean'? invitacion.itinerarioCheck!==false:invitacion.itinerarioCheck!=='false'">
                     <div class="card  p-0 nborder">
 
 
-                        <h5 class="  card-title mt-2 dancing text-center">{{invitacion.ItinerarioName}}</h5>
+                        <h5 class="  card-title mt-2 dancing text-center">{{invitacion.ItinerarioName}}
+                        </h5>
                         <table *ngIf="itinerarios.length >0">
-                            <tr style=" border-top: 2px solid {{invitacion.cPrincipal}} ; height: 60px; line-height: 60px;"
+                            <tr class=" text-center">
+                                <th class="upper text-center" style="color:{{invitacion.cPrincipal}}">Evento</th>
+                                <th class="upper text-center" style="color:{{invitacion.cPrincipal }}">
+                                    Horario</th>
+                            </tr>
+                            <tr class="text-center"
+                                style=" border-top: 2px solid {{invitacion.cSecond}} ; height: 60px; line-height: 60px;"
                                 *ngFor="let iti of itinerarios">
-                                <th class="text-start ps-3 ">
-                                    <span class="  lato-regular-italic mt-2"
+                                <th class="text-center ps-3  upper">
+                                    <span class="  lato-regular-italic mt-2 text-center"
                                         style="color:{{invitacion.cPrincipal}}">{{iti.name}}</span>
                                 </th>
-                                <th>
+                                <th class="upper text-center">
                                     <span style="color:{{invitacion.cSecond}}">{{iti.hr}}</span>
                                 </th>
                             </tr>
@@ -686,7 +760,7 @@
                     </div>
                 </div>
                 <ul style="color:{{invitacion.cWhite}}; list-style: none;">
-                    <li *ngFor="let nota of  notas">{{nota.texto}}</li>
+                    <li class="upper" *ngFor="let nota of  notas">{{nota.texto}}</li>
                 </ul>
 
 

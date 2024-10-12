@@ -55,6 +55,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
   donde1Check: boolean
   donde2Check: boolean
   donde3Check: boolean
+  mesaRegalosCheck: boolean
   checking: boolean
   hospedajeCheck: boolean
   vistaTemp: boolean
@@ -112,6 +113,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
           this.donde2Check = this.invitacion.donde2Check
           this.donde3Check = this.invitacion.donde3Check
           this.hospedajeCheck = this.invitacion.hospedajeCheck
+          this.mesaRegalosCheck = this.invitacion.mesaRegalosCheck
           this.itinerarios = this.invitacion.itinerarios
           this.notas = this.invitacion.notas
         }, (error) => {
@@ -127,7 +129,6 @@ export class DefaultComponent implements OnInit, AfterViewInit {
     } else {
       this.restParty()
       this.state = this.route.snapshot.queryParams
-
       for (let key in this.state) {
         ++this.count;
       }
@@ -220,6 +221,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
       } else {
 
 
+
         this.vistaTemp = false
         this.itinerarios = JSON.parse(this.state.itinerarios)
         this.notas = JSON.parse(this.state.notas)
@@ -227,10 +229,12 @@ export class DefaultComponent implements OnInit, AfterViewInit {
         this.donde2Check = (this.state.donde2Check == 'true') ? true : false
         this.donde3Check = (this.state.donde3Check == 'true') ? true : false
         this.hospedajeCheck = (this.state.hospedajeCheck == 'true') ? true : false
+        this.mesaRegalosCheck = (this.state.mesaRegalosCheck == 'true') ? true : false
         this.invitacion = this.state
         this.date = this.invitacion.fiestaDate
         this.btnBack = true
         this.checking = (this.state.checking == 'true') ? true : false
+
       }
     }
   }
@@ -239,6 +243,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
   }
 
   async dateToNumber(data) {
+
     data.dateCreated = (typeof (data.dateCreated) == 'string') ? this.functionsService.dateToNumber(data.dateCreated) : data.dateCreated
     data.lastEdited = (data.lastEdited != undefined) ? (typeof (data.lastEdited) == 'string') ? this.functionsService.dateToNumber(data.lastEdited) : data.lastEdited : ''
     data.donde1Date = (typeof (data.donde1Date) == 'string') ? this.functionsService.dateToNumber(data.donde1Date) : data.donde1Date
@@ -248,6 +253,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
     data.donde2Check = (data.donde2Check == 'true' || data.donde2Check == true) ? true : false
     data.donde3Check = (data.donde3Check == 'true' || data.donde3Check == true) ? true : false
     data.fiestaDate = (typeof (data.donde3Date) == 'string') ? this.functionsService.dateToNumber(data.donde3Date) : data.donde3Date
+
     return await data
   }
   async numberToData(data) {
@@ -264,6 +270,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
   setData(fiesta, boleto) {
 
 
+
     this.metaService.generateTags({
       title: `${fiesta.nombre} -  ${this.functionsService.datePush(fiesta.fecha)}  `,
       description:
@@ -278,6 +285,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
   }
   ngAfterViewInit(): void {
     setTimeout(() => {
+
       if (this.boleto && this.fiesta) {
         this.setData(this.fiesta, this.boleto)
       }

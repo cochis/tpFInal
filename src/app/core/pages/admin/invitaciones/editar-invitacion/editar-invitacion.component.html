@@ -522,6 +522,63 @@
                                             </div>
 
                                         </div>
+                                        <hr class="mt-3 mb-3">
+                                        <div class="row text-center mt-3">
+                                            <h5>Mesa de regalos</h5>
+
+
+                                            <div class="col-6  col-md-4     mt-3 ma ">
+
+
+                                                <label class="form-check-label" for="mesaRegalosCheck">
+                                                    Mesa de regalos
+                                                </label>
+                                                <input class="form-check-input" type="checkbox" id="mesaRegalosCheck"
+                                                    #mesaRegalosCheck formControlName="mesaRegalosCheck">
+
+
+                                            </div>
+                                            <div class="col-12  col-md-6  mt-3 text-center "
+                                                *ngIf="form.value.mesaRegalosCheck">
+                                                <div class="form-group    image-upload ">
+                                                    <label for="mesaRegalosImg">Imagen de mesa de regalos
+                                                        <br>
+
+                                                        <img src="/assets/images/tp.png" alt="" class="pointer"
+                                                            *ngIf="invitacion==undefined || invitacion.data.mesaRegalosImg=='' "
+                                                            style="width: 150px;">
+
+                                                        <img [src]="url+'/upload/invitaciones/'+invitacion.data.mesaRegalosImg"
+                                                            alt="" class=" pointer" *ngIf="invitacion"
+                                                            style="width: 150px;">
+                                                        <!-- invitacion.data.mensajeImg!='' -->
+
+                                                    </label>
+                                                    <input type="file" id="mesaRegalosImg" #mesaRegalosImg
+                                                        (change)="cambiarImagen($event,'mesaRegalosImg' )">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-6   mt-3 ma" *ngIf="form.value.mesaRegalosCheck">
+                                                <div class="form-group ">
+                                                    <label for="mesaRegalosLugar ">Tienda</label>
+                                                    <input type="text" id="mesaRegalosLugar" #mesaRegalosLugar
+                                                        formControlName="mesaRegalosLugar">
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="col-12   mt-3" *ngIf="form.value.mesaRegalosCheck">
+                                                <div class="form-group ">
+                                                    <label for="mesaRegalosUrl ">Liga de mesa de regalos </label>
+                                                    <input type="text" id="mesaRegalosUrl" #mesaRegalosUrl
+                                                        formControlName="mesaRegalosUrl" style="width: 100%;">
+                                                </div>
+                                            </div>
+
+
+                                        </div>
 
                                         <hr class="mt-3 mb-3">
 
@@ -550,10 +607,10 @@
                                                     <ng-container [formGroupName]="i">
                                                         <div class="col-4   mt-3">
                                                             <div class="form-group ">
-                                                                <label for="name ">Texto</label>
+                                                                <label for="name ">Evento</label>
                                                                 <input type="text" class="form-control upper" id="name"
-                                                                    formControlName="name" required placeholder="Texto"
-                                                                    [readonly]="edit==='false'">
+                                                                    formControlName="name" required
+                                                                    placeholder="Iglesia" [readonly]="edit==='false'">
                                                             </div>
                                                             <span *ngIf="submited && errorControl['name'].errors "
                                                                 class="error">Es requerido
@@ -563,7 +620,8 @@
                                                             <div class="form-group ">
                                                                 <label for="hr ">Hora</label>
                                                                 <input type="text" class="form-control upper" id="hr"
-                                                                    formControlName="hr" required placeholder="Hora"
+                                                                    formControlName="hr" required
+                                                                    placeholder="18:00 o 6:00 PM "
                                                                     [readonly]="edit==='false'">
                                                             </div>
                                                             <span *ngIf="submited && errorControl['hr'].errors "
@@ -738,8 +796,12 @@
                                                         style="width: 150px;"
                                                         *ngIf="invitacion==undefined || invitacion.data.byFileInvitacion ==''">
                                                     <br>
+
+
                                                     <ng-container
-                                                        *ngIf="invitacion.data.byFileInvitacion.split('.')[1].includes('mp4') && form.value.typeFile =='video'">
+                                                        *ngIf=" invitacion.data.byFileInvitacion && 
+                                                        invitacion.data.typeFile =='video' &&
+                                                        invitacion.data.byFileInvitacion.split('.')[1].includes('mp4')">
                                                         <br> <video style="width: 80%; max-width: 400px;" controls>
                                                             <source
                                                                 [src]="url+'/upload/invitaciones/'+invitacion.data.byFileInvitacion"
@@ -1051,8 +1113,65 @@
                                             </div>
 
                                         </div>
-
                                         <hr class="mt-3 mb-3">
+                                        <div class="row text-center mt-3">
+                                            <h5>Mesa de regalos</h5>
+
+
+                                            <div class="col-6  col-md-4     mt-3 ma ">
+
+
+                                                <label class="form-check-label" for="mesaRegalosCheck">
+                                                    Mesa de regalos
+                                                </label>
+                                                <input class="form-check-input" type="checkbox" id="mesaRegalosCheck"
+                                                    #mesaRegalosCheck formControlName="mesaRegalosCheck">
+
+
+                                            </div>
+                                            <div class="col-12  col-md-6  mt-3 text-center "
+                                                *ngIf="form.value.mesaRegalosCheck">
+                                                <div class="form-group    image-upload ">
+                                                    <label for="mesaRegalosImg">Imagen de mesa de regalos
+                                                        <br>
+
+                                                        <img src="/assets/images/tp.png" alt="" class="pointer"
+                                                            *ngIf="invitacion==undefined || invitacion.data.mesaRegalosImg=='' "
+                                                            style="width: 150px;">
+
+                                                        <img [src]="url+'/upload/invitaciones/'+invitacion.data.mesaRegalosImg"
+                                                            alt="" class=" pointer" *ngIf="invitacion"
+                                                            style="width: 150px;">
+                                                        <!-- invitacion.data.mensajeImg!='' -->
+
+                                                    </label>
+                                                    <input type="file" id="mesaRegalosImg" #mesaRegalosImg
+                                                        (change)="cambiarImagen($event,'mesaRegalosImg' )">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-6   mt-3 ma" *ngIf="form.value.mesaRegalosCheck">
+                                                <div class="form-group ">
+                                                    <label for="mesaRegalosLugar ">Tienda</label>
+                                                    <input type="text" id="mesaRegalosLugar" #mesaRegalosLugar
+                                                        formControlName="mesaRegalosLugar">
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="col-12   mt-3" *ngIf="form.value.mesaRegalosCheck">
+                                                <div class="form-group ">
+                                                    <label for="mesaRegalosUrl ">Liga de mesa de regalos </label>
+                                                    <input type="text" id="mesaRegalosUrl" #mesaRegalosUrl
+                                                        formControlName="mesaRegalosUrl" style="width: 100%;">
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+
 
 
                                         <hr class="mt-3 mb-3">
@@ -1129,10 +1248,10 @@
                                                 <ng-container [formGroupName]="i">
                                                     <div class="col-4   mt-3">
                                                         <div class="form-group ">
-                                                            <label for="name ">Texto</label>
+                                                            <label for="name ">Evento</label>
                                                             <input type="text" class="form-control upper" id="name"
-                                                                formControlName="name" required placeholder="Texto"
-                                                                [readonly]="edit==='false'">
+                                                                formControlName="name" required
+                                                                placeholder="Iglesia ..." [readonly]="edit==='false'">
                                                         </div>
                                                         <span *ngIf="submited && errorControl['name'].errors "
                                                             class="error">Es requerido
@@ -1142,7 +1261,8 @@
                                                         <div class="form-group ">
                                                             <label for="hr ">Hora</label>
                                                             <input type="text" class="form-control upper" id="hr"
-                                                                formControlName="hr" required placeholder="Hora"
+                                                                formControlName="hr" required
+                                                                placeholder="18:00 o 6:00 PM "
                                                                 [readonly]="edit==='false'">
                                                         </div>
                                                         <span *ngIf="submited && errorControl['hr'].errors "

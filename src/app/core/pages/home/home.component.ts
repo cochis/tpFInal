@@ -9,6 +9,7 @@ import Swal from 'sweetalert2';
 import { TokenPushsService } from '../../services/tokenPush.service';
 import { SwPush } from '@angular/service-worker';
 import { MetaService } from '../../services/meta.service';
+import { AuthService } from 'src/app/auth/services/auth.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -33,7 +34,8 @@ export class HomeComponent implements AfterViewInit {
     private boletosService: BoletosService,
     private tokenPushService: TokenPushsService,
     private swpush: SwPush,
-    private metaService: MetaService
+    private metaService: MetaService,
+    private authService: AuthService
 
   ) {
     this.metaService.createCanonicalURL()
@@ -41,6 +43,12 @@ export class HomeComponent implements AfterViewInit {
     this.metaService.generateTags()
     this.role = this.functionsService.getLocal('role')
     this.uid = this.functionsService.getLocal('uid')
+
+    //this.authService.renewToken().subscribe((resp: any) => {
+    //  console.log('resp::: ', resp.token);
+    //  this.functionsService.setLocal('token', resp.token)
+    //
+    //})
 
 
   }

@@ -76,7 +76,7 @@ export class EditarInvitacionComponent {
 
     },
       (error: any) => {
-        console.error('Error', error)
+        // console.error('Error', error)
         this.loading = false
         this.functionsService.alert('Fiesta', 'Por favor intente mas tarde', 'error')
       })
@@ -99,7 +99,7 @@ export class EditarInvitacionComponent {
   }
   createForm(fiesta: Fiesta) {
 
-    this.functionsService.numberDateTimeLocal(this.fiesta.fecha)
+    this.functionsService.numberDateTimeLocal(fiesta.fecha)
     this.form = this.fb.group({
       cPrincipal: ['#ffc0cb'],
       cSecond: ['#c0354e'],
@@ -108,6 +108,7 @@ export class EditarInvitacionComponent {
       xImg1: [50],
       yImg1: [0],
       topTitle: [40],
+      nombreSize: [20],
       invitado: [''],
       cantidad: [this.fiesta.cantidad],
       tipoFiesta: [''],
@@ -159,6 +160,12 @@ export class EditarInvitacionComponent {
       hospedajeAddress: [''],
       hospedajeUbicacion: [''],
       hospedajePhone: [''],
+      mesaRegalosCheck: [true],
+      mesaRegalosLugar: [''],
+      mesaRegalosUrl: [''],
+      mesaRegalosImg: [''],
+
+
       itinerarioCheck: [true],
       itinerarioName: [this.fiesta.nombre],
       itinerarios: this.fb.array([]),
@@ -196,9 +203,11 @@ export class EditarInvitacionComponent {
   }
   setForm(fiesta: Fiesta) {
 
-    this.createForm(this.fiesta)
+
+    this.createForm(fiesta)
   }
   async setFormWithData(invitacion: any) {
+
 
 
     invitacion.data = await this.numberToData(invitacion.data)
@@ -256,6 +265,10 @@ export class EditarInvitacionComponent {
       hospedajeAddress: [invitacion.data.hospedajeAddress],
       hospedajeUbicacion: [invitacion.data.hospedajeUbicacion],
       hospedajePhone: [invitacion.data.hospedajePhone],
+      mesaRegalosCheck: [invitacion.data.mesaRegalosCheck],
+      mesaRegalosLugar: [invitacion.data.mesaRegalosLugar],
+      mesaRegalosUrl: [invitacion.data.mesaRegalosUrl],
+      mesaRegalosImg: [invitacion.data.mesaRegalosImg],
       itinerarioCheck: [invitacion.data.itinerarioCheck],
       itinerarioName: [invitacion.fiesta.nombre],
       itinerarios: this.fb.array([]),
@@ -377,6 +390,12 @@ export class EditarInvitacionComponent {
       hospedajeAddress: [temp.hospedajeAddress],
       hospedajeUbicacion: [temp.hospedajeUbicacion],
       hospedajePhone: [temp.hospedajePhone],
+      mesaRegalosCheck: [temp.mesaRegalosCheck],
+      mesaRegalosLugar: [temp.mesaRegalosLugar],
+      mesaRegalosUrl: [temp.mesaRegalosUrl],
+      mesaRegalosImg: [temp.mesaRegalosImg],
+
+
       itinerarioCheck: [temp.itinerarioCheck],
       itinerarioName: [temp.itinerarioName],
       itinerarios: this.fb.array([]),
@@ -445,16 +464,21 @@ export class EditarInvitacionComponent {
         let not = JSON.stringify(form.value.notas)
         this.invitacion.data = {
           ...  this.invitacion.data,
+          fiestaId: '67004d6552152ca21abfb790',
+          //fiestaId: this.fiesta.uid,
           itinerarios: iti,
           notas: not
         }
       })
     }
 
-    setTimeout(() => {
 
-      this.router.navigate(['/core/templates/' + this.fiesta.invitacion], { queryParams: this.invitacion.data })
-    }, 100);
+
+    this.invitacion.data.itinerarios = JSON.stringify(this.invitacion.data.itinerarios)
+    this.invitacion.data.notas = JSON.stringify(this.invitacion.data.notas)
+    this.invitacion.data.fiestaId = this.fiesta.uid
+    this.router.navigate(['/core/templates/' + this.fiesta.invitacion], { queryParams: this.invitacion.data })
+
   }
   async onSubmit() {
 
@@ -572,11 +596,134 @@ export class EditarInvitacionComponent {
       this.invitacion = resp.invitacion
       if (!this.invitacion) {
         setTimeout(() => {
+          let data = {
+            cPrincipal: '#ffc0cb',
+            cSecond: '#c0354e',
+            cWhite: '#ffffff',
+            img1: '',
+            xImg1: 50,
+            yImg1: 0,
+            topTitle: 40,
+            invitado: '',
+            cantidad: this.fiesta.cantidad,
+            tipoFiesta: '',
+            tipoSize: 90,
+            nombreSize: 20,
+            topDate: 50,
+            checking: this.fiesta.checking,
+            fiestaDate: Number(this.fiesta.fecha),
+            nombreFiesta: this.fiesta.nombre,
+            nombresSize: 18,
+            textInvitacionValida: '¡Los esperamos!',
+            mensajeCheck: true,
+            mensajeImg: '',
+            bxMensajeImg: 50,
+            byMensajeImg: 0,
+            mensaje1: '',
+            mensajeSize: 25,
+            donde1Check: true,
+            donde1Img: '',
+            donde1Title: 'Iglesia',
+            donde1Text: '',
+            donde1Date: (typeof (this.fiesta.fecha) == "string") ? this.functionsService.dateToNumber(this.fiesta.fecha) : this.fiesta.fecha,
+            donde1Icon: 'mt-2 mb-2 text-center bi bi-map pointer',
+            donde1AddressUbicacion: '',
+            donde1Address: '',
+            donde2Check: true,
+            donde2Img: '',
+            donde2Title: 'Civil',
+            donde2Text: '',
+            donde2Date: (typeof (this.fiesta.fecha) == "number") ? this.functionsService.dateToNumber(this.fiesta.fecha) : this.fiesta.fecha,
+            donde2Icon: 'mt-2 mb-2 text-center bi bi-map pointer',
+            donde2AddressUbicacion: '',
+            donde2Address: '',
+            donde3Check: true,
+            donde3Img: this.fiesta.salon.img,
+            donde3Title: this.fiesta.salon.nombre,
+            donde3Text: this.fiesta.salon.nombre,
+            donde3Date: (typeof (this.fiesta.fecha) == "number") ? this.functionsService.dateToNumber(this.fiesta.fecha) : this.fiesta.fecha,
+            donde3Icon: 'mt-2 mb-2 text-center bi bi-map pointer',
+            donde3AddressUbicacion: this.fiesta.salon.ubicacionGoogle,
+            donde3Address:
+              this.fiesta.salon.calle + ' ' + this.fiesta.salon.numeroExt + ' ' +
+              this.fiesta.salon.numeroInt + ' ' + this.fiesta.salon.coloniaBarrio + ' ' +
+              this.fiesta.salon.cp + ' ' + this.fiesta.salon.cp + ' ' + this.fiesta.salon.estado + ' ' + this.fiesta.salon.pais
+            ,
+            hospedajeCheck: true,
+            hospedajeImg: '',
+            hospedajeName: '',
+            hospedajeIcon: 'mt-2 mb-2 text-center  bi-info-circle pointer',
+            hospedajeAddress: '',
+            hospedajeUbicacion: '',
+            hospedajePhone: '',
+            mesaRegalosCheck: true,
+            mesaRegalosLugar: '',
+            mesaRegalosUrl: '',
+            mesaRegalosImg: '',
+            itinerarioCheck: true,
+            itinerarioName: this.fiesta.nombre,
+            itinerarios: [],
+            notaCheck: true,
+            invitacionTemplate: false,
+            notas: [],
+            colorQr: '#ffffff',
+            colorBgQr: '#c0354e',
+            usuarioCreated: this.uid,
 
-          this.setForm(this.fiesta)
+            activated: true,
+            dateCreated: this.today,
+            lastEdited: this.today,
+
+
+            //byFIle
+
+            typeFile: '',
+            byFileColorTx: '',
+            byFileColorBG: '',
+            byFileColorFr: '',
+            byFileColorQr: '',
+            byFileInvitacionType: '',
+            byFileInvitacion: '',
+            byFileUrl: '',
+            byFileWidth: '',
+
+            byFileHeight: '',
+            byFileFrame: '',
+            byFileFrameWidth: '',
+            fiestaId: this.fiesta.uid,
+          }
+          let invitacion = {
+            fiesta: this.fiesta.uid,
+
+            data: data,
+            tipoTemplate: this.fiesta.invitacion,
+            templateActivated: true,
+            usuarioFiesta: this.fiesta.usuarioFiesta._id,
+            usuarioCreated: this.uid,
+            activated: true,
+            lastEdited: this.today,
+            dateCreated: this.today
+          }
+
+
+          this.crearInvitacion((invitacion)).subscribe((resp: any) => {
+            this.invitacion = resp.invitacion
+            this.invitacion.data.fiestaId = this.fiesta.uid
+            let iti = JSON.stringify([])
+            let not = JSON.stringify([])
+            this.invitacion.data = {
+              ...  this.invitacion.data,
+              itinerarios: iti,
+              notas: not
+            }
+
+            this.setForm(resp.invitacion)
+          })
+
         }, 800);
       } else {
         this.invitacion.data = await this.numberToData(this.invitacion.data)
+
         this.usuarioCreated = this.invitacion.usuarioCreated
         this.setFormWithData(this.invitacion)
         setTimeout(() => {
@@ -595,7 +742,7 @@ export class EditarInvitacionComponent {
       }
     },
       (error) => {
-        console.error('Error', error)
+        // console.error('Error', error)
         this.functionsService.alertError(error, 'Invitacion')
       })
   }
@@ -645,21 +792,23 @@ export class EditarInvitacionComponent {
 
   }
   cambiarImagen(file: any, type: string) {
-
-
     this.viewVideo = false
     if (file.target.files) {
 
       this.imagenSubir = file.target.files[0]
 
+
       if (!file.target.files[0]) {
         this.imgTemp = null
+        this.functionsService.alertError(this.imgTemp, 'No trae imagen')
+        return
       } else {
         const reader = new FileReader()
         const url64 = reader.readAsDataURL(file.target.files[0])
         reader.onloadend = () => {
           this.imgTemp = reader.result
         }
+
         this.subirImagen(type)
       }
     } else {
@@ -669,7 +818,9 @@ export class EditarInvitacionComponent {
     }
   }
   async subirImagen(type) {
+
     if (!this.invitacion) {
+
       let data = await this.dateToNumber(this.form.value)
       data[type] = ''
       let invi = {
@@ -707,12 +858,13 @@ export class EditarInvitacionComponent {
               }, 800);
             },
             (err) => {
-              console.error('Error', err)
+              // console.error('Error', err)
               this.functionsService.alertError(err, 'Error')
             },
           )
       })
     } else {
+
       this.fileService.actualizarFotoTemplate(this.imagenSubir, 'invitaciones', this.fiesta.uid, type)
         .then(
           (img) => {
@@ -721,6 +873,7 @@ export class EditarInvitacionComponent {
               ...this.invitacion,
               data: dt
             }
+
             switch (type) {
               case 'img1':
                 this.invitacion.data.img1 = img
@@ -743,6 +896,9 @@ export class EditarInvitacionComponent {
               case 'byFileInvitacion':
                 this.invitacion.data.byFileInvitacion = img
                 break;
+              case 'mesaRegalosImg':
+                this.invitacion.data.mesaRegalosImg = img
+                break;
             }
             this.invitacion.fiesta = this.fiesta.uid
             this.invitacion.usuarioCreated = this.usuarioCreated
@@ -760,7 +916,7 @@ export class EditarInvitacionComponent {
 
           },
           (err) => {
-            console.error('Error', err)
+            // console.error('Error', err)
             this.functionsService.alertError(err, 'Error')
           },
         )

@@ -72,6 +72,7 @@ export class FileService {
 
     try {
       const url = `${base_url}/upload/${tipo}/${id}/${imgTemplate}`
+      console.log('url::: ', url);
       const formData = new FormData()
       formData.append('imagen', archivo)
       const resp = await fetch(url, {

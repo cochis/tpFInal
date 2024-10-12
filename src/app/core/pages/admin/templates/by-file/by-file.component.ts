@@ -55,6 +55,7 @@ export class ByFileComponent {
   donde1Check: boolean
   donde2Check: boolean
   donde3Check: boolean
+  mesaRegalosCheck: boolean
   checking: boolean
   hospedajeCheck: boolean
   vistaTemp: boolean
@@ -128,6 +129,7 @@ export class ByFileComponent {
     } else {
       this.restParty()
       this.state = this.route.snapshot.queryParams
+
 
       for (let key in this.state) {
         ++this.count;
@@ -228,6 +230,7 @@ export class ByFileComponent {
         this.donde1Check = (this.state.donde1Check == 'true') ? true : false
         this.donde2Check = (this.state.donde2Check == 'true') ? true : false
         this.donde3Check = (this.state.donde3Check == 'true') ? true : false
+        this.mesaRegalosCheck = (this.state.mesaRegalosCheck == 'true') ? true : false
         this.hospedajeCheck = (this.state.hospedajeCheck == 'true') ? true : false
         this.invitacion = this.state
 

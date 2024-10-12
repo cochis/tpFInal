@@ -67,6 +67,12 @@ export class AuthService {
       }),
     )
   }
+  renewToken() {
+    const uid = this.functionsService.getLocal('uid')
+    const url = `${base_url}/login/renew/${uid}`
+
+    return this.http.get(url)
+  }
 
 
 }
