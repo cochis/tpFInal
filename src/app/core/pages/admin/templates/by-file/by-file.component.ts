@@ -114,6 +114,7 @@ export class ByFileComponent {
           this.donde2Check = this.invitacion.donde2Check
           this.donde3Check = this.invitacion.donde3Check
           this.hospedajeCheck = this.invitacion.hospedajeCheck
+          this.mesaRegalosCheck = this.invitacion.mesaRegalosCheck
           this.itinerarios = this.invitacion.itinerarios
           this.notas = this.invitacion.notas
         }, (error) => {
