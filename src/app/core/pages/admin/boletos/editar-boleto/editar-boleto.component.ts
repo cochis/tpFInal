@@ -21,6 +21,7 @@ import Swal from 'sweetalert2';
 import { Observable, Subscription, interval } from 'rxjs';
 import { EmailsService } from 'src/app/core/services/email.service';
 import * as XLSX from 'xlsx'
+
 @Component({
   selector: 'app-editar-boleto',
   templateUrl: './editar-boleto.component.html',
@@ -91,30 +92,9 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
   }
   ngOnInit() {
     this.obs1 = this.src1.subscribe((value: any) => {
+
       let restore = false
-      this.boletosService.cargarBoletoByFiesta(this.id).subscribe((resp: CargarBoleto) => {
-        this.boletoTemp = resp.boleto
 
-        this.boletoTemp.forEach((blt, i) => {
-          if (
-            this.boletoTemp[i].activated == blt.activated &&
-            this.boletoTemp[i].cantidadInvitados == blt.cantidadInvitados &&
-            this.boletoTemp[i].confirmado == blt.confirmado &&
-            this.boletoTemp[i].email == blt.email &&
-            this.boletoTemp[i].fechaConfirmacion == blt.fechaConfirmacion &&
-            this.boletoTemp[i].grupo == blt.grupo &&
-            this.boletoTemp[i].invitacionEnviada == blt.invitacionEnviada &&
-            this.boletoTemp[i].whatsapp == blt.whatsapp
-          ) {
-          } else {
-
-            this.setForm(this.fiesta)
-          }
-        });
-      },
-        (error: any) => {
-          this.functionsService.alertError(error, 'Boletos')
-        })
       this.boletosService.cargarBoletoByFiesta(this.id).subscribe((resp: CargarBoleto) => {
         this.boletoTemp = resp.boleto
       },
@@ -174,6 +154,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
       })
       this.boletosService.cargarBoletoByFiesta(this.id).subscribe((resp: CargarBoleto) => {
         this.boleto = resp.boleto
+
         this.boleto.forEach((invitado: any) => {
           this.invitados.push(this.setInvitado(invitado))
         });
@@ -188,6 +169,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
     this.loading = true
     this.fiestasService.cargarFiestasAll().subscribe((resp: CargarFiestas) => {
       this.fiestas = this.functionsService.getActives(resp.fiestas)
+
     },
       (error: any) => {
         this.functionsService.alertError(error, 'Boletos')
@@ -195,6 +177,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
       })
     this.gruposService.cargarGruposAll().subscribe((resp: CargarGrupos) => {
       this.grupos = this.functionsService.getActives(resp.grupos)
+
     },
       (error: any) => {
         this.functionsService.alertError(error, 'Boletos')
@@ -593,5 +576,136 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
         }, 1500);
       })
     }
+  }
+  async uploadBoletos(ev) {
+    this.loading = true
+    let workBook = null;
+    let jsonData = null;
+    const reader = new FileReader();
+    const file = ev.target.files[0];
+
+    reader.onload = async (event) => {
+
+      const data = reader.result;
+
+      workBook = XLSX.read(data, { type: 'binary' });
+      jsonData = workBook.SheetNames.reduce((initial, name) => {
+        const sheet = workBook.Sheets[name];
+        initial[name] = XLSX.utils.sheet_to_json(sheet);
+        return initial;
+      }, {});
+
+
+
+      jsonData.Invitados.forEach(element => {
+
+
+      });
+      let totalI = await this.conteoInvitadosFile(jsonData.Invitados)
+
+
+      if ((totalI + this.total) > this.numeroInvitados) {
+        this.functionsService.alert('Boletos', 'La cantidad de invitados es mayor a la capasidad disponible', 'error')
+        setTimeout(() => {
+
+          this.loading = false
+        }, 1500);
+        return
+      }
+
+      let invi = await this.validarInvitadosFile(jsonData.Invitados)
+
+
+      let final = await this.crearInvitacionesFile(invi)
+
+      setTimeout(() => {
+        this.getId(this.id)
+
+
+      }, 4000);
+      setTimeout(() => {
+
+
+        this.loading = false
+      }, 7000);
+    }
+    reader.readAsBinaryString(file);
+  }
+
+
+  async conteoInvitadosFile(data) {
+    let totalFile = 0
+    data.forEach(invi => {
+
+      totalFile = totalFile + invi.Cantidad
+
+
+
+    });
+
+    return await totalFile
+  }
+  async validarInvitadosFile(data) {
+
+
+    var invitados = []
+    var invitado = null
+
+    data.forEach(async (invi, i) => {
+
+
+
+      this.grupos.forEach(async gpo => {
+
+        if ((gpo.nombre.toLowerCase().trim()) == (invi.Grupo.toLowerCase().trim())) {
+
+
+          invitado = {
+            activated: true,
+            cantidadInvitados: invi.Cantidad,
+            confirmado: false,
+            email: invi['Correo Electronico'],
+            fechaConfirmacion: null,
+            fiesta: this.id,
+            grupo: gpo.uid,
+            nombreGrupo: invi['Nombre de grupo'],
+            invitacionEnviada: false,
+            mesa: invi.Mesa,
+            ocupados: 0,
+            salon: this.fiesta.salon._id,
+            whatsapp: invi.Telefono,
+            vista: false
+          }
+
+
+          invitados.push(invitado)
+        }
+      });
+
+
+
+
+    });
+
+
+
+    return await invitados
+
+
+  }
+
+
+  async crearInvitacionesFile(data) {
+    var invitados = []
+    var invitado = null
+    return await data.forEach(async invi => {
+      this.boletosService.crearBoleto(invi).subscribe(res => {
+
+        invitados.push(res)
+      })
+
+    });
+
+
   }
 }

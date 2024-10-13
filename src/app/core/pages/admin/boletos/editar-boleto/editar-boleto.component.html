@@ -19,7 +19,8 @@
                             <div class="col-12" *ngIf="fiesta.checking">
 
                                 <h3>Cantidad de invitaciones: {{numeroInvitados}} </h3>
-
+                                <h3 *ngIf="form.value.invitados.length==0" class="ion-text-center">Cargando
+                                </h3>
                                 <h3 *ngIf="form.value.invitados.length>0" class="ion-text-center">Invitados {{total}}
                                 </h3>
                             </div>
@@ -27,22 +28,20 @@
                                 <h3>Ya no tiene boletos disponibles </h3>
                             </div>
 
-                            <!--   <div class="col-12 col-md-6 mt-50">
-                                <label for="file-input" class="text-center">
 
-                                    <i class="social-icon-link icon-picture"></i>
-                                </label>
-
-
-                                <input id="file-input" type="file" class="ion-no-border"
-                                    (change)="cambiarImagen($event,fiesta)" />
-                            </div> 
                             <div class="col-12   mt-50">
 
+                                <br>
+                                <a class="btn btn-lg btn-block btn-warning" href="/assets/download/invitados.xlsx"
+                                    download="invitados.xlsx">
+                                    Plantilla para subir invitados
+                                </a>
+                                <br>
+                                <br>
                                 <input type="file" name="invitadosXls" id="invitadosXls" #invitadosXls
-                                    (change)="upload($event)">
+                                    (change)="uploadBoletos($event)">
                                 <label for="invitadosXls" class="custom-btn  but "> Agregar por archivo</label>
-                            </div>-->
+                            </div>
 
                             <div class="col-12   mt-50" *ngIf="total >0">
 

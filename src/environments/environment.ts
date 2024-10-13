@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   user_ID: '64ff4f79da409a7d91056a5b',
   secret: '1f2d1e2e67df',
-  version: "1.0.2.1",
+  version: "1.0.3.0",
   publicKey: "BJqZ8KY_kguwLf27SsteILLRHlWY2pJOvrKlyZNeFlEg4O15ut0t7oYMgXHcLPSh2WYCRPwTS3WEPnhXCMZO4Wg",
   privateKey: "v04F9j6-aAZRvYl25BtZu1cezaWT-m4P0sHtE0JbE7g",
   stripeKeyD: 'pk_test_51PipskAbE4XYrXNxNi1oiwylWr7B9mNMfUfQ070Cy09dDPj5HBFYObSajMGjNzlAynX23dT8thcx8sdJxpnP7Vov00wzIocDLR',
@@ -15,11 +15,11 @@ export const environment = {
   //base_url: "http://localhost:3008/api",
   //text_url: "http://localhost:4200/",
   //QA
-  //base_url: "https://tickets.cochisweb.com/api",
-  //text_url: "https://tickets.cochisweb.com/",
+  base_url: "https://tickets.cochisweb.com/api",
+  text_url: "https://tickets.cochisweb.com/",
   //PROD
-  base_url: "https://www.myticketparty.com/api",
-  text_url: "https://www.myticketparty.com/",
+  //base_url: "https://www.myticketparty.com/api",
+  //text_url: "https://www.myticketparty.com/",
   //   PARAMETROS
   urlInvitacion: 'https://www.myticketparty.com/core/templates/default/6700a3816640d3ed22ed6a8f/6700a6bd6640d3ed22ed6ca6',
   urlInvitacionFile: 'https://www.myticketparty.com/core/templates/byFile/6702f0aa6640d3ed22ed8a24/6702f2506640d3ed22ed8bc4',
