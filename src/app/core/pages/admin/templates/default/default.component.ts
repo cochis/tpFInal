@@ -56,6 +56,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
   donde2Check: boolean
   donde3Check: boolean
   mesaRegalosCheck: boolean
+  confirmacionCheck: boolean
   checking: boolean
   hospedajeCheck: boolean
   vistaTemp: boolean
@@ -114,6 +115,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
           this.donde3Check = this.invitacion.donde3Check
           this.hospedajeCheck = this.invitacion.hospedajeCheck
           this.mesaRegalosCheck = this.invitacion.mesaRegalosCheck
+          this.confirmacionCheck = this.invitacion.confirmacionCheck
           this.itinerarios = this.invitacion.itinerarios
           this.notas = this.invitacion.notas
         }, (error) => {
@@ -230,6 +232,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
         this.donde3Check = (this.state.donde3Check == 'true') ? true : false
         this.hospedajeCheck = (this.state.hospedajeCheck == 'true') ? true : false
         this.mesaRegalosCheck = (this.state.mesaRegalosCheck == 'true') ? true : false
+        this.confirmacionCheck = (this.state.confirmacionCheck == 'true') ? true : false
         this.invitacion = this.state
         this.date = this.invitacion.fiestaDate
         this.btnBack = true

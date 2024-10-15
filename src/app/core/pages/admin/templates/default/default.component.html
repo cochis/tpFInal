@@ -26,12 +26,12 @@
                     *ngIf="!vistaTemp">
 
                     <div class="animated backInDown texto tc" style="top:{{invitacion.topTitle}}%">
+                        <span class="name ts dancing cap"
+                            style="color:{{invitacion.cPrincipal}};font-size:{{invitacion.nombreSize}}px">{{invitacion.nombreFiesta}}</span>
                         <h1 class="dancing ts animate__bounce "
-                            style="font-size:{{invitacion.tipoSize}}px !important;color: {{invitacion.cPrincipal}};">
+                            style="font-size:{{invitacion.tipoSize}}px !important;color: {{invitacion.cWhite }};">
                             {{invitacion.tipoFiesta}}
                         </h1>
-                        <span class="name ts dancing cap"
-                            style="color:{{invitacion.cWhite}};font-size:{{invitacion.nombreSize}}px">{{invitacion.nombreFiesta}}</span>
 
                     </div>
                     <div class="fecha pacifico tc  " style="top:{{invitacion.topDate}}%">
@@ -396,7 +396,8 @@
 
                             <button class="btn  upper"
                                 style="background-color: {{invitacion.cPrincipal}}; color:{{invitacion.cWhite}} ; border: 3px solid {{invitacion.cSecond}}"
-                                type="button" (click)="confirmar(getQr(boleto))" *ngIf="!boleto.confirmado">
+                                type="button" (click)="confirmar(getQr(boleto))"
+                                *ngIf="!boleto.confirmado && confirmacionCheck">
                                 Confirma tu asistencia
                             </button>
                             <button class="btn upper "
@@ -423,7 +424,7 @@
                             [colorDark]="invitacion.colorQr" [colorLight]="invitacion.colorBgQr" [title]="getQr(boleto)"
                             [width]="280">
                         </qrcode>
-                        <div class="card-body" *ngIf="checking">
+                        <div class="card-body" *ngIf="checking  && confirmacionCheck">
                             <button class="btn upper"
                                 style="background-color: {{invitacion.cPrincipal}}; color:{{invitacion.cWhite}} ; border: 3px solid {{invitacion.cSecond}}"
                                 type="button">
@@ -449,7 +450,7 @@
                             </qrcode>
 
                         </div>
-                        <div class="card-body mt-3" *ngIf=" boleto && fiesta.checking">
+                        <div class="card-body mt-3" *ngIf=" boleto && fiesta.checking  && confirmacionCheck ">
 
                             <button class="btn "
                                 style="background-color: {{invitacion.cPrincipal}}; color:{{invitacion.cWhite}} ; border: 3px solid {{invitacion.cSecond}}"

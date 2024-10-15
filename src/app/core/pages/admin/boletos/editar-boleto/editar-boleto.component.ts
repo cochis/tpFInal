@@ -606,6 +606,8 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
 
       if ((totalI + this.total) > this.numeroInvitados) {
         this.functionsService.alert('Boletos', 'La cantidad de invitados es mayor a la capasidad disponible', 'error')
+
+
         setTimeout(() => {
 
           this.loading = false
@@ -699,9 +701,9 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
     var invitados = []
     var invitado = null
     return await data.forEach(async invi => {
-      this.boletosService.crearBoleto(invi).subscribe(res => {
+      this.boletosService.crearBoleto(invi).subscribe(async res => {
 
-        invitados.push(res)
+        await invitados.push(res)
       })
 
     });
