@@ -1,27 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MetaService } from '../../services/meta.service';
 import { PaquetesService } from '../../services/paquete.service';
 import { Paquete } from '../../models/paquete.model';
 import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { environment } from 'src/environments/environment';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { FiestasService } from '../../services/fiestas.service';
 
 @Component({
   selector: 'app-ejemplos',
   templateUrl: './ejemplos.component.html',
   styleUrls: ['./ejemplos.component.css']
 })
-export class EjemplosComponent {
+export class EjemplosComponent implements OnInit {
   paquetes: Paquete[]
   url = environment.base_url
   urlInvitacion = environment.urlInvitacion
+  examples = environment.examples
   urlInvitacionFile = environment.urlInvitacionFile
+  fiestas = []
   sanitizedUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(this.urlInvitacion);
   sanitizedUrlFile = this.domSanitizer.bypassSecurityTrustResourceUrl(this.urlInvitacionFile);
   constructor(private metaService: MetaService,
     private functionsService: FunctionsService,
     private paquetesService: PaquetesService,
-    private domSanitizer: DomSanitizer
+    private domSanitizer: DomSanitizer,
+    private fiestasService: FiestasService
   ) {
     this.metaService.createCanonicalURL()
     let data = {
@@ -36,7 +40,35 @@ export class EjemplosComponent {
         window.location.origin + '/assets/img/logo/l_100.png',
     }
     this.metaService.generateTags(data)
+    this.examples
 
+  }
+  async ngOnInit() {
+
+    this.getInfoFiesta()
+    setTimeout(() => {
+      console.log(' this.fiestas::: ', this.fiestas);
+    }, 1500);
+  }
+
+  returnSinitizer(url: string) {
+    return this.domSanitizer.bypassSecurityTrustResourceUrl(this.url);
+  }
+  async getInfoFiesta() {
+    this.examples.forEach(async element => {
+
+      let fiesta = element.split('|')
+
+      await this.fiestasService.cargarFiestaById(fiesta[0]).subscribe(async (resp: any) => {
+        let res = { fiesta: resp, url: fiesta[1] }
+
+
+        this.fiestas.push(res)
+
+      })
+
+
+    });
 
   }
 

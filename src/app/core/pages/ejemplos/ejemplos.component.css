@@ -1,0 +1,6 @@
+.textDN,
+a {
+    text-decoration: none;
+    color: #13547a !important;
+    transition: all 0.5s;
+}

@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   user_ID: '64ff4f79da409a7d91056a5b',
   secret: '1f2d1e2e67df',
-  version: "1.0.3.8",
+  version: "1.0.3.9",
   publicKey: "BJqZ8KY_kguwLf27SsteILLRHlWY2pJOvrKlyZNeFlEg4O15ut0t7oYMgXHcLPSh2WYCRPwTS3WEPnhXCMZO4Wg",
   privateKey: "v04F9j6-aAZRvYl25BtZu1cezaWT-m4P0sHtE0JbE7g",
   stripeKeyD: 'pk_test_51PipskAbE4XYrXNxNi1oiwylWr7B9mNMfUfQ070Cy09dDPj5HBFYObSajMGjNzlAynX23dT8thcx8sdJxpnP7Vov00wzIocDLR',
@@ -41,5 +41,15 @@ export const environment = {
   PRMTCE: "PRMTCE",    // Colegio
   ESCTCE: "ESCTCE",  // Escuela de baile
   SLETCE: "SLETCE",  // Salon de eventos
+  examples: [
+    '670ace12e52f97e35908191c|https://www.myticketparty.com/core/templates/default/670ace12e52f97e35908191c/67268e8513060646af5822ec',
+    '6726ded413060646af5825ca|https://www.myticketparty.com/core/templates/byFile/6726ded413060646af5825ca/6727275eccbd48678e4b65a9',
+    '6726e81913060646af5826a9|https://www.myticketparty.com/core/templates/default/6726e81913060646af5826a9/6726f2f813060646af582943',
+    '6727c012ccbd48678e4b6e39|https://www.myticketparty.com/core/templates/default/6727c012ccbd48678e4b6e39/6727c24cccbd48678e4b7048',
+    '6727c75cccbd48678e4b740d|https://www.myticketparty.com/core/templates/default/6727c75cccbd48678e4b740d/6727ca03ccbd48678e4b767c',
+    '6727cacbccbd48678e4b786d|https://www.myticketparty.com/core/templates/default/6727cacbccbd48678e4b786d/6727edc6ccbd48678e4b8643',
+    '6727cf9dccbd48678e4b79c8|https://www.myticketparty.com/core/templates/default/6727cf9dccbd48678e4b79c8/6727eeaaccbd48678e4b8809',
+    '6727d2dbccbd48678e4b7b2b|https://www.myticketparty.com/core/templates/default/6727d2dbccbd48678e4b7b2b/6727d886ccbd48678e4b7e94'
+  ]
 };
 
