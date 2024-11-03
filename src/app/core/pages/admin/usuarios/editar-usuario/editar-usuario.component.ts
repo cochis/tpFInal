@@ -62,6 +62,7 @@ export class EditarUsuarioComponent {
   getId(id: string) {
     this.usuariosService.cargarUsuarioById(id).subscribe((resp: CargarUsuario) => {
       this.usuario = resp.usuario
+
       setTimeout(() => {
         this.setForm(this.usuario)
       }, 500);
@@ -148,7 +149,7 @@ export class EditarUsuarioComponent {
       cantidadFiestas: [0],
       cantidadGalerias: [0],
       role: ['', [Validators.required, Validators.minLength(3)]],
-      tipoCentro: ['', [Validators.required, Validators.minLength(3)]],
+      tipoCentro: ['', [Validators.minLength(3)]],
       google: [false],
       activated: [false],
       dateCreated: [this.today],
@@ -172,7 +173,7 @@ export class EditarUsuarioComponent {
         cantidadFiestas: [usuario.cantidadFiestas],
         cantidadGalerias: [usuario.cantidadGalerias],
         role: [role, [Validators.required]],
-        tipoCentro: [tipoCentro, [Validators.required]],
+        tipoCentro: [tipoCentro],
         google: [usuario.google],
         activated: [usuario.activated],
         dateCreated: [usuario.dateCreated],
@@ -184,6 +185,7 @@ export class EditarUsuarioComponent {
   onSubmit() {
     this.loading = true
     this.submited = true
+
     if (this.form.valid) {
       this.usuario = {
         ...this.usuario,

@@ -69,13 +69,12 @@ export class GaleriaComponent implements OnInit, OnDestroy {
   ) {
 
     this.fiestaId = this.route.snapshot.params['fiesta']
-    console.log('this.fiestaId::: ', this.fiestaId);
+
 
     this.boletoId = this.route.snapshot.params['boleto']
-    console.log(' this.boletoId::: ', this.boletoId);
+
 
     this.anfitrionId = this.route.snapshot.params['anfitrion']
-    console.log('this.anfitrionId::: ', this.anfitrionId);
 
 
 

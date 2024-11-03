@@ -23,8 +23,20 @@
 
 
                                 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-
                                     <div class="row text-center">
+                                        <h5>Tipo de Vista </h5>
+                                        <div class="col-6 ma">
+                                            <select name="viewSize" id="viewSize" #viewSize class="form-select"
+                                                (change)="changeSize(viewSize.value)">
+                                                <option value="">Selecciona el tamaño de vista</option>
+                                                <option value="sm">Celular</option>
+                                                <option value="md">Tablet</option>
+                                                <option value="lg">Computadora</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row text-center mt-5">
                                         <h5>Colores</h5>
                                         <div class="col-4   mt-3">
                                             <div class="form-group ">
@@ -139,6 +151,28 @@
                                             </div>
                                         </div>
                                     </div>
+
+
+                                    <app-view-template [data]="{
+    type:'seccionInicial',
+    size:viewSizeM,
+        cPrincipal: form.value.cPrincipal,
+        cSecond: form.value.cSecond,
+        cWhite: form.value.cWhite,
+             img1: (invitacion == undefined || invitacion.data.img1 == '') ? '/assets/images/tp.png' : url + '/upload/invitaciones/' + invitacion.data.img1, 
+        xImg1: form.value.xImg1,
+        yImg1: form.value.yImg1,
+        generalCheck:invitacion.data.generalCheck,
+        generalTexto :invitacion.data.generalTexto,
+        nombreFiesta: form.value.nombreFiesta,
+        nombreSize: form.value.nombreSize,
+        topTitle: form.value.topTitle,
+        tipoFiesta: form.value.tipoFiesta,
+        tipoSize: form.value.tipoSize,
+        topDate: form.value.topDate
+
+}"></app-view-template>
+
                                     <div class="row text-center mt-3">
                                         <h5>Seccion Mensaje</h5>
                                         <div class="col-12  col-md-6  mt-3 text-center ">
@@ -188,12 +222,25 @@
                                         </div>
                                         <div class="col-12  col-md-4  mt-3">
                                             <div class="form-group ">
-                                                <label for="byMensajeImg ">Vertical imagen mensaje </label>
+                                                <label for="bxMensajeImg ">Vertical imagen mensaje </label>
                                                 <input type="range" id="byMensajeImg" #byMensajeImg
                                                     formControlName="byMensajeImg" />
                                             </div>
                                         </div>
                                     </div>
+                                    <app-view-template [data]="{
+                                        type:'seccionMensaje',
+                                        size:viewSizeM,
+                                        cPrincipal: form.value.cPrincipal,
+                                        Secundario: form.value.Secundario,
+                                        cWhite: form.value.cWhite,
+                                        mensajeImg: form.value.mensajeImg,
+                                            mensajeImg: (invitacion == undefined || invitacion.data.mensajeImg == '') ? '/assets/images/tp.png' : url + '/upload/invitaciones/' + invitacion.data.mensajeImg,
+                                        mensaje1: form.value.mensaje1,
+                                        mensajeSize: form.value.mensajeSize,
+                                        bxMensajeImg: form.value.bxMensajeImg,
+                                        byMensajeImg: form.value.byMensajeImg,
+                                    }"></app-view-template>
                                     <div class="row text-center mt-3" *ngIf="fiesta.checking">
                                         <h5>Seccion QR</h5>
                                         <hr class="mt-3 mb-3">
@@ -315,6 +362,23 @@
                                             <hr class="mt-3 mb-3">
 
 
+                                            <div class="col-12       mt-3 ma ">
+                                                <label class="form-check-label" for="generalCheck">
+                                                    Entrada general
+                                                </label>
+                                                <input class="form-check-input" type="checkbox" id="generalCheck"
+                                                    #generalCheck formControlName="generalCheck">
+
+
+                                            </div>
+                                            <div class="col-12 col-md-6  ma  mt-3" *ngIf="form.value.generalCheck">
+                                                <div class="form-group ">
+                                                    <label for="generalTexto ">Texto como invitacion General </label>
+                                                    <input type="text" id="generalTexto" #generalTexto
+                                                        formControlName="generalTexto"
+                                                        placeholder="A toda la comunidad">
+                                                </div>
+                                            </div>
                                             <div class="col-12       mt-3 ma ">
                                                 <label class="form-check-label" for="confirmacionCheck">
                                                     Botón de confirmación
@@ -799,7 +863,8 @@
 
                                         <div class="col-12      mt-3 ma text-center">
                                             <div class="form-group ">
-                                                <label for="byFileInvitacion" *ngIf="!viewVideo">Selecciona el archivo
+                                                <label for="byFileInvitacion" *ngIf="!viewVideo  "> Selecciona el
+                                                    archivo
                                                     de tu invitación
                                                     <br>
                                                     <img src="/assets/images/tp.png" alt="" class="pointer"
@@ -1124,6 +1189,38 @@
 
                                         </div>
                                         <hr class="mt-3 mb-3">
+
+
+                                        <div class="col-12       mt-3 ma  text-center">
+                                            <label class="form-check-label" for="generalCheck">
+                                                Entrada general
+                                            </label>
+                                            <input class="form-check-input" type="checkbox" id="generalCheck"
+                                                #generalCheck formControlName="generalCheck">
+
+
+                                        </div>
+                                        <div class="col-12 col-md-6  ma  mt-3 text-center"
+                                            *ngIf="form.value.generalCheck">
+                                            <div class="form-group ">
+                                                <label for="generalTexto ">Texto como invitacion General </label>
+                                                <input type="text" id="generalTexto" #generalTexto
+                                                    formControlName="generalTexto" placeholder="A toda la comunidad">
+                                            </div>
+                                        </div>
+                                        <div class="col-12       mt-3 ma  text-center">
+                                            <label class="form-check-label" for="confirmacionCheck">
+                                                Botón de confirmación
+                                            </label>
+                                            <input class="form-check-input text-center" type="checkbox"
+                                                id="confirmacionCheck" #confirmacionCheck
+                                                formControlName="confirmacionCheck">
+
+
+                                        </div>
+                                        <hr class="mt-3 mb-3">
+
+
                                         <div class="row text-center mt-3">
                                             <h5>Mesa de regalos</h5>
 

@@ -101,12 +101,23 @@
         <div class="row">
             <div class="col-12">
                 <div class="card text-center"
-                    style="width: 100%; margin: auto; border: none; background-color: {{invitacion.cPrincipal}};">
+                    style="width: 100%; margin: auto; border: none; background-color: {{invitacion.cPrincipal}};"
+                    *ngIf="!generalCheck">
                     <div class="card-body  " style="color:{{invitacion.cWhite}};">
                         <h1 class="card-title mt-3 pacifico  ">Invitación válida para:</h1>
                         <h1 class="card-text   lato-bold upper">{{invitacion.invitado}}</h1>
                         <h2 class="  lato-regular-italic" *ngIf="checking">{{invitacion.cantidad}} pases</h2>
                         <h1 class="card-text   lato-bold upper" *ngIf="invitacion.mesa">Mesa <b>{{invitacion.mesa}}</b>
+                        </h1>
+                        <h3 class="  lato-regular-italic">{{invitacion.textInvitacionValida}}</h3>
+                    </div>
+                </div>
+                <div class="card text-center"
+                    style="width: 100%; margin: auto; border: none; background-color: {{invitacion.cPrincipal}};"
+                    *ngIf="generalCheck">
+                    <div class="card-body  " style="color:{{invitacion.cWhite}};">
+                        <h1 class="card-title mt-3 pacifico  ">Invitación para: </h1>
+                        <h1 class="card-text   lato-bold upper"> {{invitacion.generalTexto}}
                         </h1>
                         <h3 class="  lato-regular-italic">{{invitacion.textInvitacionValida}}</h3>
                     </div>

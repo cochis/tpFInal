@@ -57,6 +57,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
   donde3Check: boolean
   mesaRegalosCheck: boolean
   confirmacionCheck: boolean
+  generalCheck: boolean
   checking: boolean
   hospedajeCheck: boolean
   vistaTemp: boolean
@@ -116,6 +117,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
           this.hospedajeCheck = this.invitacion.hospedajeCheck
           this.mesaRegalosCheck = this.invitacion.mesaRegalosCheck
           this.confirmacionCheck = this.invitacion.confirmacionCheck
+          this.generalCheck = this.invitacion.generalCheck
           this.itinerarios = this.invitacion.itinerarios
           this.notas = this.invitacion.notas
         }, (error) => {
@@ -233,6 +235,8 @@ export class DefaultComponent implements OnInit, AfterViewInit {
         this.hospedajeCheck = (this.state.hospedajeCheck == 'true') ? true : false
         this.mesaRegalosCheck = (this.state.mesaRegalosCheck == 'true') ? true : false
         this.confirmacionCheck = (this.state.confirmacionCheck == 'true') ? true : false
+        this.generalCheck = (this.state.generalCheck == 'true') ? true : false
+
         this.invitacion = this.state
         this.date = this.invitacion.fiestaDate
         this.btnBack = true
@@ -345,9 +349,9 @@ export class DefaultComponent implements OnInit, AfterViewInit {
             }
           }); */
 
-
+        this.functionsService.alert('Invitación', 'Se confirmo tu asistencia', 'success')
       } else {
-        this.functionsService.alert('Invitacion', 'Se quito la confirmación', 'success')
+        this.functionsService.alert('Invitación', 'Se quito la confirmación', 'success')
         this.loading = false
       }
 

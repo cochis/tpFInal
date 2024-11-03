@@ -99,11 +99,14 @@ export class CheckInComponent implements AfterViewInit {
   }
   scan() {
     this.scannerActive = true
+
     setTimeout(() => {
       this.scannerActive = false
-    }, 15000);
+
+    }, 20000);
   }
   stop() {
+
     this.scannerActive = false
   }
   showQr(qr: any) {
@@ -128,8 +131,8 @@ export class CheckInComponent implements AfterViewInit {
 
               this.fiesta = resp.fiesta
 
+              this.checking = this.fiesta.checking
               if (this.fiesta.checking) {
-
                 this.editBoleto = true
               } else {
 
@@ -228,6 +231,7 @@ export class CheckInComponent implements AfterViewInit {
 
     this.fiesta = res[0]
 
+
     this.checking = this.fiesta.checking
     this.formInit.patchValue({
       tipo: '',
@@ -242,12 +246,14 @@ export class CheckInComponent implements AfterViewInit {
       this.boletosFind = resp.boleto
 
 
+
     })
 
   }
 
   back() {
     this.form.reset()
+    this.formInit.patchValue({ fiesta: '' })
     this.editBoleto = false
   }
 }

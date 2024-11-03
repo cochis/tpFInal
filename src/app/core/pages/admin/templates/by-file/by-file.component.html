@@ -361,7 +361,8 @@
 
                         <button class="btn "
                             style="background-color: {{invitacion.byFileColorFr}}; color:{{invitacion.byFileColorTx}} ; border: 3px solid {{invitacion.byFileColorBG}}"
-                            type="button" (click)="confirmar(getQr(boleto))" *ngIf="!boleto.confirmado">
+                            type="button" (click)="confirmar(getQr(boleto))"
+                            *ngIf="!boleto.confirmado && confirmacionCheck">
                             Confirma tu asistencia
                         </button>
                         <button class="btn "
@@ -387,7 +388,7 @@
                             [colorDark]="invitacion.byFileColorQr" [colorLight]="invitacion.byFileColorBG"
                             [title]="getQr(boleto)" [width]="280">
                         </qrcode>
-                        <div class="card-body">
+                        <div class="card-body" *ngIf="checking  && confirmacionCheck">
 
                             <button class="btn "
                                 style="background-color: {{invitacion.byFileColorFr}}; color:{{invitacion.cWhite}} ; border: 3px solid {{invitacion.byFileColorBG}}"
@@ -414,7 +415,7 @@
                             </qrcode>
 
                         </div>
-                        <div class="card-body mt-3" *ngIf=" boleto && fiesta.checking">
+                        <div class="card-body mt-3" *ngIf=" boleto && fiesta.checking  && confirmacionCheck ">
 
                             <button class="btn "
                                 style="background-color: {{invitacion.byFileColorFr}}; color:{{invitacion.cWhite}} ; border: 3px solid {{invitacion.byFileColorBG}}"

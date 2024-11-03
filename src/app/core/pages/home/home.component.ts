@@ -44,11 +44,6 @@ export class HomeComponent implements AfterViewInit {
     this.role = this.functionsService.getLocal('role')
     this.uid = this.functionsService.getLocal('uid')
 
-    //this.authService.renewToken().subscribe((resp: any) => {
-    //  console.log('resp::: ', resp.token);
-    //  this.functionsService.setLocal('token', resp.token)
-    //
-    //})
 
 
   }

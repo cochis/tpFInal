@@ -27,7 +27,7 @@ export class EditarInvitacionComponent {
   fiesta: Fiesta
   invitacion: any = undefined
   invitacionTemp: Invitacion = undefined
-  id: string = ''
+  id: string = 'sm'
   edit: any
   submited: boolean = false
   default: DefaultTemplate
@@ -40,6 +40,7 @@ export class EditarInvitacionComponent {
   public form!: FormGroup
   invi: any
   viewVideo = false
+  viewSizeM = ''
   constructor(
     private fb: FormBuilder,
     private functionsService: FunctionsService,
@@ -62,6 +63,7 @@ export class EditarInvitacionComponent {
 
     this.getInvitacion(this.id)
     this.getFiesta(this.id)
+
   }
   get errorControl() {
     return this.form.controls;
@@ -162,6 +164,8 @@ export class EditarInvitacionComponent {
       hospedajePhone: [''],
       mesaRegalosCheck: [true],
       confirmacionCheck: [true],
+      generalCheck: [true],
+      generalTexto: [''],
       mesaRegalosLugar: [''],
       mesaRegalosUrl: [''],
       mesaRegalosImg: [''],
@@ -268,6 +272,8 @@ export class EditarInvitacionComponent {
       hospedajePhone: [invitacion.data.hospedajePhone],
       mesaRegalosCheck: [invitacion.data.mesaRegalosCheck],
       confirmacionCheck: [invitacion.data.confirmacionCheck],
+      generalCheck: [invitacion.data.generalCheck],
+      generalTexto: [invitacion.data.generalTexto],
       mesaRegalosLugar: [invitacion.data.mesaRegalosLugar],
       mesaRegalosUrl: [invitacion.data.mesaRegalosUrl],
       mesaRegalosImg: [invitacion.data.mesaRegalosImg],
@@ -394,6 +400,8 @@ export class EditarInvitacionComponent {
       hospedajePhone: [temp.hospedajePhone],
       mesaRegalosCheck: [temp.mesaRegalosCheck],
       confirmacionCheck: [temp.confirmacionCheck],
+      generalCheck: [temp.generalCheck],
+      generalTexto: [temp.generalTexto],
       mesaRegalosLugar: [temp.mesaRegalosLugar],
       mesaRegalosUrl: [temp.mesaRegalosUrl],
       mesaRegalosImg: [temp.mesaRegalosImg],
@@ -661,6 +669,8 @@ export class EditarInvitacionComponent {
             hospedajePhone: '',
             mesaRegalosCheck: true,
             confirmacionCheck: true,
+            generalCheck: true,
+            generalTexto: '',
             mesaRegalosLugar: '',
             mesaRegalosUrl: '',
             mesaRegalosImg: '',
@@ -787,6 +797,8 @@ export class EditarInvitacionComponent {
     this.notas.removeAt(i);
   }
   selectType(type) {
+
+
     if (type == 'url') {
       this.viewVideo = true
     } else {
@@ -940,6 +952,10 @@ export class EditarInvitacionComponent {
 
     return this.invitacionsService.crearInvitacion(invitacion)
   }
+  changeSize(event: any) {
 
+    this.viewSizeM = event
+
+  }
 
 }

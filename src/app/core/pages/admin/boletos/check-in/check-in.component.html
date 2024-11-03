@@ -48,7 +48,7 @@
     </section>
 
 
-    <div class="container mt-2 ma text-center">
+    <div class="container mt-2 ma text-center" *ngIf="!editBoleto">
         <div class="justify-content-center text-center">
             <h5 class=" mb-2">Búsqueda por lista</h5>
 
@@ -75,8 +75,8 @@
                         <select name="tipo" id="tipo" formControlName="tipo" class="form-control upper"
                             (change)="filterBy(formInit.value)">
                             <option value="">Selecciona un tipo</option>
-                            <option value="nombre">Nombre</option>
-                            <option value="mesa" *ngIf="fiesta.mesaOk">Mesa</option>
+                            <option value="nombre">Nombre </option>
+
 
                         </select>
                     </div>

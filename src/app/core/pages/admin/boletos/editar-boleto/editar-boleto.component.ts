@@ -604,15 +604,19 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
       let totalI = await this.conteoInvitadosFile(jsonData.Invitados)
 
 
-      if ((totalI + this.total) > this.numeroInvitados) {
-        this.functionsService.alert('Boletos', 'La cantidad de invitados es mayor a la capasidad disponible', 'error')
+      if (this.numeroInvitados > 0) {
+
+        if ((totalI + this.total) > this.numeroInvitados) {
+          this.functionsService.alert('Boletos', 'La cantidad de invitados es mayor a la capasidad disponible', 'error')
 
 
-        setTimeout(() => {
+          setTimeout(() => {
 
-          this.loading = false
-        }, 1500);
-        return
+            this.loading = false
+          }, 1500);
+          return
+        }
+
       }
 
       let invi = await this.validarInvitadosFile(jsonData.Invitados)

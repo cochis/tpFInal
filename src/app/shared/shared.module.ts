@@ -22,6 +22,7 @@ import { SharedDefaultTemplateComponent } from './components/shared-default-temp
 import { InfoUbicacionComponent } from './components/info-ubicacion/info-ubicacion.component';
 import { CongratsComponent } from './pages/congrats/congrats.component';
 import { CancelComponent } from './pages/cancel/cancel.component';
+import { ViewTemplateComponent } from './components/view-template/view-template.component';
 
 
 
@@ -45,6 +46,7 @@ import { CancelComponent } from './pages/cancel/cancel.component';
     InfoUbicacionComponent,
     CongratsComponent,
     CancelComponent,
+    ViewTemplateComponent,
 
 
   ],
@@ -61,6 +63,7 @@ import { CancelComponent } from './pages/cancel/cancel.component';
     ModalComponent,
     SharedDefaultTemplateComponent,
     InfoUbicacionComponent,
+    ViewTemplateComponent
 
   ],
   imports: [

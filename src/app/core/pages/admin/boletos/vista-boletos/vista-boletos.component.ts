@@ -150,6 +150,7 @@ export class VistaBoletosComponent {
     this.boletosService.cargarBoletosAll().subscribe((resp: any) => {
       this.boletos = resp.boletos
 
+
       this.boletosTemp = resp.boletos
       this.loading = false
     },
@@ -160,6 +161,7 @@ export class VistaBoletosComponent {
   }
   fiterBoletos(fiesta) {
     if (this.boletos) {
+
       let res = this.boletos.filter((bol: any) => {
         if (bol) {
           return (bol.fiesta._id) ? bol.fiesta._id : bol.fiesta.uid === fiesta
@@ -169,7 +171,12 @@ export class VistaBoletosComponent {
       })
       let cantidad = 0
       res.forEach(b => {
-        cantidad = cantidad + b.cantidadInvitados
+
+        if (b.cantidadInvitados) {
+
+          cantidad = cantidad + b.cantidadInvitados
+        }
+
       });
 
       return cantidad
