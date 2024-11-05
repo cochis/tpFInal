@@ -101,16 +101,41 @@
                                                     max="100">
                                             </div>
                                         </div>
-                                        <div class="col-12  col-sm-6 col-md-4   mt-3">
+                                        <div class="col-12  col-sm-6 col-md-3   mt-3">
                                             <div class="form-group ">
                                                 <label for="nombreFiesta ">Titulo invitación</label>
-                                                <input type="text" id="nombreFiesta" #nombreFiesta
-                                                    formControlName="nombreFiesta">
+                                                <input type="text" id="nombreFiesta" #nombreFiesta  class="form-control"
+                                                    formControlName="nombreFiesta" >
+                                            </div>
+                                        </div>
+                                        <div class="col-12  col-sm-6 col-md-3   mt-3">
+                                            <div class="form-group ">
+                                                <label for="nombreFont ">Fuente de titulo</label>
+                                                <select name="nombreFont" id="nombreFont" formControlName="nombreFont"  
+                                                class="form-control upper {{nombreFont.value}}" #nombreFont  >
+                                                <option value="">Seleccione el tipo de fuente</option>
+                                                <option value="pacifico" class="pacifico">{{nombreFiesta.value}}</option>
+                                                <option value="anton-sc-regular" class="anton-sc-regular">{{nombreFiesta.value}}</option>
+                                                <option value="creepster-regular" class="creepster-regular">{{nombreFiesta.value}}</option>
+                                              
+                                                <option value="roboto-bold" class="roboto-bold">{{nombreFiesta.value}}</option>
+                                              
+                                 
+                                                <option value="roboto-regular-italic" class="roboto-regular-italic">{{nombreFiesta.value}}</option>
+                                                <option value="roboto-medium-italic " class="roboto-medium-italic ">{{nombreFiesta.value}}</option>
+                                                <option value="roboto-black-italic" class="roboto-black-italic">{{nombreFiesta.value}}</option>
+                                              
+                                                <!-- <option value="url">url</option>-->
+
+                                                <!-- <option [value]="item.uid" *ngFor="let item of salones">{{item.nombre }} <b
+                                                                                            *ngIf="rol ===ADM && usuarios">{{item.usuarioCreated.email}}</b>
+                                                                                    </option> -->
+                                            </select>
                                             </div>
                                         </div>
 
 
-                                        <div class="col-12  col-sm-6 col-md-4   mt-3">
+                                        <div class="col-12  col-sm-6 col-md-3   mt-3">
                                             <div class="form-group ">
                                                 <label for="nombreSize ">Tamaño titulo de invitación
                                                 </label>
@@ -122,14 +147,14 @@
 
 
 
-                                        <div class="col-6  col-md-4   mt-3">
+                                        <div class="col-6  col-md-3   mt-3">
                                             <div class="form-group ">
                                                 <label for="topTitle ">Altura del titulo </label>
                                                 <input type="range" id="topTitle" #topTitle formControlName="topTitle">
                                             </div>
                                         </div>
 
-                                        <div class="col-12  col-sm-6 col-md-4   mt-3">
+                                        <div class="col-12  col-sm-6 col-md-3   mt-3">
                                             <div class="form-group ">
                                                 <label for="tipoFiesta ">subtitulo invitación </label>
                                                 <input type="text" id="tipoFiesta" #tipoFiesta
@@ -137,14 +162,14 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-6  col-md-4   mt-3">
+                                        <div class="col-6  col-md-3   mt-3">
                                             <div class="form-group ">
                                                 <label for="tipoSize ">Tamaño de subtitulo </label>
                                                 <input type="range" id="tipoSize" #tipoSize formControlName="tipoSize">
                                             </div>
                                         </div>
 
-                                        <div class="col-12  col-sm-6 col-md-4   mt-3">
+                                        <div class="col-12  col-sm-6 col-md-3   mt-3">
                                             <div class="form-group ">
                                                 <label for="topDate ">Altura fecha </label>
                                                 <input type="range" id="topDate" #topDate formControlName="topDate">

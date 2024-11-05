@@ -107,6 +107,7 @@ export class EditarInvitacionComponent {
       cSecond: ['#c0354e'],
       cWhite: ['#ffffff'],
       img1: [''],
+      imgWidth: [100],
       xImg1: [50],
       yImg1: [0],
       topTitle: [40],
@@ -114,15 +115,19 @@ export class EditarInvitacionComponent {
       invitado: [''],
       cantidad: [this.fiesta.cantidad],
       tipoFiesta: [''],
+      tipoFont: [''],
       tipoSize: [90],
       topDate: [50],
       checking: [this.fiesta.checking],
       fiestaDate: [Number(this.fiesta.fecha)],
       nombreFiesta: [this.fiesta.nombre],
+      nombreFont: [''],
       nombresSize: [187],
       textInvitacionValida: ['¡Los esperamos!'],
       mensajeCheck: [true],
       mensajeImg: [''],
+      mensajeFont: [''],
+      mensajeImgWidth: [100],
       bxMensajeImg: [50],
       byMensajeImg: [0],
       mensaje1: [''],
@@ -302,6 +307,15 @@ export class EditarInvitacionComponent {
 
 
 
+      //font width  IMG
+
+      imgWidth: [invitacion.data.imgWidth],
+      nombreFont: [invitacion.data.nombreFont],
+      tipoFont: [invitacion.data.tipoFont],
+      mensajeImgWidth: [invitacion.data.mensajeImgWidth],
+      mensajeFont: [invitacion.data.mensajeFont],
+
+
 
 
 
@@ -407,6 +421,14 @@ export class EditarInvitacionComponent {
       mesaRegalosImg: [temp.mesaRegalosImg],
 
 
+      imgWidth: [temp.imgWidth],
+      nombreFont: [temp.nombreFont],
+      tipoFont: [temp.tipoFont],
+      mensajeImgWidth: [temp.mensajeImgWidth],
+      mensajeFont: [temp.mensajeFont],
+
+
+
       itinerarioCheck: [temp.itinerarioCheck],
       itinerarioName: [temp.itinerarioName],
       itinerarios: this.fb.array([]),
@@ -419,6 +441,9 @@ export class EditarInvitacionComponent {
       activated: [temp.activated],
       dateCreated: [temp.dateCreated],
       lastEdited: [temp.lastEdited],
+
+
+
     })
   }
   async VerTemplate(form) {
@@ -687,6 +712,14 @@ export class EditarInvitacionComponent {
             activated: true,
             dateCreated: this.today,
             lastEdited: this.today,
+
+            //font img
+            imgWidth: 100,
+            nombreFont: "pacifico",
+            tipoFont: "pacifico",
+            mensajeImgWidth: 100,
+            mensajeFont: "pacifico",
+
 
 
             //byFIle
