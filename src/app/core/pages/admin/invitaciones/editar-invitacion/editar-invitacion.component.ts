@@ -51,7 +51,6 @@ export class EditarInvitacionComponent {
     private fileService: FileService,
 
   ) {
-
     this.id = this.route.snapshot.params['id']
     this.edit = this.route.snapshot.params['edit']
 
@@ -63,6 +62,7 @@ export class EditarInvitacionComponent {
 
     this.getInvitacion(this.id)
     this.getFiesta(this.id)
+    this.changeSize('sm')
 
   }
   get errorControl() {
@@ -127,6 +127,9 @@ export class EditarInvitacionComponent {
       mensajeCheck: [true],
       mensajeImg: [''],
       mensajeFont: [''],
+      inicialTFont: [''],
+      finalTFont: [''],
+      inviFont: [''],
       mensajeImgWidth: [100],
       bxMensajeImg: [50],
       byMensajeImg: [0],
@@ -310,10 +313,14 @@ export class EditarInvitacionComponent {
       //font width  IMG
 
       imgWidth: [invitacion.data.imgWidth],
-      nombreFont: [invitacion.data.nombreFont],
-      tipoFont: [invitacion.data.tipoFont],
+      nombreFont: [invitacion.data.nombreFont?invitacion.data.nombreFont:'dancing'],
+      tipoFont: [invitacion.data.tipoFont?invitacion.data.tipoFont:'dancing'],
       mensajeImgWidth: [invitacion.data.mensajeImgWidth],
-      mensajeFont: [invitacion.data.mensajeFont],
+      mensajeFont: [invitacion.data.mensajeFont?invitacion.data.mensajeFont:'dancing'],
+      inicialTFont: [invitacion.data.inicialTFont?invitacion.data.inicialTFont:'dancing'],
+      finalTFont: [invitacion.data.finalTFont?invitacion.data.finalTFont:'dancing'],
+      inviFont: [invitacion.data.inviFont?invitacion.data.inviFont:'dancing'],
+    
 
 
 
@@ -426,6 +433,9 @@ export class EditarInvitacionComponent {
       tipoFont: [temp.tipoFont],
       mensajeImgWidth: [temp.mensajeImgWidth],
       mensajeFont: [temp.mensajeFont],
+      inicialTFont: [temp.mensajeFont],
+      finalTFont: [temp.mensajeFont],
+      inviFont: [temp.mensajeFont],
 
 
 
@@ -719,7 +729,9 @@ export class EditarInvitacionComponent {
             tipoFont: "pacifico",
             mensajeImgWidth: 100,
             mensajeFont: "pacifico",
-
+            inicialTFont:'pacifico',
+            finalTFont:'pacifico',
+            inviFont:'pacifico',
 
 
             //byFIle

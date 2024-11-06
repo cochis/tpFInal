@@ -15,10 +15,11 @@ export class ViewTemplateComponent implements OnInit {
   segundos = 0
   date: number = this.today + 199456789
   constructor(private functionsService: FunctionsService) {
-
+    
   }
   ngOnInit() {
-
+    console.log('data', this.data)
+    
 
   }
   restParty() {

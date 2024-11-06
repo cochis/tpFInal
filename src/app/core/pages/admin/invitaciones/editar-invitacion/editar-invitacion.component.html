@@ -29,7 +29,7 @@
                                             <select name="viewSize" id="viewSize" #viewSize class="form-select"
                                                 (change)="changeSize(viewSize.value)">
                                                 <option value="">Selecciona el tamaño de vista</option>
-                                                <option value="sm">Celular</option>
+                                                <option value="sm" selected>Celular</option>
                                                 <option value="md">Tablet</option>
                                                 <option value="lg">Computadora</option>
                                             </select>
@@ -69,7 +69,7 @@
 
 
                                     </div>
-                                    <div class="row text-center mt-3">
+                                    <div class="row text-center mt-3 mb-5">
                                         <h5>Seccion inicial</h5>
                                         <div class="col-12      mt-3">
                                             <div class="form-group ">
@@ -87,18 +87,25 @@
                                                     (change)="cambiarImagen($event,'img1' )">
                                             </div>
                                         </div>
-                                        <div class="col-6  col-md-6  mt-3">
+                                        <div class="col-6  col-md-4  mt-3">
                                             <div class="form-group ">
                                                 <label for="xImg1 ">Posición horizontal de la imagen </label>
-                                                <input type="range" id="xImg1" #xImg1 formControlName="xImg1" min="-200"
+                                                <input type="range" id="xImg1" #xImg1 formControlName="xImg1" min="-300"
+                                                    max="300">
+                                            </div>
+                                        </div>
+                                        <div class="col-6  col-md-4  mt-3">
+                                            <div class="form-group ">
+                                                <label for="yImg1 ">Posición vertical de la imagen </label>
+                                                <input type="range" id="yImg1" #yImg1 formControlName="yImg1" min="-200"
                                                     max="200">
                                             </div>
                                         </div>
-                                        <div class="col-6  col-md-6  mt-3">
+                                        <div class="col-12  col-sm-4 col-md-3   mt-3">
                                             <div class="form-group ">
-                                                <label for="yImg1 ">Posición vertical de la imagen </label>
-                                                <input type="range" id="yImg1" #yImg1 formControlName="yImg1" min="-100"
-                                                    max="100">
+                                                <label for="imgWidth ">Tamaño imagen</label>
+                                                <input type="range" id="imgWidth" #imgWidth formControlName="imgWidth" min="0"
+                                                max="500">
                                             </div>
                                         </div>
                                         <div class="col-12  col-sm-6 col-md-3   mt-3">
@@ -108,21 +115,21 @@
                                                     formControlName="nombreFiesta" >
                                             </div>
                                         </div>
+                                        
                                         <div class="col-12  col-sm-6 col-md-3   mt-3">
                                             <div class="form-group ">
                                                 <label for="nombreFont ">Fuente de titulo</label>
                                                 <select name="nombreFont" id="nombreFont" formControlName="nombreFont"  
                                                 class="form-control upper {{nombreFont.value}}" #nombreFont  >
                                                 <option value="">Seleccione el tipo de fuente</option>
-                                                <option value="pacifico" class="pacifico">{{nombreFiesta.value}}</option>
+                                                <option value="name" class="name" selected>{{nombreFiesta.value}}</option>
+                                                <option value="dancing" class="dancing"  >{{nombreFiesta.value}}</option>
+                                         
                                                 <option value="anton-sc-regular" class="anton-sc-regular">{{nombreFiesta.value}}</option>
                                                 <option value="creepster-regular" class="creepster-regular">{{nombreFiesta.value}}</option>
                                               
                                                 <option value="roboto-bold" class="roboto-bold">{{nombreFiesta.value}}</option>
-                                              
-                                 
-                                                <option value="roboto-regular-italic" class="roboto-regular-italic">{{nombreFiesta.value}}</option>
-                                                <option value="roboto-medium-italic " class="roboto-medium-italic ">{{nombreFiesta.value}}</option>
+                                               
                                                 <option value="roboto-black-italic" class="roboto-black-italic">{{nombreFiesta.value}}</option>
                                               
                                                 <!-- <option value="url">url</option>-->
@@ -133,14 +140,16 @@
                                             </select>
                                             </div>
                                         </div>
+                                    
 
 
                                         <div class="col-12  col-sm-6 col-md-3   mt-3">
                                             <div class="form-group ">
-                                                <label for="nombreSize ">Tamaño titulo de invitación
+                                                <label for="nombreSize ">Tamaño titulo 
                                                 </label>
                                                 <input type="range" id="nombreSize" #nombreSize
-                                                    formControlName="nombreSize">
+                                                    formControlName="nombreSize" min="-200"
+                                                    max="200">
                                             </div>
                                         </div>
 
@@ -158,31 +167,65 @@
                                             <div class="form-group ">
                                                 <label for="tipoFiesta ">subtitulo invitación </label>
                                                 <input type="text" id="tipoFiesta" #tipoFiesta
-                                                    formControlName="tipoFiesta">
+                                                    formControlName="tipoFiesta"  class="form-control">
                                             </div>
                                         </div>
+                                        <div class="col-12  col-sm-6 col-md-3   mt-3">
+                                            <div class="form-group ">
+                                                <label for="tipoFont">Fuente de titulo</label>
+                                                <select name="tipoFont" id="tipoFont" formControlName="tipoFont"  
+                                                class="form-control upper {{tipoFont.value}}" #tipoFont  >
+                                                <option value="">Seleccione el tipo de fuente</option>
+                                                <option value="name" class="name" selected>{{tipoFiesta.value}}</option>
+                                                <option value="dancing" class="dancing"  >{{tipoFiesta.value}}</option>
+                                         
+                                                <option value="anton-sc-regular" class="anton-sc-regular">{{tipoFiesta.value}}</option>
+                                                <option value="creepster-regular" class="creepster-regular">{{tipoFiesta.value}}</option>
+                                              
+                                                <option value="roboto-bold" class="roboto-bold">{{tipoFiesta.value}}</option>
+                                               
+                                                <option value="roboto-black-italic" class="roboto-black-italic">{{tipoFiesta.value}}</option>
+                                              
+                                                <!-- <option value="url">url</option>-->
 
+                                                <!-- <option [value]="item.uid" *ngFor="let item of salones">{{item.nombre }} <b
+                                                                                            *ngIf="rol ===ADM && usuarios">{{item.usuarioCreated.email}}</b>
+                                                                                    </option> -->
+                                            </select>
+                                            </div>
+                                        </div>
                                         <div class="col-6  col-md-3   mt-3">
                                             <div class="form-group ">
                                                 <label for="tipoSize ">Tamaño de subtitulo </label>
-                                                <input type="range" id="tipoSize" #tipoSize formControlName="tipoSize">
+                                                <input type="range" id="tipoSize" #tipoSize formControlName="tipoSize" min="-200"
+                                                max="200">
                                             </div>
                                         </div>
 
                                         <div class="col-12  col-sm-6 col-md-3   mt-3">
                                             <div class="form-group ">
                                                 <label for="topDate ">Altura fecha </label>
-                                                <input type="range" id="topDate" #topDate formControlName="topDate">
+                                                <input type="range" id="topDate" #topDate formControlName="topDate" min=" 0"
+                                                max="200">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12  col-sm-4 col-md-3   mt-3">
+                                            <div class="form-group ">
+                                                <label for="imgWidth ">Tamaño imagen</label>
+                                                <input type="range" id="imgWidth" #imgWidth formControlName="imgWidth" min="0"
+                                                max="200">
                                             </div>
                                         </div>
                                     </div>
-
+ 
 
                                     <app-view-template [data]="{
     type:'seccionInicial',
     size:viewSizeM,
         cPrincipal: form.value.cPrincipal,
         cSecond: form.value.cSecond,
+        imgWidth: imgWidth.value,
         cWhite: form.value.cWhite,
              img1: (invitacion == undefined || invitacion.data.img1 == '') ? '/assets/images/tp.png' : url + '/upload/invitaciones/' + invitacion.data.img1, 
         xImg1: form.value.xImg1,
@@ -191,12 +234,15 @@
         generalTexto :invitacion.data.generalTexto,
         nombreFiesta: form.value.nombreFiesta,
         nombreSize: form.value.nombreSize,
+        nombreFont: form.value.nombreFont,
         topTitle: form.value.topTitle,
         tipoFiesta: form.value.tipoFiesta,
         tipoSize: form.value.tipoSize,
-        topDate: form.value.topDate
+        tipoFont: form.value.tipoFont,
+        topDate: form.value.topDate,
+     
 
-}"></app-view-template>
+}" ></app-view-template>
 
                                     <div class="row text-center mt-3">
                                         <h5>Seccion Mensaje</h5>
