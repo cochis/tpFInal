@@ -133,6 +133,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
     } else {
       this.restParty()
       this.state = this.route.snapshot.queryParams
+      console.log('state', this.state)
       for (let key in this.state) {
         ++this.count;
       }
@@ -219,6 +220,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
           ],
           colorQr: '#ffffff',
           colorBGQr: '#f82525',
+          imgWidth:100
         }
         this.itinerarios = this.invitacion.itinerarios
         this.notas = this.invitacion.notas

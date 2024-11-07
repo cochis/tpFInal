@@ -59,14 +59,14 @@
 
                 <div class="fecha pacifico tc  " style="top:{{invitacion.topDate}}%">
                     <table class="tc" *ngIf="date>functionsService.getToday()">
-                        <tr style="color:{{invitacion.byFileColorTx}};">
-                            <th class="wc"><b class="fsc" style="color: {{invitacion.byFileColorFr}};">D</b>ias</th>
-                            <th class="wc"><b class="fsc" style="color: {{invitacion.byFileColorFr}};">H</b>oras</th>
-                            <th class="wc"><b class="fsc" style="color: {{invitacion.byFileColorFr}};">M</b>inutos</th>
-                            <th class="wc "><b class="fsc" style="color: {{invitacion.byFileColorFr}};">S</b>egundo
+                        <tr style="color:{{invitacion.byFileColorFr}};">
+                            <th class=" {{invitacion.finalTFont}}" style="font-size:{{invitacion.finalTSize}}px;"><b  style="color: {{invitacion.byFileColorTx}}; font-size:{{invitacion.inicialTSize}}px;" class=" {{invitacion.inicialTFont}}">D</b>ias</th>
+                            <th class=" {{invitacion.finalTFont}}" style="font-size:{{invitacion.finalTSize}}px;"><b  style="color: {{invitacion.byFileColorTx}}; font-size:{{invitacion.inicialTSize}}px;" class=" {{invitacion.inicialTFont}}">H</b>oras</th>
+                            <th class=" {{invitacion.finalTFont}}" style="font-size:{{invitacion.finalTSize}}px;"><b  style="color: {{invitacion.byFileColorTx}}; font-size:{{invitacion.inicialTSize}}px;" class=" {{invitacion.inicialTFont}}">M</b>inutos</th>
+                            <th class=" {{invitacion.finalTFont}}" style="font-size:{{invitacion.finalTSize}}px;"><b  style="color: {{invitacion.byFileColorTx}}; font-size:{{invitacion.inicialTSize}}px;" class=" {{invitacion.inicialTFont}}">S</b>egundos
                             </th>
                         </tr>
-                        <tr class="  ts" style="font-size: 45px;color:{{invitacion.byFileColorTx}};">
+                        <tr class="  ts" style="font-size: 45px;color:{{invitacion.cWhite}};">
                             <td>{{dias}}</td>
                             <td>{{horas}}</td>
                             <td>{{minutos}}</td>
@@ -112,14 +112,14 @@
             *ngIf=" (donde1Check ||  donde2Check || donde3Check)  &&  !vistaTemp">
 
             <div class="col-12 text-center" style="margin: auto;">
-                <h1 class=" pacifico   " style=" padding-top:25px;color:{{invitacion.byFileColorTx}};">Donde y Cuando
+                <h1 class=" pacifico   " style=" padding-top:25px;color:{{invitacion.byFileColorTx}};">Donde y cuando
                 </h1>
                 <div class="row">
 
                     <div class="col-12 col-md-4 mt-3" style="text-align: center; margin: auto;" *ngIf="donde1Check">
 
                         <div class="card text-center bd  mb-3 ">
-                            <h5 class="card-title mt-2 dancing"
+                            <h5 class="card-title mt-2 {{invitacion.finalTFont}}"
                                 style="margin: auto; color:{{invitacion.byFileColorFr}}">
                                 {{invitacion.donde1Title}}</h5>
                             <div class="mt-3   bd  img-container ">
@@ -148,7 +148,7 @@
                     </div>
                     <div class="col-12 col-md-4 mt-3" style="text-align: center; margin: auto;" *ngIf="donde2Check">
                         <div class="card text-center bd  mb-3 ">
-                            <h5 class="card-title mt-2 dancing"
+                            <h5 class="card-title mt-2 {{invitacion.finalTFont}}"
                                 style="margin: auto; color:{{invitacion.byFileColorFr}}">
                                 {{invitacion.donde2Title}}</h5>
                             <div class="mt-3   bd  img-container ">
@@ -178,7 +178,7 @@
 
                     <div class="col-12 col-md-4 mt-3" style="text-align: center; margin: auto;" *ngIf="donde3Check">
                         <div class="card text-center bd  mb-3 ">
-                            <h5 class="card-title mt-3 dancing"
+                            <h5 class="card-title mt-3 {{invitacion.finalTFont}}"
                                 style="margin: auto; color:{{invitacion.byFileColorFr}}">
                                 {{invitacion.donde3Title}}</h5>
                             <div class="mt-3   bd  img-container " *ngIf="fiesta">
@@ -241,7 +241,7 @@
                             <a href="{{invitacion.hospedajeUbicacion}}" class="pointer"
                                 style="color:{{invitacion.byFileColorFr}}" target="_blank" rel="noopener noreferrer">
 
-                                <h5 class="card-title mt-2 dancing">{{invitacion.hospedajeName}}</h5>
+                                <h5 class="card-title mt-2 {{invitacion.finalTFont}}">{{invitacion.hospedajeName}}</h5>
                             </a>
                             <br>
                             <a type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
@@ -290,7 +290,7 @@
                             <a href="{{invitacion.mesaRegalosUrl}}" class="pointer"
                                 style="color:{{invitacion.byFileColorFr}}" target="_blank" rel="noopener noreferrer">
 
-                                <h5 class="card-title mt-2 dancing upper">{{invitacion.mesaRegalosLugar}}</h5>
+                                <h5 class="card-title mt-2 {{invitacion.finalTFont}} upper">{{invitacion.mesaRegalosLugar}}</h5>
                             </a>
                             <br>
 
@@ -465,11 +465,11 @@
         <div style="background-color: {{invitacion.byFileColorFr}}; margin: auto;" *ngIf="   vistaTemp">
 
             <div class="row text-center" style="margin: auto;" *ngIf="donde1Check">
-                <h1 class="mt-3 pacifico   " style="color:{{invitacion.cWhite}};">Donde y Cuando</h1>
+                <h1 class="mt-3 pacifico   " style="color:{{invitacion.cWhite}};">{{invitacion.inicialTFont}}</h1>
                 <div class="col-12 col-md-4 mt-3" style="text-align: center; margin: auto;">
 
                     <div class="card text-center bd  mb-3 ">
-                        <h5 class="card-title mt-2 dancing" style="margin: auto; color:{{invitacion.byFileColorFr}}">
+                        <h5 class="card-title mt-2 {{invitacion.finalTFont}}" style="margin: auto; color:{{invitacion.byFileColorFr}}">
                             {{invitacion.donde1Title}}</h5>
                         <div class="mt-3   bd  img-container ">
 
@@ -496,7 +496,7 @@
                 </div>
                 <div class="col-12 col-md-4 mt-3" style="text-align: center; margin: auto;" *ngIf="donde2Check">
                     <div class="card text-center bd  mb-3 ">
-                        <h5 class="card-title mt-2 dancing" style="margin: auto; color:{{invitacion.byFileColorFr}}">
+                        <h5 class="card-title mt-2 {{invitacion.finalTFont}}" style="margin: auto; color:{{invitacion.byFileColorFr}}">
                             {{invitacion.donde2Title}}</h5>
                         <div class="mt-3   bd  img-container ">
 
@@ -523,7 +523,7 @@
                 </div>
                 <div class="col-12 col-md-4 mt-3" style="text-align: center; margin: auto;">
                     <div class="card text-center bd  mb-3 " *ngIf="donde3Check">
-                        <h5 class="card-title mt-3 dancing" style="margin: auto; color:{{invitacion.byFileColorFr}}">
+                        <h5 class="card-title mt-3 {{invitacion.finalTFont}}" style="margin: auto; color:{{invitacion.byFileColorFr}}">
                             {{invitacion.donde3Title}}</h5>
                         <div class="mt-3   bd  img-container ">
                             d
@@ -571,7 +571,7 @@
                             <a href="{{invitacion.hospedajeUbicacion}}" class="pointer"
                                 style="color:{{invitacion.byFileColorFr}}" target="_blank" rel="noopener noreferrer">
 
-                                <h5 class="card-title mt-2 dancing">{{invitacion.hospedajeName}}</h5>
+                                <h5 class="card-title mt-2 {{invitacion.finalTFont}}">{{invitacion.hospedajeName}}</h5>
                             </a>
                             <br>
                             <a type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
@@ -619,7 +619,7 @@
                             <a href="{{invitacion.mesaRegalosUrl}}" class="pointer"
                                 style="color:{{invitacion.byFileColorFr}}" target="_blank" rel="noopener noreferrer">
 
-                                <h5 class="card-title mt-2 dancing upper">{{invitacion.mesaRegalosLugar}}</h5>
+                                <h5 class="card-title mt-2 {{invitacion.finalTFont}} upper">{{invitacion.mesaRegalosLugar}}</h5>
                             </a>
                             <br>
 
@@ -650,7 +650,7 @@
                     <div class="card  p-0 nborder">
 
 
-                        <h5 class="  card-title mt-2 dancing text-center">{{invitacion.ItinerarioName}}</h5>
+                        <h5 class="  card-title mt-2 {{invitacion.finalTFont}} text-center">{{invitacion.ItinerarioName}}</h5>
                         <table *ngIf="itinerarios.length >0">
                             <tr style=" border-top: 2px solid {{invitacion.byFileColorFr}} ; height: 60px; line-height: 60px;"
                                 *ngFor="let iti of itinerarios">

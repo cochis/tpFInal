@@ -22,25 +22,25 @@
 
                 <div class="box  "
                     style="background-image:url({{url+'/upload/invitaciones/'+((invitacion.img1!=='')?invitacion.img1:'notImage')}});
-                           background-position: {{invitacion.xImg1}}%  {{invitacion.yImg1}}px !important;height: 750px;"
+                           background-position: {{invitacion.xImg1}}%  {{invitacion.yImg1}}px !important; background-size:{{invitacion.imgWidth}}%; "
                     *ngIf="!vistaTemp">
 
                     <div class="animated backInDown texto tc" style="top:{{invitacion.topTitle}}%">
-                        <span class="name ts dancing cap"
+                        <span class="ts cap {{invitacion.nombreFont}}"
                             style="color:{{invitacion.cPrincipal}};font-size:{{invitacion.nombreSize}}px">{{invitacion.nombreFiesta}}</span>
-                        <h1 class="dancing ts animate__bounce "
+                        <h1 class="{{invitacion.tipoFont}} ts animate__bounce "
                             style="font-size:{{invitacion.tipoSize}}px !important;color: {{invitacion.cWhite }};">
                             {{invitacion.tipoFiesta}}
                         </h1>
 
                     </div>
-                    <div class="fecha pacifico tc  " style="top:{{invitacion.topDate}}%">
+                    <div class="fecha {{invitacion.nombreFont}} tc  " style="top:{{invitacion.topDate}}%">
                         <table class="tc" *ngIf="date>functionsService.getToday()">
                             <tr style="color:{{invitacion.cWhite}};">
-                                <th class="wc"><b class="fsc" style="color: {{invitacion.cPrincipal}};">D</b>ias</th>
-                                <th class="wc"><b class="fsc" style="color: {{invitacion.cPrincipal}};">H</b>oras</th>
-                                <th class="wc"><b class="fsc" style="color: {{invitacion.cPrincipal}};">M</b>inutos</th>
-                                <th class="wc "><b class="fsc" style="color: {{invitacion.cPrincipal}};">S</b>egundo
+                                <th class=" {{invitacion.finalTFont}}" style="font-size:{{invitacion.finalTSize}}px;"><b  style="color: {{invitacion.cPrincipal}}; font-size:{{invitacion.inicialTSize}}px;" class=" {{invitacion.inicialTFont}}">D</b>ias</th>
+                                <th class=" {{invitacion.finalTFont}}" style="font-size:{{invitacion.finalTSize}}px;"><b  style="color: {{invitacion.cPrincipal}}; font-size:{{invitacion.inicialTSize}}px;" class=" {{invitacion.inicialTFont}}">H</b>oras</th>
+                                <th class=" {{invitacion.finalTFont}}" style="font-size:{{invitacion.finalTSize}}px;"><b  style="color: {{invitacion.cPrincipal}}; font-size:{{invitacion.inicialTSize}}px;" class=" {{invitacion.inicialTFont}}">M</b>inutos</th>
+                                <th class=" {{invitacion.finalTFont}}" style="font-size:{{invitacion.finalTSize}}px;"><b  style="color: {{invitacion.cPrincipal}}; font-size:{{invitacion.inicialTSize}}px;" class=" {{invitacion.inicialTFont}}">S</b>egundos
                                 </th>
                             </tr>
                             <tr class="  ts" style="font-size: 45px;color:{{invitacion.cWhite}};">
@@ -48,46 +48,46 @@
                                 <td>{{horas}}</td>
                                 <td>{{minutos}}</td>
                                 <td class="animated infinite pulse">{{segundos}}</td>
-
+    
                             </tr>
-
+    
                         </table>
-
-                        <h2 class="pacifico tc" *ngIf="date<functionsService.getToday()"><b
+                        <h2 class=" {{invitacion.nombreFont}} tc" *ngIf="date<functionsService.getToday()"><b
                                 style="color: {{invitacion.cPrincipal}};">E</b>mpezamos</h2>
                     </div>
 
 
                 </div>
                 <div class="box"
-                    style="background-image:url({{invitacion.img1}});background-position: {{invitacion.xImg1}}% {{invitacion.yImg1}}px !important;"
+                    style="background-image:url({{invitacion.img1}});background-position: {{invitacion.xImg1}}% {{invitacion.yImg1}}px !important; background-size:{{invitacion.imgWidth}}%; "
                     *ngIf="vistaTemp">
 
                     <div class="texto tc" style="top:{{invitacion.topTitle}}%">
-                        <h1 class="dancing ts"
+                        <h1 class="{{invitacion.tipoFont}} ts"
                             style="font-size:{{invitacion.tipoSize}}px ; color: {{invitacion.cPrincipal}};">
                             {{invitacion.tipoFiesta}}
                         </h1>
-                        <span class="name ts dancing cap"
+                        <span class="ts cap {{invitacion.nombreFont}}"
                             style="color:{{invitacion.cWhite}};font-size:   {{invitacion.nombreSize}}px;">{{invitacion.nombreFiesta}}</span>
 
                     </div>
-                    <div class="fecha pacifico tc  " style="top:{{invitacion.topDate}}%">
-                        <table class="tc">
+                    <div class="fecha {{invitacion.nombreFont}} tc  " style="top:{{invitacion.topDate}}%">
+                        <table class="tc" *ngIf="date>functionsService.getToday()">
                             <tr style="color:{{invitacion.cWhite}};">
-                                <th class="wc"><b class="fsc" style="color: {{invitacion.cPrincipal}};">D</b>ias</th>
-                                <th class="wc"><b class="fsc" style="color: {{invitacion.cPrincipal}};">H</b>oras</th>
-                                <th class="wc"><b class="fsc" style="color: {{invitacion.cPrincipal}};">M</b>inutos</th>
-                                <th class="wc"><b class="fsc" style="color: {{invitacion.cPrincipal}};">S</b>egundo</th>
+                                <th class=" {{invitacion.finalTFont}}" style="font-size:{{invitacion.finalTSize}}px;"><b  style="color: {{invitacion.cPrincipal}}; font-size:{{invitacion.inicialTSize}}px;" class=" {{invitacion.inicialTFont}}">D</b>ias</th>
+                                <th class=" {{invitacion.finalTFont}}" style="font-size:{{invitacion.finalTSize}}px;"><b  style="color: {{invitacion.cPrincipal}}; font-size:{{invitacion.inicialTSize}}px;" class=" {{invitacion.inicialTFont}}">H</b>oras</th>
+                                <th class=" {{invitacion.finalTFont}}" style="font-size:{{invitacion.finalTSize}}px;"><b  style="color: {{invitacion.cPrincipal}}; font-size:{{invitacion.inicialTSize}}px;" class=" {{invitacion.inicialTFont}}">M</b>inutos</th>
+                                <th class=" {{invitacion.finalTFont}}" style="font-size:{{invitacion.finalTSize}}px;"><b  style="color: {{invitacion.cPrincipal}}; font-size:{{invitacion.inicialTSize}}px;" class=" {{invitacion.inicialTFont}}">S</b>egundos
+                                </th>
                             </tr>
                             <tr class="  ts" style="font-size: 45px;color:{{invitacion.cWhite}};">
                                 <td>{{dias}}</td>
                                 <td>{{horas}}</td>
                                 <td>{{minutos}}</td>
-                                <td>{{segundos}}</td>
-
+                                <td class="animated infinite pulse">{{segundos}}</td>
+    
                             </tr>
-
+    
                         </table>
                     </div>
 
@@ -104,10 +104,10 @@
                     style="width: 100%; margin: auto; border: none; background-color: {{invitacion.cPrincipal}};"
                     *ngIf="!generalCheck">
                     <div class="card-body  " style="color:{{invitacion.cWhite}};">
-                        <h1 class="card-title mt-3 pacifico  ">Invitación válida para:</h1>
-                        <h1 class="card-text   lato-bold upper">{{invitacion.invitado}}</h1>
+                        <h1 class="card-title mt-3 {{invitacion.inviFont}}  ">Invitación válida para:</h1>
+                        <h1 class="card-text   {{invitacion.inviFont2}} upper">Invitado</h1>
                         <h2 class="  lato-regular-italic" *ngIf="checking">{{invitacion.cantidad}} pases</h2>
-                        <h1 class="card-text   lato-bold upper" *ngIf="invitacion.mesa">Mesa <b>{{invitacion.mesa}}</b>
+                        <h1 class="card-text  {{invitacion.nombreFont}}upper" *ngIf="invitacion.mesa">Mesa <b>{{invitacion.mesa}}</b>
                         </h1>
                         <h3 class="  lato-regular-italic">{{invitacion.textInvitacionValida}}</h3>
                     </div>
@@ -116,10 +116,10 @@
                     style="width: 100%; margin: auto; border: none; background-color: {{invitacion.cPrincipal}};"
                     *ngIf="generalCheck">
                     <div class="card-body  " style="color:{{invitacion.cWhite}};">
-                        <h1 class="card-title mt-3 pacifico  ">Invitación para: </h1>
-                        <h1 class="card-text   lato-bold upper"> {{invitacion.generalTexto}}
+                        <h1 class="card-title mt-3 {{invitacion.inviFont}}  ">Invitación para: </h1>
+                        <h1 class="card-text   {{invitacion.inviFont2}} -bold upper"> {{invitacion.generalTexto}}
                         </h1>
-                        <h3 class="  lato-regular-italic">{{invitacion.textInvitacionValida}}</h3>
+                        <h3 class=" {{data.inviFont}} ">{{invitacion.textInvitacionValida}}</h3>
                     </div>
                 </div>
 
@@ -128,18 +128,18 @@
         <div class="row">
             <div class="col-12">
                 <div class="box"
-                    style="background-image:url({{url+'/upload/invitaciones/'+((invitacion.mensajeImg!=='')?invitacion.mensajeImg:'notImage')}}) ;background-position: {{invitacion.bxMensajeImg}}% {{invitacion.byMensajeImg}}px !important; min-height:450px;height: 100%;"
+                    style="background-image:url({{url+'/upload/invitaciones/'+((invitacion.mensajeImg!=='')?invitacion.mensajeImg:'notImage')}}) ;background-position: {{invitacion.bxMensajeImg}}% {{invitacion.byMensajeImg}}px !important;height: auto; min-height:450px; background-size:{{invitacion.mensajeImgWidth}}%; "
                     *ngIf="!vistaTemp">
-                    <div class="texto tc" style="top:50%">
-                        <h5 class="p-5   arsenal-sc-regular-italic"
+                    <div class="texto tc" style="margin-top:50% !important">
+                        <h5 class="p-5   {{invitacion.mensajeFont}}"
                             style="color:{{invitacion.cWhite}}; font-size:{{invitacion.mensajeSize}}px !important;">
                             {{invitacion.mensaje1}}
                         </h5>
-
+    
                     </div>
                 </div>
                 <div class="box"
-                    style="background-image:url({{invitacion.mensajeImg}}) ;background-position: {{invitacion.bxMensajeImg}}% {{invitacion.byMensajeImg}}px !important; min-height:450px; height: 100%;">
+                    style="background-image:url({{invitacion.mensajeImg}}) ;background-position: {{invitacion.bxMensajeImg}}% {{invitacion.byMensajeImg}}px !important;  height: 100%;">
                     <div class="texto tc" style="top:50%" *ngIf="vistaTemp">
                         <h5 class="p-5   arsenal-sc-regular-italic"
                             style="color:{{invitacion.cWhite}};font-size:{{invitacion.mensajeSize}}px !important">
@@ -155,7 +155,7 @@
             *ngIf=" (donde1Check ||  donde2Check || donde3Check)  &&  !vistaTemp">
 
             <div class="row text-center" style="margin: auto;">
-                <h1 class="mt-3 pacifico   " style="color:{{invitacion.cWhite}};">Donde y Cuando</h1>
+                <h1 class="mt-3 {{invitacion.nombreFont}}   " style="color:{{invitacion.cWhite}};">Donde y Cuando</h1>
                 <div class="col-12 col-md-4 mt-3" style="text-align: center; margin: auto;" *ngIf="donde1Check">
 
                     <div class="card text-center bd  mb-3 ">
@@ -265,7 +265,7 @@
 
                     <div class="col-12">
 
-                        <h2 class="mt-3 pacifico" style="color:{{invitacion.cPrincipal}}">Hospedaje
+                        <h2 class="mt-3 {{invitacion.nombreFont}}" style="color:{{invitacion.cPrincipal}}">Hospedaje
                             Recomendado</h2>
                     </div>
                 </div>
@@ -315,7 +315,7 @@
 
                     <div class="col-12">
 
-                        <h2 class="mt-3 pacifico" style="color:{{invitacion.cPrincipal}}">Mesa de regalos</h2>
+                        <h2 class="mt-3 {{invitacion.nombreFont}}" style="color:{{invitacion.cPrincipal}}">Mesa de regalos</h2>
                     </div>
                 </div>
                 <div style="width: 80%; max-width: 450px; min-width: 200px; padding: 15px;margin: auto;">
@@ -350,7 +350,7 @@
 
                     <div class="col-12">
 
-                        <h2 class="mt-3 pacifico  " style="color:{{invitacion.cWhite}};">Itinerario</h2>
+                        <h2 class="mt-3 {{invitacion.nombreFont}}  " style="color:{{invitacion.cWhite}};">Itinerario</h2>
                     </div>
                 </div>
                 <div style="width: 60%; max-width: 450px; margin: auto;"
@@ -390,7 +390,7 @@
 
                     <div class="col-12  " *ngIf="checking">
 
-                        <h2 class="mt-3 pacifico" style="color:{{invitacion.cPrincipal}}">Este es tu
+                        <h2 class="mt-3 {{invitacion.nombreFont}}" style="color:{{invitacion.cPrincipal}}">Este es tu
                             boleto</h2>
                     </div>
                     <!-- [imageSrc]="url+'/upload/invitaciones/'+invitacion.img1"  -->
@@ -490,7 +490,7 @@
 
                     <div class="col-12 mt-3">
 
-                        <h2 class="mt-3 pacifico" style="color:{{invitacion.cWhite}}"> Notas</h2>
+                        <h2 class="mt-3 {{invitacion.nombreFont}}" style="color:{{invitacion.cWhite}}"> Notas</h2>
                     </div>
                 </div>
                 <ul style="color:{{invitacion.cWhite}}; list-style: none;">
@@ -511,7 +511,7 @@
         <div style="background-color: {{invitacion.cPrincipal}}; margin: auto;" *ngIf="   vistaTemp">
 
             <div class="row text-center" style="margin: auto;" *ngIf="donde1Check">
-                <h1 class="mt-3 pacifico   " style="color:{{invitacion.cWhite}};">Donde y Cuando</h1>
+                <h1 class="mt-3 {{invitacion.nombreFont}}   " style="color:{{invitacion.cWhite}};">Donde y Cuando</h1>
                 <div class="col-12 col-md-4 mt-3" style="text-align: center; margin: auto;">
 
                     <div class="card text-center bd  mb-3 ">
@@ -606,7 +606,7 @@
 
                     <div class="col-12">
 
-                        <h2 class="mt-3 pacifico" style="color:{{invitacion.cPrincipal}}">Hospedaje
+                        <h2 class="mt-3 {{invitacion.nombreFont}}" style="color:{{invitacion.cPrincipal}}">Hospedaje
                             Recomendado</h2>
                     </div>
                 </div>
@@ -654,7 +654,7 @@
 
                     <div class="col-12">
 
-                        <h2 class="mt-3 pacifico" style="color:{{invitacion.cPrincipal}}">Mesa de regalos</h2>
+                        <h2 class="mt-3 {{invitacion.nombreFont}}" style="color:{{invitacion.cPrincipal}}">Mesa de regalos</h2>
                     </div>
                 </div>
                 <div style="width: 80%; max-width: 450px; min-width: 200px; padding: 15px;margin: auto;">
@@ -687,7 +687,7 @@
 
                     <div class="col-12">
 
-                        <h2 class="mt-3 pacifico  " style="color:{{invitacion.cWhite}};">Itinerario</h2>
+                        <h2 class="mt-3 {{invitacion.nombreFont}}  " style="color:{{invitacion.cWhite}};">Itinerario</h2>
                     </div>
                 </div>
                 <div style="width: 60%; max-width: 450px; margin: auto;"
@@ -726,7 +726,7 @@
 
                     <div class="col-12">
 
-                        <h2 class="mt-3 pacifico" style="color:{{invitacion.cPrincipal}}">Este es tu boleto
+                        <h2 class="mt-3 {{invitacion.nombreFont}}" style="color:{{invitacion.cPrincipal}}">Este es tu boleto
                         </h2>
                     </div>
                 </div>
@@ -768,7 +768,7 @@
 
                     <div class="col-12 mt-3">
 
-                        <h2 class="mt-3 pacifico" style="color:{{invitacion.cWhite}}"> Notas</h2>
+                        <h2 class="mt-3 {{invitacion.nombreFont}}" style="color:{{invitacion.cWhite}}"> Notas</h2>
                     </div>
                 </div>
                 <ul style="color:{{invitacion.cWhite}}; list-style: none;">

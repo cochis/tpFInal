@@ -101,7 +101,7 @@
                                                     max="200">
                                             </div>
                                         </div>
-                                        <div class="col-12  col-sm-4 col-md-3   mt-3">
+                                        <div class="col-12  col-sm-6 col-md-3   mt-3">
                                             <div class="form-group ">
                                                 <label for="imgWidth ">Tamaño imagen</label>
                                                 <input type="range" id="imgWidth" #imgWidth formControlName="imgWidth" min="0"
@@ -172,7 +172,7 @@
                                         </div>
                                         <div class="col-12  col-sm-6 col-md-3   mt-3">
                                             <div class="form-group ">
-                                                <label for="tipoFont">Fuente de titulo</label>
+                                                <label for="tipoFont">Fuente de subtitulo</label>
                                                 <select name="tipoFont" id="tipoFont" formControlName="tipoFont"  
                                                 class="form-control upper {{tipoFont.value}}" #tipoFont  >
                                                 <option value="">Seleccione el tipo de fuente</option>
@@ -210,13 +210,102 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-12  col-sm-4 col-md-3   mt-3">
+
+                                        <div class="col-12  col-sm-6 col-md-3   mt-3">
                                             <div class="form-group ">
-                                                <label for="imgWidth ">Tamaño imagen</label>
-                                                <input type="range" id="imgWidth" #imgWidth formControlName="imgWidth" min="0"
-                                                max="200">
+                                                <label for="inicialTFont">Fuente inicial de fecha </label>
+                                                <select name="inicialTFont" id="inicialTFont" formControlName="inicialTFont"  
+                                                class="form-control upper {{inicialTFont.value}}" #inicialTFont  >
+                                                <option value="">Seleccione el tipo de fuente</option>
+                                                <option value="name" class="name" selected>D H M S</option>
+                                                <option value="dancing" class="dancing"  >D H M S</option>
+                                         
+                                                <option value="anton-sc-regular" class="anton-sc-regular">D H M S</option>
+                                                <option value="creepster-regular" class="creepster-regular">D H M S</option>
+                                              
+                                                <option value="roboto-bold" class="roboto-bold">D H M S</option>
+                                               
+                                                <option value="roboto-black-italic" class="roboto-black-italic">D H M S</option>
+                                              
+                                                <!-- <option value="url">url</option>-->
+
+                                                <!-- <option [value]="item.uid" *ngFor="let item of salones">{{item.nombre }} <b
+                                                                                            *ngIf="rol ===ADM && usuarios">{{item.usuarioCreated.email}}</b>
+                                                                                    </option> -->
+                                            </select>
                                             </div>
                                         </div>
+
+                                        <div class="col-12  col-sm-6 col-md-3   mt-3">
+                                            <div class="form-group ">
+                                                <label for="inicialTSize ">Tamaño inicial de fecha
+                                                </label>
+                                                <input type="range" id="inicialTSize" #inicialTSize
+                                                    formControlName="inicialTSize" min="10"
+                                                    max="50">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-12  col-sm-6 col-md-3   mt-3">
+                                            <div class="form-group ">
+                                                <label for="finalTFont">Fuente final de fecha </label>
+                                                <select name="finalTFont" id="finalTFont" formControlName="finalTFont"  
+                                                class="form-control upper {{finalTFont.value}}" #finalTFont  >
+                                                <option value="">Seleccione el tipo de fuente</option>
+                                                <option value="name" class="name" selected>ias</option>
+                                                <option value="dancing" class="dancing"  >ias</option>
+                                         
+                                                <option value="anton-sc-regular" class="anton-sc-regular">ias</option>
+                                                <option value="creepster-regular" class="creepster-regular">ias</option>
+                                              
+                                                <option value="roboto-bold" class="roboto-bold">ias</option>
+                                               
+                                                <option value="roboto-black-italic" class="roboto-black-italic">ias</option>
+                                              
+                                                <!-- <option value="url">url</option>-->
+
+                                                <!-- <option [value]="item.uid" *ngFor="let item of salones">{{item.nombre }} <b
+                                                                                            *ngIf="rol ===ADM && usuarios">{{item.usuarioCreated.email}}</b>
+                                                                                    </option> -->
+                                            </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12  col-sm-6 col-md-3   mt-3">
+                                            <div class="form-group ">
+                                                <label for="finalTSize ">Tamaño final de fecha
+                                                </label>
+                                                <input type="range" id="finalTSize" #finalTSize
+                                                    formControlName="finalTSize" min="10"
+                                                    max="50">
+                                            </div>
+                                        </div>
+                                        <div class="col-12  col-sm-6 col-md-3   mt-3">
+                                            <div class="form-group ">
+                                                <label for="inviFont ">Fuente remitente</label>
+                                                <select name="inviFont" id="inviFont" formControlName="inviFont"  
+                                                class="form-control upper {{inviFont.value}}" #inviFont  >
+                                                <option value="">Seleccione el tipo de fuente</option>
+                                                <option value="name" class="name" selected>Invitación válida para:</option>
+                                                <option value="dancing" class="dancing"  >Invitación válida para:</option>
+                                         
+                                                <option value="anton-sc-regular" class="anton-sc-regular">Invitación válida para:</option>
+                                                <option value="creepster-regular" class="creepster-regular">Invitación válida para:</option>
+                                              
+                                                <option value="roboto-bold" class="roboto-bold">Invitación válida para:</option>
+                                               
+                                                <option value="roboto-black-italic" class="roboto-black-italic">Invitación válida para:</option>
+                                              
+                                        
+                                            </select>
+                                            </div>
+                                        </div>
+                                       
+
+
+
+                                     
                                     </div>
  
 
@@ -240,14 +329,14 @@
         tipoSize: form.value.tipoSize,
         tipoFont: form.value.tipoFont,
         topDate: form.value.topDate,
-        mensajeImgWidth:form.value.topDate,
-        mensajeFont:form.value.topDate,
-        inicialTFont:form.value.topDate,
-        finalTFont:form.value.topDate,
-        inviFont:form.value.topDate,
-            
-
-}" ></app-view-template>
+            mensajeFont:form.value.mensajeFont,
+        inicialTFont:form.value.inicialTFont,
+        finalTFont:form.value.finalTFont,
+        inviFont:form.value.inviFont,
+        inviFont2:form.value.inviFont2,
+        inicialTSize:inicialTSize.value,
+        finalTSize:finalTSize.value,
+        }" ></app-view-template>
 
                                     <div class="row text-center mt-3">
                                         <h5>Seccion Mensaje</h5>
@@ -284,6 +373,26 @@
                                         </div>
                                         <div class="col-12  col-md-4  mt-3">
                                             <div class="form-group ">
+                                                <label for="mensajeFont ">Fuente de mensaje</label>
+                                                <select name="mensajeFont" id="mensajeFont" formControlName="mensajeFont"  
+                                                class="form-control upper {{mensajeFont.value}}" #mensajeFont  >
+                                                <option value="">Seleccione el tipo de fuente</option>
+                                                <option value="name" class="name" selected>Mensaje</option>
+                                                <option value="dancing" class="dancing"  >Mensaje</option>
+                                         
+                                                <option value="anton-sc-regular" class="anton-sc-regular">Mensaje</option>
+                                                <option value="creepster-regular" class="creepster-regular">Mensaje</option>
+                                              
+                                                <option value="roboto-bold" class="roboto-bold">Mensaje</option>
+                                               
+                                                <option value="roboto-black-italic" class="roboto-black-italic">Mensaje</option>
+                                              
+                                        
+                                            </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-12  col-md-4  mt-3">
+                                            <div class="form-group ">
                                                 <label for="mensajeSize ">Tamaño letra mensaje </label>
                                                 <input type="range" id="mensajeSize" #mensajeSize
                                                     formControlName="mensajeSize" />
@@ -303,12 +412,19 @@
                                                     formControlName="byMensajeImg" />
                                             </div>
                                         </div>
+                                        <div class="col-12  col-sm-6 col-md-3   mt-3">
+                                            <div class="form-group ">
+                                                <label for="mensajeImgWidth ">Tamaño imagen mensaje</label>
+                                                <input type="range" id="mensajeImgWidth" #mensajeImgWidth formControlName="mensajeImgWidth" min="0"
+                                                max="500">
+                                            </div>
+                                        </div>
                                     </div>
                                     <app-view-template [data]="{
                                         type:'seccionMensaje',
                                         size:viewSizeM,
                                         cPrincipal: form.value.cPrincipal,
-                                        Secundario: form.value.Secundario,
+                                        cSecond: form.value.cSecond,
                                         cWhite: form.value.cWhite,
                                         mensajeImg: form.value.mensajeImg,
                                             mensajeImg: (invitacion == undefined || invitacion.data.mensajeImg == '') ? '/assets/images/tp.png' : url + '/upload/invitaciones/' + invitacion.data.mensajeImg,
@@ -316,6 +432,8 @@
                                         mensajeSize: form.value.mensajeSize,
                                         bxMensajeImg: form.value.bxMensajeImg,
                                         byMensajeImg: form.value.byMensajeImg,
+                                        mensajeFont: form.value.mensajeFont,
+                                        mensajeImgWidth: mensajeImgWidth.value,
                                     }"></app-view-template>
                                     <div class="row text-center mt-3" *ngIf="fiesta.checking">
                                         <h5>Seccion QR</h5>
@@ -992,6 +1110,99 @@
                                             </div>
                                         </div>
 
+                                        
+
+                                        <div class="col-12  col-sm-6 col-md-3   mt-3">
+                                            <div class="form-group ">
+                                                <label for="inicialTFont">Fuente inicial de fecha </label>
+                                                <select name="inicialTFont" id="inicialTFont" formControlName="inicialTFont"  
+                                                class="form-control upper {{inicialTFont.value}}" #inicialTFont  >
+                                                <option value="">Seleccione el tipo de fuente</option>
+                                                <option value="name" class="name" selected>D H M S</option>
+                                                <option value="dancing" class="dancing"  >D H M S</option>
+                                         
+                                                <option value="anton-sc-regular" class="anton-sc-regular">D H M S</option>
+                                                <option value="creepster-regular" class="creepster-regular">D H M S</option>
+                                              
+                                                <option value="roboto-bold" class="roboto-bold">D H M S</option>
+                                               
+                                                <option value="roboto-black-italic" class="roboto-black-italic">D H M S</option>
+                                              
+                                                <!-- <option value="url">url</option>-->
+
+                                                <!-- <option [value]="item.uid" *ngFor="let item of salones">{{item.nombre }} <b
+                                                                                            *ngIf="rol ===ADM && usuarios">{{item.usuarioCreated.email}}</b>
+                                                                                    </option> -->
+                                            </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12  col-sm-6 col-md-3   mt-3">
+                                            <div class="form-group ">
+                                                <label for="inicialTSize ">Tamaño inicial de fecha
+                                                </label>
+                                                <input type="range" id="inicialTSize" #inicialTSize
+                                                    formControlName="inicialTSize" min="10"
+                                                    max="50">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-12  col-sm-6 col-md-3   mt-3">
+                                            <div class="form-group ">
+                                                <label for="finalTFont">Fuente final de fecha </label>
+                                                <select name="finalTFont" id="finalTFont" formControlName="finalTFont"  
+                                                class="form-control upper {{finalTFont.value}}" #finalTFont  >
+                                                <option value="">Seleccione el tipo de fuente</option>
+                                                <option value="name" class="name" selected>ias</option>
+                                                <option value="dancing" class="dancing"  >ias</option>
+                                         
+                                                <option value="anton-sc-regular" class="anton-sc-regular">ias</option>
+                                                <option value="creepster-regular" class="creepster-regular">ias</option>
+                                              
+                                                <option value="roboto-bold" class="roboto-bold">ias</option>
+                                               
+                                                <option value="roboto-black-italic" class="roboto-black-italic">ias</option>
+                                              
+                                                <!-- <option value="url">url</option>-->
+
+                                                <!-- <option [value]="item.uid" *ngFor="let item of salones">{{item.nombre }} <b
+                                                                                            *ngIf="rol ===ADM && usuarios">{{item.usuarioCreated.email}}</b>
+                                                                                    </option> -->
+                                            </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12  col-sm-6 col-md-3   mt-3">
+                                            <div class="form-group ">
+                                                <label for="finalTSize ">Tamaño final de fecha
+                                                </label>
+                                                <input type="range" id="finalTSize" #finalTSize
+                                                    formControlName="finalTSize" min="10"
+                                                    max="50">
+                                            </div>
+                                        </div>
+                                    
+
+
+                                        <div class="row">
+                                            <app-view-template [data]="{
+                                                type:'byFileSeccionFecha',
+                                                size:viewSizeM,
+                                                byFileColorBG:form.value.byFileColorBG,
+                                                byFileColorFr:form.value.byFileColorFr,
+                                                byFileColorTx:form.value.byFileColorTx,
+                                                byFileColorQr:form.value.byFileColorQr,
+                                                inicialTFont:form.value.inicialTFont,
+                                                inicialTSize:form.value.inicialTSize,
+                                                finalTFont:form.value.finalTFont,
+                                                finalTSize:form.value.finalTSize,
+                                                inviFont:form.value.inviFont,
+                                                inviFont2:form.value.inviFont2,
+
+                                            }"></app-view-template>
+                                        </div>
+                                         
                                     </div>
                                     <hr class="mt-3 mb-3">
                                     <ng-container class="text-center  ma">

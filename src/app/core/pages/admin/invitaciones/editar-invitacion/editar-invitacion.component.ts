@@ -126,15 +126,20 @@ export class EditarInvitacionComponent {
       textInvitacionValida: ['¡Los esperamos!'],
       mensajeCheck: [true],
       mensajeImg: [''],
-      mensajeFont: [''],
-      inicialTFont: [''],
-      finalTFont: [''],
-      inviFont: [''],
+      mensajeFont: ['pacifico'],
+      inicialTFont: ['pacifico'],
+      inicialTSize: [10],
+      finalTSize: [10],
+
+      finalTFont: ['pacifico'],
+      inviFont: ['pacifico'],
+      inviFont2: ['pacifico'],
       mensajeImgWidth: [100],
       bxMensajeImg: [50],
       byMensajeImg: [0],
       mensaje1: [''],
       mensajeSize: [25],
+   
       donde1Check: [true],
       donde1Img: [''],
       donde1Title: ['Iglesia'],
@@ -313,14 +318,18 @@ export class EditarInvitacionComponent {
       //font width  IMG
 
       imgWidth: [invitacion.data.imgWidth],
-      nombreFont: [invitacion.data.nombreFont?invitacion.data.nombreFont:'dancing'],
-      tipoFont: [invitacion.data.tipoFont?invitacion.data.tipoFont:'dancing'],
+      nombreFont: [invitacion.data.nombreFont ? invitacion.data.nombreFont : 'dancing'],
+      tipoFont: [invitacion.data.tipoFont ? invitacion.data.tipoFont : 'dancing'],
       mensajeImgWidth: [invitacion.data.mensajeImgWidth],
-      mensajeFont: [invitacion.data.mensajeFont?invitacion.data.mensajeFont:'dancing'],
-      inicialTFont: [invitacion.data.inicialTFont?invitacion.data.inicialTFont:'dancing'],
-      finalTFont: [invitacion.data.finalTFont?invitacion.data.finalTFont:'dancing'],
-      inviFont: [invitacion.data.inviFont?invitacion.data.inviFont:'dancing'],
-    
+      mensajeFont: [invitacion.data.mensajeFont ? invitacion.data.mensajeFont : 'dancing'],
+      inicialTFont: [invitacion.data.inicialTFont ? invitacion.data.inicialTFont : 'dancing'],
+      finalTFont: [invitacion.data.finalTFont ? invitacion.data.finalTFont : 'dancing'],
+      inviFont: [invitacion.data.inviFont ? invitacion.data.inviFont : 'dancing'],
+      inviFont2: [invitacion.data.inviFont2 ? invitacion.data.inviFont2 : 'dancing'],
+      inicialTSize: [invitacion.data.inicialTSize],
+      finalTSize: [invitacion.data.finalTSize],
+
+
 
 
 
@@ -433,9 +442,12 @@ export class EditarInvitacionComponent {
       tipoFont: [temp.tipoFont],
       mensajeImgWidth: [temp.mensajeImgWidth],
       mensajeFont: [temp.mensajeFont],
-      inicialTFont: [temp.mensajeFont],
-      finalTFont: [temp.mensajeFont],
-      inviFont: [temp.mensajeFont],
+      inicialTFont: [temp.inicialTFont],
+      inicialTSize : [temp.inicialTSize],
+      finalTSize : [temp.finalTSize],
+      finalTFont: [temp.finalTFont],
+      inviFont: [temp.inviFont],
+      inviFont2: [temp.inviFont2],
 
 
 
@@ -729,9 +741,12 @@ export class EditarInvitacionComponent {
             tipoFont: "pacifico",
             mensajeImgWidth: 100,
             mensajeFont: "pacifico",
-            inicialTFont:'pacifico',
-            finalTFont:'pacifico',
-            inviFont:'pacifico',
+            inicialTFont: 'pacifico',
+            inicialTSize:10,
+            finalTSize:10,
+            finalTFont: 'pacifico',
+            inviFont: 'pacifico',
+            inviFont2: 'pacifico',
 
 
             //byFIle
