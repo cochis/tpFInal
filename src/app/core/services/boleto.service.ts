@@ -42,6 +42,7 @@ export class BoletosService {
               bol.ocupados,
               bol.vista,
               bol.pushNotification,
+              bol.requeridos,
               bol.dateCreated,
               bol.usuarioCreated,
               bol.fechaConfirmacion,

@@ -14,6 +14,7 @@ export class Boleto {
         public ocupados: number,
         public vista:boolean,
         public pushNotification: [object],
+        public requeridos: number,
         public dateCreated: number,
         public usuarioCreated: string,
         public fechaConfirmacion: number,

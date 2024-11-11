@@ -91,7 +91,7 @@
                                             <div class="form-group ">
                                                 <label for="xImg1 ">Posición horizontal de la imagen </label>
                                                 <input type="range" id="xImg1" #xImg1 formControlName="xImg1" min="-300"
-                                                    max="300">
+                                                    max="300" >
                                             </div>
                                         </div>
                                         <div class="col-6  col-md-4  mt-3">
@@ -250,6 +250,24 @@
                                                 <label for="inviFont ">Fuente remitente</label>
                                                 <select name="inviFont" id="inviFont" formControlName="inviFont"  
                                                 class="form-control upper {{inviFont.value}}" #inviFont  >
+                                                <option value="">Seleccione el tipo de fuente</option>
+                                                <option value="name" class="name" selected>Name</option><option value="pacific" class="pacific">Pacific</option>
+                                                <option value="dancing" class="dancing">Dancing</option>
+                                                <option value="anton-sc-regular" class="anton-sc-regular">Anton-sc-regular</option>
+                                                <option value="creepster-regular" class="creepster-regular">Creepster-regular</option>
+                                                <option value="roboto-bold" class="roboto-bold">Roboto-bold</option>
+                                                <option value="roboto-black-italic" class="roboto-black-italic">Roboto-black-italic</option>
+                                              
+                                        
+                                            </select>
+                                            </div>
+                                        </div>
+                                       
+                                        <div class="col-12  col-sm-6 col-md-4   mt-3">
+                                            <div class="form-group ">
+                                                <label for="inviFont2 ">Fuente invitado</label>
+                                                <select name="inviFont2" id="inviFont2" formControlName="inviFont2"  
+                                                class="form-control upper {{inviFont2.value}}" #inviFont2  >
                                                 <option value="">Seleccione el tipo de fuente</option>
                                                 <option value="name" class="name" selected>Name</option><option value="pacific" class="pacific">Pacific</option>
                                                 <option value="dancing" class="dancing">Dancing</option>

@@ -304,58 +304,126 @@ export class ByFileComponent {
     this.loading = true
     data = JSON.parse(data)
     this.boleto.confirmado = !this.boleto.confirmado
-
     if (!this.boleto.confirmado) {
       this.boleto.fechaConfirmacion = undefined
+      this.boleto.requeridos = 0
+      this.boletosService.registrarAsistencia(this.boleto).subscribe((res: any) => {
+          this.functionsService.alert('Invitación', 'Se quito la confirmación', 'success')
+          this.loading = false
+      })
     } else {
       this.boleto.fechaConfirmacion = this.today
-    }
-    this.boletosService.registrarAsistencia(this.boleto).subscribe((res: any) => {
-      if (res.boletoActualizado.confirmado) {
-        this.boleto.cantidadInvitados
-
-        this.loading = false
-        /*   Swal.fire({
-            title: "Si van a asistir menos personas confirmar la cantidad",
-            input: "number",
-            inputAttributes: {
-              max: this.boleto.cantidadInvitados.toString(),
-              min: '0'
-            },
-            showCancelButton: true,
-            confirmButtonText: "Enviar",
-            showLoaderOnConfirm: true,
-            preConfirm: async (login) => {
-              try {
+      if(this.fiesta.checking){
+        Swal.fire({
+          title: '¿Cuantas personas asistiran?',
+          html: `<input type="number" value="${(this.boleto.cantidadInvitados)?this.boleto.cantidadInvitados :'0'}" step="1"id="range-value"  class="form-control">`,
+          input: 'range',
+          confirmButtonColor: "#13547a" ,
+          inputValue: (this.boleto.cantidadInvitados)?this.boleto.cantidadInvitados :'0',
+          inputAttributes: {
+            min: '0',
+            max: '20',
+            step: '1',
+          },
+          didOpen: () => {
+            const inputRange = Swal.getInput()!
+            const inputNumber = Swal.getPopup()!.querySelector('#range-value') as HTMLInputElement
+  
+            // remove default output
+            Swal.getPopup()!.querySelector('output')!.style.display = 'none'
+            inputRange.style.width = '100%'
+  
+            // sync input[type=number] with input[type=range]
+            inputRange.addEventListener('input', () => {
+              inputNumber.value = inputRange.value
+              
+            })
+  
+            // sync input[type=range] with input[type=number]
+            inputNumber.addEventListener('change', () => {
+              inputRange.value = inputNumber.value
+            
+            })
+          },
+        }).then((result) => {
+           
+          this.boleto.requeridos = Number(result.value)
+          
+          this.boletosService.registrarAsistencia(this.boleto).subscribe((res: any) => {
+            
+              this.boleto.cantidadInvitados
+              this.loading = false
+      
+      
+              this.functionsService.alert('Invitación', 'Se confirmo tu asistencia', 'success')
+            
+      
+          })
+        });
+      }else{
+        this.boletosService.registrarAsistencia(this.boleto).subscribe((res: any) => {
+            
+          this.boleto.cantidadInvitados
+          this.loading = false
   
   
+          this.functionsService.alert('Invitación', 'Se confirmo tu asistencia', 'success')
+        
   
-                return login
-  
-              } catch (error) {
-                 console.error('Error', error)
-                Swal.showValidationMessage(`
-                  Request failed: ${error}
-                `);
-              }
-            },
-            allowOutsideClick: () => !Swal.isLoading()
-          }).then((result) => {
-            if (result.isConfirmed) {
-              Swal.fire({
-                title: `${result.value.login}'s avatar`,
-                imageUrl: result.value.avatar_url
-              });
-            }
-          }); */
-
-
-      } else {
-        this.functionsService.alert('Invitacion', 'Se quito la confirmación', 'success')
-        this.loading = false
+      })
       }
 
-    })
+
+
+
+      Swal.fire({
+        title: '¿Cuantas personas asistiran?',
+        html: `<input type="number" value="${this.boleto.cantidadInvitados}" step="1"id="range-value">`,
+        input: 'range',
+        confirmButtonColor: "#13547a" ,
+        inputValue: this.boleto.cantidadInvitados.toString(),
+        inputAttributes: {
+          min: '0',
+          max: '20',
+          step: '1',
+        },
+        didOpen: () => {
+          const inputRange = Swal.getInput()!
+          const inputNumber = Swal.getPopup()!.querySelector('#range-value') as HTMLInputElement
+
+          // remove default output
+          Swal.getPopup()!.querySelector('output')!.style.display = 'none'
+          inputRange.style.width = '100%'
+
+          // sync input[type=number] with input[type=range]
+          inputRange.addEventListener('input', () => {
+            inputNumber.value = inputRange.value
+            
+          })
+
+          // sync input[type=range] with input[type=number]
+          inputNumber.addEventListener('change', () => {
+            inputRange.value = inputNumber.value
+          
+          })
+        },
+      }).then((result) => {
+         
+        this.boleto.requeridos = Number(result.value)
+    
+        this.boletosService.registrarAsistencia(this.boleto).subscribe((res: any) => {
+          
+            this.boleto.cantidadInvitados
+            this.loading = false
+    
+    
+            this.functionsService.alert('Invitación', 'Se confirmo tu asistencia', 'success')
+          
+    
+        })
+      });
+
+    }
   }
   restParty() {
 

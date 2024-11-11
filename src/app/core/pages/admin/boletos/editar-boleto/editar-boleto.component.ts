@@ -97,6 +97,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
 
       this.boletosService.cargarBoletoByFiesta(this.id).subscribe((resp: CargarBoleto) => {
         this.boletoTemp = resp.boleto
+   
       },
         (error: any) => {
           this.functionsService.alertError(error, 'Boletos')
@@ -197,6 +198,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
       whatsapp: ['', [Validators.minLength(10)]],
       email: ['', [Validators.email]],
       cantidadInvitados: [0],
+      requeridos: [0],
       mesa: [''],
       ocupados: [0],
       confirmado: [false],
@@ -215,6 +217,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
       whatsapp: [(invitado.whatsapp !== undefined) ? invitado.whatsapp : '', [Validators.minLength(10)]],
       email: [(invitado.email !== undefined) ? invitado.email : '', [Validators.email]],
       cantidadInvitados: [(invitado.cantidadInvitados !== undefined) ? invitado.cantidadInvitados : 0],
+      requeridos: [(invitado.requeridos !== undefined) ? invitado.requeridos : 0],
       mesa: [(invitado.mesa !== undefined) ? invitado.mesa : ''],
       ocupados: [(invitado.ocupados !== undefined) ? invitado.ocupados : 0],
       confirmado: [invitado.confirmado],

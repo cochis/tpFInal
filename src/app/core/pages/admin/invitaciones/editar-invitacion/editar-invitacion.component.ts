@@ -78,7 +78,7 @@ export class EditarInvitacionComponent {
 
     },
       (error: any) => {
-        // console.error('Error', error)
+         console.error('Error', error)
         this.loading = false
         this.functionsService.alert('Fiesta', 'Por favor intente mas tarde', 'error')
       })
@@ -816,7 +816,7 @@ export class EditarInvitacionComponent {
       }
     },
       (error) => {
-        // console.error('Error', error)
+        console.error('Error', error)
         this.functionsService.alertError(error, 'Invitacion')
       })
   }
@@ -934,7 +934,7 @@ export class EditarInvitacionComponent {
               }, 800);
             },
             (err) => {
-              // console.error('Error', err)
+             console.error('Error', err)
               this.functionsService.alertError(err, 'Error')
             },
           )
@@ -992,7 +992,7 @@ export class EditarInvitacionComponent {
 
           },
           (err) => {
-            // console.error('Error', err)
+             console.error('Error', err)
             this.functionsService.alertError(err, 'Error')
           },
         )

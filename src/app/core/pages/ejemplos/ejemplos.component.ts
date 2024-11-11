@@ -47,7 +47,7 @@ export class EjemplosComponent implements OnInit {
 
     this.getInfoFiesta()
     setTimeout(() => {
-      console.log(' this.fiestas::: ', this.fiestas);
+   
     }, 1500);
   }
 
