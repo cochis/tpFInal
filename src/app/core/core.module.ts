@@ -80,6 +80,7 @@ import { CrearParametroComponent } from './pages/admin/parametros/crear-parametr
 import { EditarParametroComponent } from './pages/admin/parametros/editar-parametro/editar-parametro.component';
 import { ByFileComponent } from './pages/admin/templates/by-file/by-file.component';
 import { EjemplosComponent } from './pages/ejemplos/ejemplos.component';
+import { SingleFiestaComponent } from './pages/admin/fiestas/single-fiesta/single-fiesta.component';
 
 
 
@@ -163,7 +164,8 @@ import { EjemplosComponent } from './pages/ejemplos/ejemplos.component';
     CrearParametroComponent,
     EditarParametroComponent,
     ByFileComponent,
-    EjemplosComponent
+    EjemplosComponent,
+    SingleFiestaComponent
 
   ],
   imports: [

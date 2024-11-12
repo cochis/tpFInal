@@ -66,6 +66,8 @@
                         aria-labelledby="design-tab" tabindex="0">
                         <div class="row">
                             <ng-container *ngFor="let party of fiestas; let i =index">
+
+
                                 <div class="col-lg-6 col-md-6 col-12 mt-5">
 
                                     <div class="custom-block custom-block-overlay" style="max-height: 400px;">
@@ -75,6 +77,13 @@
 
                                             <div class="custom-block-overlay-text d-flex">
                                                 <div>
+                                                    <a routerLink="/core/fiestas/single-fiesta/{{party.uid}}"
+                                                        style="text-decoration: none;">
+                                                        <b style="margin-right:10px ; font-size: 25px; color:#13547a">
+                                                            Ver fiesta
+                                                        </b>
+                                                        <i class="bi bi-eye" style="font-size: 30px ; color:#fff"> </i>
+                                                    </a>
                                                     <h4 class="text-white mb-2" style="font-size: 18px;">
                                                         <a class="textDN text-white"
                                                             routerLink="/core/info-fiesta/{{party.uid}}">
@@ -95,7 +104,7 @@
                                                             Galería de Imágenes
                                                             <a class="text-center ma"
                                                                 style="   
-                                                            margin-left: 15px;width: 30px;height: 30px;background-color: #ffffff;border-radius: 100%;text-align: center !important;"
+                                                                margin-left: 15px;width: 30px;height: 30px;background-color: #ffffff;border-radius: 100%;text-align: center !important;"
                                                                 *ngIf="rol===ANF"
                                                                 routerLink="/core/galeria/fst/{{party.uid}}/anf/{{uid}}">
 
@@ -104,7 +113,7 @@
                                                             </a>
                                                             <a class="text-center ma"
                                                                 style="   
-                                                            margin-left: 15px;width: 30px;height: 30px;background-color: #ffffff;border-radius: 100%;text-align: center !important;"
+                                                                margin-left: 15px;width: 30px;height: 30px;background-color: #ffffff;border-radius: 100%;text-align: center !important;"
                                                                 *ngIf="rol!==ANF"
                                                                 routerLink="/core/galeria/fst/{{party.uid}}/anf/{{party.usuarioFiesta._id}}">
 
@@ -152,6 +161,7 @@
                                                                         style="margin-right:10px">Recordar</b> <i
                                                                         class="bi bi-send"></i>
                                                                 </li>
+
 
                                                             </ul>
                                                         </ng-container>
@@ -204,6 +214,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                             </ng-container>
 
                         </div>

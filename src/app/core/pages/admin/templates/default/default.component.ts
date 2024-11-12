@@ -311,18 +311,18 @@ export class DefaultComponent implements OnInit, AfterViewInit {
       this.boleto.fechaConfirmacion = undefined
       this.boleto.requeridos = 0
       this.boletosService.registrarAsistencia(this.boleto).subscribe((res: any) => {
-          this.functionsService.alert('Invitación', 'Se quito la confirmación', 'success')
-          this.loading = false
+        this.functionsService.alert('Invitación', 'Se quito la confirmación', 'success')
+        this.loading = false
       })
     } else {
       this.boleto.fechaConfirmacion = this.today
-      if(this.fiesta.checking){
+      if (this.fiesta.checking) {
         Swal.fire({
           title: '¿Cuantas personas asistiran?',
-          html: `<input type="number" value="${(this.boleto.cantidadInvitados)?this.boleto.cantidadInvitados :'0'}" step="1"id="range-value"  class="form-control">`,
+          html: `<input type="number" class="form-control" value="${(this.boleto.cantidadInvitados) ? this.boleto.cantidadInvitados : '0'}" step="1"id="range-value"  class="form-control">`,
           input: 'range',
-          confirmButtonColor: "#13547a" ,
-          inputValue: (this.boleto.cantidadInvitados)?this.boleto.cantidadInvitados :'0',
+          confirmButtonColor: "#13547a",
+          inputValue: (this.boleto.cantidadInvitados) ? this.boleto.cantidadInvitados : '0',
           inputAttributes: {
             min: '0',
             max: '20',
@@ -331,49 +331,49 @@ export class DefaultComponent implements OnInit, AfterViewInit {
           didOpen: () => {
             const inputRange = Swal.getInput()!
             const inputNumber = Swal.getPopup()!.querySelector('#range-value') as HTMLInputElement
-  
+
             // remove default output
             Swal.getPopup()!.querySelector('output')!.style.display = 'none'
             inputRange.style.width = '100%'
-  
+
             // sync input[type=number] with input[type=range]
             inputRange.addEventListener('input', () => {
               inputNumber.value = inputRange.value
-              
+
             })
-  
+
             // sync input[type=range] with input[type=number]
             inputNumber.addEventListener('change', () => {
               inputRange.value = inputNumber.value
-            
+
             })
           },
         }).then((result) => {
-           
+
           this.boleto.requeridos = Number(result.value)
-          
+
           this.boletosService.registrarAsistencia(this.boleto).subscribe((res: any) => {
-            
-              this.boleto.cantidadInvitados
-              this.loading = false
-      
-      
-              this.functionsService.alert('Invitación', 'Se confirmo tu asistencia', 'success')
-            
-      
+
+            this.boleto.cantidadInvitados
+            this.loading = false
+
+
+            this.functionsService.alert('Invitación', 'Se confirmo tu asistencia', 'success')
+
+
           })
         });
-      }else{
+      } else {
         this.boletosService.registrarAsistencia(this.boleto).subscribe((res: any) => {
-            
+
           this.boleto.cantidadInvitados
           this.loading = false
-  
-  
+
+
           this.functionsService.alert('Invitación', 'Se confirmo tu asistencia', 'success')
-        
-  
-      })
+
+
+        })
       }
 
 
@@ -383,7 +383,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
         title: '¿Cuantas personas asistiran?',
         html: `<input type="number" value="${this.boleto.cantidadInvitados}" step="1"id="range-value">`,
         input: 'range',
-        confirmButtonColor: "#13547a" ,
+        confirmButtonColor: "#13547a",
         inputValue: this.boleto.cantidadInvitados.toString(),
         inputAttributes: {
           min: '0',
@@ -401,28 +401,28 @@ export class DefaultComponent implements OnInit, AfterViewInit {
           // sync input[type=number] with input[type=range]
           inputRange.addEventListener('input', () => {
             inputNumber.value = inputRange.value
-            
+
           })
 
           // sync input[type=range] with input[type=number]
           inputNumber.addEventListener('change', () => {
             inputRange.value = inputNumber.value
-          
+
           })
         },
       }).then((result) => {
-         
+
         this.boleto.requeridos = Number(result.value)
- 
+
         this.boletosService.registrarAsistencia(this.boleto).subscribe((res: any) => {
-          
-            this.boleto.cantidadInvitados
-            this.loading = false
-    
-    
-            this.functionsService.alert('Invitación', 'Se confirmo tu asistencia', 'success')
-          
-    
+
+          this.boleto.cantidadInvitados
+          this.loading = false
+
+
+          this.functionsService.alert('Invitación', 'Se confirmo tu asistencia', 'success')
+
+
         })
       });
 

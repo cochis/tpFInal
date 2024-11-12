@@ -1,0 +1,103 @@
+<app-header></app-header>
+<div class="col-lg-10 col-md-8 col-12 mt-5 ma" *ngIf="fiesta && boletos">
+
+    <div class="custom-block custom-block-overlay   " style="height: 500px;">
+        <div class="d-flex flex-column h-100 ">
+            <img [src]="(fiesta.img!=='')?url+'/upload/fiestas/'+fiesta.img:url+'/upload/fiestas/default.jpg'"
+                class="custom-block-image img-fluid" alt="">
+
+            <div class="custom-block-overlay-text d-flex">
+                <div>
+
+                    <h4 class="text-white mb-2" style="font-size: 18px;">
+                        <a class="textDN text-white" routerLink="/core/info-fiesta/{{fiesta.uid}}">
+
+                            {{fiesta.nombre}}
+                        </a>
+                        <small style="color:var(--primary-color) ;font-size:15px ;">&nbsp;{{
+
+                            (typeOf(fiesta.salon
+                            )=='string')?getCatalog('salon',fiesta.salon):fiesta.salon.nombre
+                            }}
+                            <b style="color:white">&nbsp;{{fiesta.fecha |
+                                date:"short"}}</b>
+
+                        </small>
+                        <div class="col-12 mt-2 text-center" *ngIf="fiesta.galeria">
+                            Galería de Imágenes
+                            <a class="text-center ma"
+                                style="   
+                                                                margin-left: 15px;width: 30px;height: 30px;background-color: #ffffff;border-radius: 100%;text-align: center !important;"
+                                *ngIf="rol===ANF" routerLink="/core/galeria/fst/{{fiesta.uid}}/anf/{{uid}}">
+
+                                <i class="bi bi-images ma"
+                                    style=" font-size: 20px;margin:auto; color:#13547a ; display: block; "></i>
+                            </a>
+                            <a class="text-center ma"
+                                style="   
+                                                                margin-left: 15px;width: 30px;height: 30px;background-color: #ffffff;border-radius: 100%;text-align: center !important;"
+                                *ngIf="rol!==ANF"
+                                routerLink="/core/galeria/fst/{{fiesta.uid}}/anf/{{fiesta.usuarioFiesta._id}}">
+
+                                <i class="bi bi-images ma"
+                                    style=" font-size: 20px;margin:auto; color:#13547a ; display: block; "></i>
+                            </a>
+                        </div>
+
+
+                    </h4>
+
+
+
+                    <ul class="text-white" style="list-style: none;" *ngIf="boletos.length>0">
+                        <li class="list" *ngIf="fiesta.checking">Tickets
+                            <b class="text-white">{{ fiesta.cantidad}}</b>
+                        </li>
+                        <li class="list">Invitaciones creadas
+                            <b class="text-white">{{getActivas(boletos)}}</b>
+                        </li>
+                        <li class="list" *ngIf=" fiesta.checking">Ocupados
+                            <b class="text-white">{{gettotal(boletos
+                                ,'ocupados')}}</b>
+                        </li>
+                        <li class="list" *ngIf=" fiesta.checking">Libres
+                            <b class="text-white">{{fiesta.cantidad
+                                -gettotal(boletos
+                                ,'ocupados')}}</b>
+                        </li>
+                        <li class="list">Confirmados
+                            <b class="text-white">{{getConfirmados(boletos)}}</b>
+                        </li>
+                        <li class="list">Personas en evento
+                            <b class="text-white"
+                                [ngClass]="{'danger': gettotal(boletos,'') === getOnParty(boletos) }">{{getOnParty(boletos)}}</b>
+                        </li>
+
+
+
+                    </ul>
+
+
+
+
+
+
+
+                </div>
+
+            </div>
+
+            <br>
+
+
+            <div class="section-overlay"></div>
+        </div>
+    </div>
+    <div class="col-12 text-center mt-5 ma ">
+
+        <button class="btn btn-lg btn-block btn-warning" (click)="back()">Regresar</button>
+
+    </div>
+</div>
+
+<app-footer></app-footer>

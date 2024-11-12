@@ -73,6 +73,7 @@ import { CrearParametroComponent } from './pages/admin/parametros/crear-parametr
 import { VistaParametrosComponent } from './pages/admin/parametros/vista-parametros/vista-parametros.component';
 import { ByFileComponent } from './pages/admin/templates/by-file/by-file.component';
 import { EjemplosComponent } from './pages/ejemplos/ejemplos.component';
+import { SingleFiestaComponent } from './pages/admin/fiestas/single-fiesta/single-fiesta.component';
 
 
 const routes: Routes = [
@@ -435,6 +436,13 @@ const routes: Routes = [
         path: 'fiestas/vista-fiestas',
         component: VistaFiestasComponent,
         data: { titulo: 'Vista fiestas' },
+        canActivate: [authGuard]
+
+      },
+      {
+        path: 'fiestas/single-fiesta/:id',
+        component: SingleFiestaComponent,
+        data: { titulo: 'Vista fiesta' },
         canActivate: [authGuard]
 
       },

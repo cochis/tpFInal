@@ -12,7 +12,7 @@ export class Boleto {
         public invitacionEnviada: boolean,
         public activated: boolean,
         public ocupados: number,
-        public vista:boolean,
+        public vista: boolean,
         public pushNotification: [object],
         public requeridos: number,
         public dateCreated: number,
