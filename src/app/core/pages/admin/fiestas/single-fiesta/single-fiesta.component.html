@@ -113,20 +113,21 @@
 
                     <tr>
                         <th scope="col" class="text-center">#</th>
+                        <th scope="col" class="text-center">Mesa</th>
                         <th scope="col" class="text-center">Vista</th>
                         <th scope="col" class="text-center">Enviada</th>
                         <th scope="col" class="text-center">Nombre</th>
                         <th scope="col" class="text-center" style="min-width: 100px;">Boletos</th>
                         <th scope="col" class="text-center">Boletos requeridos</th>
-                        <th scope="col" class="text-center">Boletos mesa</th>
                         <th scope="col" class="text-center">Confirmado</th>
                         <th scope="col" class="text-center">Fecha confirmado</th>
                         <th scope="col" class="text-center">En evento</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let item of boletos ; let i=index">
+                    <tr *ngFor="let item of boletos | paginate: { itemsPerPage: 10, currentPage: p } ; let i=index">
                         <th scope="row">{{i+1}}</th>
+                        <td class="text-center prima ">{{item.mesa}}</td>
                         <td *ngIf="item.vista" class="text-center">
 
                             <i class="icon-eye prima  "></i>
@@ -156,7 +157,7 @@
 
                         </td>
                         <td class="text-center seconf">{{item.requeridos}}</td>
-                        <td class="text-center prima ">{{item.mesa}}</td>
+                 
                         <td class="text-center prima" *ngIf="item.confirmado">
                             <i class="icon-ok-circled prima"></i>
                         </td>
@@ -174,8 +175,15 @@
 
                 </tbody>
             </table>
+            
+           
         </div>
     </ng-container>
+    <div class="mt-5 text-center">
+
+        <pagination-controls (pageChange)="p = $event" autoHide="true" previousLabel="Anterior"
+            nextLabel="Siguiente" responsive="true"></pagination-controls>
+    </div>
 </div>
 <div class="col-12 text-center mt-5 ma ">
 

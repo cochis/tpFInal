@@ -56,6 +56,7 @@ export class SingleFiestaComponent implements OnInit, OnDestroy {
   edit!: string
   url = environment.base_url
   cantidadGalerias = 0
+p: any;
 
   constructor(
     private fb: FormBuilder,
@@ -179,12 +180,18 @@ export class SingleFiestaComponent implements OnInit, OnDestroy {
     if (this.obs1) this.obs1.unsubscribe();
   }
   ajuste(boleto) {
+    if ((this.gettotal(this.boletos, 'ocupados') + boleto.requeridos) > this.fiesta.cantidad) {
+      this.functionsService.alert('Boletos', 'La cantidad de boletos en el ajuste sobrepasa su cupo', 'error')
+    } else {
 
-    boleto.cantidadInvitados = boleto.requeridos
-    boleto.requeridos = 0
-    this.boletosService.actualizarBoleto(boleto).subscribe(res => {
-      this.functionsService.alertUpdate('Boleto ajustado')
-    })
+      boleto.cantidadInvitados = boleto.requeridos
+      boleto.requeridos = 0
+      this.boletosService.actualizarBoleto(boleto).subscribe(res => {
+        this.functionsService.alertUpdate('Boleto ajustado')
+      })
+    }
+
+
 
   }
 }

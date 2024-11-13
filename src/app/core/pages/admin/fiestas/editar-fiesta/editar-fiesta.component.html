@@ -209,7 +209,11 @@
                                     </div>
                                 </div>
 
-
+                                <div class="col-12 text-center mt-5">
+                                    <h4>
+                                        Imagen de evento
+                                    </h4>
+                                </div>
                                 <div class="col-12 col-md-12 mt-3 text-center">
                                     <div class=" image-upload" class="text-center">
 
@@ -230,101 +234,134 @@
                                         </label>
 
                                         <input id="file-input" type="file" class="ion-no-border"
-                                            (change)="cambiarImagen($event )" *ngIf="edit ==='true'" />
+                                            (change)="cambiarImagen($event,'img' )" *ngIf="edit ==='true'" />
 
 
 
                                     </div>
                                 </div>
+                                <div class="col-12 text-center mt-5">
+                                    <h4>
+                                        Croquis de mesas
+                                    </h4>
+                                </div>
+                                <div class="col-12 col-md-12 mt-3 text-center">
+                                    <div class=" image-upload" class="text-center">
 
-                                <div class="col-12 col-md-3 mt-3">
-                                    <div class="form-group">
-                                        <label for="calle">Calle</label>
-                                        <input type="text" class="form-control upper" id="calle" formControlName="calle"
-                                            placeholder="Calle" readonly>
-                                    </div>
-                                    <span *ngIf="submited && errorControl['calle'].errors " class="error">Es
-                                        requerido
-                                    </span>
-                                </div>
-                                <div class="col-6 col-md-3 mt-3">
-                                    <div class="form-group">
-                                        <label for="numeroExt">Número exterior</label>
-                                        <input type="text" class="form-control upper" id="numeroExt"
-                                            formControlName="numeroExt" placeholder="Número exterior" readonly>
-                                    </div>
-                                    <span *ngIf="submited && errorControl['numeroExt'].errors " class="error">Es
-                                        requerido
-                                    </span>
-                                </div>
-                                <div class="col-6 col-md-3 mt-3">
-                                    <div class="form-group">
-                                        <label for="numeroInt">Número interior</label>
-                                        <input type="text" class="form-control upper" id="numeroInt"
-                                            formControlName="numeroInt" placeholder="Número interior" readonly>
-                                    </div>
-                                </div>
-                                <div class="col-6 col-md-3 mt-3">
-                                    <div class="form-group">
-                                        <label for="municipioDelegacion">Municipio o Delegación</label>
-                                        <input type="text" class="form-control upper" id="municipioDelegacion"
-                                            formControlName="municipioDelegacion" placeholder="Municipio o Delegacion"
-                                            readonly>
-                                    </div>
-                                    <span *ngIf="submited && errorControl['municipioDelegacion'].errors "
-                                        class="error">Es
-                                        requerido
-                                    </span>
-                                </div>
-                                <div class="col-6 col-md-3 mt-3">
-                                    <div class="form-group">
-                                        <label for="coloniaBarrio">Colonia o Barrio</label>
-                                        <input type="text" class="form-control upper" id="coloniaBarrio"
-                                            formControlName="coloniaBarrio" placeholder="Colonia o Barrio" readonly>
-                                    </div>
-                                    <span *ngIf="submited && errorControl['coloniaBarrio'].errors " class="error">Es
-                                        requerido
-                                    </span>
-                                </div>
-                                <div class="col-6 col-md-3 mt-3">
-                                    <div class="form-group">
-                                        <label for="estado">Estado</label>
-                                        <input type="text" class="form-control upper" id="estado"
-                                            formControlName="estado" placeholder="Estado" readonly>
-                                    </div>
-                                </div>
-                                <div class="col-6 col-md-3 mt-3">
-                                    <div class="form-group">
-                                        <label for="cp">Código postal</label>
-                                        <input type="text" class="form-control upper" id="cp" formControlName="cp"
-                                            placeholder="Código postal" readonly>
-                                    </div>
-                                    <span *ngIf="submited && errorControl['cp'].errors " class="error">Es
-                                        requerido
-                                    </span>
-                                </div>
-                                <div class="col-6 col-md-3 mt-3" readonly>
-                                    <div class="form-group">
-                                        <label for="pais">País</label>
-                                        <input type="text" class="form-control upper" id="pais" formControlName="pais"
-                                            placeholder="País" readonly>
-                                    </div>
-                                    <span *ngIf="submited && errorControl['pais'].errors " class="error">Es
-                                        requerido
-                                    </span>
-                                </div>
+                                        <label for="file-input" [ngClass]=" {'pointer':edit ==='true'}">
 
-                                <div class="col-12 col-md-12 mt-3">
-                                    <span *ngIf="submited && errorControl['comoLlegar'].errors " class="error">Es
-                                        requerido
-                                    </span>
-                                    <div class="form-group">
-                                        <label for="long">Indicaciones adicionales de esta dirección</label>
-                                        <textarea class="form-control upper" id="comoLlegar" rows="4"
-                                            style="resize: none;" placeholder="Como llegar" formControlName="comoLlegar"
-                                            readonly> </textarea>
+                                            <ng-container *ngIf="fiesta" class="text-center">
+                                                <img *ngIf="fiesta.croquis ==='' && !imgTemp   "
+                                                    [src]="url+'/upload/fiestas/default.jpg'+fiesta.croquis"
+                                                    alt="Click aquí para subir tu foto"
+                                                    title="Click aquí para subir tu foto" class="img-avatar">
+                                                <img *ngIf="fiesta.croquis !=='' && !imgTemp   "
+                                                    [src]="url+'/upload/fiestas/'+fiesta.croquis"
+                                                    alt="Click aquí para subir tu foto"
+                                                    title="Click aquí para subir tu foto" class="img-avatar">
+                                                <img *ngIf="fiesta.croquis !=='' && imgTemp  " [src]="imgTemp"
+                                                    [alt]="fiesta.nombre" class="img-avatar">
+                                            </ng-container>
+                                        </label>
+
+                                        <input id="file-input" type="file" class="ion-no-border"
+                                            (change)="cambiarImagen($event ,'croquis')" *ngIf="edit ==='true'" />
+
+
+
                                     </div>
                                 </div>
+                                <ng-container class="mt-5">
+                                    <div class="col-12 col-md-3 mt-3">
+                                        <div class="form-group">
+                                            <label for="calle">Calle</label>
+                                            <input type="text" class="form-control upper" id="calle" formControlName="calle"
+                                                placeholder="Calle" readonly>
+                                        </div>
+                                        <span *ngIf="submited && errorControl['calle'].errors " class="error">Es
+                                            requerido
+                                        </span>
+                                    </div>
+                                    <div class="col-6 col-md-3 mt-3">
+                                        <div class="form-group">
+                                            <label for="numeroExt">Número exterior</label>
+                                            <input type="text" class="form-control upper" id="numeroExt"
+                                                formControlName="numeroExt" placeholder="Número exterior" readonly>
+                                        </div>
+                                        <span *ngIf="submited && errorControl['numeroExt'].errors " class="error">Es
+                                            requerido
+                                        </span>
+                                    </div>
+                                    <div class="col-6 col-md-3 mt-3">
+                                        <div class="form-group">
+                                            <label for="numeroInt">Número interior</label>
+                                            <input type="text" class="form-control upper" id="numeroInt"
+                                                formControlName="numeroInt" placeholder="Número interior" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-md-3 mt-3">
+                                        <div class="form-group">
+                                            <label for="municipioDelegacion">Municipio o Delegación</label>
+                                            <input type="text" class="form-control upper" id="municipioDelegacion"
+                                                formControlName="municipioDelegacion" placeholder="Municipio o Delegacion"
+                                                readonly>
+                                        </div>
+                                        <span *ngIf="submited && errorControl['municipioDelegacion'].errors "
+                                            class="error">Es
+                                            requerido
+                                        </span>
+                                    </div>
+                                    <div class="col-6 col-md-3 mt-3">
+                                        <div class="form-group">
+                                            <label for="coloniaBarrio">Colonia o Barrio</label>
+                                            <input type="text" class="form-control upper" id="coloniaBarrio"
+                                                formControlName="coloniaBarrio" placeholder="Colonia o Barrio" readonly>
+                                        </div>
+                                        <span *ngIf="submited && errorControl['coloniaBarrio'].errors " class="error">Es
+                                            requerido
+                                        </span>
+                                    </div>
+                                    <div class="col-6 col-md-3 mt-3">
+                                        <div class="form-group">
+                                            <label for="estado">Estado</label>
+                                            <input type="text" class="form-control upper" id="estado"
+                                                formControlName="estado" placeholder="Estado" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-md-3 mt-3">
+                                        <div class="form-group">
+                                            <label for="cp">Código postal</label>
+                                            <input type="text" class="form-control upper" id="cp" formControlName="cp"
+                                                placeholder="Código postal" readonly>
+                                        </div>
+                                        <span *ngIf="submited && errorControl['cp'].errors " class="error">Es
+                                            requerido
+                                        </span>
+                                    </div>
+                                    <div class="col-6 col-md-3 mt-3" readonly>
+                                        <div class="form-group">
+                                            <label for="pais">País</label>
+                                            <input type="text" class="form-control upper" id="pais" formControlName="pais"
+                                                placeholder="País" readonly>
+                                        </div>
+                                        <span *ngIf="submited && errorControl['pais'].errors " class="error">Es
+                                            requerido
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-md-12 mt-3">
+                                        <span *ngIf="submited && errorControl['comoLlegar'].errors " class="error">Es
+                                            requerido
+                                        </span>
+                                        <div class="form-group">
+                                            <label for="long">Indicaciones adicionales de esta dirección</label>
+                                            <textarea class="form-control upper" id="comoLlegar" rows="4"
+                                                style="resize: none;" placeholder="Como llegar" formControlName="comoLlegar"
+                                                readonly> </textarea>
+                                        </div>
+                                    </div>
+                                </ng-container>
+                                
+                               
                             </div>
 
                             <div class="row mt-5 text-center">

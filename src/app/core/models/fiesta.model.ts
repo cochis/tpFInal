@@ -21,6 +21,9 @@ export class Fiesta {
         public galeria: boolean,
         public checking: boolean,
         public mesaOk: boolean,
+        public example: boolean,
+        public croquis: string,
+       
         public usuarioCreated: any,
         public activated: boolean,
         public dateCreated: number,

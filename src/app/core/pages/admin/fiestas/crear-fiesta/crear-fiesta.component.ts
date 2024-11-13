@@ -20,7 +20,7 @@ import { DefaultComponent } from '../../templates/default/default.component';
 import { PaquetesService } from 'src/app/core/services/paquete.service';
 import { Paquete } from 'src/app/core/models/paquete.model';
 
-
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-crear-fiesta',
@@ -256,9 +256,22 @@ export class CrearFiestaComponent {
             this.functionsService.alert('Fiestas', 'Fiesta creada', 'success')
 
             if (rp.fiesta.invitacion.includes('default')) {
-
+              Swal.fire({
+                title: "¿ Deseas agregar alguna imagen ?",
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: "Si",
+                denyButtonText: `No`
+              }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                  this.functionsService.navigateTo(`core/fiestas/editar-fiesta/true/${resp.fiesta.uid}`)
+                } else if (result.isDenied) {
+                  this.functionsService.navigateTo(`core/mis-fiestas`)
+                }
+              });
               //this.functionsService.navigateTo(`core/invitaciones/editar-invitacion/true/${resp.fiesta.uid}`)
-              this.functionsService.navigateTo(`core/mis-fiestas`)
+              //this.functionsService.navigateTo(`core/mis-fiestas`)
             } else {
 
               this.functionsService.navigateTo(`core/fiestas/vista-fiestas`)

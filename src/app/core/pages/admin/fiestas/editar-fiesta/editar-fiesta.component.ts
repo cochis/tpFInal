@@ -307,7 +307,7 @@ export class EditarFiestaComponent {
 
 
   }
-  cambiarImagen(file: any) {
+  cambiarImagen(file: any, type) {
     this.imagenSubir = file.target.files[0]
     if (!file.target.files[0]) {
       this.imgTemp = null
@@ -321,20 +321,26 @@ export class EditarFiestaComponent {
         this.imgTemp = reader.result
 
       }
-      this.subirImagen()
+      this.subirImagen(type)
 
     }
   }
-  subirImagen() {
+  subirImagen(type?) {
     this.fileService
-      .actualizarFoto(this.imagenSubir, 'fiestas', this.fiesta.uid)
+      .actualizarFoto(this.imagenSubir, 'fiestas', this.fiesta.uid,type)
       .then(
         (img) => {
-          this.fiesta.img = img
+          if(type =='img'){
+
+            this.fiesta.img = img
+          }else{
+
+            this.fiesta.croquis = img
+          }
           //message
         },
         (err) => {
-          // console.error('error::: ', err);
+           console.error('error::: ', err);
 
         },
       )

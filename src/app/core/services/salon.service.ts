@@ -50,6 +50,7 @@ export class SalonsService {
               sal.email,
               sal.ubicacionGoogle,
               sal.img,
+             
               sal.usuarioCreated,
               sal.activated,
               sal.dateCreated,
