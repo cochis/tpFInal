@@ -566,15 +566,13 @@ export class EditarInvitacionComponent {
       if (this.form.value.byFileInvitacion == '' && this.invitacion.data.byFileInvitacion !== '') {
         this.form.value.byFileInvitacion = this.invitacion.data.byFileInvitacion
       }
-      if (this.form.value.itinerarios.length > 0) {
-        this.form.value.itinerarioCheck = true
-      }
-      if (this.form.value.notas.length > 0) {
-        this.form.value.notaCheck = true
-      }
+
+
+
       let data = await this.numberToData(this.form.value)
 
       this.invitacion.data = (data)
+
       this.invitacion.usuarioFiesta = (this.fiesta.usuarioFiesta._id) ? this.fiesta.usuarioFiesta._id : this.fiesta.usuarioFiesta.uid
       this.invitacion.usuarioCreated = this.usuarioFiesta
       setTimeout(() => {
@@ -590,7 +588,9 @@ export class EditarInvitacionComponent {
       }, 500);
     } else {
 
+
       let dataT = await this.dateToNumber(this.form.value)
+
 
       var invitado = {
         tipoTemplate: this.fiesta.invitacion,
@@ -636,10 +636,13 @@ export class EditarInvitacionComponent {
     data.donde1Check = (data.donde1Check == 'true' || data.donde1Check == true) ? true : false
     data.donde2Check = (data.donde2Check == 'true' || data.donde2Check == true) ? true : false
     data.donde3Check = (data.donde3Check == 'true' || data.donde3Check == true) ? true : false
+    data.notaCheck = (data.notaCheck == 'true' || data.notaCheck == true) ? true : false
+    data.itinerarioCheck = (data.itinerarioCheck == 'true' || data.itinerarioCheck == true) ? true : false
     data.fiestaDate = (typeof (data.donde3Date) == 'string') ? this.functionsService.dateToNumber(data.donde3Date) : data.donde3Date
     return await data
   }
   async numberToData(data) {
+
     data.dateCreated = (typeof (data.dateCreated) == 'number') ? this.functionsService.numberToDate(data.dateCreated) : data.dateCreated
     data.donde1Date = (typeof (data.donde1Date) == 'number') ? this.functionsService.numberDateTimeLocal(data.donde1Date) : data.donde1Date
     data.donde2Date = (typeof (data.donde2Date) == 'number') ? this.functionsService.numberDateTimeLocal(data.donde2Date) : data.donde2Date
@@ -648,6 +651,7 @@ export class EditarInvitacionComponent {
     data.donde1Check = (data.donde1Check == 'true' || data.donde1Check == true) ? true : false
     data.donde2Check = (data.donde2Check == 'true' || data.donde2Check == true) ? true : false
     data.donde3Check = (data.donde3Check == 'true' || data.donde3Check == true) ? true : false
+
     return await data
   }
 
@@ -799,6 +803,7 @@ export class EditarInvitacionComponent {
 
         }, 800);
       } else {
+
         this.invitacion.data = await this.numberToData(this.invitacion.data)
 
         this.usuarioCreated = this.usuarioFiesta
