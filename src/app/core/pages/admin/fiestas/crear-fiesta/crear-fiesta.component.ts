@@ -257,7 +257,8 @@ export class CrearFiestaComponent {
 
             if (rp.fiesta.invitacion.includes('default')) {
 
-              this.functionsService.navigateTo(`core/invitaciones/editar-invitacion/true/${resp.fiesta.uid}`)
+              //this.functionsService.navigateTo(`core/invitaciones/editar-invitacion/true/${resp.fiesta.uid}`)
+              this.functionsService.navigateTo(`core/mis-fiestas`)
             } else {
 
               this.functionsService.navigateTo(`core/fiestas/vista-fiestas`)

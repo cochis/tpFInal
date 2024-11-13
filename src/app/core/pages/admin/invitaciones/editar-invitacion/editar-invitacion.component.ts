@@ -41,6 +41,7 @@ export class EditarInvitacionComponent {
   invi: any
   viewVideo = false
   viewSizeM = ''
+  usuarioFiesta = ''
   constructor(
     private fb: FormBuilder,
     private functionsService: FunctionsService,
@@ -72,13 +73,11 @@ export class EditarInvitacionComponent {
     this.loading = true
     this.fiestasService.cargarFiestaById(id).subscribe((resp: CargarFiesta) => {
       this.fiesta = resp.fiesta
-
-
+      this.usuarioFiesta = this.fiesta.usuarioFiesta._id
       this.invitacionId = this.fiesta.invitacion
-
     },
       (error: any) => {
-         console.error('Error', error)
+        console.error('Error', error)
         this.loading = false
         this.functionsService.alert('Fiesta', 'Por favor intente mas tarde', 'error')
       })
@@ -121,7 +120,7 @@ export class EditarInvitacionComponent {
       checking: [this.fiesta.checking],
       fiestaDate: [Number(this.fiesta.fecha)],
       nombreFiesta: [this.fiesta.nombre],
-      nombreFont: [''],
+      nombreFont: ['dancing'],
       nombresSize: [187],
       textInvitacionValida: ['¡Los esperamos!'],
       mensajeCheck: [true],
@@ -139,7 +138,7 @@ export class EditarInvitacionComponent {
       byMensajeImg: [0],
       mensaje1: [''],
       mensajeSize: [25],
-   
+
       donde1Check: [true],
       donde1Img: [''],
       donde1Title: ['Iglesia'],
@@ -192,7 +191,7 @@ export class EditarInvitacionComponent {
       notas: this.fb.array([]),
       colorQr: ['#ffffff'],
       colorBgQr: ['#c0354e'],
-      usuarioCreated: [this.uid],
+      usuarioCreated: [this.usuarioFiesta],
       activated: [true],
       dateCreated: [this.today],
       lastEdited: [this.today],
@@ -337,7 +336,7 @@ export class EditarInvitacionComponent {
 
 
 
-      usuarioCreated: [invitacion.data.usuarioCreated],
+      usuarioCreated: [this.usuarioFiesta],
       activated: [invitacion.data.activated],
       dateCreated: [invitacion.data.dateCreated],
       lastEdited: [this.today],
@@ -443,8 +442,8 @@ export class EditarInvitacionComponent {
       mensajeImgWidth: [temp.mensajeImgWidth],
       mensajeFont: [temp.mensajeFont],
       inicialTFont: [temp.inicialTFont],
-      inicialTSize : [temp.inicialTSize],
-      finalTSize : [temp.finalTSize],
+      inicialTSize: [temp.inicialTSize],
+      finalTSize: [temp.finalTSize],
       finalTFont: [temp.finalTFont],
       inviFont: [temp.inviFont],
       inviFont2: [temp.inviFont2],
@@ -459,7 +458,7 @@ export class EditarInvitacionComponent {
       colorBgQr: [temp.colorBgQr],
       invitacionTemplate: [temp.invitacionTemplate],
       notas: this.fb.array([]),
-      usuarioCreated: [temp.usuarioCreated],
+      usuarioCreated: [this.usuarioFiesta],
       activated: [temp.activated],
       dateCreated: [temp.dateCreated],
       lastEdited: [temp.lastEdited],
@@ -482,7 +481,7 @@ export class EditarInvitacionComponent {
         data: data,
         tipoTemplate: this.fiesta.invitacion,
         templateActivated: true,
-        usuarioCreated: this.uid,
+        usuarioCreated: this.usuarioFiesta,
         activated: true,
         lastEdited: this.today,
         dateCreated: this.today
@@ -509,7 +508,7 @@ export class EditarInvitacionComponent {
       this.invitacion = {
         ...this.invitacion,
         fiestaId: this.fiesta.uid,
-        usuarioCreated: this.usuarioCreated,
+        usuarioCreated: this.usuarioFiesta,
         lastEdited: this.today
       }
       this.invitacion.data.donde3Img = this.fiesta.salon.img
@@ -576,16 +575,19 @@ export class EditarInvitacionComponent {
       let data = await this.numberToData(this.form.value)
 
       this.invitacion.data = (data)
-      this.invitacion.usuarioFiesta = this.fiesta.usuarioFiesta
+      this.invitacion.usuarioFiesta = (this.fiesta.usuarioFiesta._id) ? this.fiesta.usuarioFiesta._id : this.fiesta.usuarioFiesta.uid
+      this.invitacion.usuarioCreated = this.usuarioFiesta
+      setTimeout(() => {
 
-      this.actualizarInvitacion(this.invitacion).subscribe((res: any) => {
-        this.invitacion = res.invitacionActualizado
-        if (this.rol != this.URS) {
-          this.functionsService.navigateTo('core/fiestas/vista-fiestas')
-        } else {
-          this.functionsService.navigateTo('core/mis-fiestas')
-        }
-      })
+        this.actualizarInvitacion(this.invitacion).subscribe((res: any) => {
+          this.invitacion = res.invitacionActualizado
+          if (this.rol != this.URS) {
+            this.functionsService.navigateTo('core/fiestas/vista-fiestas')
+          } else {
+            this.functionsService.navigateTo('core/mis-fiestas')
+          }
+        })
+      }, 500);
     } else {
 
       let dataT = await this.dateToNumber(this.form.value)
@@ -596,11 +598,12 @@ export class EditarInvitacionComponent {
         data: dataT,
         usuarioFiesta: (this.fiesta.usuarioFiesta._id) ? this.fiesta.usuarioFiesta._id : this.fiesta.usuarioFiesta.uid,
         fiesta: (this.fiesta._id) ? this.fiesta._id : this.fiesta.uid,
-        usuarioCreated: this.uid,
+        usuarioCreated: this.usuarioFiesta,
         activated: true,
         dateCreated: this.today,
         lastEdited: this.today
       }
+
 
       setTimeout(() => {
 
@@ -729,7 +732,7 @@ export class EditarInvitacionComponent {
             notas: [],
             colorQr: '#ffffff',
             colorBgQr: '#c0354e',
-            usuarioCreated: this.uid,
+            usuarioCreated: this.usuarioFiesta,
 
             activated: true,
             dateCreated: this.today,
@@ -737,13 +740,13 @@ export class EditarInvitacionComponent {
 
             //font img
             imgWidth: 100,
-            nombreFont: "pacifico",
+            nombreFont: "dancing",
             tipoFont: "pacifico",
             mensajeImgWidth: 100,
             mensajeFont: "pacifico",
             inicialTFont: 'pacifico',
-            inicialTSize:10,
-            finalTSize:10,
+            inicialTSize: 10,
+            finalTSize: 10,
             finalTFont: 'pacifico',
             inviFont: 'pacifico',
             inviFont2: 'pacifico',
@@ -773,7 +776,7 @@ export class EditarInvitacionComponent {
             tipoTemplate: this.fiesta.invitacion,
             templateActivated: true,
             usuarioFiesta: this.fiesta.usuarioFiesta._id,
-            usuarioCreated: this.uid,
+            usuarioCreated: this.usuarioFiesta,
             activated: true,
             lastEdited: this.today,
             dateCreated: this.today
@@ -798,7 +801,7 @@ export class EditarInvitacionComponent {
       } else {
         this.invitacion.data = await this.numberToData(this.invitacion.data)
 
-        this.usuarioCreated = this.invitacion.usuarioCreated
+        this.usuarioCreated = this.usuarioFiesta
         this.setFormWithData(this.invitacion)
         setTimeout(() => {
           if (this.invitacion.data.itinerarios && this.invitacion.data.itinerarios.length > 0) {
@@ -905,7 +908,7 @@ export class EditarInvitacionComponent {
         tipoTemplate: this.fiesta.invitacion,
         templateActivated: false,
         usuarioFiesta: (this.fiesta.usuarioFiesta._id) ? this.fiesta.usuarioFiesta._id : this.fiesta.usuarioFiesta.uid,
-        usuarioCreated: this.uid,
+        usuarioCreated: this.usuarioFiesta,
         activated: true,
         dateCreated: this.today,
         lastEdited: this.today
@@ -934,7 +937,7 @@ export class EditarInvitacionComponent {
               }, 800);
             },
             (err) => {
-             console.error('Error', err)
+              console.error('Error', err)
               this.functionsService.alertError(err, 'Error')
             },
           )
@@ -977,7 +980,7 @@ export class EditarInvitacionComponent {
                 break;
             }
             this.invitacion.fiesta = this.fiesta.uid
-            this.invitacion.usuarioCreated = this.usuarioCreated
+            this.invitacion.usuarioCreated = this.usuarioFiesta
 
 
             setTimeout(() => {
@@ -985,14 +988,18 @@ export class EditarInvitacionComponent {
 
               this.actualizarInvitacion(this.invitacion).subscribe((resp: any) => {
                 this.invitacion = resp.invitacionActualizado
+                this.getInvitacion(this.id)
+
               })
+
               this.loading = false
+
               return
             }, 800);
 
           },
           (err) => {
-             console.error('Error', err)
+            console.error('Error', err)
             this.functionsService.alertError(err, 'Error')
           },
         )
@@ -1001,7 +1008,7 @@ export class EditarInvitacionComponent {
   actualizarInvitacion(invitacion) {
 
     invitacion.fiesta = this.fiesta.uid
-    invitacion.usuarioCreated = this.usuarioCreated
+    invitacion.usuarioCreated = this.usuarioFiesta
     return this.invitacionsService.actualizarInvitacion(invitacion)
   }
   crearInvitacion(invitacion) {
