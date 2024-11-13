@@ -308,6 +308,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
     data = JSON.parse(data)
     this.boleto.confirmado = !this.boleto.confirmado
     if (!this.boleto.confirmado) {
+
       this.boleto.fechaConfirmacion = undefined
       this.boleto.requeridos = 0
       this.boletosService.registrarAsistencia(this.boleto).subscribe((res: any) => {

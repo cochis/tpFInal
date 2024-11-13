@@ -160,24 +160,28 @@ export class VistaBoletosComponent {
       });
   }
   fiterBoletos(fiesta) {
+
+
     if (this.boletos) {
 
       let res = this.boletos.filter((bol: any) => {
         if (bol) {
-          return (bol.fiesta._id) ? bol.fiesta._id : bol.fiesta.uid === fiesta
+          return bol.fiesta._id == fiesta
         } else {
           return ''
         }
       })
+
       let cantidad = 0
       res.forEach(b => {
 
-        if (b.cantidadInvitados) {
+        if (b.cantidadInvitados && b.activated) {
 
           cantidad = cantidad + b.cantidadInvitados
         }
 
       });
+
 
       return cantidad
     } else {

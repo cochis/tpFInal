@@ -97,7 +97,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
 
       this.boletosService.cargarBoletoByFiesta(this.id).subscribe((resp: CargarBoleto) => {
         this.boletoTemp = resp.boleto
-   
+
       },
         (error: any) => {
           this.functionsService.alertError(error, 'Boletos')
@@ -227,7 +227,8 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
     })
   }
   getDisabled() {
-    if (this.numeroInvitados < this.total || !this.form.valid) {
+
+    if (this.numeroInvitados < this.total) {
       return true
     } else {
       return false
@@ -281,9 +282,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
     this.ngOnDestroy()
 
     this.submited = true
-    if (this.form.invalid) {
-      return
-    }
+
     this.loading = true
     this.form.value.fiesta = this.fiesta.uid
     this.form.value.invitados.forEach((boleto, index) => {

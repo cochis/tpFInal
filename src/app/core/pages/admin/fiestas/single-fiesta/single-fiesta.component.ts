@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription, interval } from 'rxjs';
 import { CargarEvento, CargarEventos, CargarFiesta, CargarPaquetes, CargarRoles, CargarSalons, CargarUsuario, CargarUsuarios } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
 import { Boleto } from 'src/app/core/models/boleto.model';
 import { Evento } from 'src/app/core/models/evento.model';
@@ -24,7 +25,7 @@ import { environment } from 'src/environments/environment';
   templateUrl: './single-fiesta.component.html',
   styleUrls: ['./single-fiesta.component.css']
 })
-export class SingleFiestaComponent {
+export class SingleFiestaComponent implements OnInit, OnDestroy {
   ADM = environment.admin_role
   ANF = environment.anf_role
   SLN = environment.salon_role
@@ -33,6 +34,8 @@ export class SingleFiestaComponent {
   uid = this.functionsService.getLocal('uid')
   rol = this.functionsService.getLocal('role')
   loading = false
+  src1 = interval(10000);
+  obs1: Subscription;
   public imagenSubir!: File
   public imgTemp: any = undefined
   today = this.functionsService.getToday()
@@ -78,6 +81,13 @@ export class SingleFiestaComponent {
       this.loading = false
     }, 2000);
   }
+  ngOnInit(): void {
+    this.obs1 = this.src1.subscribe((value: any) => {
+      this.loading = true
+      this.boletos = []
+      this.getId(this.id)
+    });
+  }
   getId(id: string) {
 
 
@@ -85,10 +95,10 @@ export class SingleFiestaComponent {
 
       this.fiesta = resp.fiesta
       this.salon = this.fiesta.salon
-      console.log('   this.fiesta::: ', this.fiesta);
+
       this.boletosService.cargarBoletoByFiesta(this.fiesta.uid).subscribe((res: any) => {
         this.boletos = this.functionsService.getActivos(res.boleto)
-        console.log('this.boletos::: ', this.boletos);
+
 
       })
     },
@@ -164,5 +174,17 @@ export class SingleFiestaComponent {
         break
     }
   }
+  ngOnDestroy(): void {
+    this.boletos = []
+    if (this.obs1) this.obs1.unsubscribe();
+  }
+  ajuste(boleto) {
 
+    boleto.cantidadInvitados = boleto.requeridos
+    boleto.requeridos = 0
+    this.boletosService.actualizarBoleto(boleto).subscribe(res => {
+      this.functionsService.alertUpdate('Boleto ajustado')
+    })
+
+  }
 }

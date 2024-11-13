@@ -45,7 +45,7 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
   tUrl = environment.text_url
   today = this.functionsService.getToday()
   filter = ''
-  src1 = interval(100000);
+  src1 = interval(10000);
   obs1: Subscription;
   cantidadFiestas = 0
   cantidadGalerias = 0
