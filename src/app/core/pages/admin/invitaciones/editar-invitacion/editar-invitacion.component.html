@@ -91,7 +91,7 @@
                                             <div class="form-group ">
                                                 <label for="xImg1 ">Posición horizontal de la imagen </label>
                                                 <input type="range" id="xImg1" #xImg1 formControlName="xImg1" min="-300"
-                                                    max="300" >
+                                                    max="300">
                                             </div>
                                         </div>
                                         <div class="col-6  col-md-4  mt-3">
@@ -104,43 +104,46 @@
                                         <div class="col-12  col-sm-6 col-md-3   mt-3">
                                             <div class="form-group ">
                                                 <label for="imgWidth ">Tamaño imagen</label>
-                                                <input type="range" id="imgWidth" #imgWidth formControlName="imgWidth" min="0"
-                                                max="500">
+                                                <input type="range" id="imgWidth" #imgWidth formControlName="imgWidth"
+                                                    min="0" max="500">
                                             </div>
                                         </div>
                                         <div class="col-12  col-sm-6 col-md-3   mt-3">
                                             <div class="form-group ">
                                                 <label for="nombreFiesta ">Título invitación</label>
-                                                <input type="text" id="nombreFiesta" #nombreFiesta  class="form-control"
-                                                    formControlName="nombreFiesta" >
+                                                <input type="text" id="nombreFiesta" #nombreFiesta class="form-control"
+                                                    formControlName="nombreFiesta">
                                             </div>
                                         </div>
-                                        
+
                                         <div class="col-12  col-sm-6 col-md-3   mt-3">
                                             <div class="form-group ">
                                                 <label for="nombreFont ">Fuente de título</label>
-                                                <select name="nombreFont" id="nombreFont" formControlName="nombreFont"  
-                                                class="form-control upper {{nombreFont.value}}" #nombreFont  >
-                                                <option value="">Seleccione el tipo de fuente</option>
-                                                <option value="name" class="name" selected>Name</option><option value="pacific" class="pacific">Pacific</option>
-                                                <option value="dancing" class="dancing">Dancing</option>
-                                                <option value="anton-sc-regular" class="anton-sc-regular">Anton-sc-regular</option>
-                                                <option value="creepster-regular" class="creepster-regular">Creepster-regular</option>
-                                                <option value="roboto-bold" class="roboto-bold">Roboto-bold</option>
-                                                <option value="roboto-black-italic" class="roboto-black-italic">Roboto-black-italic</option>
-                                            </select>
+                                                <select name="nombreFont" id="nombreFont" formControlName="nombreFont"
+                                                    class="form-control upper {{nombreFont}}" #nombreFont>
+                                                    <option value="">Seleccione el tipo de fuente</option>
+                                                    <option value="name" class="name" selected>Name</option>
+                                                    <option value="pacific" class="pacific">Pacific</option>
+                                                    <option value="dancing" class="dancing">Dancing</option>
+                                                    <option value="anton-sc-regular" class="anton-sc-regular">
+                                                        Anton-sc-regular</option>
+                                                    <option value="creepster-regular" class="creepster-regular">
+                                                        Creepster-regular</option>
+                                                    <option value="roboto-bold" class="roboto-bold">Roboto-bold</option>
+                                                    <option value="roboto-black-italic" class="roboto-black-italic">
+                                                        Roboto-black-italic</option>
+                                                </select>
                                             </div>
                                         </div>
-                                    
+
 
 
                                         <div class="col-12  col-sm-6 col-md-3   mt-3">
                                             <div class="form-group ">
-                                                <label for="nombreSize ">Tamaño título 
+                                                <label for="nombreSize ">Tamaño título
                                                 </label>
                                                 <input type="range" id="nombreSize" #nombreSize
-                                                    formControlName="nombreSize" min="-200"
-                                                    max="200">
+                                                    formControlName="nombreSize" min="-200" max="200">
                                             </div>
                                         </div>
 
@@ -158,37 +161,41 @@
                                             <div class="form-group ">
                                                 <label for="tipoFiesta ">Subtítulo invitación </label>
                                                 <input type="text" id="tipoFiesta" #tipoFiesta
-                                                    formControlName="tipoFiesta"  class="form-control">
+                                                    formControlName="tipoFiesta" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-12  col-sm-6 col-md-4   mt-3">
                                             <div class="form-group ">
                                                 <label for="tipoFont">Fuente de subtítulo</label>
-                                                <select name="tipoFont" id="tipoFont" formControlName="tipoFont"  
-                                                class="form-control upper {{tipoFont.value}}" #tipoFont  >
-                                                <option value="">Seleccione el tipo de fuente</option>
-                                                <option value="name" class="name" selected>Name</option><option value="pacific" class="pacific">Pacific</option>
-                                                <option value="dancing" class="dancing">Dancing</option>
-                                                <option value="anton-sc-regular" class="anton-sc-regular">Anton-sc-regular</option>
-                                                <option value="creepster-regular" class="creepster-regular">Creepster-regular</option>
-                                                <option value="roboto-bold" class="roboto-bold">Roboto-bold</option>
-                                                <option value="roboto-black-italic" class="roboto-black-italic">Roboto-black-italic</option>
-                                            </select>
+                                                <select name="tipoFont" id="tipoFont" formControlName="tipoFont"
+                                                    class="form-control upper {{tipoFont}}" #tipoFont>
+                                                    <option value="">Seleccione el tipo de fuente</option>
+                                                    <option value="name" class="name" selected>Name</option>
+                                                    <option value="pacific" class="pacific">Pacific</option>
+                                                    <option value="dancing" class="dancing">Dancing</option>
+                                                    <option value="anton-sc-regular" class="anton-sc-regular">
+                                                        Anton-sc-regular</option>
+                                                    <option value="creepster-regular" class="creepster-regular">
+                                                        Creepster-regular</option>
+                                                    <option value="roboto-bold" class="roboto-bold">Roboto-bold</option>
+                                                    <option value="roboto-black-italic" class="roboto-black-italic">
+                                                        Roboto-black-italic</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-6  col-md-4   mt-3 ma">
                                             <div class="form-group ">
                                                 <label for="tipoSize ">Tamaño de subtítulo </label>
-                                                <input type="range" id="tipoSize" #tipoSize formControlName="tipoSize" min="-200"
-                                                max="200">
+                                                <input type="range" id="tipoSize" #tipoSize formControlName="tipoSize"
+                                                    min="-200" max="200">
                                             </div>
                                         </div>
 
                                         <div class="col-12  col-sm-6 col-md-4   mt-3">
                                             <div class="form-group ">
                                                 <label for="topDate ">Altura fecha </label>
-                                                <input type="range" id="topDate" #topDate formControlName="topDate" min=" 0"
-                                                max="200">
+                                                <input type="range" id="topDate" #topDate formControlName="topDate"
+                                                    min=" 0" max="200">
                                             </div>
                                         </div>
 
@@ -196,16 +203,21 @@
                                         <div class="col-12  col-sm-6 col-md-4   mt-3">
                                             <div class="form-group ">
                                                 <label for="inicialTFont">Fuente inicial de fecha </label>
-                                                <select name="inicialTFont" id="inicialTFont" formControlName="inicialTFont"  
-                                                class="form-control upper {{inicialTFont.value}}" #inicialTFont  >
-                                                <option value="">Seleccione el tipo de fuente</option>
-                                                <option value="name" class="name" selected>Name</option><option value="pacific" class="pacific">Pacific</option>
-                                                <option value="dancing" class="dancing">Dancing</option>
-                                                <option value="anton-sc-regular" class="anton-sc-regular">Anton-sc-regular</option>
-                                                <option value="creepster-regular" class="creepster-regular">Creepster-regular</option>
-                                                <option value="roboto-bold" class="roboto-bold">Roboto-bold</option>
-                                                <option value="roboto-black-italic" class="roboto-black-italic">Roboto-black-italic</option>
-                                            </select>
+                                                <select name="inicialTFont" id="inicialTFont"
+                                                    formControlName="inicialTFont"
+                                                    class="form-control upper {{inicialTFont}}" #inicialTFont>
+                                                    <option value="">Seleccione el tipo de fuente</option>
+                                                    <option value="name" class="name" selected>Name</option>
+                                                    <option value="pacific" class="pacific">Pacific</option>
+                                                    <option value="dancing" class="dancing">Dancing</option>
+                                                    <option value="anton-sc-regular" class="anton-sc-regular">
+                                                        Anton-sc-regular</option>
+                                                    <option value="creepster-regular" class="creepster-regular">
+                                                        Creepster-regular</option>
+                                                    <option value="roboto-bold" class="roboto-bold">Roboto-bold</option>
+                                                    <option value="roboto-black-italic" class="roboto-black-italic">
+                                                        Roboto-black-italic</option>
+                                                </select>
                                             </div>
                                         </div>
 
@@ -214,8 +226,7 @@
                                                 <label for="inicialTSize ">Tamaño inicial de fecha
                                                 </label>
                                                 <input type="range" id="inicialTSize" #inicialTSize
-                                                    formControlName="inicialTSize" min="10"
-                                                    max="50">
+                                                    formControlName="inicialTSize" min="10" max="50">
                                             </div>
                                         </div>
 
@@ -223,16 +234,20 @@
                                         <div class="col-12  col-sm-6 col-md-4   mt-3">
                                             <div class="form-group ">
                                                 <label for="finalTFont">Fuente final de fecha </label>
-                                                <select name="finalTFont" id="finalTFont" formControlName="finalTFont"  
-                                                class="form-control upper {{finalTFont.value}}" #finalTFont  >
-                                                <option value="">Seleccione el tipo de fuente</option>
-                                                <option value="name" class="name" selected>Name</option><option value="pacific" class="pacific">Pacific</option>
-                                                <option value="dancing" class="dancing">Dancing</option>
-                                                <option value="anton-sc-regular" class="anton-sc-regular">Anton-sc-regular</option>
-                                                <option value="creepster-regular" class="creepster-regular">Creepster-regular</option>
-                                                <option value="roboto-bold" class="roboto-bold">Roboto-bold</option>
-                                                <option value="roboto-black-italic" class="roboto-black-italic">Roboto-black-italic</option>
-                                            </select>
+                                                <select name="finalTFont" id="finalTFont" formControlName="finalTFont"
+                                                    class="form-control upper {{finalTFont}}" #finalTFont>
+                                                    <option value="">Seleccione el tipo de fuente</option>
+                                                    <option value="name" class="name" selected>Name</option>
+                                                    <option value="pacific" class="pacific">Pacific</option>
+                                                    <option value="dancing" class="dancing">Dancing</option>
+                                                    <option value="anton-sc-regular" class="anton-sc-regular">
+                                                        Anton-sc-regular</option>
+                                                    <option value="creepster-regular" class="creepster-regular">
+                                                        Creepster-regular</option>
+                                                    <option value="roboto-bold" class="roboto-bold">Roboto-bold</option>
+                                                    <option value="roboto-black-italic" class="roboto-black-italic">
+                                                        Roboto-black-italic</option>
+                                                </select>
                                             </div>
                                         </div>
 
@@ -241,52 +256,59 @@
                                                 <label for="finalTSize ">Tamaño final de fecha
                                                 </label>
                                                 <input type="range" id="finalTSize" #finalTSize
-                                                    formControlName="finalTSize" min="10"
-                                                    max="50">
+                                                    formControlName="finalTSize" min="10" max="50">
                                             </div>
                                         </div>
                                         <div class="col-12  col-sm-6 col-md-4   mt-3">
                                             <div class="form-group ">
                                                 <label for="inviFont ">Fuente remitente</label>
-                                                <select name="inviFont" id="inviFont" formControlName="inviFont"  
-                                                class="form-control upper {{inviFont.value}}" #inviFont  >
-                                                <option value="">Seleccione el tipo de fuente</option>
-                                                <option value="name" class="name" selected>Name</option><option value="pacific" class="pacific">Pacific</option>
-                                                <option value="dancing" class="dancing">Dancing</option>
-                                                <option value="anton-sc-regular" class="anton-sc-regular">Anton-sc-regular</option>
-                                                <option value="creepster-regular" class="creepster-regular">Creepster-regular</option>
-                                                <option value="roboto-bold" class="roboto-bold">Roboto-bold</option>
-                                                <option value="roboto-black-italic" class="roboto-black-italic">Roboto-black-italic</option>
-                                              
-                                        
-                                            </select>
+                                                <select name="inviFont" id="inviFont" formControlName="inviFont"
+                                                    class="form-control upper {{inviFont}}" #inviFont>
+                                                    <option value="">Seleccione el tipo de fuente</option>
+                                                    <option value="name" class="name" selected>Name</option>
+                                                    <option value="pacific" class="pacific">Pacific</option>
+                                                    <option value="dancing" class="dancing">Dancing</option>
+                                                    <option value="anton-sc-regular" class="anton-sc-regular">
+                                                        Anton-sc-regular</option>
+                                                    <option value="creepster-regular" class="creepster-regular">
+                                                        Creepster-regular</option>
+                                                    <option value="roboto-bold" class="roboto-bold">Roboto-bold</option>
+                                                    <option value="roboto-black-italic" class="roboto-black-italic">
+                                                        Roboto-black-italic</option>
+
+
+                                                </select>
                                             </div>
                                         </div>
-                                       
+
                                         <div class="col-12  col-sm-6 col-md-4   mt-3">
                                             <div class="form-group ">
                                                 <label for="inviFont2 ">Fuente invitado</label>
-                                                <select name="inviFont2" id="inviFont2" formControlName="inviFont2"  
-                                                class="form-control upper {{inviFont2.value}}" #inviFont2  >
-                                                <option value="">Seleccione el tipo de fuente</option>
-                                                <option value="name" class="name" selected>Name</option><option value="pacific" class="pacific">Pacific</option>
-                                                <option value="dancing" class="dancing">Dancing</option>
-                                                <option value="anton-sc-regular" class="anton-sc-regular">Anton-sc-regular</option>
-                                                <option value="creepster-regular" class="creepster-regular">Creepster-regular</option>
-                                                <option value="roboto-bold" class="roboto-bold">Roboto-bold</option>
-                                                <option value="roboto-black-italic" class="roboto-black-italic">Roboto-black-italic</option>
-                                              
-                                        
-                                            </select>
+                                                <select name="inviFont2" id="inviFont2" formControlName="inviFont2"
+                                                    class="form-control upper {{inviFont2}}" #inviFont2>
+                                                    <option value="">Seleccione el tipo de fuente</option>
+                                                    <option value="name" class="name" selected>Name</option>
+                                                    <option value="pacific" class="pacific">Pacific</option>
+                                                    <option value="dancing" class="dancing">Dancing</option>
+                                                    <option value="anton-sc-regular" class="anton-sc-regular">
+                                                        Anton-sc-regular</option>
+                                                    <option value="creepster-regular" class="creepster-regular">
+                                                        Creepster-regular</option>
+                                                    <option value="roboto-bold" class="roboto-bold">Roboto-bold</option>
+                                                    <option value="roboto-black-italic" class="roboto-black-italic">
+                                                        Roboto-black-italic</option>
+
+
+                                                </select>
                                             </div>
                                         </div>
-                                       
 
 
 
-                                     
+
+
                                     </div>
- 
+
 
                                     <app-view-template [data]="{
     type:'seccionInicial',
@@ -315,7 +337,7 @@
         inviFont2:form.value.inviFont2,
         inicialTSize:inicialTSize.value,
         finalTSize:finalTSize.value,
-        }" ></app-view-template>
+        }"></app-view-template>
 
                                     <div class="row text-center mt-3">
                                         <h5>Seccion Mensaje</h5>
@@ -346,25 +368,30 @@
                                         <div class="col-12  col-md-6  mt-3">
                                             <div class="form-group ">
                                                 <label for="mensaje1 ">Mensaje </label>
-                                                <textarea type="text" id="mensaje1" #mensaje1
-                                                    formControlName="mensaje1" class="form-control"></textarea>
+                                                <textarea type="text" id="mensaje1" #mensaje1 formControlName="mensaje1"
+                                                    class="form-control"></textarea>
                                             </div>
                                         </div>
                                         <div class="col-12  col-md-4  mt-3">
                                             <div class="form-group ">
                                                 <label for="mensajeFont ">Fuente de mensaje</label>
-                                                <select name="mensajeFont" id="mensajeFont" formControlName="mensajeFont"  
-                                                class="form-control upper {{mensajeFont.value}}" #mensajeFont  >
-                                                <option value="">Seleccione el tipo de fuente</option>
-                                                <option value="name" class="name" selected>Name</option><option value="pacific" class="pacific">Pacific</option>
-                                                <option value="dancing" class="dancing">Dancing</option>
-                                                <option value="anton-sc-regular" class="anton-sc-regular">Anton-sc-regular</option>
-                                                <option value="creepster-regular" class="creepster-regular">Creepster-regular</option>
-                                                <option value="roboto-bold" class="roboto-bold">Roboto-bold</option>
-                                                <option value="roboto-black-italic" class="roboto-black-italic">Roboto-black-italic</option>
-                                              
-                                        
-                                            </select>
+                                                <select name="mensajeFont" id="mensajeFont"
+                                                    formControlName="mensajeFont"
+                                                    class="form-control upper {{mensajeFont}}" #mensajeFont>
+                                                    <option value="">Seleccione el tipo de fuente</option>
+                                                    <option value="name" class="name" selected>Name</option>
+                                                    <option value="pacific" class="pacific">Pacific</option>
+                                                    <option value="dancing" class="dancing">Dancing</option>
+                                                    <option value="anton-sc-regular" class="anton-sc-regular">
+                                                        Anton-sc-regular</option>
+                                                    <option value="creepster-regular" class="creepster-regular">
+                                                        Creepster-regular</option>
+                                                    <option value="roboto-bold" class="roboto-bold">Roboto-bold</option>
+                                                    <option value="roboto-black-italic" class="roboto-black-italic">
+                                                        Roboto-black-italic</option>
+
+
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-12  col-md-4  mt-3">
@@ -391,8 +418,8 @@
                                         <div class="col-12  col-sm-6 col-md-4   mt-3 ma">
                                             <div class="form-group ">
                                                 <label for="mensajeImgWidth ">Tamaño imagen mensaje</label>
-                                                <input type="range" id="mensajeImgWidth" #mensajeImgWidth formControlName="mensajeImgWidth" min="0"
-                                                max="500">
+                                                <input type="range" id="mensajeImgWidth" #mensajeImgWidth
+                                                    formControlName="mensajeImgWidth" min="0" max="500">
                                             </div>
                                         </div>
                                     </div>
@@ -501,21 +528,22 @@
                                                 <div class="form-group ">
                                                     <label for="donde3Text ">Nombre </label>
                                                     <input type="text" id="donde3Text" #donde3Text
-                                                        formControlName="donde3Text"  class="form-control" readonly>
+                                                        formControlName="donde3Text" class="form-control" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-6  col-md-6   mt-3">
                                                 <div class="form-group ">
                                                     <label for="donde3Date ">Fecha </label>
                                                     <input type="datetime-local" id="donde3Date" #donde3Date
-                                                        formControlName="donde3Date" class="form-control"  >
+                                                        formControlName="donde3Date" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="col-12   mt-3">
                                                 <div class="form-group ">
                                                     <label for="donde3Address ">Dirección </label>
                                                     <input type="text" id="donde3Address" #donde3Address
-                                                        formControlName="donde3Address" class="form-control" readonly style="width: 100%;">
+                                                        formControlName="donde3Address" class="form-control" readonly
+                                                        style="width: 100%;">
                                                 </div>
                                             </div>
                                             <div class="col-12   mt-3">
@@ -523,8 +551,8 @@
                                                     <label for="donde3AddressUbicacion ">Ubicación </label>
                                                     <app-info-ubicacion></app-info-ubicacion>
                                                     <input type="text" id="donde3AddressUbicacion"
-                                                        #donde3AddressUbicacion formControlName="donde3AddressUbicacion" class="form-control"
-                                                        readonly style="width: 100% !important;">
+                                                        #donde3AddressUbicacion formControlName="donde3AddressUbicacion"
+                                                        class="form-control" readonly style="width: 100% !important;">
                                                 </div>
                                             </div>
 
@@ -545,8 +573,8 @@
                                                 <div class="form-group ">
                                                     <label for="generalTexto ">Texto como invitacion General </label>
                                                     <input type="text" id="generalTexto" #generalTexto
-                                                        formControlName="generalTexto"
-                                                        placeholder="A toda la comunidad" class="form-control">
+                                                        formControlName="generalTexto" placeholder="A toda la comunidad"
+                                                        class="form-control">
                                                 </div>
                                             </div>
                                             <div class="col-12       mt-3 ma ">
@@ -554,7 +582,7 @@
                                                     Botón de confirmación
                                                 </label>
                                                 <input class="form-check-input" type="checkbox" id="confirmacionCheck"
-                                                    #confirmacionCheck formControlName="confirmacionCheck" >
+                                                    #confirmacionCheck formControlName="confirmacionCheck">
 
 
                                             </div>
@@ -564,7 +592,7 @@
                                                     Iglesia
                                                 </label>
                                                 <input class="form-check-input" type="checkbox" id="donde1Check"
-                                                    #donde1Check formControlName="donde1Check" >
+                                                    #donde1Check formControlName="donde1Check">
 
 
                                             </div>
@@ -616,7 +644,8 @@
                                                 <div class="form-group ">
                                                     <label for="donde1Address ">Dirección </label>
                                                     <input type="text" id="donde1Address" #donde1Address
-                                                        formControlName="donde1Address" style="width: 100%;" class="form-control">
+                                                        formControlName="donde1Address" style="width: 100%;"
+                                                        class="form-control">
                                                 </div>
                                             </div>
                                             <div class="col-12   mt-3" *ngIf="form.value.donde1Check">
@@ -636,7 +665,7 @@
                                                     Registro civil
                                                 </label>
                                                 <input class="form-check-input" type="checkbox" id="donde2Check"
-                                                    #donde2Check formControlName="donde2Check" >
+                                                    #donde2Check formControlName="donde2Check">
 
 
                                             </div>
@@ -658,7 +687,8 @@
 
                                                     </label>
                                                     <input type="file" id="donde2Img" #donde2Img
-                                                        (change)="cambiarImagen($event,'donde2Img' )" class="form-control">
+                                                        (change)="cambiarImagen($event,'donde2Img' )"
+                                                        class="form-control">
                                                 </div>
                                             </div>
                                             <div class="col-6  col-md-6   mt-3" *ngIf="form.value.donde2Check">
@@ -679,7 +709,8 @@
                                                 <div class="form-group ">
                                                     <label for="donde2Address ">Dirección </label>
                                                     <input type="text" id="donde2Address" #donde2Address
-                                                        formControlName="donde2Address" style="width: 100%;" class="form-control">
+                                                        formControlName="donde2Address" style="width: 100%;"
+                                                        class="form-control">
                                                 </div>
                                             </div>
                                             <div class="col-12   mt-3" *ngIf="form.value.donde2Check">
@@ -753,7 +784,8 @@
                                                 <div class="form-group ">
                                                     <label for="hospedajeAddress ">Dirección </label>
                                                     <input type="text" id="hospedajeAddress" #hospedajeAddress
-                                                        formControlName="hospedajeAddress" style="width: 100%;" class="form-control">
+                                                        formControlName="hospedajeAddress" style="width: 100%;"
+                                                        class="form-control">
                                                 </div>
                                             </div>
                                             <div class="col-12   mt-3" *ngIf="form.value.hospedajeCheck">
@@ -761,7 +793,8 @@
                                                     <label for="hospedajeUbicacion ">Ubicación </label>
                                                     <app-info-ubicacion></app-info-ubicacion>
                                                     <input type="text" id="hospedajeUbicacion" #hospedajeUbicacion
-                                                        formControlName="hospedajeUbicacion" style="width: 100%;" class="form-control">
+                                                        formControlName="hospedajeUbicacion" style="width: 100%;"
+                                                        class="form-control">
                                                 </div>
                                             </div>
 
@@ -817,7 +850,8 @@
                                                 <div class="form-group ">
                                                     <label for="mesaRegalosUrl ">Liga de mesa de regalos </label>
                                                     <input type="text" id="mesaRegalosUrl" #mesaRegalosUrl
-                                                        formControlName="mesaRegalosUrl" style="width: 100%;" class="form-control">
+                                                        formControlName="mesaRegalosUrl" style="width: 100%;"
+                                                        class="form-control">
                                                 </div>
                                             </div>
 
@@ -854,7 +888,8 @@
                                                                 <label for="name ">Evento</label>
                                                                 <input type="text" class="form-control upper" id="name"
                                                                     formControlName="name" required
-                                                                    placeholder="Iglesia" [readonly]="edit==='false'" class="form-control">
+                                                                    placeholder="Iglesia" [readonly]="edit==='false'"
+                                                                    class="form-control">
                                                             </div>
                                                             <span *ngIf="submited && errorControl['name'].errors "
                                                                 class="error">Es requerido
@@ -1073,7 +1108,8 @@
                                                 <br>
                                                 <input type="text" id="byFileUrl" #byFileUrl
                                                     (change)="cambiarImagen($event,'byFileInvitacion' )"
-                                                    formControlName="byFileUrl" *ngIf="form.value.typeFile=='url'" class="form-control">
+                                                    formControlName="byFileUrl" *ngIf="form.value.typeFile=='url'"
+                                                    class="form-control">
                                                 <br>
                                                 <ng-container *ngIf="viewVideo && form.value.byFileUrl !==''">
                                                     <video [src]="form.value.byFileUrl" autoplay
@@ -1086,21 +1122,26 @@
                                             </div>
                                         </div>
 
-                                        
+
 
                                         <div class="col-12  col-sm-6 col-md-3   mt-3">
                                             <div class="form-group ">
                                                 <label for="inicialTFont">Fuente inicial de fecha </label>
-                                                <select name="inicialTFont" id="inicialTFont" formControlName="inicialTFont"  
-                                                class="form-control upper {{inicialTFont.value}}" #inicialTFont  >
-                                                <option value="">Seleccione el tipo de fuente</option>
-                                                <option value="name" class="name" selected>Name</option><option value="pacific" class="pacific">Pacific</option>
-                                                <option value="dancing" class="dancing">Dancing</option>
-                                                <option value="anton-sc-regular" class="anton-sc-regular">Anton-sc-regular</option>
-                                                <option value="creepster-regular" class="creepster-regular">Creepster-regular</option>
-                                                <option value="roboto-bold" class="roboto-bold">Roboto-bold</option>
-                                                <option value="roboto-black-italic" class="roboto-black-italic">Roboto-black-italic</option>
-                                            </select>
+                                                <select name="inicialTFont" id="inicialTFont"
+                                                    formControlName="inicialTFont"
+                                                    class="form-control upper {{inicialTFont.value}}" #inicialTFont>
+                                                    <option value="">Seleccione el tipo de fuente</option>
+                                                    <option value="name" class="name" selected>Name</option>
+                                                    <option value="pacific" class="pacific">Pacific</option>
+                                                    <option value="dancing" class="dancing">Dancing</option>
+                                                    <option value="anton-sc-regular" class="anton-sc-regular">
+                                                        Anton-sc-regular</option>
+                                                    <option value="creepster-regular" class="creepster-regular">
+                                                        Creepster-regular</option>
+                                                    <option value="roboto-bold" class="roboto-bold">Roboto-bold</option>
+                                                    <option value="roboto-black-italic" class="roboto-black-italic">
+                                                        Roboto-black-italic</option>
+                                                </select>
                                             </div>
                                         </div>
 
@@ -1109,8 +1150,7 @@
                                                 <label for="inicialTSize ">Tamaño inicial de fecha
                                                 </label>
                                                 <input type="range" id="inicialTSize" #inicialTSize
-                                                    formControlName="inicialTSize" min="10"
-                                                    max="50">
+                                                    formControlName="inicialTSize" min="10" max="50">
                                             </div>
                                         </div>
 
@@ -1118,16 +1158,20 @@
                                         <div class="col-12  col-sm-6 col-md-3   mt-3">
                                             <div class="form-group ">
                                                 <label for="finalTFont">Fuente final de fecha </label>
-                                                <select name="finalTFont" id="finalTFont" formControlName="finalTFont"  
-                                                class="form-control upper {{finalTFont.value}}" #finalTFont  >
-                                                <option value="">Seleccione el tipo de fuente</option>
-                                                <option value="name" class="name" selected>Name</option><option value="pacific" class="pacific">Pacific</option>
-                                                <option value="dancing" class="dancing">Dancing</option>
-                                                <option value="anton-sc-regular" class="anton-sc-regular">Anton-sc-regular</option>
-                                                <option value="creepster-regular" class="creepster-regular">Creepster-regular</option>
-                                                <option value="roboto-bold" class="roboto-bold">Roboto-bold</option>
-                                                <option value="roboto-black-italic" class="roboto-black-italic">Roboto-black-italic</option>
-                                            </select>
+                                                <select name="finalTFont" id="finalTFont" formControlName="finalTFont"
+                                                    class="form-control upper {{finalTFont.value}}" #finalTFont>
+                                                    <option value="">Seleccione el tipo de fuente</option>
+                                                    <option value="name" class="name" selected>Name</option>
+                                                    <option value="pacific" class="pacific">Pacific</option>
+                                                    <option value="dancing" class="dancing">Dancing</option>
+                                                    <option value="anton-sc-regular" class="anton-sc-regular">
+                                                        Anton-sc-regular</option>
+                                                    <option value="creepster-regular" class="creepster-regular">
+                                                        Creepster-regular</option>
+                                                    <option value="roboto-bold" class="roboto-bold">Roboto-bold</option>
+                                                    <option value="roboto-black-italic" class="roboto-black-italic">
+                                                        Roboto-black-italic</option>
+                                                </select>
                                             </div>
                                         </div>
 
@@ -1136,11 +1180,10 @@
                                                 <label for="finalTSize ">Tamaño final de fecha
                                                 </label>
                                                 <input type="range" id="finalTSize" #finalTSize
-                                                    formControlName="finalTSize" min="10"
-                                                    max="50">
+                                                    formControlName="finalTSize" min="10" max="50">
                                             </div>
                                         </div>
-                                    
+
 
 
                                         <div class="row">
@@ -1160,7 +1203,7 @@
 
                                             }"></app-view-template>
                                         </div>
-                                         
+
                                     </div>
                                     <hr class="mt-3 mb-3">
                                     <ng-container class="text-center  ma">
@@ -1210,7 +1253,8 @@
                                                 <div class="form-group ">
                                                     <label for="donde3Address ">Dirección </label>
                                                     <input type="text" id="donde3Address" #donde3Address
-                                                        formControlName="donde3Address" readonly style="width: 100%;" class="form-control">
+                                                        formControlName="donde3Address" readonly style="width: 100%;"
+                                                        class="form-control">
                                                 </div>
                                             </div>
                                             <div class="col-12   mt-3">
@@ -1283,7 +1327,8 @@
                                                 <div class="form-group ">
                                                     <label for="donde1Address ">Dirección </label>
                                                     <input type="text" id="donde1Address" #donde1Address
-                                                        formControlName="donde1Address" style="width: 100%;" class="form-control">
+                                                        formControlName="donde1Address" style="width: 100%;"
+                                                        class="form-control">
                                                 </div>
                                             </div>
                                             <div class="col-12   mt-3" *ngIf="form.value.donde1Check">
@@ -1303,7 +1348,7 @@
                                                     Registro civil
                                                 </label>
                                                 <input class="form-check-input" type="checkbox" id="donde2Check"
-                                                    #donde2Check formControlName="donde2Check"  >
+                                                    #donde2Check formControlName="donde2Check">
 
 
                                             </div>
@@ -1325,7 +1370,8 @@
 
                                                     </label>
                                                     <input type="file" id="donde2Img" #donde2Img
-                                                        (change)="cambiarImagen($event,'donde2Img' )" class="form-control">
+                                                        (change)="cambiarImagen($event,'donde2Img' )"
+                                                        class="form-control">
                                                 </div>
                                             </div>
                                             <div class="col-6  col-md-6   mt-3" *ngIf="form.value.donde2Check">
@@ -1346,7 +1392,8 @@
                                                 <div class="form-group ">
                                                     <label for="donde2Address ">Dirección </label>
                                                     <input type="text" id="donde2Address" #donde2Address
-                                                        formControlName="donde2Address" style="width: 100%;" class="form-control">
+                                                        formControlName="donde2Address" style="width: 100%;"
+                                                        class="form-control">
                                                 </div>
                                             </div>
                                             <div class="col-12   mt-3" *ngIf="form.value.donde2Check">
@@ -1375,7 +1422,7 @@
                                                     Hospedaje
                                                 </label>
                                                 <input class="form-check-input" type="checkbox" id="hospedajeCheck"
-                                                    #hospedajeCheck formControlName="hospedajeCheck" >
+                                                    #hospedajeCheck formControlName="hospedajeCheck">
 
 
                                             </div>
@@ -1396,7 +1443,8 @@
 
                                                     </label>
                                                     <input type="file" id="hospedajeImg" #hospedajeImg
-                                                        (change)="cambiarImagen($event,'hospedajeImg' )" class="form-control">
+                                                        (change)="cambiarImagen($event,'hospedajeImg' )"
+                                                        class="form-control">
                                                 </div>
                                             </div>
 
@@ -1420,7 +1468,8 @@
                                                 <div class="form-group ">
                                                     <label for="hospedajeAddress ">Dirección </label>
                                                     <input type="text" id="hospedajeAddress" #hospedajeAddress
-                                                        formControlName="hospedajeAddress" style="width: 100%;" class="form-control">
+                                                        formControlName="hospedajeAddress" style="width: 100%;"
+                                                        class="form-control">
                                                 </div>
                                             </div>
                                             <div class="col-12   mt-3" *ngIf="form.value.hospedajeCheck">
@@ -1450,7 +1499,8 @@
                                             <div class="form-group ">
                                                 <label for="generalTexto ">Texto como invitacion General </label>
                                                 <input type="text" id="generalTexto" #generalTexto
-                                                    formControlName="generalTexto" placeholder="A toda la comunidad" class="form-control">
+                                                    formControlName="generalTexto" placeholder="A toda la comunidad"
+                                                    class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-12       mt-3 ma  text-center">
@@ -1516,7 +1566,8 @@
                                                 <div class="form-group ">
                                                     <label for="mesaRegalosUrl ">Liga de mesa de regalos </label>
                                                     <input type="text" id="mesaRegalosUrl" #mesaRegalosUrl
-                                                        formControlName="mesaRegalosUrl" style="width: 100%;"  class="form-control">
+                                                        formControlName="mesaRegalosUrl" style="width: 100%;"
+                                                        class="form-control">
                                                 </div>
                                             </div>
 

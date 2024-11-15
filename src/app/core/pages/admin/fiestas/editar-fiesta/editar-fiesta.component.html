@@ -228,13 +228,12 @@
                                                     [src]="url+'/upload/fiestas/'+fiesta.img"
                                                     alt="Click aquí para subir tu foto"
                                                     title="Click aquí para subir tu foto" class="img-avatar">
-                                                <img *ngIf="fiesta.img !=='' && imgTemp  " [src]="imgTemp"
-                                                    [alt]="fiesta.nombre" class="img-avatar">
+
                                             </ng-container>
                                         </label>
 
                                         <input id="file-input" type="file" class="ion-no-border"
-                                            (change)="cambiarImagen($event,'img' )" *ngIf="edit ==='true'" />
+                                            (change)="cambiarImagen($event,'img')" *ngIf="edit ==='true'" />
 
 
 
@@ -248,23 +247,24 @@
                                 <div class="col-12 col-md-12 mt-3 text-center">
                                     <div class=" image-upload" class="text-center">
 
-                                        <label for="file-input" [ngClass]=" {'pointer':edit ==='true'}">
+                                        <label for="file-input2" [ngClass]=" {'pointer':edit ==='true'}">
 
                                             <ng-container *ngIf="fiesta" class="text-center">
+
                                                 <img *ngIf="fiesta.croquis ==='' && !imgTemp   "
                                                     [src]="url+'/upload/fiestas/default.jpg'+fiesta.croquis"
                                                     alt="Click aquí para subir tu foto"
                                                     title="Click aquí para subir tu foto" class="img-avatar">
+
                                                 <img *ngIf="fiesta.croquis !=='' && !imgTemp   "
                                                     [src]="url+'/upload/fiestas/'+fiesta.croquis"
                                                     alt="Click aquí para subir tu foto"
                                                     title="Click aquí para subir tu foto" class="img-avatar">
-                                                <img *ngIf="fiesta.croquis !=='' && imgTemp  " [src]="imgTemp"
-                                                    [alt]="fiesta.nombre" class="img-avatar">
+
                                             </ng-container>
                                         </label>
 
-                                        <input id="file-input" type="file" class="ion-no-border"
+                                        <input id="file-input2" type="file" class="ion-no-border"
                                             (change)="cambiarImagen($event ,'croquis')" *ngIf="edit ==='true'" />
 
 
@@ -275,8 +275,8 @@
                                     <div class="col-12 col-md-3 mt-3">
                                         <div class="form-group">
                                             <label for="calle">Calle</label>
-                                            <input type="text" class="form-control upper" id="calle" formControlName="calle"
-                                                placeholder="Calle" readonly>
+                                            <input type="text" class="form-control upper" id="calle"
+                                                formControlName="calle" placeholder="Calle" readonly>
                                         </div>
                                         <span *ngIf="submited && errorControl['calle'].errors " class="error">Es
                                             requerido
@@ -303,8 +303,8 @@
                                         <div class="form-group">
                                             <label for="municipioDelegacion">Municipio o Delegación</label>
                                             <input type="text" class="form-control upper" id="municipioDelegacion"
-                                                formControlName="municipioDelegacion" placeholder="Municipio o Delegacion"
-                                                readonly>
+                                                formControlName="municipioDelegacion"
+                                                placeholder="Municipio o Delegacion" readonly>
                                         </div>
                                         <span *ngIf="submited && errorControl['municipioDelegacion'].errors "
                                             class="error">Es
@@ -341,8 +341,8 @@
                                     <div class="col-6 col-md-3 mt-3" readonly>
                                         <div class="form-group">
                                             <label for="pais">País</label>
-                                            <input type="text" class="form-control upper" id="pais" formControlName="pais"
-                                                placeholder="País" readonly>
+                                            <input type="text" class="form-control upper" id="pais"
+                                                formControlName="pais" placeholder="País" readonly>
                                         </div>
                                         <span *ngIf="submited && errorControl['pais'].errors " class="error">Es
                                             requerido
@@ -355,13 +355,13 @@
                                         <div class="form-group">
                                             <label for="long">Indicaciones adicionales de esta dirección</label>
                                             <textarea class="form-control upper" id="comoLlegar" rows="4"
-                                                style="resize: none;" placeholder="Como llegar" formControlName="comoLlegar"
-                                                readonly> </textarea>
+                                                style="resize: none;" placeholder="Como llegar"
+                                                formControlName="comoLlegar" readonly> </textarea>
                                         </div>
                                     </div>
                                 </ng-container>
-                                
-                               
+
+
                             </div>
 
                             <div class="row mt-5 text-center">

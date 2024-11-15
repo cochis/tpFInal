@@ -189,6 +189,27 @@ export class EditarInvitacionComponent {
       notaCheck: [true],
       invitacionTemplate: [false],
       notas: this.fb.array([]),
+
+      //chambelanesCheck: [true],
+      //chambelanes: this.fb.array([]),
+      //padresCheck: [true],
+      //padres: this.fb.array([]),
+      //padrinosCheck: [true],
+      //padrinos: this.fb.array([]),
+      //menuCheck: [true],
+      //menu: this.fb.array([]),
+      //croquisCheck: [true],
+      //croquis: this.fb.array([]),
+      //musicaCheck: [true],
+      //musica: this.fb.array([]),
+      //codigoVestimentaCheck:[true],
+      //codigoVestimentaHombre:[''],
+      //codigoVestimentaHombreImg:[''],
+      //codigoVestimentaMujer:[''],
+      //codigoVestimentaMujerImg:[''],
+
+
+
       colorQr: ['#ffffff'],
       colorBgQr: ['#c0354e'],
       usuarioCreated: [this.usuarioFiesta],
@@ -295,6 +316,10 @@ export class EditarInvitacionComponent {
       notaCheck: [invitacion.data.notaCheck],
       invitacionTemplate: [invitacion.data.invitacionTemplate],
       notas: this.fb.array([]),
+
+
+
+
       colorQr: [invitacion.data.colorQr],
       colorBgQr: [invitacion.data.colorBgQr],
 
@@ -458,6 +483,7 @@ export class EditarInvitacionComponent {
       colorBgQr: [temp.colorBgQr],
       invitacionTemplate: [temp.invitacionTemplate],
       notas: this.fb.array([]),
+      chabelanes: this.fb.array([]),
       usuarioCreated: [this.usuarioFiesta],
       activated: [temp.activated],
       dateCreated: [temp.dateCreated],
@@ -805,6 +831,7 @@ export class EditarInvitacionComponent {
       } else {
 
         this.invitacion.data = await this.numberToData(this.invitacion.data)
+
 
         this.usuarioCreated = this.usuarioFiesta
         this.setFormWithData(this.invitacion)

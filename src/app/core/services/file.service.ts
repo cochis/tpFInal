@@ -25,18 +25,20 @@ export class FileService {
     archivo: File,
     tipo: 'usuarios' | 'fiestas' | 'salones' | 'galerias' | 'invitaciones' | 'paquetes',
     id: string,
-    type?:string
+    type?: string
   ) {
 
 
     try {
       var url
-     if(type){
-       url = `${base_url}/upload/${tipo}/fiestas/${type}/${id}`
-     }else {
-      
-       url = `${base_url}/upload/${tipo}/${id}`
-     }
+
+      if (type) {
+        url = `${base_url}/upload/${tipo}/fiestas/${type}/${id}`
+      } else {
+
+        url = `${base_url}/upload/${tipo}/${id}`
+      }
+
       const formData = new FormData()
       formData.append('imagen', archivo)
       const resp = await fetch(url, {

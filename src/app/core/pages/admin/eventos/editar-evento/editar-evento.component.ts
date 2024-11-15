@@ -50,6 +50,7 @@ export class EditarEventoComponent {
     this.eventosService.cargarEventoById(id).subscribe((resp: CargarEvento) => {
 
       this.evento = resp.evento
+
       setTimeout(() => {
 
         this.setForm(this.evento)

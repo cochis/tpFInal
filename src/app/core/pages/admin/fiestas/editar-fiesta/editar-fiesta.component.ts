@@ -81,8 +81,10 @@ export class EditarFiestaComponent {
     this.fiestasServices.cargarFiestaById(id).subscribe((resp: CargarFiesta) => {
 
       this.fiesta = resp.fiesta
+
       setTimeout(() => {
         this.setForm(this.fiesta)
+        this.loading = false
       }, 500);
     },
       (error: any) => {
@@ -214,6 +216,8 @@ export class EditarFiestaComponent {
       salon: ['', [Validators.required]],
       usuarioFiesta: ['', [Validators.required]],
       img: [''],
+      croquisCheck: [true],
+      croquis: [''],
       galeria: [''],
       checking: [''],
       mesaOk: [''],
@@ -249,6 +253,7 @@ export class EditarFiestaComponent {
         galeria: [fiesta.galeria],
         checking: [fiesta.checking],
         mesaOk: [fiesta.mesaOk],
+        croquisCheck: [fiesta.croquisCheck],
         activated: [fiesta.activated],
         dateCreated: [fiesta.dateCreated],
         lastEdited: [this.today],
@@ -308,6 +313,7 @@ export class EditarFiestaComponent {
 
   }
   cambiarImagen(file: any, type) {
+
     this.imagenSubir = file.target.files[0]
     if (!file.target.files[0]) {
       this.imgTemp = null
@@ -327,20 +333,23 @@ export class EditarFiestaComponent {
   }
   subirImagen(type?) {
     this.fileService
-      .actualizarFoto(this.imagenSubir, 'fiestas', this.fiesta.uid,type)
+      .actualizarFoto(this.imagenSubir, 'fiestas', this.fiesta.uid, type)
       .then(
         (img) => {
-          if(type =='img'){
+          if (type == 'img') {
 
             this.fiesta.img = img
-          }else{
+          } else {
 
             this.fiesta.croquis = img
           }
           //message
+          this.loading = true
+          this.imgTemp = undefined
+          this.getId(this.id)
         },
         (err) => {
-           console.error('error::: ', err);
+          console.error('error::: ', err);
 
         },
       )
