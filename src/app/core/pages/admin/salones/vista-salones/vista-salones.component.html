@@ -54,7 +54,7 @@
                                 <th class="upper">teléfono</th>
                                 <th class="upper">correo electrónico</th>
                                 <th class="upper">imagen</th>
-                                <th class="upper">Croquis de mesas</th>
+                           
                                 <th class="upper">Creador</th>
                                 <th class="upper">Activado</th>
                                 <th class="upper">creación</th>
@@ -118,15 +118,7 @@
 
 
                                     </td>
-                                    <td>
-                                        <img [src]="(salon.croquis!=='')?url+'/upload/salones/'+salon.croquis:url+'/upload/salones/default.jpg'"
-                                            style="    margin: auto;
-                                            margin-top: 15px;
-                                            width: 32px !important;
-                                            height: 32px !important;" />
-
-
-                                    </td>
+                                   
                                     <td class="upper">{{salon.usuarioCreated?salon.usuarioCreated.email:''}}</td>
 
                                     <td>
