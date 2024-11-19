@@ -73,6 +73,7 @@ export class EditarInvitacionComponent {
     this.loading = true
     this.fiestasService.cargarFiestaById(id).subscribe((resp: CargarFiesta) => {
       this.fiesta = resp.fiesta
+
       this.usuarioFiesta = this.fiesta.usuarioFiesta._id
       this.invitacionId = this.fiesta.invitacion
     },
@@ -186,27 +187,25 @@ export class EditarInvitacionComponent {
       itinerarioCheck: [true],
       itinerarioName: [this.fiesta.nombre],
       itinerarios: this.fb.array([]),
-      notaCheck: [true],
       invitacionTemplate: [false],
+      notaCheck: [true],
       notas: this.fb.array([]),
+      chambelanesCheck: [true],
+      chambelanes: this.fb.array([]),
+      padresCheck: [true],
+      padres: this.fb.array([]),
+      padrinosCheck: [true],
+      padrinos: this.fb.array([]),
+      menuCheck: [true],
+      menu: this.fb.array([]),
+      musicaCheck: [true],
+      musica: this.fb.array([]),
 
-      //chambelanesCheck: [true],
-      //chambelanes: this.fb.array([]),
-      //padresCheck: [true],
-      //padres: this.fb.array([]),
-      //padrinosCheck: [true],
-      //padrinos: this.fb.array([]),
-      //menuCheck: [true],
-      //menu: this.fb.array([]),
-      //croquisCheck: [true],
-      //croquis: this.fb.array([]),
-      //musicaCheck: [true],
-      //musica: this.fb.array([]),
-      //codigoVestimentaCheck:[true],
-      //codigoVestimentaHombre:[''],
-      //codigoVestimentaHombreImg:[''],
-      //codigoVestimentaMujer:[''],
-      //codigoVestimentaMujerImg:[''],
+      codigoVestimentaCheck: [true],
+      codigoVestimentaHombre: [''],
+      codigoVestimentaHombreImg: [''],
+      codigoVestimentaMujer: [''],
+      codigoVestimentaMujerImg: [''],
 
 
 
@@ -250,6 +249,7 @@ export class EditarInvitacionComponent {
 
     invitacion.data = await this.numberToData(invitacion.data)
     this.form = this.fb.group({
+
       cPrincipal: [invitacion.data.cPrincipal],
       cSecond: [invitacion.data.cSecond],
       checking: [invitacion.fiesta.checking],
@@ -313,9 +313,28 @@ export class EditarInvitacionComponent {
       itinerarioCheck: [invitacion.data.itinerarioCheck],
       itinerarioName: [invitacion.fiesta.nombre],
       itinerarios: this.fb.array([]),
+
       notaCheck: [invitacion.data.notaCheck],
       invitacionTemplate: [invitacion.data.invitacionTemplate],
       notas: this.fb.array([]),
+
+      chambelanes: this.fb.array([]),
+      padres: this.fb.array([]),
+      padrinos: this.fb.array([]),
+      musica: this.fb.array([]),
+      menu: this.fb.array([]),
+      chambelanesCheck: [invitacion.data.chambelanesCheck],
+      padresCheck: [invitacion.data.padresCheck],
+      padrinosCheck: [invitacion.data.padrinosCheck],
+      menuCheck: [invitacion.data.menuCheck],
+      musicaCheck: [invitacion.data.musicaCheck],
+      codigoVestimentaCheck: [invitacion.data.codigoVestimentaCheck],
+      codigoVestimentaHombre: [invitacion.data.codigoVestimentaHombre],
+      codigoVestimentaHombreImg: [invitacion.data.codigoVestimentaHombreImg],
+      codigoVestimentaMujer: [invitacion.data.codigoVestimentaMujer],
+      codigoVestimentaMujerImg: [invitacion.data.codigoVestimentaMujerImg],
+
+
 
 
 
@@ -366,6 +385,7 @@ export class EditarInvitacionComponent {
       dateCreated: [invitacion.data.dateCreated],
       lastEdited: [this.today],
     })
+    console.log(this.form);
 
     if (invitacion.data.byFileUrl && (this.form.value.typeFile == 'video' || this.form.value.typeFile == 'url')) {
       this.viewVideo = true
@@ -482,8 +502,22 @@ export class EditarInvitacionComponent {
       colorQr: [temp.colorQr],
       colorBgQr: [temp.colorBgQr],
       invitacionTemplate: [temp.invitacionTemplate],
-      notas: this.fb.array([]),
-      chabelanes: this.fb.array([]),
+      chambelanes: this.fb.array([]),
+      padres: this.fb.array([]),
+      padrinos: this.fb.array([]),
+      musica: this.fb.array([]),
+      menu: this.fb.array([]),
+      chambelanesCheck: [temp.data.chambelanesCheck],
+      padresCheck: [temp.data.padresCheck],
+      padrinosCheck: [temp.data.padrinosCheck],
+      menuCheck: [temp.data.menuCheck],
+      musicaCheck: [temp.data.musicaCheck],
+      codigoVestimentaCheck: [temp.data.codigoVestimentaCheck],
+      codigoVestimentaHombre: [temp.data.codigoVestimentaHombre],
+      codigoVestimentaHombreImg: [temp.data.codigoVestimentaHombreImg],
+      codigoVestimentaMujer: [temp.data.codigoVestimentaMujer],
+      codigoVestimentaMujerImg: [temp.data.codigoVestimentaMujerImg],
+
       usuarioCreated: [this.usuarioFiesta],
       activated: [temp.activated],
       dateCreated: [temp.dateCreated],
@@ -518,10 +552,24 @@ export class EditarInvitacionComponent {
         this.invitacion.data.fiestaId = this.fiesta.uid
         let iti = JSON.stringify(form.value.itinerarios)
         let not = JSON.stringify(form.value.notas)
+        let cham = JSON.stringify(form.value.cham)
+        let padres = JSON.stringify(form.value.padres)
+        let padrinos = JSON.stringify(form.value.padrinos)
+        let musica = JSON.stringify(form.value.musica)
+        let menu = JSON.stringify(form.value.menu)
+
+
+
+
         this.invitacion.data = {
           ...  this.invitacion.data,
           itinerarios: iti,
-          notas: not
+          notas: not,
+          chambelanes: cham,
+          padres: padres,
+          padrinos: padrinos,
+          musica: musica,
+          menu: menu,
         }
 
       })
@@ -545,12 +593,23 @@ export class EditarInvitacionComponent {
         this.invitacion.data.fiestaId = this.fiesta.uid
         let iti = JSON.stringify(form.value.itinerarios)
         let not = JSON.stringify(form.value.notas)
+        let cham = JSON.stringify(form.value.cham)
+        let padres = JSON.stringify(form.value.padres)
+        let padrinos = JSON.stringify(form.value.padrinos)
+        let musica = JSON.stringify(form.value.musica)
+        let menu = JSON.stringify(form.value.menu)
+
         this.invitacion.data = {
           ...  this.invitacion.data,
           fiestaId: '67004d6552152ca21abfb790',
           //fiestaId: this.fiesta.uid,
           itinerarios: iti,
-          notas: not
+          notas: not,
+          chambelanes: cham,
+          padres: padres,
+          padrinos: padrinos,
+          musica: musica,
+          menu: menu,
         }
       })
     }
@@ -559,6 +618,11 @@ export class EditarInvitacionComponent {
 
     this.invitacion.data.itinerarios = JSON.stringify(this.invitacion.data.itinerarios)
     this.invitacion.data.notas = JSON.stringify(this.invitacion.data.notas)
+    this.invitacion.data.chambelanes = JSON.stringify(this.invitacion.data.chambelanes)
+    this.invitacion.data.padres = JSON.stringify(this.invitacion.data.padres)
+    this.invitacion.data.padrinos = JSON.stringify(this.invitacion.data.padrinos)
+    this.invitacion.data.musica = JSON.stringify(this.invitacion.data.musica)
+    this.invitacion.data.menu = JSON.stringify(this.invitacion.data.menu)
     this.invitacion.data.fiestaId = this.fiesta.uid
     this.router.navigate(['/core/templates/' + this.fiesta.invitacion], { queryParams: this.invitacion.data })
 
@@ -653,6 +717,21 @@ export class EditarInvitacionComponent {
   get notas(): FormArray {
     return this.form.get("notas") as FormArray
   }
+  get chambelanes(): FormArray {
+    return this.form.get("chambelanes") as FormArray
+  }
+  get padres(): FormArray {
+    return this.form.get("padres") as FormArray
+  }
+  get padrinos(): FormArray {
+    return this.form.get("padrinos") as FormArray
+  }
+  get musica(): FormArray {
+    return this.form.get("musica") as FormArray
+  }
+  get menu(): FormArray {
+    return this.form.get("menu") as FormArray
+  }
   async dateToNumber(data) {
     data.dateCreated = (typeof (data.dateCreated) == 'string') ? this.functionsService.dateToNumber(data.dateCreated) : data.dateCreated
     data.lastEdited = (data.lastEdited != undefined) ? (typeof (data.lastEdited) == 'string') ? this.functionsService.dateToNumber(data.lastEdited) : data.lastEdited : ''
@@ -664,8 +743,14 @@ export class EditarInvitacionComponent {
     data.donde3Check = (data.donde3Check == 'true' || data.donde3Check == true) ? true : false
     data.notaCheck = (data.notaCheck == 'true' || data.notaCheck == true) ? true : false
     data.itinerarioCheck = (data.itinerarioCheck == 'true' || data.itinerarioCheck == true) ? true : false
+    data.chambelanesCheck = (data.chambelanesCheck == 'true' || data.chambelanesCheck == true) ? true : false
+    data.padresCheck = (data.padresCheck == 'true' || data.padresCheck == true) ? true : false
+    data.padrinosCheck = (data.padrinosCheck == 'true' || data.padrinosCheck == true) ? true : false
+    data.menuCheck = (data.menuCheck == 'true' || data.menuCheck == true) ? true : false
+    data.musicaCheck = (data.musicaCheck == 'true' || data.musicaCheck == true) ? true : false
     data.fiestaDate = (typeof (data.donde3Date) == 'string') ? this.functionsService.dateToNumber(data.donde3Date) : data.donde3Date
     return await data
+
   }
   async numberToData(data) {
 
@@ -760,6 +845,21 @@ export class EditarInvitacionComponent {
             notaCheck: true,
             invitacionTemplate: false,
             notas: [],
+
+            chambelanesCheck: true,
+            padresCheck: true,
+            padrinosCheck: true,
+            menuCheck: true,
+            musicaCheck: true,
+            chambelanes: [],
+            padres: [],
+            padrinos: [],
+            menu: [],
+            musica: [],
+
+
+
+
             colorQr: '#ffffff',
             colorBgQr: '#c0354e',
             usuarioCreated: this.usuarioFiesta,
@@ -818,10 +918,22 @@ export class EditarInvitacionComponent {
             this.invitacion.data.fiestaId = this.fiesta.uid
             let iti = JSON.stringify([])
             let not = JSON.stringify([])
+            let cham = JSON.stringify([])
+            let padres = JSON.stringify([])
+            let padrinos = JSON.stringify([])
+            let musica = JSON.stringify([])
+            let menu = JSON.stringify([])
+
+
             this.invitacion.data = {
               ...  this.invitacion.data,
               itinerarios: iti,
-              notas: not
+              notas: not,
+              chambelanes: cham,
+              padres: padres,
+              padrinos: padrinos,
+              menu: musica,
+              musica: menu,
             }
 
             this.setForm(resp.invitacion)
@@ -846,6 +958,36 @@ export class EditarInvitacionComponent {
               this.notas.push(this.newNota(not));
             });
           }
+
+
+
+
+
+          if (this.invitacion.data.chambelanes && this.invitacion.data.chambelanes.length > 0) {
+            this.invitacion.data.chambelanes.forEach(cham => {
+              this.chambelanes.push(this.newChambelan(cham));
+            });
+          }
+          if (this.invitacion.data.padres && this.invitacion.data.padres.length > 0) {
+            this.invitacion.data.padres.forEach(pad => {
+              this.padres.push(this.newPadre(pad));
+            });
+          }
+          if (this.invitacion.data.padrinos && this.invitacion.data.padrinos.length > 0) {
+            this.invitacion.data.padrinos.forEach(padri => {
+              this.padrinos.push(this.newPadrino(padri));
+            });
+          }
+          if (this.invitacion.data.menu && this.invitacion.data.menu.length > 0) {
+            this.invitacion.data.menu.forEach(men => {
+              this.menu.push(this.newMenu(men));
+            });
+          }
+          if (this.invitacion.data.musica && this.invitacion.data.musica.length > 0) {
+            this.invitacion.data.musica.forEach(mus => {
+              this.musica.push(this.newMusica(mus));
+            });
+          }
         }, 500);
         this.loading = false
       }
@@ -855,6 +997,10 @@ export class EditarInvitacionComponent {
         this.functionsService.alertError(error, 'Invitacion')
       })
   }
+
+
+
+
   newItinerario(itinerario?): FormGroup {
     if (itinerario) {
       return this.fb.group({
@@ -865,6 +1011,67 @@ export class EditarInvitacionComponent {
       return this.fb.group({
         name: '',
         hr: '',
+      })
+    }
+  }
+  newChambelan(chambelan?): FormGroup {
+    if (chambelan) {
+      return this.fb.group({
+        name: chambelan.name,
+        hr: chambelan.hr,
+      })
+    } else {
+      return this.fb.group({
+        name: '',
+        hr: '',
+      })
+    }
+  }
+  newPadre(padre?): FormGroup {
+    if (padre) {
+      return this.fb.group({
+        name: padre.name,
+        tipo: padre.tipo,
+      })
+    } else {
+      return this.fb.group({
+        name: '',
+        tipo: '',
+      })
+    }
+  }
+  newPadrino(padrino?): FormGroup {
+    if (padrino) {
+      return this.fb.group({
+        name: padrino.name
+      })
+    } else {
+      return this.fb.group({
+        name: ''
+      })
+    }
+  }
+  newMenu(menu?): FormGroup {
+    if (menu) {
+      return this.fb.group({
+        tipo: menu.tipo,
+        name: menu.name,
+      })
+    } else {
+      return this.fb.group({
+        tipo: '',
+        name: '',
+      })
+    }
+  }
+  newMusica(musica?): FormGroup {
+    if (musica) {
+      return this.fb.group({
+        name: musica.name
+      })
+    } else {
+      return this.fb.group({
+        name: ''
       })
     }
   }
@@ -885,11 +1092,41 @@ export class EditarInvitacionComponent {
   addNotas() {
     this.notas.push(this.newNota());
   }
+  addChambelan() {
+    this.chambelanes.push(this.newChambelan());
+  }
+  addPadres() {
+    this.padres.push(this.newPadre());
+  }
+  addPadrinos() {
+    this.padrinos.push(this.newPadrino());
+  }
+  addMenus() {
+    this.menu.push(this.newMenu());
+  }
+  addMusica() {
+    this.musica.push(this.newMusica());
+  }
   removeItinerario(i: number) {
     this.itinerarios.removeAt(i);
   }
   removeNota(i: number) {
     this.notas.removeAt(i);
+  }
+  removeChambelan(i: number) {
+    this.chambelanes.removeAt(i);
+  }
+  removePadre(i: number) {
+    this.padres.removeAt(i);
+  }
+  removePadrino(i: number) {
+    this.padrinos.removeAt(i);
+  }
+  removeMenu(i: number) {
+    this.menu.removeAt(i);
+  }
+  removeMusica(i: number) {
+    this.musica.removeAt(i);
   }
   selectType(type) {
 
@@ -979,11 +1216,13 @@ export class EditarInvitacionComponent {
       this.fileService.actualizarFotoTemplate(this.imagenSubir, 'invitaciones', this.fiesta.uid, type)
         .then(
           (img) => {
+            console.log('img::: ', img);
             let dt = this.form.value
             this.invitacion = {
               ...this.invitacion,
               data: dt
             }
+            console.log('this.invitacion::: ', this.invitacion);
 
             switch (type) {
               case 'img1':
@@ -1009,6 +1248,12 @@ export class EditarInvitacionComponent {
                 break;
               case 'mesaRegalosImg':
                 this.invitacion.data.mesaRegalosImg = img
+                break;
+              case 'codigoVestimentaMujerImg':
+                this.invitacion.data.codigoVestimentaMujerImg = img
+                break;
+              case 'codigoVestimentaHombreImg':
+                this.invitacion.data.codigoVestimentaHombreImg = img
                 break;
             }
             this.invitacion.fiesta = this.fiesta.uid

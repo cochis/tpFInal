@@ -13,6 +13,9 @@ import Swal from 'sweetalert2';
 import { MetaService } from 'src/app/core/services/meta.service';
 import { PushsService } from 'src/app/core/services/push.service';
 import { Push } from 'src/app/core/models/push.model';
+import { ImgTemplate } from 'src/app/core/models/img.model';
+import { ModalService } from '@developer-partners/ngx-modal-dialog';
+import { ImagenComponent } from 'src/app/shared/components/modals/imagen/imagen.component';
 @Component({
   selector: 'app-default',
   templateUrl: './default.component.html',
@@ -52,9 +55,19 @@ export class DefaultComponent implements OnInit, AfterViewInit {
   btnBack = false
   itinerarios = []
   notas = []
+  padres = []
+  padrinos = []
+  chambelanes = []
+  menu = []
+  musica = []
   donde1Check: boolean
   donde2Check: boolean
   donde3Check: boolean
+  chambelanesCheck: boolean
+  padresCheck: boolean
+  padrinosCheck: boolean
+  menuCheck: boolean
+  musicaCheck: boolean
   mesaRegalosCheck: boolean
   confirmacionCheck: boolean
   generalCheck: boolean
@@ -70,7 +83,8 @@ export class DefaultComponent implements OnInit, AfterViewInit {
     private boletosService: BoletosService,
     private swPush: SwPush,
     private metaService: MetaService,
-    private pushsService: PushsService
+    private pushsService: PushsService,
+    private readonly _modalService: ModalService
   ) {
     this.metaService.createCanonicalURL();
     this.loading = true
@@ -99,7 +113,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
       // Se carga la fiesta por ID  
       this.fiestasService.cargarFiestaById(this.fiestaId).subscribe((resp: any) => {
         this.fiesta = resp.fiesta
-
+        console.log(' this.fiesta ::: ', this.fiesta);
         this.checking = this.fiesta.checking
 
         this.invitacionsService.cargarInvitacionByFiesta(this.fiestaId).subscribe(async (resp: any) => {
@@ -120,6 +134,11 @@ export class DefaultComponent implements OnInit, AfterViewInit {
           this.generalCheck = this.invitacion.generalCheck
           this.itinerarios = this.invitacion.itinerarios
           this.notas = this.invitacion.notas
+          this.padres = this.invitacion.padres
+          this.padrinos = this.invitacion.padrinos
+          this.chambelanes = this.invitacion.chambelanes
+          this.menu = this.invitacion.menu
+          this.musica = this.invitacion.musica
         }, (error) => {
           console.error('Error', error)
           this.functionsService.alertError(error, 'Fiestas')
@@ -218,12 +237,53 @@ export class DefaultComponent implements OnInit, AfterViewInit {
 
             }
           ],
+          padres: [
+            {
+              name: 'Vianney Vicuña',
+              texto: 'Madre de la novia',
+
+            },
+            {
+              name: 'Oscar Ramírez',
+              texto: 'Padre de la novia',
+
+            },
+            {
+              name: 'Mariana Rodríguez',
+              texto: 'Madre del novio',
+
+            },
+            {
+              name: 'Alejandro Gómez',
+              texto: 'Padre del novio',
+
+            },
+          ],
+          padrinos: [
+            { name: 'Mayra Rendon' },
+            { name: 'Christian Daniel Bonilla' },
+          ],
+          musica: [
+            { name: 'Banda MS' },
+            { name: 'Sonora Dinamita' },
+          ],
+          menu: [
+            { tipo: '1er tiempo', name: 'Ensalada Cesar' },
+            { tipo: '2do tiempo', name: 'Sopa gratinada' },
+            { tipo: '3er tiempo', name: 'Cordón Blue' },
+
+          ],
           colorQr: '#ffffff',
           colorBGQr: '#f82525',
           imgWidth: 100
         }
         this.itinerarios = this.invitacion.itinerarios
         this.notas = this.invitacion.notas
+        this.padres = this.invitacion.padres
+        this.padrinos = this.invitacion.padrinos
+        this.chambelanes = this.invitacion.chambelanes
+        this.menu = this.invitacion.menu
+        this.musica = this.invitacion.musica
       } else {
 
 
@@ -231,9 +291,19 @@ export class DefaultComponent implements OnInit, AfterViewInit {
         this.vistaTemp = false
         this.itinerarios = JSON.parse(this.state.itinerarios)
         this.notas = JSON.parse(this.state.notas)
+        this.padres = JSON.parse(this.state.padres)
+        this.padrinos = JSON.parse(this.state.padrinos)
+        this.chambelanes = JSON.parse(this.state.chambelanes)
+        this.menu = JSON.parse(this.state.menu)
+        this.musica = JSON.parse(this.state.musica)
         this.donde1Check = (this.state.donde1Check == 'true') ? true : false
         this.donde2Check = (this.state.donde2Check == 'true') ? true : false
         this.donde3Check = (this.state.donde3Check == 'true') ? true : false
+        this.chambelanesCheck = (this.state.chambelanesCheck == 'true') ? true : false
+        this.padresCheck = (this.state.padresCheck == 'true') ? true : false
+        this.padrinosCheck = (this.state.padrinosCheck == 'true') ? true : false
+        this.menuCheck = (this.state.menuCheck == 'true') ? true : false
+        this.musicaCheck = (this.state.musicaCheck == 'true') ? true : false
         this.hospedajeCheck = (this.state.hospedajeCheck == 'true') ? true : false
         this.mesaRegalosCheck = (this.state.mesaRegalosCheck == 'true') ? true : false
         this.confirmacionCheck = (this.state.confirmacionCheck == 'true') ? true : false
@@ -526,5 +596,15 @@ export class DefaultComponent implements OnInit, AfterViewInit {
   }
   typeOf(val) {
     return typeof (val)
+  }
+  viewCroquis(type, img) {
+
+    this._modalService.show<ImgTemplate>(ImagenComponent, {
+      title: 'Ver croquis salon',
+      size: 3,
+      model: { type: type, img: img },
+      mode: 'default'
+    })
+
   }
 }
