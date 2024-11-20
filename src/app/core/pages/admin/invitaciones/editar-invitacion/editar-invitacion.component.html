@@ -859,7 +859,7 @@
                                             </div>
 
 
-
+ 
                                             <hr class="mt-3 mb-3">
                                             <div class="row text-center mt-3 ma">
                                                 <h5>Música</h5>
@@ -876,8 +876,7 @@
                                                     <div class="col-6 text-center" style="margin:auto">
 
                                                         <button type="button" class="btn btn-lg btn-block but "
-                                                            (click)="addMusica()">Agregar
-                                                            Música</button>
+                                                            (click)="addMusica()">Agregar Música</button>
                                                     </div>
                                                 </div>
                                                 <ng-container formArrayName="musica" *ngIf="musicaCheck.checked">
@@ -909,17 +908,17 @@
 
                                                         </ng-container>
                                                     </ng-container>
-                                                </ng-container>
+                                                </ng-container>  
                                             </div>
 
 
-
+ 
 
 
                                             <hr class="mt-3 mb-3">
 
 
-                                            <div class="col-12       mt-3 ma ">
+                                            <div class="col-12 mt-3 ma">
                                                 <label class="form-check-label" for="codigoVestimentaCheck">
                                                     Codigo de vestimenta
                                                 </label>
@@ -1001,7 +1000,7 @@
                                             </ng-container>
 
 
-
+ 
 
 
 
@@ -2261,6 +2260,88 @@
 
 
                                         <hr class="mt-3 mb-3">
+
+
+                                        <div class="col-12 mt-3 ma text-center">
+                                            <label class="form-check-label" for="codigoVestimentaCheck">
+                                                Codigo de vestimenta
+                                            </label>
+                                            <input class="form-check-input" type="checkbox"
+                                                id="codigoVestimentaCheck" #codigoVestimentaCheck
+                                                formControlName="codigoVestimentaCheck">
+
+
+                                        </div>
+                                        <ng-container *ngIf="form.value.codigoVestimentaCheck">
+                                            <div class="col-12  col-md-6  mt-3 text-center ma"
+                                                *ngIf="form.value.codigoVestimentaCheck">
+                                                <div class="form-group    image-upload ">
+                                                    <label for="codigoVestimentaMujerImg">Código de vestimenta mujer
+                                                        <br>
+
+                                                        <img src="/assets/images/tp.png" alt="" class="pointer"
+                                                            *ngIf="invitacion==undefined || invitacion.data.codigoVestimentaMujerImg=='' "
+                                                            style="width: 150px;">
+
+                                                        <img [src]="url+'/upload/invitaciones/'+invitacion.data.codigoVestimentaMujerImg"
+                                                            alt="" class=" pointer" *ngIf="invitacion"
+                                                            style="width: 150px;">
+                                                        <!-- invitacion.data.mensajeImg!='' -->
+
+                                                    </label>
+                                                    <input type="file" id="codigoVestimentaMujerImg"
+                                                        #codigoVestimentaMujerImg
+                                                        (change)="cambiarImagen($event,'codigoVestimentaMujerImg' )"
+                                                        class="form-control">
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-12 col-md-6  ma  mt-3">
+                                                <div class="form-group ">
+                                                    <label for="codigoVestimentaMujer ">Código de vestimenta de
+                                                        Mujer </label>
+                                                    <input type="text" id="codigoVestimentaMujer"
+                                                        #codigoVestimentaMujer
+                                                        formControlName="codigoVestimentaMujer"
+                                                        placeholder="Etiqueta rigurosa" class="form-control">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12  col-md-6  mt-3 text-center ma"
+                                                *ngIf="form.value.codigoVestimentaCheck">
+                                                <div class="form-group    image-upload ">
+                                                    <label for="codigoVestimentaHombreImg">Código de vestimenta
+                                                        mujer
+                                                        <br>
+
+                                                        <img src="/assets/images/tp.png" alt="" class="pointer"
+                                                            *ngIf="invitacion==undefined || invitacion.data.codigoVestimentaHombreImg=='' "
+                                                            style="width: 150px;">
+
+                                                        <img [src]="url+'/upload/invitaciones/'+invitacion.data.codigoVestimentaHombreImg"
+                                                            alt="" class=" pointer" *ngIf="invitacion"
+                                                            style="width: 150px;">
+                                                        <!-- invitacion.data.mensajeImg!='' -->
+
+                                                    </label>
+                                                    <input type="file" id="codigoVestimentaHombreImg"
+                                                        #codigoVestimentaHombreImg
+                                                        (change)="cambiarImagen($event,'codigoVestimentaHombreImg' )"
+                                                        class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6  ma  mt-3">
+                                                <div class="form-group ">
+                                                    <label for="codigoVestimentaHombre ">Código de vestimenta de
+                                                        Hombre </label>
+                                                    <input type="text" id="codigoVestimentaHombre"
+                                                        #codigoVestimentaHombre
+                                                        formControlName="codigoVestimentaHombre"
+                                                        placeholder="Etiqueta rigurosa" class="form-control">
+                                                </div>
+                                            </div>
+                                        </ng-container>
                                         <hr class="mt-3 mb-3">
 
 

@@ -64,6 +64,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
   donde2Check: boolean
   donde3Check: boolean
   chambelanesCheck: boolean
+  codigoVestimentaCheck: boolean
   padresCheck: boolean
   padrinosCheck: boolean
   menuCheck: boolean
@@ -118,6 +119,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
 
         this.invitacionsService.cargarInvitacionByFiesta(this.fiestaId).subscribe(async (resp: any) => {
           this.invitacion = resp.invitacion.data
+          console.log('this.invitacion', this.invitacion)
 
           this.restParty()
           this.invitacion = await this.dateToNumber(this.invitacion)
@@ -135,10 +137,16 @@ export class DefaultComponent implements OnInit, AfterViewInit {
           this.itinerarios = this.invitacion.itinerarios
           this.notas = this.invitacion.notas
           this.padres = this.invitacion.padres
+          this.padresCheck = this.invitacion.padresCheck
           this.padrinos = this.invitacion.padrinos
+          this.padrinosCheck = this.invitacion.padrinosCheck
           this.chambelanes = this.invitacion.chambelanes
+          this.chambelanesCheck = this.invitacion.chambelanesCheck
+          this.codigoVestimentaCheck = this.invitacion.codigoVestimentaCheck
           this.menu = this.invitacion.menu
+          this.menuCheck = this.invitacion.menuCheck
           this.musica = this.invitacion.musica
+          this.musicaCheck = this.invitacion.musicaCheck
         }, (error) => {
           console.error('Error', error)
           this.functionsService.alertError(error, 'Fiestas')
@@ -288,6 +296,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
 
 
 
+        console.log('this.state', this.state)
         this.vistaTemp = false
         this.itinerarios = JSON.parse(this.state.itinerarios)
         this.notas = JSON.parse(this.state.notas)
@@ -299,6 +308,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
         this.donde1Check = (this.state.donde1Check == 'true') ? true : false
         this.donde2Check = (this.state.donde2Check == 'true') ? true : false
         this.donde3Check = (this.state.donde3Check == 'true') ? true : false
+        this.codigoVestimentaCheck = (this.state.codigoVestimentaCheck == 'true') ? true : false
         this.chambelanesCheck = (this.state.chambelanesCheck == 'true') ? true : false
         this.padresCheck = (this.state.padresCheck == 'true') ? true : false
         this.padrinosCheck = (this.state.padrinosCheck == 'true') ? true : false

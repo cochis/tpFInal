@@ -52,6 +52,11 @@ export class ByFileComponent {
   btnBack = false
   itinerarios = []
   notas = []
+  padres = []
+  padrinos = []
+  chambelanes = []
+  menu = []
+  musica = []
   donde1Check: boolean
   donde2Check: boolean
   donde3Check: boolean
@@ -60,6 +65,11 @@ export class ByFileComponent {
   generalCheck: boolean
   checking: boolean
   hospedajeCheck: boolean
+  chambelanesCheck: boolean
+  padresCheck: boolean
+  menuCheck: boolean
+  musicaCheck: boolean
+  padrinosCheck: boolean
   vistaTemp: boolean
   pushOk: boolean = false
   constructor(
@@ -105,6 +115,7 @@ export class ByFileComponent {
 
         this.invitacionsService.cargarInvitacionByFiesta(this.fiestaId).subscribe(async (resp: any) => {
           this.invitacion = resp.invitacion.data
+          console.log('this.invitacion', this.invitacion)
 
           this.restParty()
           this.invitacion = await this.dateToNumber(this.invitacion)
@@ -121,6 +132,16 @@ export class ByFileComponent {
           this.generalCheck = this.invitacion.generalCheck
           this.itinerarios = this.invitacion.itinerarios
           this.notas = this.invitacion.notas
+          this.padres = this.invitacion.padres
+          this.padresCheck = this.invitacion.padresCheck
+          this.padrinos = this.invitacion.padrinos
+          this.padrinosCheck = this.invitacion.padrinosCheck
+          this.chambelanes = this.invitacion.chambelanes
+          this.chambelanesCheck = this.invitacion.chambelanesCheck
+          this.menu = this.invitacion.menu
+          this.menuCheck = this.invitacion.menuCheck
+          this.musica = this.invitacion.musica
+          this.musicaCheck = this.invitacion.musicaCheck
         }, (error) => {
           console.error('Error', error)
           this.functionsService.alertError(error, 'Fiestas')
