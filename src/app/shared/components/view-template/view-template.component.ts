@@ -18,10 +18,6 @@ export class ViewTemplateComponent implements OnInit {
     
   }
   ngOnInit() {
-    
-    console.log('data', this.data)
-    
-
   }
   restParty() {
 

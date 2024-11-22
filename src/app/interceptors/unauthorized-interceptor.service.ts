@@ -9,6 +9,7 @@ import { Observable, tap } from 'rxjs'
 import { catchError } from 'rxjs/operators'
 import { FunctionsService } from '../shared/services/functions.service'
 import { LogsService } from '../core/services/logs.service'
+import { AuthService } from '../auth/services/auth.service'
 
 
 @Injectable()
@@ -16,6 +17,7 @@ export class UnauthorizedInterceptorService implements HttpInterceptor {
   constructor(
     private functionService: FunctionsService,
     private logsService: LogsService,
+    private authService:AuthService
 
   ) { }
 
@@ -49,9 +51,20 @@ export class UnauthorizedInterceptorService implements HttpInterceptor {
         }
       }),
       catchError((err) => {
+       
+        if(err.status ==401){
+          funtionsService.alert('Alerta', 'Se cerro la sesión por inactividad', 'warning')
+          this.functionService.logout()
+       return next.handle(request)
+
+
+        }
+
+
         if (err && err.error.msg !== 'Error inesperado...  revisar logs') {
           funtionsService.alert('Error', 'Sucedió algo extraño', 'error')
           this.functionService.logout()
+         
         }
         const error = err.error?.message || err.statusText
         return next.handle(request)
