@@ -1,7 +1,7 @@
 <ng-container *ngIf="data.type =='seccionInicial'">
+    
     <ng-container *ngIf="data.size=='sm'">
         <div style=" width: 100%;max-width: 350px;    margin:auto">
-
             <div class="box"
                 style="background-image:url({{data.img1}}); background-size:{{data.imgWidth}}%; background-position: {{data.xImg1}}%  {{data.yImg1}}px !important; "
                 *ngIf="!vistaTemp">
@@ -100,7 +100,7 @@
                 *ngIf="data.generalCheck">
                 <div class="card-body  " style="color:{{data.cWhite}};">
                     <h1 class="card-title mt-3 {{data.inviFont}}  ">Invitación para: </h1>
-                    <h1 class="card-text   {{data.inviFont2}} upper"> {{data.generalTexto}}
+                    <h1 class="card-text   {{data.inviFont2}} upper" style="font-size:{{data.generalSize}}px;"> {{data.generalTexto}}
                     </h1>
                     <h3 class=" {{data.inviFont}} ">{{data.textInvitacionValida}}</h3>
                 </div>
@@ -212,7 +212,7 @@
                 *ngIf="data.generalCheck">
                 <div class="card-body  " style="color:{{data.cWhite}};">
                     <h1 class="card-title mt-3 {{data.inviFont}}  ">Invitación para: </h1>
-                    <h1 class="card-text   lato-bold upper"> {{data.generalTexto}}
+                    <h1 class="card-text   {{data.inviFont2}} upper" style="font-size:{{data.generalSize}}px;"> {{data.generalTexto}}
                     </h1>
                     <h3 class="  lato-regular-italic">{{data.textInvitacionValida}}</h3>
                 </div>
@@ -320,9 +320,10 @@
             <div class="card text-center"
                 style="width: 100%; margin: auto; border: none; background-color: {{data.cPrincipal}};"
                 *ngIf="data.generalCheck">
+            
                 <div class="card-body  " style="color:{{data.cWhite}};">
                     <h1 class="card-title mt-3 {{data.inviFont}}  ">Invitación para: </h1>
-                    <h1 class="card-text   lato-bold upper"> {{data.generalTexto}}
+                    <h1 class="card-text   {{data.inviFont2}} upper" tyle="font-size:{{data.generalSize}}px;"> {{data.generalTexto}}
                     </h1>
                     <h3 class="  lato-regular-italic">{{data.textInvitacionValida}}</h3>
                 </div>

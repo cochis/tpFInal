@@ -182,6 +182,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
           mensajeImg: '/assets/images/xv/xv3.jpeg',
           mensaje1: 'Tengo el vestido, la ilusión, la felicidad, el lugar y todo lo que se pueda soñar. Sólo me falta que ustedes estén conmigo en este día.',
           mensajeSize: 20,
+          generalSize: 15,
           donde1Check: true,
           donde1Img: '/assets/images/xv/xv2.jpg',
           donde1Title: 'Iglesia',

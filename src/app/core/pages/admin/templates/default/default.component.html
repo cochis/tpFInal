@@ -122,7 +122,7 @@
                     <div class="card-body  " style="color:{{invitacion.cWhite}};">
                         <h1 class="card-title mt-3 {{invitacion.inviFont}}  ">Invitación válida para:</h1>
                         <h1 class="card-text   {{invitacion.inviFont2}} upper" *ngIf="!boleto">Invitado</h1>
-                        <h1 class="card-text   {{invitacion.inviFont2}} upper" *ngIf="boleto">{{boleto.nombreGrupo }}
+                        <h1 class="card-text   {{invitacion.inviFont2}} upper" *ngIf="boleto" style="font-size:{{invitacion.generalSize}}px !important">{{boleto.nombreGrupo }}
                         </h1>
                         <h2 class="  lato-regular-italic" *ngIf="checking">{{invitacion.cantidad}} pases</h2>
                         <h1 class="card-text  {{invitacion.nombreFont}}upper" *ngIf="invitacion.mesa">Mesa
@@ -141,7 +141,7 @@
                     *ngIf="generalCheck">
                     <div class="card-body  " style="color:{{invitacion.cWhite}};">
                         <h1 class="card-title mt-3 {{invitacion.inviFont}}  ">Invitación para: </h1>
-                        <h1 class="card-text   {{invitacion.inviFont2}} -bold upper"> {{invitacion.generalTexto}}
+                        <h1 class="card-text   {{invitacion.inviFont2}} -bold upper" style="font-size:{{invitacion.generalSize}}px !important"> {{invitacion.generalTexto}}
                         </h1>
                         <h3 class=" {{invitacion.inviFont}} ">{{invitacion.textInvitacionValida}}</h3>
                     </div>

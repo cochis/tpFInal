@@ -309,6 +309,36 @@
 
                                     </div>
 
+                                    <hr class="mt-3 mb-3">
+                                    <div class="row text-center">
+
+                                        <div class="col-12       mt-3 ma ">
+                                            <label class="form-check-label" for="generalCheck">
+                                                Entrada general
+                                            </label>
+                                            <input class="form-check-input" type="checkbox" id="generalCheck"
+                                                #generalCheck formControlName="generalCheck">
+
+
+                                        </div>
+                                        <div class="col-12 col-md-6  ma  mt-3" *ngIf="form.value.generalCheck">
+                                            <div class="form-group ">
+                                                <label for="generalTexto ">Texto como invitación General </label>
+                                                <input type="text" id="generalTexto" #generalTexto
+                                                    formControlName="generalTexto" placeholder="A toda la comunidad"
+                                                    class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6  ma  mt-3" *ngIf="form.value.generalCheck">
+                                            <div class="form-group ">
+                                                <label for="generalSize">Texto como invitación General </label>
+                                                <input type="range" id="generalSize" #generalSize
+                                                formControlName="generalSize" value="15" min="10" max="50">
+                                            </div>
+                                        </div>
+                                    </div>
+                                   
+                              
 
                                     <app-view-template [data]="{
     type:'seccionInicial',
@@ -322,6 +352,7 @@
         yImg1: form.value.yImg1,
         generalCheck:invitacion.data.generalCheck,
         generalTexto :invitacion.data.generalTexto,
+        generalSize:form.value.generalSize?form.value.generalSize:15,
         nombreFiesta: form.value.nombreFiesta,
         nombreSize: form.value.nombreSize,
         nombreFont: form.value.nombreFont,
@@ -423,6 +454,12 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    
+
+                             
+
+
                                     <app-view-template [data]="{
                                         type:'seccionMensaje',
                                         size:viewSizeM,
@@ -557,26 +594,7 @@
                                             </div>
 
 
-                                            <hr class="mt-3 mb-3">
-
-
-                                            <div class="col-12       mt-3 ma ">
-                                                <label class="form-check-label" for="generalCheck">
-                                                    Entrada general
-                                                </label>
-                                                <input class="form-check-input" type="checkbox" id="generalCheck"
-                                                    #generalCheck formControlName="generalCheck">
-
-
-                                            </div>
-                                            <div class="col-12 col-md-6  ma  mt-3" *ngIf="form.value.generalCheck">
-                                                <div class="form-group ">
-                                                    <label for="generalTexto ">Texto como invitacion General </label>
-                                                    <input type="text" id="generalTexto" #generalTexto
-                                                        formControlName="generalTexto" placeholder="A toda la comunidad"
-                                                        class="form-control">
-                                                </div>
-                                            </div>
+                                           
                                             <hr class="mt-3 mb-3">
                                             <div class="col-12       mt-3 ma ">
                                                 <label class="form-check-label" for="confirmacionCheck">
@@ -1915,7 +1933,7 @@
                                         <div class="col-12 col-md-6  ma  mt-3 text-center"
                                             *ngIf="form.value.generalCheck">
                                             <div class="form-group ">
-                                                <label for="generalTexto ">Texto como invitacion General </label>
+                                                <label for="generalTexto ">Texto como invitación General </label>
                                                 <input type="text" id="generalTexto" #generalTexto
                                                     formControlName="generalTexto" placeholder="A toda la comunidad"
                                                     class="form-control">
