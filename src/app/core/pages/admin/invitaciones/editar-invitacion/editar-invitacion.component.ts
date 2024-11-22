@@ -385,8 +385,6 @@ export class EditarInvitacionComponent {
       dateCreated: [invitacion.data.dateCreated],
       lastEdited: [this.today],
     })
-    console.log(this.form);
-
     if (invitacion.data.byFileUrl && (this.form.value.typeFile == 'video' || this.form.value.typeFile == 'url')) {
       this.viewVideo = true
 
@@ -1216,14 +1214,11 @@ export class EditarInvitacionComponent {
       this.fileService.actualizarFotoTemplate(this.imagenSubir, 'invitaciones', this.fiesta.uid, type)
         .then(
           (img) => {
-            console.log('img::: ', img);
             let dt = this.form.value
             this.invitacion = {
               ...this.invitacion,
               data: dt
             }
-            console.log('this.invitacion::: ', this.invitacion);
-
             switch (type) {
               case 'img1':
                 this.invitacion.data.img1 = img

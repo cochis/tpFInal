@@ -402,7 +402,158 @@
 
 
             </div>
+            <br>
+            <div style=" background-color: {{invitacion.cPrincipal}}; margin: auto;" *ngIf=" menuCheck  ">
 
+                <div class="row text-center" style="margin: auto;">
+                    <h1 class="mt-3 {{invitacion.nombreFont}}   " style="color:{{invitacion.cWhite}};">Menu</h1>
+                    <div class="col-12 col-md-4 mt-3" style="text-align: center; margin: auto;">
+                        <div class="  mt-3 "
+                            *ngIf="(typeOf(invitacion.menuCheck)=='boolean')? invitacion.menuCheck!==false:invitacion.menuCheck!=='false'"
+                            style="width: 100%;text-align: center;margin:auto; background-color: {{invitacion.cPrincipal}};">
+
+                            <div style="width: 60%; max-width: 450px; margin: auto;" class="mb-5"
+                                *ngIf="typeOf(invitacion.menuCheck)=='boolean'? invitacion.menuCheck!==false:invitacion.menuCheck!=='false'">
+                                <div class="card  p-0 nborder">
+
+
+                                    <table *ngIf="menu.length >0">
+                                        <ng-container *ngFor="let pad of menu">
+
+                                            <tr
+                                                style=" border-top: 2px solid {{invitacion.cPrincipal}} ; height: 60px; line-height: 60px;">
+
+                                                <th class="upper">
+                                                    <span style="color:{{invitacion.cSecond}}">{{pad.tipo}}</span>
+                                                </th>
+                                                <th class="upper">
+                                                    <span style="color:{{invitacion.cPrincipal}}">{{pad.name}}</span>
+                                                </th>
+                                            </tr>
+
+
+                                        </ng-container>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+
+
+            </div>
+
+            <br>
+            <div style=" background-color: {{invitacion.cWhite}}; margin: auto;" *ngIf=" musicaCheck  ">
+
+                <div class="row text-center" style="margin: auto;">
+                    <h1 class="mt-3 {{invitacion.nombreFont}}   " style="color:{{invitacion.cPrincipal}};">Música</h1>
+                    <div class="col-12 col-md-4 mt-3" style="text-align: center; margin: auto;">
+                        <div class="  mt-3 "
+                            *ngIf="(typeOf(invitacion.musicaCheck)=='boolean')? invitacion.musicaCheck!==false:invitacion.musicaCheck!=='false'"
+                            style="width: 100%;text-align: center;margin:auto; background-color: {{invitacion.cWhite}};">
+
+                            <div style="width: 60%; max-width: 450px; margin: auto;" class="mb-5"
+                                *ngIf="typeOf(invitacion.musicaCheck)=='boolean'? invitacion.musicaCheck!==false:invitacion.musicaCheck!=='false'">
+                                <div class="card  p-0 nborder">
+
+
+                                    <table *ngIf="musica.length >0">
+                                        <ng-container *ngFor="let pad of musica">
+
+                                            <tr style="   height: 60px; line-height: 60px;">
+
+                                                <th class="upper">
+                                                    <span style="color:{{invitacion.cSecond}}">{{pad.tipo}}</span>
+                                                </th>
+                                                <th class="upper">
+                                                    <span style="color:{{invitacion.cPrincipal}}">{{pad.name}}</span>
+                                                </th>
+                                            </tr>
+
+
+                                        </ng-container>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+
+
+            </div>
+            <br>
+          
+            <div style=" background-color: {{invitacion.cPrincipal}}; margin: auto;"
+                *ngIf=" codigoVestimentaCheck  ">
+
+                <div class="row text-center" style="margin: auto;">
+                    <h1 class="mt-3 {{invitacion.nombreFont}}   " style="color:{{invitacion.cWhite}};">Código de
+                        vestimenta</h1>
+                    <div class="col-12 col-md-4 mt-3" style="text-align: center; margin: auto;">
+                        <div class="  mt-3 "
+                            *ngIf="(typeOf(invitacion.codigoVestimentaCheck)=='boolean')? invitacion.codigoVestimentaCheck!==false:invitacion.codigoVestimentaCheck!=='false'"
+                            style="width: 100%;text-align: center;margin:auto; background-color: {{invitacion.cPrincipal}};">
+
+                            <div style="width: 60%; max-width: 450px; margin: auto;" class="mb-5"
+                                *ngIf="typeOf(invitacion.codigoVestimentaCheck)=='boolean'? invitacion.codigoVestimentaCheck!==false:invitacion.codigoVestimentaCheck!=='false'">
+                                <div class="card  p-0 nborder">
+
+
+                                    <table>
+
+
+                                        <tr
+                                            style=" border-top: 2px solid {{invitacion.cPrincipal}} ; height: 60px; line-height: 60px;">
+
+                                            <th class="upper">
+                                                <span
+                                                    style="color:{{invitacion.cPrincipal}}">{{invitacion.codigoVestimentaMujer}}</span>
+                                            </th>
+                                            <th class="upper">
+                                                <img [src]="url+'/upload/invitaciones/'+((invitacion.codigoVestimentaMujerImg !== '') ? invitacion.codigoVestimentaMujerImg :'notImage') "
+                                                    class="card-img-top">
+                                            </th>
+                                        </tr>
+                                        <tr
+                                            style=" border-top: 2px solid {{invitacion.cPrincipal}} ; height: 60px; line-height: 60px;">
+
+                                            <th class="upper">
+                                                <span
+                                                    style="color:{{invitacion.cPrincipal}}">{{invitacion.codigoVestimentaHombre}}</span>
+                                            </th>
+                                            <th class="upper">
+                                                <img [src]="url+'/upload/invitaciones/'+((invitacion.codigoVestimentaHombreImg !== '') ? invitacion.codigoVestimentaHombreImg :'notImage') "
+                                                    class="card-img-top">
+                                            </th>
+                                        </tr>
+
+
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+
+
+            </div>
             <div class="mt-3" *ngIf="mesaRegalosCheck"
                 style="width: 100%;text-align: center;margin:auto; background-color: {{invitacion.cWhite}}">
                 <div class="row">
@@ -726,6 +877,157 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <br>
+                <div style=" background-color: {{invitacion.cPrincipal}}; margin: auto;" *ngIf=" menuCheck && !vistaTemp">
+    
+                    <div class="row text-center" style="margin: auto;">
+                        <h1 class="mt-3 {{invitacion.nombreFont}}   " style="color:{{invitacion.cWhite}};">Menu</h1>
+                        <div class="col-12 col-md-4 mt-3" style="text-align: center; margin: auto;">
+                            <div class="  mt-3 "
+                                *ngIf="(typeOf(invitacion.menuCheck)=='boolean')? invitacion.menuCheck!==false:invitacion.menuCheck!=='false'"
+                                style="width: 100%;text-align: center;margin:auto; background-color: {{invitacion.cPrincipal}};">
+    
+                                <div style="width: 60%; max-width: 450px; margin: auto;" class="mb-5"
+                                    *ngIf="typeOf(invitacion.menuCheck)=='boolean'? invitacion.menuCheck!==false:invitacion.menuCheck!=='false'">
+                                    <div class="card  p-0 nborder">
+    
+    
+                                        <table *ngIf="menu.length >0">
+                                            <ng-container *ngFor="let pad of menu">
+    
+                                                <tr
+                                                    style=" border-top: 2px solid {{invitacion.cPrincipal}} ; height: 60px; line-height: 60px;">
+    
+                                                    <th class="upper">
+                                                        <span style="color:{{invitacion.cSecond}}">{{pad.tipo}}</span>
+                                                    </th>
+                                                    <th class="upper">
+                                                        <span style="color:{{invitacion.cPrincipal}}">{{pad.name}}</span>
+                                                    </th>
+                                                </tr>
+    
+    
+                                            </ng-container>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                    </div>
+    
+    
+    
+    
+    
+    
+                </div>
+    
+                <br>
+                <div style=" background-color: {{invitacion.cWhite}}; margin: auto;" *ngIf=" musicaCheck && !vistaTemp">
+    
+                    <div class="row text-center" style="margin: auto;">
+                        <h1 class="mt-3 {{invitacion.nombreFont}}   " style="color:{{invitacion.cPrincipal}};">Música</h1>
+                        <div class="col-12 col-md-4 mt-3" style="text-align: center; margin: auto;">
+                            <div class="  mt-3 "
+                                *ngIf="(typeOf(invitacion.musicaCheck)=='boolean')? invitacion.musicaCheck!==false:invitacion.musicaCheck!=='false'"
+                                style="width: 100%;text-align: center;margin:auto; background-color: {{invitacion.cWhite}};">
+    
+                                <div style="width: 60%; max-width: 450px; margin: auto;" class="mb-5"
+                                    *ngIf="typeOf(invitacion.musicaCheck)=='boolean'? invitacion.musicaCheck!==false:invitacion.musicaCheck!=='false'">
+                                    <div class="card  p-0 nborder">
+    
+    
+                                        <table *ngIf="musica.length >0">
+                                            <ng-container *ngFor="let pad of musica">
+    
+                                                <tr style="   height: 60px; line-height: 60px;">
+    
+                                                    <th class="upper">
+                                                        <span style="color:{{invitacion.cSecond}}">{{pad.tipo}}</span>
+                                                    </th>
+                                                    <th class="upper">
+                                                        <span style="color:{{invitacion.cPrincipal}}">{{pad.name}}</span>
+                                                    </th>
+                                                </tr>
+    
+    
+                                            </ng-container>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                    </div>
+    
+    
+    
+    
+    
+    
+                </div>
+                <br>
+                <div style=" background-color: {{invitacion.cPrincipal}}; margin: auto;"
+                    *ngIf=" codigoVestimentaCheck && !vistaTemp">
+    
+                    <div class="row text-center" style="margin: auto;">
+                        <h1 class="mt-3 {{invitacion.nombreFont}}   " style="color:{{invitacion.cWhite}};">Código de
+                            vestimenta</h1>
+                        <div class="col-12 col-md-4 mt-3" style="text-align: center; margin: auto;">
+                            <div class="  mt-3 "
+                                *ngIf="(typeOf(invitacion.codigoVestimentaCheck)=='boolean')? invitacion.codigoVestimentaCheck!==false:invitacion.codigoVestimentaCheck!=='false'"
+                                style="width: 100%;text-align: center;margin:auto; background-color: {{invitacion.cPrincipal}};">
+    
+                                <div style="width: 60%; max-width: 450px; margin: auto;" class="mb-5"
+                                    *ngIf="typeOf(invitacion.codigoVestimentaCheck)=='boolean'? invitacion.codigoVestimentaCheck!==false:invitacion.codigoVestimentaCheck!=='false'">
+                                    <div class="card  p-0 nborder">
+    
+    
+                                        <table>
+    
+    
+                                            <tr
+                                                style=" border-top: 2px solid {{invitacion.cPrincipal}} ; height: 60px; line-height: 60px;">
+    
+                                                <th class="upper">
+                                                    <span
+                                                        style="color:{{invitacion.cPrincipal}}">{{invitacion.codigoVestimentaMujer}}</span>
+                                                </th>
+                                                <th class="upper">
+                                                    <img [src]="url+'/upload/invitaciones/'+((invitacion.codigoVestimentaMujerImg !== '') ? invitacion.codigoVestimentaMujerImg :'notImage') "
+                                                        class="card-img-top">
+                                                </th>
+                                            </tr>
+                                            <tr
+                                                style=" border-top: 2px solid {{invitacion.cPrincipal}} ; height: 60px; line-height: 60px;">
+    
+                                                <th class="upper">
+                                                    <span
+                                                        style="color:{{invitacion.cPrincipal}}">{{invitacion.codigoVestimentaHombre}}</span>
+                                                </th>
+                                                <th class="upper">
+                                                    <img [src]="url+'/upload/invitaciones/'+((invitacion.codigoVestimentaHombreImg !== '') ? invitacion.codigoVestimentaHombreImg :'notImage') "
+                                                        class="card-img-top">
+                                                </th>
+                                            </tr>
+    
+    
+    
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                    </div>
+    
+    
+    
+    
+    
+    
                 </div>
 
 

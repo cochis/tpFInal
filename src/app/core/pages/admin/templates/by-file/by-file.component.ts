@@ -61,6 +61,7 @@ export class ByFileComponent {
   donde2Check: boolean
   donde3Check: boolean
   mesaRegalosCheck: boolean
+  codigoVestimentaCheck: boolean
   confirmacionCheck: boolean
   generalCheck: boolean
   checking: boolean
@@ -115,8 +116,6 @@ export class ByFileComponent {
 
         this.invitacionsService.cargarInvitacionByFiesta(this.fiestaId).subscribe(async (resp: any) => {
           this.invitacion = resp.invitacion.data
-          console.log('this.invitacion', this.invitacion)
-
           this.restParty()
           this.invitacion = await this.dateToNumber(this.invitacion)
           this.invitacion.mesa = this.boleto.mesa
@@ -138,6 +137,7 @@ export class ByFileComponent {
           this.padrinosCheck = this.invitacion.padrinosCheck
           this.chambelanes = this.invitacion.chambelanes
           this.chambelanesCheck = this.invitacion.chambelanesCheck
+          this.codigoVestimentaCheck = this.invitacion.codigoVestimentaCheck
           this.menu = this.invitacion.menu
           this.menuCheck = this.invitacion.menuCheck
           this.musica = this.invitacion.musica
@@ -253,6 +253,11 @@ export class ByFileComponent {
         this.vistaTemp = false
         this.itinerarios = JSON.parse(this.state.itinerarios)
         this.notas = JSON.parse(this.state.notas)
+        this.padres = JSON.parse(this.state.padres)
+        this.padrinos = JSON.parse(this.state.padrinos)
+        this.chambelanes = JSON.parse(this.state.chambelanes)
+        this.menu = JSON.parse(this.state.menu)
+        this.musica = JSON.parse(this.state.musica)
         this.donde1Check = (this.state.donde1Check == 'true') ? true : false
         this.donde2Check = (this.state.donde2Check == 'true') ? true : false
         this.donde3Check = (this.state.donde3Check == 'true') ? true : false
@@ -262,6 +267,13 @@ export class ByFileComponent {
         this.hospedajeCheck = (this.state.hospedajeCheck == 'true') ? true : false
         this.invitacion = this.state
 
+        this.codigoVestimentaCheck = (this.state.codigoVestimentaCheck == 'true') ? true : false
+        this.chambelanesCheck = (this.state.chambelanesCheck == 'true') ? true : false
+        this.padresCheck = (this.state.padresCheck == 'true') ? true : false
+        this.padrinosCheck = (this.state.padrinosCheck == 'true') ? true : false
+        this.menuCheck = (this.state.menuCheck == 'true') ? true : false
+        this.musicaCheck = (this.state.musicaCheck == 'true') ? true : false
+        this.hospedajeCheck = (this.state.hospedajeCheck == 'true') ? true : false
         this.date = this.invitacion.fiestaDate
         this.btnBack = true
         this.checking = (this.state.checking == 'true') ? true : false

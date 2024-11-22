@@ -114,13 +114,9 @@ export class DefaultComponent implements OnInit, AfterViewInit {
       // Se carga la fiesta por ID  
       this.fiestasService.cargarFiestaById(this.fiestaId).subscribe((resp: any) => {
         this.fiesta = resp.fiesta
-        console.log(' this.fiesta ::: ', this.fiesta);
         this.checking = this.fiesta.checking
-
         this.invitacionsService.cargarInvitacionByFiesta(this.fiestaId).subscribe(async (resp: any) => {
           this.invitacion = resp.invitacion.data
-          console.log('this.invitacion', this.invitacion)
-
           this.restParty()
           this.invitacion = await this.dateToNumber(this.invitacion)
           this.invitacion.mesa = this.boleto.mesa
@@ -293,10 +289,6 @@ export class DefaultComponent implements OnInit, AfterViewInit {
         this.menu = this.invitacion.menu
         this.musica = this.invitacion.musica
       } else {
-
-
-
-        console.log('this.state', this.state)
         this.vistaTemp = false
         this.itinerarios = JSON.parse(this.state.itinerarios)
         this.notas = JSON.parse(this.state.notas)
