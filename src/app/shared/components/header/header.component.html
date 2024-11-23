@@ -30,6 +30,9 @@
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/core/examples">Ejemplos</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/core/faqs">FAQ´S</a>
+                </li>
 
 
                 <li class="nav-item dropdown">
@@ -155,9 +158,12 @@
                         </li>
                         <li><a class="dropdown-item" (click)="logout()" *ngIf="rol && rol!== ''">Salir</a></li>
 
-
+                        <li>
+                            <a class="dropdown-item" routerLink="/core/faqs">FAQ´S</a>
+                        </li>
                     </ul>
                 </li>
+
             </ul>
 
         </div>
