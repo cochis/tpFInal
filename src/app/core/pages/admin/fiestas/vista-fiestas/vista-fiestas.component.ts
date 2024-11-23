@@ -36,6 +36,7 @@ export class VistaFiestasComponent {
   SLN = environment.salon_role
   ANF = environment.anf_role
   URS = environment.user_role
+  example: boolean = false
   rol = this.functionsService.getLocal('role')
   email = this.functionsService.getLocal('email')
   uid = this.functionsService.getLocal('uid')
@@ -225,6 +226,8 @@ export class VistaFiestasComponent {
         }, 1500);
       });
     }
+
+
   }
   getCatalog(tipo: string, id: string) {
     switch (tipo) {

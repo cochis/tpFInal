@@ -49,6 +49,7 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
   obs1: Subscription;
   cantidadFiestas = 0
   cantidadGalerias = 0
+  example: boolean = false
   public imagenSubir!: File
   public imgTemp: any = undefined
 
@@ -122,6 +123,11 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.rol === this.ADM) {
       this.fiestasService.cargarFiestasAll().subscribe(resp => {
         this.fiestas = this.functionsService.getActives(resp.fiestas)
+        this.fiestas = this.fiestas.filter(res => {
+
+          return res.example == this.example
+        })
+        console.log('this.fiestas::: ', this.fiestas);
         this.fiestasTemp = this.fiestas
         this.fiestas.forEach((fst, i) => {
           this.blt = {
@@ -138,6 +144,10 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
     } else if (this.rol === this.URS) {
       this.fiestasService.cargarFiestasByanfitrion(this.usuario.uid).subscribe(resp => {
         this.fiestas = this.functionsService.getActives(resp.fiestas)
+        this.fiestas = this.fiestas.filter(res => {
+
+          return res.example == this.example
+        })
         this.fiestasTemp = this.fiestas
 
         this.fiestas.forEach((fst, i) => {
@@ -403,5 +413,10 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
       this.cantidadGalerias = this.cantidadGalerias
       this.cantidadFiestas = this.cantidadFiestas
     }, 500);
+  }
+  viewEjemplos(example) {
+    console.log('example::: ', example);
+    this.example = example
+    this.getFiestas()
   }
 }

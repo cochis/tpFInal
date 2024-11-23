@@ -24,6 +24,26 @@
 
     </div>
     <div class="container-fluid mt-50">
+        <div class="row" *ngIf="rol.includes('ADM')">
+            <div class="col-12   mb-3   mt-3 ">
+                <div class="form-group">
+                    <div style="width: 100%;" class="ma text-center">
+
+                        <label class="form-check-label ma " for="example">
+                            Ver Ejemplos
+                        </label>
+                    </div>
+                    <div style="width: 100%;" class="ma text-center">
+
+                        <input class="form-check-input ma mt-4" type="checkbox" id="example"
+                            style="margin-left:50px;margin-right: 50px;" #example
+                            (click)="viewEjemplos(example.checked)">
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
         <div class="row">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
@@ -36,6 +56,7 @@
 
                     </button>
                 </li>
+
 
 
 

@@ -217,9 +217,11 @@ export class EditarFiestaComponent {
       usuarioFiesta: ['', [Validators.required]],
       img: [''],
       croquisCheck: [true],
+      example: [false],
       croquis: [''],
       galeria: [''],
       checking: [''],
+
       mesaOk: [''],
       invitacion: [],
       activated: [false],
@@ -252,8 +254,10 @@ export class EditarFiestaComponent {
         invitacion: [fiesta.invitacion],
         galeria: [fiesta.galeria],
         checking: [fiesta.checking],
+
         mesaOk: [fiesta.mesaOk],
         croquisCheck: [fiesta.croquisCheck],
+        example: [fiesta.example],
         activated: [fiesta.activated],
         dateCreated: [fiesta.dateCreated],
         lastEdited: [this.today],

@@ -1,8 +1,11 @@
 <app-header></app-header>
 <main>
     <app-loading class="animated1 fadeIn" *ngIf="loading"></app-loading>
+
+
     <section class="contact-section section-padding section-bg animated1 fadeIn " id="section_5" *ngIf="!loading">
         <div class="container bw">
+
             <div class="card">
                 <div class="card-body">
                     <div class="row text-center">
@@ -12,6 +15,7 @@
                         </div>
 
                     </div>
+
                     <div class="row" *ngIf="rol !== ADM">
                         <div class="row  text-center ">
                             <div class="col-12  ma text-center mt-3">
@@ -71,6 +75,7 @@
                         <table class=" table table-striped table-bordered ">
                             <thead class=" thead-dark">
                                 <th class="upper">ID</th>
+                                <th class="upper" *ngIf="rol.includes('ADM')">Example</th>
                                 <th class="upper">Opciones</th>
                                 <th class="upper">nombre</th>
                                 <th class="upper">Editar Invitacion</th>
@@ -93,6 +98,10 @@
                                 <tr
                                     *ngFor="let fiesta of fiestas | paginate: { itemsPerPage: 10, currentPage: p }; let i=index">
                                     <td>{{i+1}}</td>
+                                    <td>
+                                        <i *ngIf="fiesta.example" class="icon-ok-circled prima"></i>
+                                        <i *ngIf="!fiesta.example" class="icon-cancel-circled second"></i>
+                                    </td>
                                     <td>
                                         <div class="opc">
 

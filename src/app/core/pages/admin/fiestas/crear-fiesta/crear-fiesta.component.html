@@ -11,6 +11,25 @@
                             <h2 class="mb-5">Crear evento</h2>
                         </div>
                         <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                            <div class="row" *ngIf="rol.includes('ADM')">
+                                <div class="col-12   mb-3   mt-3 ">
+                                    <div class="form-group">
+                                        <div style="width: 100%;" class="ma text-center">
+
+                                            <label class="form-check-label ma " for="example">
+                                                Ejemplo
+                                            </label>
+                                        </div>
+                                        <div style="width: 100%;" class="ma text-center">
+
+                                            <input class="form-check-input ma mt-4" type="checkbox" id="example"
+                                                formControlName="example" style="margin-left:50px;margin-right: 50px;">
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-12 col-md-6 mt-3">
                                     <div class="form-group">

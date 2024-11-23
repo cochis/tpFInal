@@ -187,6 +187,7 @@ export class CrearFiestaComponent {
       img: [''],
       galeria: [false],
       checking: [false],
+      example: [false],
       mesaOk: [false],
       invitacion: ['', [Validators.required]],
       activated: [false],
@@ -338,8 +339,8 @@ export class CrearFiestaComponent {
       salon: [this.form.value.salon, [Validators.required]],
       img: [''],
       galeria: [this.form.value.galeria],
-      checking: [this.form.value.checking
-      ],
+      checking: [this.form.value.checking],
+      example: [this.form.value.example],
       mesaOk: [this.form.value.mesaOk],
       activated: [true],
       dateCreated: [this.today],
