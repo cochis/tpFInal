@@ -341,18 +341,18 @@ export class ByFileComponent {
       this.boleto.fechaConfirmacion = undefined
       this.boleto.requeridos = 0
       this.boletosService.registrarAsistencia(this.boleto).subscribe((res: any) => {
-          this.functionsService.alert('Invitación', 'Se quito la confirmación', 'success')
-          this.loading = false
+        this.functionsService.alert('Invitación', 'Se quito la confirmación', 'success')
+        this.loading = false
       })
     } else {
       this.boleto.fechaConfirmacion = this.today
-      if(this.fiesta.checking){
+      if (this.fiesta.checking) {
         Swal.fire({
           title: '¿Cuantas personas asistiran?',
-          html: `<input type="number" value="${(this.boleto.cantidadInvitados)?this.boleto.cantidadInvitados :'0'}" step="1"id="range-value"  class="form-control">`,
+          html: `<input type="number" value="${(this.boleto.cantidadInvitados) ? this.boleto.cantidadInvitados : '0'}" step="1"id="range-value"  class="form-control">`,
           input: 'range',
-          confirmButtonColor: "#13547a" ,
-          inputValue: (this.boleto.cantidadInvitados)?this.boleto.cantidadInvitados :'0',
+          confirmButtonColor: "#13547a",
+          inputValue: (this.boleto.cantidadInvitados) ? this.boleto.cantidadInvitados : '0',
           inputAttributes: {
             min: '0',
             max: '20',
@@ -361,49 +361,49 @@ export class ByFileComponent {
           didOpen: () => {
             const inputRange = Swal.getInput()!
             const inputNumber = Swal.getPopup()!.querySelector('#range-value') as HTMLInputElement
-  
+
             // remove default output
             Swal.getPopup()!.querySelector('output')!.style.display = 'none'
             inputRange.style.width = '100%'
-  
+
             // sync input[type=number] with input[type=range]
             inputRange.addEventListener('input', () => {
               inputNumber.value = inputRange.value
-              
+
             })
-  
+
             // sync input[type=range] with input[type=number]
             inputNumber.addEventListener('change', () => {
               inputRange.value = inputNumber.value
-            
+
             })
           },
         }).then((result) => {
-           
+
           this.boleto.requeridos = Number(result.value)
-          
+
           this.boletosService.registrarAsistencia(this.boleto).subscribe((res: any) => {
-            
-              this.boleto.cantidadInvitados
-              this.loading = false
-      
-      
-              this.functionsService.alert('Invitación', 'Se confirmo tu asistencia', 'success')
-            
-      
+
+            this.boleto.cantidadInvitados
+            this.loading = false
+
+
+            this.functionsService.alert('Invitación', 'Se confirmo tu asistencia', 'success')
+
+
           })
         });
-      }else{
+      } else {
         this.boletosService.registrarAsistencia(this.boleto).subscribe((res: any) => {
-            
+
           this.boleto.cantidadInvitados
           this.loading = false
-  
-  
+
+
           this.functionsService.alert('Invitación', 'Se confirmo tu asistencia', 'success')
-        
-  
-      })
+
+
+        })
       }
 
 
@@ -413,7 +413,7 @@ export class ByFileComponent {
         title: '¿Cuantas personas asistiran?',
         html: `<input type="number" value="${this.boleto.cantidadInvitados}" step="1"id="range-value">`,
         input: 'range',
-        confirmButtonColor: "#13547a" ,
+        confirmButtonColor: "#13547a",
         inputValue: this.boleto.cantidadInvitados.toString(),
         inputAttributes: {
           min: '0',
@@ -431,28 +431,28 @@ export class ByFileComponent {
           // sync input[type=number] with input[type=range]
           inputRange.addEventListener('input', () => {
             inputNumber.value = inputRange.value
-            
+
           })
 
           // sync input[type=range] with input[type=number]
           inputNumber.addEventListener('change', () => {
             inputRange.value = inputNumber.value
-          
+
           })
         },
       }).then((result) => {
-         
+
         this.boleto.requeridos = Number(result.value)
-    
+
         this.boletosService.registrarAsistencia(this.boleto).subscribe((res: any) => {
-          
-            this.boleto.cantidadInvitados
-            this.loading = false
-    
-    
-            this.functionsService.alert('Invitación', 'Se confirmo tu asistencia', 'success')
-          
-    
+
+          this.boleto.cantidadInvitados
+          this.loading = false
+
+
+          this.functionsService.alert('Invitación', 'Se confirmo tu asistencia', 'success')
+
+
         })
       });
 
@@ -555,5 +555,29 @@ export class ByFileComponent {
   }
   typeOf(val) {
     return typeof (val)
+  }
+  regresar() {
+    let back = this.functionsService.getLocal('viewTemplate')
+    this.functionsService.navigateTo('/core/invitaciones/editar-invitacion/true/' + back)
+    this.functionsService.removeItemLocal('viewTemplate')
+    this.functionsService.removeItemLocal('invitacion')
+  }
+  copiarInvitacion(data) {
+
+    if (this.functionsService.getLocal('tipoInvitacion') && this.functionsService.getLocal('tipoInvitacion') == 'byFile') {
+
+
+      this.functionsService.setLocal('invitacion', data)
+      let back = this.functionsService.getLocal('viewTemplate')
+      this.functionsService.navigateTo('/core/invitaciones/editar-invitacion/true/' + back)
+      this.functionsService.removeItemLocal('viewTemplate')
+    } else {
+
+      this.functionsService.alert('Alerta', 'El tipo de invitacion no es por archivo', 'warning')
+      let back = this.functionsService.getLocal('viewTemplate')
+      this.functionsService.navigateTo('/core/invitaciones/editar-invitacion/true/' + back)
+      this.functionsService.removeItemLocal('viewTemplate')
+    }
+
   }
 }

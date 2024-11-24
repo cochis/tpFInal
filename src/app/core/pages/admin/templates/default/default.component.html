@@ -11,7 +11,19 @@
             </button>
         </div>
     </div>
+    <div class="row text-center fixed-top" *ngIf="rol !==USR && count==0">
 
+        <div class="col-6 text-center" style="margin:auto">
+            <button class="btn btn-lg btn-block btn-warning mt-3" (click)="regresar()">
+                Regresar
+            </button>
+        </div>
+        <div class="col-6 text-center" style="margin:auto">
+            <button class="btn btn-lg btn-block btn-warning mt-3" (click)="copiarInvitacion(invitacion)">
+                Copiar invitación
+            </button>
+        </div>
+    </div>
 
     <hr *ngIf="btnBack">
 
@@ -122,7 +134,8 @@
                     <div class="card-body  " style="color:{{invitacion.cWhite}};">
                         <h1 class="card-title mt-3 {{invitacion.inviFont}}  ">Invitación válida para:</h1>
                         <h1 class="card-text   {{invitacion.inviFont2}} upper" *ngIf="!boleto">Invitado</h1>
-                        <h1 class="card-text   {{invitacion.inviFont2}} upper" *ngIf="boleto" style="font-size:{{invitacion.generalSize}}px !important">{{boleto.nombreGrupo }}
+                        <h1 class="card-text   {{invitacion.inviFont2}} upper" *ngIf="boleto"
+                            style="font-size:{{invitacion.generalSize}}px !important">{{boleto.nombreGrupo }}
                         </h1>
                         <h2 class="  lato-regular-italic" *ngIf="checking">{{invitacion.cantidad}} pases</h2>
                         <h1 class="card-text  {{invitacion.nombreFont}}upper" *ngIf="invitacion.mesa">Mesa
@@ -141,7 +154,8 @@
                     *ngIf="generalCheck">
                     <div class="card-body  " style="color:{{invitacion.cWhite}};">
                         <h1 class="card-title mt-3 {{invitacion.inviFont}}  ">Invitación para: </h1>
-                        <h1 class="card-text   {{invitacion.inviFont2}} -bold upper" style="font-size:{{invitacion.generalSize}}px !important"> {{invitacion.generalTexto}}
+                        <h1 class="card-text   {{invitacion.inviFont2}} -bold upper"
+                            style="font-size:{{invitacion.generalSize}}px !important"> {{invitacion.generalTexto}}
                         </h1>
                         <h3 class=" {{invitacion.inviFont}} ">{{invitacion.textInvitacionValida}}</h3>
                     </div>
@@ -559,9 +573,8 @@
 
             </div>
             <br>
-      
-            <div style=" background-color: {{invitacion.cPrincipal}}; margin: auto;"
-                *ngIf=" codigoVestimentaCheck  ">
+
+            <div style=" background-color: {{invitacion.cPrincipal}}; margin: auto;" *ngIf=" codigoVestimentaCheck  ">
 
                 <div class="row text-center" style="margin: auto;">
                     <h1 class="mt-3 {{invitacion.nombreFont}}   " style="color:{{invitacion.cWhite}};">Código de
@@ -620,7 +633,7 @@
 
 
             </div>
-            
+
             <div class="mt-3" *ngIf="mesaRegalosCheck"
                 style="width: 100%;text-align: center;margin:auto; background-color: {{invitacion.cWhite}}">
                 <div class="row">

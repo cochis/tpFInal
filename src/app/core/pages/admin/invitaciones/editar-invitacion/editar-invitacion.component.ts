@@ -20,6 +20,8 @@ export class EditarInvitacionComponent {
   SLN = environment.salon_role
   ANF = environment.anf_role
   URS = environment.user_role
+  examples = environment.examples
+  fiestas: any = []
   loading = false
   public imagenSubir!: File
   public imgTemp: any = undefined
@@ -52,6 +54,14 @@ export class EditarInvitacionComponent {
     private fileService: FileService,
 
   ) {
+    this.functionsService.removeItemLocal('tipoInvitacion')
+    this.examples.forEach(async element => {
+      let fiesta = element.split('|')
+
+      let res = { fiesta: fiesta[0], url: fiesta[1] }
+      this.fiestas.push(res)
+    });
+
     this.id = this.route.snapshot.params['id']
     this.edit = this.route.snapshot.params['edit']
 
@@ -76,6 +86,7 @@ export class EditarInvitacionComponent {
 
       this.usuarioFiesta = this.fiesta.usuarioFiesta._id
       this.invitacionId = this.fiesta.invitacion
+      this.functionsService.setLocal('tipoInvitacion', this.fiesta.invitacion)
     },
       (error: any) => {
         console.error('Error', error)
@@ -1299,6 +1310,34 @@ export class EditarInvitacionComponent {
 
     this.viewSizeM = event
 
+  }
+  verExample(example) {
+    this.functionsService.setLocal('tipoInvitacion', this.fiesta.invitacion)
+    if (example == '') {
+      this.functionsService.alert('Alerta', 'Necesita seleccionar un ejemplo', 'warning')
+      return
+    }
+
+    let url = example.split('https://www.myticketparty.com/core/')
+
+    this.functionsService.setLocal('viewTemplate', this.id)
+    this.functionsService.navigateTo('core/' + url[1])
+  }
+  async copiarExample() {
+    if (this.functionsService.getLocal('invitacion')) {
+
+      let invitacion = this.functionsService.getLocal('invitacion')
+
+      this.invitacion.data = await this.numberToData(invitacion)
+
+
+      this.usuarioCreated = this.usuarioFiesta
+      this.setFormWithData(this.invitacion)
+      this.functionsService.removeItemLocal('invitacion')
+    } else {
+      this.functionsService.alert('Alerta', 'Necesita entrar a un ejemplo y copiar', 'warning')
+      return
+    }
   }
 
 }

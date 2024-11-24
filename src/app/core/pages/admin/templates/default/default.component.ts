@@ -32,11 +32,13 @@ export class DefaultComponent implements OnInit, AfterViewInit {
   horas = 0
   minutos = 0
   segundos = 0
+  copy = false
   date: number = this.today + 199456789
   res: number
   formCheck: boolean = false
   qrOk = false
   rol = this.functionsService.getLocal('role')
+  USR = environment.user_role
   fiestaId: string = undefined
   fiesta: Fiesta
   boletoId: string = undefined
@@ -87,6 +89,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
     private pushsService: PushsService,
     private readonly _modalService: ModalService
   ) {
+
     this.metaService.createCanonicalURL();
     this.loading = true
     this.fiestaId = this.route.snapshot.params['fiesta']
@@ -608,6 +611,29 @@ export class DefaultComponent implements OnInit, AfterViewInit {
       model: { type: type, img: img },
       mode: 'default'
     })
+
+  }
+  regresar() {
+    let back = this.functionsService.getLocal('viewTemplate')
+    this.functionsService.navigateTo('/core/invitaciones/editar-invitacion/true/' + back)
+    this.functionsService.removeItemLocal('viewTemplate')
+    this.functionsService.removeItemLocal('invitacion')
+  }
+  copiarInvitacion(data) {
+
+    if (this.functionsService.getLocal('tipoInvitacion') && this.functionsService.getLocal('tipoInvitacion') == 'default') {
+
+      this.functionsService.setLocal('invitacion', data)
+      let back = this.functionsService.getLocal('viewTemplate')
+      this.functionsService.navigateTo('/core/invitaciones/editar-invitacion/true/' + back)
+      this.functionsService.removeItemLocal('viewTemplate')
+    } else {
+
+      this.functionsService.alert('Alerta', 'El tipo de invitacion no es la dinámica', 'warning')
+      let back = this.functionsService.getLocal('viewTemplate')
+      this.functionsService.navigateTo('/core/invitaciones/editar-invitacion/true/' + back)
+      this.functionsService.removeItemLocal('viewTemplate')
+    }
 
   }
 }

@@ -29,6 +29,7 @@ export class CheckInComponent implements AfterViewInit {
   fiestas: Fiesta[]
   editBoleto = false
   invitado: any
+  example = false
   today = this.functionsService.getToday()
   role = this.functionsService.getLocal('role')
   uid = this.functionsService.getLocal('uid')
@@ -81,19 +82,29 @@ export class CheckInComponent implements AfterViewInit {
       this.fiestasService.cargarFiestasByEmail(this.uid).subscribe(resp => {
 
         this.fiestas = this.functionsService.getActives(resp.fiestas)
+        this.fiestas = this.fiestas.filter(res => {
+
+          return res.example == this.example
+        })
 
       })
     } else if (this.role == this.ANF) {
       this.fiestasService.cargarFiestasByanfitrion(this.uid).subscribe(resp => {
 
         this.fiestas = this.functionsService.getActives(resp.fiestas)
+        this.fiestas = this.fiestas.filter(res => {
 
+          return res.example == this.example
+        })
       })
     } else if (this.role == this.ADM) {
       this.fiestasService.cargarFiestasAll().subscribe(resp => {
 
         this.fiestas = this.functionsService.getActives(resp.fiestas)
+        this.fiestas = this.fiestas.filter(res => {
 
+          return res.example == this.example
+        })
       })
     }
   }
@@ -243,9 +254,7 @@ export class CheckInComponent implements AfterViewInit {
 
     this.boletosService.cargarBoletoByFiesta(form.fiesta).subscribe(resp => {
 
-      this.boletosFind = resp.boleto
-
-
+      this.boletosFind = this.functionsService.getActives(resp.boleto)
 
     })
 
@@ -255,5 +264,10 @@ export class CheckInComponent implements AfterViewInit {
     this.form.reset()
     this.formInit.patchValue({ fiesta: '' })
     this.editBoleto = false
+  }
+  viewEjemplos(example) {
+
+    this.example = example
+    this.getFiestas()
   }
 }
