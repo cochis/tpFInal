@@ -42,6 +42,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
   fiestaId: string = undefined
   fiesta: Fiesta
   boletoId: string = undefined
+  copyId: string = ''
   boleto: Boleto
   cPrincipal: 'pink'
   ind = 0
@@ -93,6 +94,8 @@ export class DefaultComponent implements OnInit, AfterViewInit {
     this.metaService.createCanonicalURL();
     this.loading = true
     this.fiestaId = this.route.snapshot.params['fiesta']
+    this.copyId = this.route.snapshot.params['copy']
+
 
     this.boletoId = this.route.snapshot.params['boleto']
     if (this.fiestaId && this.boletoId) {

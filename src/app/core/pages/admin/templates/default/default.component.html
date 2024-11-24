@@ -11,14 +11,14 @@
             </button>
         </div>
     </div>
-    <div class="row text-center fixed-top" *ngIf="rol !==USR && count==0 && boletoId ==''">
+    <div class="row text-center fixed-top" *ngIf="rol !==USR && count==0 && copyId ">
 
-        <div class="col-6 text-center" style="margin:auto">
+        <div class="col-12 col-md-6 text-center" style="margin:auto">
             <button class="btn btn-lg btn-block btn-warning mt-3" (click)="regresar()">
                 Regresar
             </button>
         </div>
-        <div class="col-6 text-center" style="margin:auto">
+        <div class="col-12 col-md-6 text-center" style="margin:auto">
             <button class="btn btn-lg btn-block btn-warning mt-3" (click)="copiarInvitacion(invitacion)">
                 Copiar invitación
             </button>

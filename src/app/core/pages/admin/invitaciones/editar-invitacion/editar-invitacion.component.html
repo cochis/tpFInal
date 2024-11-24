@@ -15,7 +15,7 @@
                             <ng-container>
                                 <div class="row text-center">
                                     <h5>Ver ejemplos</h5>
-                                    <div class="col-4 ma">
+                                    <div class="col-12 col-md-4 ma">
                                         <select name="viewExample" id="viewExample" #viewExample class="form-select">
                                             <option value="">Invitaciones de ejemplo</option>
                                             <option [value]="item.url" *ngFor="let item of fiestas; let i=index">{{i+1}}
@@ -23,12 +23,12 @@
 
                                         </select>
                                     </div>
-                                    <div class="col-4 ma">
+                                    <div class="col-12 col-md-4 ma">
                                         <button class="btn btn-lg btn-block but mt-3 mb-3" style="margin: auto;"
                                             (click)="verExample(viewExample.value)">
                                             Ver invitación</button>
                                     </div>
-                                    <div class="col-4 ma" *ngIf="functionsService.getLocal('invitacion')">
+                                    <div class="col-12 col-md-4 ma" *ngIf="functionsService.getLocal('invitacion')">
                                         <button class="btn btn-lg btn-block but mt-3 mb-3" style="margin: auto;"
                                             (click)="copiarExample()">
                                             Pegar</button>

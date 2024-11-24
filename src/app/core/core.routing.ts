@@ -598,6 +598,12 @@ const routes: Routes = [
 
       },
       {
+        path: 'templates/default/:fiesta/:boleto/:copy',
+        component: DefaultComponent,
+        data: { titulo: 'Template default' }
+
+      },
+      {
         path: 'templates/byFile',
         component: ByFileComponent,
         data: { titulo: 'Template ByFile' }
@@ -605,6 +611,12 @@ const routes: Routes = [
       },
       {
         path: 'templates/byFile/:fiesta/:boleto',
+        component: ByFileComponent,
+        data: { titulo: 'Template ByFile' }
+
+      },
+      {
+        path: 'templates/byFile/:fiesta/:boleto/:copy',
         component: ByFileComponent,
         data: { titulo: 'Template ByFile' }
 

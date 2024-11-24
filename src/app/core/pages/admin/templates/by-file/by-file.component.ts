@@ -35,6 +35,7 @@ export class ByFileComponent {
   qrOk = false
   rol = this.functionsService.getLocal('role')
   fiestaId: string = undefined
+  copyId: string = ''
   fiesta: Fiesta
   boletoId: string = undefined
   boleto: Boleto
@@ -86,6 +87,7 @@ export class ByFileComponent {
     this.metaService.createCanonicalURL();
     this.loading = true
     this.fiestaId = this.route.snapshot.params['fiesta']
+    this.copyId = this.route.snapshot.params['copy']
 
     this.boletoId = this.route.snapshot.params['boleto']
     if (this.fiestaId && this.boletoId) {

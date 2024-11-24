@@ -1321,7 +1321,7 @@ export class EditarInvitacionComponent {
     let url = example.split('https://www.myticketparty.com/core/')
 
     this.functionsService.setLocal('viewTemplate', this.id)
-    this.functionsService.navigateTo('core/' + url[1])
+    this.functionsService.navigateTo('core/' + url[1] + '/copy')
   }
   async copiarExample() {
     if (this.functionsService.getLocal('invitacion')) {
