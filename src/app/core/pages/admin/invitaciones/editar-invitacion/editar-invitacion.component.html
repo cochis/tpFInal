@@ -18,8 +18,11 @@
                                     <div class="col-12 col-md-4 ma">
                                         <select name="viewExample" id="viewExample" #viewExample class="form-select">
                                             <option value="">Invitaciones de ejemplo</option>
-                                            <option [value]="item.url" *ngFor="let item of fiestas; let i=index">{{i+1}}
-                                            </option>
+                                            <ng-container *ngFor="let item of fiestas; let i=index">
+                                                
+                                                <option [value]="item.url" *ngIf="fiesta && fiesta.invitacion == item.type">{{item.name}} </option>
+                                            </ng-container>
+                                            
 
                                         </select>
                                     </div>
@@ -1591,7 +1594,7 @@
                                                     formControlName="inicialTFont"
                                                     class="form-control upper {{inicialTFont.value}}" #inicialTFont>
                                                     <option value="">Seleccione el tipo de fuente</option>
-                                                    <option value="name" class="name" selected>Name</option>
+                                                    <option value="name" class="name"  >Name</option>
                                                     <option value="pacific" class="pacific">Pacific</option>
                                                     <option value="dancing" class="dancing">Dancing</option>
                                                     <option value="anton-sc-regular" class="anton-sc-regular">

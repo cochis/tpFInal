@@ -54,13 +54,16 @@ export class EditarInvitacionComponent {
     private fileService: FileService,
 
   ) {
+    this.functionsService.alert('Crear invitación', 'Se recomienda realizar la invitación en una computadora para facilitar la edición.','info')
     this.functionsService.removeItemLocal('tipoInvitacion')
     this.examples.forEach(async element => {
       let fiesta = element.split('|')
 
-      let res = { fiesta: fiesta[0], url: fiesta[1] }
+      let res = { fiesta: fiesta[0], url: fiesta[1],name:fiesta[2],type:fiesta[3] }
       this.fiestas.push(res)
     });
+   
+   
 
     this.id = this.route.snapshot.params['id']
     this.edit = this.route.snapshot.params['edit']
@@ -83,7 +86,7 @@ export class EditarInvitacionComponent {
     this.loading = true
     this.fiestasService.cargarFiestaById(id).subscribe((resp: CargarFiesta) => {
       this.fiesta = resp.fiesta
-
+     
       this.usuarioFiesta = this.fiesta.usuarioFiesta._id
       this.invitacionId = this.fiesta.invitacion
       this.functionsService.setLocal('tipoInvitacion', this.fiesta.invitacion)
@@ -781,6 +784,7 @@ export class EditarInvitacionComponent {
   getInvitacion(id) {
     this.loading = true
     this.invitacionsService.cargarInvitacionByFiesta(id).subscribe(async resp => {
+ 
       this.invitacion = resp.invitacion
       if (!this.invitacion) {
         setTimeout(() => {
