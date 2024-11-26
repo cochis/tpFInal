@@ -96,8 +96,9 @@
 
                     </table>
 
-                    <h2 class="pacifico tc" *ngIf="date<functionsService.getToday()"><b
-                            style="color: {{invitacion.byFileColorFr}};">E</b>mpezamos</h2>
+                    <h2 class="pacifico tc mt-3 mb-3"   style="color: {{invitacion.byFileColorTx}};" *ngIf="date<functionsService.getToday()"><b
+                            style="color: {{invitacion.byFileColorTx}};">E</b>mpezamos</h2>
+                            <br>
                 </div>
             </div>
 
@@ -108,7 +109,7 @@
 
 
 
-        <div class="col-12" style="background-color: {{invitacion.byFileColorBG}};">
+        <div class="col-12mt-3" style="background-color: {{invitacion.byFileColorBG}};">
             <div class="card text-center"
                 style="width: 100%; margin: auto; border: none; background-color: {{invitacion.byFileColorBG}};">
                 <div class="card-body  " style="color:{{invitacion.byFileColorTx}};">

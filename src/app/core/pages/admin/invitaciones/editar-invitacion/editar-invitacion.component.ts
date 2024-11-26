@@ -135,7 +135,7 @@ export class EditarInvitacionComponent {
       checking: [this.fiesta.checking],
       fiestaDate: [Number(this.fiesta.fecha)],
       nombreFiesta: [this.fiesta.nombre],
-      nombreFont: ['dancing'],
+      nombreFont: ['pacifico'],
       nombresSize: [187],
       textInvitacionValida: ['¡Los esperamos!'],
       mensajeCheck: [true],
@@ -149,6 +149,7 @@ export class EditarInvitacionComponent {
       inviFont: ['pacifico'],
       inviFont2: ['pacifico'],
       mensajeImgWidth: [100],
+      alturaMensaje: [25],
       bxMensajeImg: [50],
       byMensajeImg: [0],
       mensaje1: [''],
@@ -377,14 +378,15 @@ export class EditarInvitacionComponent {
       //font width  IMG
 
       imgWidth: [invitacion.data.imgWidth],
-      nombreFont: [invitacion.data.nombreFont ? invitacion.data.nombreFont : 'dancing'],
-      tipoFont: [invitacion.data.tipoFont ? invitacion.data.tipoFont : 'dancing'],
+      nombreFont: [invitacion.data.nombreFont ? invitacion.data.nombreFont : 'pacifico'],
+      tipoFont: [invitacion.data.tipoFont ? invitacion.data.tipoFont : 'pacifico'],
       mensajeImgWidth: [invitacion.data.mensajeImgWidth],
-      mensajeFont: [invitacion.data.mensajeFont ? invitacion.data.mensajeFont : 'dancing'],
-      inicialTFont: [invitacion.data.inicialTFont ? invitacion.data.inicialTFont : 'dancing'],
-      finalTFont: [invitacion.data.finalTFont ? invitacion.data.finalTFont : 'dancing'],
-      inviFont: [invitacion.data.inviFont ? invitacion.data.inviFont : 'dancing'],
-      inviFont2: [invitacion.data.inviFont2 ? invitacion.data.inviFont2 : 'dancing'],
+      alturaMensaje: [invitacion.data.alturaMensaje],
+      mensajeFont: [invitacion.data.mensajeFont ? invitacion.data.mensajeFont : 'pacifico'],
+      inicialTFont: [invitacion.data.inicialTFont ? invitacion.data.inicialTFont : 'pacifico'],
+      finalTFont: [invitacion.data.finalTFont ? invitacion.data.finalTFont : 'pacifico'],
+      inviFont: [invitacion.data.inviFont ? invitacion.data.inviFont : 'pacifico'],
+      inviFont2: [invitacion.data.inviFont2 ? invitacion.data.inviFont2 : 'pacifico'],
       inicialTSize: [invitacion.data.inicialTSize],
       finalTSize: [invitacion.data.finalTSize],
 
@@ -500,6 +502,7 @@ export class EditarInvitacionComponent {
       nombreFont: [temp.nombreFont],
       tipoFont: [temp.tipoFont],
       mensajeImgWidth: [temp.mensajeImgWidth],
+      alturaMensaje: [temp.alturaMensaje],
       mensajeFont: [temp.mensajeFont],
       inicialTFont: [temp.inicialTFont],
       inicialTSize: [temp.inicialTSize],
@@ -887,9 +890,10 @@ export class EditarInvitacionComponent {
 
             //font img
             imgWidth: 100,
-            nombreFont: "dancing",
+            nombreFont: "pacifico",
             tipoFont: "pacifico",
             mensajeImgWidth: 100,
+            alturaMensaje: 25,
             mensajeFont: "pacifico",
             inicialTFont: 'pacifico',
             inicialTSize: 10,
@@ -1333,7 +1337,24 @@ export class EditarInvitacionComponent {
       let invitacion = this.functionsService.getLocal('invitacion')
 
       this.invitacion.data = await this.numberToData(invitacion)
-
+      this.invitacion.data.nombreFiesta=''
+      this.invitacion.data.tipoFiesta=''
+      this.invitacion.data.generalTexto=''
+      this.invitacion.data.mensaje1=''
+      this.invitacion.data.codigoVestimentaMujer=''
+      this.invitacion.data.codigoVestimentaHombre=''
+      this.invitacion.data.donde2Text=''
+      this.invitacion.data.donde3Text=''
+      this.invitacion.data.donde2Text=''
+      this.invitacion.data.mesaRegalosLugar=''
+      this.invitacion.data.mesaRegalosUrl=''
+      this.invitacion.data.padres=[]
+      this.invitacion.data.padrinos=[]
+      this.invitacion.data.chambelanes=[]
+      this.invitacion.data.menu=[]
+      this.invitacion.data.musica=[]
+      this.invitacion.data.itinerarios=[]
+      this.invitacion.data.notas=[]
 
       this.usuarioCreated = this.usuarioFiesta
       this.setFormWithData(this.invitacion)

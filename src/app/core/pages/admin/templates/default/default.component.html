@@ -73,7 +73,7 @@
 
                         </table>
                         <h2 class=" {{invitacion.nombreFont}} tc" *ngIf="date<functionsService.getToday()"><b
-                                style="color: {{invitacion.cPrincipal}};">E</b>mpezamos</h2>
+                                style="color: {{invitacion.byFileColorTx}};">E</b>mpezamos</h2>
                     </div>
 
 
@@ -168,7 +168,7 @@
                 <div class="box"
                     style="background-image:url({{url+'/upload/invitaciones/'+((invitacion.mensajeImg!=='')?invitacion.mensajeImg:'notImage')}}) ;background-position: {{invitacion.bxMensajeImg}}% {{invitacion.byMensajeImg}}px !important;height: auto; min-height:450px; background-size:{{invitacion.mensajeImgWidth}}%; "
                     *ngIf="!vistaTemp">
-                    <div class="texto tc" style="margin-top:50% !important">
+                    <div class="texto tc" style="margin-top:{{invitacion.alturaMensaje}}% !important">
                         <h5 class="p-5   {{invitacion.mensajeFont}}"
                             style="color:{{invitacion.cWhite}}; font-size:{{invitacion.mensajeSize}}px !important;">
                             {{invitacion.mensaje1}}

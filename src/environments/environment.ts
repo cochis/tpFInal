@@ -15,8 +15,8 @@ export const environment = {
   // base_url: "http://localhost:3008/api",
   // text_url: "http://localhost:4200/",
   //QA
-  //base_url: "https://tickets.cochisweb.com/api",
-  //text_url: "https://tickets.cochisweb.com/",
+  // base_url: "https://tickets.cochisweb.com/api",
+  // text_url: "https://tickets.cochisweb.com/",
   //PROD
   base_url: "https://www.myticketparty.com/api",
   text_url: "https://www.myticketparty.com/",
