@@ -698,20 +698,28 @@
                                                 <div class="col-6  col-md-4 mt-3 ma">
                                                     <div class="form-group ">
                                                         <label for="mensajeSize ">Tamaño letra mensaje </label>
+                                                        <a class="range" (click)="changeRange('mensajeSize','-')">
+                                                            <b class="range-icon">-</b> </a>
                                                         <input type="range" id="mensajeSize" #mensajeSize
                                                             formControlName="mensajeSize" />
+                                                        <a class="range" (click)="changeRange('mensajeSize','+')">
+                                                            <b class="range-icon">+</b> </a>
                                                     </div>
                                                 </div>
 
 
-                                                <div class="col-6  col-md-4 mt-3 ma">
+                                                <div class="col-6  col-md-6 mt-3 ma" style="display:none">
                                                     <div class="form-group ">
                                                         <label for="alturaMensaje ">Altura mensaje</label>
+                                                        <a class="range" (click)="changeRange('alturaMensaje','-')">
+                                                            <b class="range-icon">-</b> </a>
                                                         <input type="range" id="alturaMensaje" #alturaMensaje
                                                             formControlName="alturaMensaje" min="0" max="50   ">
+                                                        <a class="range" (click)="changeRange('alturaMensaje','+')">
+                                                            <b class="range-icon">+</b> </a>
                                                     </div>
                                                 </div>
-                                                <div class="col-6  col-md-4 mt-3 ma">
+                                                <div class="col-6  col-md-6 mt-3 ma">
 
                                                     <div class="form-group ">
                                                         <label for="mensajeFont ">Fuente de mensaje</label>
