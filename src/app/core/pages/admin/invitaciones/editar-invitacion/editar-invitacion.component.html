@@ -302,18 +302,47 @@
                                                                 class="range-icon">+</b> </a>
                                                     </div>
                                                 </div>
+                                                <div class="col-6 col-md-3   mt-3 ma">
+                                                    <div class="form-group ">
+                                                        <label for="nombreEfecto ">Efecto del titulo</label>
+                                                        <select name="nombreEfecto" id="nombreEfecto"
+                                                            formControlName="nombreEfecto"
+                                                            class="form-control upper {{nombreEfecto}}" #nombreEfecto>
+                                                            <option value="" selected>Seleccione el tipo de efecto
+                                                            </option>
+                                                            <option [class]="item.clave" [value]="item.clave"
+                                                                class="name" *ngFor="let item of efectos">
+                                                                {{item.nombre}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 col-md-3   mt-3 ma">
+                                                    <div class="form-group ">
+                                                        <label for="nombreEfectoRep ">Repetir Efecto</label>
+                                                        <select name="nombreEfectoRep" id="nombreEfectoRep"
+                                                            formControlName="nombreEfectoRep"
+                                                            class="form-control upper {{nombreEfectoRep}}"
+                                                            #nombreEfectoRep>
+                                                            <option value="" selected>Seleccione el tipo de efecto
+                                                            </option>
+                                                            <option [class]="item.clave" [value]="item.clave"
+                                                                class="name" *ngFor="let item of repEfec">
+                                                                {{item.nombre}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="collapse " id="collapseSubtituloSeccionPrincipal">
                                             <div class="row text-center mt-3">
-                                                <div class="col-6 col-md-3   mt-3 ma">
+                                                <div class="col-6 col-md-4   mt-3 ma">
                                                     <div class="form-group ">
                                                         <label for="tipoFiesta ">Subtítulo invitación </label>
                                                         <input type="text" id="tipoFiesta" #tipoFiesta
                                                             formControlName="tipoFiesta" class="form-control">
                                                     </div>
                                                 </div>
-                                                <div class="col-6 col-md-3   mt-3 ma">
+                                                <div class="col-6 col-md-4   mt-3 ma">
                                                     <div class="form-group ">
                                                         <label for="tipoFont">Fuente de subtítulo</label>
                                                         <select name="tipoFont" id="tipoFont" formControlName="tipoFont"
@@ -334,7 +363,7 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-6 col-md-3   mt-3 ma">
+                                                <div class="col-6 col-md-4   mt-3 ma">
                                                     <div class="form-group ">
                                                         <label for="tipoSize ">Tamaño de subtítulo </label>
                                                         <a class="range" (click)="changeRange('tipoSize','-')"> <b
@@ -345,6 +374,35 @@
                                                                 class="range-icon">+</b> </a>
                                                     </div>
                                                 </div>
+                                                <div class="col-6 col-md-4   mt-3 ma">
+                                                    <div class="form-group ">
+                                                        <label for="tipoEfecto ">Efecto del subtitulo</label>
+                                                        <select name="tipoEfecto" id="tipoEfecto"
+                                                            formControlName="tipoEfecto"
+                                                            class="form-control upper {{tipoEfecto}}" #tipoEfecto>
+                                                            <option value="" selected>Seleccione el tipo de efecto
+                                                            </option>
+                                                            <option [class]="item.clave" [value]="item.clave"
+                                                                class="name" *ngFor="let item of efectos">
+                                                                {{item.nombre}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 col-md-3   mt-3 ma">
+                                                    <div class="form-group ">
+                                                        <label for="tipoEfectoRep ">Repetir Efecto</label>
+                                                        <select name="tipoEfectoRep" id="tipoEfectoRep"
+                                                            formControlName="tipoEfectoRep"
+                                                            class="form-control upper {{tipoEfectoRep}}" #tipoEfectoRep>
+                                                            <option value="" selected>Seleccione el tipo de efecto
+                                                            </option>
+                                                            <option [class]="item.clave" [value]="item.clave"
+                                                                class="name" *ngFor="let item of repEfec">
+                                                                {{item.nombre}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
                                             </div>
                                         </div>
                                         <div class="collapse " id="collapseFechaSeccionPrincipal">
@@ -449,7 +507,7 @@
                                         </div>
                                         <div class="collapse " id="collapseInvitacionSeccionPrincipal">
                                             <div class="row text-center mt-3 ma">
-                                                <div class="col-12  col-sm-6 col-md-4   mt-3 ma">
+                                                <div class="col-12  col-sm-6  col-md-3   mt-3 ma">
                                                     <div class="form-group ma">
                                                         <label for="inviFont ">Fuente remitente</label>
                                                         <select name="inviFont" id="inviFont" formControlName="inviFont"
@@ -473,7 +531,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="col-12  col-sm-6 col-md-4   mt-3 ma">
+                                                <div class="col-12  col-sm-6  col-md-3   mt-3 ma">
                                                     <div class="form-group ">
                                                         <label for="inviFont2 ">Fuente invitado</label>
                                                         <select name="inviFont2" id="inviFont2"
@@ -494,6 +552,34 @@
                                                                 Roboto-black-italic</option>
 
 
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12  col-sm-6  col-md-3   mt-3 ma">
+                                                    <div class="form-group ">
+                                                        <label for="inviEfecto ">Efecto invitado</label>
+                                                        <select name="inviEfecto" id="inviEfecto"
+                                                            formControlName="inviEfecto"
+                                                            class="form-control upper {{inviEfecto}}" #inviEfecto>
+                                                            <option value="" selected>Seleccione el tipo de efecto
+                                                            </option>
+                                                            <option [class]="item.clave" [value]="item.clave"
+                                                                class="name" *ngFor="let item of efectos">
+                                                                {{item.nombre}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12  col-sm-6  col-md-3   mt-3 ma">
+                                                    <div class="form-group ">
+                                                        <label for="inviEfectoRep ">Repetir efecto </label>
+                                                        <select name="inviEfectoRep" id="inviEfectoRep"
+                                                            formControlName="inviEfectoRep"
+                                                            class="form-control upper {{inviEfectoRep}}" #inviEfectoRep>
+                                                            <option value="" selected>Seleccione el tipo de efecto
+                                                            </option>
+                                                            <option [class]="item.clave" [value]="item.clave"
+                                                                class="name" *ngFor="let item of repEfec">
+                                                                {{item.nombre}}</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -572,6 +658,8 @@
                             
                                     </code> -->
 
+
+
                                     <app-view-template *ngIf="viewInicial" class="mt-3" [data]="{
     type:'seccionInicial',
     size:viewSizeM,
@@ -588,16 +676,23 @@
         nombreFiesta: form.value.nombreFiesta,
         nombreSize: form.value.nombreSize,
         nombreFont: form.value.nombreFont,
+        nombreEfecto: form.value.nombreEfecto,
+        nombreEfectoRep: form.value.nombreEfectoRep,
         topTitle: form.value.topTitle,
         tipoFiesta: form.value.tipoFiesta,
         tipoSize: form.value.tipoSize,
         tipoFont: form.value.tipoFont,
+        tipoEfecto: form.value.tipoEfecto,
+        tipoEfectoRep: form.value.tipoEfectoRep,
+
         topDate: form.value.topDate,
             mensajeFont:form.value.mensajeFont,
         inicialTFont:form.value.inicialTFont,
         finalTFont:form.value.finalTFont,
         inviFont:form.value.inviFont,
         inviFont2:form.value.inviFont2,
+        inviEfecto:form.value.inviEfecto,
+        inviEfectoRep:form.value.inviEfectoRep,
         inicialTSize:form.value.inicialTSize,
         finalTSize:form.value.finalTSize,
         }"></app-view-template>
@@ -744,6 +839,35 @@
                                                         </select>
                                                     </div>
                                                 </div>
+                                                <div class="col-12  col-sm-6  col-md-3   mt-3 ma">
+                                                    <div class="form-group ">
+                                                        <label for="mensajeEfecto ">Efecto mensaje</label>
+                                                        <select name="mensajeEfecto" id="mensajeEfecto"
+                                                            formControlName="mensajeEfecto"
+                                                            class="form-control upper {{mensajeEfecto}}" #mensajeEfecto>
+                                                            <option value="" selected>Seleccione el tipo de efecto
+                                                            </option>
+                                                            <option [class]="item.clave" [value]="item.clave"
+                                                                class="name" *ngFor="let item of efectos">
+                                                                {{item.nombre}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12  col-sm-6  col-md-3   mt-3 ma">
+                                                    <div class="form-group ">
+                                                        <label for="mensajeEfectoRep ">Repetir efecto </label>
+                                                        <select name="mensajeEfectoRep" id="mensajeEfectoRep"
+                                                            formControlName="mensajeEfectoRep"
+                                                            class="form-control upper {{mensajeEfectoRep}}"
+                                                            #mensajeEfectoRep>
+                                                            <option value="" selected>Seleccione el tipo de efecto
+                                                            </option>
+                                                            <option [class]="item.clave" [value]="item.clave"
+                                                                class="name" *ngFor="let item of repEfec">
+                                                                {{item.nombre}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -765,6 +889,8 @@
                                             mensajeImg: (invitacion == undefined || invitacion.data.mensajeImg == '') ? '/assets/images/tp.png' : url + '/upload/invitaciones/' + invitacion.data.mensajeImg,
                                         mensaje1: form.value.mensaje1,
                                         mensajeSize: form.value.mensajeSize,
+                                        mensajeEfecto: form.value.mensajeEfecto,
+                                        mensajeEfectoRep: form.value.mensajeEfectoRep,
                                         bxMensajeImg: form.value.bxMensajeImg,
                                         byMensajeImg: form.value.byMensajeImg,
                                         mensajeFont: form.value.mensajeFont,

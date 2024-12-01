@@ -45,6 +45,189 @@ export class EditarInvitacionComponent {
   viewSizeM = ''
   usuarioFiesta = ''
   viewInicial = false
+  efectos: any = [
+    {
+      nombre: "Bounce",
+      clave: "animate__bounce"
+    },
+    {
+      nombre: "Flash",
+      clave: "animate__flash"
+    },
+    {
+      nombre: "Pulse",
+      clave: "animate__pulse"
+    },
+    {
+      nombre: "RubberBand",
+      clave: "animate__rubberBand"
+    },
+    {
+      nombre: "Shake X",
+      clave: "animate__shakeX"
+    },
+    {
+      nombre: "Shake Y",
+      clave: "animate__shakeY"
+    },
+    {
+      nombre: "HeadShake",
+      clave: "animate__shakeY"
+    },
+    {
+      nombre: "Swing",
+      clave: "animate__swing"
+    },
+    {
+      nombre: "Tada",
+      clave: "animate__tada"
+    },
+    {
+      nombre: "Wobble",
+      clave: "animate__wobble"
+    },
+    {
+      nombre: "Jello",
+      clave: "animate__jello"
+    },
+    {
+      nombre: "BackInDown",
+      clave: "animate__backInDown"
+    },
+    {
+      nombre: "BackInLeft",
+      clave: "animate__backInLeft"
+    },
+    {
+      nombre: "BackInRight",
+      clave: "animate__backInRight"
+    },
+    {
+      nombre: "BackInUp",
+      clave: "animate__backInUp"
+    },
+
+    {
+      nombre: "FadeIn",
+      clave: "animate__fadeIn"
+    },
+    {
+      nombre: "FadeInDown",
+      clave: "animate__fadeInDown"
+    },
+    {
+      nombre: "FadeInLeft",
+      clave: "animate__fadeInLeft"
+    },
+    {
+      nombre: "FadeInRight",
+      clave: "animate__fadeInRight"
+    },
+    {
+      nombre: "FadeInUp",
+      clave: "animate__fadeInUp"
+    },
+    {
+      nombre: "FadeInTopLeft",
+      clave: "animate__fadeInTopLeft"
+    },
+    {
+      nombre: "FadeInTopRight",
+      clave: "animate__fadeInTopRight"
+    },
+    {
+      nombre: "FadeInBottomLeft",
+      clave: "animate__fadeInBottomLeft"
+    },
+    {
+      nombre: "FadeInBottomRight",
+      clave: "animate__fadeInBottomRight"
+    },
+
+    {
+      nombre: "Fip",
+      clave: "animate__flip"
+    },
+    {
+      nombre: "FlipInX",
+      clave: "animate__flipInX"
+    },
+    {
+      nombre: "FlipInY",
+      clave: "animate__flipInY"
+    },
+    {
+      nombre: "LightSpeedInRight",
+      clave: "animate__lightSpeedInRight"
+    },
+    {
+      nombre: "LightSpeedInLeft",
+      clave: "animate__lightSpeedInLeft"
+    },
+    {
+      nombre: "RotateIn",
+      clave: "animate__rotateIn"
+    },
+    {
+      nombre: "JackInTheBox",
+      clave: "animate__jackInTheBox"
+    },
+    {
+      nombre: "RollIn",
+      clave: "animate__rollIn"
+    },
+    {
+      nombre: "ZoomIn",
+      clave: "animate__zoomIn"
+    },
+    {
+      nombre: "ZoomInDown",
+      clave: "animate__zoomInDown"
+    },
+    {
+      nombre: "ZoomInUp",
+      clave: "animate__zoomInUp"
+    },
+    {
+      nombre: "SlideInDown",
+      clave: "animate__slideInDown"
+    },
+    {
+      nombre: "SlideInLeft",
+      clave: "animate__slideInLeft"
+    },
+    {
+      nombre: "SlideInRight",
+      clave: "animate__slideInRight"
+    },
+    {
+      nombre: "SlideInUp",
+      clave: "animate__slideInUp"
+    },
+
+  ]
+  repEfec: any = [
+    {
+      nombre: '0',
+      clave: ''
+    },
+    {
+      nombre: '1',
+      clave: 'animate__repeat-1'
+    },
+    {
+      nombre: '2',
+      clave: 'animate__repeat-2'
+    },
+    {
+      nombre: '3',
+      clave: 'animate__repeat-3'
+    },
+    {
+      nombre: 'Infinito',
+      clave: 'animate__infinite'
+    },
+  ]
   constructor(
     private fb: FormBuilder,
     private functionsService: FunctionsService,
@@ -137,11 +320,15 @@ export class EditarInvitacionComponent {
       tipoFiesta: [''],
       tipoFont: [''],
       tipoSize: [90],
+      tipoEfecto: [''],
+      tipoEfectoRep: [1],
       topDate: [50],
       checking: [this.fiesta.checking],
       fiestaDate: [Number(this.fiesta.fecha)],
       nombreFiesta: [this.fiesta.nombre],
       nombreFont: ['pacifico'],
+      nombreEfecto: [''],
+      nombreEfectoRep: [1],
       nombresSize: [187],
       textInvitacionValida: ['¡Los esperamos!'],
       mensajeCheck: [true],
@@ -154,12 +341,16 @@ export class EditarInvitacionComponent {
       finalTFont: ['pacifico'],
       inviFont: ['pacifico'],
       inviFont2: ['pacifico'],
+      inviEfecto: [''],
+      inviEfectoRep: [1],
       mensajeImgWidth: [100],
       alturaMensaje: [25],
       bxMensajeImg: [50],
       byMensajeImg: [0],
       mensaje1: [''],
       mensajeSize: [25],
+      mensajeEfecto: [''],
+      mensajeEfectoRep: [1],
 
       donde1Check: [true],
       donde1Img: [''],
@@ -286,6 +477,8 @@ export class EditarInvitacionComponent {
       cantidad: [invitacion.fiesta.cantidad],
       tipoFiesta: [invitacion.data.tipoFiesta],
       tipoSize: [invitacion.data.tipoSize],
+      tipoEfecto: [invitacion.data.tipoEfecto],
+      tipoEfectoRep: [invitacion.data.tipoEfectoRep],
       topDate: [invitacion.data.topDate],
       fiestaDate: [invitacion.fiesta.fecha],
       nombreFiesta: [invitacion.fiesta.nombre],
@@ -297,6 +490,8 @@ export class EditarInvitacionComponent {
       byMensajeImg: [invitacion.data.byMensajeImg],
       mensaje1: [invitacion.data.mensaje1],
       mensajeSize: [invitacion.data.mensajeSize],
+      mensajeEfecto: [invitacion.data.mensajeEfecto],
+      mensajeEfectoRep: [invitacion.data.mensajeEfectoRep],
       donde1Check: [invitacion.data.donde1Check],
       donde1Img: [invitacion.data.donde1Img],
       donde1Title: [invitacion.data.donde1Title],
@@ -388,6 +583,8 @@ export class EditarInvitacionComponent {
 
 
       nombreFont: [invitacion.data.nombreFont ? invitacion.data.nombreFont : 'pacifico'],
+      nombreEfecto: [invitacion.data.nombreEfecto ? invitacion.data.nombreEfecto : ''],
+      nombreEfectoRep: [invitacion.data.nombreEfectoRep ? invitacion.data.nombreEfectoRep : 1],
       tipoFont: [invitacion.data.tipoFont ? invitacion.data.tipoFont : 'pacifico'],
       mensajeImgWidth: [invitacion.data.mensajeImgWidth],
       alturaMensaje: [invitacion.data.alturaMensaje],
@@ -396,6 +593,8 @@ export class EditarInvitacionComponent {
       finalTFont: [invitacion.data.finalTFont ? invitacion.data.finalTFont : 'pacifico'],
       inviFont: [invitacion.data.inviFont ? invitacion.data.inviFont : 'pacifico'],
       inviFont2: [invitacion.data.inviFont2 ? invitacion.data.inviFont2 : 'pacifico'],
+      inviEfecto: [invitacion.data.inviEfecto ? invitacion.data.inviEfecto : ''],
+      inviEfectoRep: [invitacion.data.inviEfectoRep ? invitacion.data.inviEfectoRep : '1'],
       inicialTSize: [invitacion.data.inicialTSize],
       finalTSize: [invitacion.data.finalTSize],
 
@@ -457,6 +656,8 @@ export class EditarInvitacionComponent {
       cantidad: [temp.cantidad],
       tipoFiesta: [temp.tipoFiesta],
       tipoSize: [temp.tipoSize],
+      tipoEfecto: [temp.tipoEfecto],
+      tipoEfectoRep: [temp.tipoEfectoRep],
       topDate: [temp.topDate],
       fiestaDate: [temp.fiestaDate],
       nombreFiesta: [temp.nombreFiesta],
@@ -468,6 +669,8 @@ export class EditarInvitacionComponent {
       byMensajeImg: [temp.byMensajeImg],
       mensaje1: [temp.mensaje1],
       mensajeSize: [temp.mensajeSize],
+      mensajeEfecto: [temp.mensajeEfecto],
+      mensajeEfectoRep: [temp.mensajeEfectoRep],
       donde1Check: [temp.donde1Check],
       donde1Img: [temp.donde1Img],
       donde1Title: [temp.donde1Title],
@@ -511,6 +714,8 @@ export class EditarInvitacionComponent {
 
 
       nombreFont: [temp.nombreFont],
+      nombreEfecto: [temp.nombreEfecto],
+      nombreEfectoRep: [temp.nombreEfectoRep],
       tipoFont: [temp.tipoFont],
       mensajeImgWidth: [temp.mensajeImgWidth],
       alturaMensaje: [temp.alturaMensaje],
@@ -521,6 +726,8 @@ export class EditarInvitacionComponent {
       finalTFont: [temp.finalTFont],
       inviFont: [temp.inviFont],
       inviFont2: [temp.inviFont2],
+      inviEfecto: [temp.inviEfecto],
+      inviEfectoRep: [temp.inviEfectoRep],
 
 
 
@@ -815,6 +1022,8 @@ export class EditarInvitacionComponent {
             cantidad: this.fiesta.cantidad,
             tipoFiesta: '',
             tipoSize: 90,
+            tipoEfecto: '',
+            tipoEfectoRep: 1,
             nombreSize: 20,
             titleSize: 20,
             topDate: 50,
@@ -829,6 +1038,8 @@ export class EditarInvitacionComponent {
             byMensajeImg: 0,
             mensaje1: '',
             mensajeSize: 25,
+            mensajeEfecto: '',
+            mensajeEfectoRep: 1,
             donde1Check: true,
             donde1Img: '',
             donde1Title: 'Iglesia',
@@ -904,6 +1115,8 @@ export class EditarInvitacionComponent {
             //font img
 
             nombreFont: "pacifico",
+            nombreEfecto: "",
+            nombreEfectoRep: 1,
             tipoFont: "pacifico",
             mensajeImgWidth: 100,
             alturaMensaje: 25,
@@ -914,6 +1127,8 @@ export class EditarInvitacionComponent {
             finalTFont: 'pacifico',
             inviFont: 'pacifico',
             inviFont2: 'pacifico',
+            inviEfecto: '',
+            inviEfectoRep: '1',
 
 
             //byFIle

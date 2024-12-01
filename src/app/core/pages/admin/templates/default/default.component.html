@@ -38,12 +38,16 @@
                     *ngIf="!vistaTemp">
 
                     <div class="animated backInDown texto tc" style="top:{{invitacion.topTitle}}%">
-                        <span class="ts cap {{invitacion.nombreFont}}"
-                            style="color:{{invitacion.cPrincipal}};font-size:{{invitacion.nombreSize}}px">{{invitacion.nombreFiesta}}</span>
-                        <h1 class="{{invitacion.tipoFont}} ts animate__bounce "
-                            style="font-size:{{invitacion.tipoSize}}px !important;color: {{invitacion.cWhite }};">
-                            {{invitacion.tipoFiesta}}
-                        </h1>
+                        <div class="animate__animated  {{invitacion.nombreEfecto}}  {{invitacion.nombreEfectoRep}}  ">
+                            <span class="ts cap {{invitacion.nombreFont}}"
+                                style="color:{{invitacion.cPrincipal}};font-size:{{invitacion.nombreSize}}px">{{invitacion.nombreFiesta}}</span>
+                        </div>
+                        <div class="animate__animated  {{invitacion.tipoEfecto}} {{invitacion.tipoEfectoRep}} ">
+                            <h1 class="{{invitacion.tipoFont}} ts animate__bounce "
+                                style="font-size:{{invitacion.tipoSize}}px !important;color: {{invitacion.cWhite }};">
+                                {{invitacion.tipoFiesta}}
+                            </h1>
+                        </div>
 
                     </div>
                     <div class="fecha {{invitacion.nombreFont}} tc  " style="top:{{invitacion.topDate}}%">
@@ -125,44 +129,46 @@
         </div>
 
 
-
-        <div class="row">
-            <div class="col-12">
-                <div class="card text-center"
-                    style="width: 100%; margin: auto; border: none; background-color: {{invitacion.cPrincipal}};"
-                    *ngIf="!generalCheck">
-                    <div class="card-body  " style="color:{{invitacion.cWhite}};">
-                        <h1 class="card-title mt-3 {{invitacion.inviFont}}  ">Invitación válida para:</h1>
-                        <h1 class="card-text   {{invitacion.inviFont2}} upper" *ngIf="!boleto">Invitado</h1>
-                        <h1 class="card-text   {{invitacion.inviFont2}} upper" *ngIf="boleto"
-                            style="font-size:{{invitacion.generalSize}}px !important">{{boleto.nombreGrupo }}
-                        </h1>
-                        <h2 class="  lato-regular-italic" *ngIf="checking">{{invitacion.cantidad}} pases</h2>
-                        <h1 class="card-text  {{invitacion.nombreFont}}upper" *ngIf="invitacion.mesa">Mesa
-                            <b>{{invitacion.mesa}}</b>
-                        </h1>
-                        <h2 *ngIf="fiesta && fiesta.croquis!=''">
-                            Ver croquis
-                            <i class="bi bi-file-excel-fill" style="cursor: pointer;"
-                                (click)="viewCroquis('fiestas',fiesta.croquis)"></i>
-                        </h2>
-                        <h3 class="  lato-regular-italic">{{invitacion.textInvitacionValida}}</h3>
+        <div class="animate__animated  {{invitacion.inviEfecto}} {{invitacion.inviEfectoRep}} ">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card text-center"
+                        style="width: 100%; margin: auto; border: none; background-color: {{invitacion.cPrincipal}};"
+                        *ngIf="!generalCheck">
+                        <div class="card-body  " style="color:{{invitacion.cWhite}};">
+                            <h1 class="card-title mt-3 {{invitacion.inviFont}}  ">Invitación válida para:</h1>
+                            <h1 class="card-text   {{invitacion.inviFont2}} upper" *ngIf="!boleto">Invitado</h1>
+                            <h1 class="card-text   {{invitacion.inviFont2}} upper" *ngIf="boleto"
+                                style="font-size:{{invitacion.generalSize}}px !important">{{boleto.nombreGrupo }}
+                            </h1>
+                            <h2 class="  lato-regular-italic" *ngIf="checking">{{invitacion.cantidad}} pases</h2>
+                            <h1 class="card-text  {{invitacion.nombreFont}}upper" *ngIf="invitacion.mesa">Mesa
+                                <b>{{invitacion.mesa}}</b>
+                            </h1>
+                            <h2 *ngIf="fiesta && fiesta.croquis!=''">
+                                Ver croquis
+                                <i class="bi bi-file-excel-fill" style="cursor: pointer;"
+                                    (click)="viewCroquis('fiestas',fiesta.croquis)"></i>
+                            </h2>
+                            <h3 class="  lato-regular-italic">{{invitacion.textInvitacionValida}}</h3>
+                        </div>
                     </div>
-                </div>
-                <div class="card text-center"
-                    style="width: 100%; margin: auto; border: none; background-color: {{invitacion.cPrincipal}};"
-                    *ngIf="generalCheck">
-                    <div class="card-body  " style="color:{{invitacion.cWhite}};">
-                        <h1 class="card-title mt-3 {{invitacion.inviFont}}  ">Invitación para: </h1>
-                        <h1 class="card-text   {{invitacion.inviFont2}} -bold upper"
-                            style="font-size:{{invitacion.generalSize}}px !important"> {{invitacion.generalTexto}}
-                        </h1>
-                        <h3 class=" {{invitacion.inviFont}} ">{{invitacion.textInvitacionValida}}</h3>
+                    <div class="card text-center"
+                        style="width: 100%; margin: auto; border: none; background-color: {{invitacion.cPrincipal}};"
+                        *ngIf="generalCheck">
+                        <div class="card-body  " style="color:{{invitacion.cWhite}};">
+                            <h1 class="card-title mt-3 {{invitacion.inviFont}}  ">Invitación para: </h1>
+                            <h1 class="card-text   {{invitacion.inviFont2}} -bold upper"
+                                style="font-size:{{invitacion.generalSize}}px !important"> {{invitacion.generalTexto}}
+                            </h1>
+                            <h3 class=" {{invitacion.inviFont}} ">{{invitacion.textInvitacionValida}}</h3>
+                        </div>
                     </div>
-                </div>
 
+                </div>
             </div>
         </div>
+
         <div class="row">
             <div class="col-12">
 
@@ -181,19 +187,20 @@
                 </div> -->
 
                 <!-- 222 -->
+                <div class="animate__animated  {{invitacion.mensajeEfecto}} {{invitacion.mensajeEfectoRep}} ">
+                    <div class="box principal"
+                        style="background-image:url({{url+'/upload/invitaciones/'+((invitacion.mensajeImg!=='')?invitacion.mensajeImg:'notImage')}}) ;background-position: {{invitacion.bxMensajeImg}}% {{invitacion.byMensajeImg}}px !important;height: auto; min-height:450px; background-size:{{invitacion.mensajeImgWidth}}%; "
+                        *ngIf="!vistaTemp">
+                        <div class="texto tc" style="margin-top:30% !important">
+                            <h5 class="p-5   {{invitacion.mensajeFont}}"
+                                style="color:{{invitacion.cWhite}}; font-size:{{invitacion.mensajeSize}}px !important;">
+                                {{invitacion.mensaje1}}
+                            </h5>
 
-
-                <div class="box principal"
-                    style="background-image:url({{url+'/upload/invitaciones/'+((invitacion.mensajeImg!=='')?invitacion.mensajeImg:'notImage')}}) ;background-position: {{invitacion.bxMensajeImg}}% {{invitacion.byMensajeImg}}px !important;height: auto; min-height:450px; background-size:{{invitacion.mensajeImgWidth}}%; "
-                    *ngIf="!vistaTemp">
-                    <div class="texto tc" style="margin-top:30% !important">
-                        <h5 class="p-5   {{invitacion.mensajeFont}}"
-                            style="color:{{invitacion.cWhite}}; font-size:{{invitacion.mensajeSize}}px !important;">
-                            {{invitacion.mensaje1}}
-                        </h5>
-
+                        </div>
                     </div>
                 </div>
+
 
             </div>
         </div>
@@ -553,7 +560,7 @@
                                 <div class="card  p-0 nborder">
 
 
-                                    <table *ngIf="musica.length >0">
+                                    <table *ngIf="musica.length >0" style="width: 80%;">
                                         <ng-container *ngFor="let pad of musica">
 
                                             <tr style="   height: 60px; line-height: 60px;">

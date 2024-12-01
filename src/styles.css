@@ -443,3 +443,7 @@ input[type="file"] {
 
     }
 }
+
+.animate__animated {
+    --animate-duration: 3s;
+}
