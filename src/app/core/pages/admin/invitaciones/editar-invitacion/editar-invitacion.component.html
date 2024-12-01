@@ -19,10 +19,12 @@
                                         <select name="viewExample" id="viewExample" #viewExample class="form-select">
                                             <option value="">Invitaciones de ejemplo</option>
                                             <ng-container *ngFor="let item of fiestas; let i=index">
-                                                
-                                                <option [value]="item.url" *ngIf="fiesta && fiesta.invitacion == item.type">{{item.name}} </option>
+
+                                                <option [value]="item.url"
+                                                    *ngIf="fiesta && fiesta.invitacion == item.type">{{item.name}}
+                                                </option>
                                             </ng-container>
-                                            
+
 
                                         </select>
                                     </div>
@@ -50,7 +52,27 @@
 
 
                                 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-                                    <div class="row text-center">
+
+                                    <!-- <div class="row text-center" >
+                                        <div class="col-12 col-md-3">
+
+                                            <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#collapseExample" aria-expanded="false"
+                                                aria-controls="collapseExample">
+                                                Colores
+                                            </button>
+                                        </div>
+
+
+                                        <div class="collapse" id="collapseExample">
+                                            <div class="card card-body">
+                                                Some placeholder content for the collapse component. This panel is
+                                                hidden by default but revealed when the user
+                                                activates the relevant trigger.
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <div class="row text-center mb-5" style="display: none;">
                                         <h5>Tipo de Vista </h5>
                                         <div class="col-6 ma">
                                             <select name="viewSize" id="viewSize" #viewSize class="form-select"
@@ -62,312 +84,495 @@
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="row text-center mb-3">
+                                        <div class="col-6 col-md-3 mt-3 ma ">
 
-                                    <div class="row text-center mt-5">
-                                        <h5>Colores</h5>
-                                        <div class="col-4   mt-3">
-                                            <div class="form-group ">
-                                                <label for="cPrincipal ">Principal</label>
-                                                <input type="color" class="form-control upper" id="cPrincipal"
-                                                    formControlName="cPrincipal" required placeholder="Color principal"
-                                                    [readonly]="edit==='false'">
-                                            </div>
-                                            <span *ngIf="submited && errorControl['cPrincipal'].errors "
-                                                class="error">Es requerido
-                                            </span>
+                                            <button class="btn but2" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#collapseColores" aria-expanded="false"
+                                                aria-controls="collapseColores">
+                                                Colores
+                                            </button>
                                         </div>
-                                        <div class="col-4   mt-3">
-                                            <div class="form-group ">
-                                                <label for="byFileColorFr ">Secundario</label>
-                                                <input type="color" class="form-control upper" id="cSecond"
-                                                    formControlName="cSecond" required placeholder="Color secundario"
-                                                    [readonly]="edit==='false'">
-                                            </div>
+                                        <div class="col-6 col-md-3 mt-3 ma ">
+
+                                            <button class="btn but2" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#collapseImagenSeccionPrincipal" aria-expanded="false"
+                                                aria-controls="collapseImagenSeccionPrincipal">
+                                                Imagen
+                                            </button>
                                         </div>
-                                        <div class="col-4   mt-3">
-                                            <div class="form-group ">
-                                                <label for="cWhite ">Terciario</label>
-                                                <input type="color" class="form-control upper" id="cWhite"
-                                                    formControlName="cWhite" required placeholder="Color de fondo"
-                                                    [readonly]="edit==='false'">
-                                            </div>
+                                        <div class="col-6 col-md-3 mt-3 ma ">
+
+                                            <button class="btn but2" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#collapseTituloSeccionPrincipal" aria-expanded="false"
+                                                aria-controls="collapseTituloSeccionPrincipal">
+                                                Título
+                                            </button>
                                         </div>
+                                        <div class="col-6 col-md-3 mt-3 ma ">
 
-
-
-                                    </div>
-                                    <div class="row text-center mt-3 mb-5">
-                                        <h5>Seccion inicial</h5>
-                                        <div class="col-12      mt-3">
-                                            <div class="form-group ">
-                                                <label for="img1">Imagen de fondo
-                                                    <img src="/assets/images/tp.png" alt="" class="pointer"
-                                                        style="width: 150px;"
-                                                        *ngIf="invitacion==undefined || invitacion.data.img1 ==''">
-
-                                                    <img [src]="url+'/upload/invitaciones/'+invitacion.data.img1" alt=""
-                                                        class=" pointer" *ngIf="invitacion" style="width: 150px;">
-
-                                                </label>
-
-                                                <input type="file" id="img1" #img1
-                                                    (change)="cambiarImagen($event,'img1' )">
-                                            </div>
+                                            <button class="btn but2" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#collapseSubtituloSeccionPrincipal"
+                                                aria-expanded="false" aria-controls="collapseSubtituloSeccionPrincipal">
+                                                Subtítulo
+                                            </button>
                                         </div>
-                                        <div class="col-6  col-md-4  mt-3">
-                                            <div class="form-group ">
-                                                <label for="xImg1 ">Posición horizontal de la imagen </label>
-                                                <input type="range" id="xImg1" #xImg1 formControlName="xImg1" min="-300"
-                                                    max="300">
-                                            </div>
+                                        <div class="col-6 col-md-3 mt-3 ma ">
+
+                                            <button class="btn but2" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#collapseFechaSeccionPrincipal" aria-expanded="false"
+                                                aria-controls="collapseSubtituloSeccionPrincipal">
+                                                Fecha
+                                            </button>
                                         </div>
-                                        <div class="col-6  col-md-4  mt-3">
-                                            <div class="form-group ">
-                                                <label for="yImg1 ">Posición vertical de la imagen </label>
-                                                <input type="range" id="yImg1" #yImg1 formControlName="yImg1" min="-200"
-                                                    max="200">
-                                            </div>
+                                        <div class="col-6 col-md-3 mt-3 ma ">
+
+                                            <button class="btn but2" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#collapseInvitacionSeccionPrincipal"
+                                                aria-expanded="false"
+                                                aria-controls="collapseInvitacionSeccionPrincipal">
+                                                Invitación
+                                            </button>
                                         </div>
-                                        <div class="col-12  col-sm-6 col-md-3   mt-3">
-                                            <div class="form-group ">
-                                                <label for="imgWidth ">Tamaño imagen</label>
-                                                <input type="range" id="imgWidth" #imgWidth formControlName="imgWidth"
-                                                    min="0" max="500">
-                                            </div>
-                                        </div>
-                                        <div class="col-12  col-sm-6 col-md-3   mt-3">
-                                            <div class="form-group ">
-                                                <label for="nombreFiesta ">Título invitación</label>
-                                                <input type="text" id="nombreFiesta" #nombreFiesta class="form-control"
-                                                    formControlName="nombreFiesta">
-                                            </div>
-                                        </div>
+                                        <div class="col-6 col-md-3 mt-3 ma ">
 
-                                        <div class="col-12  col-sm-6 col-md-3   mt-3">
-                                            <div class="form-group ">
-                                                <label for="nombreFont ">Fuente de título</label>
-                                                <select name="nombreFont" id="nombreFont" formControlName="nombreFont"
-                                                    class="form-control upper {{nombreFont}}" #nombreFont>
-                                                    <option value="">Seleccione el tipo de fuente</option>
-                                                    <option value="name" class="name" selected>Name</option>
-                                                    <option value="pacific" class="pacific">Pacific</option>
-                                                    <option value="dancing" class="dancing">Dancing</option>
-                                                    <option value="anton-sc-regular" class="anton-sc-regular">
-                                                        Anton-sc-regular</option>
-                                                    <option value="creepster-regular" class="creepster-regular">
-                                                        Creepster-regular</option>
-                                                    <option value="roboto-bold" class="roboto-bold">Roboto-bold</option>
-                                                    <option value="roboto-black-italic" class="roboto-black-italic">
-                                                        Roboto-black-italic</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-
-
-                                        <div class="col-12  col-sm-6 col-md-3   mt-3">
-                                            <div class="form-group ">
-                                                <label for="nombreSize ">Tamaño título
-                                                </label>
-                                                <input type="range" id="nombreSize" #nombreSize
-                                                    formControlName="nombreSize" min="-200" max="200">
-                                            </div>
-                                        </div>
-
-
-
-
-                                        <div class="col-6  col-md-3   mt-3 ma">
-                                            <div class="form-group ">
-                                                <label for="topTitle ">Altura del título </label>
-                                                <input type="range" id="topTitle" #topTitle formControlName="topTitle">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-12  col-sm-6 col-md-4   mt-3">
-                                            <div class="form-group ">
-                                                <label for="tipoFiesta ">Subtítulo invitación </label>
-                                                <input type="text" id="tipoFiesta" #tipoFiesta
-                                                    formControlName="tipoFiesta" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-12  col-sm-6 col-md-4   mt-3">
-                                            <div class="form-group ">
-                                                <label for="tipoFont">Fuente de subtítulo</label>
-                                                <select name="tipoFont" id="tipoFont" formControlName="tipoFont"
-                                                    class="form-control upper {{tipoFont}}" #tipoFont>
-                                                    <option value="">Seleccione el tipo de fuente</option>
-                                                    <option value="name" class="name" selected>Name</option>
-                                                    <option value="pacific" class="pacific">Pacific</option>
-                                                    <option value="dancing" class="dancing">Dancing</option>
-                                                    <option value="anton-sc-regular" class="anton-sc-regular">
-                                                        Anton-sc-regular</option>
-                                                    <option value="creepster-regular" class="creepster-regular">
-                                                        Creepster-regular</option>
-                                                    <option value="roboto-bold" class="roboto-bold">Roboto-bold</option>
-                                                    <option value="roboto-black-italic" class="roboto-black-italic">
-                                                        Roboto-black-italic</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-6  col-md-4   mt-3 ma">
-                                            <div class="form-group ">
-                                                <label for="tipoSize ">Tamaño de subtítulo </label>
-                                                <input type="range" id="tipoSize" #tipoSize formControlName="tipoSize"
-                                                    min="-200" max="200">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-12  col-sm-6 col-md-4   mt-3">
-                                            <div class="form-group ">
-                                                <label for="topDate ">Altura fecha </label>
-                                                <input type="range" id="topDate" #topDate formControlName="topDate"
-                                                    min=" 0" max="200">
-                                            </div>
-                                        </div>
-
-
-                                        <div class="col-12  col-sm-6 col-md-4   mt-3">
-                                            <div class="form-group ">
-                                                <label for="inicialTFont">Fuente inicial de fecha </label>
-                                                <select name="inicialTFont" id="inicialTFont"
-                                                    formControlName="inicialTFont"
-                                                    class="form-control upper {{inicialTFont}}" #inicialTFont>
-                                                    <option value="">Seleccione el tipo de fuente</option>
-                                                    <option value="name" class="name" selected>Name</option>
-                                                    <option value="pacific" class="pacific">Pacific</option>
-                                                    <option value="dancing" class="dancing">Dancing</option>
-                                                    <option value="anton-sc-regular" class="anton-sc-regular">
-                                                        Anton-sc-regular</option>
-                                                    <option value="creepster-regular" class="creepster-regular">
-                                                        Creepster-regular</option>
-                                                    <option value="roboto-bold" class="roboto-bold">Roboto-bold</option>
-                                                    <option value="roboto-black-italic" class="roboto-black-italic">
-                                                        Roboto-black-italic</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-12  col-sm-6 col-md-4   mt-3">
-                                            <div class="form-group ">
-                                                <label for="inicialTSize ">Tamaño inicial de fecha
-                                                </label>
-                                                <input type="range" id="inicialTSize" #inicialTSize
-                                                    formControlName="inicialTSize" min="10" max="50">
-                                            </div>
-                                        </div>
-
-
-                                        <div class="col-12  col-sm-6 col-md-4   mt-3">
-                                            <div class="form-group ">
-                                                <label for="finalTFont">Fuente final de fecha </label>
-                                                <select name="finalTFont" id="finalTFont" formControlName="finalTFont"
-                                                    class="form-control upper {{finalTFont}}" #finalTFont>
-                                                    <option value="">Seleccione el tipo de fuente</option>
-                                                    <option value="name" class="name" selected>Name</option>
-                                                    <option value="pacific" class="pacific">Pacific</option>
-                                                    <option value="dancing" class="dancing">Dancing</option>
-                                                    <option value="anton-sc-regular" class="anton-sc-regular">
-                                                        Anton-sc-regular</option>
-                                                    <option value="creepster-regular" class="creepster-regular">
-                                                        Creepster-regular</option>
-                                                    <option value="roboto-bold" class="roboto-bold">Roboto-bold</option>
-                                                    <option value="roboto-black-italic" class="roboto-black-italic">
-                                                        Roboto-black-italic</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-12  col-sm-6 col-md-4   mt-3">
-                                            <div class="form-group ">
-                                                <label for="finalTSize ">Tamaño final de fecha
-                                                </label>
-                                                <input type="range" id="finalTSize" #finalTSize
-                                                    formControlName="finalTSize" min="10" max="50">
-                                            </div>
-                                        </div>
-                                        <div class="col-12  col-sm-6 col-md-4   mt-3">
-                                            <div class="form-group ">
-                                                <label for="inviFont ">Fuente remitente</label>
-                                                <select name="inviFont" id="inviFont" formControlName="inviFont"
-                                                    class="form-control upper {{inviFont}}" #inviFont>
-                                                    <option value="">Seleccione el tipo de fuente</option>
-                                                    <option value="name" class="name" selected>Name</option>
-                                                    <option value="pacific" class="pacific">Pacific</option>
-                                                    <option value="dancing" class="dancing">Dancing</option>
-                                                    <option value="anton-sc-regular" class="anton-sc-regular">
-                                                        Anton-sc-regular</option>
-                                                    <option value="creepster-regular" class="creepster-regular">
-                                                        Creepster-regular</option>
-                                                    <option value="roboto-bold" class="roboto-bold">Roboto-bold</option>
-                                                    <option value="roboto-black-italic" class="roboto-black-italic">
-                                                        Roboto-black-italic</option>
-
-
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-12  col-sm-6 col-md-4   mt-3">
-                                            <div class="form-group ">
-                                                <label for="inviFont2 ">Fuente invitado</label>
-                                                <select name="inviFont2" id="inviFont2" formControlName="inviFont2"
-                                                    class="form-control upper {{inviFont2}}" #inviFont2>
-                                                    <option value="">Seleccione el tipo de fuente</option>
-                                                    <option value="name" class="name" selected>Name</option>
-                                                    <option value="pacific" class="pacific">Pacific</option>
-                                                    <option value="dancing" class="dancing">Dancing</option>
-                                                    <option value="anton-sc-regular" class="anton-sc-regular">
-                                                        Anton-sc-regular</option>
-                                                    <option value="creepster-regular" class="creepster-regular">
-                                                        Creepster-regular</option>
-                                                    <option value="roboto-bold" class="roboto-bold">Roboto-bold</option>
-                                                    <option value="roboto-black-italic" class="roboto-black-italic">
-                                                        Roboto-black-italic</option>
-
-
-                                                </select>
-                                            </div>
-                                        </div>
-
-
-
-
-
-                                    </div>
-
-                                    <hr class="mt-3 mb-3">
-                                    <div class="row text-center">
-
-                                        <div class="col-12       mt-3 ma ">
-                                            <label class="form-check-label" for="generalCheck">
+                                            <button class="btn but2" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#collapseGeneralSeccionPrincipal" aria-expanded="false"
+                                                aria-controls="collapseGeneralSeccionPrincipal">
                                                 Entrada general
-                                            </label>
-                                            <input class="form-check-input" type="checkbox" id="generalCheck"
-                                                #generalCheck formControlName="generalCheck">
-
-
+                                            </button>
                                         </div>
-                                        <div class="col-12 col-md-6  ma  mt-3" *ngIf="form.value.generalCheck">
-                                            <div class="form-group ">
-                                                <label for="generalTexto ">Texto como invitación General </label>
-                                                <input type="text" id="generalTexto" #generalTexto
-                                                    formControlName="generalTexto" placeholder="A toda la comunidad"
-                                                    class="form-control">
+
+
+                                        <div class="collapse " id="collapseColores">
+                                            <div class="row text-center mt-3">
+                                                <div class="col-4   mt-3">
+                                                    <div class="form-group ">
+                                                        <label for="cPrincipal ">Principal
+                                                        </label>
+                                                        <input type="color" class="form-control upper" id="cPrincipal"
+                                                            formControlName="cPrincipal" required
+                                                            placeholder="Color principal" [readonly]="edit==='false'">
+                                                    </div>
+                                                    <span *ngIf="submited && errorControl['cPrincipal'].errors "
+                                                        class="error">Es requerido
+                                                    </span>
+                                                </div>
+                                                <div class="col-4   mt-3">
+                                                    <div class="form-group ">
+                                                        <label for="byFileColorFr ">Secundario </label>
+                                                        <input type="color" class="form-control upper" id="cSecond"
+                                                            formControlName="cSecond" required
+                                                            placeholder="Color secundario" [readonly]="edit==='false'">
+                                                    </div>
+                                                </div>
+                                                <div class="col-4   mt-3">
+                                                    <div class="form-group ">
+                                                        <label for="cWhite ">Terciario </label>
+                                                        <input type="color" class="form-control upper" id="cWhite"
+                                                            formControlName="cWhite" required
+                                                            placeholder="Color de fondo" [readonly]="edit==='false'">
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-12 col-md-6  ma  mt-3" *ngIf="form.value.generalCheck">
-                                            <div class="form-group ">
-                                                <label for="generalSize">Texto como invitación General </label>
-                                                <input type="range" id="generalSize" #generalSize
-                                                    formControlName="generalSize" value="15" min="10" max="50">
+                                        <div class="collapse " id="collapseImagenSeccionPrincipal">
+                                            <div class="row text-center mt-3">
+
+                                                <div class="col-6   col-md-12    mt-3">
+                                                    <div class="form-group ">
+                                                        <label for="img1">Imagen de fondo
+                                                            <img src="/assets/images/tp.png" alt="" class="pointer"
+                                                                style="width: 150px;"
+                                                                *ngIf="invitacion==undefined || invitacion.data.img1 ==''">
+
+                                                            <img [src]="url+'/upload/invitaciones/'+invitacion.data.img1"
+                                                                alt="" class=" pointer" *ngIf="invitacion"
+                                                                style="width: 150px;">
+
+                                                        </label>
+
+                                                        <input type="file" id="img1" #img1
+                                                            (change)="cambiarImagen($event,'img1' )">
+                                                    </div>
+                                                </div>
+                                                <div class="col-6  col-md-4  mt-3">
+                                                    <div class="form-group ">
+                                                        <label for="imgWidth ">Tamaño de la imagen principal
+                                                        </label>
+
+                                                        <a class="range" (click)="changeRange('imgWidth','-')"> <b
+                                                                class="range-icon">-</b> </a>
+                                                        <input type="range" id="imgWidth" #imgWidth
+                                                            formControlName="imgWidth" min="0" max="500">
+                                                        <a class="range" (click)="changeRange('imgWidth','+')"> <b
+                                                                class="range-icon">+</b> </a>
+
+
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-6  col-md-4 mt-3">
+                                                    <div class="form-group ">
+                                                        <label for="xImg1 ">Posición Horizontal de la imagen
+                                                        </label>
+
+                                                        <a class="range" (click)="changeRange('xImg1','-')"> <b
+                                                                class="range-icon">-</b> </a>
+                                                        <input type="range" id="xImg1" #xImg1 formControlName="xImg1"
+                                                            min="-300" max="300">
+                                                        <a class="range" (click)="changeRange('xImg1','+')"> <b
+                                                                class="range-icon">+</b> </a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6  col-md-4  mt-3">
+                                                    <div class="form-group ">
+                                                        <label for="yImg1 ">Posición Vertical de la imagen
+                                                        </label>
+                                                        <a class="range" (click)="changeRange('yImg1','-')"> <b
+                                                                class="range-icon">-</b> </a>
+                                                        <input type="range" id="yImg1" #yImg1 formControlName="yImg1"
+                                                            min="-200" max="200">
+                                                        <a class="range" (click)="changeRange('yImg1','+')"> <b
+                                                                class="range-icon">+</b> </a>
+                                                    </div>
+                                                </div>
+
+
+
+
+
+
+
+                                            </div>
+
+                                        </div>
+                                        <div class="collapse " id="collapseTituloSeccionPrincipal">
+                                            <div class="row text-center mt-3">
+                                                <div class="col-6 col-md-3   mt-3">
+                                                    <div class="form-group ">
+                                                        <label for="nombreFiesta ">Título invitación</label>
+                                                        <input type="text" id="nombreFiesta" #nombreFiesta
+                                                            class="form-control" formControlName="nombreFiesta">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-6 col-md-3   mt-3">
+                                                    <div class="form-group ">
+                                                        <label for="nombreFont ">Fuente de título</label>
+                                                        <select name="nombreFont" id="nombreFont"
+                                                            formControlName="nombreFont"
+                                                            class="form-control upper {{nombreFont}}" #nombreFont>
+                                                            <option value="">Seleccione el tipo de fuente</option>
+                                                            <option value="name" class="name" selected>Name</option>
+                                                            <option value="pacific" class="pacific">Pacific</option>
+                                                            <option value="dancing" class="dancing">Dancing</option>
+                                                            <option value="anton-sc-regular" class="anton-sc-regular">
+                                                                Anton-sc-regular</option>
+                                                            <option value="creepster-regular" class="creepster-regular">
+                                                                Creepster-regular</option>
+                                                            <option value="roboto-bold" class="roboto-bold">Roboto-bold
+                                                            </option>
+                                                            <option value="roboto-black-italic"
+                                                                class="roboto-black-italic">
+                                                                Roboto-black-italic</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 col-md-3   mt-3">
+                                                    <div class="form-group ">
+                                                        <label for="nombreSize ">Tamaño título
+                                                        </label>
+                                                        <a class="range" (click)="changeRange('nombreSize','-')"> <b
+                                                                class="range-icon">-</b> </a>
+                                                        <input type="range" id="nombreSize" #nombreSize
+                                                            formControlName="nombreSize" min="-200" max="200">
+                                                        <a class="range" (click)="changeRange('nombreSize','+')"> <b
+                                                                class="range-icon">+</b> </a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 col-md-3   mt-3">
+                                                    <div class="form-group ">
+                                                        <label for="topTitle ">Altura del título </label>
+                                                        <a class="range" (click)="changeRange('topTitle','-')"> <b
+                                                                class="range-icon">-</b> </a>
+                                                        <input type="range" id="topTitle" #topTitle
+                                                            formControlName="topTitle">
+                                                        <a class="range" (click)="changeRange('topTitle','+')"> <b
+                                                                class="range-icon">+</b> </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="collapse " id="collapseSubtituloSeccionPrincipal">
+                                            <div class="row text-center mt-3">
+                                                <div class="col-6 col-md-3   mt-3 ma">
+                                                    <div class="form-group ">
+                                                        <label for="tipoFiesta ">Subtítulo invitación </label>
+                                                        <input type="text" id="tipoFiesta" #tipoFiesta
+                                                            formControlName="tipoFiesta" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 col-md-3   mt-3 ma">
+                                                    <div class="form-group ">
+                                                        <label for="tipoFont">Fuente de subtítulo</label>
+                                                        <select name="tipoFont" id="tipoFont" formControlName="tipoFont"
+                                                            class="form-control upper {{tipoFont}}" #tipoFont>
+                                                            <option value="">Seleccione el tipo de fuente</option>
+                                                            <option value="name" class="name" selected>Name</option>
+                                                            <option value="pacific" class="pacific">Pacific</option>
+                                                            <option value="dancing" class="dancing">Dancing</option>
+                                                            <option value="anton-sc-regular" class="anton-sc-regular">
+                                                                Anton-sc-regular</option>
+                                                            <option value="creepster-regular" class="creepster-regular">
+                                                                Creepster-regular</option>
+                                                            <option value="roboto-bold" class="roboto-bold">Roboto-bold
+                                                            </option>
+                                                            <option value="roboto-black-italic"
+                                                                class="roboto-black-italic">
+                                                                Roboto-black-italic</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 col-md-3   mt-3 ma">
+                                                    <div class="form-group ">
+                                                        <label for="tipoSize ">Tamaño de subtítulo </label>
+                                                        <a class="range" (click)="changeRange('tipoSize','-')"> <b
+                                                                class="range-icon">-</b> </a>
+                                                        <input type="range" id="tipoSize" #tipoSize
+                                                            formControlName="tipoSize" min="-200" max="200">
+                                                        <a class="range" (click)="changeRange('tipoSize','+')"> <b
+                                                                class="range-icon">+</b> </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="collapse " id="collapseFechaSeccionPrincipal">
+                                            <div class="row text-center mt-3">
+                                                <div class="  col-6 col-md-4   mt-3 ma">
+                                                    <div class="form-group ">
+                                                        <label for="topDate ">Altura fecha </label>
+                                                        <a class="range" (click)="changeRange('topDate','-')"> <b
+                                                                class="range-icon">-</b> </a>
+                                                        <input type="range" id="topDate" #topDate
+                                                            formControlName="topDate" min=" 0" max="200">
+                                                        <a class="range" (click)="changeRange('topDate','+')"> <b
+                                                                class="range-icon">+</b> </a>
+                                                    </div>
+                                                </div>
+                                                <div class="  col-6 col-md-4   mt-3 ma">
+                                                    <div class="form-group ">
+                                                        <label for="inicialTSize ">Tamaño inicial de fecha
+                                                        </label>
+                                                        <a class="range" (click)="changeRange('inicialTSize','-')"> <b
+                                                                class="range-icon">-</b> </a>
+                                                        <input type="range" id="inicialTSize" #inicialTSize
+                                                            formControlName="inicialTSize" min="10" max="50">
+                                                        <a class="range" (click)="changeRange('inicialTSize','+')"> <b
+                                                                class="range-icon">+</b> </a>
+                                                    </div>
+                                                </div>
+
+                                                <div class="  col-6 col-md-4   mt-3 ma">
+                                                    <div class="form-group ">
+                                                        <label for="finalTSize ">Tamaño final de fecha
+                                                        </label>
+                                                        <a class="range" (click)="changeRange('finalTSize','-')"> <b
+                                                                class="range-icon">-</b> </a>
+                                                        <input type="range" id="finalTSize" #finalTSize
+                                                            formControlName="finalTSize" min="10" max="50">
+                                                        <a class="range" (click)="changeRange('finalTSize','+')"> <b
+                                                                class="range-icon">+</b> </a>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="  col-6 col-md-4   mt-3 ma">
+                                                        <div class="form-group ">
+                                                            <label for="inicialTFont">Fuente inicial de fecha </label>
+                                                            <select name="inicialTFont" id="inicialTFont"
+                                                                formControlName="inicialTFont"
+                                                                class="form-control upper {{inicialTFont}}"
+                                                                #inicialTFont>
+                                                                <option value="">Seleccione el tipo de fuente</option>
+                                                                <option value="name" class="name" selected>Name</option>
+                                                                <option value="pacific" class="pacific">Pacific</option>
+                                                                <option value="dancing" class="dancing">Dancing</option>
+                                                                <option value="anton-sc-regular"
+                                                                    class="anton-sc-regular">
+                                                                    Anton-sc-regular</option>
+                                                                <option value="creepster-regular"
+                                                                    class="creepster-regular">
+                                                                    Creepster-regular</option>
+                                                                <option value="roboto-bold" class="roboto-bold">
+                                                                    Roboto-bold
+                                                                </option>
+                                                                <option value="roboto-black-italic"
+                                                                    class="roboto-black-italic">
+                                                                    Roboto-black-italic</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+
+
+                                                    <div class="  col-6 col-md-4   mt-3 ma">
+                                                        <div class="form-group ">
+                                                            <label for="finalTFont">Fuente final de fecha </label>
+                                                            <select name="finalTFont" id="finalTFont"
+                                                                formControlName="finalTFont"
+                                                                class="form-control upper {{finalTFont}}" #finalTFont>
+                                                                <option value="">Seleccione el tipo de fuente</option>
+                                                                <option value="name" class="name" selected>Name</option>
+                                                                <option value="pacific" class="pacific">Pacific</option>
+                                                                <option value="dancing" class="dancing">Dancing</option>
+                                                                <option value="anton-sc-regular"
+                                                                    class="anton-sc-regular">
+                                                                    Anton-sc-regular</option>
+                                                                <option value="creepster-regular"
+                                                                    class="creepster-regular">
+                                                                    Creepster-regular</option>
+                                                                <option value="roboto-bold" class="roboto-bold">
+                                                                    Roboto-bold
+                                                                </option>
+                                                                <option value="roboto-black-italic"
+                                                                    class="roboto-black-italic">
+                                                                    Roboto-black-italic</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+
+                                            </div>
+
+                                        </div>
+                                        <div class="collapse " id="collapseInvitacionSeccionPrincipal">
+                                            <div class="row text-center mt-3 ma">
+                                                <div class="col-12  col-sm-6 col-md-4   mt-3 ma">
+                                                    <div class="form-group ma">
+                                                        <label for="inviFont ">Fuente remitente</label>
+                                                        <select name="inviFont" id="inviFont" formControlName="inviFont"
+                                                            class="form-control upper {{inviFont}}" #inviFont>
+                                                            <option value="">Seleccione el tipo de fuente</option>
+                                                            <option value="name" class="name" selected>Name</option>
+                                                            <option value="pacific" class="pacific">Pacific</option>
+                                                            <option value="dancing" class="dancing">Dancing</option>
+                                                            <option value="anton-sc-regular" class="anton-sc-regular">
+                                                                Anton-sc-regular</option>
+                                                            <option value="creepster-regular" class="creepster-regular">
+                                                                Creepster-regular</option>
+                                                            <option value="roboto-bold" class="roboto-bold">Roboto-bold
+                                                            </option>
+                                                            <option value="roboto-black-italic"
+                                                                class="roboto-black-italic">
+                                                                Roboto-black-italic</option>
+
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12  col-sm-6 col-md-4   mt-3 ma">
+                                                    <div class="form-group ">
+                                                        <label for="inviFont2 ">Fuente invitado</label>
+                                                        <select name="inviFont2" id="inviFont2"
+                                                            formControlName="inviFont2"
+                                                            class="form-control upper {{inviFont2}}" #inviFont2>
+                                                            <option value="">Seleccione el tipo de fuente</option>
+                                                            <option value="name" class="name" selected>Name</option>
+                                                            <option value="pacific" class="pacific">Pacific</option>
+                                                            <option value="dancing" class="dancing">Dancing</option>
+                                                            <option value="anton-sc-regular" class="anton-sc-regular">
+                                                                Anton-sc-regular</option>
+                                                            <option value="creepster-regular" class="creepster-regular">
+                                                                Creepster-regular</option>
+                                                            <option value="roboto-bold" class="roboto-bold">Roboto-bold
+                                                            </option>
+                                                            <option value="roboto-black-italic"
+                                                                class="roboto-black-italic">
+                                                                Roboto-black-italic</option>
+
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="collapse " id="collapseGeneralSeccionPrincipal">
+                                            <div class="row text-center mt-3">
+                                                <div class="col-12       mt-3 ma ">
+                                                    <label class="form-check-label" for="generalCheck">
+                                                        Entrada general
+                                                    </label>
+                                                    <input class="form-check-input" type="checkbox" id="generalCheck"
+                                                        #generalCheck formControlName="generalCheck">
+
+
+                                                </div>
+                                                <div class="col-12 col-md-6  ma  mt-3" *ngIf="form.value.generalCheck">
+                                                    <div class="form-group ">
+                                                        <label for="generalTexto ">Texto como invitación General
+                                                        </label>
+
+                                                        <input type="text" id="generalTexto" #generalTexto
+                                                            formControlName="generalTexto"
+                                                            placeholder="A toda la comunidad" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-6  ma  mt-3" *ngIf="form.value.generalCheck">
+                                                    <div class="form-group ">
+                                                        <label for="generalSize">Texto como invitación General </label>
+                                                        <a class="range" (click)="changeRange('generalSize','-')"> <b
+                                                                class="range-icon">-</b> </a>
+                                                        <input type="range" id="generalSize" #generalSize
+                                                            formControlName="generalSize" value="15" min="10" max="50">
+                                                        <a class="range" (click)="changeRange('generalSize','+')"> <b
+                                                                class="range-icon">+</b> </a>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <hr class="mt-3 mb-3">
 
-                                    <app-view-template [data]="{
+
+
+
+                                    <!--  <code>
+                                    type:'seccionInicial',
+                                    size:{{viewSizeM}},
+                                    cPrincipal: {{form.value.cPrincipal}},
+                                    cSecond: {{form.value.cSecond}},
+                                    imgWidth: {{imgWidth.value}},
+                                    cWhite: {{form.value.cWhite}},
+                                    img1: {{(invitacion == undefined || invitacion.data.img1 == '') ? '/assets/images/tp.png' : url + '/upload/invitaciones/'
+                                    + invitacion.data.img1}},
+                                    xImg1: {{form.value.xImg1}},
+                                    yImg1: {{form.value.yImg1}},
+                                    generalCheck:{{form.value.generalCheck}},
+                                    generalTexto :{{form.value.generalTexto}},
+                                    generalSize:{{form.value.generalSize?form.value.generalSize:15}},
+                                    nombreFiesta: {{form.value.nombreFiesta}},
+                                    nombreSize: {{form.value.nombreSize}},
+                                    nombreFont: {{form.value.nombreFont}},
+                                    topTitle: {{form.value.topTitle}},
+                                tipoFiesta: {{form.value.tipoFiesta}},
+                                tipoSize: {{form.value.tipoSize}},
+                                tipoFont: {{form.value.tipoFont}},
+                                topDate: {{form.value.topDate}},
+                                mensajeFont:{{form.value.mensajeFont}},
+                                inicialTFont:{{form.value.inicialTFont}},
+                                finalTFont:{{form.value.finalTFont}},
+                                inviFont:{{form.value.inviFont}}, 
+                                inviFont2:{{form.value.inviFont2}},
+                                inicialTSize:{{form.value.inicialTSize}},
+                                finalTSize:{{form.value.finalTSize}},
+                            
+                                    </code> -->
+
+                                    <app-view-template *ngIf="viewInicial" class="mt-3" [data]="{
     type:'seccionInicial',
     size:viewSizeM,
         cPrincipal: form.value.cPrincipal,
@@ -377,8 +582,8 @@
              img1: (invitacion == undefined || invitacion.data.img1 == '') ? '/assets/images/tp.png' : url + '/upload/invitaciones/' + invitacion.data.img1, 
         xImg1: form.value.xImg1,
         yImg1: form.value.yImg1,
-        generalCheck:invitacion.data.generalCheck,
-        generalTexto :invitacion.data.generalTexto,
+       generalCheck:form.value.generalCheck,
+                                    generalTexto :form.value.generalTexto,
         generalSize:form.value.generalSize?form.value.generalSize:15,
         nombreFiesta: form.value.nombreFiesta,
         nombreSize: form.value.nombreSize,
@@ -393,101 +598,149 @@
         finalTFont:form.value.finalTFont,
         inviFont:form.value.inviFont,
         inviFont2:form.value.inviFont2,
-        inicialTSize:inicialTSize.value,
-        finalTSize:finalTSize.value,
+        inicialTSize:form.value.inicialTSize,
+        finalTSize:form.value.finalTSize,
         }"></app-view-template>
-  <hr class="mt-3 mb-3">
-                                    <div class="row text-center mt-3">
+                                    <hr class="mt-3 mb-3">
+                                    <div class="row text-center mb-3">
                                         <h5>Seccion Mensaje</h5>
-                                        <div class="col-12  col-md-6  mt-3 text-center ">
-                                            <div class="form-group    image-upload ">
-                                                <label for="mensajeImg">Imagen de fondo
-                                                    <br>
+                                        <div class="col-6 col-md-3 mt-3 ma ">
 
-                                                    <img src="/assets/images/tp.png" alt="" class="pointer"
-                                                        *ngIf="invitacion==undefined || invitacion.data.mensajeImg=='' "
-                                                        style="width: 150px;">
+                                            <button class="btn but2" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#collapseImagenMensaje" aria-expanded="false"
+                                                aria-controls="collapseImagenMensaje">
+                                                Imagen del mensaje
+                                            </button>
+                                        </div>
+                                        <div class="col-6 col-md-3 mt-3 ma ">
 
-                                                    <img [src]="url+'/upload/invitaciones/'+invitacion.data.mensajeImg"
-                                                        alt="" class=" pointer" *ngIf="invitacion"
-                                                        style="width: 150px;">
-                                                    <!-- invitacion.data.mensajeImg!='' -->
+                                            <button class="btn but2" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#collapseTextoMensaje" aria-expanded="false"
+                                                aria-controls="collapseTextoMensaje">
+                                                Texto del mensaje
+                                            </button>
+                                        </div>
+                                        <div class="collapse " id="collapseImagenMensaje">
+                                            <div class="row text-center mt-3">
+                                                <div class="col-6   col-md-12    mt-3 ma">
+                                                    <div class="form-group    image-upload ">
+                                                        <label for="mensajeImg">Imagen de fondo
+                                                            <br>
 
-                                                </label>
-                                                <input type="file" id="mensajeImg" #mensajeImg
-                                                    (change)="cambiarImagen($event,'mensajeImg' )">
+                                                            <img src="/assets/images/tp.png" alt="" class="pointer"
+                                                                *ngIf="invitacion==undefined || invitacion.data.mensajeImg=='' "
+                                                                style="width: 150px;">
+
+                                                            <img [src]="url+'/upload/invitaciones/'+invitacion.data.mensajeImg"
+                                                                alt="" class=" pointer" *ngIf="invitacion"
+                                                                style="width: 150px;">
+                                                            <!-- invitacion.data.mensajeImg!='' -->
+
+                                                        </label>
+                                                        <input type="file" id="mensajeImg" #mensajeImg
+                                                            (change)="cambiarImagen($event,'mensajeImg' )">
+                                                    </div>
+                                                </div>
+                                                <div class="col-6  col-md-4  mt-3">
+                                                    <div class="form-group ">
+                                                        <label for="mensajeImgWidth ">Tamaño de la imagen del mensaje
+                                                        </label>
+
+                                                        <a class="range" (click)="changeRange('mensajeImgWidth','-')">
+                                                            <b class="range-icon">-</b> </a>
+                                                        <input type="range" id="mensajeImgWidth" #mensajeImgWidth
+                                                            formControlName="mensajeImgWidth" min="0" max="500">
+                                                        <a class="range" (click)="changeRange('mensajeImgWidth','+')">
+                                                            <b class="range-icon">+</b> </a>
+
+
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-6  col-md-4  mt-3">
+                                                    <div class="form-group ">
+                                                        <label for="bxMensajeImg ">Horizontal imagen mensaje </label>
+                                                        <a class="range" (click)="changeRange('bxMensajeImg','-')">
+                                                            <b class="range-icon">-</b> </a>
+
+                                                        <input type="range" id="bxMensajeImg" #bxMensajeImg
+                                                            formControlName="bxMensajeImg" />
+                                                        <a class="range" (click)="changeRange('bxMensajeImg','+')">
+                                                            <b class="range-icon">+</b> </a>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-6  col-md-4  mt-3">
+                                                    <div class="form-group ">
+                                                        <label for="bxMensajeImg ">Vertical imagen mensaje </label>
+                                                        <a class="range" (click)="changeRange('byMensajeImg','-')">
+                                                            <b class="range-icon">-</b> </a>
+
+                                                        <input type="range" id="byMensajeImg" #byMensajeImg
+                                                            formControlName="byMensajeImg" min="-100" />
+                                                        <a class="range" (click)="changeRange('byMensajeImg','+')">
+                                                            <b class="range-icon">+</b> </a>
+
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
+                                        <div class="collapse " id="collapseTextoMensaje">
+                                            <div class="row text-center mt-3">
+                                                <div class="col-12  mt-3">
+                                                    <div class="form-group ">
+                                                        <label for="mensaje1 ">Mensaje </label>
+                                                        <textarea type="text" id="mensaje1" #mensaje1
+                                                            formControlName="mensaje1" class="form-control"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6  col-md-4 mt-3 ma">
+                                                    <div class="form-group ">
+                                                        <label for="mensajeSize ">Tamaño letra mensaje </label>
+                                                        <input type="range" id="mensajeSize" #mensajeSize
+                                                            formControlName="mensajeSize" />
+                                                    </div>
+                                                </div>
 
 
+                                                <div class="col-6  col-md-4 mt-3 ma">
+                                                    <div class="form-group ">
+                                                        <label for="alturaMensaje ">Altura mensaje</label>
+                                                        <input type="range" id="alturaMensaje" #alturaMensaje
+                                                            formControlName="alturaMensaje" min="0" max="50   ">
+                                                    </div>
+                                                </div>
+                                                <div class="col-6  col-md-4 mt-3 ma">
+
+                                                    <div class="form-group ">
+                                                        <label for="mensajeFont ">Fuente de mensaje</label>
+                                                        <select name="mensajeFont" id="mensajeFont"
+                                                            formControlName="mensajeFont"
+                                                            class="form-control upper {{mensajeFont}}" #mensajeFont>
+                                                            <option value="">Seleccione el tipo de fuente</option>
+                                                            <option value="name" class="name" selected>Name</option>
+                                                            <option value="pacific" class="pacific">Pacific</option>
+                                                            <option value="dancing" class="dancing">Dancing</option>
+                                                            <option value="anton-sc-regular" class="anton-sc-regular">
+                                                                Anton-sc-regular</option>
+                                                            <option value="creepster-regular" class="creepster-regular">
+                                                                Creepster-regular</option>
+                                                            <option value="roboto-bold" class="roboto-bold">Roboto-bold
+                                                            </option>
+                                                            <option value="roboto-black-italic"
+                                                                class="roboto-black-italic">
+                                                                Roboto-black-italic</option>
 
 
-
-                                        <div class="col-12  col-md-6  mt-3">
-                                            <div class="form-group ">
-                                                <label for="mensaje1 ">Mensaje </label>
-                                                <textarea type="text" id="mensaje1" #mensaje1 formControlName="mensaje1"
-                                                    class="form-control"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="col-12  col-md-4  mt-3">
-                                            <div class="form-group ">
-                                                <label for="mensajeFont ">Fuente de mensaje</label>
-                                                <select name="mensajeFont" id="mensajeFont"
-                                                    formControlName="mensajeFont"
-                                                    class="form-control upper {{mensajeFont}}" #mensajeFont>
-                                                    <option value="">Seleccione el tipo de fuente</option>
-                                                    <option value="name" class="name" selected>Name</option>
-                                                    <option value="pacific" class="pacific">Pacific</option>
-                                                    <option value="dancing" class="dancing">Dancing</option>
-                                                    <option value="anton-sc-regular" class="anton-sc-regular">
-                                                        Anton-sc-regular</option>
-                                                    <option value="creepster-regular" class="creepster-regular">
-                                                        Creepster-regular</option>
-                                                    <option value="roboto-bold" class="roboto-bold">Roboto-bold</option>
-                                                    <option value="roboto-black-italic" class="roboto-black-italic">
-                                                        Roboto-black-italic</option>
-
-
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-12  col-md-4  mt-3">
-                                            <div class="form-group ">
-                                                <label for="mensajeSize ">Tamaño letra mensaje </label>
-                                                <input type="range" id="mensajeSize" #mensajeSize
-                                                    formControlName="mensajeSize" />
-                                            </div>
-                                        </div>
-                                        <div class="col-12  col-md-4  mt-3">
-                                            <div class="form-group ">
-                                                <label for="bxMensajeImg ">Horizontal imagen mensaje </label>
-                                                <input type="range" id="bxMensajeImg" #bxMensajeImg
-                                                    formControlName="bxMensajeImg" />
-                                            </div>
-                                        </div>
-                                        <div class="col-12  col-md-4  mt-3">
-                                            <div class="form-group ">
-                                                <label for="bxMensajeImg ">Vertical imagen mensaje </label>
-                                                <input type="range" id="byMensajeImg" #byMensajeImg
-                                                    formControlName="byMensajeImg" />
-                                            </div>
-                                        </div>
-                                        <div class="col-12  col-sm-6 col-md-4   mt-3 ma">
-                                            <div class="form-group ">
-                                                <label for="mensajeImgWidth ">Tamaño imagen mensaje</label>
-                                                <input type="range" id="mensajeImgWidth" #mensajeImgWidth
-                                                    formControlName="mensajeImgWidth" min="0" max="500">
-                                            </div>
-                                        </div>
-                                        <div class="col-12  col-sm-6 col-md-4   mt-3 ma">
-                                            <div class="form-group ">
-                                                <label for="alturaMensaje ">Altura mensaje</label>
-                                                <input type="range" id="alturaMensaje" #alturaMensaje
-                                                    formControlName="alturaMensaje" min="0" max="50   ">
+                                                        </select>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+
+
 
 
 
@@ -1602,7 +1855,7 @@
                                                     formControlName="inicialTFont"
                                                     class="form-control upper {{inicialTFont.value}}" #inicialTFont>
                                                     <option value="">Seleccione el tipo de fuente</option>
-                                                    <option value="name" class="name"  >Name</option>
+                                                    <option value="name" class="name">Name</option>
                                                     <option value="pacific" class="pacific">Pacific</option>
                                                     <option value="dancing" class="dancing">Dancing</option>
                                                     <option value="anton-sc-regular" class="anton-sc-regular">

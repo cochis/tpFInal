@@ -103,7 +103,7 @@ export class GaleriaComponent implements OnInit, OnDestroy {
 
       if (this.fiestaDB.fecha > this.today) {
 
-        this.functionsService.alert('Fiesta', 'La fiesta aun no ha empezado', 'error')
+        this.functionsService.alert('Evento', 'El evento aun no ha empezado', 'error')
 
 
         this.functionsService.navigateTo(`/core/mis-fiestas`)
@@ -112,7 +112,7 @@ export class GaleriaComponent implements OnInit, OnDestroy {
     },
       (err) => {
         console.error('Error', err)
-        this.functionsService.alert('Fiesta', 'La fiesta no existe', 'error')
+        this.functionsService.alert('Evento', 'El evento no existe', 'error')
         this.functionsService.navigateTo('/')
       }
     )
@@ -125,7 +125,7 @@ export class GaleriaComponent implements OnInit, OnDestroy {
 
       if (this.fiestaDB.fecha > this.today) {
 
-        this.functionsService.alert('Fiesta', 'La fiesta aun no ha empezado', 'error')
+        this.functionsService.alert('Evento', 'El evento aun no ha empezado', 'error')
 
         if (this.fiestaDB.invitacion.includes('default')) {
 
@@ -139,7 +139,7 @@ export class GaleriaComponent implements OnInit, OnDestroy {
     },
       (err) => {
         console.error('Error', err)
-        this.functionsService.alert('Fiesta', 'La fiesta no existe', 'error')
+        this.functionsService.alert('Evento', 'El evento no existe', 'error')
         this.functionsService.navigateTo('/')
       }
     )

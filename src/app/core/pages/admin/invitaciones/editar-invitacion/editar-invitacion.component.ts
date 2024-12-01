@@ -44,6 +44,7 @@ export class EditarInvitacionComponent {
   viewVideo = false
   viewSizeM = ''
   usuarioFiesta = ''
+  viewInicial = false
   constructor(
     private fb: FormBuilder,
     private functionsService: FunctionsService,
@@ -54,16 +55,19 @@ export class EditarInvitacionComponent {
     private fileService: FileService,
 
   ) {
-    this.functionsService.alert('Crear invitación', 'Se recomienda realizar la invitación en una computadora para facilitar la edición.','info')
+    setTimeout(() => {
+      this.viewInicial = true
+    }, 500);
+    this.functionsService.alert('Crear invitación', 'Se recomienda realizar la invitación en una computadora para facilitar la edición.', 'info')
     this.functionsService.removeItemLocal('tipoInvitacion')
     this.examples.forEach(async element => {
       let fiesta = element.split('|')
 
-      let res = { fiesta: fiesta[0], url: fiesta[1],name:fiesta[2],type:fiesta[3] }
+      let res = { fiesta: fiesta[0], url: fiesta[1], name: fiesta[2], type: fiesta[3] }
       this.fiestas.push(res)
     });
-   
-   
+
+
 
     this.id = this.route.snapshot.params['id']
     this.edit = this.route.snapshot.params['edit']
@@ -86,7 +90,8 @@ export class EditarInvitacionComponent {
     this.loading = true
     this.fiestasService.cargarFiestaById(id).subscribe((resp: CargarFiesta) => {
       this.fiesta = resp.fiesta
-     
+
+
       this.usuarioFiesta = this.fiesta.usuarioFiesta._id
       this.invitacionId = this.fiesta.invitacion
       this.functionsService.setLocal('tipoInvitacion', this.fiesta.invitacion)
@@ -120,13 +125,14 @@ export class EditarInvitacionComponent {
       cPrincipal: ['#ffc0cb'],
       cSecond: ['#c0354e'],
       cWhite: ['#ffffff'],
+
       img1: [''],
       imgWidth: [100],
       xImg1: [50],
       yImg1: [0],
       topTitle: [40],
       nombreSize: [20],
-      invitado: [''],
+      titleSize: [20],
       cantidad: [this.fiesta.cantidad],
       tipoFiesta: [''],
       tipoFont: [''],
@@ -263,6 +269,7 @@ export class EditarInvitacionComponent {
 
 
 
+
     invitacion.data = await this.numberToData(invitacion.data)
     this.form = this.fb.group({
 
@@ -273,8 +280,9 @@ export class EditarInvitacionComponent {
       img1: [invitacion.data.img1],
       xImg1: [invitacion.data.xImg1],
       yImg1: [invitacion.data.yImg1],
+      imgWidth: [invitacion.data.imgWidth],
       topTitle: [invitacion.data.topTitle],
-      invitado: ['Invitado'],
+
       cantidad: [invitacion.fiesta.cantidad],
       tipoFiesta: [invitacion.data.tipoFiesta],
       tipoSize: [invitacion.data.tipoSize],
@@ -282,6 +290,7 @@ export class EditarInvitacionComponent {
       fiestaDate: [invitacion.fiesta.fecha],
       nombreFiesta: [invitacion.fiesta.nombre],
       nombreSize: [invitacion.data.nombreSize],
+      titleSize: [invitacion.data.titleSize],
       textInvitacionValida: [invitacion.data.textInvitacionValida],
       mensajeImg: [invitacion.data.mensajeImg],
       bxMensajeImg: [invitacion.data.bxMensajeImg],
@@ -377,7 +386,7 @@ export class EditarInvitacionComponent {
 
       //font width  IMG
 
-      imgWidth: [invitacion.data.imgWidth],
+
       nombreFont: [invitacion.data.nombreFont ? invitacion.data.nombreFont : 'pacifico'],
       tipoFont: [invitacion.data.tipoFont ? invitacion.data.tipoFont : 'pacifico'],
       mensajeImgWidth: [invitacion.data.mensajeImgWidth],
@@ -442,8 +451,9 @@ export class EditarInvitacionComponent {
       img1: [temp.img1],
       xImg1: [temp.xImg1],
       yImg1: [temp.yImg1],
+      imgWidth: [temp.imgWidth],
       topTitle: [temp.topTitle],
-      invitado: [temp.invitado],
+
       cantidad: [temp.cantidad],
       tipoFiesta: [temp.tipoFiesta],
       tipoSize: [temp.tipoSize],
@@ -451,6 +461,7 @@ export class EditarInvitacionComponent {
       fiestaDate: [temp.fiestaDate],
       nombreFiesta: [temp.nombreFiesta],
       nombreSize: [temp.nombreSize],
+      titleSize: [temp.titleSize],
       textInvitacionValida: [temp.textInvitacionValida],
       mensajeImg: [temp.mensajeImg],
       bxMensajeImg: [temp.bxMensajeImg],
@@ -498,7 +509,7 @@ export class EditarInvitacionComponent {
       mesaRegalosImg: [temp.mesaRegalosImg],
 
 
-      imgWidth: [temp.imgWidth],
+
       nombreFont: [temp.nombreFont],
       tipoFont: [temp.tipoFont],
       mensajeImgWidth: [temp.mensajeImgWidth],
@@ -787,7 +798,7 @@ export class EditarInvitacionComponent {
   getInvitacion(id) {
     this.loading = true
     this.invitacionsService.cargarInvitacionByFiesta(id).subscribe(async resp => {
- 
+
       this.invitacion = resp.invitacion
       if (!this.invitacion) {
         setTimeout(() => {
@@ -797,13 +808,15 @@ export class EditarInvitacionComponent {
             cWhite: '#ffffff',
             img1: '',
             xImg1: 50,
-            yImg1: 0,
+            yImg1: 10,
+            imgWidth: 100,
             topTitle: 40,
-            invitado: '',
+
             cantidad: this.fiesta.cantidad,
             tipoFiesta: '',
             tipoSize: 90,
             nombreSize: 20,
+            titleSize: 20,
             topDate: 50,
             checking: this.fiesta.checking,
             fiestaDate: Number(this.fiesta.fecha),
@@ -889,7 +902,7 @@ export class EditarInvitacionComponent {
             lastEdited: this.today,
 
             //font img
-            imgWidth: 100,
+
             nombreFont: "pacifico",
             tipoFont: "pacifico",
             mensajeImgWidth: 100,
@@ -1337,24 +1350,24 @@ export class EditarInvitacionComponent {
       let invitacion = this.functionsService.getLocal('invitacion')
 
       this.invitacion.data = await this.numberToData(invitacion)
-      this.invitacion.data.nombreFiesta=''
-      this.invitacion.data.tipoFiesta=''
-      this.invitacion.data.generalTexto=''
-      this.invitacion.data.mensaje1=''
-      this.invitacion.data.codigoVestimentaMujer=''
-      this.invitacion.data.codigoVestimentaHombre=''
-      this.invitacion.data.donde2Text=''
-      this.invitacion.data.donde3Text=''
-      this.invitacion.data.donde2Text=''
-      this.invitacion.data.mesaRegalosLugar=''
-      this.invitacion.data.mesaRegalosUrl=''
-      this.invitacion.data.padres=[]
-      this.invitacion.data.padrinos=[]
-      this.invitacion.data.chambelanes=[]
-      this.invitacion.data.menu=[]
-      this.invitacion.data.musica=[]
-      this.invitacion.data.itinerarios=[]
-      this.invitacion.data.notas=[]
+      this.invitacion.data.nombreFiesta = ''
+      this.invitacion.data.tipoFiesta = ''
+      this.invitacion.data.generalTexto = ''
+      this.invitacion.data.mensaje1 = ''
+      this.invitacion.data.codigoVestimentaMujer = ''
+      this.invitacion.data.codigoVestimentaHombre = ''
+      this.invitacion.data.donde2Text = ''
+      this.invitacion.data.donde3Text = ''
+      this.invitacion.data.donde2Text = ''
+      this.invitacion.data.mesaRegalosLugar = ''
+      this.invitacion.data.mesaRegalosUrl = ''
+      this.invitacion.data.padres = []
+      this.invitacion.data.padrinos = []
+      this.invitacion.data.chambelanes = []
+      this.invitacion.data.menu = []
+      this.invitacion.data.musica = []
+      this.invitacion.data.itinerarios = []
+      this.invitacion.data.notas = []
 
       this.usuarioCreated = this.usuarioFiesta
       this.setFormWithData(this.invitacion)
@@ -1363,6 +1376,24 @@ export class EditarInvitacionComponent {
       this.functionsService.alert('Alerta', 'Necesita entrar a un ejemplo y copiar', 'warning')
       return
     }
+  }
+
+  changeRange(type: string, tipo: string) {
+
+    let num = 0
+    if (tipo == '+') {
+
+      num = this.form.value[type] + 3
+    } else {
+      num = this.form.value[type] - 3
+
+    }
+
+    this.form.patchValue({
+      [type]: num
+    })
+
+
   }
 
 }

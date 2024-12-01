@@ -72,6 +72,22 @@ body {
 
 }
 
+.but2 {
+    background: var(--secondary-color) !important;
+    color: white !important;
+}
+
+.but2:hover {
+    color: white;
+
+    background: var(--secondary-color);
+
+    opacity: .7;
+
+    ;
+
+}
+
 .card {
     border: none !important;
 }
@@ -261,110 +277,169 @@ input[type="file"] {
     font-weight: 400;
     font-style: normal;
 }
+
 .anton-sc-regular {
     font-family: "Anton SC", sans-serif;
     font-weight: 400;
     font-style: normal;
-  }
-  
-  .creepster-regular {
+}
+
+.creepster-regular {
     font-family: "Creepster", system-ui;
     font-weight: 400;
     font-style: normal;
-  }
-  
-  .roboto-thin {
+}
+
+.roboto-thin {
     font-family: "Roboto", sans-serif;
     font-weight: 100;
     font-style: normal;
-  }
-  
-  .roboto-light {
+}
+
+.roboto-light {
     font-family: "Roboto", sans-serif;
     font-weight: 300;
     font-style: normal;
-  }
-  
-  .roboto-regular {
+}
+
+.roboto-regular {
     font-family: "Roboto", sans-serif;
     font-weight: 400;
     font-style: normal;
-  }
-  
-  .roboto-medium {
+}
+
+.roboto-medium {
     font-family: "Roboto", sans-serif;
     font-weight: 500;
     font-style: normal;
-  }
-  
-  .roboto-bold {
+}
+
+.roboto-bold {
     font-family: "Roboto", sans-serif;
     font-weight: 700;
     font-style: normal;
-  }
-  
-  .roboto-black {
+}
+
+.roboto-black {
     font-family: "Roboto", sans-serif;
     font-weight: 900;
     font-style: normal;
-  }
-  
-  .roboto-thin-italic {
+}
+
+.roboto-thin-italic {
     font-family: "Roboto", sans-serif;
     font-weight: 100;
     font-style: italic;
-  }
-  
-  .roboto-light-italic {
+}
+
+.roboto-light-italic {
     font-family: "Roboto", sans-serif;
     font-weight: 300;
     font-style: italic;
-  }
-  
-  .roboto-regular-italic {
+}
+
+.roboto-regular-italic {
     font-family: "Roboto", sans-serif;
     font-weight: 400;
     font-style: italic;
-  }
-  
-  .roboto-medium-italic {
+}
+
+.roboto-medium-italic {
     font-family: "Roboto", sans-serif;
     font-weight: 500;
     font-style: italic;
-  }
-  
-  .roboto-bold-italic {
+}
+
+.roboto-bold-italic {
     font-family: "Roboto", sans-serif;
     font-weight: 700;
     font-style: italic;
-  }
-  
-  .roboto-black-italic {
+}
+
+.roboto-black-italic {
     font-family: "Roboto", sans-serif;
     font-weight: 900;
     font-style: italic;
-  }
-  .arsenal-sc-regular {
+}
+
+.arsenal-sc-regular {
     font-family: "Arsenal SC", serif;
     font-weight: 400;
     font-style: normal;
-  }
-  
-  .arsenal-sc-bold {
+}
+
+.arsenal-sc-bold {
     font-family: "Arsenal SC", serif;
     font-weight: 700;
     font-style: normal;
-  }
-  
-  .arsenal-sc-regular-italic {
+}
+
+.arsenal-sc-regular-italic {
     font-family: "Arsenal SC", serif;
     font-weight: 400;
     font-style: italic;
-  }
-  
-  .arsenal-sc-bold-italic {
+}
+
+.arsenal-sc-bold-italic {
     font-family: "Arsenal SC", serif;
     font-weight: 700;
     font-style: italic;
-  }
-  
+}
+
+.range {
+    cursor: pointer;
+    width: 20px !important;
+    height: 20px !important;
+    background-color: #13547a;
+    border-radius: 100%;
+    text-decoration: none;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.range-icon {
+    width: 35px;
+    color: #81d0c7;
+    font-size: 25px;
+    line-height: 20px;
+
+}
+
+
+@media screen and (min-width:576px) and (max-width: 768px) {
+    .principal {
+        width: 100% !important;
+        height: 750px !important;
+        background-size: 250% !important;
+
+
+
+
+    }
+}
+
+@media screen and (min-width:768px) and (max-width: 1024px) {
+    .principal {
+        width: 100% !important;
+        height: 750px !important;
+        background-size: 180% !important;
+
+
+
+
+    }
+}
+
+@media screen and (min-width:1024px) {
+    .principal {
+        width: 100% !important;
+        height: 750px !important;
+        background-size: 135% !important;
+        background-position-x: center;
+        background-position-y: center;
+
+
+
+
+    }
+}

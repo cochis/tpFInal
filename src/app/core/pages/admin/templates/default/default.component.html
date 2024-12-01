@@ -32,7 +32,7 @@
         <div class="row" class="animated pulse">
             <div class="col-12">
 
-                <div class="box  "
+                <div class="box principal"
                     style="background-image:url({{url+'/upload/invitaciones/'+((invitacion.img1!=='')?invitacion.img1:'notImage')}});
                            background-position: {{invitacion.xImg1}}%  {{invitacion.yImg1}}px !important; background-size:{{invitacion.imgWidth}}%; "
                     *ngIf="!vistaTemp">
@@ -165,7 +165,10 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <div class="box"
+
+
+                <!-- 111 -->
+                <!-- <div class="box principal"
                     style="background-image:url({{url+'/upload/invitaciones/'+((invitacion.mensajeImg!=='')?invitacion.mensajeImg:'notImage')}}) ;background-position: {{invitacion.bxMensajeImg}}% {{invitacion.byMensajeImg}}px !important;height: auto; min-height:450px; background-size:{{invitacion.mensajeImgWidth}}%; "
                     *ngIf="!vistaTemp">
                     <div class="texto tc" style="margin-top:{{invitacion.alturaMensaje}}% !important">
@@ -175,20 +178,26 @@
                         </h5>
 
                     </div>
-                </div>
-                <div class="box"
-                    style="background-image:url({{invitacion.mensajeImg}}) ;background-position: {{invitacion.bxMensajeImg}}% {{invitacion.byMensajeImg}}px !important;  height: 100%;">
-                    <div class="texto tc" style="top:50%" *ngIf="vistaTemp">
-                        <h5 class="p-5   arsenal-sc-regular-italic"
-                            style="color:{{invitacion.cWhite}};font-size:{{invitacion.mensajeSize}}px !important">
-                            {{invitacion.mensaje1}} {{invitacion.mensajeSize}}2
+                </div> -->
+
+                <!-- 222 -->
+
+
+                <div class="box principal"
+                    style="background-image:url({{url+'/upload/invitaciones/'+((invitacion.mensajeImg!=='')?invitacion.mensajeImg:'notImage')}}) ;background-position: {{invitacion.bxMensajeImg}}% {{invitacion.byMensajeImg}}px !important;height: auto; min-height:450px; background-size:{{invitacion.mensajeImgWidth}}%; "
+                    *ngIf="!vistaTemp">
+                    <div class="texto tc" style="margin-top:30% !important">
+                        <h5 class="p-5   {{invitacion.mensajeFont}}"
+                            style="color:{{invitacion.cWhite}}; font-size:{{invitacion.mensajeSize}}px !important;">
+                            {{invitacion.mensaje1}}
                         </h5>
 
                     </div>
                 </div>
+
             </div>
         </div>
-        <br>
+
         <div style=" background-color: {{invitacion.cPrincipal}}; margin: auto;" *ngIf=" padresCheck ">
 
             <div class="row text-center" style="margin: auto;">
@@ -236,7 +245,7 @@
 
 
         </div>
-        <br>
+
         <div style=" background-color: {{invitacion.cPrincipal}}; margin: auto;" *ngIf=" padrinosCheck  ">
 
             <div class="row text-center" style="margin: auto;">
@@ -277,7 +286,7 @@
 
 
         </div>
-        <br>
+
         <div style=" background-color: {{invitacion.cPrincipal}}; margin: auto;"
             *ngIf=" chambelanesCheck && !vistaTemp">
 
@@ -321,12 +330,13 @@
         </div>
 
 
-        <br>
+
         <div style=" background-color: {{invitacion.cPrincipal}}; margin: auto;"
             *ngIf=" (donde1Check ||  donde2Check || donde3Check)  &&  !vistaTemp">
 
             <div class="row text-center" style="margin: auto;">
-                <h1 class="mt-3 {{invitacion.nombreFont}}   " style="color:{{invitacion.cWhite}};">Donde y Cuando</h1>
+                <h1 class="mt-3 {{invitacion.nombreFont}}   "
+                    style="color:{{invitacion.cWhite}}; font-size:{{invitacion.titleSize}}">Donde y Cuando</h1>
                 <div class="col-12 col-md-4 mt-3" style="text-align: center; margin: auto;" *ngIf="donde1Check">
 
                     <div class="card text-center bd  mb-3 ">
@@ -443,7 +453,7 @@
                 <div style="width: 80%; max-width: 450px; min-width: 200px; padding: 15px;margin: auto;">
                     <div class="card mt-3 p-0 nborder">
                         <img [src]="url+'/upload/invitaciones/'+((invitacion.hospedajeImg !== '') ? invitacion.hospedajeImg :'notImage') "
-                            class="card-img-top">
+                            class="card-img-top ma">
                         <div class="card-body">
                             <a href="{{invitacion.hospedajeUbicacion}}" class="pointer"
                                 style="color:{{invitacion.cPrincipal}}" target="_blank" rel="noopener noreferrer">
@@ -589,7 +599,7 @@
                                 <div class="card  p-0 nborder">
 
 
-                                    <table>
+                                    <table class="ma">
 
 
                                         <tr
@@ -597,11 +607,11 @@
 
                                             <th class="upper">
                                                 <span
-                                                    style="color:{{invitacion.cPrincipal}}">{{invitacion.codigoVestimentaMujer}}</span>
+                                                    style="color:{{invitacion.cPrincipal}};margin-left:15px;">{{invitacion.codigoVestimentaMujer}}</span>
                                             </th>
                                             <th class="upper">
                                                 <img [src]="url+'/upload/invitaciones/'+((invitacion.codigoVestimentaMujerImg !== '') ? invitacion.codigoVestimentaMujerImg :'notImage') "
-                                                    class="card-img-top">
+                                                    class="card-img-top ma">
                                             </th>
                                         </tr>
                                         <tr
@@ -609,11 +619,11 @@
 
                                             <th class="upper">
                                                 <span
-                                                    style="color:{{invitacion.cPrincipal}}">{{invitacion.codigoVestimentaHombre}}</span>
+                                                    style="color:{{invitacion.cPrincipal}};margin-left:15px;">{{invitacion.codigoVestimentaHombre}}</span>
                                             </th>
                                             <th class="upper">
                                                 <img [src]="url+'/upload/invitaciones/'+((invitacion.codigoVestimentaHombreImg !== '') ? invitacion.codigoVestimentaHombreImg :'notImage') "
-                                                    class="card-img-top">
+                                                    class="card-img-top ma">
                                             </th>
                                         </tr>
 
@@ -647,7 +657,7 @@
                 <div style="width: 80%; max-width: 450px; min-width: 200px; padding: 15px;margin: auto;">
                     <div class="card mt-3 p-0 nborder">
                         <img [src]="url+'/upload/invitaciones/'+((invitacion.mesaRegalosImg !== '') ? invitacion.mesaRegalosImg :'notImage') "
-                            class="card-img-top">
+                            class="card-img-top ma">
                         <div class="card-body">
                             <a href="{{invitacion.mesaRegalosUrl}}" class="pointer"
                                 style="color:{{invitacion.cPrincipal}}" target="_blank" rel="noopener noreferrer">
@@ -937,9 +947,10 @@
                             Recomendado</h2>
                     </div>
                 </div>
-                <div style="width: 80%; max-width: 450px; min-width: 200px; padding: 15px;margin: auto;">
-                    <div class="card mt-3 p-0 nborder" style="background-color: {{invitacion.cWhite}}">
-                        <img [src]="invitacion.hospedajeImg" class="card-img-top">
+                <div
+                    style="width: 80% !important; max-width: 450px !important; min-width: 200px; padding: 15px;margin: auto;">
+                    <div class="card mt-3 p-0 nborder ma" style="background-color: {{invitacion.cWhite}}">
+                        <img [src]="invitacion.hospedajeImg" class="card-img-top ma">
                         <div class="card-body">
                             <a href="{{invitacion.hospedajeUbicacion}}" class="pointer"
                                 style="color:{{invitacion.cPrincipal}}" target="_blank" rel="noopener noreferrer">
@@ -988,7 +999,7 @@
                 <div style="width: 80%; max-width: 450px; min-width: 200px; padding: 15px;margin: auto;">
                     <div class="card mt-3 p-0 nborder">
                         <img [src]="url+'/upload/invitaciones/'+((invitacion.mesaRegalosImg !== '') ? invitacion.mesaRegalosImg :'notImage') "
-                            class="card-img-top">
+                            class="card-img-top ma">
                         <div class="card-body">
                             <a href="{{invitacion.mesaRegalosUrl}}" class="pointer"
                                 style="color:{{invitacion.cPrincipal}}" target="_blank" rel="noopener noreferrer">
