@@ -912,6 +912,7 @@ export class EditarInvitacionComponent {
 
         this.actualizarInvitacion(this.invitacion).subscribe((res: any) => {
           this.invitacion = res.invitacionActualizado
+          this.functionsService.alertUpdate('Invitación')
           if (this.rol != this.URS) {
             this.functionsService.navigateTo('core/fiestas/vista-fiestas')
           } else {
@@ -942,6 +943,7 @@ export class EditarInvitacionComponent {
 
         this.crearInvitacion(invitado).subscribe((res: CargarInvitacion) => {
           this.invitacion = res.invitacion
+          this.functionsService.alertUpdate('Invitación')
           this.functionsService.navigateTo('core/fiestas/vista-fiestas')
         })
       }, 500);

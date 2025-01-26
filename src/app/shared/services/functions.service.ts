@@ -177,23 +177,38 @@ export class FunctionsService {
   }
 
   alert(title: string, message: string, type: any) {
-    Swal.fire({ title: title, text: message, icon: type, confirmButtonColor: "#13547a" })
+    Swal.fire({
+      title: title, text: message, icon: type, confirmButtonColor: "#13547a",
+      showConfirmButton: false, timer: 1500, timerProgressBar: true
+    })
   }
   alertUpdate(tipo: string) {
-    Swal.fire({ title: tipo, text: 'Información actualizada', icon: 'success', confirmButtonColor: "#13547a" })
+    Swal.fire({
+      title: tipo, text: 'Información actualizada', icon: 'success', confirmButtonColor: "#13547a",
+      showConfirmButton: false, timer: 1500, timerProgressBar: true
+    })
   }
   alertError(data: object, tipo: string) {
 
 
-    Swal.fire({ title: tipo, text: 'Algo extraño paso intente mas tarde', icon: 'error', confirmButtonColor: "#13547a" })
+    Swal.fire({
+      title: tipo, text: 'Algo extraño paso intente mas tarde', icon: 'error', confirmButtonColor: "#13547a",
+      showConfirmButton: false, timer: 1500, timerProgressBar: true
+    })
   }
   alertForm(type: string) {
 
-    Swal.fire({ title: type, text: 'Favor llenar todos los campos', icon: 'info', confirmButtonColor: "#13547a" })
+    Swal.fire({
+      title: type, text: 'Favor llenar todos los campos', icon: 'info', confirmButtonColor: "#13547a",
+      showConfirmButton: false, timer: 1500, timerProgressBar: true
+    })
   }
   errorInfo() {
 
-    Swal.fire({ title: 'Info', text: 'Error al cargar la información', icon: 'error', confirmButtonColor: "#13547a" })
+    Swal.fire({
+      title: 'Info', text: 'Error al cargar la información', icon: 'error', confirmButtonColor: "#13547a",
+      showConfirmButton: false, timer: 1500, timerProgressBar: true
+    })
   }
 
   alertColor(obj: any) {
@@ -206,6 +221,7 @@ export class FunctionsService {
       denyButtonText: obj.colorDenyText ? obj.colorDenyText : undefined,
       confirmButtonColor: obj.colorConf,
       cancelButtonColor: obj.colorConf ? obj.colorConf : undefined,
+      showConfirmButton: false, timer: 1500, timerProgressBar: true
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
