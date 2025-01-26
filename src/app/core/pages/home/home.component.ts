@@ -28,6 +28,7 @@ export class HomeComponent implements AfterViewInit {
   invitado: any
   idx: number = undefined
   boleto: Boleto
+
   constructor(
     private functionsService: FunctionsService,
     private usuariosService: UsuariosService,
@@ -43,6 +44,11 @@ export class HomeComponent implements AfterViewInit {
     this.metaService.generateTags()
     this.role = this.functionsService.getLocal('role')
     this.uid = this.functionsService.getLocal('uid')
+    this.functionsService.getIp().subscribe(resp => {
+      console.log('resp::: ', resp);
+
+    })
+
 
 
 

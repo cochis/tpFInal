@@ -85,6 +85,49 @@
                                         </div>
                                     </div>
                                     <div class="row text-center mb-3">
+                                        <h5>Música de invitación</h5>
+                                        <div class="col-6 col-md-3 mt-3 ma ">
+
+                                            <button class="btn but2" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#collapseMusica" aria-expanded="false"
+                                                aria-controls="collapseMusica">
+                                                Música
+                                            </button>
+
+                                        </div>
+                                        <div class="collapse " id="collapseMusica">
+                                            <div class="row text-center mt-3">
+
+                                                <div class="form-group    image-upload ">
+                                                    <label for="musicaInvitacion">Seleciona tu musica
+                                                        <br>
+
+                                                        <img src="/assets/images/musica.png" alt="" class="pointer"
+                                                            style="width: 150px;">
+
+                                                        <!-- invitacion.data.musicaInvitacion!='' -->
+
+                                                    </label>
+                                                    <input type="file" id="musicaInvitacion" #musicaInvitacion
+                                                        accept="audio/*" (change)="cargarMusica($event )">
+                                                </div>
+                                            </div>
+
+                                            <div>
+
+                                                <audio tabindex="0" id="beep-one" controls preload="auto"
+                                                    *ngIf="invitacion && invitacion.data.musicaInvitacion && invitacion.data.musicaInvitacion!='' ">
+                                                    <source
+                                                        [src]="url+'/upload/sound/'+invitacion.data.musicaInvitacion">
+
+                                                </audio>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row text-center mb-3">
+                                        <h5>Sección principal</h5>
                                         <div class="col-6 col-md-3 mt-3 ma ">
 
                                             <button class="btn but2" type="button" data-bs-toggle="collapse"
@@ -271,7 +314,8 @@
                                                                 Anton-sc-regular</option>
                                                             <option value="creepster-regular" class="creepster-regular">
                                                                 Creepster-regular</option>
-                                                            <option value="roboto-bold" class="roboto-bold">Roboto-bold
+                                                            <option value="roboto-bold" class="roboto-bold">
+                                                                Roboto-bold
                                                             </option>
                                                             <option value="roboto-black-italic"
                                                                 class="roboto-black-italic">
@@ -355,7 +399,8 @@
                                                                 Anton-sc-regular</option>
                                                             <option value="creepster-regular" class="creepster-regular">
                                                                 Creepster-regular</option>
-                                                            <option value="roboto-bold" class="roboto-bold">Roboto-bold
+                                                            <option value="roboto-bold" class="roboto-bold">
+                                                                Roboto-bold
                                                             </option>
                                                             <option value="roboto-black-italic"
                                                                 class="roboto-black-italic">
@@ -422,12 +467,12 @@
                                                     <div class="form-group ">
                                                         <label for="inicialTSize ">Tamaño inicial de fecha
                                                         </label>
-                                                        <a class="range" (click)="changeRange('inicialTSize','-')"> <b
-                                                                class="range-icon">-</b> </a>
+                                                        <a class="range" (click)="changeRange('inicialTSize','-')">
+                                                            <b class="range-icon">-</b> </a>
                                                         <input type="range" id="inicialTSize" #inicialTSize
                                                             formControlName="inicialTSize" min="10" max="50">
-                                                        <a class="range" (click)="changeRange('inicialTSize','+')"> <b
-                                                                class="range-icon">+</b> </a>
+                                                        <a class="range" (click)="changeRange('inicialTSize','+')">
+                                                            <b class="range-icon">+</b> </a>
                                                     </div>
                                                 </div>
 
@@ -446,15 +491,20 @@
                                                 <div class="row">
                                                     <div class="  col-6 col-md-4   mt-3 ma">
                                                         <div class="form-group ">
-                                                            <label for="inicialTFont">Fuente inicial de fecha </label>
+                                                            <label for="inicialTFont">Fuente inicial de fecha
+                                                            </label>
                                                             <select name="inicialTFont" id="inicialTFont"
                                                                 formControlName="inicialTFont"
                                                                 class="form-control upper {{inicialTFont}}"
                                                                 #inicialTFont>
-                                                                <option value="">Seleccione el tipo de fuente</option>
-                                                                <option value="name" class="name" selected>Name</option>
-                                                                <option value="pacific" class="pacific">Pacific</option>
-                                                                <option value="dancing" class="dancing">Dancing</option>
+                                                                <option value="">Seleccione el tipo de fuente
+                                                                </option>
+                                                                <option value="name" class="name" selected>Name
+                                                                </option>
+                                                                <option value="pacific" class="pacific">Pacific
+                                                                </option>
+                                                                <option value="dancing" class="dancing">Dancing
+                                                                </option>
                                                                 <option value="anton-sc-regular"
                                                                     class="anton-sc-regular">
                                                                     Anton-sc-regular</option>
@@ -479,10 +529,14 @@
                                                             <select name="finalTFont" id="finalTFont"
                                                                 formControlName="finalTFont"
                                                                 class="form-control upper {{finalTFont}}" #finalTFont>
-                                                                <option value="">Seleccione el tipo de fuente</option>
-                                                                <option value="name" class="name" selected>Name</option>
-                                                                <option value="pacific" class="pacific">Pacific</option>
-                                                                <option value="dancing" class="dancing">Dancing</option>
+                                                                <option value="">Seleccione el tipo de fuente
+                                                                </option>
+                                                                <option value="name" class="name" selected>Name
+                                                                </option>
+                                                                <option value="pacific" class="pacific">Pacific
+                                                                </option>
+                                                                <option value="dancing" class="dancing">Dancing
+                                                                </option>
                                                                 <option value="anton-sc-regular"
                                                                     class="anton-sc-regular">
                                                                     Anton-sc-regular</option>
@@ -520,7 +574,8 @@
                                                                 Anton-sc-regular</option>
                                                             <option value="creepster-regular" class="creepster-regular">
                                                                 Creepster-regular</option>
-                                                            <option value="roboto-bold" class="roboto-bold">Roboto-bold
+                                                            <option value="roboto-bold" class="roboto-bold">
+                                                                Roboto-bold
                                                             </option>
                                                             <option value="roboto-black-italic"
                                                                 class="roboto-black-italic">
@@ -545,7 +600,8 @@
                                                                 Anton-sc-regular</option>
                                                             <option value="creepster-regular" class="creepster-regular">
                                                                 Creepster-regular</option>
-                                                            <option value="roboto-bold" class="roboto-bold">Roboto-bold
+                                                            <option value="roboto-bold" class="roboto-bold">
+                                                                Roboto-bold
                                                             </option>
                                                             <option value="roboto-black-italic"
                                                                 class="roboto-black-italic">
@@ -609,13 +665,14 @@
                                                 </div>
                                                 <div class="col-12 col-md-6  ma  mt-3" *ngIf="form.value.generalCheck">
                                                     <div class="form-group ">
-                                                        <label for="generalSize">Texto como invitación General </label>
-                                                        <a class="range" (click)="changeRange('generalSize','-')"> <b
-                                                                class="range-icon">-</b> </a>
+                                                        <label for="generalSize">Texto como invitación General
+                                                        </label>
+                                                        <a class="range" (click)="changeRange('generalSize','-')">
+                                                            <b class="range-icon">-</b> </a>
                                                         <input type="range" id="generalSize" #generalSize
                                                             formControlName="generalSize" value="15" min="10" max="50">
-                                                        <a class="range" (click)="changeRange('generalSize','+')"> <b
-                                                                class="range-icon">+</b> </a>
+                                                        <a class="range" (click)="changeRange('generalSize','+')">
+                                                            <b class="range-icon">+</b> </a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -738,7 +795,8 @@
                                                 </div>
                                                 <div class="col-6  col-md-4  mt-3">
                                                     <div class="form-group ">
-                                                        <label for="mensajeImgWidth ">Tamaño de la imagen del mensaje
+                                                        <label for="mensajeImgWidth ">Tamaño de la imagen del
+                                                            mensaje
                                                         </label>
 
                                                         <a class="range" (click)="changeRange('mensajeImgWidth','-')">
@@ -755,7 +813,8 @@
 
                                                 <div class="col-6  col-md-4  mt-3">
                                                     <div class="form-group ">
-                                                        <label for="bxMensajeImg ">Horizontal imagen mensaje </label>
+                                                        <label for="bxMensajeImg ">Horizontal imagen mensaje
+                                                        </label>
                                                         <a class="range" (click)="changeRange('bxMensajeImg','-')">
                                                             <b class="range-icon">-</b> </a>
 
@@ -829,7 +888,8 @@
                                                                 Anton-sc-regular</option>
                                                             <option value="creepster-regular" class="creepster-regular">
                                                                 Creepster-regular</option>
-                                                            <option value="roboto-bold" class="roboto-bold">Roboto-bold
+                                                            <option value="roboto-bold" class="roboto-bold">
+                                                                Roboto-bold
                                                             </option>
                                                             <option value="roboto-black-italic"
                                                                 class="roboto-black-italic">
@@ -1073,31 +1133,43 @@
                                                                         class="form-control upper">
                                                                         <option value="">Seleccione el tipo de padre
                                                                         </option>
-                                                                        <option value="Madre de la festejada">Madre de
+                                                                        <option value="Madre de la festejada">Madre
+                                                                            de
                                                                             la
                                                                             festejada</option>
-                                                                        <option value="Padre de la festejada">Padre de
+                                                                        <option value="Padre de la festejada">Padre
+                                                                            de
                                                                             la
                                                                             festejada</option>
-                                                                        <option value="Madre del festejado">Madre del
+                                                                        <option value="Madre del festejado">Madre
+                                                                            del
                                                                             festejado</option>
-                                                                        <option value="Padre del festejado">Padre del
+                                                                        <option value="Padre del festejado">Padre
+                                                                            del
                                                                             festejado</option>
-                                                                        <option value="Madre de la novia">Madre de la
+                                                                        <option value="Madre de la novia">Madre de
+                                                                            la
                                                                             novia</option>
-                                                                        <option value="Padre de la novia">Padre de la
+                                                                        <option value="Padre de la novia">Padre de
+                                                                            la
                                                                             novia</option>
-                                                                        <option value="Madre del novio">Madre del novio
+                                                                        <option value="Madre del novio">Madre del
+                                                                            novio
                                                                         </option>
-                                                                        <option value="Padre del novio">Padre del novio
+                                                                        <option value="Padre del novio">Padre del
+                                                                            novio
                                                                         </option>
-                                                                        <option value="Abuela Materna">Abuela Materna
+                                                                        <option value="Abuela Materna">Abuela
+                                                                            Materna
                                                                         </option>
-                                                                        <option value="Abuela Paterna">Abuela Paterna
+                                                                        <option value="Abuela Paterna">Abuela
+                                                                            Paterna
                                                                         </option>
-                                                                        <option value="Abuelo Materno">Abuelo Materno
+                                                                        <option value="Abuelo Materno">Abuelo
+                                                                            Materno
                                                                         </option>
-                                                                        <option value="Abuelo Paterno">Abuelo Paterno
+                                                                        <option value="Abuelo Paterno">Abuelo
+                                                                            Paterno
                                                                         </option>
 
                                                                     </select>
@@ -1372,7 +1444,8 @@
                                                 <div class="col-12  col-md-6  mt-3 text-center ma"
                                                     *ngIf="form.value.codigoVestimentaCheck">
                                                     <div class="form-group    image-upload ">
-                                                        <label for="codigoVestimentaMujerImg">Código de vestimenta mujer
+                                                        <label for="codigoVestimentaMujerImg">Código de vestimenta
+                                                            mujer
                                                             <br>
 
                                                             <img src="/assets/images/tp.png" alt="" class="pointer"

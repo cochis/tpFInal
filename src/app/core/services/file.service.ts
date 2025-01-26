@@ -104,6 +104,40 @@ export class FileService {
       return false
     }
   }
+  async actualizarMusicaTemplate(
+    archivo: File,
+    id: string
+  ) {
+
+    console.log('archivo::: ', archivo);
+
+
+    try {
+      const url = `${base_url}/upload/musica/${id}`
+      console.log('url::: ', url);
+      const formData = new FormData()
+      formData.append('sound', archivo)
+      console.log('formData::: ', formData);
+      const resp = await fetch(url, {
+        method: 'PUT',
+        headers: {
+          'x-token': this.functionsService.getLocal('token') || '',
+        },
+        body: formData,
+      })
+
+      const data = await resp.json()
+      if (data.ok) {
+        return await data.nombreArchivo
+      } else {
+        return false
+      }
+    } catch (error) {
+      console.error('error::: ', error);
+
+      return false
+    }
+  }
 
 
 

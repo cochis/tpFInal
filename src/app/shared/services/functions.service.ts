@@ -2,10 +2,12 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
-
+import { HttpClient } from "@angular/common/http";
+import { catchError, tap } from "rxjs/operators";
 import { SwPush } from '@angular/service-worker';
 import * as SecureLS from 'secure-ls';
 import { Parametro } from 'src/app/core/models/parametro.model';
+import { Location } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -17,12 +19,20 @@ export class FunctionsService {
   public readonly VAPID_PUBLICK_KEY = environment.publicKey
   constructor(
     private router: Router,
+    private location: Location,
     private swPush: SwPush,
+    private http: HttpClient,
 
   ) { }
 
-
-
+  getIp() {
+    console.log(this.location);
+    console.log(this.router.url);
+    return this.http.get("https://geolocation-db.com/json/");
+  }
+  back() {
+    this.location.back();
+  }
   navigateTo(url: string) {
     this.router.navigateByUrl(url, { replaceUrl: true })
   }

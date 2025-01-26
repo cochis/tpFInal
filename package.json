@@ -39,6 +39,7 @@
     "ncrypt-js": "^2.0.0",
     "ngx-pagination": "^6.0.3",
     "ngx-qrcode2": "^9.0.0",
+    "public-ip": "^7.0.1",
     "qrcode": "^1.5.3",
     "rxjs": "~7.8.0",
     "secure-ls": "^1.2.6",

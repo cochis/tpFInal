@@ -23,6 +23,7 @@ import { ImagenComponent } from 'src/app/shared/components/modals/imagen/imagen.
 })
 export class DefaultComponent implements OnInit, AfterViewInit {
   tUrl = environment.text_url
+  play: any = true
   respuesta: any
   readonly VAPID_PUBLIC_KEY = environment.publicKey
   loading = false
@@ -63,6 +64,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
   chambelanes = []
   menu = []
   musica = []
+  musicaInvitacion = ''
   donde1Check: boolean
   donde2Check: boolean
   donde3Check: boolean
@@ -120,9 +122,11 @@ export class DefaultComponent implements OnInit, AfterViewInit {
       // Se carga la fiesta por ID  
       this.fiestasService.cargarFiestaById(this.fiestaId).subscribe((resp: any) => {
         this.fiesta = resp.fiesta
+        console.log('this.fiesta ::: ', this.fiesta);
         this.checking = this.fiesta.checking
         this.invitacionsService.cargarInvitacionByFiesta(this.fiestaId).subscribe(async (resp: any) => {
           this.invitacion = resp.invitacion.data
+          console.log('this.invitacion ::: ', this.invitacion);
           this.restParty()
           this.invitacion = await this.dateToNumber(this.invitacion)
           this.invitacion.mesa = this.boleto.mesa
@@ -149,6 +153,8 @@ export class DefaultComponent implements OnInit, AfterViewInit {
           this.menuCheck = this.invitacion.menuCheck
           this.musica = this.invitacion.musica
           this.musicaCheck = this.invitacion.musicaCheck
+          this.musicaInvitacion = this.invitacion.musicaInvitacion
+          console.log(' this.musicaInvitacion::: ', this.musicaInvitacion);
         }, (error) => {
           console.error('Error', error)
           this.functionsService.alertError(error, 'Fiestas')
@@ -297,6 +303,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
         this.musica = this.invitacion.musica
       } else {
         this.vistaTemp = false
+        console.log('this.stat::: ', this.state);
         this.itinerarios = JSON.parse(this.state.itinerarios)
         this.notas = JSON.parse(this.state.notas)
         this.padres = JSON.parse(this.state.padres)
@@ -304,6 +311,8 @@ export class DefaultComponent implements OnInit, AfterViewInit {
         this.chambelanes = JSON.parse(this.state.chambelanes)
         this.menu = JSON.parse(this.state.menu)
         this.musica = JSON.parse(this.state.musica)
+        this.musicaInvitacion = this.state.musicaInvitacion
+        console.log('this.musicaInvitacion ::: ', this.musicaInvitacion);
         this.donde1Check = (this.state.donde1Check == 'true') ? true : false
         this.donde2Check = (this.state.donde2Check == 'true') ? true : false
         this.donde3Check = (this.state.donde3Check == 'true') ? true : false
@@ -638,5 +647,34 @@ export class DefaultComponent implements OnInit, AfterViewInit {
       this.functionsService.removeItemLocal('viewTemplate')
     }
 
+  }
+  playStop() {
+    var v = document.getElementsByTagName("audio")[0];
+    console.log('v::: ', v.paused);
+    var sound = false;
+    var boton = document.getElementById("boton");
+
+    boton.addEventListener("click", function () {
+
+      if (v.paused) {
+
+
+        v.play();
+        v.play();
+        v.play();
+        v.play();
+        this.innerHTML = ' <span  ><i class="bi bi-stop"></i></span>';
+      } else {
+
+        v.pause();
+        v.pause();
+        v.pause();
+        v.pause();
+        v.pause();
+        this.innerHTML = ' <span  ><i class="bi bi-play"></i></span>';
+      }
+
+
+    });
   }
 }

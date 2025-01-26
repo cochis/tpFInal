@@ -24,7 +24,9 @@ export class EditarInvitacionComponent {
   fiestas: any = []
   loading = false
   public imagenSubir!: File
+  public soundSubir!: File
   public imgTemp: any = undefined
+  public soundTemp: any = undefined
   url = environment.base_url
   fiesta: Fiesta
   invitacion: any = undefined
@@ -35,6 +37,7 @@ export class EditarInvitacionComponent {
   default: DefaultTemplate
   invitacionId = ''
   typeTemplate = ''
+  play = false
   today: Number = this.functionsService.getToday()
   uid = this.functionsService.getLocal('uid')
   rol = this.functionsService.getLocal('role')
@@ -337,6 +340,8 @@ export class EditarInvitacionComponent {
       inicialTFont: ['pacifico'],
       inicialTSize: [10],
       finalTSize: [10],
+      musicaInvitacion: [''],
+
 
       finalTFont: ['pacifico'],
       inviFont: ['pacifico'],
@@ -597,6 +602,7 @@ export class EditarInvitacionComponent {
       inviEfectoRep: [invitacion.data.inviEfectoRep ? invitacion.data.inviEfectoRep : '1'],
       inicialTSize: [invitacion.data.inicialTSize],
       finalTSize: [invitacion.data.finalTSize],
+      musicaInvitacion: [invitacion.data.musicaInvitacion],
 
 
 
@@ -723,6 +729,7 @@ export class EditarInvitacionComponent {
       inicialTFont: [temp.inicialTFont],
       inicialTSize: [temp.inicialTSize],
       finalTSize: [temp.finalTSize],
+      musicaInvitacion: [temp.musicaInvitacion],
       finalTFont: [temp.finalTFont],
       inviFont: [temp.inviFont],
       inviFont2: [temp.inviFont2],
@@ -1007,6 +1014,7 @@ export class EditarInvitacionComponent {
     this.invitacionsService.cargarInvitacionByFiesta(id).subscribe(async resp => {
 
       this.invitacion = resp.invitacion
+      console.log('   this.invitacion ::: ', this.invitacion);
       if (!this.invitacion) {
         setTimeout(() => {
           let data = {
@@ -1124,6 +1132,7 @@ export class EditarInvitacionComponent {
             inicialTFont: 'pacifico',
             inicialTSize: 10,
             finalTSize: 10,
+            musicaInvitacion: '',
             finalTFont: 'pacifico',
             inviFont: 'pacifico',
             inviFont2: 'pacifico',
@@ -1414,6 +1423,34 @@ export class EditarInvitacionComponent {
       this.viewVideo = true
     }
   }
+  cargarMusica(file: any) {
+
+    if (file.target.files) {
+
+      this.soundSubir = file.target.files[0]
+      console.log('  this.soundSubir::: ', this.soundSubir);
+
+
+      if (!file.target.files[0]) {
+        this.soundTemp = null
+        this.functionsService.alertError(this.soundTemp, 'No trae música')
+        return
+      } else {
+        const reader = new FileReader()
+        const url64 = reader.readAsDataURL(file.target.files[0])
+        reader.onloadend = () => {
+          this.soundTemp = reader.result
+        }
+
+        this.subirMusica()
+      }
+    } else {
+
+
+      this.viewVideo = true
+    }
+  }
+
   async subirImagen(type) {
 
     if (!this.invitacion) {
@@ -1528,6 +1565,93 @@ export class EditarInvitacionComponent {
         )
     }
   }
+  async subirMusica() {
+
+
+    if (!this.invitacion) {
+
+      let data = await this.dateToNumber(this.form.value)
+
+      let invi = {
+        fiesta: this.fiesta.uid,
+        data: data,
+        tipoTemplate: this.fiesta.invitacion,
+        templateActivated: false,
+        usuarioFiesta: (this.fiesta.usuarioFiesta._id) ? this.fiesta.usuarioFiesta._id : this.fiesta.usuarioFiesta.uid,
+        usuarioCreated: this.usuarioFiesta,
+        activated: true,
+        dateCreated: this.today,
+        lastEdited: this.today
+      }
+
+      this.invitacionsService.crearInvitacion(invi).subscribe((resp: any) => {
+        this.invitacion = resp.invitacion
+        this.fileService.actualizarMusicaTemplate(this.soundSubir, this.invitacion.fiesta)
+          .then(
+            (sound) => {
+              let dt = this.form.value
+              this.invitacion = {
+                ...this.invitacion,
+                data: dt
+              }
+
+              this.loading = true
+              setTimeout(() => {
+
+                this.actualizarInvitacion(this.invitacion).subscribe((resp: any) => {
+                  this.invitacion = resp.invitacionActualizado
+                  this.loading = false
+                  this.getInvitacion(this.id)
+
+                })
+              }, 800);
+            },
+            (err) => {
+              console.error('Error', err)
+              this.functionsService.alertError(err, 'Error')
+            },
+          )
+      })
+    } else {
+
+      this.fileService.actualizarMusicaTemplate(this.soundSubir, this.fiesta.uid)
+        .then(
+          (sound) => {
+            console.log('sound::: ', sound);
+            let dt = this.form.value
+            this.invitacion = {
+              ...this.invitacion,
+              data: dt
+            }
+            this.invitacion.data.musicaInvitacion = sound
+
+            this.invitacion.fiesta = this.fiesta.uid
+            this.invitacion.usuarioCreated = this.usuarioFiesta
+
+
+            setTimeout(() => {
+
+
+              this.actualizarInvitacion(this.invitacion).subscribe((resp: any) => {
+                this.invitacion = resp.invitacionActualizado
+                this.getInvitacion(this.id)
+
+              })
+
+              this.loading = false
+
+              return
+            }, 800);
+
+          },
+          (err) => {
+            console.error('Error', err)
+            this.functionsService.alertError(err, 'Error')
+          },
+        )
+    }
+
+  }
   actualizarInvitacion(invitacion) {
 
     invitacion.fiesta = this.fiesta.uid
@@ -1610,5 +1734,8 @@ export class EditarInvitacionComponent {
 
 
   }
-
+  reproducir(event) {
+    console.log('event::: ', event);
+    this.play = event
+  }
 }
