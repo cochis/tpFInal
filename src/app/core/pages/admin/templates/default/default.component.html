@@ -1148,7 +1148,7 @@
                 </a>
             </b>
         </div>
-        <ng-container class=" sticky-bottom ">
+        <ng-container class=" sticky-bottom " *ngIf="musicaInvitacion !=='' && musicaInvitacion !==undefined ">
             <div class="col-12 ma" style="text-align: center;">
                 <audio preload="auto" autoplay [src]="url+'/upload/sound/'+musicaInvitacion" class="ma" id="myAudio">
                 </audio>

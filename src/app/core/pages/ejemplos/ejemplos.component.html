@@ -42,8 +42,8 @@
 
                         <a [href]="item.url" target="_blank">
 
-                            <img [src]="(item.fiesta.fiesta.img!=='')?url+'/upload/fiestas/'+item.fiesta.fiesta.img:url+'/upload/fiestas/default.jpg'"
-                                class="custom-block-image img-fluid ma" alt=""
+                            <img [src]="(item.fiesta.img!=='')?url+'/upload/fiestas/'+item.fiesta.img:url+'/upload/fiestas/default.jpg'"
+                                class="custom-block-image img-fluid ma pulseAnimation" alt=""
                                 style="width: 350px; height: 250px;border-radius:25px;">
 
 
@@ -51,7 +51,7 @@
 
 
                             <h2 class=" mt-3" style="line-height: 40px;">
-                                {{item.fiesta.fiesta.nombre}}
+                                {{item.fiesta.nombre}}
                             </h2>
 
                         </a>

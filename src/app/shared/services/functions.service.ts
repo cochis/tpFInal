@@ -8,26 +8,20 @@ import { SwPush } from '@angular/service-worker';
 import * as SecureLS from 'secure-ls';
 import { Parametro } from 'src/app/core/models/parametro.model';
 import { Location } from '@angular/common';
-
 @Injectable({
   providedIn: 'root'
 })
 export class FunctionsService {
   device_token: any
   ls = new SecureLS();
-
   public readonly VAPID_PUBLICK_KEY = environment.publicKey
   constructor(
     private router: Router,
     private location: Location,
     private swPush: SwPush,
     private http: HttpClient,
-
   ) { }
-
   getIp() {
-    console.log(this.location);
-    console.log(this.router.url);
     return this.http.get("https://geolocation-db.com/json/");
   }
   back() {
@@ -36,58 +30,33 @@ export class FunctionsService {
   navigateTo(url: string) {
     this.router.navigateByUrl(url, { replaceUrl: true })
   }
-
   getToday() {
     return Date.now()
   }
-
   getLocal(name: string) {
-
     return this.ls.get(name)
   }
   setLocal(name: string, value: any) {
     this.ls.set(name, value)
-
-    /*    switch (typeof (value)) {
-         case 'object':
-           localStorage.setItem(name, JSON.stringify(value))
-           break;
-         case 'boolean':
-           localStorage.setItem(name, JSON.stringify(value))
-           break;
-   
-         default:
-           localStorage.setItem(name, value)
-           break;
-       } */
-
   }
-
   clearLocal() {
     localStorage.clear();
   }
   removeItemLocal(name: string) {
     localStorage.removeItem(name)
   }
-
-
-
   getValueCatalog(id: string, filter: string, catalogo: any) {
-
     if (id && catalogo) {
       let ret = catalogo.filter((cat: any) => {
         return cat.uid === id
       })
       if (ret[0][filter]) {
-
         return ret[0][filter]
       }
     } else {
       return ''
     }
-
   }
-
   getActives(obj: any) {
     let ret = obj.filter((item: any) => {
       return item.activated === true
@@ -101,9 +70,7 @@ export class FunctionsService {
       message
     }
     return mes
-
   }
-
   numberDateTimeLocal(date) {
     let today = new Date(date)
     var m = today.getMonth() + 1
@@ -125,17 +92,13 @@ export class FunctionsService {
       hrT = hr.toString()
     }
     var min = today.getMinutes()
-
     var minT = ''
     if (Number(min) <= 9) {
       minT = '0' + min
     } else {
       minT = min.toString()
     }
-
     dt = today.getFullYear() + '-' + monthT + '-' + dayT + 'T' + hrT + ':' + minT
-
-
     return dt
   }
   numberToDate(date) {
@@ -154,7 +117,6 @@ export class FunctionsService {
     dt = today.getFullYear() + '-' + monthT + '-' + dayT
     return dt
   }
-
   datePush(date) {
     let today = new Date(date)
     var m = today.getMonth() + 1
@@ -171,48 +133,40 @@ export class FunctionsService {
     dt = + dayT + '-' + monthT + '-' + today.getFullYear()
     return dt
   }
-
   dateToNumber(date) {
     return new Date(date).getTime()
   }
-
   alert(title: string, message: string, type: any) {
     Swal.fire({
-      title: title, text: message, icon: type, confirmButtonColor: "#13547a",
+      title: title, text: message, icon: type, confirmButtonColor: environment.cPrimary,
       showConfirmButton: false, timer: 1500, timerProgressBar: true
     })
   }
   alertUpdate(tipo: string) {
     Swal.fire({
-      title: tipo, text: 'Información actualizada', icon: 'success', confirmButtonColor: "#13547a",
+      title: tipo, text: 'Información actualizada', icon: 'success', confirmButtonColor: environment.cPrimary,
       showConfirmButton: false, timer: 1500, timerProgressBar: true
     })
   }
   alertError(data: object, tipo: string) {
-
-
     Swal.fire({
-      title: tipo, text: 'Algo extraño paso intente mas tarde', icon: 'error', confirmButtonColor: "#13547a",
+      title: tipo, text: 'Algo extraño paso intente mas tarde', icon: 'error', confirmButtonColor: environment.cPrimary,
       showConfirmButton: false, timer: 1500, timerProgressBar: true
     })
   }
   alertForm(type: string) {
-
     Swal.fire({
-      title: type, text: 'Favor llenar todos los campos', icon: 'info', confirmButtonColor: "#13547a",
+      title: type, text: 'Favor llenar todos los campos', icon: 'info', confirmButtonColor: environment.cPrimary,
       showConfirmButton: false, timer: 1500, timerProgressBar: true
     })
   }
   errorInfo() {
-
     Swal.fire({
-      title: 'Info', text: 'Error al cargar la información', icon: 'error', confirmButtonColor: "#13547a",
+      title: 'Info', text: 'Error al cargar la información', icon: 'error', confirmButtonColor: environment.cPrimary,
       showConfirmButton: false, timer: 1500, timerProgressBar: true
     })
   }
-
   alertColor(obj: any) {
-
     Swal.fire({
       title: obj.title,
       showDenyButton: obj.colorDeny ? true : false,
@@ -232,7 +186,6 @@ export class FunctionsService {
     });
   }
   isAdmin() {
-
     const ADM = environment.admin_role
     const rol = this.getLocal('role')
     if (rol == ADM) {
@@ -241,7 +194,6 @@ export class FunctionsService {
       return false
     }
   }
-
   getActivos(array: any) {
     let x = array.filter((a) => {
       if (a.activated) {
@@ -266,7 +218,6 @@ export class FunctionsService {
     })
     return x
   }
-
   getTD(array: any) {
     let x = array.filter((a) => {
       if (a.fecha > (this.getToday() - 86400000) && a.fecha < (this.getToday() + 86400000)) {
@@ -274,58 +225,40 @@ export class FunctionsService {
       }
     })
     return x
-
   }
-
-
   logout() {
     localStorage.clear()
     this.router.navigateByUrl('/auth/login')
-
   }
   subscribeToPush(): Promise<any> {
-
     return new Promise(async (resolve, reject) => {
       if (this.swPush.isEnabled) {
-
         let sub = await this.swPush.requestSubscription({
           serverPublicKey: this.VAPID_PUBLICK_KEY
         })
-
         if (sub) {
           this.device_token = sub;
           this.setLocal('tokenPush', JSON.stringify(this.device_token))
-
           if (sub) {
-
             resolve(this.device_token);
           } else {
-
             reject({ message: "Error getting device id" });
           }
         } else {
           reject({ message: "Error getting device id" });
         }
       } else {
-
         reject({ message: "Error getting device id" });
       }
     })
   }
-
-
   filterBy(search: string, arreglo: any): any {
-
     var res: any = []
     var result
     arreglo.forEach(async item => {
       let valores: any = Object.values(item)
-
       for (let i = 0; i < valores.length; i++) {
-
         if (valores[i] !== undefined && valores[i] !== null) {
-
-
           if (typeof (valores[i]) == 'number') {
             valores[i] = valores[i].toString().toLowerCase()
           }
@@ -343,17 +276,8 @@ export class FunctionsService {
       })
     });
     return result
-
   }
-
-
   getParametro(parametro: Parametro) {
-
-
-
-
-
-
     switch (parametro.type) {
       case 'string':
         return parametro.value
@@ -367,12 +291,10 @@ export class FunctionsService {
         } else {
           return false
         }
-
         break;
       case 'number':
         return JSON.parse(parametro.value)
         break;
-
     }
   }
 }

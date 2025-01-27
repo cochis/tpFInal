@@ -92,13 +92,10 @@ export class DefaultComponent implements OnInit, AfterViewInit {
     private pushsService: PushsService,
     private readonly _modalService: ModalService
   ) {
-
     this.metaService.createCanonicalURL();
     this.loading = true
     this.fiestaId = this.route.snapshot.params['fiesta']
     this.copyId = this.route.snapshot.params['copy']
-
-
     this.boletoId = this.route.snapshot.params['boleto']
     if (this.fiestaId && this.boletoId) {
       this.boletosService.cargarBoletoById(this.boletoId).subscribe((resp: any) => {
@@ -118,15 +115,11 @@ export class DefaultComponent implements OnInit, AfterViewInit {
         console.error('Error', error)
         this.functionsService.alertError(error, 'Boletos')
       })
-
-      // Se carga la fiesta por ID  
       this.fiestasService.cargarFiestaById(this.fiestaId).subscribe((resp: any) => {
         this.fiesta = resp.fiesta
-        console.log('this.fiesta ::: ', this.fiesta);
         this.checking = this.fiesta.checking
         this.invitacionsService.cargarInvitacionByFiesta(this.fiestaId).subscribe(async (resp: any) => {
           this.invitacion = resp.invitacion.data
-          console.log('this.invitacion ::: ', this.invitacion);
           this.restParty()
           this.invitacion = await this.dateToNumber(this.invitacion)
           this.invitacion.mesa = this.boleto.mesa
@@ -154,7 +147,6 @@ export class DefaultComponent implements OnInit, AfterViewInit {
           this.musica = this.invitacion.musica
           this.musicaCheck = this.invitacion.musicaCheck
           this.musicaInvitacion = this.invitacion.musicaInvitacion
-          console.log(' this.musicaInvitacion::: ', this.musicaInvitacion);
         }, (error) => {
           console.error('Error', error)
           this.functionsService.alertError(error, 'Fiestas')
@@ -168,7 +160,6 @@ export class DefaultComponent implements OnInit, AfterViewInit {
     } else {
       this.restParty()
       this.state = this.route.snapshot.queryParams
-
       for (let key in this.state) {
         ++this.count;
       }
@@ -303,7 +294,6 @@ export class DefaultComponent implements OnInit, AfterViewInit {
         this.musica = this.invitacion.musica
       } else {
         this.vistaTemp = false
-        console.log('this.stat::: ', this.state);
         this.itinerarios = JSON.parse(this.state.itinerarios)
         this.notas = JSON.parse(this.state.notas)
         this.padres = JSON.parse(this.state.padres)
@@ -312,7 +302,6 @@ export class DefaultComponent implements OnInit, AfterViewInit {
         this.menu = JSON.parse(this.state.menu)
         this.musica = JSON.parse(this.state.musica)
         this.musicaInvitacion = this.state.musicaInvitacion
-        console.log('this.musicaInvitacion ::: ', this.musicaInvitacion);
         this.donde1Check = (this.state.donde1Check == 'true') ? true : false
         this.donde2Check = (this.state.donde2Check == 'true') ? true : false
         this.donde3Check = (this.state.donde3Check == 'true') ? true : false
@@ -326,21 +315,15 @@ export class DefaultComponent implements OnInit, AfterViewInit {
         this.mesaRegalosCheck = (this.state.mesaRegalosCheck == 'true') ? true : false
         this.confirmacionCheck = (this.state.confirmacionCheck == 'true') ? true : false
         this.generalCheck = (this.state.generalCheck == 'true') ? true : false
-
         this.invitacion = this.state
         this.date = this.invitacion.fiestaDate
         this.btnBack = true
         this.checking = (this.state.checking == 'true') ? true : false
-
       }
     }
   }
-  ngOnInit() {
-
-  }
-
+  ngOnInit() { }
   async dateToNumber(data) {
-
     data.dateCreated = (typeof (data.dateCreated) == 'string') ? this.functionsService.dateToNumber(data.dateCreated) : data.dateCreated
     data.lastEdited = (data.lastEdited != undefined) ? (typeof (data.lastEdited) == 'string') ? this.functionsService.dateToNumber(data.lastEdited) : data.lastEdited : ''
     data.donde1Date = (typeof (data.donde1Date) == 'string') ? this.functionsService.dateToNumber(data.donde1Date) : data.donde1Date
@@ -350,7 +333,6 @@ export class DefaultComponent implements OnInit, AfterViewInit {
     data.donde2Check = (data.donde2Check == 'true' || data.donde2Check == true) ? true : false
     data.donde3Check = (data.donde3Check == 'true' || data.donde3Check == true) ? true : false
     data.fiestaDate = (typeof (data.donde3Date) == 'string') ? this.functionsService.dateToNumber(data.donde3Date) : data.donde3Date
-
     return await data
   }
   async numberToData(data) {
@@ -365,8 +347,6 @@ export class DefaultComponent implements OnInit, AfterViewInit {
     return await data
   }
   setData(fiesta, boleto) {
-
-
     this.metaService.generateTags({
       title: `${fiesta.nombre} -  ${this.functionsService.datePush(fiesta.fecha)}  `,
       description:
@@ -381,7 +361,6 @@ export class DefaultComponent implements OnInit, AfterViewInit {
   }
   ngAfterViewInit(): void {
     setTimeout(() => {
-
       if (this.boleto && this.fiesta) {
         this.setData(this.fiesta, this.boleto)
       }
@@ -396,7 +375,6 @@ export class DefaultComponent implements OnInit, AfterViewInit {
     data = JSON.parse(data)
     this.boleto.confirmado = !this.boleto.confirmado
     if (!this.boleto.confirmado) {
-
       this.boleto.fechaConfirmacion = undefined
       this.boleto.requeridos = 0
       this.boletosService.registrarAsistencia(this.boleto).subscribe((res: any) => {
@@ -420,54 +398,33 @@ export class DefaultComponent implements OnInit, AfterViewInit {
           didOpen: () => {
             const inputRange = Swal.getInput()!
             const inputNumber = Swal.getPopup()!.querySelector('#range-value') as HTMLInputElement
-
             // remove default output
             Swal.getPopup()!.querySelector('output')!.style.display = 'none'
             inputRange.style.width = '100%'
-
             // sync input[type=number] with input[type=range]
             inputRange.addEventListener('input', () => {
               inputNumber.value = inputRange.value
-
             })
-
             // sync input[type=range] with input[type=number]
             inputNumber.addEventListener('change', () => {
               inputRange.value = inputNumber.value
-
             })
           },
         }).then((result) => {
-
           this.boleto.requeridos = Number(result.value)
-
           this.boletosService.registrarAsistencia(this.boleto).subscribe((res: any) => {
-
             this.boleto.cantidadInvitados
             this.loading = false
-
-
             this.functionsService.alert('Invitación', 'Se confirmo tu asistencia', 'success')
-
-
           })
         });
       } else {
         this.boletosService.registrarAsistencia(this.boleto).subscribe((res: any) => {
-
           this.boleto.cantidadInvitados
           this.loading = false
-
-
           this.functionsService.alert('Invitación', 'Se confirmo tu asistencia', 'success')
-
-
         })
       }
-
-
-
-
       Swal.fire({
         title: '¿Cuantas personas asistiran?',
         html: `<input type="number" value="${this.boleto.cantidadInvitados}" step="1"id="range-value">`,
@@ -482,70 +439,43 @@ export class DefaultComponent implements OnInit, AfterViewInit {
         didOpen: () => {
           const inputRange = Swal.getInput()!
           const inputNumber = Swal.getPopup()!.querySelector('#range-value') as HTMLInputElement
-
           // remove default output
           Swal.getPopup()!.querySelector('output')!.style.display = 'none'
           inputRange.style.width = '100%'
-
           // sync input[type=number] with input[type=range]
           inputRange.addEventListener('input', () => {
             inputNumber.value = inputRange.value
-
           })
-
           // sync input[type=range] with input[type=number]
           inputNumber.addEventListener('change', () => {
             inputRange.value = inputNumber.value
-
           })
         },
       }).then((result) => {
-
         this.boleto.requeridos = Number(result.value)
-
         this.boletosService.registrarAsistencia(this.boleto).subscribe((res: any) => {
-
           this.boleto.cantidadInvitados
           this.loading = false
-
-
           this.functionsService.alert('Invitación', 'Se confirmo tu asistencia', 'success')
-
-
         })
       });
-
     }
   }
   restParty() {
-
-
     let i = 0
     const interval = setInterval((): void => {
       if (this.date > 0) {
         ++i
-
         let d = (this.date - this.functionsService.getToday()) / 86400000
         this.dias = Math.trunc(d)
-
-
         let hr = ((this.date - this.functionsService.getToday()) % 86400000)
         this.horas = Math.trunc(hr / 3600000)
-
-
         let min = (this.date - this.functionsService.getToday()) - ((this.dias * 86400000) + (this.horas * 3600000))
-
         this.minutos = Math.trunc(min / 60000)
-
         let seg = (this.date - this.functionsService.getToday()) - ((this.dias * 86400000) + (this.horas * 3600000) + (this.minutos * 60000))
-
         this.segundos = Math.trunc(seg / 1000)
-
-
-
       }
     }, 1000);
-
   }
   verUbicacion() {
     let url = this.salon.ubicacionGoogle
@@ -559,7 +489,6 @@ export class DefaultComponent implements OnInit, AfterViewInit {
         fiesta: this.boleto.fiesta,
         grupo: this.boleto.grupo,
         salon: this.boleto.salon,
-
       }
     } else {
       qr = {
@@ -576,7 +505,6 @@ export class DefaultComponent implements OnInit, AfterViewInit {
         invitacionEnviada: 'Muestra',
         fechaConfirmacion: 'Muestra',
         activated: true
-
       }
     }
     return JSON.stringify(qr)
@@ -596,7 +524,6 @@ export class DefaultComponent implements OnInit, AfterViewInit {
               bl = true
             }
           });
-
           if (!bl) {
             this.boleto.pushNotification.push(resp.pushDB.uid)
           }
@@ -616,14 +543,12 @@ export class DefaultComponent implements OnInit, AfterViewInit {
     return typeof (val)
   }
   viewCroquis(type, img) {
-
     this._modalService.show<ImgTemplate>(ImagenComponent, {
       title: 'Ver croquis salon',
       size: 3,
       model: { type: type, img: img },
       mode: 'default'
     })
-
   }
   regresar() {
     let back = this.functionsService.getLocal('viewTemplate')
@@ -632,40 +557,30 @@ export class DefaultComponent implements OnInit, AfterViewInit {
     this.functionsService.removeItemLocal('invitacion')
   }
   copiarInvitacion(data) {
-
     if (this.functionsService.getLocal('tipoInvitacion') && this.functionsService.getLocal('tipoInvitacion') == 'default') {
-
       this.functionsService.setLocal('invitacion', data)
       let back = this.functionsService.getLocal('viewTemplate')
       this.functionsService.navigateTo('/core/invitaciones/editar-invitacion/true/' + back)
       this.functionsService.removeItemLocal('viewTemplate')
     } else {
-
       this.functionsService.alert('Alerta', 'El tipo de invitacion no es la dinámica', 'warning')
       let back = this.functionsService.getLocal('viewTemplate')
       this.functionsService.navigateTo('/core/invitaciones/editar-invitacion/true/' + back)
       this.functionsService.removeItemLocal('viewTemplate')
     }
-
   }
   playStop() {
     var v = document.getElementsByTagName("audio")[0];
-    console.log('v::: ', v.paused);
     var sound = false;
     var boton = document.getElementById("boton");
-
     boton.addEventListener("click", function () {
-
       if (v.paused) {
-
-
         v.play();
         v.play();
         v.play();
         v.play();
         this.innerHTML = ' <span  ><i class="bi bi-stop"></i></span>';
       } else {
-
         v.pause();
         v.pause();
         v.pause();
@@ -673,8 +588,6 @@ export class DefaultComponent implements OnInit, AfterViewInit {
         v.pause();
         this.innerHTML = ' <span  ><i class="bi bi-play"></i></span>';
       }
-
-
     });
   }
 }

@@ -22,6 +22,7 @@ import { Log } from "../models/log.model"
 import { TipoCentro } from "../models/tipoCentro.model"
 import { Paquete } from "../models/paquete.model"
 import { Parametro } from "../models/parametro.model"
+import { Ejemplo } from "../models/ejemplo.model"
 
 
 
@@ -107,6 +108,13 @@ export interface CargarEvento {
 export interface CargarEventos {
     total: number
     eventos: Evento[]
+}
+export interface CargarEjemplo {
+    ejemplo: Ejemplo
+}
+export interface CargarEjemplos {
+    total: number
+    ejemplos: Ejemplo[]
 }
 export interface CargarParametro {
     parametro: Parametro

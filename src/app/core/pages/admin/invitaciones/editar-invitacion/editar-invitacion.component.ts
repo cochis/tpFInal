@@ -1016,7 +1016,6 @@ export class EditarInvitacionComponent {
     this.invitacionsService.cargarInvitacionByFiesta(id).subscribe(async resp => {
 
       this.invitacion = resp.invitacion
-      console.log('   this.invitacion ::: ', this.invitacion);
       if (!this.invitacion) {
         setTimeout(() => {
           let data = {
@@ -1028,7 +1027,6 @@ export class EditarInvitacionComponent {
             yImg1: 10,
             imgWidth: 100,
             topTitle: 40,
-
             cantidad: this.fiesta.cantidad,
             tipoFiesta: '',
             tipoSize: 90,
@@ -1099,7 +1097,6 @@ export class EditarInvitacionComponent {
             notaCheck: true,
             invitacionTemplate: false,
             notas: [],
-
             chambelanesCheck: true,
             padresCheck: true,
             padrinosCheck: true,
@@ -1110,20 +1107,12 @@ export class EditarInvitacionComponent {
             padrinos: [],
             menu: [],
             musica: [],
-
-
-
-
             colorQr: '#ffffff',
             colorBgQr: '#c0354e',
             usuarioCreated: this.usuarioFiesta,
-
             activated: true,
             dateCreated: this.today,
             lastEdited: this.today,
-
-            //font img
-
             nombreFont: "pacifico",
             nombreEfecto: "",
             nombreEfectoRep: 1,
@@ -1140,10 +1129,6 @@ export class EditarInvitacionComponent {
             inviFont2: 'pacifico',
             inviEfecto: '',
             inviEfectoRep: '1',
-
-
-            //byFIle
-
             typeFile: '',
             byFileColorTx: '',
             byFileColorBG: '',
@@ -1153,7 +1138,6 @@ export class EditarInvitacionComponent {
             byFileInvitacion: '',
             byFileUrl: '',
             byFileWidth: '',
-
             byFileHeight: '',
             byFileFrame: '',
             byFileFrameWidth: '',
@@ -1161,7 +1145,6 @@ export class EditarInvitacionComponent {
           }
           let invitacion = {
             fiesta: this.fiesta.uid,
-
             data: data,
             tipoTemplate: this.fiesta.invitacion,
             templateActivated: true,
@@ -1171,8 +1154,6 @@ export class EditarInvitacionComponent {
             lastEdited: this.today,
             dateCreated: this.today
           }
-
-
           this.crearInvitacion((invitacion)).subscribe((resp: any) => {
             this.invitacion = resp.invitacion
             this.invitacion.data.fiestaId = this.fiesta.uid
@@ -1183,8 +1164,6 @@ export class EditarInvitacionComponent {
             let padrinos = JSON.stringify([])
             let musica = JSON.stringify([])
             let menu = JSON.stringify([])
-
-
             this.invitacion.data = {
               ...  this.invitacion.data,
               itinerarios: iti,
@@ -1195,16 +1174,11 @@ export class EditarInvitacionComponent {
               menu: musica,
               musica: menu,
             }
-
             this.setForm(resp.invitacion)
           })
-
         }, 800);
       } else {
-
         this.invitacion.data = await this.numberToData(this.invitacion.data)
-
-
         this.usuarioCreated = this.usuarioFiesta
         this.setFormWithData(this.invitacion)
         setTimeout(() => {
@@ -1218,11 +1192,6 @@ export class EditarInvitacionComponent {
               this.notas.push(this.newNota(not));
             });
           }
-
-
-
-
-
           if (this.invitacion.data.chambelanes && this.invitacion.data.chambelanes.length > 0) {
             this.invitacion.data.chambelanes.forEach(cham => {
               this.chambelanes.push(this.newChambelan(cham));
@@ -1257,10 +1226,6 @@ export class EditarInvitacionComponent {
         this.functionsService.alertError(error, 'Invitacion')
       })
   }
-
-
-
-
   newItinerario(itinerario?): FormGroup {
     if (itinerario) {
       return this.fb.group({
@@ -1389,23 +1354,16 @@ export class EditarInvitacionComponent {
     this.musica.removeAt(i);
   }
   selectType(type) {
-
-
     if (type == 'url') {
       this.viewVideo = true
     } else {
-
       this.viewVideo = false
     }
-
   }
   cambiarImagen(file: any, type: string) {
     this.viewVideo = false
     if (file.target.files) {
-
       this.imagenSubir = file.target.files[0]
-
-
       if (!file.target.files[0]) {
         this.imgTemp = null
         this.functionsService.alertError(this.imgTemp, 'No trae imagen')
@@ -1416,23 +1374,15 @@ export class EditarInvitacionComponent {
         reader.onloadend = () => {
           this.imgTemp = reader.result
         }
-
         this.subirImagen(type)
       }
     } else {
-
-
       this.viewVideo = true
     }
   }
   cargarMusica(file: any) {
-
     if (file.target.files) {
-
       this.soundSubir = file.target.files[0]
-      console.log('  this.soundSubir::: ', this.soundSubir);
-
-
       if (!file.target.files[0]) {
         this.soundTemp = null
         this.functionsService.alertError(this.soundTemp, 'No trae música')
@@ -1443,20 +1393,14 @@ export class EditarInvitacionComponent {
         reader.onloadend = () => {
           this.soundTemp = reader.result
         }
-
         this.subirMusica()
       }
     } else {
-
-
       this.viewVideo = true
     }
   }
-
   async subirImagen(type) {
-
     if (!this.invitacion) {
-
       let data = await this.dateToNumber(this.form.value)
       data[type] = ''
       let invi = {
@@ -1470,7 +1414,6 @@ export class EditarInvitacionComponent {
         dateCreated: this.today,
         lastEdited: this.today
       }
-
       this.invitacionsService.crearInvitacion(invi).subscribe((resp: any) => {
         this.invitacion = resp.invitacion
         this.fileService.actualizarFotoTemplate(this.imagenSubir, 'invitaciones', this.invitacion.fiesta, type)
@@ -1484,12 +1427,10 @@ export class EditarInvitacionComponent {
               this.invitacion.data[type] = img
               this.loading = true
               setTimeout(() => {
-
                 this.actualizarInvitacion(this.invitacion).subscribe((resp: any) => {
                   this.invitacion = resp.invitacionActualizado
                   this.loading = false
                   this.getInvitacion(this.id)
-
                 })
               }, 800);
             },
@@ -1500,7 +1441,6 @@ export class EditarInvitacionComponent {
           )
       })
     } else {
-
       this.fileService.actualizarFotoTemplate(this.imagenSubir, 'invitaciones', this.fiesta.uid, type)
         .then(
           (img) => {
@@ -1543,22 +1483,14 @@ export class EditarInvitacionComponent {
             }
             this.invitacion.fiesta = this.fiesta.uid
             this.invitacion.usuarioCreated = this.usuarioFiesta
-
-
             setTimeout(() => {
-
-
               this.actualizarInvitacion(this.invitacion).subscribe((resp: any) => {
                 this.invitacion = resp.invitacionActualizado
                 this.getInvitacion(this.id)
-
               })
-
               this.loading = false
-
               return
             }, 800);
-
           },
           (err) => {
             console.error('Error', err)
@@ -1568,12 +1500,8 @@ export class EditarInvitacionComponent {
     }
   }
   async subirMusica() {
-
-
     if (!this.invitacion) {
-
       let data = await this.dateToNumber(this.form.value)
-
       let invi = {
         fiesta: this.fiesta.uid,
         data: data,
@@ -1585,7 +1513,6 @@ export class EditarInvitacionComponent {
         dateCreated: this.today,
         lastEdited: this.today
       }
-
       this.invitacionsService.crearInvitacion(invi).subscribe((resp: any) => {
         this.invitacion = resp.invitacion
         this.fileService.actualizarMusicaTemplate(this.soundSubir, this.invitacion.fiesta)
@@ -1596,15 +1523,12 @@ export class EditarInvitacionComponent {
                 ...this.invitacion,
                 data: dt
               }
-
               this.loading = true
               setTimeout(() => {
-
                 this.actualizarInvitacion(this.invitacion).subscribe((resp: any) => {
                   this.invitacion = resp.invitacionActualizado
                   this.loading = false
                   this.getInvitacion(this.id)
-
                 })
               }, 800);
             },
@@ -1615,36 +1539,25 @@ export class EditarInvitacionComponent {
           )
       })
     } else {
-
       this.fileService.actualizarMusicaTemplate(this.soundSubir, this.fiesta.uid)
         .then(
           (sound) => {
-            console.log('sound::: ', sound);
             let dt = this.form.value
             this.invitacion = {
               ...this.invitacion,
               data: dt
             }
             this.invitacion.data.musicaInvitacion = sound
-
             this.invitacion.fiesta = this.fiesta.uid
             this.invitacion.usuarioCreated = this.usuarioFiesta
-
-
             setTimeout(() => {
-
-
               this.actualizarInvitacion(this.invitacion).subscribe((resp: any) => {
                 this.invitacion = resp.invitacionActualizado
                 this.getInvitacion(this.id)
-
               })
-
               this.loading = false
-
               return
             }, 800);
-
           },
           (err) => {
             console.error('Error', err)
@@ -1652,26 +1565,20 @@ export class EditarInvitacionComponent {
           },
         )
     }
-
   }
   actualizarInvitacion(invitacion) {
-
     invitacion.fiesta = this.fiesta.uid
     invitacion.usuarioCreated = this.usuarioFiesta
     return this.invitacionsService.actualizarInvitacion(invitacion)
   }
   crearInvitacion(invitacion) {
-
     if (typeof (invitacion.fiesta) == "object") {
       invitacion.fiesta = invitacion.fiesta.uid ? invitacion.fiesta.uid : invitacion.fiesta._id
     }
-
     return this.invitacionsService.crearInvitacion(invitacion)
   }
   changeSize(event: any) {
-
     this.viewSizeM = event
-
   }
   verExample(example) {
     this.functionsService.setLocal('tipoInvitacion', this.fiesta.invitacion)
@@ -1679,17 +1586,13 @@ export class EditarInvitacionComponent {
       this.functionsService.alert('Alerta', 'Necesita seleccionar un ejemplo', 'warning')
       return
     }
-
     let url = example.split('https://www.myticketparty.com/core/')
-
     this.functionsService.setLocal('viewTemplate', this.id)
     this.functionsService.navigateTo('core/' + url[1] + '/copy')
   }
   async copiarExample() {
     if (this.functionsService.getLocal('invitacion')) {
-
       let invitacion = this.functionsService.getLocal('invitacion')
-
       this.invitacion.data = await this.numberToData(invitacion)
       this.invitacion.data.nombreFiesta = ''
       this.invitacion.data.tipoFiesta = ''
@@ -1709,7 +1612,6 @@ export class EditarInvitacionComponent {
       this.invitacion.data.musica = []
       this.invitacion.data.itinerarios = []
       this.invitacion.data.notas = []
-
       this.usuarioCreated = this.usuarioFiesta
       this.setFormWithData(this.invitacion)
       this.functionsService.removeItemLocal('invitacion')
@@ -1718,26 +1620,18 @@ export class EditarInvitacionComponent {
       return
     }
   }
-
   changeRange(type: string, tipo: string) {
-
     let num = 0
     if (tipo == '+') {
-
       num = this.form.value[type] + 3
     } else {
       num = this.form.value[type] - 3
-
     }
-
     this.form.patchValue({
       [type]: num
     })
-
-
   }
   reproducir(event) {
-    console.log('event::: ', event);
     this.play = event
   }
 }

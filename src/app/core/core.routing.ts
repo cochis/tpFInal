@@ -74,6 +74,9 @@ import { VistaParametrosComponent } from './pages/admin/parametros/vista-paramet
 import { ByFileComponent } from './pages/admin/templates/by-file/by-file.component';
 import { EjemplosComponent } from './pages/ejemplos/ejemplos.component';
 import { SingleFiestaComponent } from './pages/admin/fiestas/single-fiesta/single-fiesta.component';
+import { EditarEjemploComponent } from './pages/admin/ejemplos/editar-ejemplo/editar-ejemplo.component';
+import { CrearEjemploComponent } from './pages/admin/ejemplos/crear-ejemplo/crear-ejemplo.component';
+import { VistaEjemplosComponent } from './pages/admin/ejemplos/vista-ejemplos/vista-ejemplos.component';
 
 
 const routes: Routes = [
@@ -286,6 +289,26 @@ const routes: Routes = [
         path: 'eventos/vista-eventos',
         component: VistaEventosComponent,
         data: { titulo: 'Vista eventos' }
+
+      },
+      {
+        path: 'ejemplos/editar-ejemplo/:edit/:id',
+        component: EditarEjemploComponent,
+        data: { titulo: 'Editar ejemplo' },
+        canActivate: [authGuard]
+
+      },
+      {
+        path: 'ejemplos/crear-ejemplo',
+        component: CrearEjemploComponent,
+        data: { titulo: 'Crear ejemplo' },
+        canActivate: [authGuard]
+
+      },
+      {
+        path: 'ejemplos/vista-ejemplos',
+        component: VistaEjemplosComponent,
+        data: { titulo: 'Vista ejemplos' }
 
       },
       {
