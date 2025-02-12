@@ -20,7 +20,7 @@ export class EditarInvitacionComponent {
   SLN = environment.salon_role
   ANF = environment.anf_role
   URS = environment.user_role
-  examples = environment.examples
+  examples: any = []
   fiestas: any = []
   loading = false
   public imagenSubir!: File
@@ -241,18 +241,20 @@ export class EditarInvitacionComponent {
     private fileService: FileService,
 
   ) {
+    this.getExamples()
     setTimeout(() => {
       this.viewInicial = true
     }, 500);
     this.functionsService.alert('Crear invitación', 'Se recomienda realizar la invitación en una computadora para facilitar la edición.', 'info')
     this.functionsService.removeItemLocal('tipoInvitacion')
-    this.examples.forEach(async element => {
-      let fiesta = element.split('|')
-
-      let res = { fiesta: fiesta[0], url: fiesta[1], name: fiesta[2], type: fiesta[3] }
-      this.fiestas.push(res)
-    });
-
+    /*  this.examples.forEach(async element => {
+       let fiesta = element.split('|')
+ 
+       let res = { fiesta: fiesta[0], url: fiesta[1], name: fiesta[2], type: fiesta[3] }
+       this.fiestas.push(res)
+       console.log('this.fiestas::: ', this.fiestas);
+     });
+  */
 
 
     this.id = this.route.snapshot.params['id']
@@ -866,6 +868,7 @@ export class EditarInvitacionComponent {
     this.invitacion.data.padrinos = JSON.stringify(this.invitacion.data.padrinos)
     this.invitacion.data.musica = JSON.stringify(this.invitacion.data.musica)
     this.invitacion.data.menu = JSON.stringify(this.invitacion.data.menu)
+    this.invitacion.data.croquisOk = this.fiesta.croquisOk
     this.invitacion.data.fiestaId = this.fiesta.uid
     this.router.navigate(['/core/templates/' + this.fiesta.invitacion], { queryParams: this.invitacion.data })
 
@@ -1581,6 +1584,15 @@ export class EditarInvitacionComponent {
     this.viewSizeM = event
   }
   verExample(example) {
+    console.log('example::: ', example);
+
+    console.log('this.fiesta.invitacion::: ', this.fiesta.invitacion);
+    let url2 = example.split('https://www.myticketparty.com/core/')
+    console.log('url2::: ', url2);
+
+    console.log('core/' + url2[1] + '/copy');
+
+    return
     this.functionsService.setLocal('tipoInvitacion', this.fiesta.invitacion)
     if (example == '') {
       this.functionsService.alert('Alerta', 'Necesita seleccionar un ejemplo', 'warning')
@@ -1633,5 +1645,14 @@ export class EditarInvitacionComponent {
   }
   reproducir(event) {
     this.play = event
+  }
+  getExamples() {
+    this.fiestasService.cargarFiestasAll().subscribe(resp => {
+      console.log('resp::: ', resp);
+
+      this.examples = resp.fiestas.filter(fs => { return fs.example })
+      console.log('this.examples ::: ', this.examples);
+
+    })
   }
 }

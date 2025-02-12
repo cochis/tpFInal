@@ -1,0 +1,164 @@
+<app-header></app-header>
+<app-loading *ngIf="loading"></app-loading>
+
+
+<div class="container " *ngIf="!loading && item">
+    <div class="row mt-5 text-center">
+        <div class="col-12 col-md-8 text-center">
+            <img [src]="url+'/upload/items/'+getImgPrincipal()" style="width: 100%;  max-width: 600px; "
+                [alt]="item.nombre">
+        </div>
+
+
+        <div class="col-12 col-md-4 text-start  " *ngIf="item">
+            <h3 class="mt-2" class="upper" style="color:{{cP}} ;font-size: 35px;">
+                <b>{{item.nombre}}</b> &nbsp; &nbsp;&nbsp;
+                <span style="font-size: 20px; cursor: pointer; color:{{cS}} ;"
+                    routerLink="/core/vista-proveedor/{{item.proveedor._id}}">{{item.proveedor.nombre}} </span>
+            </h3>
+            <h4 class="mt-3" style="color: {{cS}} !important; font-size: 20px;" *ngIf="item.isByCantidad">
+                {{mayorMenor(item.cantidades,'menor') | currency}} - {{mayorMenor(item.cantidades,'mayor') | currency}}
+            </h4>
+            <h4 class="mt-3" style="color: {{cS}} !important; font-size: 20px;" *ngIf="item.isByColor">
+                {{mayorMenor(item.colores,'menor') | currency}} - {{mayorMenor(item.colores,'mayor') | currency}}
+            </h4>
+            <h4 class="mt-3" style="color: {{cS}} !important; font-size: 20px;" *ngIf="item.isByService">
+                {{mayorMenor(item.servicios,'menor') | currency}} - {{mayorMenor(item.servicios,'mayor') | currency}}
+            </h4>
+            <h4 class="mt-3" style="color: {{cS}} !important; font-size: 20px;" *ngIf="item.isBySize">
+                {{mayorMenor(item.sizes,'menor') | currency}} - {{mayorMenor(item.sizes,'mayor') | currency}}
+            </h4>
+            <!-- <p>
+                <b>Referencia</b> Lorem ipsum
+            </p> -->
+            <p style=" font-size: 20px; color: {{cP}} !important ; text-align: justify; ">
+                {{item.descripcion}}
+            </p>
+
+            <app-divisor [color]="cS"></app-divisor>
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+                <div class="row mt-2 text-center">
+                    <div class="col-12 mt-2 upper">
+                        <label for="opciones">Opciones</label>
+                        <select id="opciones" class="form-select form-select-sm upper" #opciones
+                            formControlName="opcion" (change)="opcSeleccion($event,item.cantidades)"
+                            *ngIf="item.isByCantidad">
+                            <option value='' class="upper"> Selecciona una opción</option>
+                            <option [value]="it.nombre" *ngFor="let it of item.cantidades" class="upper">{{it.nombre}}
+                            </option>
+                        </select>
+                        <select id="opciones" class="form-select form-select-sm  upper" #opciones
+                            formControlName="opcion" (change)="opcSeleccion($event,item.cantidades)"
+                            *ngIf="item.isByColor">
+                            <option value='' class="upper"> Selecciona una opción</option>
+                            <option [value]="it.nombre" *ngFor="let it of item.colores" class="upper">{{it.nombre}}
+                            </option>
+                        </select>
+                        <select id="opciones" class="form-select form-select-sm" #opciones formControlName="opcion"
+                            (change)="opcSeleccion($event,item.colores)" *ngIf="item.isByService">
+                            <option value='' class="upper"> Selecciona una opción</option>
+                            <option [value]="it.nombre" *ngFor="let it of item.servicios" class="upper">{{it.nombre}}
+                            </option>
+                        </select>
+                        <select id="opciones" class="form-select form-select-sm" #opciones formControlName="opcion"
+                            (change)="opcSeleccion($event,item.sizes)" *ngIf="item.isBySize">
+                            <option value='' class="upper"> Selecciona una opción</option>
+                            <option [value]="it.nombre" *ngFor="let it of item.sizes" class="upper">{{it.nombre}}
+                            </option>
+                        </select>
+
+                    </div>
+                    <div class="col-12">
+                        <label for="cantidad"></label>
+                        <input type="number" id="catidad" class="form-control" min="0" (keyup)="setCantidad($event)"
+                            (change)="setCantidad($event)" placeholder="Cantidad" formControlName="cantidad">
+                    </div>
+
+
+                </div>
+                <div class="row mt-2">
+                    <div class="carrucel">
+
+                        <div class="item-market pointer" *ngFor="let item of item.photos">
+                            <img [src]="url+'/upload/items/'+item.img" class=" img-item-market  select-img-market"
+                                [alt]="item.nombre" (click)="viewPhoto(item.img)">
+
+                        </div>
+                        <!-- <div class="item-market pointer">
+                            <img src="assets/icons/flores2.jpeg" class=" img-item-market " alt="Iglesia">
+    
+                        </div>
+                        <div class="item-market pointer">
+                            <img src="assets/icons/flores3.jpeg" class=" img-item-market " alt="Iglesia">
+    
+                        </div>
+                        <div class="item-market pointer">
+                            <img src="assets/icons/flores4.jpeg" class=" img-item-market " alt="Iglesia">
+    
+                        </div>
+                        <div class="item-market pointer">
+                            <img src="assets/icons/flores5.jpeg" class=" img-item-market " alt="Iglesia">
+    
+                        </div> -->
+
+
+
+                    </div>
+
+                </div>
+                <div class="row mt-3">
+
+                    <div class="col-12 text-center ">
+                        <button class="btn   ma" type="button"
+                            style="color:{{CW}}!important; background-color:{{cP}} !important"
+                            (click)="setCarrito(opcSelected)"> Agregar al
+                            carrito</button>
+                    </div>
+                </div>
+
+            </form>
+
+
+        </div>
+        <ng-container *ngIf="opcSelected">
+
+            <div class="col-12 mt-5">
+                <h3 class="upper">
+                    Descripción de {{opcSelected.nombre}}
+                </h3>
+
+                <p class="upper" style="text-align: justify">
+                    {{opcSelected.descripcion}}
+                </p>
+            </div>
+            <div class="col-12">
+                <h3 class="upper">
+                    Precio
+                </h3>
+
+                <p class="upper" style="color: {{cP}} !important; font-size: 25px;">
+                    {{opcSelected.precio | currency}}
+                </p>
+            </div>
+        </ng-container>
+        <div class="col-12 mt-5">
+            <h3 class="upper">
+                Ideal para
+            </h3>
+
+            <ul style="list-style: none;">
+                <li *ngFor="let it of item.idealTo" class="upper">{{it.nombre}} </li>
+
+            </ul>
+        </div>
+    </div>
+    <div class="row mt-5  text-center">
+
+        <div class="col-6  ma ">
+            <button class="btn " style="background-color: {{cS}};color:{{CW}}" (click)="back()"> Regresar al
+                marketplace</button>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

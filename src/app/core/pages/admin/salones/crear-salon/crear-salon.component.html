@@ -114,7 +114,7 @@
                                         <select name="" id="email" formControlName="email" class="form-control upper">
                                             <option value="" selected>Selecciona un grupo</option>
                                             <ng-container *ngFor="let item of usuarios">
-                                                <option [value]="item.email" *ngIf="item.email===email" disabled>
+                                                <option [value]="item.email">
                                                     {{item.email}}
                                                 </option>
                                             </ng-container>
@@ -124,14 +124,14 @@
                                         requerido</span>
                                 </div>
 
-                                <div class="col-12 col-md-12 mt-3">
+                                <div class="col-12 col-md-12 mt-3" style="display: none;">
 
                                     <div class="form-group">
                                         <label for="ubicacionGoogle">Ubicación Maps Google</label>
                                         <app-info-ubicacion></app-info-ubicacion>
                                         <input type="text" class="form-control upper" id="ubicacionGoogle"
                                             placeholder="Ingresa link de la ubicación de Google Maps"
-                                            formControlName="ubicacionGoogle">
+                                            formControlName="ubicacionGoogle" required>
                                     </div>
                                 </div>
                                 <!--  <div class="col-12 col-md-6 mt-3">
@@ -150,6 +150,13 @@
                                             formControlName="long">
                                     </div>
                                 </div> -->
+                                <div class="col-12 mt-3">
+
+                                    <app-mapscreen (coordenadas)="showCoordenadas($event)"
+                                        [sendCoords]="sendCoords"></app-mapscreen>
+                                    <span *ngIf="submited && errorControl['ubicacionGoogle'].errors "
+                                        class="error">Favor de seleccionar la ubicación del entro de evento</span>
+                                </div>
                                 <div class="col-12 col-md-12 mt-3">
 
                                     <div class="form-group">

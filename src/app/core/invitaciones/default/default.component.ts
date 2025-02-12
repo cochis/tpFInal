@@ -65,7 +65,7 @@ export class DefaultComponent {
     this.subscribeNotification()
     this.init()
     this.restParty()
-    // console.info(this.ver);
+    console.info(this.ver);
 
   }
   init() {

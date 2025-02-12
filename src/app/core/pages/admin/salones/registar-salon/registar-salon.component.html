@@ -139,7 +139,7 @@
                                             formControlName="long">
                                     </div>
                                 </div> -->
-                                <div class="col-12 col-md-12 mt-3">
+                                <div class="col-12 col-md-12 mt-3" style="display: none;">
                                     <div class="form-group">
                                         <label for="ubicacionGoogle">Ubicación Maps Google
                                             <app-info-ubicacion></app-info-ubicacion>
@@ -153,6 +153,16 @@
                                             [readonly]="edit==='false'">
                                     </div>
                                 </div>
+
+                                <div class="col-12 mt-3">
+
+                                    <app-mapscreen (coordenadas)="showCoordenadas($event)"
+                                        [sendCoords]="sendCoords"></app-mapscreen>
+                                    <span *ngIf="submited && errorControl['ubicacionGoogle'].errors "
+                                        class="error">Favor de seleccionar la ubicación
+                                        del entro de evento</span>
+                                </div>
+
                                 <div class="col-12 col-md-12 mt-3">
                                     <span *ngIf="submited && errorControl['comoLlegar'].errors " class="error">Es
                                         requerido</span>

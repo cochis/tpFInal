@@ -185,7 +185,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-12 col-md-6  mb-3   mt-3 ">
+                                <div class="col-12 col-md-4  mb-3   mt-3 ">
                                     <div class="form-group">
                                         <div style="width: 100%;" class="ma text-center">
 
@@ -202,7 +202,7 @@
 
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6  mb-3   mt-3 ">
+                                <div class="col-12 col-md-4  mb-3   mt-3 ">
                                     <div class="form-group">
                                         <div style="width: 100%;" class="ma text-center">
 
@@ -227,7 +227,24 @@
 
                                     </div>
                                 </div>
+                                <div class="col-12 col-md-4  mb-3   mt-3 ">
+                                    <div class="form-group">
+                                        <div style="width: 100%;" class="ma text-center">
 
+                                            <label class="form-check-label ma " for="croquisOk" #croquisOk>
+                                                Croquis de mesa
+                                            </label>
+                                        </div>
+                                        <div style="width: 100%;" class="ma text-center">
+
+                                            <input class="form-check-input ma mt-4" type="checkbox" id="croquisOk"
+                                                formControlName="croquisOk"
+                                                style="margin-left:50px;margin-right: 50px;">
+                                        </div>
+
+
+                                    </div>
+                                </div>
                                 <div class="col-12 text-center mt-5">
                                     <h4>
                                         Imagen de evento
@@ -258,38 +275,44 @@
 
                                     </div>
                                 </div>
-                                <div class="col-12 text-center mt-5">
-                                    <h4>
-                                        Croquis de mesas
-                                    </h4>
-                                </div>
-                                <div class="col-12 col-md-12 mt-3 text-center">
-                                    <div class=" image-upload" class="text-center">
-
-                                        <label for="file-input2" [ngClass]=" {'pointer':edit ==='true'}">
-
-                                            <ng-container *ngIf="fiesta" class="text-center">
-
-                                                <img *ngIf="fiesta.croquis ==='' && !imgTemp   "
-                                                    [src]="url+'/upload/fiestas/default.jpg'+fiesta.croquis"
-                                                    alt="Click aquí para subir tu foto"
-                                                    title="Click aquí para subir tu foto" class="img-avatar">
-
-                                                <img *ngIf="fiesta.croquis !=='' && !imgTemp   "
-                                                    [src]="url+'/upload/fiestas/'+fiesta.croquis"
-                                                    alt="Click aquí para subir tu foto"
-                                                    title="Click aquí para subir tu foto" class="img-avatar">
-
-                                            </ng-container>
-                                        </label>
-
-                                        <input id="file-input2" type="file" class="ion-no-border"
-                                            (change)="cambiarImagen($event ,'croquis')" *ngIf="edit ==='true'" />
 
 
+                                <ng-container *ngIf="form.value.croquisOk">
 
+                                    <div class="col-12 text-center mt-5">
+                                        <h4>
+                                            Croquis de mesas
+                                        </h4>
                                     </div>
-                                </div>
+                                    <div class="col-12 col-md-12 mt-3 text-center">
+                                        <div class=" image-upload" class="text-center">
+
+                                            <label for="file-input2" [ngClass]=" {'pointer':edit ==='true'}">
+
+                                                <ng-container *ngIf="fiesta" class="text-center">
+
+                                                    <img *ngIf="fiesta.croquis ==='' && !imgTemp   "
+                                                        [src]="url+'/upload/fiestas/default.jpg'+fiesta.croquis"
+                                                        alt="Click aquí para subir tu foto"
+                                                        title="Click aquí para subir tu foto" class="img-avatar">
+
+                                                    <img *ngIf="fiesta.croquis !=='' && !imgTemp   "
+                                                        [src]="url+'/upload/fiestas/'+fiesta.croquis"
+                                                        alt="Click aquí para subir tu foto"
+                                                        title="Click aquí para subir tu foto" class="img-avatar">
+
+                                                </ng-container>
+                                            </label>
+
+                                            <input id="file-input2" type="file" class="ion-no-border"
+                                                (change)="cambiarImagen($event ,'croquis')" *ngIf="edit ==='true'" />
+
+
+
+                                        </div>
+                                    </div>
+                                </ng-container>
+
                                 <ng-container class="mt-5">
                                     <div class="col-12 col-md-3 mt-3">
                                         <div class="form-group">

@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CrearRolComponent } from './crear-rol.component';
+import { IsLoginComponent } from './is-login.component';
 
-describe('CrearRolComponent', () => {
-  let component: CrearRolComponent;
-  let fixture: ComponentFixture<CrearRolComponent>;
+describe('IsLoginComponent', () => {
+  let component: IsLoginComponent;
+  let fixture: ComponentFixture<IsLoginComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [CrearRolComponent]
+      declarations: [IsLoginComponent]
     });
-    fixture = TestBed.createComponent(CrearRolComponent);
+    fixture = TestBed.createComponent(IsLoginComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

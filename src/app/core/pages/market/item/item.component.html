@@ -1,0 +1,152 @@
+<app-loading *ngIf="loading"></app-loading>
+
+<div class="custom-block bg-white shadow-lg" *ngIf="!loading && item!=undefined" style="height: 650px !important;">
+
+    <div class=" col-12" style="background-color: {{cP}}; color:{{cS}};  ">
+
+        <h4 class="title-market pointer  " routerLink="/core/vista-producto/{{item.uid}}">
+            <span style=" width:50px ;margin-left:15px;background-color:{{cS}};
+            color: white; font-size: 35px;  border-radius: 0 0 15px 15px;">{{getTypeItem(items)}}</span>
+
+
+            {{item.nombre}}
+
+        </h4>
+
+        <h5 class="category-market    pb-3 mt-2" style="margin-left: 25px;"><b class="pointer"
+                routerLink="/core/vista-proveedor/{{item.proveedor._id}}"> {{item.proveedor.nombre}}
+            </b> - {{item.categoriaItem.nombre}} </h5>
+    </div>
+
+
+    <ng-container *ngFor="let pic of item.photos">
+        <div style="width: 100%;text-align: center; max-height: 150px; overflow: hidden;" *ngIf="pic.isPrincipal">
+            <img [src]="url+'/upload/items/'+pic.img" style="width: 90%; height: 150px;">
+        </div>
+    </ng-container>
+    <!-- <div class="row mt-2" *ngIf="item.isByColor">
+        <label for="opciones">Opciones</label>
+        <select id="opciones" class="form-select form-select-sm" (change)="opcSeleccion($event,item)">
+            <option value=''> Selecciona una opcion</option>
+            <option [value]="it.nombre" *ngFor="let it of item.colores">{{it.nombre}}</option>
+        </select>
+
+    </div> -->
+    <!-- <div class="row mt-2" *ngIf="item.isByService">
+        <label for="opciones">Opciones</label>
+        <select id="opciones" class="form-select form-select-sm" (change)="opcSeleccion($event,item)">
+            <option value=''> Selecciona una opcion</option>
+            <option [value]="it.nombre" *ngFor="let it of item.servicios">{{it.nombre}}</option>
+        </select>
+
+    </div> -->
+    <!-- <div class="row mt-2" *ngIf="item.isByCantidad  ">
+        <label for="opciones">Opciones</label>
+        <select id="opciones" class="form-select form-select-sm" (change)="opcSeleccion($event,item)">
+            <option value=''> Selecciona una opcion</option>
+            <option [value]="it.nombre" *ngFor="let it of item.cantidades">{{it.nombre}}</option>
+        </select>
+         
+        <ng-container>
+            <div class="carrucel">
+
+
+
+                <b>{{opc.nombre }} </b>
+
+
+
+            </div>
+            <div class="col-12">
+                <b>{{col.descripcion}} </b>
+
+            </div>
+        </ng-container>  
+
+    </div> -->
+    <!--  <div class="row mt-2" *ngIf="item.isBySize">
+        <label for="opciones">Opciones</label>
+        <select id="opciones" class="form-select form-select-sm" (change)="opcSeleccion($event,item)">
+            <option value=''> Selecciona una opcion</option>
+            <option [value]="it.nombre" *ngFor="let it of item.sizes">{{it.nombre}}</option>
+        </select>
+
+    </div> -->
+    <div class="row mt-2" *ngIf="!item.isByColor" style="height:30px"></div>
+    <div class="row mt-2">
+        <div class="carrucel">
+
+            <div class="item-market pointer" *ngFor="let pic of item.photos">
+
+                <img [src]="url+'/upload/items/'+pic.img" class=" img-item-market  select-img-market"
+                    [class.select-img-market]="pic.isPrincipal" [alt]="item.name" (click)="viewPhoto(pic.img)">
+
+            </div>
+
+
+
+        </div>
+
+    </div>
+    <div class="row mt-2">
+        <div class="col-12 upper">
+            <b>Descripción:</b>
+            <p style="text-align: justify; font-size: 13px;">
+                {{item.descripcion | slice:0:50}} ...
+            </p>
+        </div>
+
+    </div>
+    <div class="row mt-2">
+        <div class="col-12" *ngIf="item.idealTo.length>0">
+            <b>Ideal para:</b>
+            <ul style="list-style: none; padding: 0; ">
+                <li class="list-market upper" style=" padding: 0; margin: 0;" *ngFor="let ideal of  item.idealTo">
+                    {{ideal.nombre}}
+                </li>
+
+
+
+
+            </ul>
+        </div>
+        <div class="col-12 upper" *ngIf="item.idealTo.length==0">
+            <b>Ideal para cualquier evento</b>
+        </div>
+
+    </div>
+    <div class="row mt-2" style="position: relatives;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;">
+
+        <div class="col-12 text-center" style="font-size: 10px; color :#ffd05b">
+            <b class="col-12 text-center text-black-50" *ngIf="item.calificacion ==0">
+                Sin valoración
+            </b>
+            <i class="bi bi-star-fill m-2" *ngIf="item.calificacion>0 && item.calificacion <=1"></i>
+            <i class="bi bi-star-fill m-2" *ngIf="item.calificacion>0 && item.calificacion <=2"></i>
+            <i class="bi bi-star-fill m-2" *ngIf="item.calificacion>0 && item.calificacion <=3"></i>
+            <i class="bi bi-star-fill m-2" *ngIf="item.calificacion>0 && item.calificacion <=4"></i>
+            <i class="bi bi-star-fill m-2" *ngIf="item.calificacion>0 && item.calificacion <=5"></i>
+
+
+
+        </div>
+        <div class="col-12 text-center">
+            <!--  <button class="btn but m-2">
+                Agregar al carrito
+            </button> -->
+
+            <h5 class="btn   m-2 pointer "
+                style="font-size: .8rem; color:{{CW}}!important; background-color:{{cP}} !important"
+                routerLink="/core/vista-producto/{{item.uid}}">
+                Vista previa
+
+            </h5>
+        </div>
+        <!-- <div class="col-12 text-center text-black-50">
+                                            Sin valoración
+                                        </div> -->
+    </div>
+</div>

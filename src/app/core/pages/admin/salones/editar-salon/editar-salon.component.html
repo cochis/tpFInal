@@ -122,32 +122,36 @@
                                     <span *ngIf="submited && errorControl['email'].errors " class="error">Es
                                         requerido</span>
                                 </div>
-                                <div class="col-12 col-md-12 mt-3">
+                                <div class="col-12 col-md-12 mt-3" style="display: none;">
                                     <div class="form-group">
                                         <label for="ubicacionGoogle">Ubicación Maps Google
                                             <app-info-ubicacion></app-info-ubicacion>
-
                                         </label>
-                                        <input type="text" class="form-control upper" id="ubicacionGoogle"
-                                            formControlName="ubicacionGoogle" required
+                                        <input type="text" class="form-control  " id="ubicacionGoogle"
+                                            formControlName="ubicacionGoogle"
                                             placeholder="Ingresa link de la Ubicación de Google  maps"
                                             [readonly]="edit==='false'">
                                     </div>
                                 </div>
-                                <!--    <div class="col-12 col-md-6 mt-3">
+                                <div class="col-12 mt-3">
+
+                                    <app-mapscreen (coordenadas)="showCoordenadas($event)"
+                                        [sendCoords]="sendCoords"></app-mapscreen>
+                                </div>
+                                <div class="col-12 col-md-6 mt-3" style="display: none;">
                                     <div class="form-group">
                                         <label for="lat">Latitud</label>
                                         <input type="number" class="form-control upper" id="lat" formControlName="lat"
-                                            required placeholder="Latitud" [readonly]="edit==='false'">
+                                            placeholder="Latitud" [readonly]="edit==='false'">
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6 mt-3">
+                                <div class="col-12 col-md-6 mt-3" style="display: none;">
                                     <div class="form-group">
                                         <label for="long">Longitud</label>
                                         <input type="number" class="form-control upper" id="long" formControlName="long"
-                                            required placeholder="Longitud" [readonly]="edit==='false'">
+                                            placeholder="Longitud" [readonly]="edit==='false'">
                                     </div>
-                                </div> -->
+                                </div>
                                 <div class="col-12 col-md-12 mt-3">
                                     <div class="form-group">
                                         <label for="long">Indicaciones adicionales de esta dirección</label>

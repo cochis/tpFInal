@@ -147,12 +147,19 @@
                             <h1 class="card-text  {{invitacion.nombreFont}}upper" *ngIf="invitacion.mesa">Mesa
                                 <b>{{invitacion.mesa}}</b>
                             </h1>
-                            <h2 *ngIf="fiesta && (fiesta.croquis !='' && fiesta.croquis !=='fiesta-default.jpg')">
-                                Ver croquis
-                                <i class="bi bi-file-excel-fill" style="cursor: pointer;"
-                                    (click)="viewCroquis('fiestas',fiesta.croquis)"></i>
-                            </h2>
+
+
                             <h3 class="  lato-regular-italic">{{invitacion.textInvitacionValida}}</h3>
+                        </div>
+                    </div>
+
+                    <div class="row text-center" *ngIf="invitacion &&  croquisOk">
+
+                        <div class="col-12 mt-3  ma" (click)="viewCroquis('fiestas',fiesta.croquis)">
+                            <h2 style="color: {{invitacion.cPrincipal}}; cursor: pointer;">
+                                Ver croquis
+                                <i class="bi bi-file-excel-fill" style=" color:{{invitacion.cSecond}}"></i>
+                            </h2>
                         </div>
                     </div>
                     <div class="card text-center"
@@ -168,10 +175,19 @@
                     </div>
 
                 </div>
+
             </div>
         </div>
+        <div class="row text-center" *ngIf="fiesta && fiesta.croquisOk ">
 
-        <div class="row">
+            <div class="col-12 mt-3  ma" (click)="viewCroquis('fiestas',fiesta.croquis)">
+                <h2 style="color: {{invitacion.cPrincipal}}; cursor: pointer;">
+                    Ver croquis
+                    <i class="bi bi-file-excel-fill" style=" color:{{invitacion.cSecond}}"></i>
+                </h2>
+            </div>
+        </div>
+        <div class="row mt-3">
             <div class="col-12">
 
 

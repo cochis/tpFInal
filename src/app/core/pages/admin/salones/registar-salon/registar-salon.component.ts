@@ -38,6 +38,7 @@ export class RegistarSalonComponent {
   paquete: Paquete
   role = this.functionsService.getLocal('role')
   uid = this.functionsService.getLocal('uid')
+  sendCoords!: [number, number]
   constructor(
     private fb: FormBuilder,
     private functionsService: FunctionsService,
@@ -135,9 +136,9 @@ export class RegistarSalonComponent {
 
         this.usuariosService.actualizarUsuario(this.usuario).subscribe((resp: CargarUsuario) => {
           this.functionsService.alert('Centro de Eventos', 'Se ha registrado tu centro de eventos', 'success')
-
           this.loading = false
-          this.functionsService.navigateTo('core')
+          this.functionsService.navigateTo(`core/salones/editar-salon/true/${this.usuario.salon}`)
+
         },
           (error) => {
             console.error('Error', error)
@@ -179,5 +180,16 @@ export class RegistarSalonComponent {
   }
   showInfo(content) {
     this.modalService.open(content, { fullscreen: true });
+  }
+  showCoordenadas(e) {
+    this.form.patchValue({
+
+      lat: e.lat,
+      long: e.lng,
+      ubicacionGoogle: `https://maps.google.com/?ll=${e.lat},${e.lng}&z=21`
+    })
+    console.log('this.form::: ', this.form.value);
+
+
   }
 }

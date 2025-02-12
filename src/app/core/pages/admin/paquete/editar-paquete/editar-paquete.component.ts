@@ -162,7 +162,7 @@ export class EditarPaqueteComponent {
     } else {
       //message
       this.loading = false
-      return // console.info('Please provide all the required values!');
+      return console.info('Please provide all the required values!');
     }
   }
   changeTypeOfVigencia(type) {

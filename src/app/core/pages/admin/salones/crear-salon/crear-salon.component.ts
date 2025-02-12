@@ -34,7 +34,7 @@ export class CrearSalonComponent {
   ANF = environment.anf_role
   rol = this.functionsService.getLocal('role')
   email = this.functionsService.getLocal('email')
-
+  sendCoords!: [number, number]
 
   constructor(
     private fb: FormBuilder,
@@ -99,9 +99,10 @@ export class CrearSalonComponent {
 
 
       this.salonesService.crearSalon(this.form.value).subscribe((resp: any) => {
+        console.log('resp::: ', resp);
 
         this.functionsService.alert('Centro de eventos', 'Creado', 'success')
-        this.functionsService.navigateTo('core/salones/vista-salones')
+        this.functionsService.navigateTo(`core/salones/editar-salon/true/${resp.salon.uid}`)
         this.loading = false
       },
         (error) => {
@@ -127,7 +128,6 @@ export class CrearSalonComponent {
     this.usuariosService.cargarAlumnosAll().subscribe((resp: CargarUsuarios) => {
       this.usuarios = resp.usuarios
 
-
     },
       (error: any) => {
         console.error('Error', error)
@@ -140,7 +140,17 @@ export class CrearSalonComponent {
   }
 
 
+  showCoordenadas(e) {
+    this.form.patchValue({
 
+      lat: e.lat,
+      long: e.lng,
+      ubicacionGoogle: `https://maps.google.com/?ll=${e.lat},${e.lng}&z=21`
+    })
+    console.log('this.form::: ', this.form.value);
+
+
+  }
 
 
 }

@@ -23,6 +23,15 @@ import { TipoCentro } from "../models/tipoCentro.model"
 import { Paquete } from "../models/paquete.model"
 import { Parametro } from "../models/parametro.model"
 import { Ejemplo } from "../models/ejemplo.model"
+import { TipoColor } from "../models/tipoColor.model"
+import { TipoContacto } from "../models/tipoContacto.model"
+import { Proveedor } from "../models/proveedor.model"
+import { TipoItem } from "../models/tipoItem.model"
+import { CategoriaItem } from "../models/categoriaItem.model"
+import { Item } from "../models/item.model"
+import { Moneda } from "../models/moneda.model"
+import { TipoMedia } from "../models/tipoMedia.model"
+import { ImgItem } from "../models/imgItem.model"
 
 
 
@@ -109,6 +118,27 @@ export interface CargarEventos {
     total: number
     eventos: Evento[]
 }
+export interface CargarTipoMedia {
+    tipoMedia: TipoMedia
+}
+export interface CargarTipoMedias {
+    total: number
+    tipoMedias: TipoMedia[]
+}
+export interface CargarMoneda {
+    moneda: Moneda
+}
+export interface CargarMonedas {
+    total: number
+    monedas: Moneda[]
+}
+export interface CargarProveedor {
+    proveedor: Proveedor
+}
+export interface CargarProveedors {
+    total: number
+    proveedors: Proveedor[]
+}
 export interface CargarEjemplo {
     ejemplo: Ejemplo
 }
@@ -186,6 +216,48 @@ export interface CargarTipoModulo {
 export interface CargarTipoModulos {
     total: number
     tipoModulos: TipoModulo[]
+}
+export interface CargarTipoItem {
+    tipoItem: TipoItem
+}
+export interface CargarTipoItems {
+    total: number
+    tipoItems: TipoItem[]
+}
+export interface CargarItem {
+    item: Item
+}
+export interface CargarItems {
+    total: number
+    items: Item[]
+}
+export interface CargarImgItem {
+    imgItem: ImgItem
+}
+export interface CargarImgItems {
+    total: number
+    imgItems: ImgItem[]
+}
+export interface CargarCategoriaItem {
+    categoriaItem: CategoriaItem
+}
+export interface CargarCategoriaItems {
+    total: number
+    categoriaItems: CategoriaItem[]
+}
+export interface CargarTipoColor {
+    tipoColor: TipoColor
+}
+export interface CargarTipoColors {
+    total: number
+    tipoColors: TipoColor[]
+}
+export interface CargarTipoContacto {
+    tipoContacto: TipoContacto
+}
+export interface CargarTipoContactos {
+    total: number
+    tipoContactos: TipoContacto[]
 }
 export interface CargarModuloTemplate {
     moduloTemplate: ModuloTemplate

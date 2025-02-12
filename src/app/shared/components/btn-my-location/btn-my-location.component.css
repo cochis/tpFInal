@@ -1,0 +1,9 @@
+button {
+    position: relative;
+    top: 25%;
+    left: -17px;
+    z-index: 10000;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border-radius: 100%;
+}

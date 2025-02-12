@@ -32,6 +32,7 @@ export class EditarSalonComponent {
   url = environment.base_url
 
   submited: boolean = false
+  sendCoords!: [number, number]
   constructor(
     private fb: FormBuilder,
     private functionsService: FunctionsService,
@@ -43,7 +44,6 @@ export class EditarSalonComponent {
 
     this.edit = this.route.snapshot.params['edit']
     this.loading = true
-
     this.getId(this.id)
     this.createForm()
     setTimeout(() => {
@@ -106,6 +106,9 @@ export class EditarSalonComponent {
   }
   setForm(salon: Salon) {
 
+    if (salon.long && salon.lat) {
+      this.sendCoords = [Number(salon.long), Number(salon.lat)]
+    }
 
     this.form = this.fb.group({
       nombre: [salon.nombre, [Validators.required]],
@@ -206,6 +209,7 @@ export class EditarSalonComponent {
       .actualizarFoto(this.imagenSubir, 'salones', this.salon.uid)
       .then(
         (img) => {
+          console.log('img::: ', img);
 
           this.salon.img = img
 
@@ -218,7 +222,16 @@ export class EditarSalonComponent {
         },
       )
   }
+  showCoordenadas(e) {
+    this.form.patchValue({
 
+      lat: e.lat,
+      long: e.lng,
+      ubicacionGoogle: `https://maps.google.com/?ll=${e.lat},${e.lng}&z=21`
+    })
+
+
+  }
   back() {
     this.functionsService.navigateTo('core/salones/vista-salones')
   }

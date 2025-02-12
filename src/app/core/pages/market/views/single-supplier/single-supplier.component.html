@@ -1,0 +1,162 @@
+<app-header></app-header>
+<div class="container-fluid"
+    style="height: 140px; background-color:{{getColor('P',proveedor.colores)}};  text-align: center;">
+    <div class="row" style="background-image: linear-gradient(black, white);
+background-image: url( {{url}}/upload/proveedores/{{proveedor.bannerImg}});background-repeat: no-repeat;
+  background-size: 100% 150px;">
+
+        <div class="col-8 col-md-6 text-end">
+
+            <h3 class="title-supplier" style="color:{{getColor('P',proveedor.colores)}} ; ">
+                {{proveedor.nombre}}
+
+
+            </h3>
+        </div>
+        <div class=" col-4 col-md-6 text-start">
+            <img src="{{url}}/upload/proveedores/{{proveedor.img}}"
+                style=" width: 100%; max-width: 100px; line-height: 140px;display:inline-block ; margin-top: 25px;;"
+                alt="{{proveedor.nombre}}">
+
+        </div>
+    </div>
+
+</div>
+<div class="row mt-3">
+    <div class="col-12 text-center" style="font-size: 30px; color :{{getColor('P',proveedor.colores)}}">
+        <i class="bi bi-star-fill m-2"></i>
+        <i class="bi bi-star-fill m-2"></i>
+        <i class="bi bi-star-fill m-2"></i>
+        <i class="bi bi-star-fill m-2"></i>
+        <i class="bi bi-star-fill m-2"></i>
+
+
+    </div>
+</div>
+
+<div class="container mt-5 ">
+    <div class="row ">
+        <div class="col-12 col-md-6 text-center">
+            <h2>
+                Descripción
+            </h2>
+            <app-divisor [color]="getColor('P',proveedor.colores)"></app-divisor>
+            <p class="mt-3"
+                style=" font-size: 20px; color: {{getColor('S',proveedor.colores)}} ; text-align: justify; ">
+                {{proveedor.descripcion}}
+            </p>
+        </div>
+        <div class="col-12 col-md-6 text-center">
+            <h2>
+                Contacto
+            </h2>
+            <app-divisor [color]="getColor('P',proveedor.colores)"></app-divisor>
+            <div class="row mt-3">
+
+                <div class="col-12 col-md-6 ma" *ngFor="let item of proveedor.contactos">
+                    <div class="card text-center">
+
+                        <div class="card-body">
+                            <h5 class="card-title">{{getContact(item).nombre}}</h5>
+                            <ng-container *ngIf="getContact(item).nombre === 'DIRECCIÓN'">
+                                <a href="{{item.value}}" target="_blank" class="btn  "
+                                    style=" color:{{getColor('P',proveedor.colores)}}">
+                                    <b
+                                        style=" color:{{getColor('S',proveedor.colores)}}; margin-right: 10px; font-size:35px;">
+                                        <i class="{{getContact(item).icon}}"></i>
+                                    </b> </a>
+                            </ng-container>
+                            <ng-container *ngIf="getContact(item).nombre === 'TELÉFONO'">
+                                <a href="tel:+{{item.value}}" class="btn  "
+                                    style=" color:{{getColor('P',proveedor.colores)}}" alt="+{{item.value}}">
+                                    <b
+                                        style=" color:{{getColor('S',proveedor.colores)}}; margin-right: 10px; font-size:35px;">
+                                        <i class="{{getContact(item).icon}}"></i>
+                                    </b> </a>
+                            </ng-container>
+                            <ng-container *ngIf="getContact(item).nombre === 'MAIL'">
+                                <a href="mailto:{{item.value}}" class="btn  "
+                                    style=" color:{{getColor('P',proveedor.colores)}}">
+                                    <b
+                                        style=" color:{{getColor('S',proveedor.colores)}}; margin-right: 10px; font-size:35px;">
+                                        <i class="{{getContact(item).icon}}"></i>
+                                    </b> </a>
+                            </ng-container>
+                            <ng-container *ngIf="getContact(item).nombre === 'PAGINA WEB'">
+                                <a href="{{item.value}}" target="_blank" class="btn  "
+                                    style=" color:{{getColor('P',proveedor.colores)}}">
+                                    <b
+                                        style=" color:{{getColor('S',proveedor.colores)}}; margin-right: 10px; font-size:35px;">
+                                        <i class="{{getContact(item).icon}}"></i>
+                                    </b>{{item.value}}</a>
+                            </ng-container>
+
+                        </div>
+                    </div>
+
+                </div>
+                <!-- <div class="col-12 col-md-6 ma">
+                    <div class="card text-center">
+
+                        <div class="card-body">
+                            <h5 class="card-title">Correo electrónico</h5>
+
+                            <a href="mailto:info@example.com" class="btn  " style=" color:{{getColor('P',proveedor.colores)}}">
+                                <b style=" color:{{getColor('S',proveedor.colores)}}; margin-right: 10px; font-size:35px;">
+                                    <i class="bi bi-envelope-fill"></i>
+                                </b> </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 ma">
+                    <div class="card text-center">
+
+                        <div class="card-body">
+                            <h5 class="card-title">Dirección</h5>
+
+                            <a href="https://www.google.com/maps/place/MERC.+S.A.+DE+C.V./@19.4380324,-98.8961026,16z/data=!4m6!3m5!1s0x85d1e1338cb7ce4d:0xe7ba7e0cc320e43c!8m2!3d19.4407972!4d-98.8965804!16s%2Fg%2F11b6s14v1_?entry=ttu&g_ep=EgoyMDI1MDEyNi4wIKXMDSoASAFQAw%3D%3D"
+                                target="_blank" class="btn  " style=" color:{{getColor('P',proveedor.colores)}}">
+                                <b style=" color:{{getColor('S',proveedor.colores)}}; margin-right: 10px; font-size:35px;">
+                                    <i class="bi bi-pin-fill"></i>
+                                </b> </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 ma">
+                    <div class="card text-center">
+
+                        <div class="card-body">
+                            <h5 class="card-title">Pagina web</h5>
+
+                            <a href="https://myticketparty.com" target="_blank" class="btn  "
+                                style=" color:{{getColor('P',proveedor.colores)}}">
+                                <b style=" color:{{getColor('S',proveedor.colores)}}; margin-right: 10px; font-size:35px;">
+                                    <i class="bi bi-box-arrow-up-right"></i>
+                                </b>Myticketparty.com</a>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+
+
+
+
+
+
+
+    </div>
+    <div class="row ">
+        <div class="col-12 text-center">
+            <h2>
+                Productos
+            </h2>
+        </div>
+        <app-divisor [color]="getColor('P',proveedor.colores)"></app-divisor>
+        <app-market-items [items]="items" [cP]="getColor('P',proveedor.colores)"
+            [cS]="getColor('S',proveedor.colores)"></app-market-items>
+    </div>
+
+
+</div>
+<app-footer></app-footer>

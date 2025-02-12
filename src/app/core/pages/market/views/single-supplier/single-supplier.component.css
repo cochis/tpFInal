@@ -1,0 +1,13 @@
+.title-supplier {
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 140px;
+    display: inline-block
+}
+
+@media screen and (min-width:0px) and (max-width: 576px) {
+    .title-supplier {
+        font-size: 15px;
+
+    }
+}

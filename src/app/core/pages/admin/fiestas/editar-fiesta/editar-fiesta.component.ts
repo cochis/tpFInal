@@ -88,7 +88,7 @@ export class EditarFiestaComponent {
       }, 500);
     },
       (error: any) => {
-        // console.error('Error', error)
+        console.error('Error', error)
         this.functionsService.alertError(error, 'Fiestas')
       })
   }
@@ -106,7 +106,7 @@ export class EditarFiestaComponent {
 
       },
         (error: any) => {
-          // console.error('Error', error)
+          console.error('Error', error)
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
         })
@@ -116,7 +116,7 @@ export class EditarFiestaComponent {
 
       },
         (error: any) => {
-          // console.error('Error', error)
+          console.error('Error', error)
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
 
@@ -131,7 +131,7 @@ export class EditarFiestaComponent {
 
       },
         (error: any) => {
-          // console.error('Error', error)
+          console.error('Error', error)
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
 
@@ -144,7 +144,7 @@ export class EditarFiestaComponent {
 
       },
         (error: any) => {
-          // console.error('Error', error)
+          console.error('Error', error)
           this.functionsService.alertError(error, 'Paquetes')
           this.loading = false
         })
@@ -152,7 +152,7 @@ export class EditarFiestaComponent {
         this.salones = this.functionsService.getActivos(resp.salons)
       },
         (error: any) => {
-          // console.error('Error', error)
+          console.error('Error', error)
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
         })
@@ -163,7 +163,7 @@ export class EditarFiestaComponent {
 
       },
         (error: any) => {
-          // console.error('Error', error)
+          console.error('Error', error)
           this.functionsService.alertError(error, 'Fiestas')
           this.loading = false
         })
@@ -175,7 +175,7 @@ export class EditarFiestaComponent {
 
       },
         (error: any) => {
-          // console.error('Error', error)
+          console.error('Error', error)
           this.functionsService.alertError(error, 'Usuarios')
           this.loading = false
         })
@@ -188,7 +188,7 @@ export class EditarFiestaComponent {
 
       },
         (error: any) => {
-          // console.error('Error', error)
+          console.error('Error', error)
           this.functionsService.alertError(error, 'Usuario')
           this.loading = false
         })
@@ -222,6 +222,7 @@ export class EditarFiestaComponent {
       galeria: [''],
       checking: [''],
 
+      croquisOk: [false],
       mesaOk: [''],
       invitacion: [],
       activated: [false],
@@ -230,6 +231,7 @@ export class EditarFiestaComponent {
     })
   }
   setForm(fiesta: any) {
+    console.log('fiesta::: ', fiesta);
     let fecha = this.functionsService.numberDateTimeLocal(fiesta.fecha)
     let usuarioFiesta = fiesta.usuarioFiesta.nombre
     var evento = fiesta.evento.nombre
@@ -254,7 +256,7 @@ export class EditarFiestaComponent {
         invitacion: [fiesta.invitacion],
         galeria: [fiesta.galeria],
         checking: [fiesta.checking],
-
+        croquisOk: [fiesta.croquisOk],
         mesaOk: [fiesta.mesaOk],
         croquisCheck: [fiesta.croquisCheck],
         example: [fiesta.example],
@@ -262,6 +264,7 @@ export class EditarFiestaComponent {
         dateCreated: [fiesta.dateCreated],
         lastEdited: [this.today],
       })
+      this.loading = false
     }, 800);
 
   }
@@ -299,7 +302,7 @@ export class EditarFiestaComponent {
         this.loading = false
       },
         (error) => {
-          // console.error('Error', error)
+          console.error('Error', error)
 
           this.loading = true
           this.functionsService.alertError(error, 'Fiestas')
@@ -310,7 +313,7 @@ export class EditarFiestaComponent {
       this.functionsService.alertForm('Fiestas')
       this.loading = false
 
-      return // console.info('Please provide all the required values!');
+      return console.info('Please provide all the required values!');
     }
 
 
@@ -350,7 +353,13 @@ export class EditarFiestaComponent {
           //message
           this.loading = true
           this.imgTemp = undefined
-          this.getId(this.id)
+          if (this.fiesta.croquisOk !== this.form.value.croquisOk) {
+            this.fiesta.croquisOk = this.form.value.croquisOk
+          }
+
+
+          this.setForm(this.fiesta)
+
         },
         (err) => {
           console.error('error::: ', err);

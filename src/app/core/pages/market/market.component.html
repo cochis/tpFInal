@@ -1,0 +1,71 @@
+<app-header></app-header>
+
+<body id="top">
+
+    <main>
+
+
+
+
+        <section class="hero-section d-flex justify-content-center align-items-center" id="section_1">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-8 col-12 mx-auto">
+                        <h1 class="text-white text-center">Marketplace Ticket party</h1>
+
+                        <h6 class="text-center">Complementa tu evento </h6>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+
+        <section class="explore-section section-padding" id="section_2">
+            <div class="container">
+
+
+                <!--  <div class="col-6">
+                    <select class="form-select form-select-sm" aria-label=".form-select-sm example"
+                        (change)="orderBy($event)">
+                        <option selected>Orden por</option>
+                        <option value="categoria">categoria</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+               <div class="row">
+                    <div class="col-6">
+                        <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                            <option selected>Mejores Valorados</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+
+                </div> -->
+                <div class="col-12 text-center mt-3">
+                    <h2 class="mb-3">Productos y Servicios</h2>
+                </div>
+
+            </div>
+            <app-market-items [items]="items"></app-market-items>
+
+
+
+
+        </section>
+
+
+
+
+
+    </main>
+
+    <app-footer></app-footer>
+</body>

@@ -84,6 +84,38 @@ import { SingleFiestaComponent } from './pages/admin/fiestas/single-fiesta/singl
 import { VistaEjemplosComponent } from './pages/admin/ejemplos/vista-ejemplos/vista-ejemplos.component';
 import { CrearEjemploComponent } from './pages/admin/ejemplos/crear-ejemplo/crear-ejemplo.component';
 import { EditarEjemploComponent } from './pages/admin/ejemplos/editar-ejemplo/editar-ejemplo.component';
+import { MarketComponent } from './pages/market/market.component';
+import { SingleProductComponent } from './pages/market/views/single-product/single-product.component';
+import { SingleSupplierComponent } from './pages/market/views/single-supplier/single-supplier.component';
+import { SingleCategoryComponent } from './pages/market/views/single-category/single-category.component';
+import { CarritoComponent } from './pages/admin/market/carrito/carrito.component';
+import { MarketItemsComponent } from './pages/market/market-items/market-items.component';
+import { ItemComponent } from './pages/market/item/item.component';
+import { VistaTipoColoresComponent } from './pages/admin/tipo-colores/vista-tipo-colores/vista-tipo-colores.component';
+import { CrearTipoColorComponent } from './pages/admin/tipo-colores/crear-tipo-color/crear-tipo-color.component';
+import { EditarTipoColorComponent } from './pages/admin/tipo-colores/editar-tipo-color/editar-tipo-color.component';
+import { VistaTipoContactosComponent } from './pages/admin/tipo-contactos/vista-tipo-contactos/vista-tipo-contactos.component';
+import { EditarTipoContactoComponent } from './pages/admin/tipo-contactos/editar-tipo-contacto/editar-tipo-contacto.component';
+import { CrearTipoContactoComponent } from './pages/admin/tipo-contactos/crear-tipo-contacto/crear-tipo-contacto.component';
+import { VistaProvedorsComponent } from './pages/admin/market/admin/proveedors/vista-provedors/vista-provedors.component';
+import { CrearProvedorComponent } from './pages/admin/market/admin/proveedors/crear-provedor/crear-provedor.component';
+import { EditarProvedorComponent } from './pages/admin/market/admin/proveedors/editar-provedor/editar-provedor.component';
+import { EditarItemComponent } from './pages/admin/market/admin/items/editar-item/editar-item.component';
+import { CrearItemComponent } from './pages/admin/market/admin/items/crear-item/crear-item.component';
+import { VistaItemsComponent } from './pages/admin/market/admin/items/vista-items/vista-items.component';
+import { VistaTipoItemsComponent } from './pages/admin/tipo-items/vista-tipo-items/vista-tipo-items.component';
+import { CrearTipoItemComponent } from './pages/admin/tipo-items/crear-tipo-item/crear-tipo-item.component';
+import { EditarTipoItemComponent } from './pages/admin/tipo-items/editar-tipo-item/editar-tipo-item.component';
+import { VistaCategoriaItemsComponent } from './pages/admin/categoria-items/vista-categoria-items/vista-categoria-items.component';
+import { EditarCategoriaItemComponent } from './pages/admin/categoria-items/editar-categoria-item/editar-categoria-item.component';
+import { CrearCategoriaItemComponent } from './pages/admin/categoria-items/crear-categoria-item/crear-categoria-item.component';
+import { VistaMonedasComponent } from './pages/admin/monedas/vista-monedas/vista-monedas.component';
+import { CrearMonedaComponent } from './pages/admin/monedas/crear-moneda/crear-moneda.component';
+import { EditarMonedaComponent } from './pages/admin/monedas/editar-moneda/editar-moneda.component';
+import { CrearTipoMediaComponent } from './pages/admin/tipo-medias/crear-tipo-media/crear-tipo-media.component';
+import { EditarTipoMediaComponent } from './pages/admin/tipo-medias/editar-tipo-media/editar-tipo-media.component';
+import { VistaTipoMediasComponent } from './pages/admin/tipo-medias/vista-tipo-medias/vista-tipo-medias.component';
+import { NgxCurrencyDirective } from 'ngx-currency';
 
 
 
@@ -171,7 +203,38 @@ import { EditarEjemploComponent } from './pages/admin/ejemplos/editar-ejemplo/ed
     SingleFiestaComponent,
     VistaEjemplosComponent,
     CrearEjemploComponent,
-    EditarEjemploComponent
+    EditarEjemploComponent,
+    MarketComponent,
+    SingleProductComponent,
+    SingleSupplierComponent,
+    SingleCategoryComponent,
+    CarritoComponent,
+    MarketItemsComponent,
+    ItemComponent,
+    VistaTipoColoresComponent,
+    CrearTipoColorComponent,
+    EditarTipoColorComponent,
+    VistaTipoContactosComponent,
+    EditarTipoContactoComponent,
+    CrearTipoContactoComponent,
+    VistaProvedorsComponent,
+    CrearProvedorComponent,
+    EditarProvedorComponent,
+    EditarItemComponent,
+    CrearItemComponent,
+    VistaItemsComponent,
+    VistaTipoItemsComponent,
+    CrearTipoItemComponent,
+    EditarTipoItemComponent,
+    VistaCategoriaItemsComponent,
+    EditarCategoriaItemComponent,
+    CrearCategoriaItemComponent,
+    VistaMonedasComponent,
+    CrearMonedaComponent,
+    EditarMonedaComponent,
+    CrearTipoMediaComponent,
+    EditarTipoMediaComponent,
+    VistaTipoMediasComponent
 
   ],
   imports: [
@@ -182,8 +245,10 @@ import { EditarEjemploComponent } from './pages/admin/ejemplos/editar-ejemplo/ed
     ZXingScannerModule,
     SharedModule,
     QRCodeModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    NgxCurrencyDirective
 
-  ]
+  ],
+  exports: [MarketItemsComponent]
 })
 export class CoreModule { }

@@ -56,7 +56,8 @@ export class FiestasService {
               fie.mesaOk,
               fie.example,
               fie.croquis,
-          
+              fie.croquisOk,
+
               fie.usuarioCreated,
               fie.activated,
               fie.dateCreated,

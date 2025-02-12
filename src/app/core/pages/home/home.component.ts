@@ -45,7 +45,8 @@ export class HomeComponent implements AfterViewInit {
     this.role = this.functionsService.getLocal('role')
     this.uid = this.functionsService.getLocal('uid')
     this.functionsService.getIp().subscribe(resp => {
-      console.log('resp::: ', resp);
+
+
 
     })
 

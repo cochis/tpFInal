@@ -21,6 +21,7 @@ import { PaquetesService } from 'src/app/core/services/paquete.service';
 import { Paquete } from 'src/app/core/models/paquete.model';
 
 import Swal from 'sweetalert2';
+import { ByFileComponent } from '../../templates/by-file/by-file.component';
 
 @Component({
   selector: 'app-crear-fiesta',
@@ -186,6 +187,7 @@ export class CrearFiestaComponent {
       usuarioFiesta: [(this.rol == this.ANF) ? this.uid : '', [Validators.required]],
       img: [''],
       galeria: [false],
+      croquisOk: [false],
       checking: [false],
       example: [false],
       mesaOk: [false],
@@ -231,6 +233,8 @@ export class CrearFiestaComponent {
         realizada: false
       }
 
+      console.log('form::: ', form);
+
 
       this.fiestasService.crearFiesta(form).subscribe((resp: any) => {
         var rp = resp
@@ -240,13 +244,16 @@ export class CrearFiestaComponent {
           this.loading = false
           this.functionsService.alert('Fiestas', 'Fiesta creada', 'success')
 
-          if (rp.fiesta.invitacion.includes('default')) {
 
-            this.functionsService.navigateTo(`core/invitaciones/editar-invitacion/true/${resp.fiesta.uid}`)
-          } else {
+          this.functionsService.navigateTo(`/core/fiestas/editar-fiesta/true/${resp.fiesta.uid}`)
 
-            this.functionsService.navigateTo(`core/fiestas/vista-fiestas`)
-          }
+          /*   if (rp.fiesta.invitacion.includes('default')) {
+  
+              this.functionsService.navigateTo(`core/invitaciones/editar-invitacion/true/${resp.fiesta.uid}`)
+            } else {
+  
+              this.functionsService.navigateTo(`core/fiestas/vista-fiestas`)
+            } */
 
         } else {
           this.usuario.cantidadFiestas--
@@ -255,8 +262,8 @@ export class CrearFiestaComponent {
           this.usuariosService.actualizarUsuario(this.usuario).subscribe((respU: any) => {
             this.loading = false
             this.functionsService.alert('Fiestas', 'Fiesta creada', 'success')
-
-            if (rp.fiesta.invitacion.includes('default')) {
+            this.functionsService.navigateTo(`core/fiestas/editar-fiesta/true/${resp.fiesta.uid}`)
+            /* if (rp.fiesta.invitacion.includes('default')) {
               Swal.fire({
                 title: "¿ Deseas agregar alguna imagen ?",
                 showDenyButton: true,
@@ -264,19 +271,14 @@ export class CrearFiestaComponent {
                 confirmButtonText: "Si",
                 denyButtonText: `No`
               }).then((result) => {
-                /* Read more about isConfirmed, isDenied below */
-                if (result.isConfirmed) {
-                  this.functionsService.navigateTo(`core/fiestas/editar-fiesta/true/${resp.fiesta.uid}`)
-                } else if (result.isDenied) {
-                  this.functionsService.navigateTo(`core/mis-fiestas`)
-                }
+                this.functionsService.navigateTo(`core/fiestas/editar-fiesta/true/${resp.fiesta.uid}`)
               });
               //this.functionsService.navigateTo(`core/invitaciones/editar-invitacion/true/${resp.fiesta.uid}`)
               //this.functionsService.navigateTo(`core/mis-fiestas`)
             } else {
 
               this.functionsService.navigateTo(`core/fiestas/vista-fiestas`)
-            }
+            } */
 
           })
         }
@@ -293,7 +295,7 @@ export class CrearFiestaComponent {
     } else {
       this.functionsService.alertForm('Fiestas')
       this.loading = false
-      return // console.info('Please provide all the required values!');
+      return console.info('Please provide all the required values!');
     }
   }
   selectSalon(event) {
@@ -317,6 +319,7 @@ export class CrearFiestaComponent {
     })
   }
   setSalon(salon) {
+    console.log('salon::: ', salon);
 
     this.form = this.fb.group({
       nombre: [this.form.value.nombre, [Validators.required, Validators.minLength(3)]],
@@ -339,6 +342,7 @@ export class CrearFiestaComponent {
       salon: [this.form.value.salon, [Validators.required]],
       img: [''],
       galeria: [this.form.value.galeria],
+      croquisOk: [this.form.value.galeria],
       checking: [this.form.value.checking],
       example: [this.form.value.example],
       mesaOk: [this.form.value.mesaOk],
@@ -358,6 +362,14 @@ export class CrearFiestaComponent {
         model: id,
         mode: 'default'
       })
+    } else {
+      this._modalService.show<Template>(ByFileComponent, {
+        title: 'Ver invitación',
+        size: 1,
+        model: id,
+        mode: 'default'
+      })
+
     }
   }
   calcularItems(items = []) {

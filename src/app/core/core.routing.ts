@@ -77,8 +77,35 @@ import { SingleFiestaComponent } from './pages/admin/fiestas/single-fiesta/singl
 import { EditarEjemploComponent } from './pages/admin/ejemplos/editar-ejemplo/editar-ejemplo.component';
 import { CrearEjemploComponent } from './pages/admin/ejemplos/crear-ejemplo/crear-ejemplo.component';
 import { VistaEjemplosComponent } from './pages/admin/ejemplos/vista-ejemplos/vista-ejemplos.component';
-
-
+import { MarketComponent } from './pages/market/market.component';
+import { SingleProductComponent } from './pages/market/views/single-product/single-product.component';
+import { SingleCategoryComponent } from './pages/market/views/single-category/single-category.component';
+import { SingleSupplierComponent } from './pages/market/views/single-supplier/single-supplier.component';
+import { CarritoComponent } from './pages/admin/market/carrito/carrito.component';
+import { EditarTipoColorComponent } from './pages/admin/tipo-colores/editar-tipo-color/editar-tipo-color.component';
+import { CrearTipoColorComponent } from './pages/admin/tipo-colores/crear-tipo-color/crear-tipo-color.component';
+import { VistaTipoColoresComponent } from './pages/admin/tipo-colores/vista-tipo-colores/vista-tipo-colores.component';
+import { EditarTipoContactoComponent } from './pages/admin/tipo-contactos/editar-tipo-contacto/editar-tipo-contacto.component';
+import { CrearTipoContactoComponent } from './pages/admin/tipo-contactos/crear-tipo-contacto/crear-tipo-contacto.component';
+import { VistaTipoContactosComponent } from './pages/admin/tipo-contactos/vista-tipo-contactos/vista-tipo-contactos.component';
+import { EditarProvedorComponent } from './pages/admin/market/admin/proveedors/editar-provedor/editar-provedor.component';
+import { CrearProvedorComponent } from './pages/admin/market/admin/proveedors/crear-provedor/crear-provedor.component';
+import { VistaProvedorsComponent } from './pages/admin/market/admin/proveedors/vista-provedors/vista-provedors.component';
+import { EditarItemComponent } from './pages/admin/market/admin/items/editar-item/editar-item.component';
+import { CrearItemComponent } from './pages/admin/market/admin/items/crear-item/crear-item.component';
+import { VistaItemsComponent } from './pages/admin/market/admin/items/vista-items/vista-items.component';
+import { VistaTipoItemsComponent } from './pages/admin/tipo-items/vista-tipo-items/vista-tipo-items.component';
+import { CrearTipoItemComponent } from './pages/admin/tipo-items/crear-tipo-item/crear-tipo-item.component';
+import { EditarTipoItemComponent } from './pages/admin/tipo-items/editar-tipo-item/editar-tipo-item.component';
+import { EditarCategoriaItemComponent } from './pages/admin/categoria-items/editar-categoria-item/editar-categoria-item.component';
+import { CrearCategoriaItemComponent } from './pages/admin/categoria-items/crear-categoria-item/crear-categoria-item.component';
+import { VistaCategoriaItemsComponent } from './pages/admin/categoria-items/vista-categoria-items/vista-categoria-items.component';
+import { EditarMonedaComponent } from './pages/admin/monedas/editar-moneda/editar-moneda.component';
+import { CrearMonedaComponent } from './pages/admin/monedas/crear-moneda/crear-moneda.component';
+import { VistaMonedasComponent } from './pages/admin/monedas/vista-monedas/vista-monedas.component';
+import { EditarTipoMediaComponent } from './pages/admin/tipo-medias/editar-tipo-media/editar-tipo-media.component';
+import { CrearTipoMediaComponent } from './pages/admin/tipo-medias/crear-tipo-media/crear-tipo-media.component';
+import { VistaTipoMediasComponent } from './pages/admin/tipo-medias/vista-tipo-medias/vista-tipo-medias.component';
 const routes: Routes = [
   {
     path: 'core',
@@ -230,6 +257,48 @@ const routes: Routes = [
 
       },
       {
+        path: 'tipo-colores/editar-tipo-color/:edit/:id',
+        component: EditarTipoColorComponent,
+        data: { titulo: 'Editar tipo color' },
+        canActivate: [authGuard]
+
+      },
+      {
+        path: 'tipo-colores/crear-tipo-color',
+        component: CrearTipoColorComponent,
+        data: { titulo: 'Crear tipo color' },
+        canActivate: [authGuard]
+
+      },
+      {
+        path: 'tipo-colores/vista-tipo-colores',
+        component: VistaTipoColoresComponent,
+        data: { titulo: 'Vista tipo colores' },
+        canActivate: [authGuard]
+
+      },
+      {
+        path: 'tipo-contactos/editar-tipo-contacto/:edit/:id',
+        component: EditarTipoContactoComponent,
+        data: { titulo: 'Editar tipo contacto' },
+        canActivate: [authGuard]
+
+      },
+      {
+        path: 'tipo-contactos/crear-tipo-contacto',
+        component: CrearTipoContactoComponent,
+        data: { titulo: 'Crear tipo contacto' },
+        canActivate: [authGuard]
+
+      },
+      {
+        path: 'tipo-contactos/vista-tipo-contactos',
+        component: VistaTipoContactosComponent,
+        data: { titulo: 'Vista tipo contactos' },
+        canActivate: [authGuard]
+
+      },
+      {
         path: 'grupos/editar-grupo/:edit/:id',
         component: EditarGrupoComponent,
         data: { titulo: 'Editar grupo' },
@@ -374,6 +443,26 @@ const routes: Routes = [
 
       },
       {
+        path: 'monedas/editar-moneda/:edit/:id',
+        component: EditarMonedaComponent,
+        data: { titulo: 'Editar moneda' },
+        canActivate: [authGuard]
+
+      },
+      {
+        path: 'monedas/crear-moneda',
+        component: CrearMonedaComponent,
+        data: { titulo: 'Crear moneda' },
+        canActivate: [authGuard]
+
+      },
+      {
+        path: 'monedas/vista-monedas',
+        component: VistaMonedasComponent,
+        data: { titulo: 'Vista monedas' }
+
+      },
+      {
         path: 'tipo-cantidad/editar-tipo-cantidad/:edit/:id',
         component: EditarTipoCantidadComponent,
         data: { titulo: 'Editar tipo-cantidad' },
@@ -504,6 +593,7 @@ const routes: Routes = [
         canActivate: [authGuard]
 
       },
+
 
       {
         path: 'invitaciones',
@@ -654,6 +744,154 @@ const routes: Routes = [
         path: 'cancel',
         component: CancelComponent,
         data: { titulo: 'Cancel' }
+
+      },
+      //Market
+      {
+        path: 'market',
+        component: MarketComponent,
+        data: { titulo: 'Market' }
+
+      },
+      {
+        path: 'vista-producto/:id',
+        component: SingleProductComponent,
+        data: { titulo: 'Vista Producto' }
+
+      },
+      {
+        path: 'vista-categoria',
+        component: SingleCategoryComponent,
+        data: { titulo: 'Vista Categoria' }
+
+      },
+      {
+        path: 'vista-proveedor/:id',
+        component: SingleSupplierComponent,
+        data: { titulo: 'Vista Proveedor' }
+
+      },
+      {
+        path: 'market/carrito',
+        component: CarritoComponent,
+        data: { titulo: 'Carrito de compras' }
+
+      },
+
+
+
+
+      //admin 
+
+      //proveedores
+      {
+        path: 'proveedores/editar-proveedor/:edit/:id',
+        component: EditarProvedorComponent,
+        data: { titulo: 'Editar proveedor' },
+        canActivate: [authGuard]
+
+      },
+      {
+        path: 'proveedores/crear-proveedor',
+        component: CrearProvedorComponent,
+        data: { titulo: 'Crear proveedor' },
+        canActivate: [authGuard]
+
+      },
+      {
+        path: 'proveedores/vista-proveedores',
+        component: VistaProvedorsComponent,
+        data: { titulo: 'Vista proveedores' },
+        canActivate: [authGuard]
+
+      },
+      //items
+      {
+        path: 'items/editar-item/:edit/:id',
+        component: EditarItemComponent,
+        data: { titulo: 'Editar item' },
+        canActivate: [authGuard]
+
+      },
+      {
+        path: 'items/crear-item',
+        component: CrearItemComponent,
+        data: { titulo: 'Crear item' },
+        canActivate: [authGuard]
+
+      },
+      {
+        path: 'items/vista-items',
+        component: VistaItemsComponent,
+        data: { titulo: 'Vista items' },
+        canActivate: [authGuard]
+
+      },
+
+      //tipo-items
+      {
+        path: 'tipo-items/editar-tipo-item/:edit/:id',
+        component: EditarTipoItemComponent,
+        data: { titulo: 'Editar item' },
+        canActivate: [authGuard]
+
+      },
+      {
+        path: 'tipo-items/crear-tipo-item',
+        component: CrearTipoItemComponent,
+        data: { titulo: 'Crear item' },
+        canActivate: [authGuard]
+
+      },
+      {
+        path: 'tipo-items/vista-tipo-items',
+        component: VistaTipoItemsComponent,
+        data: { titulo: 'Vista items' },
+        canActivate: [authGuard]
+
+      },
+      //tipo-medios
+      {
+        path: 'tipo-medios/editar-tipo-medio/:edit/:id',
+        component: EditarTipoMediaComponent,
+        data: { titulo: 'Editar medio' },
+        canActivate: [authGuard]
+
+      },
+      {
+        path: 'tipo-medios/crear-tipo-medio',
+        component: CrearTipoMediaComponent,
+        data: { titulo: 'Crear medio' },
+        canActivate: [authGuard]
+
+      },
+      {
+        path: 'tipo-medios/vista-tipo-medios',
+        component: VistaTipoMediasComponent,
+        data: { titulo: 'Vista medios' },
+        canActivate: [authGuard]
+
+      },
+      //categoria items
+      {
+        path: 'categoria-items/editar-categoria-item/:edit/:id',
+        component: EditarCategoriaItemComponent,
+        data: { titulo: 'Editar categoria item' },
+        canActivate: [authGuard]
+
+      },
+      {
+        path: 'categoria-items/crear-categoria-item',
+        component: CrearCategoriaItemComponent,
+        data: { titulo: 'Crear categoria item' },
+        canActivate: [authGuard]
+
+      },
+      {
+        path: 'categoria-items/vista-categoria-items',
+        component: VistaCategoriaItemsComponent,
+        data: { titulo: 'Vista categoria items' },
+        canActivate: [authGuard]
 
       },
 

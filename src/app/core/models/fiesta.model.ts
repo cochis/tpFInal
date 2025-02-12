@@ -23,7 +23,8 @@ export class Fiesta {
         public mesaOk: boolean,
         public example: boolean,
         public croquis: string,
-       
+        public croquisOk: boolean,
+
         public usuarioCreated: any,
         public activated: boolean,
         public dateCreated: number,

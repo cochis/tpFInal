@@ -68,6 +68,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
   donde1Check: boolean
   donde2Check: boolean
   donde3Check: boolean
+  croquisOk: boolean
   chambelanesCheck: boolean
   codigoVestimentaCheck: boolean
   padresCheck: boolean
@@ -195,6 +196,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
           donde1Address: ' Progreso, Yuc., México',
           donde1AddressUbicacion: 'https://www.google.com/maps/place/la+Bas%C3%ADlica+de+Guadalupe,+Villa+Gustavo+A.+Madero,+07050+Ciudad+de+M%C3%A9xico,+CDMX/@19.4846491,-99.1199821,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1f99dd5163e39:0x73360cc13e70980f!8m2!3d19.4846441!4d-99.1174072!16s%2Fg%2F11s0sv5b2v?entry=ttu',
           donde2Check: true,
+          croquisOk: true,
           donde2Img: '/assets/images/xv/xv4.jpg',
           donde2Title: 'Civil',
           donde2Text: 'Registro',
@@ -305,6 +307,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
         this.donde1Check = (this.state.donde1Check == 'true') ? true : false
         this.donde2Check = (this.state.donde2Check == 'true') ? true : false
         this.donde3Check = (this.state.donde3Check == 'true') ? true : false
+        this.croquisOk = (this.state.croquisOk == 'true') ? true : false
         this.codigoVestimentaCheck = (this.state.codigoVestimentaCheck == 'true') ? true : false
         this.chambelanesCheck = (this.state.chambelanesCheck == 'true') ? true : false
         this.padresCheck = (this.state.padresCheck == 'true') ? true : false
@@ -316,7 +319,10 @@ export class DefaultComponent implements OnInit, AfterViewInit {
         this.confirmacionCheck = (this.state.confirmacionCheck == 'true') ? true : false
         this.generalCheck = (this.state.generalCheck == 'true') ? true : false
         this.invitacion = this.state
+        console.log('this.invitacion ::: ', this.invitacion);
+
         this.date = this.invitacion.fiestaDate
+        this.croquisOk = (this.state.croquisOk == 'true') ? true : false
         this.btnBack = true
         this.checking = (this.state.checking == 'true') ? true : false
       }
@@ -332,6 +338,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
     data.donde1Check = (data.donde1Check == 'true' || data.donde1Check == true) ? true : false
     data.donde2Check = (data.donde2Check == 'true' || data.donde2Check == true) ? true : false
     data.donde3Check = (data.donde3Check == 'true' || data.donde3Check == true) ? true : false
+    data.croquisOk = (data.croquisOk == 'true' || data.croquisOk == true) ? true : false
     data.fiestaDate = (typeof (data.donde3Date) == 'string') ? this.functionsService.dateToNumber(data.donde3Date) : data.donde3Date
     return await data
   }
@@ -344,6 +351,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
     data.donde1Check = (data.donde1Check == 'true' || data.donde1Check == true) ? true : false
     data.donde2Check = (data.donde2Check == 'true' || data.donde2Check == true) ? true : false
     data.donde3Check = (data.donde3Check == 'true' || data.donde3Check == true) ? true : false
+    data.croquisOk = (data.croquisOk == 'true' || data.croquisOk == true) ? true : false
     return await data
   }
   setData(fiesta, boleto) {

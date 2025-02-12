@@ -1,0 +1,7 @@
+img {
+    position: relative;
+    bottom: -10px;
+    right: -20px;
+    z-index: 10000;
+    background-color: white;
+}

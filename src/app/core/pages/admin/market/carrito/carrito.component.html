@@ -1,0 +1,492 @@
+<app-header></app-header>
+
+<app-loading *ngIf="loading"></app-loading>
+
+<body id="top" *ngIf="!loading">
+
+    <main>
+
+
+
+
+        <section class="hero-section d-flex justify-content-center align-items-center" id="section_1">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-8 col-12 mx-auto">
+                        <h1 class="text-white text-center">Carrito de compras</h1>
+
+                        <h6 class="text-center">Arma tu fiesta en grande</h6>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+
+        <section class="explore-section section-padding" id="section_2">
+            <div class="container">
+
+                <div class="col-12 text-center">
+                    <h2 class="mb-4" *ngIf="isCotizacion">Verifica tu solicitud</h2>
+                </div>
+                <div class="col-12 text-center" *ngIf="!isCotizacion">
+                    <h2 class="mb-4">Verifica tu cotización</h2>
+                </div>
+
+            </div>
+            <div class="container">
+                <div class="row" *ngIf="!isPago">
+
+                    <div class="col-12">
+
+
+
+
+                        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                            <div class="row">
+
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center upper"> </th>
+                                            <th class="text-center upper"> </th>
+                                            <th class="text-center upper">Producto</th>
+                                            <th class="text-center upper">Opción</th>
+                                            <th class="text-center upper">Precio</th>
+                                            <th class="text-center upper">Cantidad</th>
+                                            <th class="text-center upper">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody *ngIf="carrito.length >0">
+
+                                        <ng-container formArrayName="carritos">
+
+                                            <ng-container *ngFor="let item of carritos['controls'] ; let i=index">
+                                                <ng-container [formGroupName]="i">
+                                                    <tr>
+                                                        <th>
+                                                            <button class="btn less " (click)="removeCarrito(i)"
+                                                                *ngIf="this.form.value.fiesta !==''"> <i
+                                                                    class="icon-minus"></i></button>
+                                                        </th>
+                                                        <th class="text-center">
+                                                            <a
+                                                                routerLink="/core/vista-producto/{{item.value.item.uid}}">
+                                                                <img [src]="url+'/upload/items/'+getImagen(item.value.item.photos)"
+                                                                    style="width: 50px; height: 50px;"
+                                                                    [alt]="item.nombre">
+                                                            </a>
+                                                        </th>
+                                                        <th class="text-center">
+                                                            <input type="text" class="form-control upper text-center"
+                                                                id="nombre" formControlName="nombre" required
+                                                                placeholder="Nombre" readonly style="border: none;">
+                                                        </th>
+                                                        <th class="text-center">
+
+
+
+
+                                                            <input type="text" class="form-control upper text-center"
+                                                                id="opcion" formControlName="opcion" required readonly
+                                                                placeholder="Opción" style="border: none;">
+                                                        </th>
+                                                        <th class="text-center">
+                                                            <input type="number
+                                                            " class="form-control upper text-center" id="precio"
+                                                                formControlName="precio" required placeholder="Precio"
+                                                                readonly
+                                                                [currencyMask]="{ prefix: '$ ', thousands: '.', decimal: ',' }"
+                                                                style="border: none;">
+                                                        </th>
+                                                        <th class="text-center">
+                                                            <input type="number" class="form-control upper text-center"
+                                                                id="cantidad" formControlName="cantidad" required
+                                                                placeholder="Cantidad" (change)="changeValor()"
+                                                                (keydown)="changeValor()">
+                                                        </th>
+
+                                                        <th class="text-center">
+                                                            {{getTotal(item.value.item,item.value.opcion,item.value.cantidad)|
+                                                            currency}}
+                                                        </th>
+                                                    </tr>
+
+
+
+                                                </ng-container>
+                                            </ng-container>
+                                        </ng-container>
+
+
+
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td
+                                                style="background-color:  var(--secondary-color) !important; color: var(--primary-color) !important; font-weight: 800;">
+                                                Total</td>
+                                            <td
+                                                style="background-color:  var(--primary-color) !important; color: var(--white-color) !important;font-weight: 500;">
+                                                {{getAllTotal() | currency}}</td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+
+
+                            </div>
+
+
+
+
+                        </form>
+
+
+
+
+
+
+
+
+
+                    </div>
+                </div>
+
+                <div class="row" *ngIf="isPago &&  carrito!= undefined">
+                    <!-- 
+
+
+nombreFes
+apellidoPatFes
+apellidoMatFes
+telfonoAnf
+emailAnf
+fechaEvento
+direccion:  
+ubicacion:   -->
+                    <form [formGroup]="formCot" (ngSubmit)="onSubmitCot()">
+                        <div class="row">
+                            <div class="col-12 col-md-4 ma mt-3">
+                                <div class="form-group">
+                                    <label for="nombreAnf">Nombre Anfitrión</label>
+                                    <input type="text" class="form-control upper" id="nombreAnf"
+                                        formControlName="nombreAnf" required placeholder="Nombre Anfitrión">
+                                </div>
+                                <span *ngIf="submited && errorControl ['nombreAnf'].errors " class="error">Es
+                                    requerido
+                                </span>
+                            </div>
+
+
+                            <div class="col-12 col-md-4 ma mt-3">
+                                <div class="form-group">
+                                    <label for="apellidoPatAnf">Apellido paterno Anfitrión</label>
+                                    <input type="text" class="form-control upper" id="apellidoPatAnf"
+                                        formControlName="apellidoPatAnf" required
+                                        placeholder="Apellido paterno Anfitrión">
+                                </div>
+                                <span *ngIf="submited && errorControl['apellidoPatAnf'].errors " class="error">Es
+                                    requerido
+                                </span>
+                            </div>
+                            <div class="col-12 col-md-4 ma mt-3">
+                                <div class="form-group">
+                                    <label for="apellidoMatAnf">Apellido materno Anfitrión</label>
+                                    <input type="text" class="form-control upper" id="apellidoMatAnf"
+                                        formControlName="apellidoMatAnf" required
+                                        placeholder="Apellido materno Anfitrión">
+                                </div>
+                                <span *ngIf="submited && errorControl ['apellidoMatAnf'].errors " class="error">Es
+                                    requerido
+                                </span>
+                            </div>
+                            <div class="col-12 col-md-6 ma mt-3">
+                                <div class="form-group">
+                                    <label for="telfonoAnf">Teléfono del anfitrión</label>
+                                    <input type="text" class="form-control upper" id="telfonoAnf"
+                                        formControlName="telfonoAnf" required placeholder="Teléfono del anfitrión">
+                                </div>
+                                <span *ngIf="submited && errorControl ['telfonoAnf'].errors " class="error">Es
+                                    requerido
+                                </span>
+                            </div>
+                            <div class="col-12 col-md-6 ma mt-3">
+                                <div class="form-group">
+                                    <label for="emailAnf">Correo electrónico Anfitrión</label>
+                                    <input type="text" class="form-control upper" id="emailAnf"
+                                        formControlName="emailAnf" required placeholder="Correo electrónico Anfitrión">
+                                </div>
+                                <span *ngIf="submited && errorControl ['emailAnf'].errors " class="error">Es
+                                    requerido
+                                </span>
+                            </div>
+                            <div class="row text-center">
+
+                                <div class="col-6 mt-3 ma  ">
+                                    <div class="form-group ma">
+                                        <label for="isAnfitironFestejado">¿El anfitrión es el festejado?</label>
+                                        <div class=" form-switch">
+                                            <input class="form-check-input" type="checkbox" role="switch"
+                                                id="isAnfitironFestejado" formControlName="isAnfitironFestejado"
+                                                #isAnfitironFestejado (change)="isAnfFes(isAnfitironFestejado)">
+                                        </div>
+                                    </div>
+                                    <span *ngIf="submited && errorControl['isAnfitironFestejado'].errors "
+                                        class="error">Es
+                                        requerido
+                                    </span>
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-12 col-md-4 ma mt-3">
+                                <div class="form-group">
+                                    <label for="nombreFes">Nombre Festejado</label>
+                                    <input type="text" class="form-control upper" id="nombreFes"
+                                        formControlName="nombreFes" required placeholder="Nombre Festejado">
+                                </div>
+                                <span *ngIf="submited && errorControl ['nombreFes'].errors " class="error">Es
+                                    requerido
+                                </span>
+                            </div>
+
+
+                            <div class="col-12 col-md-4 ma mt-3">
+                                <div class="form-group">
+                                    <label for="apellidoPatFes">Apellido paterno Festejado</label>
+                                    <input type="text" class="form-control upper" id="apellidoPatFes"
+                                        formControlName="apellidoPatFes" required
+                                        placeholder="Apellido paterno Festejado">
+                                </div>
+                                <span *ngIf="submited && errorControl['apellidoPatFes'].errors " class="error">Es
+                                    requerido
+                                </span>
+                            </div>
+                            <div class="col-12 col-md-4 ma mt-3">
+                                <div class="form-group">
+                                    <label for="apellidoMatFes">Apellido materno Festejado</label>
+                                    <input type="text" class="form-control upper" id="apellidoMatFes"
+                                        formControlName="apellidoMatFes" required
+                                        placeholder="Apellido materno Festejado">
+                                </div>
+                                <span *ngIf="submited && errorControl ['apellidoMatFes'].errors " class="error">Es
+                                    requerido
+                                </span>
+                            </div>
+
+
+
+
+                            <div class="col-12 col-md-6 mt-3">
+                                <div class="form-group">
+                                    <label for="fechaEvento">Fecha del evento</label>
+                                    <input type="datetime-local" class="form-control upper" id="fechaEvento"
+                                        [min]="todayDate" formControlName="fechaEvento" required
+                                        placeholder="Fecha del evento" [min]="today">
+                                </div>
+                                <span *ngIf="submited && errorControl['fechaEvento'].errors " class="error">Es requerido
+                                </span>
+                            </div>
+                            <div class="col-12 col-md-6 ma mt-3">
+                                <div class="form-group">
+                                    <label for="direccion">Dirección del evento</label>
+                                    <input type="text" class="form-control upper" id="direccion"
+                                        formControlName="direccion" required placeholder="Dirección del evento">
+                                </div>
+                                <span *ngIf="submited && errorControl ['direccion'].errors " class="error">Es
+                                    requerido
+                                </span>
+                            </div>
+                            <div class="col-12  ma mt-3">
+                                <div class="form-group">
+                                    <label for="ubicacionGoogle">Ubicación Maps Google</label>
+                                    <app-info-ubicacion></app-info-ubicacion>
+                                    <textarea type="text" class="form-control upper" id="ubicacion"
+                                        formControlName="ubicacion" required
+                                        placeholder="Ubicación del evento"></textarea>
+                                </div>
+                                <span *ngIf="submited && errorControl ['ubicacion'].errors " class="error">Es
+                                    requerido
+                                </span>
+                            </div>
+
+
+
+                        </div>
+                    </form>
+
+
+
+
+
+
+
+
+
+
+                    <div class="col-12 mt-5">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="text-center upper"> </th>
+                                    <th class="text-center upper">Producto</th>
+                                    <th class="text-center upper">Proveedor</th>
+                                    <th class="text-center upper">Contacto</th>
+                                    <th class="text-center upper">Opción</th>
+                                    <th class="text-center upper">Precio</th>
+                                    <th class="text-center upper">Cantidad</th>
+                                    <th class="text-center upper">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngIf="carrito.length >0">
+
+
+                                <ng-container *ngFor="let prov of proveedores">
+
+
+                                    <tr *ngFor="let item of carrito, let i=index">
+                                        <ng-container *ngIf="item.item && item.item.proveedor._id ==prov">
+
+                                            <th class="text-center upper" style="line-height: 50px;">
+
+                                                <img [src]="url+'/upload/items/'+getImagen(item.item.photos)"
+                                                    style="width: 50px; height: 50px;" [alt]="item.nombre">
+                                            </th>
+                                            <th class="text-center upper" style="line-height: 50px;">
+                                                {{item.item.nombre?item.item.nombre:''}}
+
+                                            </th>
+                                            <td>
+
+                                                <a routerLink="/core/vista-proveedor/{{item.item.proveedor._id}}"
+                                                    style="color:var(--primary-color); text-decoration: none;">
+
+                                                    <img [src]="url+'/upload/proveedores/'+item.item.proveedor.img"
+                                                        style="width: 50px; height: 50px;" [alt]="item.nombre">
+                                                    {{item.item.proveedor.nombre}}
+                                                </a>
+                                            </td>
+
+                                            <td>
+
+                                                <b *ngFor="let ct of item.item.proveedor.contactos"
+                                                    style="line-height: 50px;">
+                                                    <ng-container *ngIf="getContact(ct).nombre === 'DIRECCIÓN'">
+                                                        <a href="{{ct.value}}" target="_blank">
+                                                            <b
+                                                                style="  margin-right: 15px; font-size:15px; color:var(--primary-color)">
+                                                                <i class="{{getContact(ct).icon}}"></i>
+                                                            </b> </a>
+                                                    </ng-container>
+                                                    <ng-container *ngIf="getContact(ct).nombre === 'TELÉFONO'">
+                                                        <a href="tel:+{{ct.value}}" alt="+{{ct.value}}">
+                                                            <b
+                                                                style="  margin-right: 15px; font-size:15px; color:var(--primary-color)">
+                                                                <i class="{{getContact(ct).icon}}"></i>
+                                                            </b> </a>
+                                                    </ng-container>
+                                                    <ng-container *ngIf="getContact(ct).nombre === 'MAIL'">
+                                                        <a href="mailto:{{ct.value}}">
+                                                            <b
+                                                                style="  margin-right: 15px; font-size:15px; color:var(--primary-color)">
+                                                                <i class="{{getContact(ct).icon}}"></i>
+                                                            </b> </a>
+                                                    </ng-container>
+                                                    <ng-container *ngIf="getContact(ct).nombre === 'PAGINA WEB'">
+                                                        <a href="{{ct.value}}" target="_blank">
+                                                            <b
+                                                                style="  margin-right: 15px; font-size:15px; color:var(--primary-color)">
+                                                                <i class="{{getContact(ct).icon}}"></i>
+                                                            </b></a>
+                                                    </ng-container>
+
+
+
+                                                </b>
+
+                                            </td>
+
+                                            <td class="text-center upper" style="line-height: 50px;">
+                                                {{item.opcion?item.opcion:''}}</td>
+                                            <td class="text-center upper" style="line-height: 50px;">
+                                                {{getPrecio(item.item,item.opcion) | currency}}
+                                            </td>
+                                            <td class="text-center upper" style="line-height: 50px;">
+                                                {{item.cantidad?item.cantidad:''}}</td>
+                                            <td class="text-center upper" style="line-height: 50px;">
+                                                {{getTotal(item.item,item.opcion,item.cantidad)|
+                                                currency}}
+                                            </td>
+                                        </ng-container>
+                                    </tr>
+                                </ng-container>
+
+
+                                <tr class="text-center ">
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td
+                                        style="background-color:  var(--secondary-color) !important; color: var(--primary-color) !important; font-weight: 800;">
+                                        Total</td>
+                                    <td
+                                        style="background-color:  var(--primary-color) !important; color: var(--white-color) !important;font-weight: 500;">
+                                        {{getAllTotal() | currency}}</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <app-qr [qr]="qr"></app-qr>
+
+            <div class="container">
+
+
+                <div class="row mt-5  text-center">
+
+                    <div class="col-6  ma " *ngIf="isLogin && !isCotizacion">
+                        <button class="btn but" type="button" (click)="isCheckout()"> Generar Cotización</button>
+                    </div>
+                    <div class="col-6  ma " *ngIf="isLogin && isCotizacion">
+                        <button class="btn but2" type="button" (click)="isCheckout()"> Ajustar</button>
+                    </div>
+                    <div class="col-6  ma " *ngIf="isLogin && isCotizacion">
+                        <button class="btn but" type="button" (click)="cotizar()"> Cotizar</button>
+                    </div>
+                    <div class="col-12" *ngIf="!isLogin">
+                        <app-is-login></app-is-login>
+                    </div>
+                </div>
+
+                <div class="row mt-5  text-center">
+
+                    <div class="col-6  ma ">
+                        <button class="btn but2" (click)="back()"> Regresar al marketplace</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+
+
+    </main>
+
+    <app-footer></app-footer>
+</body>

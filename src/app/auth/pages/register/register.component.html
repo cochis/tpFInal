@@ -100,28 +100,28 @@
 
 
 
-                        <span class="text-white" *ngIf="!vieWPass" (click)="verPass()">Ver contraseña <i
+                        <span class="text-white pointer" *ngIf="!vieWPass" (click)="verPass()">Ver contraseña <i
                                 class="icon-eye"></i></span>
-                        <span class="text-white" *ngIf="vieWPass" (click)="verPass()">Ocultar contraseña <i
+                        <span class="text-white pointer" *ngIf="vieWPass" (click)="verPass()">Ocultar contraseña <i
                                 class="icon-eye"></i></span>
                         <div class="checks mt-3">
 
                             <ng-container>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" formControlName="aceptoTerminos"
-                                        #aceptoTerminos name="aceptoTerminos" id="aceptoTerminos"
-                                        (click)="uncheck(aceptoTerminos)">
-                                    <label class="form-check-label" style="color:#fff" for="aceptoTerminos"
+                                    <input class="form-check-input pointer" type="checkbox"
+                                        formControlName="aceptoTerminos" #aceptoTerminos name="aceptoTerminos"
+                                        id="aceptoTerminos" (click)="uncheck(aceptoTerminos)">
+                                    <label class="form-check-label pointer" style="color:#fff" for="aceptoTerminos"
                                         (click)="viewInfo('terminos')">
                                         Acepto Términos y condiciones
                                     </label>
 
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" formControlName="aceptoPolitica"
-                                        #aceptoPolitica name="aceptoPolitica" id="aceptoPolitica"
-                                        (click)="uncheck(aceptoPolitica.value)">
-                                    <label class="form-check-label" style="color:#fff" for="aceptoPolitica"
+                                    <input class="form-check-input pointer" type="checkbox"
+                                        formControlName="aceptoPolitica" #aceptoPolitica name="aceptoPolitica"
+                                        id="aceptoPolitica" (click)="uncheck(aceptoPolitica.value)">
+                                    <label class="form-check-label pointer" style="color:#fff" for="aceptoPolitica"
                                         (click)="viewInfo('politica')">
                                         Acepto Política de privacidad
                                     </label>

@@ -24,6 +24,15 @@ import { CongratsComponent } from './pages/congrats/congrats.component';
 import { CancelComponent } from './pages/cancel/cancel.component';
 import { ViewTemplateComponent } from './components/view-template/view-template.component';
 import { ImagenComponent } from './components/modals/imagen/imagen.component';
+import { DivisorComponent } from './components/divisor/divisor.component';
+import { CarrucelColoresComponent } from './components/carrucel-colores/carrucel-colores.component';
+import { CarrucelPhotosComponent } from './components/carrucel-photos/carrucel-photos.component';
+import { IsLoginComponent } from './components/is-login/is-login.component';
+import { QrComponent } from './components/qr/qr.component';
+import { MapscreenComponent } from './components/mapscreen/mapscreen.component';
+import { MapViewComponent } from './components/map-view/map-view.component';
+import { BtnMyLocationComponent } from './components/btn-my-location/btn-my-location.component';
+import { MtpLogoComponent } from './components/mtp-logo/mtp-logo.component';
 
 
 
@@ -50,6 +59,15 @@ import { ImagenComponent } from './components/modals/imagen/imagen.component';
     CancelComponent,
     ViewTemplateComponent,
     ImagenComponent,
+    DivisorComponent,
+    CarrucelColoresComponent,
+    CarrucelPhotosComponent,
+    IsLoginComponent,
+    QrComponent,
+    MapscreenComponent,
+    MapViewComponent,
+    BtnMyLocationComponent,
+    MtpLogoComponent,
 
 
   ],
@@ -67,7 +85,11 @@ import { ImagenComponent } from './components/modals/imagen/imagen.component';
     SharedDefaultTemplateComponent,
     InfoUbicacionComponent,
     ViewTemplateComponent,
-    ImagenComponent
+    ImagenComponent,
+    DivisorComponent,
+    IsLoginComponent,
+    QrComponent,
+    MapscreenComponent,
 
   ],
   imports: [

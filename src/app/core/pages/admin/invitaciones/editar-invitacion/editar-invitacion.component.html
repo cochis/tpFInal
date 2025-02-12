@@ -12,16 +12,17 @@
                             <h2 class="mb-5" *ngIf="edit=='false'">Ver rol</h2>
                         </div>
                         <ng-container *ngIf="invitacion || (fiesta && form.valueId!='')   || form.value">
-                            <ng-container>
+                            <!--  <ng-container>
                                 <div class="row text-center">
                                     <h5>Ver ejemplos</h5>
                                     <div class="col-12 col-md-4 ma">
                                         <select name="viewExample" id="viewExample" #viewExample class="form-select">
                                             <option value="">Invitaciones de ejemplo</option>
-                                            <ng-container *ngFor="let item of fiestas; let i=index">
+                                            <ng-container *ngFor="let item of examples; let i=index">
 
-                                                <option [value]="item.url"
-                                                    *ngIf="fiesta && fiesta.invitacion == item.type">{{item.name}}
+                                                <option
+                                                    value="/core/templates/default/6726e81913060646af5826a9/6726f2f813060646af58294d">
+                                                    {{item.nombre}}
                                                 </option>
                                             </ng-container>
 
@@ -41,7 +42,7 @@
 
                                 </div>
 
-                            </ng-container>
+                            </ng-container> -->
 
                             <ng-container *ngIf="fiesta && fiesta.invitacion == 'default'">
                                 <button (click)="restaurarAltura()" class="btn btn-lg btn-block but mt-3 mb-3"

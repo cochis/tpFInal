@@ -111,16 +111,16 @@
                                     <div class="form-group">
                                         <label for="invitacion">Invitación</label>
                                         <select name="invitacion" id="invitacion" formControlName="invitacion"
-                                            #invitacion class="form-control upper"
-                                            (change)="showTemplate(invitacion.value)">
-                                            <option value=""></option>
-                                            <option value="default">Invitación dinámica</option>
-                                            <option value="byFile">Sube tu invitación</option>
+                                            #invitacion class="form-control upper">
+
+                                            <option value="default">Desde cero</option>
+                                            <option value="byFile">Si ya tienes una imagen o video</option>
                                             <!--    <option value="/xv/xv2/">XV años</option> -->
 
 
                                         </select>
                                     </div>
+                                    <!-- (change)="showTemplate(invitacion.value)"> -->
 
 
                                 </div>
@@ -155,7 +155,7 @@
                                     <span *ngIf="submited && errorControl['salon'].errors " class="error">Es requerido
                                     </span>
                                 </div>
-                                <div class="col-12 col-md-6  mb-3   mt-3 ma ">
+                                <div class="col-12 col-md-6 mb-3   mt-3 ma ">
                                     <div class="form-group">
                                         <div style="width: 100%;" class="ma text-center">
 
@@ -185,6 +185,24 @@
 
                                             <input class="form-check-input ma mt-4" type="checkbox" id="galeria"
                                                 formControlName="galeria" style="margin-left:50px;margin-right: 50px;">
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6  mb-3   mt-3 ">
+                                    <div class="form-group">
+                                        <div style="width: 100%;" class="ma text-center">
+
+                                            <label class="form-check-label ma " for="croquisOk">
+                                                Croquis de mesas
+                                            </label>
+                                        </div>
+                                        <div style="width: 100%;" class="ma text-center">
+
+                                            <input class="form-check-input ma mt-4" type="checkbox" id="croquisOk"
+                                                formControlName="croquisOk"
+                                                style="margin-left:50px;margin-right: 50px;">
                                         </div>
 
 

@@ -1,4 +1,4 @@
-import { Component, } from '@angular/core';
+import { Component, HostListener, } from '@angular/core';
 import { FunctionsService } from '../../services/functions.service';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
@@ -12,6 +12,13 @@ import { CargarFiestas } from 'src/app/core/interfaces/cargar-interfaces.interfa
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+
+  @HostListener('window:storage', ['$event'])
+  onStorageChange(event: StorageEvent) {
+    if (event.key === 'carrito') {
+      window.location.reload();
+    }
+  }
   ADM = environment.admin_role
   SLN = environment.salon_role
   URS = environment.user_role
@@ -20,7 +27,7 @@ export class HeaderComponent {
   ver = environment.version
   rol = this.functionsService.getLocal('role')
   uid = this.functionsService.getLocal('uid')
-
+  carrito: any
   fiestas: Fiesta[]
   totalFiestas = 0
   islogin = false
@@ -30,6 +37,15 @@ export class HeaderComponent {
     private functionsService: FunctionsService,
     private fiestasService: FiestasService
   ) {
+    this.carrito = this.functionsService.getLocal('carrito')
+    window.addEventListener("storage", () => {
+      this.carrito = this.functionsService.getLocal('carrito')
+
+    }, false);
+
+
+
+
 
     if (this.functionsService.getLocal('email')) {
       this.email = this.functionsService.getLocal('email')

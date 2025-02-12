@@ -1,0 +1,6 @@
+<div class="qrcodeImage" *ngIf="qr">
+    <qrcode [qrdata]="qr.data" [allowEmptyString]="true" [ariaLabel]="'QR Code image with the following content...'"
+        [cssClass]="'center'" [colorDark]="qr.colorP" [colorLight]="qr.colorB" [elementType]="'canvas'"
+        [errorCorrectionLevel]="'H'" [imageSrc]="qr.img" [imageHeight]="90" [imageWidth]="90" [margin]="2" [scale]="1"
+        [title]="'A custom title attribute'" [width]="300"></qrcode>
+</div>

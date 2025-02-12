@@ -1,0 +1,9 @@
+<app-loading *ngIf="!isUserLocationReady ; else mapReady"></app-loading>
+
+
+
+<ng-container #mapReady>
+
+    <app-map-view (coordenadas)="showCoordenadas($event)" [sendCoords]="sendCoords"></app-map-view>
+
+</ng-container>

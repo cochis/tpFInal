@@ -1,0 +1,13 @@
+<div class="container">
+    <div class="row ">
+        <div class="col-lg-3 col-md-4 col-6  mt-3"
+            *ngFor="let item of items  | paginate: { itemsPerPage: 12, currentPage: p }  ; let i=index">
+            <app-item [item]="item" [cP]="cP" [cS]="cS"></app-item>
+        </div>
+        <div class="col-12 mt-5 text-center">
+            <pagination-controls (pageChange)="p = $event" autoHide="true" previousLabel="Anterior"
+                nextLabel="Siguiente" responsive="true"></pagination-controls>
+
+        </div>
+    </div>
+</div>

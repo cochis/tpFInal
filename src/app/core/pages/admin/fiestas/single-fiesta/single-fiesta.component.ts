@@ -104,7 +104,7 @@ p: any;
       })
     },
       (error: any) => {
-        // console.error('Error', error)
+        console.error('Error', error)
         this.functionsService.alertError(error, 'Fiestas')
       })
   }

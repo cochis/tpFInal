@@ -68,7 +68,7 @@ export class CrearEjemploComponent {
     } else {
       this.functionsService.alertForm('Ejemplos')
       this.loading = false
-      return // console.info('Please provide all the required values!');
+      return console.info('Please provide all the required values!');
     }
   }
   back() {

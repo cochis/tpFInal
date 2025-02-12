@@ -23,21 +23,32 @@ export class FileService {
   }
   async actualizarFoto(
     archivo: File,
-    tipo: 'usuarios' | 'fiestas' | 'salones' | 'galerias' | 'invitaciones' | 'paquetes',
+    tipo: 'usuarios' | 'fiestas' | 'salones' | 'galerias' | 'invitaciones' | 'paquetes' | 'proveedor' | 'imgItems' | 'items',
     id: string,
     type?: string
   ) {
 
 
     try {
-      var url
+      var url = ''
 
-      if (type) {
-        url = `${base_url}/upload/${tipo}/fiestas/${type}/${id}`
+      if (type && type !== '') {
+
+        if (tipo == 'proveedor') {
+
+          url = `${base_url}/upload/${tipo}/proveedor/${type}/${id}`
+        } else if (tipo == 'fiestas') {
+
+          url = `${base_url}/upload/${tipo}/fiestas/${type}/${id}`
+        } else {
+
+          url = `${base_url}/upload/${tipo}/items/${type}/${id}`
+        }
       } else {
 
         url = `${base_url}/upload/${tipo}/${id}`
       }
+      console.log('url::: ', url);
 
       const formData = new FormData()
       formData.append('imagen', archivo)

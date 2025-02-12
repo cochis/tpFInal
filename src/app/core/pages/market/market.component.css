@@ -1,0 +1,13 @@
+.parent {
+    object-fit: contain;
+    background-size: contain;
+    background-repeat: no-repeat;
+    max-width: 100%;
+    text-align: center;
+}
+
+.parent1 {
+    width: 80%;
+    background-image: url("http://localhost:4200/assets/icons/flores1.jpeg");
+
+}

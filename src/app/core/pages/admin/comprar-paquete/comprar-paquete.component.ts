@@ -19,7 +19,7 @@ export class ComprarPaqueteComponent {
   loading: boolean = false;
   msnOk: string = ''
   usuario: Usuario
-  paquetess: TipoCantidad[]
+  paquetes: TipoCantidad[]
   paqueteSeleccionado: TipoCantidad
   id: string
   today: Number = this.functionsService.getToday()
@@ -65,12 +65,12 @@ export class ComprarPaqueteComponent {
         this.loading = false
       })
     this.tipoCantidadesService.cargarTipoCantidadesAll().subscribe((resp: CargarTipoCantidades) => {
-      this.paquetess = resp.tipoCantidades
+      this.paquetes = resp.tipoCantidades
 
     })
   }
   selectPaquete(event) {
-    this.paquetess.forEach(paquete => {
+    this.paquetes.forEach(paquete => {
       if (paquete.uid == event) {
         this.paqueteSeleccionado = paquete
       }
