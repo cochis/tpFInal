@@ -10,7 +10,9 @@ import { environment } from '../../../../environments/environment';
 })
 export class MapViewComponent implements AfterViewInit {
   @Output() coordenadas!: EventEmitter<object>;
-  @Input() sendCoords: [number, number];
+  @Input() sendCoords!: [number, number];
+  @Input() isEdit!: boolean;
+  @Input() type!: string;
   @ViewChild('mapDiv') mapDivElement?: ElementRef
   @Input() $coords: any
   constructor(
@@ -20,88 +22,72 @@ export class MapViewComponent implements AfterViewInit {
   }
   map!: any
   maker2!: any
+  makerMe!: any
   CP = environment.cPrimary
   CS = environment.cSecond
   ngAfterViewInit(): void {
-
-
     if (this.sendCoords) {
-
-
-
-
       this.map = new Map({
         container: this.mapDivElement.nativeElement, // container ID
         style: 'mapbox://styles/mapbox/light-v10', // style URL
         center: this.sendCoords, // starting position [lng, lat]
         zoom: 14, // starting zoom
       });
-
       const popup = new Popup()
         .setHTML(`
-    <h6> Mi Ubicación</h6>
-    <span> Estoy en este lugar</span>
-      `);
-
+          <h6> Mi Ubicación</h6>
+          <span> Estoy en este lugar</span>
+          `);
       let makerBase = new Marker({ color: this.CP })
         .setLngLat(this.sendCoords)
         .setPopup(popup)
         .addTo(this.map)
-
-
-
+      const popup2 = new Popup()
+        .setHTML(`
+      <h6> Nueva Ubicación</h6>   
+        `);
+      if (this.mapService.userLocation) {
+        setTimeout(() => {
+          this.maker2 = new Marker({ color: this.CS, rotation: 45 })
+            .setLngLat(this.mapService.userLocation)
+            .setPopup(popup2)
+            .addTo(this.map)
+        }, 500);
+      }
+      this.mapService.setMap(this.map)
     } else {
-
       this.map = new Map({
         container: this.mapDivElement.nativeElement, // container ID
         style: 'mapbox://styles/mapbox/light-v10', // style URL
         center: this.mapService.userLocation, // starting position [lng, lat]
         zoom: 14, // starting zoom
       });
-
       const popup = new Popup()
         .setHTML(`
-        <h6> Mi Ubicación</h6>
-        <span> Estoy en este lugar</span>
-          `);
-
+          <h6> Mi Ubicación</h6>
+          <span> Estoy en este lugar</span>
+            `);
       let makerBase = new Marker({ color: this.CP })
         .setLngLat(this.mapService.userLocation)
         .setPopup(popup)
         .addTo(this.map)
     }
-
-
-
-
-
-    // Example of a MapTouchEvent of type "touch"
-
-
-
+    this.mapService.setMap(this.map)
   }
-
-
-
 
   getCoords() {
-
-
     this.map.on('click', (e) => {
-
       const coords: any = e.lngLat.wrap()
-
       this.newMaker(coords)
     });
-
-
   }
-
   newMaker(coords: any) {
-
-    this.coordenadas.emit(coords)
+    let res = {
+      ...coords,
+      type: this.type
+    }
+    this.coordenadas.emit(res)
     if (this.maker2) {
-
       this.maker2.remove();
     }
     const popup = new Popup()
@@ -112,10 +98,5 @@ export class MapViewComponent implements AfterViewInit {
       .setLngLat(coords)
       .setPopup(popup)
       .addTo(this.map)
-
-
-
   }
-
-
 }

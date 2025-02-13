@@ -28,7 +28,8 @@ export class CrearSalonComponent {
   cargando: boolean = false
   msnOk: boolean = false
   ADM = environment.admin_role
-
+  MAPURL = environment.mapsGoogleUrl
+  MAPZOOM = environment.mapsGoogleZoom
   URS = environment.user_role
   CHK = environment.chk_role
   ANF = environment.anf_role
@@ -99,7 +100,6 @@ export class CrearSalonComponent {
 
 
       this.salonesService.crearSalon(this.form.value).subscribe((resp: any) => {
-        console.log('resp::: ', resp);
 
         this.functionsService.alert('Centro de eventos', 'Creado', 'success')
         this.functionsService.navigateTo(`core/salones/editar-salon/true/${resp.salon.uid}`)
@@ -142,15 +142,14 @@ export class CrearSalonComponent {
 
   showCoordenadas(e) {
     this.form.patchValue({
-
       lat: e.lat,
       long: e.lng,
-      ubicacionGoogle: `https://maps.google.com/?ll=${e.lat},${e.lng}&z=21`
+      [e.type]: `${this.MAPURL}?q=${e.lat},${e.lng}&z=${this.MAPZOOM}`
     })
-    console.log('this.form::: ', this.form.value);
-
-
   }
+
+
+
 
 
 }

@@ -101,7 +101,7 @@ export class CrearFiestaComponent {
         })
       this.usuariosService.cargarAlumnosAll().subscribe((resp: CargarUsuarios) => {
         this.usuarios = this.functionsService.getActivos(resp.usuarios)
-        this.usuarios = this.usuarios.filter((usuario) => usuario.uid != this.uid);
+        /* this.usuarios = this.usuarios.filter((usuario) => usuario.uid != this.uid); */
       },
         (error: any) => {
           console.error('error::: ', error);
@@ -233,7 +233,7 @@ export class CrearFiestaComponent {
         realizada: false
       }
 
-      console.log('form::: ', form);
+
 
 
       this.fiestasService.crearFiesta(form).subscribe((resp: any) => {
@@ -319,7 +319,7 @@ export class CrearFiestaComponent {
     })
   }
   setSalon(salon) {
-    console.log('salon::: ', salon);
+
 
     this.form = this.fb.group({
       nombre: [this.form.value.nombre, [Validators.required, Validators.minLength(3)]],

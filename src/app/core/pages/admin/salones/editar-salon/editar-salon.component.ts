@@ -5,12 +5,15 @@ import { CargarRoles, CargarSalon, CargarSalons, CargarUsuario } from 'src/app/c
 import { Role } from 'src/app/core/models/role.model';
 import { Salon } from 'src/app/core/models/salon.model';
 import { Usuario } from 'src/app/core/models/usuario.model';
+import { FiestasService } from 'src/app/core/services/fiestas.service';
 import { FileService } from 'src/app/core/services/file.service';
+import { InvitacionsService } from 'src/app/core/services/invitaciones.service';
 import { RolesService } from 'src/app/core/services/roles.service';
 import { SalonsService } from 'src/app/core/services/salon.service';
 import { UsuariosService } from 'src/app/core/services/usuarios.service';
 import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { environment } from 'src/environments/environment';
+import { MapsService } from '../../../../../shared/services/maps.service';
 @Component({
   selector: 'app-editar-salon',
   templateUrl: './editar-salon.component.html',
@@ -32,13 +35,18 @@ export class EditarSalonComponent {
   url = environment.base_url
 
   submited: boolean = false
-  sendCoords!: [number, number]
+  sendCoords: any = undefined
+  MAPURL = environment.mapsGoogleUrl
+  MAPZOOM = environment.mapsGoogleZoom
   constructor(
     private fb: FormBuilder,
     private functionsService: FunctionsService,
     private salonesService: SalonsService,
+    private fiestasService: FiestasService,
+    private invitacionesServices: InvitacionsService,
     private route: ActivatedRoute,
     private fileService: FileService,
+    private mapService: MapsService
   ) {
     this.id = this.route.snapshot.params['id']
 
@@ -58,6 +66,7 @@ export class EditarSalonComponent {
       this.loading = true
 
       this.salon = resp.salon
+
 
 
       setTimeout(() => {
@@ -105,11 +114,13 @@ export class EditarSalonComponent {
     })
   }
   setForm(salon: Salon) {
-
     if (salon.long && salon.lat) {
       this.sendCoords = [Number(salon.long), Number(salon.lat)]
+    } else {
+      this.mapService.getUserLocation().then(res => {
+        this.sendCoords = res
+      })
     }
-
     this.form = this.fb.group({
       nombre: [salon.nombre, [Validators.required]],
       calle: [salon.calle, [Validators.required]],
@@ -120,6 +131,7 @@ export class EditarSalonComponent {
       cp: [salon.cp, [Validators.required, Validators.pattern(".{5,5}")]],
       estado: [salon.estado, [Validators.required]],
       pais: [salon.pais, [Validators.required]],
+      direccion: [salon.calle + ' ' + salon.numeroExt + ((salon.numeroInt == '') ? '' : ', Int.' + salon.numeroInt) + ', colonia o barrio, ' + salon.coloniaBarrio + ', municipio o delegación' + salon.municipioDelegacion + ', estado' + salon.estado + ', en' + salon.pais],
       comoLlegar: [salon.comoLlegar, [Validators.required]],
       lat: [salon.lat],
       long: [salon.long],
@@ -151,19 +163,78 @@ export class EditarSalonComponent {
     this.loading = true
     if (this.form.valid) {
 
+      let dir = this.form.value.calle + ' ' + this.form.value.numeroExt + ((this.form.value.numeroInt == '') ? '' : ', Int.' + this.form.value.numeroInt) + ', colonia o barrio ' + this.form.value.coloniaBarrio + ', municipio o delegación ' + this.form.value.municipioDelegacion + ', estado ' + this.form.value.estado + ', en ' + this.form.value.pais
 
       this.salon = {
 
         ...this.salon,
         ...this.form.value,
+        direccion: dir,
         img: this.salon.img
 
 
       }
 
       this.salonesService.actualizarSalon(this.salon).subscribe((resp: any) => {
+        this.fiestasService.cargarFiestasBySalon(this.salon.uid).subscribe((res: any) => {
+          if (res.fiestas.length == 0) {
+            this.functionsService.alertUpdate('Salon')
+            this.functionsService.navigateTo('core/salones/vista-salones')
+          } else {
+            let fsts: any = this.functionsService.getActives(res.fiestas)
+            fsts.forEach(fst => {
+              this.invitacionesServices.cargarInvitacionByFiesta(fst.uid).subscribe(((r: any) => {
+                if (r.invitacion) {
+                  let inv = {
+                    ...r.invitacion,
+                    data: {
 
-        this.functionsService.navigateTo('core/salones/vista-salones')
+                      ...r.invitacion.data,
+                      donde3AddressUbicacion: this.salon.ubicacionGoogle,
+                      donde3Address: this.salon.direccion,
+                      donde3Img: this.salon.img,
+                      donde3Text: this.salon.nombre,
+                      donde3Title: this.salon.nombre,
+                    },
+                    fiesta: (typeof (r.invitacion.fiesta) == 'object') ? r.invitacion.fiesta._id : r.invitacion.fiesta,
+                    usuarioCreated: (typeof (r.invitacion.usuarioCreated) == 'object') ? r.invitacion.usuarioCreated._id : r.invitacion.usuarioCreated
+                  }
+
+                  this.invitacionesServices.actualizarInvitacion(inv).subscribe(ri => {
+
+                    this.functionsService.alertUpdate('Salon e Invitaciones')
+                    this.functionsService.navigateTo('core/salones/vista-salones')
+
+
+                  })
+                  this.functionsService.alertUpdate('Salon')
+                  this.functionsService.navigateTo('core/salones/vista-salones')
+
+                } else {
+                  this.functionsService.alertUpdate('Salon')
+                  this.functionsService.navigateTo('core/salones/vista-salones')
+                }
+
+              }))
+
+
+
+
+            });
+          }
+
+
+
+
+
+
+
+
+        })
+
+
+
+        // 
         this.loading = false
       },
         (error) => {
@@ -209,7 +280,7 @@ export class EditarSalonComponent {
       .actualizarFoto(this.imagenSubir, 'salones', this.salon.uid)
       .then(
         (img) => {
-          console.log('img::: ', img);
+
 
           this.salon.img = img
 
@@ -227,8 +298,9 @@ export class EditarSalonComponent {
 
       lat: e.lat,
       long: e.lng,
-      ubicacionGoogle: `https://maps.google.com/?ll=${e.lat},${e.lng}&z=21`
+      ubicacionGoogle: `${this.MAPURL}?q=${e.lat},${e.lng}&z=${this.MAPZOOM}`
     })
+
 
 
   }

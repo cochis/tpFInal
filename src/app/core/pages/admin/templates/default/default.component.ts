@@ -319,7 +319,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
         this.confirmacionCheck = (this.state.confirmacionCheck == 'true') ? true : false
         this.generalCheck = (this.state.generalCheck == 'true') ? true : false
         this.invitacion = this.state
-        console.log('this.invitacion ::: ', this.invitacion);
+
 
         this.date = this.invitacion.fiestaDate
         this.croquisOk = (this.state.croquisOk == 'true') ? true : false

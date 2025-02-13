@@ -444,15 +444,15 @@
                                     class="arsenal-sc-bold-italic"> Dirección:</b>
                                 {{invitacion.donde3Address}}
                             </p>
-
                             <a href="{{fiesta.salon.ubicacionGoogle}}" target="_blank"
                                 *ngIf="fiesta && invitacion.donde3AddressUbicacion!==''">
                                 <i [class]="invitacion.donde3Icon "
                                     style="font-size: 45px;font-weight: 800 ;color:{{invitacion.cPrincipal}};">
                                 </i>
                             </a>
-                            <a href="{{invitacion.ubicacionGoogle}}" target="_blank"
+                            <a href="{{invitacion.donde3AddressUbicacion }}" target="_blank"
                                 *ngIf="!fiesta && invitacion.donde3AddressUbicacion!==''">
+
                                 <i [class]="invitacion.donde3Icon "
                                     style="font-size: 45px;font-weight: 800 ;color:{{invitacion.cPrincipal}};">
                                 </i>

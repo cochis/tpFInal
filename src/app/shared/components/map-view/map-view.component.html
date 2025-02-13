@@ -1,5 +1,10 @@
-<div #mapDiv class="map-container" (click)="getCoords()">
+<div #mapDiv class="map-container" (click)="getCoords()" *ngIf="isEdit">
     <app-mtp-logo></app-mtp-logo>
     <app-btn-my-location></app-btn-my-location>
 
+</div>
+<div #mapDiv class="map-container" *ngIf="!isEdit">
+    <app-mtp-logo></app-mtp-logo>
+    <!--    <app-btn-my-location></app-btn-my-location>
+ -->
 </div>

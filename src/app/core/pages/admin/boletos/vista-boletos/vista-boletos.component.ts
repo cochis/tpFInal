@@ -151,6 +151,7 @@ export class VistaBoletosComponent {
       this.boletos = resp.boletos
 
 
+
       this.boletosTemp = resp.boletos
       this.loading = false
     },

@@ -30,7 +30,8 @@ export class RegistarSalonComponent {
   cargando: boolean = false
   msnOk: boolean = false
   usuario: Usuario
-
+  MAPURL = environment.mapsGoogleUrl
+  MAPZOOM = environment.mapsGoogleZoom
   ADM = environment.admin_role
   SLN = environment.salon_role
   URS = environment.user_role
@@ -183,13 +184,9 @@ export class RegistarSalonComponent {
   }
   showCoordenadas(e) {
     this.form.patchValue({
-
       lat: e.lat,
       long: e.lng,
-      ubicacionGoogle: `https://maps.google.com/?ll=${e.lat},${e.lng}&z=21`
+      [e.type]: `${this.MAPURL}?q=${e.lat},${e.lng}&z=${this.MAPZOOM}`
     })
-    console.log('this.form::: ', this.form.value);
-
-
   }
 }

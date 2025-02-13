@@ -98,16 +98,20 @@
 
                                                             {{party.nombre}}
                                                         </a>
-                                                        <small
-                                                            style="color:var(--primary-color) ;font-size:15px ;">&nbsp;{{
 
-                                                            (typeOf(party.salon
-                                                            )=='string')?getCatalog('salon',party.salon):party.salon.nombre
-                                                            }}
-                                                            <b style="color:white">&nbsp;{{party.fecha |
-                                                                date:"short"}}</b>
+                                                        <a
+                                                            routerLink="/core/salones/editar-salon/true/{{party.salon._id}}">
+                                                            <small
+                                                                style="color:var(--primary-color) ;font-size:15px ;">&nbsp;{{
 
-                                                        </small>
+                                                                (typeOf(party.salon
+                                                                )=='string')?getCatalog('salon',party.salon):party.salon.nombre
+                                                                }}
+                                                                <b style="color:white">&nbsp;{{party.fecha |
+                                                                    date:"short"}}</b>
+
+                                                            </small>
+                                                        </a>
                                                         <div class="col-12 mt-2 text-center" *ngIf="party.galeria">
                                                             Galería de Imágenes
                                                             <a class="text-center ma"

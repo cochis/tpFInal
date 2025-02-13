@@ -133,10 +133,10 @@
                                             [readonly]="edit==='false'">
                                     </div>
                                 </div>
-                                <div class="col-12 mt-3">
+                                <div class="col-12 mt-3" *ngIf="sendCoords">
 
-                                    <app-mapscreen (coordenadas)="showCoordenadas($event)"
-                                        [sendCoords]="sendCoords"></app-mapscreen>
+                                    <app-mapscreen (coordenadas)="showCoordenadas($event)" [sendCoords]="sendCoords"
+                                        [isEditV]="true"></app-mapscreen>
                                 </div>
                                 <div class="col-12 col-md-6 mt-3" style="display: none;">
                                     <div class="form-group">

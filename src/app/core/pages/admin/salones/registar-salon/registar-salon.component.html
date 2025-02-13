@@ -156,8 +156,8 @@
 
                                 <div class="col-12 mt-3">
 
-                                    <app-mapscreen (coordenadas)="showCoordenadas($event)"
-                                        [sendCoords]="sendCoords"></app-mapscreen>
+                                    <app-mapscreen (coordenadas)="showCoordenadas($event)" [sendCoords]="sendCoords"
+                                        [isEditV]="true" type="ubicacionGoogle"></app-mapscreen>
                                     <span *ngIf="submited && errorControl['ubicacionGoogle'].errors "
                                         class="error">Favor de seleccionar la ubicación
                                         del entro de evento</span>

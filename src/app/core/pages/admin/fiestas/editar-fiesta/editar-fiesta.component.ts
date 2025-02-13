@@ -231,7 +231,7 @@ export class EditarFiestaComponent {
     })
   }
   setForm(fiesta: any) {
-    console.log('fiesta::: ', fiesta);
+
     let fecha = this.functionsService.numberDateTimeLocal(fiesta.fecha)
     let usuarioFiesta = fiesta.usuarioFiesta.nombre
     var evento = fiesta.evento.nombre

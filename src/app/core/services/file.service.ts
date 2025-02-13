@@ -48,7 +48,7 @@ export class FileService {
 
         url = `${base_url}/upload/${tipo}/${id}`
       }
-      console.log('url::: ', url);
+
 
       const formData = new FormData()
       formData.append('imagen', archivo)

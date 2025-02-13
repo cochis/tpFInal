@@ -162,6 +162,10 @@ export class InvitacionsService {
     const url = `${base_url}/invitacions/fiesta/${id}`
     return this.http.get<CargarInvitacion>(url, this.headers)
   }
+  cargarInvitacionBySalon(id: string) {
+    const url = `${base_url}/invitacions/salon/${id}`
+    return this.http.get<CargarInvitacion>(url, this.headers)
+  }
   cargarInvitacionByClave(clave: string) {
     const url = `${base_url}/invitacions/clave/${clave}`
     return this.http.get<CargarInvitacion>(url, this.headers)

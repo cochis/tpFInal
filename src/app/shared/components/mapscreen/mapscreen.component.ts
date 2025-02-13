@@ -8,7 +8,9 @@ import { MapsService } from '../../services/maps.service';
 })
 export class MapscreenComponent implements AfterViewInit {
   loading = false
-  @Input() sendCoords: [number, number];
+  @Input() sendCoords: [number, number] = undefined;
+  @Input() isEditV!: boolean;
+  @Input() type!: string;
   @Output() coordenadas!: EventEmitter<object>;
   constructor(
     private mapService: MapsService
@@ -16,7 +18,6 @@ export class MapscreenComponent implements AfterViewInit {
     this.coordenadas = new EventEmitter()
   }
   ngAfterViewInit(): void {
-
 
   }
 
@@ -27,7 +28,14 @@ export class MapscreenComponent implements AfterViewInit {
   }
   showCoordenadas($e) {
 
-    this.coordenadas.emit($e)
+
+    let res = {
+      ...$e,
+      type: this.type
+    }
+
+
+    this.coordenadas.emit(res)
 
   }
 }

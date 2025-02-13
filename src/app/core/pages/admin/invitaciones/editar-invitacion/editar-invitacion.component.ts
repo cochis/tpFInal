@@ -10,6 +10,7 @@ import { DefaultTemplate } from 'src/app/core/models/defaultTemplate.model';
 import { FileService } from 'src/app/core/services/file.service';
 import { Invitacion } from 'src/app/core/models/invitacion.model';
 import { environment } from 'src/environments/environment';
+import { MapsService } from 'src/app/shared/services/maps.service';
 @Component({
   selector: 'app-editar-invitacion',
   templateUrl: './editar-invitacion.component.html',
@@ -20,6 +21,8 @@ export class EditarInvitacionComponent {
   SLN = environment.salon_role
   ANF = environment.anf_role
   URS = environment.user_role
+  MAPURL = environment.mapsGoogleUrl
+  MAPZOOM = environment.mapsGoogleZoom
   examples: any = []
   fiestas: any = []
   loading = false
@@ -231,6 +234,11 @@ export class EditarInvitacionComponent {
       clave: 'animate__infinite'
     },
   ]
+  userLocation: any = undefined
+  salonLocation: any = undefined
+  iglesiaLocation: any = undefined
+  registroLocation: any = undefined
+  hospedajeLocation: any = undefined
   constructor(
     private fb: FormBuilder,
     private functionsService: FunctionsService,
@@ -239,6 +247,7 @@ export class EditarInvitacionComponent {
     private invitacionsService: InvitacionsService,
     private router: Router,
     private fileService: FileService,
+    private mapService: MapsService
 
   ) {
     this.getExamples()
@@ -247,14 +256,7 @@ export class EditarInvitacionComponent {
     }, 500);
     this.functionsService.alert('Crear invitación', 'Se recomienda realizar la invitación en una computadora para facilitar la edición.', 'info')
     this.functionsService.removeItemLocal('tipoInvitacion')
-    /*  this.examples.forEach(async element => {
-       let fiesta = element.split('|')
- 
-       let res = { fiesta: fiesta[0], url: fiesta[1], name: fiesta[2], type: fiesta[3] }
-       this.fiestas.push(res)
-       console.log('this.fiestas::: ', this.fiestas);
-     });
-  */
+
 
 
     this.id = this.route.snapshot.params['id']
@@ -274,18 +276,34 @@ export class EditarInvitacionComponent {
   get errorControl() {
     return this.form.controls;
   }
+  async getUserLocation(): Promise<[number, number]> {
+
+    return new Promise((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(
+        ({ coords }) => {
+          this.userLocation = [coords.longitude, coords.latitude]
+
+
+          resolve(this.userLocation)
+        },
+        (err) => {
+          // console.error('err::: ', err);
+          this.functionsService.alertError(err, 'error')
+        }
+      )
+    })
+  }
   getFiesta(id) {
     this.loading = true
     this.fiestasService.cargarFiestaById(id).subscribe((resp: CargarFiesta) => {
       this.fiesta = resp.fiesta
-
-
+      this.salonLocation = [this.fiesta.salon.long, this.fiesta.salon.lat]
       this.usuarioFiesta = this.fiesta.usuarioFiesta._id
       this.invitacionId = this.fiesta.invitacion
       this.functionsService.setLocal('tipoInvitacion', this.fiesta.invitacion)
     },
       (error: any) => {
-        console.error('Error', error)
+        // console.error('Error', error)
         this.loading = false
         this.functionsService.alert('Fiesta', 'Por favor intente mas tarde', 'error')
       })
@@ -463,14 +481,44 @@ export class EditarInvitacionComponent {
 
     this.createForm(fiesta)
   }
+  getCoords(data) {
+    if (data.donde1AddressUbicacion != '') {
+      let donde1AddressUbicacionRes = data.donde1AddressUbicacion.replace(this.MAPURL + '?q=', '')
+      donde1AddressUbicacionRes = donde1AddressUbicacionRes.replace('&z=' + this.MAPZOOM, '')
+      donde1AddressUbicacionRes = donde1AddressUbicacionRes.split(',')
+      this.iglesiaLocation = [Number(donde1AddressUbicacionRes[1]), Number(donde1AddressUbicacionRes[0])]
+    } else {
+      this.mapService.getUserLocation().then(res => {
+        this.iglesiaLocation = res
+      })
+    }
+    if (data.donde2AddressUbicacion != '') {
+      let donde2AddressUbicacionRes = data.donde2AddressUbicacion.replace(this.MAPURL + '?q=', '')
+      donde2AddressUbicacionRes = donde2AddressUbicacionRes.replace('&z=' + this.MAPZOOM, '')
+      donde2AddressUbicacionRes = donde2AddressUbicacionRes.split(',')
+      this.registroLocation = [Number(donde2AddressUbicacionRes[1]), Number(donde2AddressUbicacionRes[0])]
+    } else {
+      this.mapService.getUserLocation().then(res => {
+        this.registroLocation = res
+      })
+    }
+    if (data.hospedajeUbicacion != '') {
+
+      let hospedajeUbicacionRes = data.hospedajeUbicacion.replace(this.MAPURL + '?q=', '')
+      hospedajeUbicacionRes = hospedajeUbicacionRes.replace('&z=' + this.MAPZOOM, '')
+      hospedajeUbicacionRes = hospedajeUbicacionRes.split(',')
+
+      this.hospedajeLocation = [Number(hospedajeUbicacionRes[1]), Number(hospedajeUbicacionRes[0])]
+    } else {
+      this.mapService.getUserLocation().then(res => {
+        this.hospedajeLocation = res
+      })
+    }
+  }
   async setFormWithData(invitacion: any) {
-
-
-
-
+    this.getCoords(invitacion.data)
     invitacion.data = await this.numberToData(invitacion.data)
     this.form = this.fb.group({
-
       cPrincipal: [invitacion.data.cPrincipal],
       cSecond: [invitacion.data.cSecond],
       checking: [invitacion.fiesta.checking],
@@ -1225,7 +1273,7 @@ export class EditarInvitacionComponent {
       }
     },
       (error) => {
-        console.error('Error', error)
+        // console.error('Error', error)
         this.functionsService.alertError(error, 'Invitacion')
       })
   }
@@ -1438,7 +1486,7 @@ export class EditarInvitacionComponent {
               }, 800);
             },
             (err) => {
-              console.error('Error', err)
+              // console.error('Error', err)
               this.functionsService.alertError(err, 'Error')
             },
           )
@@ -1496,7 +1544,7 @@ export class EditarInvitacionComponent {
             }, 800);
           },
           (err) => {
-            console.error('Error', err)
+            // console.error('Error', err)
             this.functionsService.alertError(err, 'Error')
           },
         )
@@ -1536,7 +1584,7 @@ export class EditarInvitacionComponent {
               }, 800);
             },
             (err) => {
-              console.error('Error', err)
+              // console.error('Error', err)
               this.functionsService.alertError(err, 'Error')
             },
           )
@@ -1563,7 +1611,7 @@ export class EditarInvitacionComponent {
             }, 800);
           },
           (err) => {
-            console.error('Error', err)
+            // console.error('Error', err)
             this.functionsService.alertError(err, 'Error')
           },
         )
@@ -1584,13 +1632,13 @@ export class EditarInvitacionComponent {
     this.viewSizeM = event
   }
   verExample(example) {
-    console.log('example::: ', example);
 
-    console.log('this.fiesta.invitacion::: ', this.fiesta.invitacion);
+
+
     let url2 = example.split('https://www.myticketparty.com/core/')
-    console.log('url2::: ', url2);
 
-    console.log('core/' + url2[1] + '/copy');
+
+
 
     return
     this.functionsService.setLocal('tipoInvitacion', this.fiesta.invitacion)
@@ -1648,11 +1696,19 @@ export class EditarInvitacionComponent {
   }
   getExamples() {
     this.fiestasService.cargarFiestasAll().subscribe(resp => {
-      console.log('resp::: ', resp);
+
 
       this.examples = resp.fiestas.filter(fs => { return fs.example })
-      console.log('this.examples ::: ', this.examples);
+
 
     })
+  }
+
+  showCoordenadas(e) {
+
+    this.form.patchValue({
+      [e.type]: `${this.MAPURL}?q=${e.lat},${e.lng}&z=${this.MAPZOOM}`
+    })
+
   }
 }
