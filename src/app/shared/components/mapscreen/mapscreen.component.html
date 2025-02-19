@@ -4,6 +4,7 @@
 
 <ng-template #mapReady>
 
-    <app-map-view (coordenadas)="showCoordenadas($event)" [isEdit]="isEditV" [sendCoords]="sendCoords"></app-map-view>
+    <app-map-view (coordenadas)="showCoordenadas($event)" [isEdit]="isEditV" [sendCoords]="sendCoords"
+        (coordenadasSelect)="showMapSelected($event)"></app-map-view>
 
 </ng-template>

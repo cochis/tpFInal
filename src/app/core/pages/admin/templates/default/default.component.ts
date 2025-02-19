@@ -77,11 +77,18 @@ export class DefaultComponent implements OnInit, AfterViewInit {
   musicaCheck: boolean
   mesaRegalosCheck: boolean
   confirmacionCheck: boolean
+  itinerarioCheck: boolean
   generalCheck: boolean
+  notaCheck: boolean
   checking: boolean
   hospedajeCheck: boolean
   vistaTemp: boolean
   pushOk: boolean = false
+  dataPrincipal: any
+  dataInvitacionCard: any
+  dataMensajeCard: any
+  dataListasCard: any
+  dataDondeCard: any
   constructor(
     private functionsService: FunctionsService,
     private fiestasService: FiestasService,
@@ -101,6 +108,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
     if (this.fiestaId && this.boletoId) {
       this.boletosService.cargarBoletoById(this.boletoId).subscribe((resp: any) => {
         this.boleto = resp.boleto
+
         if (!this.boleto.activated) {
           this.functionsService.alert('Boleto eliminado', 'Contactar con el anfitrion', 'info')
           this.functionsService.navigateTo('/')
@@ -118,6 +126,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
       })
       this.fiestasService.cargarFiestaById(this.fiestaId).subscribe((resp: any) => {
         this.fiesta = resp.fiesta
+
         this.checking = this.fiesta.checking
         this.invitacionsService.cargarInvitacionByFiesta(this.fiestaId).subscribe(async (resp: any) => {
           this.invitacion = resp.invitacion.data
@@ -148,6 +157,84 @@ export class DefaultComponent implements OnInit, AfterViewInit {
           this.musica = this.invitacion.musica
           this.musicaCheck = this.invitacion.musicaCheck
           this.musicaInvitacion = this.invitacion.musicaInvitacion
+
+          this.dataPrincipal = {
+            vistaTemp: false,
+            type: 'seccionInicial',
+            size: 'sm',
+            cPrincipal: this.invitacion.cPrincipal,
+            cSecond: this.invitacion.cSecond,
+            imgWidth: this.invitacion.imgWidth,
+            cWhite: this.invitacion.cWhite,
+            img1: this.invitacion.img1,
+            xImg1: this.invitacion.xImg1,
+            yImg1: this.invitacion.yImg1,
+            generalCheck: this.invitacion.generalCheck,
+            generalTexto: this.invitacion.generalTexto,
+            generalSize: this.invitacion.generalSize ? this.invitacion.generalSize : 15,
+            nombreFiesta: this.invitacion.nombreFiesta,
+            nombreSize: this.invitacion.nombreSize,
+            nombreFont: this.invitacion.nombreFont,
+            nombreEfecto: this.invitacion.nombreEfecto,
+            nombreEfectoRep: this.invitacion.nombreEfectoRep,
+            topTitle: this.invitacion.topTitle,
+            tipoFiesta: this.invitacion.tipoFiesta,
+            tipoSize: this.invitacion.tipoSize,
+            tipoFont: this.invitacion.tipoFont,
+            tipoEfecto: this.invitacion.tipoEfecto,
+            tipoEfectoRep: this.invitacion.tipoEfectoRep,
+            topDate: this.invitacion.topDate,
+            mensajeFont: this.invitacion.mensajeFont,
+            inicialTFont: this.invitacion.inicialTFont,
+            finalTFont: this.invitacion.finalTFont,
+            inviFont: this.invitacion.inviFont,
+            inviFont2: this.invitacion.inviFont2,
+            inviEfecto: this.invitacion.inviEfecto,
+            inviEfectoRep: this.invitacion.inviEfectoRep,
+            inicialTSize: this.invitacion.inicialTSize,
+            finalTSize: this.invitacion.finalTSize,
+          }
+
+
+
+          this.dataInvitacionCard = {
+            vistaTemp: false,
+            inviEfecto: this.invitacion.inviEfecto,
+            inviEfectoRep: this.invitacion.inviEfectoRep,
+            generalCheck: resp.invitacion.data.generalCheck,
+            cPrincipal: this.invitacion.cPrincipal,
+            cWhite: this.invitacion.cWhite,
+            inviFont: this.invitacion.inviFont,
+            inviFont2: this.invitacion.inviFont2,
+            generalSize: this.invitacion.generalSize,
+            nombreGrupo: this.boleto.nombreGrupo,
+            cantidad: this.boleto.cantidadInvitados,
+            nombreFont: this.invitacion.nombreFont,
+            mesa: this.invitacion.mesa,
+            generalTexto: this.invitacion.generalTexto,
+            croquisOk: this.fiesta.croquisOk,
+            croquis: this.fiesta.croquis,
+            cSecond: this.invitacion.cSecond,
+            checking: this.fiesta.checking
+          }
+          this.dataMensajeCard = {
+            vistaTemp: false,
+            ...this.invitacion
+
+          }
+          this.dataListasCard = {
+            vistaTemp: false,
+            ...this.invitacion
+
+          }
+          this.dataDondeCard = {
+            vistaTemp: false,
+            ...this.invitacion
+
+          }
+
+
+
         }, (error) => {
           console.error('Error', error)
           this.functionsService.alertError(error, 'Fiestas')
@@ -314,17 +401,110 @@ export class DefaultComponent implements OnInit, AfterViewInit {
         this.padrinosCheck = (this.state.padrinosCheck == 'true') ? true : false
         this.menuCheck = (this.state.menuCheck == 'true') ? true : false
         this.musicaCheck = (this.state.musicaCheck == 'true') ? true : false
+        this.itinerarioCheck = (this.state.itinerarioCheck == 'true') ? true : false
         this.hospedajeCheck = (this.state.hospedajeCheck == 'true') ? true : false
         this.mesaRegalosCheck = (this.state.mesaRegalosCheck == 'true') ? true : false
         this.confirmacionCheck = (this.state.confirmacionCheck == 'true') ? true : false
         this.generalCheck = (this.state.generalCheck == 'true') ? true : false
         this.invitacion = this.state
 
-
+        this.checking = (this.state.checking == 'true') ? true : false
         this.date = this.invitacion.fiestaDate
         this.croquisOk = (this.state.croquisOk == 'true') ? true : false
         this.btnBack = true
         this.checking = (this.state.checking == 'true') ? true : false
+        this.notaCheck = (this.state.notaCheck == 'true') ? true : false
+
+        this.padresCheck = (this.state.padresCheck == 'true') ? true : false
+        this.mesaRegalosCheck = (this.state.mesaRegalosCheck == 'true') ? true : false
+
+
+
+
+        this.dataPrincipal = {
+          vistaTemp: true,
+          type: 'seccionInicial',
+          size: 'sm',
+          cPrincipal: this.state.cPrincipal,
+          cSecond: this.state.cSecond,
+          imgWidth: this.state.imgWidth,
+          cWhite: this.state.cWhite,
+          img1: this.state.img1,
+          xImg1: this.state.xImg1,
+          yImg1: this.state.yImg1,
+          generalCheck: this.state.generalCheck,
+          generalTexto: this.state.generalTexto,
+          generalSize: this.state.generalSize ? this.state.generalSize : 15,
+          nombreFiesta: this.state.nombreFiesta,
+          nombreSize: this.state.nombreSize,
+          nombreFont: this.state.nombreFont,
+          nombreEfecto: this.state.nombreEfecto,
+          nombreEfectoRep: this.state.nombreEfectoRep,
+          topTitle: this.state.topTitle,
+          tipoFiesta: this.state.tipoFiesta,
+          tipoSize: this.state.tipoSize,
+          tipoFont: this.state.tipoFont,
+          tipoEfecto: this.state.tipoEfecto,
+          tipoEfectoRep: this.state.tipoEfectoRep,
+          topDate: this.state.topDate,
+          mensajeFont: this.state.mensajeFont,
+          inicialTFont: this.state.inicialTFont,
+          finalTFont: this.state.finalTFont,
+          inviFont: this.state.inviFont,
+          inviFont2: this.state.inviFont2,
+          inviEfecto: this.state.inviEfecto,
+          inviEfectoRep: this.state.inviEfectoRep,
+          inicialTSize: this.state.inicialTSize,
+          finalTSize: this.state.finalTSize,
+        }
+
+
+        this.dataInvitacionCard = {
+          vistaTemp: true,
+          inviEfecto: this.state.inviEfecto,
+          inviEfectoRep: this.state.inviEfectoRep,
+          generalCheck: this.state.generalCheck,
+          cPrincipal: this.state.cPrincipal,
+          cWhite: this.state.cWhite,
+          inviFont: this.state.inviFont,
+          inviFont2: this.state.inviFont2,
+          generalSize: this.state.generalSize,
+          nombreGrupo: 'Familia Gonzalez',
+          cantidad: this.state.cantidad,
+          nombreFont: this.state.nombreFont,
+          mesa: '1',
+          generalTexto: this.state.generalTexto,
+          croquisOk: this.state.croquisOk,
+          croquis: this.state.croquis,
+          cSecond: this.state.cSecond,
+          checking: (this.state.checking == 'true') ? true : false
+        }
+
+        this.dataMensajeCard = {
+          vistaTemp: true,
+          ...this.state
+        }
+        this.dataListasCard = {
+          vistaTemp: true,
+          ...this.state,
+          chambelanesCheck: this.chambelanesCheck,
+          menuCheck: this.menuCheck,
+          musicaCheck: this.musicaCheck,
+          padresCheck: this.padresCheck,
+          padrinosCheck: this.padrinosCheck,
+          codigoVestimentaCheck: this.codigoVestimentaCheck,
+          itinerarioCheck: this.itinerarioCheck,
+          mesaRegalosCheck: this.mesaRegalosCheck,
+        }
+        this.dataDondeCard = {
+          vistaTemp: true,
+          ...this.state,
+          donde1Check: this.donde1Check,
+          donde2Check: this.donde2Check,
+          donde3Check: this.donde3Check,
+          hospedajeCheck: this.hospedajeCheck,
+        }
+
       }
     }
   }

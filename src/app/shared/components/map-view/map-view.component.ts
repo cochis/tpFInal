@@ -10,6 +10,7 @@ import { environment } from '../../../../environments/environment';
 })
 export class MapViewComponent implements AfterViewInit {
   @Output() coordenadas!: EventEmitter<object>;
+  @Output() coordenadasSelect!: EventEmitter<object>;
   @Input() sendCoords!: [number, number];
   @Input() isEdit!: boolean;
   @Input() type!: string;
@@ -19,7 +20,9 @@ export class MapViewComponent implements AfterViewInit {
     private mapService: MapsService
   ) {
     this.coordenadas = new EventEmitter()
+    this.coordenadasSelect = new EventEmitter()
   }
+  classMap = 'map-expand'
   map!: any
   maker2!: any
   makerMe!: any
@@ -27,12 +30,14 @@ export class MapViewComponent implements AfterViewInit {
   CS = environment.cSecond
   ngAfterViewInit(): void {
     if (this.sendCoords) {
+
       this.map = new Map({
         container: this.mapDivElement.nativeElement, // container ID
         style: 'mapbox://styles/mapbox/light-v10', // style URL
-        center: this.sendCoords, // starting position [lng, lat]
+        center: [this.sendCoords[0], this.sendCoords[1]], // starting position [lng, lat]
         zoom: 14, // starting zoom
       });
+
       const popup = new Popup()
         .setHTML(`
           <h6> Mi Ubicación</h6>
@@ -98,5 +103,19 @@ export class MapViewComponent implements AfterViewInit {
       .setLngLat(coords)
       .setPopup(popup)
       .addTo(this.map)
+  }
+  chageClass() {
+
+    if (this.classMap == '.map-container') {
+      this.classMap = '.map-expand'
+    } else {
+      this.classMap = '.map-container'
+
+    }
+
+  }
+  showCoordenadas(event) {
+
+    this.coordenadasSelect.emit(event)
   }
 }

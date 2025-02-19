@@ -69,6 +69,12 @@ body {
     opacity: .7;
 }
 
+.but:active {
+    color: var(--cWhite);
+    background: var(--cPrimary);
+    opacity: .7;
+}
+
 .but2 {
     background: var(--cSecond) !important;
     color: var(--cWhite) !important;

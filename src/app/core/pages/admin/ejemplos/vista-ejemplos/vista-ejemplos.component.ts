@@ -72,7 +72,8 @@ export class VistaEjemplosComponent {
       this.ejemplosService.cargarEjemplosAll().subscribe((resp: CargarEjemplos) => {
 
         this.ejemplos = resp.ejemplos
-        this.ejemplosTemp = resp.ejemplos
+
+        this.ejemplosTemp = this.ejemplos
         setTimeout(() => {
 
           this.loading = false
@@ -87,7 +88,8 @@ export class VistaEjemplosComponent {
       this.ejemplosService.cargarEjemplosByEmail(usr).subscribe((resp: CargarEjemplos) => {
 
         this.ejemplos = resp.ejemplos
-        this.ejemplosTemp = resp.ejemplos
+
+        this.ejemplosTemp = this.ejemplos
         setTimeout(() => {
 
           this.loading = false

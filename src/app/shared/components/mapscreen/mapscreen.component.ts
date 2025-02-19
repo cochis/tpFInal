@@ -12,10 +12,12 @@ export class MapscreenComponent implements AfterViewInit {
   @Input() isEditV!: boolean;
   @Input() type!: string;
   @Output() coordenadas!: EventEmitter<object>;
+  @Output() coordenadasSelect!: EventEmitter<object>;
   constructor(
     private mapService: MapsService
   ) {
     this.coordenadas = new EventEmitter()
+    this.coordenadasSelect = new EventEmitter()
   }
   ngAfterViewInit(): void {
 
@@ -29,6 +31,7 @@ export class MapscreenComponent implements AfterViewInit {
   showCoordenadas($e) {
 
 
+
     let res = {
       ...$e,
       type: this.type
@@ -38,4 +41,11 @@ export class MapscreenComponent implements AfterViewInit {
     this.coordenadas.emit(res)
 
   }
+
+
+  showMapSelected(event) {
+    this.coordenadasSelect.emit(event)
+
+  }
+
 }

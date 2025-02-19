@@ -46,12 +46,26 @@ export class FunctionsService {
     localStorage.removeItem(name)
   }
   getValueCatalog(id: string, filter: string, catalogo: any) {
+
     if (id && catalogo) {
       let ret = catalogo.filter((cat: any) => {
         return cat.uid === id
       })
       if (ret[0][filter]) {
         return ret[0][filter]
+      }
+    } else {
+      return ''
+    }
+  }
+  getTypeValueCatalog(id: string, filter: string, catalogo: any, returnV: string) {
+
+    if (id && catalogo) {
+      let ret = catalogo.filter((cat: any) => {
+        return cat[filter] === id
+      })
+      if (ret[0][filter]) {
+        return ret[0][returnV]
       }
     } else {
       return ''

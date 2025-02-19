@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { CargarRoles, CargarSalon, CargarSalons, CargarUsuario } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
+import { CargarPaises, CargarRoles, CargarSalon, CargarSalons, CargarUsuario } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
 import { Role } from 'src/app/core/models/role.model';
 import { Salon } from 'src/app/core/models/salon.model';
 import { Usuario } from 'src/app/core/models/usuario.model';
@@ -14,6 +14,10 @@ import { UsuariosService } from 'src/app/core/services/usuarios.service';
 import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { environment } from 'src/environments/environment';
 import { MapsService } from '../../../../../shared/services/maps.service';
+import { PaisesService } from 'src/app/core/services/pais.service';
+import { Cp } from 'src/app/core/models/cp.model';
+import { Pais } from 'src/app/core/models/pais.model';
+import { CpsService } from 'src/app/core/services/cp.service';
 @Component({
   selector: 'app-editar-salon',
   templateUrl: './editar-salon.component.html',
@@ -38,6 +42,11 @@ export class EditarSalonComponent {
   sendCoords: any = undefined
   MAPURL = environment.mapsGoogleUrl
   MAPZOOM = environment.mapsGoogleZoom
+  cps: Cp[]
+  paises: Pais[]
+  estados = []
+  municipios = []
+  colonias = []
   constructor(
     private fb: FormBuilder,
     private functionsService: FunctionsService,
@@ -46,12 +55,15 @@ export class EditarSalonComponent {
     private invitacionesServices: InvitacionsService,
     private route: ActivatedRoute,
     private fileService: FileService,
-    private mapService: MapsService
+    private mapService: MapsService,
+    private paisesService: PaisesService,
+    private cpsService: CpsService,
   ) {
+    this.loading = true
+    this.getCatalogos()
     this.id = this.route.snapshot.params['id']
 
     this.edit = this.route.snapshot.params['edit']
-    this.loading = true
     this.getId(this.id)
     this.createForm()
     setTimeout(() => {
@@ -114,8 +126,10 @@ export class EditarSalonComponent {
     })
   }
   setForm(salon: Salon) {
+
     if (salon.long && salon.lat) {
       this.sendCoords = [Number(salon.long), Number(salon.lat)]
+
     } else {
       this.mapService.getUserLocation().then(res => {
         this.sendCoords = res
@@ -130,7 +144,7 @@ export class EditarSalonComponent {
       coloniaBarrio: [salon.coloniaBarrio, [Validators.required]],
       cp: [salon.cp, [Validators.required, Validators.pattern(".{5,5}")]],
       estado: [salon.estado, [Validators.required]],
-      pais: [salon.pais, [Validators.required]],
+      pais: [(this.edit == 'true') ? salon.pais : this.getCatalog('pais', salon.pais), [Validators.required]],
       direccion: [salon.calle + ' ' + salon.numeroExt + ((salon.numeroInt == '') ? '' : ', Int.' + salon.numeroInt) + ', colonia o barrio, ' + salon.coloniaBarrio + ', municipio o delegación' + salon.municipioDelegacion + ', estado' + salon.estado + ', en' + salon.pais],
       comoLlegar: [salon.comoLlegar, [Validators.required]],
       lat: [salon.lat],
@@ -143,6 +157,8 @@ export class EditarSalonComponent {
       dateCreated: [salon.dateCreated],
       lastEdited: [this.today],
     })
+
+    this.getCps(salon.pais, salon.cp)
 
   }
 
@@ -250,7 +266,7 @@ export class EditarSalonComponent {
       this.functionsService.alertForm('Salones')
       this.loading = false
 
-      return console.info('Please provide all the required values!');
+      return // console.info('Please provide all the required values!');
     }
 
 
@@ -294,6 +310,7 @@ export class EditarSalonComponent {
       )
   }
   showCoordenadas(e) {
+
     this.form.patchValue({
 
       lat: e.lat,
@@ -304,8 +321,123 @@ export class EditarSalonComponent {
 
 
   }
+  showCoordenadasSelect(e) {
+
+    let uno = `${this.MAPURL}?q=${e[1]},${e[0]}&z=${this.MAPZOOM}`
+
+    this.form.patchValue({
+
+      lat: e[1],
+      long: e[0],
+      ubicacionGoogle: `${this.MAPURL}?q=${e[1]},${e[0]}&z=${this.MAPZOOM}`
+    })
+
+
+
+  }
   back() {
     this.functionsService.navigateTo('core/salones/vista-salones')
   }
+  getCatalogos() {
+    this.loading = true
 
+    this.paisesService.cargarPaisesAll().subscribe((resp: CargarPaises) => {
+      this.paises = resp.paises
+
+      this.loading = false
+    },
+      (error: any) => {
+        // console.error('Error', error)
+        this.functionsService.alertError(error, 'Centro de eventos (Países)')
+        this.loading = false
+      })
+
+
+  }
+
+  getCatalog(tipo: string, id: string) {
+
+    if (id) {
+      switch (tipo) {
+        case 'pais':
+          return this.functionsService.getTypeValueCatalog(id, 'clave', this.paises, 'nombre').toString()
+          break;
+      }
+    } else {
+      return ''
+    }
+  }
+  unique(arr) {
+    let result = [];
+
+    for (let str of arr) {
+      if (!result.includes(str)) {
+        result.push(str);
+      }
+    }
+
+    return result;
+  }
+
+  getCps(pais?, cp?) {
+
+    if (!pais && !cp) {
+
+      pais = this.form.value.pais
+      cp = this.form.value.cp
+
+    }
+    if (this.form.value.pais == '') {
+      this.functionsService.alert('Centro de eventos', 'Selecciona un país', 'info')
+      return
+    }
+
+    if (pais == '') {
+      pais = this.form.value.pais.toUpperCase().trim()
+    }
+
+
+    if (cp.length >= 5) {
+
+      this.cpsService.cargarCpByPaisCP(pais, cp).subscribe((resp) => {
+
+        resp.cps.forEach(element => {
+
+
+          this.estados.push(element.d_estado)
+          this.municipios.push(element.D_mnpio)
+          this.colonias.push(element.d_asenta)
+
+        });
+
+        this.municipios = this.unique(this.municipios)
+        this.colonias = this.unique(this.colonias)
+        let edo = this.estados[0]
+
+        setTimeout(() => {
+
+
+          this.form.patchValue({
+            estado: edo,
+            municipioDelegacion: this.salon.municipioDelegacion,
+            coloniaBarrio: this.salon.coloniaBarrio
+          })
+
+        }, 500);
+
+      },
+        (error: any) => {
+          // console.error('Error', error)
+          this.functionsService.alertError(error, 'CPs')
+          this.loading = false
+        })
+    } else {
+      this.estados = []
+      this.municipios = []
+      this.colonias = []
+
+
+      return
+    }
+  }
 }

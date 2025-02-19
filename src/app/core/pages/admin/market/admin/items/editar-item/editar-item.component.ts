@@ -399,7 +399,7 @@ export class EditarItemComponent {
         (error) => {
           this.functionsService.alertError(error, 'Itemes')
           this.loading = false
-          // console.error('Error', error)
+          console.error('Error', error)
 
         })
     } else {

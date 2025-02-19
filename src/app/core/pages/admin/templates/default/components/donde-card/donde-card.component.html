@@ -1,0 +1,726 @@
+<div [style]=" {'background-color': data.cPrincipal,' margin':'auto' ,'border-radius':'10px'}"
+    *ngIf=" (data.donde1Check ||  data.donde2Check || data.donde3Check)  &&  data.vistaTemp &&  !loading && type =='donde'">
+
+    <div class="row text-center" style="margin: auto;">
+        <h1 class="mt-3 {{data.nombreFont}}" [style]="{'color':data.cWhite, 'font-size':data.titleSize}">
+            Donde y Cuando</h1>
+        <div class="col-12 col-md-4 mt-3" style="text-align: center; margin: auto;" *ngIf="data.donde1Check">
+            <div class="card text-center bd  mb-3 ">
+                <h5 class="card-title mt-2 dancing" [style]="{'margin': 'auto', 'color':data.cPrincipal}">
+                    {{data.donde1Title}}
+                </h5>
+                <div class="mt-3   bd  img-container ">
+                    <img [src]="url+'/upload/invitaciones/'+((data.donde1Img!=='')?data.donde1Img:'notImage') "
+                        class="img-card sombra" [alt]="data.donde1Title">
+                </div>
+                <div class="card-body upper" style="width: 90%; margin: auto;">
+                    <p class="card-text text-center arsenal-sc-bold-italic" style="height: 80px;"
+                        *ngIf="data.donde1Text!==''">
+                        {{data.donde1Text}}
+                    </p>
+                    <p class="card-text text-start" *ngIf="data.donde1Date!==0">
+                        <b class="arsenal-sc-bold-italic">Cuándo:</b>
+                        {{data.donde1Date | date:'short'}}.
+                    </p>
+                    <p class="card-text text-start" *ngIf="data.donde1Address!==''">
+                        <b class="arsenal-sc-bold-italic">
+                            Dirección:
+                        </b>
+                        {{data.donde1Address }}
+                    </p>
+
+                    <a href="{{data.donde1AddressUbicacion}}" target="_blank" *ngIf="data.donde1AddressUbicacion!==''">
+                        <i [class]="data.donde1Icon "
+                            [style]="{'font-size':'45px','font-weight':'800','color':data.cPrincipal}">
+                        </i></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 mt-3" style="text-align: center; margin: auto;" *ngIf="data.donde2Check">
+            <div class="card text-center bd  mb-3 ">
+                <h5 class="card-title mt-2 dancing" [style]="{'margin': 'auto', 'color':data.cPrincipal}">
+                    {{data.donde1Title}}
+                </h5>
+                <div class="mt-3 bd img-container ">
+
+                    <img [src]="url+'/upload/invitaciones/'+((data.donde2Img!=='')?data.donde2Img:'notImage') "
+                        class="img-card sombra" [alt]="data.donde1Title">
+                </div>
+                <div class="card-body upper" style="width: 90%; margin: auto;">
+                    <p class="card-text text-center arsenal-sc-bold-italic" style="height: 80px;"
+                        *ngIf="data.donde2Text!==''">
+                        {{data.donde2Text}}
+                    </p>
+                    <p class="card-text text-start" *ngIf="data.donde2Date!==0">
+                        <b class="arsenal-sc-bold-italic">Cuándo:</b>
+                        {{data.donde2Date | date:'short'}}
+                        .
+                    </p>
+                    <p class="card-text text-start" *ngIf="data.donde2Address !==''"><b class="arsenal-sc-bold-italic">
+                            Dirección:</b>
+                        {{data.donde2Address}}
+                    </p>
+
+                    <a href="{{data.donde2AddressUbicacion}}" target="_blank" *ngIf="data.donde2AddressUbicacion!==''">
+                        <i [class]="data.donde2Icon "
+                            [style]="{'font-size': '45px','font-weight': '800' ,'color':data.cPrincipal}">
+                        </i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-4 mt-3" style="text-align: center; margin: auto;" *ngIf="data.donde3Check">
+            <div class="card text-center bd  mb-3 ">
+                <h5 class="card-title mt-3 dancing" [style]="{'margin': 'auto', 'color':data.cPrincipal}">
+                    {{data.donde3Title}}</h5>
+                <div class="mt-3   bd  img-container " *ngIf="fiesta">
+
+                    <img [src]="url+'/upload/salones/'+fiesta.salon.img" class="img-card sombra"
+                        [alt]="data.donde3Title">
+                </div>
+                <div class="mt-3   bd  img-container " *ngIf="!fiesta">
+
+                    <img [src]="url+'/upload/salones/'+((data.donde3Img!=='')?data.donde3Img:'notImage') "
+                        class="img-card sombra" [alt]="data.donde3Title">
+                </div>
+                <div class="card-body upper" style="width: 100%; margin: auto;">
+                    <p class="card-text text-center arsenal-sc-bold-italic" style="height: 80px;"
+                        *ngIf="data.donde3Text!==''">
+                        {{data.donde3Text}}
+                    </p>
+                    <p class="card-text text-start" *ngIf="data.donde3Date!==0">
+                        <b class="arsenal-sc-bold-italic">Cuándo:</b> {{data.donde3Date | date:'short'}}.
+                    </p>
+                    <p class="card-text text-start" *ngIf="data.donde3Address !==''">
+                        <b class="arsenal-sc-bold-italic"> Dirección:</b>
+                        {{data.donde3Address}}
+                    </p>
+                    <a href="{{fiesta.salon.ubicacionGoogle}}" target="_blank"
+                        *ngIf="fiesta && data.donde3AddressUbicacion!==''">
+                        <i [class]="data.donde3Icon "
+                            [style]="{'font-size': '45px','font-weight': '800' ,'color':data.cPrincipal}">
+                        </i>
+                    </a>
+                    <a href="{{data.donde3AddressUbicacion }}" target="_blank"
+                        *ngIf="!fiesta && data.donde3AddressUbicacion!==''">
+
+                        <i [class]="data.donde3Icon "
+                            [style]="{'font-size': '45px','font-weight': '800','color':data.cPrincipal}">
+                        </i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+    <!--       <div style=" background-color: {{data.cPrincipal}}; margin: auto;" *ngIf=" menuCheck && !vistaTemp">
+
+                <div class="row text-center" style="margin: auto;">
+                    <h1 class="mt-3 {{data.nombreFont}}   " style="color:{{data.cWhite}};">Menu</h1>
+                    <div class="col-12 col-md-4 mt-3" style="text-align: center; margin: auto;">
+                        <div class="  mt-3 "
+                            *ngIf="(typeOf(data.menuCheck)=='boolean')? data.menuCheck!==false:data.menuCheck!=='false'"
+                            style="width: 100%;text-align: center;margin:auto; background-color: {{data.cPrincipal}};">
+
+                            <div style="width: 60%; max-width: 450px; margin: auto;" class="mb-5"
+                                *ngIf="typeOf(data.menuCheck)=='boolean'? data.menuCheck!==false:data.menuCheck!=='false'">
+                                <div class="card  p-0 nborder">
+
+
+                                    <table *ngIf="menu.length >0">
+                                        <ng-container *ngFor="let pad of menu">
+
+                                            <tr
+                                                style=" border-top: 2px solid {{data.cPrincipal}} ; height: 60px; line-height: 60px;">
+
+                                                <th class="upper">
+                                                    <span style="color:{{data.cSecond}}">{{pad.tipo}}</span>
+                                                </th>
+                                                <th class="upper">
+                                                    <span style="color:{{data.cPrincipal}}">{{pad.name}}</span>
+                                                </th>
+                                            </tr>
+
+
+                                        </ng-container>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+
+
+            </div> -->
+
+    <!-- <br>
+    <div style=" background-color: {{data.cWhite}}; margin: auto;" *ngIf=" musicaCheck && !vistaTemp">
+
+        <div class="row text-center" style="margin: auto;">
+            <h1 class="mt-3 {{data.nombreFont}}   " style="color:{{data.cPrincipal}};">Música</h1>
+            <div class="col-12 col-md-4 mt-3" style="text-align: center; margin: auto;">
+                <div class="  mt-3 "
+                    *ngIf="(typeOf(data.musicaCheck)=='boolean')? data.musicaCheck!==false:data.musicaCheck!=='false'"
+                    style="width: 100%;text-align: center;margin:auto; background-color: {{data.cWhite}};">
+
+                    <div style="width: 60%; max-width: 450px; margin: auto;" class="mb-5"
+                        *ngIf="typeOf(data.musicaCheck)=='boolean'? data.musicaCheck!==false:data.musicaCheck!=='false'">
+                        <div class="card  p-0 nborder">
+
+
+                            <table *ngIf="musica.length >0" style="width: 80%;">
+                                <ng-container *ngFor="let pad of musica">
+
+                                    <tr style="   height: 60px; line-height: 60px;">
+
+                                        <th class="upper">
+                                            <span style="color:{{data.cSecond}}">{{pad.tipo}}</span>
+                                        </th>
+                                        <th class="upper">
+                                            <span style="color:{{data.cPrincipal}}">{{pad.name}}</span>
+                                        </th>
+                                    </tr>
+
+
+                                </ng-container>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+
+
+    </div>
+    <br>
+
+    <div style=" background-color: {{data.cPrincipal}}; margin: auto;" *ngIf=" codigoVestimentaCheck  ">
+
+        <div class="row text-center" style="margin: auto;">
+            <h1 class="mt-3 {{data.nombreFont}}   " style="color:{{data.cWhite}};">Código de
+                vestimenta</h1>
+            <div class="col-12 col-md-4 mt-3" style="text-align: center; margin: auto;">
+                <div class="  mt-3 "
+                    *ngIf="(typeOf(data.codigoVestimentaCheck)=='boolean')? data.codigoVestimentaCheck!==false:data.codigoVestimentaCheck!=='false'"
+                    style="width: 100%;text-align: center;margin:auto; background-color: {{data.cPrincipal}};">
+
+                    <div style="width: 60%; max-width: 450px; margin: auto;" class="mb-5"
+                        *ngIf="typeOf(data.codigoVestimentaCheck)=='boolean'? data.codigoVestimentaCheck!==false:data.codigoVestimentaCheck!=='false'">
+                        <div class="card  p-0 nborder">
+
+
+                            <table class="ma">
+
+
+                                <tr class="ma"
+                                    style=" border-top: 2px solid {{data.cPrincipal}} ; height: 60px; line-height: 60px;">
+
+                                    <th class="upper ma">
+                                        <span class="ma"
+                                            style="color:{{data.cPrincipal}};">{{data.codigoVestimentaMujer}}</span>
+                                    </th>
+                                    <th class="upper">
+                                        <img [src]="url+'/upload/invitaciones/'+((data.codigoVestimentaMujerImg !== '') ? data.codigoVestimentaMujerImg :'notImage') "
+                                            class="card-img-top ma">
+                                    </th>
+                                </tr>
+                                <tr
+                                    style=" border-top: 2px solid {{data.cPrincipal}} ; height: 60px; line-height: 60px;">
+
+                                    <th class="upper">
+                                        <span style="color:{{data.cPrincipal}};">{{data.codigoVestimentaHombre}}</span>
+                                    </th>
+                                    <th class="upper">
+                                        <img [src]="url+'/upload/invitaciones/'+((data.codigoVestimentaHombreImg !== '') ? data.codigoVestimentaHombreImg :'notImage') "
+                                            class="card-img-top ma">
+                                    </th>
+                                </tr>
+
+
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+
+
+    </div>
+
+    <div class="mt-3" *ngIf="mesaRegalosCheck"
+        style="width: 100%;text-align: center;margin:auto; background-color: {{data.cWhite}}">
+        <div class="row">
+
+            <div class="col-12">
+
+                <h2 class="mt-3 {{data.nombreFont}}" style="color:{{data.cPrincipal}}">Mesa de
+                    regalos</h2>
+            </div>
+        </div>
+        <div style="width: 80%; max-width: 450px; min-width: 200px; padding: 15px;margin: auto;">
+            <div class="card mt-3 p-0 nborder">
+                <img [src]="url+'/upload/invitaciones/'+((data.mesaRegalosImg !== '') ? data.mesaRegalosImg :'notImage') "
+                    class="card-img-top ma">
+                <div class="card-body">
+                    <a href="{{data.mesaRegalosUrl}}" class="pointer" style="color:{{data.cPrincipal}}" target="_blank"
+                        rel="noopener noreferrer">
+
+                        <h5 class="card-title mt-2 dancing upper">{{data.mesaRegalosLugar}}</h5>
+                    </a>
+                    <br>
+
+
+
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+
+ -->
+
+
+
+</div>
+
+<div class="col-12 text-center" *ngIf="data.hospedajeCheck &&  data.vistaTemp &&  !loading && type =='hospedaje'"
+    [style]="{ 'background-color':data.cWhite, 'border-radius':'10px'}">
+    <div class="row">
+
+        <div class="col-12">
+
+            <h2 class="mt-3 {{data.nombreFont}}" [style]="{'color':data.cPrincipal}">
+                Hospedaje Recomendado
+            </h2>
+        </div>
+    </div>
+    <div style="width: 80%; max-width: 450px; min-width: 200px; padding: 15px;margin: auto;">
+        <div class="card mt-3 p-0 nborder">
+            <img [src]="url+'/upload/invitaciones/'+((data.hospedajeImg !== '') ? data.hospedajeImg :'notImage') "
+                class="card-img-top ma">
+            <div class="card-body">
+                <a href="{{data.hospedajeUbicacion}}" class="pointer" [style]="{'color':data.cPrincipal}"
+                    target="_blank" rel="noopener noreferrer">
+
+                    <h5 class="card-title mt-2 dancing">{{data.hospedajeName}}</h5>
+                </a>
+                <br>
+                <a type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false"
+                    aria-controls="collapseExample"><i [class]="data.hospedajeIcon "
+                        [style]="{'font-size': '45px','font-weight': '800' ,'color':data.cPrincipal}">
+                    </i></a>
+
+
+
+                <div class="collapse" id="collapseExample">
+                    <div class="card card-body nborder">
+
+
+                        <a class="text-center arsenal-sc-bold-italic  " [style]="{'color':data.cPrincipal}"
+                            href="{{data.hospedajeAddress}}"> {{data.hospedajeName}}</a>
+                        <a class="text-center arsenal-sc-bold-italic " [style]="{'color':data.cPrincipal}"
+                            href="tel:+{{data.hospedajePhone}}">{{data.hospedajePhone}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>
+
+
+<div [style]=" {'background-color': data.cPrincipal,' margin':'auto' ,'border-radius':'10px'}"
+    *ngIf=" (data.donde1Check ||  data.donde2Check || data.donde3Check)  &&  !data.vistaTemp &&  !loading && type =='donde'">
+
+    <div class="row text-center" style="margin: auto;">
+        <h1 class="mt-3 {{data.nombreFont}}" [style]="{'color':data.cWhite, 'font-size':data.titleSize}">
+            Donde y Cuando</h1>
+        <div class="col-12 col-md-4 mt-3" style="text-align: center; margin: auto;" *ngIf="data.donde1Check">
+            <div class="card text-center bd  mb-3 ">
+                <h5 class="card-title mt-2 dancing" [style]="{'margin': 'auto', 'color':data.cPrincipal}">
+                    {{data.donde1Title}}
+                </h5>
+                <div class="mt-3   bd  img-container ">
+                    <img [src]="url+'/upload/invitaciones/'+((data.donde1Img!=='')?data.donde1Img:'notImage') "
+                        class="img-card sombra" [alt]="data.donde1Title">
+                </div>
+                <div class="card-body upper" style="width: 90%; margin: auto;">
+                    <p class="card-text text-center arsenal-sc-bold-italic" style="height: 80px;"
+                        *ngIf="data.donde1Text!==''">
+                        {{data.donde1Text}}
+                    </p>
+                    <p class="card-text text-start" *ngIf="data.donde1Date!==0">
+                        <b class="arsenal-sc-bold-italic">Cuándo:</b>
+                        {{data.donde1Date | date:'short'}}.
+                    </p>
+                    <p class="card-text text-start" *ngIf="data.donde1Address!==''">
+                        <b class="arsenal-sc-bold-italic">
+                            Dirección:
+                        </b>
+                        {{data.donde1Address }}
+                    </p>
+
+                    <a href="{{data.donde1AddressUbicacion}}" target="_blank" *ngIf="data.donde1AddressUbicacion!==''">
+                        <i [class]="data.donde1Icon "
+                            [style]="{'font-size':'45px','font-weight':'800','color':data.cPrincipal}">
+                        </i></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 mt-3" style="text-align: center; margin: auto;" *ngIf="data.donde2Check">
+            <div class="card text-center bd  mb-3 ">
+                <h5 class="card-title mt-2 dancing" [style]="{'margin': 'auto', 'color':data.cPrincipal}">
+                    {{data.donde2Title}}
+                </h5>
+                <div class="mt-3 bd img-container ">
+
+                    <img [src]="url+'/upload/invitaciones/'+((data.donde2Img!=='')?data.donde2Img:'notImage') "
+                        class="img-card sombra" [alt]="data.donde2Title">
+                </div>
+                <div class="card-body upper" style="width: 90%; margin: auto;">
+                    <p class="card-text text-center arsenal-sc-bold-italic" style="height: 80px;"
+                        *ngIf="data.donde2Text!==''">
+                        {{data.donde2Text}}
+                    </p>
+                    <p class="card-text text-start" *ngIf="data.donde2Date!==0">
+                        <b class="arsenal-sc-bold-italic">Cuándo:</b>
+                        {{data.donde2Date | date:'short'}}
+                        .
+                    </p>
+                    <p class="card-text text-start" *ngIf="data.donde2Address !==''"><b class="arsenal-sc-bold-italic">
+                            Dirección:</b>
+                        {{data.donde2Address}}
+                    </p>
+
+                    <a href="{{data.donde2AddressUbicacion}}" target="_blank" *ngIf="data.donde2AddressUbicacion!==''">
+                        <i [class]="data.donde2Icon "
+                            [style]="{'font-size': '45px','font-weight': '800' ,'color':data.cPrincipal}">
+                        </i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-4 mt-3" style="text-align: center; margin: auto;" *ngIf="data.donde3Check">
+            <div class="card text-center bd  mb-3 ">
+                <h5 class="card-title mt-3 dancing" [style]="{'margin': 'auto', 'color':data.cPrincipal}">
+                    {{data.donde3Title}}</h5>
+                <div class="mt-3   bd  img-container " *ngIf="fiesta">
+
+                    <img [src]="url+'/upload/salones/'+fiesta.salon.img" class="img-card sombra"
+                        [alt]="data.donde3Title">
+                </div>
+                <div class="mt-3   bd  img-container " *ngIf="!fiesta">
+
+                    <img [src]="url+'/upload/salones/'+((data.donde3Img!=='')?data.donde3Img:'notImage') "
+                        class="img-card sombra" [alt]="data.donde3Title">
+                </div>
+                <div class="card-body upper" style="width: 100%; margin: auto;">
+                    <p class="card-text text-center arsenal-sc-bold-italic" style="height: 80px;"
+                        *ngIf="data.donde3Text!==''">
+                        {{data.donde3Text}}
+                    </p>
+                    <p class="card-text text-start" *ngIf="data.donde3Date!==0">
+                        <b class="arsenal-sc-bold-italic">Cuándo:</b> {{data.donde3Date | date:'short'}}.
+                    </p>
+                    <p class="card-text text-start" *ngIf="data.donde3Address !==''">
+                        <b class="arsenal-sc-bold-italic"> Dirección:</b>
+                        {{data.donde3Address}}
+                    </p>
+                    <a href="{{fiesta.salon.ubicacionGoogle}}" target="_blank"
+                        *ngIf="fiesta && data.donde3AddressUbicacion!==''">
+                        <i [class]="data.donde3Icon "
+                            [style]="{'font-size': '45px','font-weight': '800' ,'color':data.cPrincipal}">
+                        </i>
+                    </a>
+                    <a href="{{data.donde3AddressUbicacion }}" target="_blank"
+                        *ngIf="!fiesta && data.donde3AddressUbicacion!==''">
+
+                        <i [class]="data.donde3Icon "
+                            [style]="{'font-size': '45px','font-weight': '800','color':data.cPrincipal}">
+                        </i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+    <!--       <div style=" background-color: {{data.cPrincipal}}; margin: auto;" *ngIf=" menuCheck && !vistaTemp">
+
+                <div class="row text-center" style="margin: auto;">
+                    <h1 class="mt-3 {{data.nombreFont}}   " style="color:{{data.cWhite}};">Menu</h1>
+                    <div class="col-12 col-md-4 mt-3" style="text-align: center; margin: auto;">
+                        <div class="  mt-3 "
+                            *ngIf="(typeOf(data.menuCheck)=='boolean')? data.menuCheck!==false:data.menuCheck!=='false'"
+                            style="width: 100%;text-align: center;margin:auto; background-color: {{data.cPrincipal}};">
+
+                            <div style="width: 60%; max-width: 450px; margin: auto;" class="mb-5"
+                                *ngIf="typeOf(data.menuCheck)=='boolean'? data.menuCheck!==false:data.menuCheck!=='false'">
+                                <div class="card  p-0 nborder">
+
+
+                                    <table *ngIf="menu.length >0">
+                                        <ng-container *ngFor="let pad of menu">
+
+                                            <tr
+                                                style=" border-top: 2px solid {{data.cPrincipal}} ; height: 60px; line-height: 60px;">
+
+                                                <th class="upper">
+                                                    <span style="color:{{data.cSecond}}">{{pad.tipo}}</span>
+                                                </th>
+                                                <th class="upper">
+                                                    <span style="color:{{data.cPrincipal}}">{{pad.name}}</span>
+                                                </th>
+                                            </tr>
+
+
+                                        </ng-container>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+
+
+            </div> -->
+
+    <!-- <br>
+    <div style=" background-color: {{data.cWhite}}; margin: auto;" *ngIf=" musicaCheck && !vistaTemp">
+
+        <div class="row text-center" style="margin: auto;">
+            <h1 class="mt-3 {{data.nombreFont}}   " style="color:{{data.cPrincipal}};">Música</h1>
+            <div class="col-12 col-md-4 mt-3" style="text-align: center; margin: auto;">
+                <div class="  mt-3 "
+                    *ngIf="(typeOf(data.musicaCheck)=='boolean')? data.musicaCheck!==false:data.musicaCheck!=='false'"
+                    style="width: 100%;text-align: center;margin:auto; background-color: {{data.cWhite}};">
+
+                    <div style="width: 60%; max-width: 450px; margin: auto;" class="mb-5"
+                        *ngIf="typeOf(data.musicaCheck)=='boolean'? data.musicaCheck!==false:data.musicaCheck!=='false'">
+                        <div class="card  p-0 nborder">
+
+
+                            <table *ngIf="musica.length >0" style="width: 80%;">
+                                <ng-container *ngFor="let pad of musica">
+
+                                    <tr style="   height: 60px; line-height: 60px;">
+
+                                        <th class="upper">
+                                            <span style="color:{{data.cSecond}}">{{pad.tipo}}</span>
+                                        </th>
+                                        <th class="upper">
+                                            <span style="color:{{data.cPrincipal}}">{{pad.name}}</span>
+                                        </th>
+                                    </tr>
+
+
+                                </ng-container>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+
+
+    </div>
+    <br>
+
+    <div style=" background-color: {{data.cPrincipal}}; margin: auto;" *ngIf=" codigoVestimentaCheck  ">
+
+        <div class="row text-center" style="margin: auto;">
+            <h1 class="mt-3 {{data.nombreFont}}   " style="color:{{data.cWhite}};">Código de
+                vestimenta</h1>
+            <div class="col-12 col-md-4 mt-3" style="text-align: center; margin: auto;">
+                <div class="  mt-3 "
+                    *ngIf="(typeOf(data.codigoVestimentaCheck)=='boolean')? data.codigoVestimentaCheck!==false:data.codigoVestimentaCheck!=='false'"
+                    style="width: 100%;text-align: center;margin:auto; background-color: {{data.cPrincipal}};">
+
+                    <div style="width: 60%; max-width: 450px; margin: auto;" class="mb-5"
+                        *ngIf="typeOf(data.codigoVestimentaCheck)=='boolean'? data.codigoVestimentaCheck!==false:data.codigoVestimentaCheck!=='false'">
+                        <div class="card  p-0 nborder">
+
+
+                            <table class="ma">
+
+
+                                <tr class="ma"
+                                    style=" border-top: 2px solid {{data.cPrincipal}} ; height: 60px; line-height: 60px;">
+
+                                    <th class="upper ma">
+                                        <span class="ma"
+                                            style="color:{{data.cPrincipal}};">{{data.codigoVestimentaMujer}}</span>
+                                    </th>
+                                    <th class="upper">
+                                        <img [src]="url+'/upload/invitaciones/'+((data.codigoVestimentaMujerImg !== '') ? data.codigoVestimentaMujerImg :'notImage') "
+                                            class="card-img-top ma">
+                                    </th>
+                                </tr>
+                                <tr
+                                    style=" border-top: 2px solid {{data.cPrincipal}} ; height: 60px; line-height: 60px;">
+
+                                    <th class="upper">
+                                        <span style="color:{{data.cPrincipal}};">{{data.codigoVestimentaHombre}}</span>
+                                    </th>
+                                    <th class="upper">
+                                        <img [src]="url+'/upload/invitaciones/'+((data.codigoVestimentaHombreImg !== '') ? data.codigoVestimentaHombreImg :'notImage') "
+                                            class="card-img-top ma">
+                                    </th>
+                                </tr>
+
+
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+
+
+    </div>
+
+    <div class="mt-3" *ngIf="mesaRegalosCheck"
+        style="width: 100%;text-align: center;margin:auto; background-color: {{data.cWhite}}">
+        <div class="row">
+
+            <div class="col-12">
+
+                <h2 class="mt-3 {{data.nombreFont}}" style="color:{{data.cPrincipal}}">Mesa de
+                    regalos</h2>
+            </div>
+        </div>
+        <div style="width: 80%; max-width: 450px; min-width: 200px; padding: 15px;margin: auto;">
+            <div class="card mt-3 p-0 nborder">
+                <img [src]="url+'/upload/invitaciones/'+((data.mesaRegalosImg !== '') ? data.mesaRegalosImg :'notImage') "
+                    class="card-img-top ma">
+                <div class="card-body">
+                    <a href="{{data.mesaRegalosUrl}}" class="pointer" style="color:{{data.cPrincipal}}" target="_blank"
+                        rel="noopener noreferrer">
+
+                        <h5 class="card-title mt-2 dancing upper">{{data.mesaRegalosLugar}}</h5>
+                    </a>
+                    <br>
+
+
+
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+
+ -->
+
+
+
+</div>
+
+<div class="col-12 text-center" *ngIf="data.hospedajeCheck &&  !data.vistaTemp &&  !loading && type =='hospedaje'"
+    [style]="{ 'background-color':data.cWhite, 'border-radius':'10px'}">
+    <div class="row">
+
+        <div class="col-12">
+
+            <h2 class="mt-3 {{data.nombreFont}}" [style]="{'color':data.cPrincipal}">
+                Hospedaje Recomendado
+            </h2>
+        </div>
+    </div>
+    <div style="width: 80%; max-width: 450px; min-width: 200px; padding: 15px;margin: auto;">
+        <div class="card mt-3 p-0 nborder">
+            <img [src]="url+'/upload/invitaciones/'+((data.hospedajeImg !== '') ? data.hospedajeImg :'notImage') "
+                class="card-img-top ma">
+            <div class="card-body">
+                <a href="{{data.hospedajeUbicacion}}" class="pointer" [style]="{'color':data.cPrincipal}"
+                    target="_blank" rel="noopener noreferrer">
+
+                    <h5 class="card-title mt-2 dancing">{{data.hospedajeName}}</h5>
+                </a>
+                <br>
+                <a type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false"
+                    aria-controls="collapseExample"><i [class]="data.hospedajeIcon "
+                        [style]="{'font-size': '45px','font-weight': '800' ,'color':data.cPrincipal}">
+                    </i></a>
+
+
+
+                <div class="collapse" id="collapseExample">
+                    <div class="card card-body nborder">
+
+
+                        <a class="text-center arsenal-sc-bold-italic  " [style]="{'color':data.cPrincipal}"
+                            href="{{data.hospedajeAddress}}"> {{data.hospedajeName}}</a>
+                        <a class="text-center arsenal-sc-bold-italic " [style]="{'color':data.cPrincipal}"
+                            href="tel:+{{data.hospedajePhone}}">{{data.hospedajePhone}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>

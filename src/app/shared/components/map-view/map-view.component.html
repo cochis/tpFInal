@@ -1,10 +1,17 @@
-<div #mapDiv class="map-container" (click)="getCoords()" *ngIf="isEdit">
+<div #mapDiv class="{{classMap}}" (click)="getCoords()" *ngIf="isEdit">
+    <!--  <i class="bi bi-arrows-expand expand pointer" (click)="chageClass()"></i> -->
+    <app-searchbar (coordenadas)="showCoordenadas($event)"></app-searchbar>
     <app-mtp-logo></app-mtp-logo>
     <app-btn-my-location></app-btn-my-location>
 
 </div>
-<div #mapDiv class="map-container" *ngIf="!isEdit">
+<div #mapDiv class="{{classMap}}" *ngIf="!isEdit">
+
+    <app-searchbar (coordenadas)="showCoordenadas($event)"></app-searchbar>
     <app-mtp-logo></app-mtp-logo>
+
+    <!--  <i class="bi bi-arrows-expand expand pointer" (click)="chageClass()"></i> -->
+
     <!--    <app-btn-my-location></app-btn-my-location>
  -->
 </div>

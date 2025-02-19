@@ -1,0 +1,111 @@
+<ng-container *ngIf="!loading">
+
+    <!-- Final -->
+
+    <div class="box principal animate__animated animate__fadeInDown"
+        [style]="{'background-image':'url('+url+'/upload/invitaciones/'+data.img1+')' ,  'background-position': data.xImg1+'%'+ data.yImg1+'%','background-size':data.imgWidth,}"
+        *ngIf="!vistaTemp  ">
+
+        <div class="animate__animated animate__fadeInUpBig texto tc" [style]="{'top':data.topTitle+'%'}">
+            <div class="animate__animated  {{data.nombreEfecto}}  {{data.nombreEfectoRep}}  ">
+                <span class="ts cap {{data.nombreFont}}"
+                    [style]="{'color':data.cPrincipal,'font-size':data.nombreSize +'px'}">{{data.nombreFiesta}}</span>
+            </div>
+            <div class="animate__animated  {{data.tipoEfecto}} {{data.tipoEfectoRep}} ">
+                <h1 class="{{data.tipoFont}} ts animate__bounce "
+                    [style]="{'font-size':data.tipoSize+'px!important','color': data.cWhite }">
+                    {{data.tipoFiesta}}
+                </h1>
+            </div>
+
+        </div>
+        <div class="fecha {{data.nombreFont}} tc  " [style]="{'top':data.topDate+'%'}">
+            <table class="tc" *ngIf="date>functionsService.getToday()">
+                <tr [style]="{'color':data.cWhite}">
+                    <th class=" {{data.finalTFont}}" [style]="{'font-size':data.finalTSize+'px'}"><b
+                            [style]="{'color': data.cPrincipal, 'font-size':data.inicialTSize+'px'}"
+                            class=" {{data.inicialTFont}}">D</b>ias</th>
+                    <th class=" {{data.finalTFont}}" [style]="{'font-size':data.finalTSize+'px'}"><b
+                            [style]="{'color': data.cPrincipal, 'font-size':data.inicialTSize+'px'}"
+                            class=" {{data.inicialTFont}}">H</b>oras</th>
+                    <th class=" {{data.finalTFont}}" [style]="{'font-size':data.finalTSize+'px'}"><b
+                            [style]="{'color': data.cPrincipal, 'font-size':data.inicialTSize+'px'}"
+                            class=" {{data.inicialTFont}}">M</b>inutos</th>
+                    <th class=" {{data.finalTFont}}" [style]="{'font-size':data.finalTSize+'px'}"><b
+                            [style]="{'color': data.cPrincipal, 'font-size':data.inicialTSize+'px'}"
+                            class=" {{data.inicialTFont}}">S</b>egundos
+                    </th>
+                </tr>
+                <tr class="  ts" [style]="{'font-size': '45px','color':data.cWhite}">
+                    <td>{{dias}}</td>
+                    <td>{{horas}}</td>
+                    <td>{{minutos}}</td>
+                    <td class="animated infinite pulse">{{segundos}}</td>
+
+                </tr>
+
+            </table>
+            <h2 class=" {{data.nombreFont}} tc" *ngIf="date<functionsService.getToday()"><b
+                    [style]="{'color': data.byFileColorTx}">E</b>mpezamos</h2>
+        </div>
+
+
+    </div>
+
+
+    <!-- Temp -->
+    <div class="box principal animate__animated animate__fadeInDown"
+        [style]="{'background-image':'url('+url+'/upload/invitaciones/'+data.img1+')' ,  'background-position': data.xImg1+'%'+ data.yImg1+'%','background-size':data.imgWidth,}"
+        *ngIf="vistaTemp">
+
+        <div class="animate__animated animate__fadeInUpBig texto tc" [style]="{'top':data.topTitle+'%'}">
+            <div class="animate__animated  {{data.nombreEfecto}}  {{data.nombreEfectoRep}}  ">
+                <span class="ts cap {{data.nombreFont}}"
+                    [style]="{'color':data.cPrincipal,'font-size':data.nombreSize +'px'}">{{data.nombreFiesta}}</span>
+            </div>
+            <div class="animate__animated  {{data.tipoEfecto}} {{data.tipoEfectoRep}} ">
+                <h1 class="{{data.tipoFont}} ts animate__bounce "
+                    [style]="{'font-size':data.tipoSize+'px!important','color': data.cWhite }">
+                    {{data.tipoFiesta}}
+                </h1>
+            </div>
+
+        </div>
+        <div class="fecha {{data.nombreFont}} tc  " [style]="{'top':data.topDate+'%'}">
+            <table class="tc" *ngIf="date>functionsService.getToday()">
+                <tr [style]="{'color':data.cWhite}">
+                    <th class=" {{data.finalTFont}}" [style]="{'font-size':data.finalTSize+'px'}"><b
+                            [style]="{'color': data.cPrincipal, 'font-size':data.inicialTSize+'px'}"
+                            class=" {{data.inicialTFont}}">D</b>ias</th>
+                    <th class=" {{data.finalTFont}}" [style]="{'font-size':data.finalTSize+'px'}"><b
+                            [style]="{'color': data.cPrincipal, 'font-size':data.inicialTSize+'px'}"
+                            class=" {{data.inicialTFont}}">H</b>oras</th>
+                    <th class=" {{data.finalTFont}}" [style]="{'font-size':data.finalTSize+'px'}"><b
+                            [style]="{'color': data.cPrincipal, 'font-size':data.inicialTSize+'px'}"
+                            class=" {{data.inicialTFont}}">M</b>inutos</th>
+                    <th class=" {{data.finalTFont}}" [style]="{'font-size':data.finalTSize+'px'}"><b
+                            [style]="{'color': data.cPrincipal, 'font-size':data.inicialTSize+'px'}"
+                            class=" {{data.inicialTFont}}">S</b>egundos
+                    </th>
+                </tr>
+                <tr class="  ts" [style]="{'font-size': '45px','color':data.cWhite}">
+                    <td>{{dias}}</td>
+                    <td>{{horas}}</td>
+                    <td>{{minutos}}</td>
+                    <td class="animated infinite pulse">{{segundos}}</td>
+
+                </tr>
+
+            </table>
+            <h2 class=" {{data.nombreFont}} tc" *ngIf="date<functionsService.getToday()"><b
+                    [style]="{'color': data.byFileColorTx}">E</b>mpezamos</h2>
+        </div>
+
+
+    </div>
+
+
+
+
+
+</ng-container>

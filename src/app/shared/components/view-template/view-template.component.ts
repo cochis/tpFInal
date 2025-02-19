@@ -1,12 +1,13 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FunctionsService } from '../../services/functions.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-view-template',
   templateUrl: './view-template.component.html',
   styleUrls: ['./view-template.component.css']
 })
-export class ViewTemplateComponent implements OnInit {
+export class ViewTemplateComponent {
   @Input() data: any;
   today = this.functionsService.getToday()
   dias = 0
@@ -14,11 +15,16 @@ export class ViewTemplateComponent implements OnInit {
   minutos = 0
   segundos = 0
   date: number = this.today + 199456789
+  url = environment.base_url
+  loading = true
   constructor(private functionsService: FunctionsService) {
-    
+    setTimeout(() => {
+      this.loading = false
+    }, 500);
   }
-  ngOnInit() {
-  }
+
+
+
   restParty() {
 
 

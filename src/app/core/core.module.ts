@@ -116,6 +116,18 @@ import { CrearTipoMediaComponent } from './pages/admin/tipo-medias/crear-tipo-me
 import { EditarTipoMediaComponent } from './pages/admin/tipo-medias/editar-tipo-media/editar-tipo-media.component';
 import { VistaTipoMediasComponent } from './pages/admin/tipo-medias/vista-tipo-medias/vista-tipo-medias.component';
 import { NgxCurrencyDirective } from 'ngx-currency';
+import { PrincipalComponent } from './pages/admin/templates/default/components/principal/principal.component';
+import { InvitacionCardComponent } from './pages/admin/templates/default/components/invitacion-card/invitacion-card.component';
+import { MensajeCardComponent } from './pages/admin/templates/default/components/mensaje-card/mensaje-card.component';
+import { ListasCardComponent } from './pages/admin/templates/default/components/listas-card/listas-card.component';
+import { DondeCardComponent } from './pages/admin/templates/default/components/donde-card/donde-card.component';
+import { QrCardComponent } from './pages/admin/templates/default/components/qr-card/qr-card.component';
+import { VistaCpsComponent } from './pages/admin/cps/vista-cps/vista-cps.component';
+import { EditarCpComponent } from './pages/admin/cps/editar-cp/editar-cp.component';
+import { CrearCpComponent } from './pages/admin/cps/crear-cp/crear-cp.component';
+import { CrearPaisComponent } from './pages/admin/paises/crear-pais/crear-pais.component';
+import { EditarPaisComponent } from './pages/admin/paises/editar-pais/editar-pais.component';
+import { VistaPaisesComponent } from './pages/admin/paises/vista-paises/vista-paises.component';
 
 
 
@@ -234,7 +246,19 @@ import { NgxCurrencyDirective } from 'ngx-currency';
     EditarMonedaComponent,
     CrearTipoMediaComponent,
     EditarTipoMediaComponent,
-    VistaTipoMediasComponent
+    VistaTipoMediasComponent,
+    PrincipalComponent,
+    InvitacionCardComponent,
+    MensajeCardComponent,
+    ListasCardComponent,
+    DondeCardComponent,
+    QrCardComponent,
+    VistaCpsComponent,
+    EditarCpComponent,
+    CrearCpComponent,
+    CrearPaisComponent,
+    EditarPaisComponent,
+    VistaPaisesComponent
 
   ],
   imports: [

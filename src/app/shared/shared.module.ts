@@ -33,6 +33,8 @@ import { MapscreenComponent } from './components/mapscreen/mapscreen.component';
 import { MapViewComponent } from './components/map-view/map-view.component';
 import { BtnMyLocationComponent } from './components/btn-my-location/btn-my-location.component';
 import { MtpLogoComponent } from './components/mtp-logo/mtp-logo.component';
+import { SearchbarComponent } from './components/searchbar/searchbar.component';
+import { SearchResultsComponent } from './components/search-results/search-results.component';
 
 
 
@@ -68,6 +70,8 @@ import { MtpLogoComponent } from './components/mtp-logo/mtp-logo.component';
     MapViewComponent,
     BtnMyLocationComponent,
     MtpLogoComponent,
+    SearchbarComponent,
+    SearchResultsComponent,
 
 
   ],

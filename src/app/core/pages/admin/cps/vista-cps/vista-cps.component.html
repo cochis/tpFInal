@@ -1,0 +1,120 @@
+<app-header></app-header>
+<main>
+    <app-loading class="animated1 fadeIn" *ngIf="loading"></app-loading>
+    <section class="contact-section section-padding section-bg animated1 fadeIn " id="section_5" *ngIf="!loading">
+        <div class="container bw">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+
+                        <div class="col-12 col-md-6 mt-3 margin-auto ma">
+
+                            <input type="text" class="form-control" placeholder="Buscar cp ..."
+                                (keyup)="buscar(txtTermino.value)" #txtTermino>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="row mt-5 text-center">
+                            <div class="col-12  text-center">
+
+                                <input type="file" name="invitadosXls" id="invitadosXls" #invitadosXls
+                                    (change)="cargaCps($event)">
+                                <label for="invitadosXls" class="custom-btn  but ">Carga de CPS</label>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-lg-12 col-12 text-center">
+                    <h2 class="mb-5">Códigos Postales</h2>
+                </div>
+
+                <div class="col-12 text-center">
+                    <h5 *ngIf="cps.length==0">Sin información</h5>
+                    <div class="table-over" *ngIf="cps.length>0">
+
+
+
+                        <table class="table table-striped table-bordered ">
+                            <thead class="thead-dark">
+                                <th class="upper">ID</th>
+                                <th class="upper">Opciones</th>
+                                <th class="upper">Código Postal</th>
+                                <th class="upper">Nombre</th>
+                                <th class="upper">Tipo de asentamiento</th>
+                                <th class="upper">Nombre Municipio</th>
+                                <th class="upper">Nombre Entidad</th>
+
+                                <th class="upper">Creador</th>
+                                <th class="upper">Activado</th>
+                                <th class="upper">Creación</th>
+                                <th class="upper">Edición</th>
+                            </thead>
+                            <tbody>
+                                <tr
+                                    *ngFor="let cp of cps | paginate: { itemsPerPage: 10, currentPage: p }  ; let i=index">
+                                    <td>{{i+1}}</td>
+                                    <td>
+                                        <div class="opc">
+
+                                            <i class="icon-eye text-primary" *ngIf="cp.activated"
+                                                (click)="viewEvento(cp.uid)"></i>
+                                        </div>
+                                        <div class="opc">
+
+                                            <i class="icon-ok-circled text-success" *ngIf="!cp.activated"
+                                                (click)="isActived(cp)"></i>
+                                        </div>
+                                        <div class="opc">
+
+                                            <i class="icon-trash text-danger" *ngIf="cp.activated"
+                                                (click)="isActived(cp)"></i>
+                                        </div>
+                                        <div class="opc">
+                                            <i class="icon-pencil text-primary" *ngIf="cp.activated"
+                                                (click)="editEvento(cp.uid)"></i>
+
+                                        </div>
+
+
+
+                                    </td>
+                                    <td class="upper">{{cp.d_codigo}}</td>
+                                    <td class="upper">{{cp.d_asenta}}</td>
+                                    <td class="upper">{{cp.d_tipo_asenta}}</td>
+                                    <td class="upper">{{cp.D_mnpio}}</td>
+                                    <td class="upper">{{cp.d_estado}}</td>
+
+
+                                    <td class="upper">{{cp.usuarioCreated.email}}</td>
+                                    <td>
+                                        <i *ngIf="cp.activated" class="icon-ok-circled text-success"></i>
+                                        <i *ngIf="!cp.activated" class="icon-cancel-circled text-danger"></i>
+                                    </td>
+                                    <td>{{cp.dateCreated | date:'dd/MM/YYYY'}}</td>
+                                    <td>{{cp.lastEdited | date:'dd/MM/YYYY'}}</td>
+
+                                </tr>
+                            </tbody>
+
+                        </table>
+                    </div>
+                    <div class="mt-3">
+
+                        <pagination-controls (pageChange)="p = $event" autoHide="true" previousLabel="Anterior"
+                            nextLabel="Siguiente" responsive="true"></pagination-controls>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+</main>
+<app-footer></app-footer>

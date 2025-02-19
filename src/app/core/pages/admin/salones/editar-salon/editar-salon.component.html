@@ -54,35 +54,35 @@
                                 </div>
                                 <div class="col-12 col-md-4 mt-3">
                                     <div class="form-group">
-                                        <label for="municipioDelegacion">Municipio o delegación</label>
-                                        <input type="text" class="form-control upper" id="municipioDelegacion"
-                                            formControlName="municipioDelegacion" required
-                                            placeholder="Municipio o delegación" [readonly]="edit==='false'">
+                                        <label for="pais">País</label>
+
+                                        <select name="" id="pais" formControlName="pais" class="form-control upper"
+                                            #pais class="form-control upper" *ngIf="edit!='false'">
+                                            <option value="">Selecciona un país</option>
+                                            <option [value]="item.clave " *ngFor="let item of paises">{{item.nombre }}
+                                            </option>
+                                        </select>
+                                        <input type="text" class="form-control upper" id="pais" formControlName="pais"
+                                            required placeholder="País" [readonly]="edit==='false'" #pais
+                                            *ngIf="edit=='false'">
                                     </div>
-                                    <span *ngIf="submited && errorControl['municipioDelegacion'].errors "
-                                        class="error">Es
-                                        requerido</span>
-                                </div>
-                                <div class="col-12 col-md-4 mt-3">
-                                    <div class="form-group">
-                                        <label for="coloniaBarrio">Colonia o Barrio</label>
-                                        <input type="text" class="form-control upper" id="coloniaBarrio"
-                                            formControlName="coloniaBarrio" required placeholder="Colonia o barrio"
-                                            [readonly]="edit==='false'">
-                                    </div>
-                                    <span *ngIf="submited && errorControl['coloniaBarrio'].errors " class="error">Es
+                                    <span *ngIf="submited && errorControl['pais'].errors " class="error">Es
                                         requerido</span>
                                 </div>
                                 <div class="col-12 col-md-4 mt-3">
                                     <div class="form-group">
                                         <label for="cp">Código postal</label>
+
                                         <input type="text" class="form-control upper" id="cp" formControlName="cp"
-                                            required placeholder="Código postal" [readonly]="edit==='false'">
+                                            placeholder="Código postal" #cp (keyup)="getCps()"
+                                            [readonly]="edit=='false'">
+
+
                                     </div>
                                     <span *ngIf="submited && errorControl['cp'].errors " class="error">Es
                                         requerido</span>
                                 </div>
-                                <div class="col-12 col-md-3 mt-3">
+                                <div class="col-12 col-md-4 mt-3">
                                     <div class="form-group">
                                         <label for="estado">Estado</label>
                                         <input type="text" class="form-control upper" id="estado"
@@ -92,17 +92,52 @@
                                     <span *ngIf="submited && errorControl['estado'].errors " class="error">Es
                                         requerido</span>
                                 </div>
-                                <div class="col-12 col-md-3 mt-3">
+                                <div class="col-12 col-md-4 mt-3">
                                     <div class="form-group">
-                                        <label for="pais">País</label>
-                                        <input type="text" class="form-control upper" id="pais" formControlName="pais"
-                                            required placeholder="País" [readonly]="edit==='false'">
+                                        <label for="municipioDelegacion">Municipio o delegación</label>
+
+                                        <select name="" id="municipioDelegacion" formControlName="municipioDelegacion"
+                                            class="form-control upper" #municipioDelegacion class="form-control upper"
+                                            *ngIf="edit!='false'">
+                                            <option value="">Selecciona un Municipio o Delegación</option>
+                                            <option [value]="item.toUpperCase() " *ngFor="let item of municipios">{{item
+                                                }}
+                                            </option>
+                                        </select>
+
+
+
+                                        <input type="text" class="form-control upper" id="municipioDelegacion"
+                                            formControlName="municipioDelegacion" required
+                                            placeholder="Municipio o delegación" [readonly]="edit==='false'"
+                                            *ngIf="edit=='false'">
                                     </div>
-                                    <span *ngIf="submited && errorControl['pais'].errors " class="error">Es
+                                    <span *ngIf="submited && errorControl['municipioDelegacion'].errors "
+                                        class="error">Es
+                                        requerido</span>
+                                </div>
+                                <div class="col-12 col-md-4 mt-3">
+                                    <div class="form-group">
+                                        <label for="coloniaBarrio">Colonia o Barrio</label>
+                                        <select name="" id="coloniaBarrio" formControlName="coloniaBarrio"
+                                            class="form-control upper" #coloniaBarrio class="form-control upper"
+                                            *ngIf="edit!='false'">
+                                            <option value="">Selecciona una Colonia o Barrio</option>
+                                            <option [value]="item.toUpperCase()" *ngFor="let item of colonias">{{item }}
+                                            </option>
+                                        </select>
+                                        <input type="text" class="form-control upper" id="coloniaBarrio"
+                                            formControlName="coloniaBarrio" required placeholder="Colonia o barrio"
+                                            [readonly]="edit==='false'" *ngIf="edit=='false'">
+                                    </div>
+                                    <span *ngIf="submited && errorControl['coloniaBarrio'].errors " class="error">Es
                                         requerido</span>
                                 </div>
 
-                                <div class="col-12 col-md-3 mt-3">
+
+
+
+                                <div class="col-12 col-md-4 mt-3">
                                     <div class="form-group">
                                         <label for="telefono">Teléfono</label>
                                         <input type="number" class="form-control upper" id="telefono"
@@ -135,7 +170,8 @@
                                 </div>
                                 <div class="col-12 mt-3" *ngIf="sendCoords">
 
-                                    <app-mapscreen (coordenadas)="showCoordenadas($event)" [sendCoords]="sendCoords"
+                                    <app-mapscreen (coordenadas)="showCoordenadas($event)"
+                                        (coordenadasSelect)="showCoordenadasSelect($event)" [sendCoords]="sendCoords"
                                         [isEditV]="true"></app-mapscreen>
                                 </div>
                                 <div class="col-12 col-md-6 mt-3" style="display: none;">

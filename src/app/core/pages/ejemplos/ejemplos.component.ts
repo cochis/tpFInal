@@ -61,17 +61,21 @@ export class EjemplosComponent implements OnInit {
       await this.fiestasService.cargarFiestaById(fiesta[0]).subscribe(async (resp: any) => {
         let res = { fiesta: resp, url: fiesta[1] }
         this.fiestas.push(res)
+
       })
     });
   }
   getCatalogos() {
     this.ejemplosService.cargarEjemplosAll().subscribe((resp: CargarEjemplos) => {
+
+      resp.ejemplos = this.functionsService.getActives(resp.ejemplos)
       resp.ejemplos.forEach(ej => {
         let r = {
           fiesta: ej.fiesta, url: ej.urlFiestaBoleto
         }
         this.fiestas.push(r)
       });
+
     })
   }
 }

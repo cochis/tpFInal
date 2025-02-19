@@ -1,0 +1,38 @@
+<ng-container *ngIf="!loading">
+
+    <div class="  mt-3 animate__animated animate__fadeIn " *ngIf="!data.vistaTemp">
+
+
+        <div class="flexbox"
+            [style]=" {'background-color':data.cPrincipal,'background-image':'url('+url+'/upload/invitaciones/'+data.mensajeImg+')' , 'background-position': 'center', 
+                'position':'relative',  'background-repeat': 'no-repeat', 'background-attachment': 'fixed', 'background-size': '100%'}">
+            <div class="texto tc ">
+                <h5 class=" {{data.mensajeFont}} animate__animated  {{data.mensajeEfecto}} {{data.mensajeEfectoRep}} p-3"
+                    [style]="{'color':data.cWhite,'font-size':data.mensajeSize +'px !important', 'padding':'5%', 'margin':'5%', }">
+                    {{data.mensaje1}}
+                </h5>
+
+            </div>
+        </div>
+
+
+    </div>
+    <div class="  mt-3 animate__animated animate__fadeIn " *ngIf="data.vistaTemp">
+
+
+        <div class="flexbox"
+            [style]=" {'background-color':data.cPrincipal,'background-image':'url('+url+'/upload/invitaciones/'+data.mensajeImg+')' , 'background-position': 'center', 
+                'position':'relative',  'background-repeat': 'no-repeat', 'background-attachment': 'fixed', 'background-size': '100%'}">
+            <div class="texto tc ">
+                <h5 class=" {{data.mensajeFont}} animate__animated  {{data.mensajeEfecto}} {{data.mensajeEfectoRep}} p-3"
+                    [style]="{'color':data.cWhite,'font-size':data.mensajeSize +'px !important', 'padding':'5%', 'margin':'5%', }">
+                    {{data.mensaje1}}
+                </h5>
+
+            </div>
+        </div>
+
+
+    </div>
+
+</ng-container>

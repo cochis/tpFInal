@@ -1,0 +1,120 @@
+<ng-container *ngIf="data && !loading">
+    <!-- Vista Final -->
+
+    <div class="animate__animated  {{data.inviEfecto}} {{data.inviEfectoRep}}" *ngIf="!data.vistaTemp">
+
+        <div class="  animate__animated   animate__fadeInDown">
+
+
+            <div class="card text-center  "
+                [style]="{'width': '100%', 'margin': 'auto', 'border': 'none' ,'background-color':data.cPrincipal}">
+                <div class="card-body  " [style]="{'color': data.cWhite}">
+                    <h1 class="card-title mt-3 {{data.inviFont}} " style="font-size: 35px;" *ngIf="!data.generalCheck">
+                        Invitación válida para:
+                    </h1>
+
+                    <h1 class="card-text   {{data.inviFont2}} upper animate__animated  {{data.inviEfecto}} {{data.inviEfectoRep}}"
+                        [style]="{'color': data.cSecond}" *ngIf="data.nombreGrupo =='' && data.generalCheck">
+                        Invitado</h1>
+                    <h1 class="card-text   {{data.inviFont2}} upper animate__animated  {{data.inviEfecto}} {{data.inviEfectoRep}}"
+                        *ngIf="data.nombreGrupo !='' && !data.generalCheck "
+                        [style]="{'font-size':data.generalSize+'px !important','color':data.cSecond}">
+                        {{data.nombreGrupo }}
+                    </h1>
+                    <h2 class="  lato-regular-italic" *ngIf="data.checking && !data.generalCheck">{{data.cantidad}}
+                        pases</h2>
+                    <h2 class="  lato-regular-italic" [style]="{'color':data.cSecond}" *ngIf="data.generalCheck">
+                        Entrada General</h2>
+                    <h1 class="card-text  {{data.nombreFont}}upper" *ngIf="data.mesa && !data.generalCheck">Mesa
+                        <b [style]="{'color': data.cSecond}">{{data.mesa}}</b>
+                    </h1>
+
+
+                    <h3 class="  lato-regular-italic" *ngIf="data.generalCheck">{{data.generalTexto}}</h3>
+                </div>
+            </div>
+
+            <div class="row text-center animate__animated  animate__fadeInDown"
+                *ngIf="data &&  data.croquisOk  &&   !vistaCroquis ">
+
+                <div class="col-12 mt-3  ma" (click)="verCroquis()">
+                    <h2 [style]="{'color': data.cPrincipal, 'cursor':'pointer'}">
+                        Ver croquis
+                        <i class="bi bi-eye-fill" [style]=" {'color':data.cSecond}"></i>
+                    </h2>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
+    <!-- Vista Temp -->
+    <div class="animate__animated  {{data.inviEfecto}} {{data.inviEfectoRep}}" *ngIf="data.vistaTemp">
+
+
+
+        <div class="card text-center  "
+            [style]="{'width': '100%', 'margin': 'auto', 'border': 'none' ,'background-color':data.cPrincipal}">
+            <div class="card-body  " [style]="{'color': data.cWhite}">
+                <h1 class="card-title mt-3 {{data.inviFont}} " style="font-size: 35px;" *ngIf="!data.generalCheck">
+                    Invitación válida para:
+                </h1>
+
+                <h1 class="card-text   {{data.inviFont2}} upper animate__animated  {{data.inviEfecto}} {{data.inviEfectoRep}}"
+                    [style]="{'color': data.cSecond}" *ngIf="data.nombreGrupo =='' && data.generalCheck">
+                    Invitado</h1>
+                <h1 class="card-text   {{data.inviFont2}} upper animate__animated  {{data.inviEfecto}} {{data.inviEfectoRep}}"
+                    *ngIf="data.nombreGrupo !='' && !data.generalCheck "
+                    [style]="{'font-size':data.generalSize+'px !important','color':data.cSecond}">
+                    {{data.nombreGrupo }}
+                </h1>
+                <h2 class="  lato-regular-italic" *ngIf="data.checking && !data.generalCheck">{{data.cantidad}}
+                    pases</h2>
+                <h2 class="  lato-regular-italic" [style]="{'color':data.cSecond}" *ngIf="data.generalCheck">
+                    Entrada General</h2>
+                <h1 class="card-text  {{data.nombreFont}}upper" *ngIf="data.mesa && !data.generalCheck">Mesa
+                    <b [style]="{'color': data.cSecond}">{{data.mesa}}</b>
+                </h1>
+
+
+                <h3 class="  lato-regular-italic" *ngIf="data.generalCheck">{{data.generalTexto}}</h3>
+            </div>
+        </div>
+
+        <div class="row text-center animate__animated  animate__fadeInDown"
+            *ngIf="data &&  data.croquisOk  &&   !vistaCroquis   ">
+
+            <div class="col-12 mt-3  ma" (click)="verCroquis()">
+                <h2 [style]="{'color': data.cPrincipal, 'cursor':'pointer'}">
+                    Ver croquis
+                    <i class="bi bi-eye-fill" [style]=" {'color':data.cSecond}"></i>
+                </h2>
+            </div>
+        </div>
+
+
+
+    </div>
+
+</ng-container>
+
+
+
+<ng-container *ngIf="data &&  vistaCroquis && !loading">
+    <div class="  animate__animated  {{cls}} mt-3 text-center">
+
+        <img src="{{url}}/upload/fiestas/{{data.croquis}}" class="img-thumbnail" alt="..."
+            style="     width: 100%; max-width: 350px ;height:auto ;  ">
+
+        <h2 [style]="{'color': data.cPrincipal, 'cursor':'pointer'}" (click)="verCroquis()">
+
+            <i class="bi bi-file-excel-fill" [style]=" {'color':data.cSecond}"></i>
+        </h2>
+
+
+    </div>
+
+
+</ng-container>

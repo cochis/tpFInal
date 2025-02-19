@@ -232,6 +232,7 @@ export class EditarFiestaComponent {
   }
   setForm(fiesta: any) {
 
+
     let fecha = this.functionsService.numberDateTimeLocal(fiesta.fecha)
     let usuarioFiesta = fiesta.usuarioFiesta.nombre
     var evento = fiesta.evento.nombre
@@ -295,7 +296,9 @@ export class EditarFiestaComponent {
         ...this.form.value,
 
       }
+
       this.fiestasServices.actualizarFiesta(this.fiesta).subscribe((resp: any) => {
+
 
         this.functionsService.alertUpdate('Fiestas')
         this.functionsService.navigateTo('core/fiestas/vista-fiestas')

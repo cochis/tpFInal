@@ -32,6 +32,8 @@ import { Item } from "../models/item.model"
 import { Moneda } from "../models/moneda.model"
 import { TipoMedia } from "../models/tipoMedia.model"
 import { ImgItem } from "../models/imgItem.model"
+import { Cp } from "../models/cp.model"
+import { Pais } from "../models/pais.model"
 
 
 
@@ -117,6 +119,22 @@ export interface CargarEvento {
 export interface CargarEventos {
     total: number
     eventos: Evento[]
+}
+/* CPS */
+export interface CargarCp {
+    cp: Cp
+}
+export interface CargarCps {
+    total: number
+    cps: Cp[]
+}
+/* Paises */
+export interface CargarPais {
+    pais: Pais
+}
+export interface CargarPaises {
+    total: number
+    paises: Pais[]
 }
 export interface CargarTipoMedia {
     tipoMedia: TipoMedia

@@ -1,14 +1,19 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CargarUsuarios } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { CargarPaises, CargarUsuarios } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
+import { Cp } from 'src/app/core/models/cp.model';
+import { Pais } from 'src/app/core/models/pais.model';
 
 import { Salon } from 'src/app/core/models/salon.model';
 import { Usuario } from 'src/app/core/models/usuario.model';
+import { CpsService } from 'src/app/core/services/cp.service';
+import { PaisesService } from 'src/app/core/services/pais.service';
 
 import { RolesService } from 'src/app/core/services/roles.service';
 import { SalonsService } from 'src/app/core/services/salon.service';
 import { UsuariosService } from 'src/app/core/services/usuarios.service';
 import { FunctionsService } from 'src/app/shared/services/functions.service';
+import { MapsService } from 'src/app/shared/services/maps.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -36,16 +41,26 @@ export class CrearSalonComponent {
   rol = this.functionsService.getLocal('role')
   email = this.functionsService.getLocal('email')
   sendCoords!: [number, number]
+  cps: Cp[]
+  paises: Pais[]
+  estados = []
+  municipios = []
+  colonias = []
 
   constructor(
     private fb: FormBuilder,
     private functionsService: FunctionsService,
     private salonesService: SalonsService,
     private usuariosService: UsuariosService,
+    private mapsService: MapsService,
+    private cpsService: CpsService,
+    private paisesService: PaisesService,
 
   ) {
 
-
+    this.mapsService.getUserLocation().then(res => {
+      this.sendCoords = res
+    })
     this.loading = true
     this.getCatalogos()
     this.createForm()
@@ -86,6 +101,7 @@ export class CrearSalonComponent {
     this.loading = true
     this.submited = true
     if (this.form.valid) {
+
       this.form.value.nombre = this.form.value.nombre.toUpperCase().trim()
       this.form.value.calle = this.form.value.calle.toUpperCase().trim()
       this.form.value.numeroExt = this.form.value.numeroExt.toUpperCase().trim()
@@ -123,6 +139,62 @@ export class CrearSalonComponent {
 
 
   }
+  unique(arr) {
+    let result = [];
+
+    for (let str of arr) {
+      if (!result.includes(str)) {
+        result.push(str);
+      }
+    }
+
+    return result;
+  }
+
+  getCps(pais, cp) {
+
+    if (pais == '') {
+      pais = this.form.value.pais.toUpperCase().trim()
+    }
+
+
+    if (cp.length >= 5) {
+
+      this.cpsService.cargarCpByPaisCP(pais, cp).subscribe((resp) => {
+
+        resp.cps.forEach(element => {
+
+
+          this.estados.push(element.d_estado)
+          this.municipios.push(element.D_mnpio)
+          this.colonias.push(element.d_asenta)
+
+        });
+        this.municipios = this.unique(this.municipios)
+        this.colonias = this.unique(this.colonias)
+        let edo = this.estados[0]
+        this.form.patchValue({
+          estado: edo
+        })
+        /*     this.form.get('estado').disable();
+            this.form.get('pais').disable(); */
+
+      },
+        (error: any) => {
+          console.error('Error', error)
+          this.functionsService.alertError(error, 'CPs')
+          this.loading = false
+        })
+    } else {
+      this.estados = []
+      this.municipios = []
+      this.colonias = []
+
+
+      return
+    }
+  }
+
   getCatalogos() {
     this.loading = true
     this.usuariosService.cargarAlumnosAll().subscribe((resp: CargarUsuarios) => {
@@ -134,6 +206,18 @@ export class CrearSalonComponent {
         this.functionsService.alertError(error, 'Centro de eventos')
         this.loading = false
       })
+    this.paisesService.cargarPaisesAll().subscribe((resp: CargarPaises) => {
+      this.paises = resp.paises
+
+
+    },
+      (error: any) => {
+        console.error('Error', error)
+        this.functionsService.alertError(error, 'Centro de eventos (Países)')
+        this.loading = false
+      })
+
+
   }
   back() {
     this.functionsService.navigateTo('core/salones/vista-salones')

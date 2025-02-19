@@ -106,6 +106,12 @@ import { VistaMonedasComponent } from './pages/admin/monedas/vista-monedas/vista
 import { EditarTipoMediaComponent } from './pages/admin/tipo-medias/editar-tipo-media/editar-tipo-media.component';
 import { CrearTipoMediaComponent } from './pages/admin/tipo-medias/crear-tipo-media/crear-tipo-media.component';
 import { VistaTipoMediasComponent } from './pages/admin/tipo-medias/vista-tipo-medias/vista-tipo-medias.component';
+import { CrearCpComponent } from './pages/admin/cps/crear-cp/crear-cp.component';
+import { EditarCpComponent } from './pages/admin/cps/editar-cp/editar-cp.component';
+import { VistaCpsComponent } from './pages/admin/cps/vista-cps/vista-cps.component';
+import { EditarPaisComponent } from './pages/admin/paises/editar-pais/editar-pais.component';
+import { CrearPaisComponent } from './pages/admin/paises/crear-pais/crear-pais.component';
+import { VistaPaisesComponent } from './pages/admin/paises/vista-paises/vista-paises.component';
 const routes: Routes = [
   {
     path: 'core',
@@ -340,6 +346,8 @@ const routes: Routes = [
         canActivate: [authGuard]
 
       },
+
+      //Eventos
       {
         path: 'eventos/editar-evento/:edit/:id',
         component: EditarEventoComponent,
@@ -360,6 +368,54 @@ const routes: Routes = [
         data: { titulo: 'Vista eventos' }
 
       },
+      //Paises
+      {
+        path: 'paises/editar-pais/:edit/:id',
+        component: EditarPaisComponent,
+        data: { titulo: 'Editar pais' },
+        canActivate: [authGuard]
+
+      },
+      {
+        path: 'paises/crear-pais',
+        component: CrearPaisComponent,
+        data: { titulo: 'Crear pais' },
+        canActivate: [authGuard]
+
+      },
+      {
+        path: 'paises/vista-paises',
+        component: VistaPaisesComponent,
+        data: { titulo: 'Vista paises' }
+
+      },
+      //CPS
+      {
+        path: 'cps/editar-cp/:edit/:id',
+        component: EditarCpComponent,
+        data: { titulo: 'Editar cp' },
+        canActivate: [authGuard]
+
+      },
+      {
+        path: 'cps/crear-cp',
+        component: CrearCpComponent,
+        data: { titulo: 'Crear cp' },
+        canActivate: [authGuard]
+
+      },
+      {
+        path: 'cps/vista-cps',
+        component: VistaCpsComponent,
+        data: { titulo: 'Vista cps' }
+
+      },
+
+
+
+
+
+      //ejemplos
       {
         path: 'ejemplos/editar-ejemplo/:edit/:id',
         component: EditarEjemploComponent,

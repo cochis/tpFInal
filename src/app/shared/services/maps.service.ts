@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { FunctionsService } from './functions.service';
 import { error } from 'jquery';
-import { LngLatLike, Map } from 'mapbox-gl';
+import { LngLatLike, Map, Marker, Popup } from 'mapbox-gl';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Feature, PlacesResponse } from 'src/app/core/interfaces/places';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -11,10 +14,13 @@ export class MapsService {
 
   private map?: Map;
   public userLocation?: [number, number]
-
-
+  /* public base_url = 'https://api.mapbox.com/geocoding/v5/mapbox.places' */
+  public base_url = 'https://api.mapbox.com/search/geocode/v6/forward?'
+  public markers: Marker[] = []
   constructor(
-    private functionsService: FunctionsService
+    private http: HttpClient,
+    private functionsService: FunctionsService,
+
   ) {
     this.getUserLocation()
   }
@@ -26,10 +32,12 @@ export class MapsService {
   }
 
   setMap(map: Map) {
+
     this.map = map
   }
 
-  flyTo(coords: LngLatLike) {
+  flyTo(coords: any) {
+
     if (!this.isMapReady) throw Error('El mapa no esta inicializado')
     this.map?.flyTo({
       zoom: 15,
@@ -56,8 +64,37 @@ export class MapsService {
   }
 
 
+  getPlaces(query: string = '') {
 
 
+    query = this.base_url + 'q=' + encodeURI(query) + '&proximity=' + this.userLocation[0] + '%2C' + this.userLocation[1] + '&access_token=pk.eyJ1IjoiY29jaGlzIiwiYSI6ImNsb2c0M3NxNDByazEya3Jydmc2amtrNTcifQ.j0MCmbfTjEUQMtby7r42Cw'
+    return this.http.get<PlacesResponse>(query)
 
+
+  }
+
+  createMarkersFromPlaces(places: Feature[]) {
+
+    if (!this.map) throw Error('Mapa nop inicializado')
+    this.markers.forEach(marker => marker.remove());
+    const newMarkers = []
+    for (const place of places) {
+      const [lgn, lat] = place.geometry.coordinates
+      const popup = new Popup()
+        .setHTML(`
+        <h6>${place.properties.name}</h6>
+        <span>${place.properties.place_formatted}</span>
+
+        `)
+
+      const newMarker = new Marker()
+        .setLngLat([lgn, lat])
+        .setPopup(popup)
+        .addTo(this.map)
+
+      newMarkers.push(newMarker)
+    }
+    this.markers = newMarkers
+  }
 
 }

@@ -239,6 +239,14 @@ export class EditarInvitacionComponent {
   iglesiaLocation: any = undefined
   registroLocation: any = undefined
   hospedajeLocation: any = undefined
+  col: boolean = false
+  ima: boolean = false
+  tit: boolean = false
+  sub: boolean = false
+  fec: boolean = false
+  inv: boolean = false
+  ent: boolean = false
+
   constructor(
     private fb: FormBuilder,
     private functionsService: FunctionsService,
@@ -297,6 +305,7 @@ export class EditarInvitacionComponent {
     this.loading = true
     this.fiestasService.cargarFiestaById(id).subscribe((resp: CargarFiesta) => {
       this.fiesta = resp.fiesta
+
       this.salonLocation = [this.fiesta.salon.long, this.fiesta.salon.lat]
       this.usuarioFiesta = this.fiesta.usuarioFiesta._id
       this.invitacionId = this.fiesta.invitacion
@@ -325,6 +334,7 @@ export class EditarInvitacionComponent {
     return
   }
   createForm(fiesta: Fiesta) {
+
 
     this.functionsService.numberDateTimeLocal(fiesta.fecha)
     this.form = this.fb.group({
@@ -671,7 +681,65 @@ export class EditarInvitacionComponent {
       this.viewVideo = true
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    this.loading = false
+
+
   }
+  data() {
+
+
+
+    let res = {
+      type: 'seccionInicial',
+      size: 'sm',
+      ...this.form.value
+    }
+
+    return res
+
+  }
+
   getQr() {
     let qr = {
       uid: '0000000000',
@@ -688,6 +756,7 @@ export class EditarInvitacionComponent {
       fechaConfirmacion: 'Muestra',
       activated: true
     }
+
     return JSON.stringify(qr)
   }
   setTemp(temp) {
@@ -880,8 +949,10 @@ export class EditarInvitacionComponent {
       }
       this.invitacion.data.donde3Img = this.fiesta.salon.img
 
+
       this.actualizarInvitacion(this.invitacion).subscribe((resp: any) => {
         this.invitacion = resp.invitacionActualizado
+
 
         this.invitacion.data.fiestaId = this.fiesta.uid
         let iti = JSON.stringify(form.value.itinerarios)
@@ -894,8 +965,6 @@ export class EditarInvitacionComponent {
 
         this.invitacion.data = {
           ...  this.invitacion.data,
-          fiestaId: '67004d6552152ca21abfb790',
-          //fiestaId: this.fiesta.uid,
           itinerarios: iti,
           notas: not,
           chambelanes: cham,
@@ -917,7 +986,22 @@ export class EditarInvitacionComponent {
     this.invitacion.data.musica = JSON.stringify(this.invitacion.data.musica)
     this.invitacion.data.menu = JSON.stringify(this.invitacion.data.menu)
     this.invitacion.data.croquisOk = this.fiesta.croquisOk
+    this.invitacion.data.croquis = this.fiesta.croquis
     this.invitacion.data.fiestaId = this.fiesta.uid
+    if (this.invitacion.data.generalCheck) {
+      this.invitacion.data.cantidad = 0
+    } else {
+      this.invitacion.data.cantidad = 4
+
+    }
+    let fiesta = JSON.stringify(this.fiesta)
+
+    this.invitacion.data = {
+      ...this.invitacion.data,
+      fiesta: fiesta
+    }
+
+
     this.router.navigate(['/core/templates/' + this.fiesta.invitacion], { queryParams: this.invitacion.data })
 
   }
@@ -1227,6 +1311,7 @@ export class EditarInvitacionComponent {
             }
             this.setForm(resp.invitacion)
           })
+          this.loading = false
         }, 800);
       } else {
         this.invitacion.data = await this.numberToData(this.invitacion.data)
@@ -1268,8 +1353,9 @@ export class EditarInvitacionComponent {
               this.musica.push(this.newMusica(mus));
             });
           }
-        }, 500);
-        this.loading = false
+          this.loading = false
+        }, 800);
+
       }
     },
       (error) => {
@@ -1480,8 +1566,9 @@ export class EditarInvitacionComponent {
               setTimeout(() => {
                 this.actualizarInvitacion(this.invitacion).subscribe((resp: any) => {
                   this.invitacion = resp.invitacionActualizado
-                  this.loading = false
+
                   this.getInvitacion(this.id)
+
                 })
               }, 800);
             },
@@ -1703,7 +1790,86 @@ export class EditarInvitacionComponent {
 
     })
   }
+  changeEdit(type, mod) {
+    if (mod == 'principal') {
 
+      switch (type) {
+        case 'colores':
+          this.col = true
+          this.fec = false
+          this.ima = false
+          this.tit = false
+          this.sub = false
+          this.inv = false
+          this.ent = false
+          break;
+        case 'imagen':
+          this.col = false
+          this.fec = false
+          this.ima = true
+          this.tit = false
+          this.sub = false
+          this.inv = false
+          this.ent = false
+          break;
+        case 'titulo':
+          this.col = false
+          this.fec = false
+          this.ima = false
+          this.tit = true
+          this.sub = false
+          this.inv = false
+          this.ent = false
+          break;
+        case 'subtitulo':
+          this.fec = false
+          this.col = false
+          this.ima = false
+          this.tit = false
+          this.sub = true
+          this.inv = false
+          this.ent = false
+          break;
+        case 'invitacion':
+          this.col = false
+          this.fec = false
+          this.ima = false
+          this.tit = false
+          this.sub = false
+          this.inv = true
+          this.ent = false
+          break;
+        case 'fecha':
+          this.col = false
+          this.ima = false
+          this.tit = false
+          this.sub = false
+          this.inv = false
+          this.fec = true
+          this.ent = false
+          break;
+        case 'entrada general':
+          this.col = false
+          this.fec = false
+          this.ima = false
+          this.tit = false
+          this.sub = false
+          this.inv = false
+          this.ent = true
+          break;
+          this.col = false
+          this.fec = false
+          this.ima = false
+          this.tit = false
+          this.sub = false
+          this.inv = false
+          this.ent = false
+        default:
+          break;
+      }
+    }
+
+  }
   showCoordenadas(e) {
 
     this.form.patchValue({

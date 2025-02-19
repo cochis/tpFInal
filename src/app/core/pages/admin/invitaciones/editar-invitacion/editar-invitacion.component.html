@@ -132,370 +132,304 @@
                                         </div>
                                     </div>
                                     <hr>
-                                    <div class="row text-center mb-3">
+
+                                    <!--  Inicia Sección principal -->
+
+
+
+
+                                    <div class="row mt-3 mb-3">
                                         <h5>Sección principal</h5>
-                                        <div class="col-6 col-md-3 mt-3 ma ">
+                                        <div class="col-12 col-md-6">
+                                            <select name="edicionType" id="edicionType" class="form-control upper"
+                                                #edicionType (change)="changeEdit(edicionType.value, 'principal')">
 
-                                            <button class="btn but2" type="button" data-bs-toggle="collapse"
-                                                data-bs-target="#collapseColores" aria-expanded="false"
-                                                aria-controls="collapseColores">
-                                                Colores
-                                            </button>
-                                        </div>
-                                        <div class="col-6 col-md-3 mt-3 ma ">
+                                                <option value="" class="upper" selected>Seleciona que quieres editar
+                                                </option>
+                                                <option value="colores" class="upper">colores</option>
+                                                <option value="imagen" class="upper">imagen</option>
+                                                <option value="titulo" class="upper">titulo</option>
+                                                <option value="subtitulo" class="upper">subtitulo</option>
+                                                <option value="fecha" class="upper">fecha</option>
+                                                <option value="invitacion" class="upper">invitacion</option>
+                                                <option value="entrada general" class="upper">entrada general
+                                                </option>
 
-                                            <button class="btn but2" type="button" data-bs-toggle="collapse"
-                                                data-bs-target="#collapseImagenSeccionPrincipal" aria-expanded="false"
-                                                aria-controls="collapseImagenSeccionPrincipal">
-                                                Imagen
-                                            </button>
-                                        </div>
-                                        <div class="col-6 col-md-3 mt-3 ma ">
-
-                                            <button class="btn but2" type="button" data-bs-toggle="collapse"
-                                                data-bs-target="#collapseTituloSeccionPrincipal" aria-expanded="false"
-                                                aria-controls="collapseTituloSeccionPrincipal">
-                                                Título
-                                            </button>
-                                        </div>
-                                        <div class="col-6 col-md-3 mt-3 ma ">
-
-                                            <button class="btn but2" type="button" data-bs-toggle="collapse"
-                                                data-bs-target="#collapseSubtituloSeccionPrincipal"
-                                                aria-expanded="false" aria-controls="collapseSubtituloSeccionPrincipal">
-                                                Subtítulo
-                                            </button>
-                                        </div>
-                                        <div class="col-6 col-md-3 mt-3 ma ">
-
-                                            <button class="btn but2" type="button" data-bs-toggle="collapse"
-                                                data-bs-target="#collapseFechaSeccionPrincipal" aria-expanded="false"
-                                                aria-controls="collapseSubtituloSeccionPrincipal">
-                                                Fecha
-                                            </button>
-                                        </div>
-                                        <div class="col-6 col-md-3 mt-3 ma ">
-
-                                            <button class="btn but2" type="button" data-bs-toggle="collapse"
-                                                data-bs-target="#collapseInvitacionSeccionPrincipal"
-                                                aria-expanded="false"
-                                                aria-controls="collapseInvitacionSeccionPrincipal">
-                                                Invitación
-                                            </button>
-                                        </div>
-                                        <div class="col-6 col-md-3 mt-3 ma ">
-
-                                            <button class="btn but2" type="button" data-bs-toggle="collapse"
-                                                data-bs-target="#collapseGeneralSeccionPrincipal" aria-expanded="false"
-                                                aria-controls="collapseGeneralSeccionPrincipal">
-                                                Entrada general
-                                            </button>
-                                        </div>
-
-
-                                        <div class="collapse " id="collapseColores">
-                                            <div class="row text-center mt-3">
-                                                <div class="col-4   mt-3">
-                                                    <div class="form-group ">
-                                                        <label for="cPrincipal ">Principal
-                                                        </label>
-                                                        <input type="color" class="form-control upper" id="cPrincipal"
-                                                            formControlName="cPrincipal" required
-                                                            placeholder="Color principal" [readonly]="edit==='false'">
+                                            </select>
+                                            <ng-container *ngIf="col">
+                                                <div class="row text-center mt-3 animate__animated animate__fadeInDown">
+                                                    <div class="col-4   mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="cPrincipal ">Principal
+                                                            </label>
+                                                            <input type="color" class="form-control upper"
+                                                                id="cPrincipal" formControlName="cPrincipal" required
+                                                                placeholder="Color principal"
+                                                                [readonly]="edit==='false'">
+                                                        </div>
+                                                        <span *ngIf="submited && errorControl['cPrincipal'].errors "
+                                                            class="error">Es requerido
+                                                        </span>
                                                     </div>
-                                                    <span *ngIf="submited && errorControl['cPrincipal'].errors "
-                                                        class="error">Es requerido
-                                                    </span>
-                                                </div>
-                                                <div class="col-4   mt-3">
-                                                    <div class="form-group ">
-                                                        <label for="byFileColorFr ">Secundario </label>
-                                                        <input type="color" class="form-control upper" id="cSecond"
-                                                            formControlName="cSecond" required
-                                                            placeholder="Color secundario" [readonly]="edit==='false'">
+                                                    <div class="col-4   mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="byFileColorFr ">Secundario </label>
+                                                            <input type="color" class="form-control upper" id="cSecond"
+                                                                formControlName="cSecond" required
+                                                                placeholder="Color secundario"
+                                                                [readonly]="edit==='false'">
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-4   mt-3">
-                                                    <div class="form-group ">
-                                                        <label for="cWhite ">Terciario </label>
-                                                        <input type="color" class="form-control upper" id="cWhite"
-                                                            formControlName="cWhite" required
-                                                            placeholder="Color de fondo" [readonly]="edit==='false'">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="collapse " id="collapseImagenSeccionPrincipal">
-                                            <div class="row text-center mt-3">
-
-                                                <div class="col-6   col-md-12    mt-3">
-                                                    <div class="form-group ">
-                                                        <label for="img1">Imagen de fondo
-                                                            <img src="/assets/images/tp.png" alt="" class="pointer"
-                                                                style="width: 150px;"
-                                                                *ngIf="invitacion==undefined || invitacion.data.img1 ==''">
-
-                                                            <img [src]="url+'/upload/invitaciones/'+invitacion.data.img1"
-                                                                alt="" class=" pointer" *ngIf="invitacion"
-                                                                style="width: 150px;">
-
-                                                        </label>
-
-                                                        <input type="file" id="img1" #img1
-                                                            (change)="cambiarImagen($event,'img1' )">
-                                                    </div>
-                                                </div>
-                                                <div class="col-6  col-md-4  mt-3">
-                                                    <div class="form-group ">
-                                                        <label for="imgWidth ">Tamaño de la imagen principal
-                                                        </label>
-
-                                                        <a class="range" (click)="changeRange('imgWidth','-')"> <b
-                                                                class="range-icon">-</b> </a>
-                                                        <input type="range" id="imgWidth" #imgWidth
-                                                            formControlName="imgWidth" min="0" max="500">
-                                                        <a class="range" (click)="changeRange('imgWidth','+')"> <b
-                                                                class="range-icon">+</b> </a>
-
-
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-6  col-md-4 mt-3">
-                                                    <div class="form-group ">
-                                                        <label for="xImg1 ">Posición Horizontal de la imagen
-                                                        </label>
-
-                                                        <a class="range" (click)="changeRange('xImg1','-')"> <b
-                                                                class="range-icon">-</b> </a>
-                                                        <input type="range" id="xImg1" #xImg1 formControlName="xImg1"
-                                                            min="-300" max="300">
-                                                        <a class="range" (click)="changeRange('xImg1','+')"> <b
-                                                                class="range-icon">+</b> </a>
-                                                    </div>
-                                                </div>
-                                                <div class="col-6  col-md-4  mt-3">
-                                                    <div class="form-group ">
-                                                        <label for="yImg1 ">Posición Vertical de la imagen
-                                                        </label>
-                                                        <a class="range" (click)="changeRange('yImg1','-')"> <b
-                                                                class="range-icon">-</b> </a>
-                                                        <input type="range" id="yImg1" #yImg1 formControlName="yImg1"
-                                                            min="-200" max="200">
-                                                        <a class="range" (click)="changeRange('yImg1','+')"> <b
-                                                                class="range-icon">+</b> </a>
+                                                    <div class="col-4   mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="cWhite ">Terciario </label>
+                                                            <input type="color" class="form-control upper" id="cWhite"
+                                                                formControlName="cWhite" required
+                                                                placeholder="Color de fondo"
+                                                                [readonly]="edit==='false'">
+                                                        </div>
                                                     </div>
                                                 </div>
 
+                                            </ng-container>
+                                            <ng-container *ngIf="ima">
+                                                <div class="row text-center mt-3 animate__animated animate__fadeInDown">
+
+                                                    <div class="col-6   col-md-12    mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="img1">Imagen de fondo
+                                                                <img src="/assets/images/tp.png" alt="" class="pointer"
+                                                                    style="width: 150px;"
+                                                                    *ngIf="invitacion==undefined || invitacion.data.img1 ==''">
+
+                                                                <img [src]="url+'/upload/invitaciones/'+invitacion.data.img1"
+                                                                    alt="" class=" pointer" *ngIf="invitacion"
+                                                                    style="width: 150px;">
+
+                                                            </label>
+
+                                                            <input type="file" id="img1" #img1
+                                                                (change)="cambiarImagen($event,'img1' )">
+                                                        </div>
+                                                    </div>
 
 
 
 
 
 
-                                            </div>
 
-                                        </div>
-                                        <div class="collapse " id="collapseTituloSeccionPrincipal">
-                                            <div class="row text-center mt-3">
-                                                <div class="col-6 col-md-3   mt-3">
-                                                    <div class="form-group ">
-                                                        <label for="nombreFiesta ">Título invitación</label>
-                                                        <input type="text" id="nombreFiesta" #nombreFiesta
-                                                            class="form-control" formControlName="nombreFiesta">
-                                                    </div>
                                                 </div>
+                                            </ng-container>
+                                            <ng-container *ngIf="tit">
+                                                <div class="row text-center mt-3 animate__animated animate__fadeInDown">
+                                                    <div class="col-12   mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="nombreFiesta ">Título invitación</label>
+                                                            <input type="text" id="nombreFiesta" #nombreFiesta
+                                                                class="form-control" formControlName="nombreFiesta">
+                                                        </div>
+                                                    </div>
 
-                                                <div class="col-6 col-md-3   mt-3">
-                                                    <div class="form-group ">
-                                                        <label for="nombreFont ">Fuente de título</label>
-                                                        <select name="nombreFont" id="nombreFont"
-                                                            formControlName="nombreFont"
-                                                            class="form-control upper {{nombreFont}}" #nombreFont>
-                                                            <option value="">Seleccione el tipo de fuente</option>
-                                                            <option value="name" class="name" selected>Name</option>
-                                                            <option value="pacific" class="pacific">Pacific</option>
-                                                            <option value="dancing" class="dancing">Dancing</option>
-                                                            <option value="anton-sc-regular" class="anton-sc-regular">
-                                                                Anton-sc-regular</option>
-                                                            <option value="creepster-regular" class="creepster-regular">
-                                                                Creepster-regular</option>
-                                                            <option value="roboto-bold" class="roboto-bold">
-                                                                Roboto-bold
-                                                            </option>
-                                                            <option value="roboto-black-italic"
-                                                                class="roboto-black-italic">
-                                                                Roboto-black-italic</option>
-                                                        </select>
+                                                    <div class="col-12   mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="nombreFont ">Fuente de título</label>
+                                                            <select name="nombreFont" id="nombreFont"
+                                                                formControlName="nombreFont"
+                                                                class="form-control upper {{nombreFont}}" #nombreFont>
+                                                                <option value="">Seleccione el tipo de fuente</option>
+                                                                <option value="name" class="name" selected>Name</option>
+                                                                <option value="pacific" class="pacific">Pacific</option>
+                                                                <option value="dancing" class="dancing">Dancing</option>
+                                                                <option value="anton-sc-regular"
+                                                                    class="anton-sc-regular">
+                                                                    Anton-sc-regular</option>
+                                                                <option value="creepster-regular"
+                                                                    class="creepster-regular">
+                                                                    Creepster-regular</option>
+                                                                <option value="roboto-bold" class="roboto-bold">
+                                                                    Roboto-bold
+                                                                </option>
+                                                                <option value="roboto-black-italic"
+                                                                    class="roboto-black-italic">
+                                                                    Roboto-black-italic</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6   mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="nombreSize ">Tamaño título
+                                                            </label>
+                                                            <a class="range" (click)="changeRange('nombreSize','-')"> <b
+                                                                    class="range-icon">-</b> </a>
+                                                            <input type="range" id="nombreSize" #nombreSize
+                                                                formControlName="nombreSize" min="-200" max="200">
+                                                            <a class="range" (click)="changeRange('nombreSize','+')"> <b
+                                                                    class="range-icon">+</b> </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6   mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="topTitle ">Altura del título </label>
+                                                            <a class="range" (click)="changeRange('topTitle','-')"> <b
+                                                                    class="range-icon">-</b> </a>
+                                                            <input type="range" id="topTitle" #topTitle
+                                                                formControlName="topTitle">
+                                                            <a class="range" (click)="changeRange('topTitle','+')"> <b
+                                                                    class="range-icon">+</b> </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12     mt-3 ma">
+                                                        <div class="form-group ">
+                                                            <label for="nombreEfecto ">Efecto del titulo</label>
+                                                            <select name="nombreEfecto" id="nombreEfecto"
+                                                                formControlName="nombreEfecto"
+                                                                class="form-control upper {{nombreEfecto}}"
+                                                                #nombreEfecto>
+                                                                <option value="" selected>Seleccione el tipo de efecto
+                                                                </option>
+                                                                <option [class]="item.clave" [value]="item.clave"
+                                                                    class="name" *ngFor="let item of efectos">
+                                                                    {{item.nombre}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12   mt-3 ma">
+                                                        <div class="form-group ">
+                                                            <label for="nombreEfectoRep ">Repetir Efecto</label>
+                                                            <select name="nombreEfectoRep" id="nombreEfectoRep"
+                                                                formControlName="nombreEfectoRep"
+                                                                class="form-control upper {{nombreEfectoRep}}"
+                                                                #nombreEfectoRep>
+                                                                <option value="" selected>Seleccione el tipo de efecto
+                                                                </option>
+                                                                <option [class]="item.clave" [value]="item.clave"
+                                                                    class="name" *ngFor="let item of repEfec">
+                                                                    {{item.nombre}}</option>
+                                                            </select>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-6 col-md-3   mt-3">
-                                                    <div class="form-group ">
-                                                        <label for="nombreSize ">Tamaño título
-                                                        </label>
-                                                        <a class="range" (click)="changeRange('nombreSize','-')"> <b
-                                                                class="range-icon">-</b> </a>
-                                                        <input type="range" id="nombreSize" #nombreSize
-                                                            formControlName="nombreSize" min="-200" max="200">
-                                                        <a class="range" (click)="changeRange('nombreSize','+')"> <b
-                                                                class="range-icon">+</b> </a>
+                                            </ng-container>
+                                            <ng-container *ngIf="sub">
+                                                <div class="row text-center mt-3 animate__animated animate__fadeInDown">
+                                                    <div class="col-12  mt-3 ma">
+                                                        <div class="form-group ">
+                                                            <label for="tipoFiesta ">Subtítulo invitación </label>
+                                                            <input type="text" id="tipoFiesta" #tipoFiesta
+                                                                formControlName="tipoFiesta" class="form-control">
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-6 col-md-3   mt-3">
-                                                    <div class="form-group ">
-                                                        <label for="topTitle ">Altura del título </label>
-                                                        <a class="range" (click)="changeRange('topTitle','-')"> <b
-                                                                class="range-icon">-</b> </a>
-                                                        <input type="range" id="topTitle" #topTitle
-                                                            formControlName="topTitle">
-                                                        <a class="range" (click)="changeRange('topTitle','+')"> <b
-                                                                class="range-icon">+</b> </a>
+                                                    <div class="col-12  mt-3 ma">
+                                                        <div class="form-group ">
+                                                            <label for="tipoFont">Fuente de subtítulo</label>
+                                                            <select name="tipoFont" id="tipoFont"
+                                                                formControlName="tipoFont"
+                                                                class="form-control upper {{tipoFont}}" #tipoFont>
+                                                                <option value="">Seleccione el tipo de fuente</option>
+                                                                <option value="name" class="name" selected>Name</option>
+                                                                <option value="pacific" class="pacific">Pacific</option>
+                                                                <option value="dancing" class="dancing">Dancing</option>
+                                                                <option value="anton-sc-regular"
+                                                                    class="anton-sc-regular">
+                                                                    Anton-sc-regular</option>
+                                                                <option value="creepster-regular"
+                                                                    class="creepster-regular">
+                                                                    Creepster-regular</option>
+                                                                <option value="roboto-bold" class="roboto-bold">
+                                                                    Roboto-bold
+                                                                </option>
+                                                                <option value="roboto-black-italic"
+                                                                    class="roboto-black-italic">
+                                                                    Roboto-black-italic</option>
+                                                            </select>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-6 col-md-3   mt-3 ma">
-                                                    <div class="form-group ">
-                                                        <label for="nombreEfecto ">Efecto del titulo</label>
-                                                        <select name="nombreEfecto" id="nombreEfecto"
-                                                            formControlName="nombreEfecto"
-                                                            class="form-control upper {{nombreEfecto}}" #nombreEfecto>
-                                                            <option value="" selected>Seleccione el tipo de efecto
-                                                            </option>
-                                                            <option [class]="item.clave" [value]="item.clave"
-                                                                class="name" *ngFor="let item of efectos">
-                                                                {{item.nombre}}</option>
-                                                        </select>
+                                                    <div class="col-12  mt-3 ma">
+                                                        <div class="form-group ">
+                                                            <label for="tipoSize ">Tamaño de subtítulo </label>
+                                                            <a class="range" (click)="changeRange('tipoSize','-')"> <b
+                                                                    class="range-icon">-</b> </a>
+                                                            <input type="range" id="tipoSize" #tipoSize
+                                                                formControlName="tipoSize" min="-200" max="200">
+                                                            <a class="range" (click)="changeRange('tipoSize','+')"> <b
+                                                                    class="range-icon">+</b> </a>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-6 col-md-3   mt-3 ma">
-                                                    <div class="form-group ">
-                                                        <label for="nombreEfectoRep ">Repetir Efecto</label>
-                                                        <select name="nombreEfectoRep" id="nombreEfectoRep"
-                                                            formControlName="nombreEfectoRep"
-                                                            class="form-control upper {{nombreEfectoRep}}"
-                                                            #nombreEfectoRep>
-                                                            <option value="" selected>Seleccione el tipo de efecto
-                                                            </option>
-                                                            <option [class]="item.clave" [value]="item.clave"
-                                                                class="name" *ngFor="let item of repEfec">
-                                                                {{item.nombre}}</option>
-                                                        </select>
+                                                    <div class="col-12    mt-3 ma">
+                                                        <div class="form-group ">
+                                                            <label for="tipoEfecto ">Efecto del subtitulo</label>
+                                                            <select name="tipoEfecto" id="tipoEfecto"
+                                                                formControlName="tipoEfecto"
+                                                                class="form-control upper {{tipoEfecto}}" #tipoEfecto>
+                                                                <option value="" selected>Seleccione el tipo de efecto
+                                                                </option>
+                                                                <option [class]="item.clave" [value]="item.clave"
+                                                                    class="name" *ngFor="let item of efectos">
+                                                                    {{item.nombre}}</option>
+                                                            </select>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="collapse " id="collapseSubtituloSeccionPrincipal">
-                                            <div class="row text-center mt-3">
-                                                <div class="col-6 col-md-4   mt-3 ma">
-                                                    <div class="form-group ">
-                                                        <label for="tipoFiesta ">Subtítulo invitación </label>
-                                                        <input type="text" id="tipoFiesta" #tipoFiesta
-                                                            formControlName="tipoFiesta" class="form-control">
+                                                    <div class="col-12   mt-3 ma">
+                                                        <div class="form-group ">
+                                                            <label for="tipoEfectoRep ">Repetir Efecto</label>
+                                                            <select name="tipoEfectoRep" id="tipoEfectoRep"
+                                                                formControlName="tipoEfectoRep"
+                                                                class="form-control upper {{tipoEfectoRep}}"
+                                                                #tipoEfectoRep>
+                                                                <option value="" selected>Seleccione el tipo de efecto
+                                                                </option>
+                                                                <option [class]="item.clave" [value]="item.clave"
+                                                                    class="name" *ngFor="let item of repEfec">
+                                                                    {{item.nombre}}</option>
+                                                            </select>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-6 col-md-4   mt-3 ma">
-                                                    <div class="form-group ">
-                                                        <label for="tipoFont">Fuente de subtítulo</label>
-                                                        <select name="tipoFont" id="tipoFont" formControlName="tipoFont"
-                                                            class="form-control upper {{tipoFont}}" #tipoFont>
-                                                            <option value="">Seleccione el tipo de fuente</option>
-                                                            <option value="name" class="name" selected>Name</option>
-                                                            <option value="pacific" class="pacific">Pacific</option>
-                                                            <option value="dancing" class="dancing">Dancing</option>
-                                                            <option value="anton-sc-regular" class="anton-sc-regular">
-                                                                Anton-sc-regular</option>
-                                                            <option value="creepster-regular" class="creepster-regular">
-                                                                Creepster-regular</option>
-                                                            <option value="roboto-bold" class="roboto-bold">
-                                                                Roboto-bold
-                                                            </option>
-                                                            <option value="roboto-black-italic"
-                                                                class="roboto-black-italic">
-                                                                Roboto-black-italic</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-6 col-md-4   mt-3 ma">
-                                                    <div class="form-group ">
-                                                        <label for="tipoSize ">Tamaño de subtítulo </label>
-                                                        <a class="range" (click)="changeRange('tipoSize','-')"> <b
-                                                                class="range-icon">-</b> </a>
-                                                        <input type="range" id="tipoSize" #tipoSize
-                                                            formControlName="tipoSize" min="-200" max="200">
-                                                        <a class="range" (click)="changeRange('tipoSize','+')"> <b
-                                                                class="range-icon">+</b> </a>
-                                                    </div>
-                                                </div>
-                                                <div class="col-6 col-md-4   mt-3 ma">
-                                                    <div class="form-group ">
-                                                        <label for="tipoEfecto ">Efecto del subtitulo</label>
-                                                        <select name="tipoEfecto" id="tipoEfecto"
-                                                            formControlName="tipoEfecto"
-                                                            class="form-control upper {{tipoEfecto}}" #tipoEfecto>
-                                                            <option value="" selected>Seleccione el tipo de efecto
-                                                            </option>
-                                                            <option [class]="item.clave" [value]="item.clave"
-                                                                class="name" *ngFor="let item of efectos">
-                                                                {{item.nombre}}</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-6 col-md-3   mt-3 ma">
-                                                    <div class="form-group ">
-                                                        <label for="tipoEfectoRep ">Repetir Efecto</label>
-                                                        <select name="tipoEfectoRep" id="tipoEfectoRep"
-                                                            formControlName="tipoEfectoRep"
-                                                            class="form-control upper {{tipoEfectoRep}}" #tipoEfectoRep>
-                                                            <option value="" selected>Seleccione el tipo de efecto
-                                                            </option>
-                                                            <option [class]="item.clave" [value]="item.clave"
-                                                                class="name" *ngFor="let item of repEfec">
-                                                                {{item.nombre}}</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
 
-                                            </div>
-                                        </div>
-                                        <div class="collapse " id="collapseFechaSeccionPrincipal">
-                                            <div class="row text-center mt-3">
-                                                <div class="  col-6 col-md-4   mt-3 ma">
-                                                    <div class="form-group ">
-                                                        <label for="topDate ">Altura fecha </label>
-                                                        <a class="range" (click)="changeRange('topDate','-')"> <b
-                                                                class="range-icon">-</b> </a>
-                                                        <input type="range" id="topDate" #topDate
-                                                            formControlName="topDate" min=" 0" max="200">
-                                                        <a class="range" (click)="changeRange('topDate','+')"> <b
-                                                                class="range-icon">+</b> </a>
-                                                    </div>
-                                                </div>
-                                                <div class="  col-6 col-md-4   mt-3 ma">
-                                                    <div class="form-group ">
-                                                        <label for="inicialTSize ">Tamaño inicial de fecha
-                                                        </label>
-                                                        <a class="range" (click)="changeRange('inicialTSize','-')">
-                                                            <b class="range-icon">-</b> </a>
-                                                        <input type="range" id="inicialTSize" #inicialTSize
-                                                            formControlName="inicialTSize" min="10" max="50">
-                                                        <a class="range" (click)="changeRange('inicialTSize','+')">
-                                                            <b class="range-icon">+</b> </a>
-                                                    </div>
                                                 </div>
 
-                                                <div class="  col-6 col-md-4   mt-3 ma">
-                                                    <div class="form-group ">
-                                                        <label for="finalTSize ">Tamaño final de fecha
-                                                        </label>
-                                                        <a class="range" (click)="changeRange('finalTSize','-')"> <b
-                                                                class="range-icon">-</b> </a>
-                                                        <input type="range" id="finalTSize" #finalTSize
-                                                            formControlName="finalTSize" min="10" max="50">
-                                                        <a class="range" (click)="changeRange('finalTSize','+')"> <b
-                                                                class="range-icon">+</b> </a>
+
+                                            </ng-container>
+                                            <ng-container *ngIf="fec">
+                                                <div class="row text-center mt-3 animate__animated animate__fadeInDown">
+                                                    <div class="  col-12    mt-3 ma">
+                                                        <div class="form-group ">
+                                                            <label for="topDate ">Altura fecha </label>
+                                                            <a class="range" (click)="changeRange('topDate','-')"> <b
+                                                                    class="range-icon">-</b> </a>
+                                                            <input type="range" id="topDate" #topDate
+                                                                formControlName="topDate" min=" 0" max="200">
+                                                            <a class="range" (click)="changeRange('topDate','+')"> <b
+                                                                    class="range-icon">+</b> </a>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="  col-6 col-md-4   mt-3 ma">
+                                                    <div class="  col-12    mt-3 ma">
+                                                        <div class="form-group ">
+                                                            <label for="inicialTSize ">Tamaño inicial de fecha
+                                                            </label>
+                                                            <a class="range" (click)="changeRange('inicialTSize','-')">
+                                                                <b class="range-icon">-</b> </a>
+                                                            <input type="range" id="inicialTSize" #inicialTSize
+                                                                formControlName="inicialTSize" min="10" max="50">
+                                                            <a class="range" (click)="changeRange('inicialTSize','+')">
+                                                                <b class="range-icon">+</b> </a>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="  col-12  mt-3 ma">
+                                                        <div class="form-group ">
+                                                            <label for="finalTSize ">Tamaño final de fecha
+                                                            </label>
+                                                            <a class="range" (click)="changeRange('finalTSize','-')"> <b
+                                                                    class="range-icon">-</b> </a>
+                                                            <input type="range" id="finalTSize" #finalTSize
+                                                                formControlName="finalTSize" min="10" max="50">
+                                                            <a class="range" (click)="changeRange('finalTSize','+')"> <b
+                                                                    class="range-icon">+</b> </a>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="  col-12   mt-3 ma">
                                                         <div class="form-group ">
                                                             <label for="inicialTFont">Fuente inicial de fecha
                                                             </label>
@@ -529,7 +463,7 @@
 
 
 
-                                                    <div class="  col-6 col-md-4   mt-3 ma">
+                                                    <div class="  col-12  mt-3 ma">
                                                         <div class="form-group ">
                                                             <label for="finalTFont">Fuente final de fecha </label>
                                                             <select name="finalTFont" id="finalTFont"
@@ -559,206 +493,155 @@
                                                         </div>
                                                     </div>
 
+
+
+
                                                 </div>
 
+                                            </ng-container>
+                                            <ng-container *ngIf="inv">
+                                                <div
+                                                    class="row text-center mt-3 ma animate__animated animate__fadeInDown">
+                                                    <div class="col-12      mt-3 ma">
+                                                        <div class="form-group ma">
+                                                            <label for="inviFont ">Fuente remitente</label>
+                                                            <select name="inviFont" id="inviFont"
+                                                                formControlName="inviFont"
+                                                                class="form-control upper {{inviFont}}" #inviFont>
+                                                                <option value="">Seleccione el tipo de fuente</option>
+                                                                <option value="name" class="name" selected>Name</option>
+                                                                <option value="pacific" class="pacific">Pacific</option>
+                                                                <option value="dancing" class="dancing">Dancing</option>
+                                                                <option value="anton-sc-regular"
+                                                                    class="anton-sc-regular">
+                                                                    Anton-sc-regular</option>
+                                                                <option value="creepster-regular"
+                                                                    class="creepster-regular">
+                                                                    Creepster-regular</option>
+                                                                <option value="roboto-bold" class="roboto-bold">
+                                                                    Roboto-bold
+                                                                </option>
+                                                                <option value="roboto-black-italic"
+                                                                    class="roboto-black-italic">
+                                                                    Roboto-black-italic</option>
 
-                                            </div>
 
-                                        </div>
-                                        <div class="collapse " id="collapseInvitacionSeccionPrincipal">
-                                            <div class="row text-center mt-3 ma">
-                                                <div class="col-12  col-sm-6  col-md-3   mt-3 ma">
-                                                    <div class="form-group ma">
-                                                        <label for="inviFont ">Fuente remitente</label>
-                                                        <select name="inviFont" id="inviFont" formControlName="inviFont"
-                                                            class="form-control upper {{inviFont}}" #inviFont>
-                                                            <option value="">Seleccione el tipo de fuente</option>
-                                                            <option value="name" class="name" selected>Name</option>
-                                                            <option value="pacific" class="pacific">Pacific</option>
-                                                            <option value="dancing" class="dancing">Dancing</option>
-                                                            <option value="anton-sc-regular" class="anton-sc-regular">
-                                                                Anton-sc-regular</option>
-                                                            <option value="creepster-regular" class="creepster-regular">
-                                                                Creepster-regular</option>
-                                                            <option value="roboto-bold" class="roboto-bold">
-                                                                Roboto-bold
-                                                            </option>
-                                                            <option value="roboto-black-italic"
-                                                                class="roboto-black-italic">
-                                                                Roboto-black-italic</option>
-
-
-                                                        </select>
+                                                            </select>
+                                                        </div>
                                                     </div>
-                                                </div>
 
-                                                <div class="col-12  col-sm-6  col-md-3   mt-3 ma">
-                                                    <div class="form-group ">
-                                                        <label for="inviFont2 ">Fuente invitado</label>
-                                                        <select name="inviFont2" id="inviFont2"
-                                                            formControlName="inviFont2"
-                                                            class="form-control upper {{inviFont2}}" #inviFont2>
-                                                            <option value="">Seleccione el tipo de fuente</option>
-                                                            <option value="name" class="name" selected>Name</option>
-                                                            <option value="pacific" class="pacific">Pacific</option>
-                                                            <option value="dancing" class="dancing">Dancing</option>
-                                                            <option value="anton-sc-regular" class="anton-sc-regular">
-                                                                Anton-sc-regular</option>
-                                                            <option value="creepster-regular" class="creepster-regular">
-                                                                Creepster-regular</option>
-                                                            <option value="roboto-bold" class="roboto-bold">
-                                                                Roboto-bold
-                                                            </option>
-                                                            <option value="roboto-black-italic"
-                                                                class="roboto-black-italic">
-                                                                Roboto-black-italic</option>
+                                                    <div class="col-12      mt-3 ma">
+                                                        <div class="form-group ">
+                                                            <label for="inviFont2 ">Fuente invitado</label>
+                                                            <select name="inviFont2" id="inviFont2"
+                                                                formControlName="inviFont2"
+                                                                class="form-control upper {{inviFont2}}" #inviFont2>
+                                                                <option value="">Seleccione el tipo de fuente</option>
+                                                                <option value="name" class="name" selected>Name</option>
+                                                                <option value="pacific" class="pacific">Pacific</option>
+                                                                <option value="dancing" class="dancing">Dancing</option>
+                                                                <option value="anton-sc-regular"
+                                                                    class="anton-sc-regular">
+                                                                    Anton-sc-regular</option>
+                                                                <option value="creepster-regular"
+                                                                    class="creepster-regular">
+                                                                    Creepster-regular</option>
+                                                                <option value="roboto-bold" class="roboto-bold">
+                                                                    Roboto-bold
+                                                                </option>
+                                                                <option value="roboto-black-italic"
+                                                                    class="roboto-black-italic">
+                                                                    Roboto-black-italic</option>
 
 
-                                                        </select>
+                                                            </select>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-12  col-sm-6  col-md-3   mt-3 ma">
-                                                    <div class="form-group ">
-                                                        <label for="inviEfecto ">Efecto invitado</label>
-                                                        <select name="inviEfecto" id="inviEfecto"
-                                                            formControlName="inviEfecto"
-                                                            class="form-control upper {{inviEfecto}}" #inviEfecto>
-                                                            <option value="" selected>Seleccione el tipo de efecto
-                                                            </option>
-                                                            <option [class]="item.clave" [value]="item.clave"
-                                                                class="name" *ngFor="let item of efectos">
-                                                                {{item.nombre}}</option>
-                                                        </select>
+                                                    <div class="col-12      mt-3 ma">
+                                                        <div class="form-group ">
+                                                            <label for="inviEfecto ">Efecto invitado</label>
+                                                            <select name="inviEfecto" id="inviEfecto"
+                                                                formControlName="inviEfecto"
+                                                                class="form-control upper {{inviEfecto}}" #inviEfecto>
+                                                                <option value="" selected>Seleccione el tipo de efecto
+                                                                </option>
+                                                                <option [class]="item.clave" [value]="item.clave"
+                                                                    class="name" *ngFor="let item of efectos">
+                                                                    {{item.nombre}}</option>
+                                                            </select>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-12  col-sm-6  col-md-3   mt-3 ma">
-                                                    <div class="form-group ">
-                                                        <label for="inviEfectoRep ">Repetir efecto </label>
-                                                        <select name="inviEfectoRep" id="inviEfectoRep"
-                                                            formControlName="inviEfectoRep"
-                                                            class="form-control upper {{inviEfectoRep}}" #inviEfectoRep>
-                                                            <option value="" selected>Seleccione el tipo de efecto
-                                                            </option>
-                                                            <option [class]="item.clave" [value]="item.clave"
-                                                                class="name" *ngFor="let item of repEfec">
-                                                                {{item.nombre}}</option>
-                                                        </select>
+                                                    <div class="col-12      mt-3 ma">
+                                                        <div class="form-group ">
+                                                            <label for="inviEfectoRep ">Repetir efecto </label>
+                                                            <select name="inviEfectoRep" id="inviEfectoRep"
+                                                                formControlName="inviEfectoRep"
+                                                                class="form-control upper {{inviEfectoRep}}"
+                                                                #inviEfectoRep>
+                                                                <option value="" selected>Seleccione el tipo de efecto
+                                                                </option>
+                                                                <option [class]="item.clave" [value]="item.clave"
+                                                                    class="name" *ngFor="let item of repEfec">
+                                                                    {{item.nombre}}</option>
+                                                            </select>
+                                                        </div>
                                                     </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        <div class="collapse " id="collapseGeneralSeccionPrincipal">
-                                            <div class="row text-center mt-3">
-                                                <div class="col-12       mt-3 ma ">
-                                                    <label class="form-check-label" for="generalCheck">
-                                                        Entrada general
-                                                    </label>
-                                                    <input class="form-check-input" type="checkbox" id="generalCheck"
-                                                        #generalCheck formControlName="generalCheck">
-
 
                                                 </div>
-                                                <div class="col-12 col-md-6  ma  mt-3" *ngIf="form.value.generalCheck">
-                                                    <div class="form-group ">
-                                                        <label for="generalTexto ">Texto como invitación General
+                                            </ng-container>
+                                            <ng-container *ngIf="ent">
+                                                <div class="row text-center mt-3 animate__animated animate__fadeInDown">
+                                                    <div class="col-12       mt-3 ma ">
+                                                        <label class="form-check-label" for="generalCheck">
+                                                            Entrada general
                                                         </label>
+                                                        <input class="form-check-input" type="checkbox"
+                                                            id="generalCheck" #generalCheck
+                                                            formControlName="generalCheck">
 
-                                                        <input type="text" id="generalTexto" #generalTexto
-                                                            formControlName="generalTexto"
-                                                            placeholder="A toda la comunidad" class="form-control">
+
+                                                    </div>
+                                                    <div class="col-12    ma  mt-3" *ngIf="form.value.generalCheck">
+                                                        <div class="form-group ">
+                                                            <label for="generalTexto ">Texto como invitación General
+                                                            </label>
+
+                                                            <input type="text" id="generalTexto" #generalTexto
+                                                                formControlName="generalTexto"
+                                                                placeholder="A toda la comunidad" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12   ma  mt-3" *ngIf="form.value.generalCheck">
+                                                        <div class="form-group ">
+                                                            <label for="generalSize">Texto como invitación General
+                                                            </label>
+                                                            <a class="range" (click)="changeRange('generalSize','-')">
+                                                                <b class="range-icon">-</b> </a>
+                                                            <input type="range" id="generalSize" #generalSize
+                                                                formControlName="generalSize" value="15" min="10"
+                                                                max="50">
+                                                            <a class="range" (click)="changeRange('generalSize','+')">
+                                                                <b class="range-icon">+</b> </a>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-12 col-md-6  ma  mt-3" *ngIf="form.value.generalCheck">
-                                                    <div class="form-group ">
-                                                        <label for="generalSize">Texto como invitación General
-                                                        </label>
-                                                        <a class="range" (click)="changeRange('generalSize','-')">
-                                                            <b class="range-icon">-</b> </a>
-                                                        <input type="range" id="generalSize" #generalSize
-                                                            formControlName="generalSize" value="15" min="10" max="50">
-                                                        <a class="range" (click)="changeRange('generalSize','+')">
-                                                            <b class="range-icon">+</b> </a>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            </ng-container>
                                         </div>
+
+
+                                        <div class="col-12 col-md-6">
+                                            <app-view-template class="mt-3" [data]="data()"></app-view-template>
+                                        </div>
+
                                     </div>
+                                    <!--  Finaliza Sección principal -->
 
 
 
 
 
-                                    <!--  <code>
-                                    type:'seccionInicial',
-                                    size:{{viewSizeM}},
-                                    cPrincipal: {{form.value.cPrincipal}},
-                                    cSecond: {{form.value.cSecond}},
-                                    imgWidth: {{imgWidth.value}},
-                                    cWhite: {{form.value.cWhite}},
-                                    img1: {{(invitacion == undefined || invitacion.data.img1 == '') ? '/assets/images/tp.png' : url + '/upload/invitaciones/'
-                                    + invitacion.data.img1}},
-                                    xImg1: {{form.value.xImg1}},
-                                    yImg1: {{form.value.yImg1}},
-                                    generalCheck:{{form.value.generalCheck}},
-                                    generalTexto :{{form.value.generalTexto}},
-                                    generalSize:{{form.value.generalSize?form.value.generalSize:15}},
-                                    nombreFiesta: {{form.value.nombreFiesta}},
-                                    nombreSize: {{form.value.nombreSize}},
-                                    nombreFont: {{form.value.nombreFont}},
-                                    topTitle: {{form.value.topTitle}},
-                                tipoFiesta: {{form.value.tipoFiesta}},
-                                tipoSize: {{form.value.tipoSize}},
-                                tipoFont: {{form.value.tipoFont}},
-                                topDate: {{form.value.topDate}},
-                                mensajeFont:{{form.value.mensajeFont}},
-                                inicialTFont:{{form.value.inicialTFont}},
-                                finalTFont:{{form.value.finalTFont}},
-                                inviFont:{{form.value.inviFont}}, 
-                                inviFont2:{{form.value.inviFont2}},
-                                inicialTSize:{{form.value.inicialTSize}},
-                                finalTSize:{{form.value.finalTSize}},
-                            
-                                    </code> -->
 
 
-
-                                    <app-view-template *ngIf="viewInicial" class="mt-3" [data]="{
-    type:'seccionInicial',
-    size:viewSizeM,
-        cPrincipal: form.value.cPrincipal,
-        cSecond: form.value.cSecond,
-        imgWidth: imgWidth.value,
-        cWhite: form.value.cWhite,
-             img1: (invitacion == undefined || invitacion.data.img1 == '') ? '/assets/images/tp.png' : url + '/upload/invitaciones/' + invitacion.data.img1, 
-        xImg1: form.value.xImg1,
-        yImg1: form.value.yImg1,
-       generalCheck:form.value.generalCheck,
-                                    generalTexto :form.value.generalTexto,
-        generalSize:form.value.generalSize?form.value.generalSize:15,
-        nombreFiesta: form.value.nombreFiesta,
-        nombreSize: form.value.nombreSize,
-        nombreFont: form.value.nombreFont,
-        nombreEfecto: form.value.nombreEfecto,
-        nombreEfectoRep: form.value.nombreEfectoRep,
-        topTitle: form.value.topTitle,
-        tipoFiesta: form.value.tipoFiesta,
-        tipoSize: form.value.tipoSize,
-        tipoFont: form.value.tipoFont,
-        tipoEfecto: form.value.tipoEfecto,
-        tipoEfectoRep: form.value.tipoEfectoRep,
-
-        topDate: form.value.topDate,
-            mensajeFont:form.value.mensajeFont,
-        inicialTFont:form.value.inicialTFont,
-        finalTFont:form.value.finalTFont,
-        inviFont:form.value.inviFont,
-        inviFont2:form.value.inviFont2,
-        inviEfecto:form.value.inviEfecto,
-        inviEfectoRep:form.value.inviEfectoRep,
-        inicialTSize:form.value.inicialTSize,
-        finalTSize:form.value.finalTSize,
-        }"></app-view-template>
                                     <hr class="mt-3 mb-3">
                                     <div class="row text-center mb-3">
                                         <h5>Seccion Mensaje</h5>
@@ -966,56 +849,23 @@
                                     <div class="row text-center mt-3" *ngIf="fiesta.checking">
                                         <h5>Seccion QR</h5>
                                         <hr class="mt-3 mb-3">
-                                        <div class="col-6  mt-3">
-                                            <div class="form-group ">
-                                                <label for="colorQr">Color</label>
-                                                <input type="color" class="form-control upper" id="colorQr"
-                                                    formControlName="colorQr" placeholder="Color principal" #colorBgQr
-                                                    [readonly]="edit==='false'">
-                                            </div>
 
-                                            <span *ngIf="submited && errorControl['colorQr'].errors " class="error">Es
-                                                requerido
-                                            </span>
-                                        </div>
-                                        <div class="col-6  mt-3">
-                                            <div class="form-group ">
-                                                <label for="colorBgQr">Fondo</label>
-                                                <input type="color" class="form-control upper" id="colorBgQr" #colorQr
-                                                    formControlName="colorBgQr" placeholder="Color principal"
-                                                    [readonly]="edit==='false'">
-                                            </div>
-                                            <span *ngIf="submited && errorControl['colorBgQr'].errors " class="error">Es
-                                                requerido
-                                            </span>
-                                        </div>
+
 
                                         <div class="row mt-3" *ngIf="invitacion" style="width: 100%;">
-                                            <b>Valide que su combinación de colores sea legible</b>
-                                            <!-- [imageSrc]="url+'/upload/invitaciones/'+invitacion.data.img1" -->
+                                            <b>Si tu invitación tiene check in este es tu QR </b>
+
                                             <div class="col-6 ma mt-3">
                                                 <qrcode [qrdata]="getQr()" [allowEmptyString]="true"
                                                     [ariaLabel]="'Saludos...'" [cssClass]="'center'"
-                                                    [colorDark]="colorBgQr.value" [colorLight]="colorQr.value"
+                                                    [colorDark]="form.value.cPrincipal" [colorLight]="'#fff'"
                                                     [elementType]="'canvas'" [errorCorrectionLevel]="'M'"
                                                     [imageHeight]="50" [imageWidth]="50" [margin]="4" [scale]="1"
                                                     [width]="200" class="ma mt-3">
                                                 </qrcode>
                                             </div>
                                         </div>
-                                        <div class="row mt-3" *ngIf="!invitacion">
-                                            <b>Valide que su combinación de colores sea legible</b>
-                                            <!-- [imageSrc]="url+'/upload/invitaciones/notImage.png'" -->
-                                            <div class="col-6 ma">
-                                                <qrcode [qrdata]="getQr()" [allowEmptyString]="true"
-                                                    [ariaLabel]="'Saludos...'" [cssClass]="'center'"
-                                                    [colorDark]="colorQr.value" [colorLight]="colorBgQr.value"
-                                                    [elementType]="'canvas'" [errorCorrectionLevel]="'M'"
-                                                    [imageHeight]="50" [imageWidth]="50" [margin]="4" [scale]="1"
-                                                    [width]="250">
-                                                </qrcode>
-                                            </div>
-                                        </div>
+
 
 
 
