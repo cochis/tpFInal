@@ -316,3 +316,11 @@ span {
 .botonF1:active {
     transform: scale(1.1);
 }
+
+.med {
+    align-items: center;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    min-height: 350px;
+}

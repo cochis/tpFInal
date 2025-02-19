@@ -109,6 +109,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
       this.boletosService.cargarBoletoById(this.boletoId).subscribe((resp: any) => {
         this.boleto = resp.boleto
 
+
         if (!this.boleto.activated) {
           this.functionsService.alert('Boleto eliminado', 'Contactar con el anfitrion', 'info')
           this.functionsService.navigateTo('/')
@@ -117,6 +118,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
         this.boletosService.registrarPushNotification(this.boleto).subscribe((resp: any) => {
           this.boletosService.isVistaBoleto(this.boleto).subscribe((resp2: any) => {
             this.boleto = resp.boletoActualizado
+            console.log('this.boleto::: ', this.boleto);
             this.subscribeNotification()
           })
         })
@@ -126,6 +128,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
       })
       this.fiestasService.cargarFiestaById(this.fiestaId).subscribe((resp: any) => {
         this.fiesta = resp.fiesta
+        console.log(' this.fiesta::: ', this.fiesta);
 
         this.checking = this.fiesta.checking
         this.invitacionsService.cargarInvitacionByFiesta(this.fiestaId).subscribe(async (resp: any) => {
@@ -193,6 +196,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
             inviEfectoRep: this.invitacion.inviEfectoRep,
             inicialTSize: this.invitacion.inicialTSize,
             finalTSize: this.invitacion.finalTSize,
+            date: this.date
           }
 
 

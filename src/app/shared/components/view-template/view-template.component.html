@@ -120,9 +120,14 @@
     <ng-container *ngIf="data.type =='seccionMensaje'">
         <ng-container *ngIf="data.size=='sm'">
 
-            <div class="flexbox"
+
+
+
+
+
+            <div class="flexbox med"
                 [style]=" {'background-color':data.cPrincipal,'background-image':'url(' +data.mensajeImg+')' , 'background-position': 'center', 
-                            'position':'relative',  'background-repeat': 'no-repeat', 'background-attachment': 'fixed', 'background-size': '100%'}">
+                'position':'relative',  'background-repeat': 'no-repeat', 'background-attachment': 'fixed', 'background-size': '100%','height':'250px'}">
                 <div class="texto tc ">
                     <h5 class=" {{data.mensajeFont}} animate__animated  {{data.mensajeEfecto}} {{data.mensajeEfectoRep}} p-3"
                         [style]="{'color':data.cWhite,'font-size':data.mensajeSize +'px !important', 'padding':'5%', 'margin':'5%', }">
@@ -131,6 +136,8 @@
 
                 </div>
             </div>
+
+
         </ng-container>
 
 

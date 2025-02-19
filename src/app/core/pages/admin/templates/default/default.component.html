@@ -104,19 +104,19 @@
 
 
 
-        <!-- Debloquear -->
-        <!--    <ng-container class=" sticky-bottom " *ngIf="musicaInvitacion !=='' && musicaInvitacion !==undefined ">
+
+        <ng-container class=" sticky-bottom " *ngIf="musicaInvitacion !=='' && musicaInvitacion !==undefined ">
             <div class="col-12 ma" style="text-align: center;">
                 <audio preload="auto" autoplay [src]="url+'/upload/sound/'+musicaInvitacion" class="ma" id="myAudio">
                 </audio>
 
             </div>
-            <button class="botonF1" style="background-color: {{invitacion.cPrincipal}}; color:{{invitacion.cWhite}}"
+            <button class="botonF1" [style]="{'background-color': invitacion.cPrincipal, 'color':invitacion.cWhite}"
                 (click)="playStop()" id="boton">
 
                 <span><i class="bi bi-stop"></i></span>
             </button>
-        </ng-container> -->
+        </ng-container>
 
     </ng-container>
 </ng-container>
