@@ -15,11 +15,11 @@ export const environment = {
   //base_url: "http://localhost:3008/api",
   //text_url: "http://localhost:4200/",
   //QA
-  //base_url: "https://tickets.cochisweb.com/api",
-  //text_url: "https://tickets.cochisweb.com/",
+  base_url: "https://tickets.cochisweb.com/api",
+  text_url: "https://tickets.cochisweb.com/",
   //PROD
-  base_url: "https://www.myticketparty.com/api",
-  text_url: "https://www.myticketparty.com/",
+  //base_url: "https://www.myticketparty.com/api",
+  //text_url: "https://www.myticketparty.com/",
   //   PARAMETROS
   urlInvitacion: 'https://tickets.cochisweb.com/core/templates/default/67004d6552152ca21abfb790/670b203aeb2ab02d2eb494e2',
   urlInvitacionFile: 'https://tickets.cochisweb.com/core/templates/byFile/67006e4d81d8c3a51137cdd7/670b2eadeb2ab02d2eb49670',
