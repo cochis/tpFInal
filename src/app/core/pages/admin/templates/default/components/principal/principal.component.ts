@@ -25,8 +25,7 @@ export class PrincipalComponent implements AfterViewInit {
     this.restParty()
   }
   ngAfterViewInit(): void {
-    console.log(this.data.date);
-    console.log(this.date);
+
     if (this.data.date) {
       this.date = this.data.date
     }

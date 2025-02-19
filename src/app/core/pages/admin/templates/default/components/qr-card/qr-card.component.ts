@@ -32,14 +32,8 @@ export class QrCardComponent {
 
   }
   ngAfterViewInit(): void {
-
-
     this.fiesta = (typeof (this.data.fiesta) == 'string') ? JSON.parse(this.data.padres) : this.fiesta
-
-
     this.boleto = (typeof (this.data.boleto) == 'string') ? JSON.parse(this.data.padres) : this.boleto
-
-
 
     setTimeout(() => {
       this.loading = false

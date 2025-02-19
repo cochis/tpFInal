@@ -118,7 +118,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
         this.boletosService.registrarPushNotification(this.boleto).subscribe((resp: any) => {
           this.boletosService.isVistaBoleto(this.boleto).subscribe((resp2: any) => {
             this.boleto = resp.boletoActualizado
-            console.log('this.boleto::: ', this.boleto);
+
             this.subscribeNotification()
           })
         })
@@ -128,7 +128,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
       })
       this.fiestasService.cargarFiestaById(this.fiestaId).subscribe((resp: any) => {
         this.fiesta = resp.fiesta
-        console.log(' this.fiesta::: ', this.fiesta);
+
 
         this.checking = this.fiesta.checking
         this.invitacionsService.cargarInvitacionByFiesta(this.fiestaId).subscribe(async (resp: any) => {
