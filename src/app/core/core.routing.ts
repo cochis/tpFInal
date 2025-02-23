@@ -977,6 +977,13 @@ const routes: Routes = [
         canActivate: [authGuard]
 
       },
+      {
+        path: 'categoria-items/vista-categoria-items',
+        component: VistaCategoriaItemsComponent,
+        data: { titulo: 'Crear categoria item' },
+        canActivate: [authGuard]
+
+      },
 
       {
         path: 'estatus-cotizaciones/vista-estatus-cotizaciones',
