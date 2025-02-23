@@ -145,11 +145,13 @@ export class EditarUsuarioComponent {
       apellidoPaterno: ['', [Validators.required, Validators.minLength(3)]],
       apellidoMaterno: [''],
       email: ['', [Validators.required, Validators.email]],
+      telefono: ['', [Validators.required, Validators.email]],
       img: [''],
       cantidadFiestas: [0],
       cantidadGalerias: [0],
       role: ['', [Validators.required, Validators.minLength(3)]],
       tipoCentro: ['', [Validators.minLength(3)]],
+      salon: ['', [Validators.minLength(3)]],
       google: [false],
       activated: [false],
       dateCreated: [this.today],
@@ -158,22 +160,30 @@ export class EditarUsuarioComponent {
   }
   setForm(usuario: Usuario) {
 
-
     this.loading = true
     let usr: any = usuario
     var role = (this.edit === 'false') ? usr.role.nombre : usr.role._id
 
     var tipoCentro = (usr.tipoCentro) ? (this.edit === 'false') ? usr.tipoCentro.nombre : usr.tipoCentro._id : ''
+    var salon = []
+    usr.salon.forEach(sl => {
+
+      salon.push(sl._id)
+
+    });
+
     setTimeout(() => {
       this.form = this.fb.group({
         nombre: [usuario.nombre, [Validators.required, Validators.minLength(3)]],
         apellidoPaterno: [usuario.apellidoPaterno, [Validators.required, Validators.minLength(3)]],
         apellidoMaterno: [usuario.apellidoMaterno],
         email: [usuario.email, [Validators.required, Validators.email]],
-        cantidadFiestas: [usuario.cantidadFiestas],
-        cantidadGalerias: [usuario.cantidadGalerias],
+        telefono: [usuario.telefono, [Validators.required]],
+        cantidadFiestas: [(usuario.cantidadFiestas) ? usuario.cantidadFiestas : 0],
+        cantidadGalerias: [(usuario.cantidadGalerias) ? usuario.cantidadGalerias : 0],
         role: [role, [Validators.required]],
         tipoCentro: [tipoCentro],
+        salon: [salon],
         google: [usuario.google],
         activated: [usuario.activated],
         dateCreated: [usuario.dateCreated],
@@ -192,6 +202,7 @@ export class EditarUsuarioComponent {
         ...this.form.value,
       }
       this.usuario.email = this.usuario.email.toLowerCase()
+
       this.usuariosService.actualizarUsuario(this.usuario).subscribe((resp: any) => {
         this.functionsService.alertUpdate('Usuarios')
         this.functionsService.navigateTo('core/usuarios/vista-usuarios')

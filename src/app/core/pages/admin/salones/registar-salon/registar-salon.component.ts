@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
-import { CargarPaquete, CargarUsuario } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
+import { CargarPaises, CargarPaquete, CargarUsuario } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
 
 import { Salon } from 'src/app/core/models/salon.model';
 import { Paquete } from 'src/app/core/models/paquete.model';
@@ -13,6 +13,11 @@ import { PaquetesService } from 'src/app/core/services/paquete.service';
 import { UsuariosService } from 'src/app/core/services/usuarios.service';
 import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { environment } from 'src/environments/environment';
+import { PaisesService } from 'src/app/core/services/pais.service';
+import { CpsService } from 'src/app/core/services/cp.service';
+import { MapsService } from 'src/app/shared/services/maps.service';
+import { Cp } from 'src/app/core/models/cp.model';
+import { Pais } from 'src/app/core/models/pais.model';
 @Component({
   selector: 'app-registar-salon',
   templateUrl: './registar-salon.component.html',
@@ -36,10 +41,16 @@ export class RegistarSalonComponent {
   SLN = environment.salon_role
   URS = environment.user_role
   ANF = environment.anf_role
+  PRV = environment.prv_role
   paquete: Paquete
   role = this.functionsService.getLocal('role')
   uid = this.functionsService.getLocal('uid')
   sendCoords!: [number, number]
+  cps: Cp[]
+  paises: Pais[]
+  estados = []
+  municipios = []
+  colonias = []
   constructor(
     private fb: FormBuilder,
     private functionsService: FunctionsService,
@@ -47,6 +58,9 @@ export class RegistarSalonComponent {
     private usuariosService: UsuariosService,
     private paquetesService: PaquetesService,
     private modalService: NgbModal,
+    private mapService: MapsService,
+    private paisesService: PaisesService,
+    private cpsService: CpsService,
   ) {
     this.getCatalogos()
     if (this.functionsService.getLocal('uid')) {
@@ -175,6 +189,17 @@ export class RegistarSalonComponent {
         console.error('Error', error)
 
       })
+    this.paisesService.cargarPaisesAll().subscribe((resp: CargarPaises) => {
+      this.paises = resp.paises
+
+
+
+    },
+      (error: any) => {
+        // console.error('Error', error)
+        this.functionsService.alertError(error, 'Centro de eventos (Países)')
+        this.loading = false
+      })
   }
   back() {
     this.functionsService.navigateTo('core/salones/vista-salones')
@@ -188,5 +213,79 @@ export class RegistarSalonComponent {
       long: e.lng,
       [e.type]: `${this.MAPURL}?q=${e.lat},${e.lng}&z=${this.MAPZOOM}`
     })
+  }
+  getCps(pais?, cp?) {
+
+    if (!pais && !cp) {
+
+      pais = this.form.value.pais
+      cp = this.form.value.cp
+
+    }
+    if (this.form.value.pais == '') {
+      this.functionsService.alert('Centro de eventos', 'Selecciona un país', 'info')
+      return
+    }
+
+    if (pais == '') {
+      pais = this.form.value.pais.toUpperCase().trim()
+    }
+
+
+    if (cp.length >= 5) {
+
+
+      this.cpsService.cargarCpByPaisCP(pais, cp).subscribe((resp) => {
+
+
+        resp.cps.forEach(element => {
+
+
+          this.estados.push(element.d_estado)
+
+          this.municipios.push(element.D_mnpio)
+          this.colonias.push(element.d_asenta)
+
+        });
+
+        this.municipios = this.unique(this.municipios)
+        this.colonias = this.unique(this.colonias)
+        let edo = this.estados[0]
+
+
+
+
+        this.form.patchValue({
+          estado: edo,
+
+        })
+
+
+
+      },
+        (error: any) => {
+          // console.error('Error', error)
+          this.functionsService.alertError(error, 'CPs')
+          this.loading = false
+        })
+    } else {
+      this.estados = []
+      this.municipios = []
+      this.colonias = []
+
+
+      return
+    }
+  }
+  unique(arr) {
+    let result = [];
+
+    for (let str of arr) {
+      if (!result.includes(str)) {
+        result.push(str);
+      }
+    }
+
+    return result;
   }
 }

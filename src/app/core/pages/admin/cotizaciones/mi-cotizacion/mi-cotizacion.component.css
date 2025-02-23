@@ -1,0 +1,24 @@
+.warning {
+    background-color: var(--cSecond) !important;
+
+}
+
+.progress {
+    background-color: var(--cSecond) !important;
+    border: 5px solid var(--cPrimary) !important;
+}
+
+.success {
+    background-color: var(--cPrimary) !important;
+    border: 5px solid var(--cSecond) !important;
+}
+
+.danger {
+    background-color: var(--cSecond) !important;
+    border: 5px solid rgb(186, 79, 79) !important;
+}
+
+.cancel {
+    background-color: rgb(186, 79, 79) !important;
+    border: 5px solid rgb(186, 79, 79) !important;
+}

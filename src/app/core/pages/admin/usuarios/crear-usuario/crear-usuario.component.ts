@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CargarRoles, CargarSalons, CargarTipoCantidades } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
+import { CargarRoles, CargarSalons, CargarTipoCantidades, CargarTipoCentros } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
 import { Role } from 'src/app/core/models/role.model';
 import { Salon } from 'src/app/core/models/salon.model';
 import { TipoCantidad } from 'src/app/core/models/tipoCantidad.model';
@@ -8,6 +8,7 @@ import { Usuario } from 'src/app/core/models/usuario.model';
 import { RolesService } from 'src/app/core/services/roles.service';
 import { SalonsService } from 'src/app/core/services/salon.service';
 import { TipoCantidadesService } from 'src/app/core/services/tipoCantidad.service';
+import { TipoCentrosService } from 'src/app/core/services/tipoCentros.service';
 import { UsuariosService } from 'src/app/core/services/usuarios.service';
 import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { environment } from 'src/environments/environment';
@@ -27,6 +28,7 @@ export class CrearUsuarioComponent {
   loading = false
   salones: Salon[]
   roles: Role[]
+  tipoCentros: Role[]
   usuario: Usuario
   public form!: FormGroup
   today: Number = this.functionsService.getToday()
@@ -41,6 +43,7 @@ export class CrearUsuarioComponent {
     private fb: FormBuilder,
     private functionsService: FunctionsService,
     private salonesService: SalonsService,
+    private tipoCentrosServices: TipoCentrosService,
     private rolesService: RolesService,
     private usuariosService: UsuariosService,
 
@@ -64,6 +67,18 @@ export class CrearUsuarioComponent {
 
       this.salonesService.cargarSalonsAll().subscribe((resp: CargarSalons) => {
         this.salones = this.functionsService.getActivos(resp.salons)
+
+
+      },
+        (error: any) => {
+          console.error('Error', error)
+          this.functionsService.alertError(error, 'Usuarios')
+          this.loading = false
+
+
+        })
+      this.tipoCentrosServices.cargarTipoCentrosAll().subscribe((resp: CargarTipoCentros) => {
+        this.tipoCentros = this.functionsService.getActivos(resp.tipoCentros)
 
 
       },
@@ -136,7 +151,9 @@ export class CrearUsuarioComponent {
       apellidoPaterno: ['', [Validators.required, Validators.minLength(3)]],
       apellidoMaterno: [''],
       email: ['', [Validators.required, Validators.email]],
+      telefono: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.pattern(".{6,}")]],
+      tipoCentro: ['', [Validators.required]],
       cantidadFiestas: [''],
       cantidadGalerias: [''],
       paqueteActual: ['',],

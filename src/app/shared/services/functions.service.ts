@@ -40,7 +40,13 @@ export class FunctionsService {
     this.ls.set(name, value)
   }
   clearLocal() {
-    localStorage.clear();
+
+
+    this.ls.remove('email')
+    this.ls.remove('role')
+    this.ls.remove('token')
+    this.ls.remove('uid')
+
   }
   removeItemLocal(name: string) {
     localStorage.removeItem(name)
@@ -310,5 +316,14 @@ export class FunctionsService {
         return JSON.parse(parametro.value)
         break;
     }
+  }
+
+
+  async getBase64Image(img) {
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0);
+    const dataURL = canvas.toDataURL("image/png");
+    return dataURL;
   }
 }

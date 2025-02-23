@@ -55,14 +55,15 @@
                             <option [value]="it.nombre" *ngFor="let it of item.colores" class="upper">{{it.nombre}}
                             </option>
                         </select>
-                        <select id="opciones" class="form-select form-select-sm" #opciones formControlName="opcion"
-                            (change)="opcSeleccion($event,item.colores)" *ngIf="item.isByService">
+                        <select id="opciones" class="form-select form-select-sm upper" #opciones
+                            formControlName="opcion" (change)="opcSeleccion($event,item.colores)"
+                            *ngIf="item.isByService">
                             <option value='' class="upper"> Selecciona una opción</option>
                             <option [value]="it.nombre" *ngFor="let it of item.servicios" class="upper">{{it.nombre}}
                             </option>
                         </select>
-                        <select id="opciones" class="form-select form-select-sm" #opciones formControlName="opcion"
-                            (change)="opcSeleccion($event,item.sizes)" *ngIf="item.isBySize">
+                        <select id="opciones" class="form-select form-select-sm upper" #opciones
+                            formControlName="opcion" (change)="opcSeleccion($event,item.sizes)" *ngIf="item.isBySize">
                             <option value='' class="upper"> Selecciona una opción</option>
                             <option [value]="it.nombre" *ngFor="let it of item.sizes" class="upper">{{it.nombre}}
                             </option>

@@ -5,6 +5,7 @@ export class Usuario {
         public apellidoPaterno: string,
         public apellidoMaterno: string,
         public email: string,
+        public telefono: string,
         public password: string,
         public img: string,
         public role: string,

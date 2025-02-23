@@ -112,6 +112,13 @@ import { VistaCpsComponent } from './pages/admin/cps/vista-cps/vista-cps.compone
 import { EditarPaisComponent } from './pages/admin/paises/editar-pais/editar-pais.component';
 import { CrearPaisComponent } from './pages/admin/paises/crear-pais/crear-pais.component';
 import { VistaPaisesComponent } from './pages/admin/paises/vista-paises/vista-paises.component';
+import { VistaEstatusCotizacionesComponent } from './pages/admin/estatus-cotizaciones/vista-estatus-cotizaciones/vista-estatus-cotizaciones.component';
+import { EditarEstatusCotizacionComponent } from './pages/admin/estatus-cotizaciones/editar-estatus-cotizacion/editar-estatus-cotizacion.component';
+import { CrearEstatusCotizacionComponent } from './pages/admin/estatus-cotizaciones/crear-estatus-cotizacion/crear-estatus-cotizacion.component';
+import { MisCotizacionesComponent } from './pages/admin/cotizaciones/mis-cotizaciones/mis-cotizaciones.component';
+import { MiCotizacionComponent } from './pages/admin/cotizaciones/mi-cotizacion/mi-cotizacion.component';
+import { EditarDatosComponent } from './pages/admin/market/admin/proveedors/editar-datos/editar-datos.component';
+import { CalificacionComponent } from './pages/admin/market/admin/items/calificacion/calificacion.component';
 const routes: Routes = [
   {
     path: 'core',
@@ -855,6 +862,13 @@ const routes: Routes = [
 
       },
       {
+        path: 'proveedores/editar-datos',
+        component: EditarDatosComponent,
+        data: { titulo: 'Editar datos proveedor' },
+        canActivate: [authGuard]
+
+      },
+      {
         path: 'proveedores/vista-proveedores',
         component: VistaProvedorsComponent,
         data: { titulo: 'Vista proveedores' },
@@ -877,9 +891,29 @@ const routes: Routes = [
 
       },
       {
+        path: 'calificacion/productos/:id',
+        component: CalificacionComponent,
+        data: { titulo: 'Calificacion productos o servicios' }
+
+      },
+      {
+        path: 'productos/agregar',
+        component: CrearItemComponent,
+        data: { titulo: 'Crear item' },
+        canActivate: [authGuard]
+
+      },
+      {
         path: 'items/vista-items',
         component: VistaItemsComponent,
         data: { titulo: 'Vista items' },
+        canActivate: [authGuard]
+
+      },
+      {
+        path: 'mis-productos',
+        component: VistaItemsComponent,
+        data: { titulo: 'Mis productos' },
         canActivate: [authGuard]
 
       },
@@ -943,14 +977,42 @@ const routes: Routes = [
         canActivate: [authGuard]
 
       },
+
       {
-        path: 'categoria-items/vista-categoria-items',
-        component: VistaCategoriaItemsComponent,
-        data: { titulo: 'Vista categoria items' },
+        path: 'estatus-cotizaciones/vista-estatus-cotizaciones',
+        component: VistaEstatusCotizacionesComponent,
+        data: { titulo: 'Vista estatus cotizaciones' },
         canActivate: [authGuard]
 
       },
+      {
+        path: 'estatus-cotizaciones/editar-estatus-cotizacion/:edit/:id',
+        component: EditarEstatusCotizacionComponent,
+        data: { titulo: 'Editar estatus cotizacion' },
+        canActivate: [authGuard]
 
+      },
+      {
+        path: 'estatus-cotizaciones/crear-estatus-cotizacion',
+        component: CrearEstatusCotizacionComponent,
+        data: { titulo: 'Crear estatus cotizacion' },
+        canActivate: [authGuard]
+
+      },
+      {
+        path: 'mis-cotizaciones',
+        component: MisCotizacionesComponent,
+        data: { titulo: 'Mis cotizaciones' },
+        canActivate: [authGuard]
+
+      },
+      {
+        path: 'cotizaciones/mi-cotizacion/:id',
+        component: MiCotizacionComponent,
+        data: { titulo: 'Mis cotizacion' },
+        canActivate: [authGuard]
+
+      },
     ]
   }
 ];

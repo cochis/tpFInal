@@ -42,6 +42,9 @@ export class ProveedorsService {
               pro.descripcion,
               pro.contactos,
               pro.colores,
+              pro.ubicacion,
+              pro.lng,
+              pro.lat,
               pro.usuarioCreated,
               pro.activated,
               pro.dateCreated,
@@ -72,6 +75,9 @@ export class ProveedorsService {
               pro.descripcion,
               pro.contactos,
               pro.colores,
+              pro.ubicacion,
+              pro.lng,
+              pro.lat,
               pro.usuarioCreated,
               pro.activated,
               pro.dateCreated,
@@ -116,6 +122,10 @@ export class ProveedorsService {
   }
   cargarProveedorsByEmail(email: string) {
     const url = `${base_url}/proveedors/email/${email}`
+    return this.http.get<CargarProveedors>(url, this.headers)
+  }
+  cargarProveedorsByCreador(id: string) {
+    const url = `${base_url}/proveedors/creador/${id}`
     return this.http.get<CargarProveedors>(url, this.headers)
   }
 }

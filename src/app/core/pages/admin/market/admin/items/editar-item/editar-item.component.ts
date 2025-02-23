@@ -31,6 +31,14 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./editar-item.component.css']
 })
 export class EditarItemComponent {
+
+
+  rol = this.functionsService.getLocal('role')
+  ADM = environment.admin_role
+  ANF = environment.anf_role
+  SLN = environment.salon_role
+  URS = environment.user_role
+  PRV = environment.prv_role
   loading = false
   public imagenSubir!: File
   public imgTemp: any = undefined
@@ -88,6 +96,7 @@ export class EditarItemComponent {
     this.itemsService.cargarItemById(id).subscribe((resp: CargarItem) => {
 
       this.item = resp.item
+
       this.itemTemp = resp.item
 
       setTimeout(() => {
@@ -98,7 +107,7 @@ export class EditarItemComponent {
     },
       (error: any) => {
 
-        this.functionsService.alertError(error, 'Items')
+        this.functionsService.alertError(error, 'Productos y Servicios')
         this.loading = false
 
 
@@ -139,14 +148,16 @@ export class EditarItemComponent {
   setForm(item: any) {
 
 
+    let pro = (typeof (item.proveedor) == 'string') ? item.proveedor : ((item.proveedor._id) ? item.proveedor._id : item.proveedor.uid)
+    let cat = (typeof (item.categoriaItem) == 'string') ? item.categoriaItem : ((item.categoriaItem._id) ? item.categoriaItem._id : item.categoriaItem.uid)
     setTimeout(() => {
       this.loading = true
       this.form = this.fb.group({
         nombre: [(item.nombre) ? item.nombre : '', [Validators.required, Validators.minLength(3)]],
         descripcion: [(item.descripcion) ? item.descripcion : '', [Validators.required, Validators.minLength(3)]],
-        proveedor: [(item.proveedor._id) ? item.proveedor._id : '', [Validators.required, Validators.minLength(3)]],
+        proveedor: [pro, [Validators.required, Validators.minLength(3)]],
         tipoItem: [(item.tipoItem) ? item.tipoItem : '', [Validators.required, Validators.minLength(3)]],
-        categoriaItem: [(item.categoriaItem) ? item.categoriaItem : '', [Validators.required, Validators.minLength(3)]],
+        categoriaItem: [cat, [Validators.required, Validators.minLength(3)]],
 
         isSelectedBy: [(item.isSelectedBy) ? item.isSelectedBy : '', [Validators.required]],
         isBySize: { value: item.isBySize, disabled: (this.edit == 'false') ? true : false },
@@ -303,7 +314,7 @@ export class EditarItemComponent {
   addPhotos() {
     this.photos.push(this.newPhoto())
 
-    this.submited = false
+
 
 
 
@@ -328,7 +339,23 @@ export class EditarItemComponent {
   }
 
   removePhotos(i: number) {
-    this.photos.removeAt(i);
+
+    if (this.photos.value[i].img) {
+
+      setTimeout(() => {
+
+        this.fileService.deleteFile('Imagen', 'items', this.photos.value[i].img).subscribe(res => {
+
+
+          this.photos.removeAt(i);
+        })
+      }, 500);
+    } else {
+
+      this.photos.removeAt(i);
+    }
+
+
   }
   newSize(): FormGroup {
     return this.fb.group({
@@ -387,24 +414,33 @@ export class EditarItemComponent {
     }
 
 
+
     if (this.form.valid) {
       this.form.value.nombre = this.form.value.nombre.toUpperCase().trim()
       this.itemsService.actualizarItem(data).subscribe((resp: any) => {
 
         this.item = resp.item
-        this.functionsService.alert('Item', 'Item editado', 'success')
-        this.functionsService.navigateTo('core/items/vista-items')
-        this.loading = false
+        this.functionsService.alert('Producto o servicio', 'Editado', 'success')
+        if (this.rol == this.ADM) {
+
+          this.functionsService.navigateTo('core/items/vista-items')
+          this.loading = false
+        } else {
+          this.functionsService.navigateTo('core/mis-productos')
+          this.loading = false
+
+        }
+
       },
         (error) => {
-          this.functionsService.alertError(error, 'Itemes')
+          this.functionsService.alertError(error, 'Productos y Servicios')
           this.loading = false
-          console.error('Error', error)
+          // console.error('Error', error)
 
         })
     } else {
 
-      this.functionsService.alertForm('Items')
+      this.functionsService.alertForm('Productos y Servicios')
       this.loading = false
       return // console.info('Please provide all the required values!');
     }
@@ -421,60 +457,60 @@ export class EditarItemComponent {
   }
   getCatalogos() {
     this.tipoContactosService.cargarTipoContactosAll().subscribe((resp: CargarTipoContactos) => {
-      this.tipoContactos = resp.tipoContactos
+      this.tipoContactos = this.functionsService.getActivos(resp.tipoContactos)
 
     },
       (error) => {
-        console.error('error::: ', error);
+        // console.error('error::: ', error);
         this.functionsService.alertError(error, 'Tipo de Contactos')
       })
     this.tipoColoresService.cargarTipoColorsAll().subscribe((resp: CargarTipoColors) => {
-      this.tipoColores = resp.tipoColors
+      this.tipoColores = this.functionsService.getActivos(resp.tipoColors)
 
     },
       (error) => {
-        console.error('error::: ', error);
+        // console.error('error::: ', error);
         this.functionsService.alertError(error, 'Tipo de Colores')
       })
     this.monedasService.cargarMonedasAll().subscribe((resp: CargarMonedas) => {
-      this.monedas = resp.monedas
+      this.monedas = this.functionsService.getActivos(resp.monedas)
 
     },
       (error) => {
-        console.error('error::: ', error);
+        // console.error('error::: ', error);
         this.functionsService.alertError(error, 'Monedas')
       })
     this.tipoitemsService.cargarTipoItemsAll().subscribe((resp: CargarTipoItems) => {
-      this.tipoItems = resp.tipoItems
+      this.tipoItems = this.functionsService.getActivos(resp.tipoItems)
 
     },
       (error) => {
-        console.error('error::: ', error);
+        // console.error('error::: ', error);
         this.functionsService.alertError(error, 'Tipo de items')
       })
     this.proveedorsService.cargarProveedorsAll().subscribe((resp: CargarProveedors) => {
-      this.proveedors = resp.proveedors
+      this.proveedors = this.functionsService.getActivos(resp.proveedors)
 
     },
       (error) => {
-        console.error('error::: ', error);
+        // console.error('error::: ', error);
         this.functionsService.alertError(error, 'Tipo de proveedores')
       })
     this.categoriaItemsService.cargarCategoriaItemsAll().subscribe((resp: CargarCategoriaItems) => {
-      this.categoriaItems = resp.categoriaItems
+      this.categoriaItems = this.functionsService.getActivos(resp.categoriaItems)
 
     },
       (error) => {
-        console.error('error::: ', error);
+        // console.error('error::: ', error);
         this.functionsService.alertError(error, 'Tipo de categoria de productos')
       })
     this.tipoMediasService.cargarTipoMediasAll().subscribe((resp: CargarTipoMedias) => {
-      this.tipoMedias = resp.tipoMedias
+      this.tipoMedias = this.functionsService.getActivos(resp.tipoMedias)
 
 
     },
       (error) => {
-        console.error('error::: ', error);
+        // console.error('error::: ', error);
         this.functionsService.alertError(error, 'Tipo de medios')
       })
 
@@ -596,6 +632,7 @@ export class EditarItemComponent {
   async subirImagen(type?, idx?) {
 
 
+
     this.loading = true
 
 
@@ -619,7 +656,7 @@ export class EditarItemComponent {
             this.loading = false
           },
             (error) => {
-              console.error('error::: ', error);
+              // console.error('error::: ', error);
 
             })
 
@@ -627,7 +664,7 @@ export class EditarItemComponent {
 
         },
         (err) => {
-          console.error('error::: ', err);
+          // console.error('error::: ', err);
 
         },
       )
@@ -685,7 +722,7 @@ export class EditarItemComponent {
                   })
                 },
                 (err) => {
-                  console.error('error::: ', err);
+                  // console.error('error::: ', err);
 
                 },
               )
@@ -744,7 +781,7 @@ export class EditarItemComponent {
 
                   })
                 .catch(error => {
-                  console.error('error::: ', error);
+                  // console.error('error::: ', error);
 
                 })
 
@@ -801,7 +838,7 @@ export class EditarItemComponent {
                     })
                   },
                   (err) => {
-                    console.error('error::: ', err);
+                    // console.error('error::: ', err);
 
                   },
                 )
@@ -854,7 +891,7 @@ export class EditarItemComponent {
  
                 })
               .catch(error => {
-                console.error('error::: ', error);
+                // console.error('error::: ', error);
  
               })
  
@@ -911,7 +948,7 @@ export class EditarItemComponent {
                             })
                           },
                           (err) => {
-                            console.error('error::: ', err);
+                            // console.error('error::: ', err);
  
                           },
                         )
@@ -959,7 +996,7 @@ export class EditarItemComponent {
                             })
                           },
                           (err) => {
-                            console.error('error::: ', err);
+                            // console.error('error::: ', err);
  
                           },
                         )
@@ -997,7 +1034,7 @@ export class EditarItemComponent {
                       })
                     },
                     (err) => {
-                      console.error('error::: ', err);
+                      // console.error('error::: ', err);
  
                     },
                   )
@@ -1063,7 +1100,7 @@ export class EditarItemComponent {
           })
         },
         (err) => {
-          console.error('error::: ', err);
+          // console.error('error::: ', err);
 
         },
       )
@@ -1077,7 +1114,7 @@ export class EditarItemComponent {
 
     },
       (error: any) => {
-        console.error('error::: ', error);
+        // console.error('error::: ', error);
 
       })
 
@@ -1089,7 +1126,7 @@ export class EditarItemComponent {
 
     },
       (error: any) => {
-        console.error('error::: ', error);
+        // console.error('error::: ', error);
 
       })
 

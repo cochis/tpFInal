@@ -34,6 +34,9 @@ import { TipoMedia } from "../models/tipoMedia.model"
 import { ImgItem } from "../models/imgItem.model"
 import { Cp } from "../models/cp.model"
 import { Pais } from "../models/pais.model"
+import { Cotizacion } from "../models/cotizacion.model"
+import { EstatusCotizacion } from "../models/estatusCotizacion.model"
+import { Calificacion } from "../models/calificacion.model"
 
 
 
@@ -119,6 +122,13 @@ export interface CargarEvento {
 export interface CargarEventos {
     total: number
     eventos: Evento[]
+}
+export interface CargarCalificacion {
+    calificacion: Calificacion
+}
+export interface CargarCalificaciones {
+    total: number
+    calificaciones: Calificacion[]
 }
 /* CPS */
 export interface CargarCp {
@@ -276,6 +286,20 @@ export interface CargarTipoContacto {
 export interface CargarTipoContactos {
     total: number
     tipoContactos: TipoContacto[]
+}
+export interface CargarEstatusCotizacion {
+    estatusCotizacion: EstatusCotizacion
+}
+export interface CargarEstatusCotizaciones {
+    total: number
+    estatusCotizaciones: EstatusCotizacion[]
+}
+export interface CargarCotizacion {
+    cotizacion: Cotizacion
+}
+export interface CargarCotizaciones {
+    total: number
+    cotizaciones: Cotizacion[]
 }
 export interface CargarModuloTemplate {
     moduloTemplate: ModuloTemplate

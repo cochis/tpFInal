@@ -17,6 +17,8 @@ export class Item {
         public cantidades: [object],
         public idealTo: [object],
         public calificacion: [number],
+        public timesCalificado: [number],
+        public promedioCalificacion: [number],
         public usuarioCreated: any,
         public activated: boolean,
         public dateCreated: number,

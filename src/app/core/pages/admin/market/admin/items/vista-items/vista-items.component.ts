@@ -24,6 +24,7 @@ export class VistaItemsComponent {
   url = environment.base_url
   ADM = environment.admin_role
   ANF = environment.anf_role
+  PRV = environment.prv_role
   SLN = environment.salon_role
   URS = environment.user_role
   rol = this.functionsService.getLocal('role')
@@ -75,6 +76,7 @@ export class VistaItemsComponent {
 
         this.items = resp.items
 
+
         this.itemsTemp = resp.items
         setTimeout(() => {
 
@@ -83,14 +85,15 @@ export class VistaItemsComponent {
       },
         (error) => {
           this.loading = false
-          this.functionsService.alertError(error, 'Items')
+          this.functionsService.alertError(error, 'Productos o Servicios')
         });
-    } else if (this.rol === this.SLN || this.rol == this.ANF) {
+    } else if (this.rol === this.SLN || this.rol == this.ANF || this.rol == this.PRV) {
       let usr = this.functionsService.getLocal('uid')
       this.itemsService.cargarItemsByEmail(usr).subscribe((resp: CargarItems) => {
 
         this.items = this.functionsService.getActivos(resp.items)
         this.itemsTemp = resp.items
+
         setTimeout(() => {
 
           this.loading = false
@@ -147,7 +150,7 @@ export class VistaItemsComponent {
 
     },
       (error: any) => {
-        this.functionsService.alertError(error, 'Items')
+        this.functionsService.alertError(error, 'Productos o Servicios')
 
       })
   }

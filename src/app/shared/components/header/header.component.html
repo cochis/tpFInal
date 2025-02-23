@@ -15,10 +15,10 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" routerLink="/">Inicio</a>
                 </li>
-                <!--     <li class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link active" aria-current="page" routerLink="/core/market"><b
                             style="margin-left: 15px;">Marketplace</b></a>
-                </li> -->
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/core/about">Nosotros</a>
                 </li>
@@ -70,7 +70,7 @@
     </div>
 </nav>
 <nav class="navbar navbar-expand-lg navbar-dark"
-    *ngIf="rol ===ADM  ||rol ===ANF  || rol ===SLN || rol ===CHK || rol ===URS">
+    *ngIf="rol ===ADM  ||rol ===ANF  || rol ===SLN || rol ===CHK || rol ===URS || rol ===PRV">
     <div class="container-fluid">
         <a class="navbar-brand" routerLink="/">
             <!-- <i class="bi-back"></i> -->
@@ -89,9 +89,9 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" routerLink="/">Inicio</a>
                 </li>
-                <!--    <li class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link active" aria-current="page" routerLink="/core/market">Marketplace</a>
-                </li> -->
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/core/pricing">Pricing</a>
                 </li>
@@ -127,18 +127,49 @@
                         </li>
                         <li><a class="dropdown-item" routerLink="/core/mis-compras">Mis compras</a>
                         </li>
-                        <!-- <hr>
-                         <h5 class="ma" style="margin-left: 15px;"><b>Market place</b></h5>
+                        <hr>
+                        <h5 class="ma" style="margin-left: 15px;"><b>Market place</b></h5>
                         <li><a class="dropdown-item" routerLink="/core/proveedores/vista-proveedores">Ver
                                 proveedores</a></li>
                         <li><a class="dropdown-item" routerLink="/core/items/vista-items">Ver
                                 Productos</a></li>
- -->
+
 
 
                     </ul>
                 </li>
 
+                <li class="nav-item dropdown" *ngIf="rol ===PRV ">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Admin Market
+                    </a>
+                    <ul class="dropdown-menu">
+
+
+                        <li><a class="dropdown-item" routerLink="/core/proveedores/editar-datos">Ver
+                                Edita datos de proveedor</a>
+                        </li>
+                        <li><a class="dropdown-item" routerLink="/core/productos/agregar">
+                                Agregar Productos o servicios</a>
+                        </li>
+                        <li><a class="dropdown-item" routerLink="/core/mis-productos">
+                                Mis Productos o servicios</a>
+                        </li>
+                        <!--  <li><a class="dropdown-item" routerLink="/core/status-compra/vista-status-compra">Ver estatus de
+                                compras</a></li> -->
+                        <!--<li><a class="dropdown-item" routerLink="/core/tipo-modulos/vista-tipo-modulos">Ver tipo de
+                                modulos</a></li>
+                          <li><a class="dropdown-item" routerLink="/core/modulo-templates/vista-modulo-templates">Ver de
+                                modulos de templates</a></li>
+                        <li><a class="dropdown-item" routerLink="/core/templates/vista-templates">Ver templates</a></li>
+ -->
+
+
+
+
+                    </ul>
+                </li>
                 <li class="nav-item dropdown" *ngIf="rol ===ADM ">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
@@ -159,7 +190,7 @@
                         </li>
                         <li><a class="dropdown-item" routerLink="/core/monedas/vista-monedas">Ver monedas</a></li>
                         <li><a class="dropdown-item" routerLink="/core/cps/vista-cps">Ver cps</a></li>
-                        <!-- <li><a class="dropdown-item" routerLink="/core/tipo-colores/vista-tipo-colores">Ver tipo
+                        <li><a class="dropdown-item" routerLink="/core/tipo-colores/vista-tipo-colores">Ver tipo
                                 colores</a>
                         </li>
                         <li><a class="dropdown-item" routerLink="/core/tipo-contactos/vista-tipo-contactos">Ver tipo
@@ -172,7 +203,11 @@
                         </li>
                         <li><a class="dropdown-item" routerLink="/core/categoria-items/vista-categoria-items">Ver
                                 categorias de Items</a>
-                        </li> -->
+                        </li>
+                        <li><a class="dropdown-item"
+                                routerLink="/core/estatus-cotizaciones/vista-estatus-cotizaciones">Ver
+                                estatus de cotizaciones</a>
+                        </li>
                         <!--  <li><a class="dropdown-item" routerLink="/core/status-compra/vista-status-compra">Ver estatus de
                                 compras</a></li> -->
                         <!--<li><a class="dropdown-item" routerLink="/core/tipo-modulos/vista-tipo-modulos">Ver tipo de
@@ -199,6 +234,8 @@
 
 
                         <li><a class="dropdown-item" routerLink="/auth/perfil" *ngIf="rol && rol!== ''">Perfil</a></li>
+                        <li><a class="dropdown-item" routerLink="/core/mis-cotizaciones" *ngIf="rol && rol!== ''">Mis
+                                Cotizaciones</a></li>
                         <li><a class="dropdown-item" routerLink="/core/contact" *ngIf="rol && rol!== ''">Contacto</a>
                         </li>
                         <li><a class="dropdown-item" (click)="logout()" *ngIf="rol && rol!== ''">Salir</a></li>

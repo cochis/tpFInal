@@ -127,6 +127,7 @@ export class VistaUsuariosComponent {
 
         this.usuariosShow = resp.usuarios.filter(usuario => usuario.uid !== this.uid)
         this.usuarios = resp.usuarios
+
         this.usuariosTemp = resp.usuarios
 
         this.loading = false
@@ -137,6 +138,7 @@ export class VistaUsuariosComponent {
         setTimeout(() => {
           this.usuariosShow = resp.usuarios.filter(usuario => usuario.uid !== this.uid)
           this.usuarios = resp.usuarios
+
           this.usuariosTemp = resp.usuarios
 
           this.loading = false
@@ -146,12 +148,14 @@ export class VistaUsuariosComponent {
   }
   getCatalog(tipo: string, id: string) {
 
+
     if (id) {
       switch (tipo) {
         case 'rol':
           if (id !== undefined) return this.functionsService.getValueCatalog(id, 'nombre', this.roles)
           break;
         case 'salon':
+
           if (id !== undefined) return this.functionsService.getValueCatalog(id, 'nombre', this.salones)
           break;
         case 'usuario':

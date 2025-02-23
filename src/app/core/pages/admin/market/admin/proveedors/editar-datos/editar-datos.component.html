@@ -1,0 +1,310 @@
+<app-header></app-header>
+<main>
+    <app-loading class="animated1 fadeIn" *ngIf="loading"></app-loading>
+    <app-message class="animated1 fadeIn" *ngIf="msnOk"></app-message>
+    <section class="contact-section section-padding section-bg animated1 fadeIn " id="section_5" *ngIf="!loading">
+        <div class="container bw">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-12 col-12 text-center">
+                            <h2 class="mb-5">Editar datos empresa</h2>
+                        </div>
+                        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                            <div class="row">
+                                <div class="col-12 col-md-6 mt-3 ma">
+                                    <div class="form-group">
+                                        <label for="nombre">Nombre</label>
+                                        <input type="text" class="form-control upper" id="nombre"
+                                            formControlName="nombre" required placeholder="Nombre"
+                                            (keyup)="  setClave()">
+                                    </div>
+                                    <span *ngIf="submited && errorControl['nombre'].errors " class="error">Es requerido
+                                    </span>
+                                </div>
+                                <!--  <div class="col-12 col-md-6 mt-3">
+
+                                    <div class="form-group">
+                                        <label for="clave">Clave</label>
+                                        <input type="text" class="form-control upper" id="clave" formControlName="clave"
+                                            placeholder="Clave">
+                                    </div>
+                                    <span *ngIf="submited && errorControl['clave'].errors " class="error">Es requerido
+                                    </span>
+                                </div> -->
+                                <div class="col-12   mt-3">
+
+                                    <div class="form-group">
+                                        <label for="descripcion">Descripcion</label>
+                                        <textarea type="text" class="form-control upper" id="descripcion"
+                                            formControlName="descripcion" placeholder="Descripcion"> </textarea>
+                                    </div>
+                                    <span *ngIf="submited && errorControl['descripcion'].errors " class="error">Es
+                                        requerido
+                                    </span>
+                                </div>
+                                <div class="col-12 col-md-6 mt-3" *ngIf="isProveedor">
+
+                                    <div class="image-upload" class="text-center">
+
+                                        <label for="file-input-img">
+                                            <!--  [ngClass]=" {'pointer':edit ==='true'}" -->
+
+
+                                            <img *ngIf="form.value.img =='' && !imgTemp"
+                                                [src]="url+'/upload/proveedores/default.jpg' "
+                                                alt="Click aquí para subir tu foto"
+                                                title="Click aquí para subir tu foto" class="img-avatar">
+                                            <img *ngIf="form.value.img !=='' && !imgTemp"
+                                                [src]="url+'/upload/proveedores/'+form.value.img"
+                                                alt="Click aquí para subir tu foto "
+                                                title="Click aquí para subir tu foto" class="img-avatar">
+
+
+                                        </label>
+
+                                        <input id="file-input-img" type="file" class="ion-no-border"
+                                            (change)="cambiarImagen($event,'img')" />
+
+
+
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 mt-3" *ngIf="isProveedor">
+
+                                    <div class="image-upload" class="text-center">
+
+                                        <label for="file-input-bannerImg">
+                                            <!--  [ngClass]=" {'pointer':edit ==='true'}" -->
+
+
+                                            <img *ngIf="form.value.bannerImg =='' && !imgTemp"
+                                                [src]="url+'/upload/proveedores/default.jpg' "
+                                                alt="Click aquí para subir tu foto"
+                                                title="Click aquí para subir tu foto" class="img-avatar">
+                                            <img *ngIf="form.value.bannerImg !=='' && !imgTemp"
+                                                [src]="url+'/upload/proveedores/'+form.value.bannerImg"
+                                                alt="Click aquí para subir tu foto "
+                                                title="Click aquí para subir tu foto" class="img-avatar">
+
+
+                                        </label>
+
+                                        <input id="file-input-bannerImg" type="file" class="ion-no-border"
+                                            (change)="cambiarImagen($event,'bannerImg')" />
+
+
+
+                                    </div>
+                                </div>
+                                <div class="row mt-3 text-center">
+
+                                    <div class="col-3 ma ">
+
+                                        <button class="btn primaB white" type="button" (click)="addContactos()">
+                                            <i class="icon-plus"></i> Agregar contacto
+                                        </button>
+
+                                        <span *ngIf="submited && form.value.contactos.length ==0 " class="error">Son
+                                            requeridos
+                                        </span>
+                                    </div>
+                                </div>
+                                <div formArrayName="contactos">
+                                    <div *ngFor="let contacto of contactos['controls'] ; let i=index">
+
+
+                                        <div [formGroupName]="i">
+                                            <div class="row">
+
+                                                <div class="col-12 col-md-4 mt-3">
+
+                                                    <div class="form-group">
+                                                        <label for="tipoContacto">Tipo de contacto</label> 
+                                                        <select name="" id="tipoContacto" formControlName="tipoContacto"
+                                                            class="form-control upper">
+
+                                                            <ng-container *ngIf="tipoContactos">
+                                                                <option value="">Selecciona el tipo de contacto</option>
+                                                                <option [value]="item.uid"
+                                                                    *ngFor="let item of tipoContactos">
+
+                                                                    {{item.nombre}}
+                                                                </option>
+                                                            </ng-container>
+                                                        </select>
+                                                    </div>
+                                                    <span
+                                                        *ngIf="submited && errorControl['contactos']['controls'][i]['controls']['tipoContacto'].errors "
+                                                        class="error">Es
+                                                        requerido
+                                                    </span>
+                                                </div>
+                                                <div class="col-12 col-md-4 mt-3">
+                                                    <div class="form-group">
+                                                        <label for="value">Valor</label>
+                                                        <input type="text" class="form-control upper" id="value"
+                                                            formControlName="value" required placeholder="Valor">
+                                                    </div>
+                                                    <span
+                                                        *ngIf="submited && errorControl['contactos']['controls'][i]['controls']['value'].errors "
+                                                        class="error">Es
+                                                        requerido
+                                                    </span>
+                                                </div>
+
+
+                                                <div class=" col-12 col-md-4 mt-4 text-center">
+                                                    <button class="btn less " (click)="removeContactos(i)">
+                                                        <i class="icon-minus"></i>
+                                                    </button>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="row mt-3 text-center" *ngIf="setColor">
+
+                                    <div class="col-3 ma ">
+
+                                        <button class="btn primaB white" type="button" (click)="addColors()">
+                                            <i class="icon-plus"></i> Agregar Color
+                                        </button>
+                                        <span *ngIf="submited && form.value.colores.length ==0 " class="error">Son
+                                            requeridos
+                                        </span>
+                                    </div>
+                                </div>
+                                <div formArrayName="colores">
+                                    <div *ngFor="let color of colores['controls'] ; let i=index">
+
+
+                                        <div [formGroupName]="i">
+                                            <div class="row">
+
+                                                <div class="col-12 col-md-4 mt-3">
+
+                                                    <div class="form-group">
+                                                        <label for="tipoColor">Tipo de color</label> 
+                                                        <select name="" id="tipoColor" formControlName="tipoColor"
+                                                            class="form-control upper">
+
+                                                            <ng-container *ngIf="tipoColores">
+                                                                <option value="">Selecciona el tipo de color</option>
+                                                                <option [value]="item.uid"
+                                                                    *ngFor="let item of tipoColores">
+
+                                                                    {{item.nombre}}
+                                                                </option>
+                                                            </ng-container>
+                                                        </select>
+                                                    </div>
+                                                    <span
+                                                        *ngIf="submited && errorControl['colores']['controls'][i]['controls']['tipoColor'].errors "
+                                                        class="error">Es
+                                                        requerido
+                                                    </span>
+                                                </div>
+                                                <div class="col-12 col-md-4 mt-3">
+                                                    <div class="form-group">
+                                                        <label for="value">Valor</label>
+                                                        <input type="color" class="form-control upper" id="value"
+                                                            formControlName="value" required placeholder="Valor">
+                                                    </div>
+                                                    <span
+                                                        *ngIf="submited && errorControl['colores']['controls'][i]['controls']['value'].errors "
+                                                        class="error">Es
+                                                        requerido
+                                                    </span>
+                                                </div>
+
+
+                                                <div class=" col-12 col-md-4 mt-4 text-center">
+                                                    <button class="btn less " (click)="removeColors(i)">
+                                                        <i class="icon-minus"></i>
+                                                    </button>
+
+                                                </div>
+
+
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+                            <div class="row mt-5" *ngIf="proveedor">
+                                <div class="col-6  text-center ma">
+                                    <label for="customRange2" class="form-label">
+                                        QR de tu pagina
+                                    </label>
+                                    <span>
+                                        <a [href]="urlLink" target="_blank"
+                                            style="text-decoration: none; color:var(--cPrincipal); font-weight: 800;">
+                                            {{urlLink}}
+                                        </a>
+                                    </span>
+
+                                    <div class="qrcodeImage">
+                                        <qrcode [qrdata]="urlLink" [allowEmptyString]="true"
+                                            [ariaLabel]="'QR Code image with the following content...'"
+                                            [cssClass]="'center'" [colorDark]="proveedor.colores[0].value"
+                                            [colorLight]="'#ffffffff'" [elementType]="'canvas'"
+                                            [errorCorrectionLevel]="'M'"
+                                            [imageSrc]="url+'/upload/proveedores/'+proveedor.img" [imageHeight]="75"
+                                            [imageWidth]="75" [margin]="4" [scale]="1"
+                                            [title]="'A custom title attribute'" [width]="300"></qrcode>
+                                    </div>
+
+
+                                </div>
+                                <div class="col-12   mt-3" *ngIf="location">
+                                    <label for="ubicacion ">Ubicación </label>
+                                    <app-mapscreen (coordenadas)="showCoordenadas($event)" [sendCoords]="location"
+                                        [isEditV]="true" type="ubicacion"></app-mapscreen>
+                                    <span *ngIf="submited && errorControlCot ['ubicacion'].errors " class="error">Favor
+                                        de
+                                        seleccionar un lugar
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="row mt-5 text-center">
+
+                                <div class="col-12 col-md-6  mt-3 text-center ">
+                                    <button type="submit" class="btn btn-lg btn-block but  "
+                                        *ngIf="!proveedor">Crear</button>
+                                    <button type="button" class="btn btn-lg btn-block but  " (click)="onSubmitEdit()"
+                                        *ngIf="proveedor">Editar</button>
+
+                                </div>
+                                <div class="col-12 col-md-6 mt-3 text-center">
+                                    <button class="btn btn-lg btn-block btn-warning" (click)="back()">Regresar</button>
+
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+
+</main>
+<app-footer></app-footer>

@@ -32,21 +32,26 @@ export class FileService {
     try {
       var url = ''
 
-      if (type && type !== '') {
+      if (type !== '' && type != undefined) {
 
         if (tipo == 'proveedor') {
 
           url = `${base_url}/upload/${tipo}/proveedor/${type}/${id}`
+
         } else if (tipo == 'fiestas') {
 
           url = `${base_url}/upload/${tipo}/fiestas/${type}/${id}`
-        } else {
+
+        } else if (tipo == 'items') {
 
           url = `${base_url}/upload/${tipo}/items/${type}/${id}`
+
         }
       } else {
 
         url = `${base_url}/upload/${tipo}/${id}`
+
+
       }
 
 
@@ -74,10 +79,19 @@ export class FileService {
   }
   deleteFoto(
 
-    tipo: 'galerias',
+    tipo: string,
     id: string,
   ) {
     const url = `${base_url}/upload/remove/${tipo}/${id}`
+
+    return this.http.patch(url, this.headers)
+  }
+  deleteFile(
+    type: string,
+    tipo: string,
+    id: string,
+  ) {
+    const url = `${base_url}/upload/remove/${type}/${tipo}/${id}`
 
     return this.http.patch(url, this.headers)
   }

@@ -23,6 +23,7 @@ export class HeaderComponent {
   SLN = environment.salon_role
   URS = environment.user_role
   CHK = environment.chk_role
+  PRV = environment.prv_role
   ANF = environment.anf_role
   ver = environment.version
   rol = this.functionsService.getLocal('role')

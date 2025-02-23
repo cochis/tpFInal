@@ -38,6 +38,7 @@ export class RegisterComponent {
   paquete: Paquete
   ADM = environment.admin_role
   SLN = environment.salon_role
+  PRV = environment.prv_role
   URS = environment.user_role
   ANF = environment.anf_role
   PCANFI = environment.CANTIDADFIESTAS

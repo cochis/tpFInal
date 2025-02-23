@@ -1,0 +1,218 @@
+<app-header></app-header>
+<app-loading *ngIf="loading"></app-loading>
+
+<body id="top" *ngIf="!loading">
+
+    <main>
+
+
+
+
+        <section class="hero-section d-flex justify-content-center align-items-center" id="section_1">
+            <div class="container">
+                <div class="row">
+
+                    <div class=" col-12 mx-auto">
+                        <h1 class="text-white text-center">Calificación de productos o servicios</h1>
+
+                        <h6 class="text-center">Para nosotros es importante su valoración de los servicios y productos
+                            de nuestros proveedores </h6>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+
+
+        <div class="container">
+
+            <div class="row mt-5" *ngIf="!thankOk">
+
+                <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                    <div class="row upper">
+                        <div class="col-12 col-md-4 ma   mt-3 text-center">
+                            <div class="form-group">
+                                <h2> MyTicketParty</h2>
+
+                                <br>
+
+                                <span style="color: #80d0c7; font-size: 25px;">
+
+
+                                    <b *ngIf="cotizacion && calificacionPlat.value >=1  ">
+                                        <i class="bi bi-star-fill"></i>
+                                    </b>
+                                    <b *ngIf="cotizacion && calificacionPlat.value >=2   ">
+                                        <i class="bi bi-star-fill"></i>
+                                    </b>
+                                    <b *ngIf="cotizacion && calificacionPlat.value >=3  ">
+                                        <i class="bi bi-star-fill"></i>
+                                    </b>
+                                    <b *ngIf="cotizacion && calificacionPlat.value >=4  ">
+                                        <i class="bi bi-star-fill"></i>
+                                    </b>
+                                    <b *ngIf="cotizacion && calificacionPlat.value ==5  ">
+                                        <i class="bi bi-star-fill"></i>
+                                    </b>
+                                </span>
+                                <input type="range" class="form-range mt-3" min="1" max="5" step="1"
+                                    id="calificacionPlat" formControlName="calificacionPlat" #calificacionPlat
+                                    style="background-color: #13547a; padding: 5px">
+                                <div class="col-12">
+                                    <div style="float: left;">
+
+                                        <span class="text-start">
+                                            1
+                                        </span>
+                                    </div>
+                                    <div style="float: right;">
+
+                                        <span class="text-end">
+                                            5
+                                        </span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <span *ngIf="submited && errorControl['calificacionPlat'].errors " class="error">Es
+                                requerido
+                            </span>
+                        </div>
+
+
+
+                        <div formArrayName="productos">
+                            <div *ngFor="let item of productos['controls'] ; let i=index">
+
+
+                                <div [formGroupName]="i">
+                                    <div class="row upper text-center">
+
+                                        <div class="col-12 col-md-4 ma mt-3 text-center">
+                                            <h2> {{form.value.productos[i].nombre}} -
+                                                {{form.value.productos[i].opcion}}</h2>
+                                            <div class="form-group text-centerƒ">
+                                                <span style="color: #80d0c7; font-size: 25px;">
+
+
+                                                    <b *ngIf="cotizacion && calificacion.value >=1  ">
+                                                        <i class="bi bi-star-fill"></i>
+                                                    </b>
+                                                    <b *ngIf="cotizacion && calificacion.value >=2   ">
+                                                        <i class="bi bi-star-fill"></i>
+                                                    </b>
+                                                    <b *ngIf="cotizacion && calificacion.value >=3  ">
+                                                        <i class="bi bi-star-fill"></i>
+                                                    </b>
+                                                    <b *ngIf="cotizacion && calificacion.value >=4  ">
+                                                        <i class="bi bi-star-fill"></i>
+                                                    </b>
+                                                    <b *ngIf="cotizacion && calificacion.value ==5  ">
+                                                        <i class="bi bi-star-fill"></i>
+                                                    </b>
+                                                </span>
+
+
+                                                <input type="range" class="form-range mt-3" min="1" max="5" step="1"
+                                                    id="calificacion{{i}}" formControlName="calificacion" #calificacion
+                                                    (change)="setCalificacion(i)"
+                                                    style="background-color: #13547a; padding: 5px">
+
+                                                <div class="col-12">
+                                                    <div style="float: left;">
+
+                                                        <span class="text-start">
+                                                            1
+                                                        </span>
+                                                    </div>
+                                                    <div style="float: right;">
+
+                                                        <span class="text-end">
+                                                            5
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <span
+                                                *ngIf="submited && errorControl['productos']['controls'][i]['controls']['calificacion'].errors "
+                                                class="error">Es
+                                                requerido
+                                            </span>
+                                        </div>
+
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12   mt-3 text-center">
+                            <div class="form-group">
+                                <h2> Comentarios</h2>
+
+                                <br>
+
+
+                                <textarea class="form-control mt-3" min="1" max="5" step="1" id="comentarios"
+                                    style="height: 200px;" formControlName="comentarios" #comentarios> </textarea>
+
+                            </div>
+                            <span *ngIf="submited && errorControl['comentarios'].errors " class="error">Es
+                                requerido
+                            </span>
+                        </div>
+
+
+                    </div>
+
+                    <div class="row mt-5 text-center">
+
+                        <div class="col-12 col-md-6  mt-3 text-center ">
+                            <button type="submit" class="btn btn-lg btn-block but  ">Calificar</button>
+
+                        </div>
+                        <div class="col-12 col-md-6 mt-3 text-center">
+                            <button class="btn btn-lg btn-block btn-warning" (click)="back()">Salir</button>
+
+                        </div>
+                    </div>
+                </form>
+
+
+            </div>
+
+
+            <div class="row mt-5" *ngIf="thankOk">
+                <div class="col-6 ma text-center mt-5">
+                    <img src="../../../../../../../../assets/images/lg.png"
+                        style="padding:15px; background-color: #13547a;border-radius: 20px;" alt="">
+                    <h3 class="mt-5">
+                        Le agradecemos sus comentarios
+                    </h3>
+                </div>
+                <div class="col-12 text-center mt-5">
+                    <button class="custom-btn  but ma " routerLink="/">
+                        Salir</button>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+    </main>
+
+    <app-footer></app-footer>
+</body>

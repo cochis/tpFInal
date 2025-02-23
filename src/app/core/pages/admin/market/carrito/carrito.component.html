@@ -107,7 +107,7 @@
                                                             <input type="number" class="form-control upper text-center"
                                                                 id="cantidad" formControlName="cantidad" required
                                                                 placeholder="Cantidad" (change)="changeValor()"
-                                                                (keyup)="changeValor()">
+                                                                (keyup)="changeValor()" min="1">
                                                         </th>
 
                                                         <th class="text-center">
@@ -175,13 +175,26 @@ direccion:
 ubicacion:   -->
                     <form [formGroup]="formCot" (ngSubmit)="onSubmitCot()">
                         <div class="row">
+                            <div class="col-12 col-md-6 ma mt-3">
+                                <div class="form-group">
+                                    <label for="nombreEvento">Nombre del evento</label>
+                                    <input type="text" class="form-control upper" id="nombreEvento"
+                                        formControlName="nombreEvento" required placeholder="Nombre del evento">
+                                </div>
+                                <span *ngIf="submited && errorControlCot ['nombreEvento'].errors " class="error">Es
+                                    requerido
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row">
+
                             <div class="col-12 col-md-4 ma mt-3">
                                 <div class="form-group">
                                     <label for="nombreAnf">Nombre Anfitrión</label>
                                     <input type="text" class="form-control upper" id="nombreAnf"
                                         formControlName="nombreAnf" required placeholder="Nombre Anfitrión">
                                 </div>
-                                <span *ngIf="submited && errorControl ['nombreAnf'].errors " class="error">Es
+                                <span *ngIf="submited && errorControlCot ['nombreAnf'].errors " class="error">Es
                                     requerido
                                 </span>
                             </div>
@@ -194,7 +207,7 @@ ubicacion:   -->
                                         formControlName="apellidoPatAnf" required
                                         placeholder="Apellido paterno Anfitrión">
                                 </div>
-                                <span *ngIf="submited && errorControl['apellidoPatAnf'].errors " class="error">Es
+                                <span *ngIf="submited && errorControlCot['apellidoPatAnf'].errors " class="error">Es
                                     requerido
                                 </span>
                             </div>
@@ -202,10 +215,9 @@ ubicacion:   -->
                                 <div class="form-group">
                                     <label for="apellidoMatAnf">Apellido materno Anfitrión</label>
                                     <input type="text" class="form-control upper" id="apellidoMatAnf"
-                                        formControlName="apellidoMatAnf" required
-                                        placeholder="Apellido materno Anfitrión">
+                                        formControlName="apellidoMatAnf" placeholder="Apellido materno Anfitrión">
                                 </div>
-                                <span *ngIf="submited && errorControl ['apellidoMatAnf'].errors " class="error">Es
+                                <span *ngIf="submited && errorControlCot ['apellidoMatAnf'].errors " class="error">Es
                                     requerido
                                 </span>
                             </div>
@@ -215,7 +227,7 @@ ubicacion:   -->
                                     <input type="text" class="form-control upper" id="telfonoAnf"
                                         formControlName="telfonoAnf" required placeholder="Teléfono del anfitrión">
                                 </div>
-                                <span *ngIf="submited && errorControl ['telfonoAnf'].errors " class="error">Es
+                                <span *ngIf="submited && errorControlCot ['telfonoAnf'].errors " class="error">Es
                                     requerido
                                 </span>
                             </div>
@@ -225,7 +237,7 @@ ubicacion:   -->
                                     <input type="text" class="form-control upper" id="emailAnf"
                                         formControlName="emailAnf" required placeholder="Correo electrónico Anfitrión">
                                 </div>
-                                <span *ngIf="submited && errorControl ['emailAnf'].errors " class="error">Es
+                                <span *ngIf="submited && errorControlCot ['emailAnf'].errors " class="error">Es
                                     requerido
                                 </span>
                             </div>
@@ -240,7 +252,7 @@ ubicacion:   -->
                                                 #isAnfitironFestejado (change)="isAnfFes(isAnfitironFestejado)">
                                         </div>
                                     </div>
-                                    <span *ngIf="submited && errorControl['isAnfitironFestejado'].errors "
+                                    <span *ngIf="submited && errorControlCot['isAnfitironFestejado'].errors "
                                         class="error">Es
                                         requerido
                                     </span>
@@ -253,9 +265,9 @@ ubicacion:   -->
                                 <div class="form-group">
                                     <label for="nombreFes">Nombre Festejado</label>
                                     <input type="text" class="form-control upper" id="nombreFes"
-                                        formControlName="nombreFes" required placeholder="Nombre Festejado">
+                                        formControlName="nombreFes" placeholder="Nombre Festejado">
                                 </div>
-                                <span *ngIf="submited && errorControl ['nombreFes'].errors " class="error">Es
+                                <span *ngIf="submited && errorControlCot ['nombreFes'].errors " class="error">Es
                                     requerido
                                 </span>
                             </div>
@@ -265,10 +277,9 @@ ubicacion:   -->
                                 <div class="form-group">
                                     <label for="apellidoPatFes">Apellido paterno Festejado</label>
                                     <input type="text" class="form-control upper" id="apellidoPatFes"
-                                        formControlName="apellidoPatFes" required
-                                        placeholder="Apellido paterno Festejado">
+                                        formControlName="apellidoPatFes" placeholder="Apellido paterno Festejado">
                                 </div>
-                                <span *ngIf="submited && errorControl['apellidoPatFes'].errors " class="error">Es
+                                <span *ngIf="submited && errorControlCot['apellidoPatFes'].errors " class="error">Es
                                     requerido
                                 </span>
                             </div>
@@ -276,10 +287,9 @@ ubicacion:   -->
                                 <div class="form-group">
                                     <label for="apellidoMatFes">Apellido materno Festejado</label>
                                     <input type="text" class="form-control upper" id="apellidoMatFes"
-                                        formControlName="apellidoMatFes" required
-                                        placeholder="Apellido materno Festejado">
+                                        formControlName="apellidoMatFes" placeholder="Apellido materno Festejado">
                                 </div>
-                                <span *ngIf="submited && errorControl ['apellidoMatFes'].errors " class="error">Es
+                                <span *ngIf="submited && errorControlCot ['apellidoMatFes'].errors " class="error">Es
                                     requerido
                                 </span>
                             </div>
@@ -294,7 +304,8 @@ ubicacion:   -->
                                         [min]="todayDate" formControlName="fechaEvento" required
                                         placeholder="Fecha del evento" [min]="today">
                                 </div>
-                                <span *ngIf="submited && errorControl['fechaEvento'].errors " class="error">Es requerido
+                                <span *ngIf="submited && errorControlCot['fechaEvento'].errors " class="error">Es
+                                    requerido
                                 </span>
                             </div>
                             <div class="col-12 col-md-6 ma mt-3">
@@ -303,20 +314,16 @@ ubicacion:   -->
                                     <input type="text" class="form-control upper" id="direccion"
                                         formControlName="direccion" required placeholder="Dirección del evento">
                                 </div>
-                                <span *ngIf="submited && errorControl ['direccion'].errors " class="error">Es
+                                <span *ngIf="submited && errorControlCot ['direccion'].errors " class="error">Es
                                     requerido
                                 </span>
                             </div>
-                            <div class="col-12  ma mt-3">
-                                <div class="form-group">
-                                    <label for="ubicacionGoogle">Ubicación Maps Google</label>
-                                    <app-info-ubicacion></app-info-ubicacion>
-                                    <textarea type="text" class="form-control upper" id="ubicacion"
-                                        formControlName="ubicacion" required
-                                        placeholder="Ubicación del evento"></textarea>
-                                </div>
-                                <span *ngIf="submited && errorControl ['ubicacion'].errors " class="error">Es
-                                    requerido
+                            <div class="col-12   mt-3" *ngIf="location">
+                                <label for="ubicacion ">Ubicación </label>
+                                <app-mapscreen (coordenadas)="showCoordenadas($event)" [sendCoords]="location"
+                                    [isEditV]="true" type="ubicacion"></app-mapscreen>
+                                <span *ngIf="submited && errorControlCot ['ubicacion'].errors " class="error">Favor de
+                                    seleccionar un lugar
                                 </span>
                             </div>
 
@@ -452,7 +459,7 @@ ubicacion:   -->
                     </div>
                 </div>
             </div>
-            <app-qr [qr]="qr"></app-qr>
+            <!--      <app-qr [qr]="qr"></app-qr> -->
 
             <div class="container">
 
@@ -460,7 +467,8 @@ ubicacion:   -->
                 <div class="row mt-5  text-center">
 
                     <div class="col-6  ma " *ngIf="isLogin && !isCotizacion">
-                        <button class="btn but" type="button" (click)="isCheckout()"> Generar Cotización</button>
+                        <button class="btn but" type="button" (click)="isCheckout()" *ngIf="usuario"> Generar
+                            Cotización</button>
                     </div>
                     <div class="col-6  ma " *ngIf="isLogin && isCotizacion">
                         <button class="btn but2" type="button" (click)="isCheckout()"> Ajustar</button>
@@ -481,7 +489,6 @@ ubicacion:   -->
                 </div>
             </div>
         </section>
-
 
 
 

@@ -44,7 +44,7 @@
                                             [readonly]="edit==='false'">
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6 mt-3">
+                                <div class="col-12 col-md-4 mt-3">
 
                                     <div class="form-group">
                                         <label for="email">Correo electrónico</label>
@@ -56,7 +56,7 @@
                                     </span>
                                 </div>
 
-                                <div class="col-12 col-md-6 mt-3">
+                                <div class="col-12 col-md-4 mt-3">
 
                                     <div class="form-group" *ngIf="edit ==='true'">
                                         <label for="rol">Rol</label>
@@ -77,7 +77,40 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6 mt-3">
+                                <div class="col-12 col-md-4 mt-3">
+
+                                    <div class="form-group" *ngIf="edit ==='false'">
+
+                                        <div class="form-group">
+                                            <label for="telefono">Teléfono</label>
+                                            <input type="text" class="form-control upper" id="telefono"
+                                                placeholder="telefono" formControlName="telefono"
+                                                [readonly]="edit==='false'">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4 mt-3">
+
+                                    <div class="form-group" *ngIf="edit ==='true'">
+                                        <label for="rol">Rol</label>
+                                        <select name="" id="rol" formControlName="role" class="form-control upper">
+                                            <option value="">Selecciona un rol</option>
+                                            <option [value]="item.uid" *ngFor="let item of roles">{{item.nombre}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <span *ngIf="submited && errorControl['role'].errors " class="error">Es requerido
+                                    </span>
+                                    <div class="form-group" *ngIf="edit ==='false'">
+
+                                        <div class="form-group">
+                                            <label for="rol">Rol</label>
+                                            <input type="text" class="form-control upper" id="rol" placeholder="Rol"
+                                                formControlName="role" [readonly]="edit==='false'">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4 mt-3">
 
                                     <div class="form-group" *ngIf="edit ==='true'">
                                         <label for="tipoCentro">Tipo de centro</label>
@@ -102,7 +135,7 @@
                                 </div>
 
 
-                                <div class="col-12 col-md-6 mt-3">
+                                <div class="col-12 col-md-4 mt-3">
 
 
                                     <div class="form-group" *ngIf="edit ==='false'">

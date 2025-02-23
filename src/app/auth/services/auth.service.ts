@@ -39,6 +39,7 @@ export class AuthService {
         this.functionsService.setLocal('token', resp.token)
         this.functionsService.setLocal('uid', resp.uid)
         this.functionsService.setLocal('email', resp.email)
+        this.functionsService.setLocal('proveedor', resp.proveedor[0])
 
         this.roleService.cargarRoleById(resp.role).subscribe((res: CargarRole) => {
 
@@ -70,7 +71,7 @@ export class AuthService {
   renewToken() {
     const uid = this.functionsService.getLocal('uid')
     const url = `${base_url}/login/renew/${uid}`
-  
+
 
     return this.http.get(url)
   }

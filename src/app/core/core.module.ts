@@ -128,6 +128,16 @@ import { CrearCpComponent } from './pages/admin/cps/crear-cp/crear-cp.component'
 import { CrearPaisComponent } from './pages/admin/paises/crear-pais/crear-pais.component';
 import { EditarPaisComponent } from './pages/admin/paises/editar-pais/editar-pais.component';
 import { VistaPaisesComponent } from './pages/admin/paises/vista-paises/vista-paises.component';
+import { VistaEstatusCotizacionesComponent } from './pages/admin/estatus-cotizaciones/vista-estatus-cotizaciones/vista-estatus-cotizaciones.component';
+import { EditarEstatusCotizacionComponent } from './pages/admin/estatus-cotizaciones/editar-estatus-cotizacion/editar-estatus-cotizacion.component';
+import { CrearEstatusCotizacionComponent } from './pages/admin/estatus-cotizaciones/crear-estatus-cotizacion/crear-estatus-cotizacion.component';
+import { VistaCotizacionesComponent } from './pages/admin/cotizaciones/vista-cotizaciones/vista-cotizaciones.component';
+import { CrearCotizacionComponent } from './pages/admin/cotizaciones/crear-cotizacion/crear-cotizacion.component';
+import { EditarCotizacionComponent } from './pages/admin/cotizaciones/editar-cotizacion/editar-cotizacion.component';
+import { MisCotizacionesComponent } from './pages/admin/cotizaciones/mis-cotizaciones/mis-cotizaciones.component';
+import { MiCotizacionComponent } from './pages/admin/cotizaciones/mi-cotizacion/mi-cotizacion.component';
+import { EditarDatosComponent } from './pages/admin/market/admin/proveedors/editar-datos/editar-datos.component';
+import { CalificacionComponent } from './pages/admin/market/admin/items/calificacion/calificacion.component';
 
 
 
@@ -258,7 +268,17 @@ import { VistaPaisesComponent } from './pages/admin/paises/vista-paises/vista-pa
     CrearCpComponent,
     CrearPaisComponent,
     EditarPaisComponent,
-    VistaPaisesComponent
+    VistaPaisesComponent,
+    VistaEstatusCotizacionesComponent,
+    EditarEstatusCotizacionComponent,
+    CrearEstatusCotizacionComponent,
+    VistaCotizacionesComponent,
+    CrearCotizacionComponent,
+    EditarCotizacionComponent,
+    MisCotizacionesComponent,
+    MiCotizacionComponent,
+    EditarDatosComponent,
+    CalificacionComponent
 
   ],
   imports: [

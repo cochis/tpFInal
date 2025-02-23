@@ -54,6 +54,8 @@ export class ItemsService {
               tc.cantidades,
               tc.idealTo,
               tc.calificacion,
+              tc.timesCalificado,
+              tc.promedioCalificacion,
               tc.usuarioCreated,
               tc.activated,
               tc.dateCreated,
@@ -93,6 +95,8 @@ export class ItemsService {
               tc.cantidades,
               tc.idealTo,
               tc.calificacion,
+              tc.timesCalificado,
+              tc.promedioCalificacion,
               tc.usuarioCreated,
               tc.activated,
               tc.dateCreated,
@@ -123,6 +127,13 @@ export class ItemsService {
     const url = `${base_url}/items/${item.uid}`
     const data = {
       ...item,
+      lastEdited: Date.now(),
+    }
+    return this.http.put(url, data, this.headers)
+  }
+  calificarItem(item: string, calificacion) {
+    const url = `${base_url}/items/calificar/${item}/${calificacion}`
+    const data = {
       lastEdited: Date.now(),
     }
     return this.http.put(url, data, this.headers)

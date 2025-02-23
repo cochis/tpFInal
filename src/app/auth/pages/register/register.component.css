@@ -6,7 +6,7 @@
      height: 100vh;
 
  }
- 
+
  .container {
      height: 100%;
      align-content: center;
@@ -17,7 +17,7 @@
      height: auto;
      margin-top: auto;
      margin-bottom: auto;
-     width: 400px;
+     width: 500px;
      background-color: rgba(0, 0, 0, 0.5) !important;
  }
 

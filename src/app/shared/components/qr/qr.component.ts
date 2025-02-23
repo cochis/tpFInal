@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import { FixMeLater } from 'angularx-qrcode';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -6,15 +7,40 @@ import { environment } from 'src/environments/environment';
   templateUrl: './qr.component.html',
   styleUrls: ['./qr.component.css']
 })
-export class QrComponent implements OnInit {
+export class QrComponent implements AfterViewInit, OnInit {
 
   @Input() qr: any;
   url = environment.base_url
-  obj: any
+  text_url = environment.text_url
+  obj: any = undefined
+  urlLink = ''
+  loading = false
+  constructor() {
+    this.loading = true
 
+  }
   ngOnInit() {
 
 
+
+
   }
+
+  ngAfterViewInit(): void {
+
+    this.obj = JSON.parse(this.qr)
+
+    this.urlLink = JSON.stringify(this.text_url + 'core/vista-proveedor/' + this.obj.uid)
+
+
+    setTimeout(() => {
+      this.loading = false
+    }, 1500);
+
+
+
+  }
+
+
 
 }

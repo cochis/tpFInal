@@ -34,6 +34,9 @@ export class EmailsService {
   sendMailByBoleto(data: any) {
     return this.http.post(`${base_url}/email/byBoleto/${data.uid}`, data, this.headers)
   }
+  sendMailCotizacion(id: string, data: any) {
+    return this.http.post(`${base_url}/email/cotizacion/${id}`, data, this.headers)
+  }
 
 
 

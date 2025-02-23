@@ -34,8 +34,16 @@ import { environment } from 'src/environments/environment';
 export class CrearItemComponent {
   loading = false
   item: any
+  rol = this.functionsService.getLocal('role')
+  ADM = environment.admin_role
+  ANF = environment.anf_role
+  SLN = environment.salon_role
+  URS = environment.user_role
+  PRV = environment.prv_role
+
   public form!: FormGroup
   today: Number = this.functionsService.getToday()
+  uid = this.functionsService.getLocal('uid')
   submited = false
   cargando: boolean = false
   msnOk: boolean = false
@@ -51,6 +59,10 @@ export class CrearItemComponent {
   typeImg = ''
 
   url = environment.base_url
+
+
+
+
   public imagenSubir!: File
   public imgTemp: any = undefined
 
@@ -72,6 +84,9 @@ export class CrearItemComponent {
     this.loading = true
     this.getCatalogos()
     this.createForm()
+
+
+
     setTimeout(() => {
       this.loading = false
     }, 1500);
@@ -338,6 +353,7 @@ export class CrearItemComponent {
 
         this.item = resp.item
         this.functionsService.alert('Item', 'Item creado', 'success')
+
         this.functionsService.navigateTo(`/core/items/editar-item/true/${this.item.uid}`)
         this.loading = false
       },
@@ -363,6 +379,30 @@ export class CrearItemComponent {
     this.functionsService.navigateTo('core/items/vista-items')
   }
   getCatalogos() {
+
+
+
+    if (this.rol === this.ADM) {
+      this.proveedorsService.cargarProveedorsAll().subscribe((resp: CargarProveedors) => {
+        this.proveedors = resp.proveedors
+
+      },
+        (error) => {
+          console.error('error::: ', error);
+          this.functionsService.alertError(error, 'Tipo de proveedores')
+        })
+    } else {
+      this.proveedorsService.cargarProveedorsByCreador(this.uid).subscribe((resp: CargarProveedors) => {
+        this.proveedors = resp.proveedors
+
+
+      },
+        (error) => {
+          console.error('error::: ', error);
+          this.functionsService.alertError(error, 'Tipo de proveedores')
+        })
+    }
+
     this.tipoContactosService.cargarTipoContactosAll().subscribe((resp: CargarTipoContactos) => {
       this.tipoContactos = resp.tipoContactos
 
@@ -395,14 +435,7 @@ export class CrearItemComponent {
         console.error('error::: ', error);
         this.functionsService.alertError(error, 'Tipo de items')
       })
-    this.proveedorsService.cargarProveedorsAll().subscribe((resp: CargarProveedors) => {
-      this.proveedors = resp.proveedors
 
-    },
-      (error) => {
-        console.error('error::: ', error);
-        this.functionsService.alertError(error, 'Tipo de proveedores')
-      })
     this.categoriaItemsService.cargarCategoriaItemsAll().subscribe((resp: CargarCategoriaItems) => {
       this.categoriaItems = resp.categoriaItems
 

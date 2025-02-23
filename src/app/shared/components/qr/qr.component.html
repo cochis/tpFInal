@@ -1,6 +1,14 @@
-<div class="qrcodeImage" *ngIf="qr">
-    <qrcode [qrdata]="qr.data" [allowEmptyString]="true" [ariaLabel]="'QR Code image with the following content...'"
-        [cssClass]="'center'" [colorDark]="qr.colorP" [colorLight]="qr.colorB" [elementType]="'canvas'"
-        [errorCorrectionLevel]="'H'" [imageSrc]="qr.img" [imageHeight]="90" [imageWidth]="90" [margin]="2" [scale]="1"
-        [title]="'A custom title attribute'" [width]="300"></qrcode>
+<app-loading *ngIf="loading"></app-loading>
+<div class="qrcodeImage" *ngIf="!loading">
+    <label for="customRange2" class="form-label">
+        QR de tu pagina {{urlLink}}
+    </label>
+
+
+    <qrcode [qrdata]="urlLink" [allowEmptyString]="true" [ariaLabel]="'QR Code image with the following content...'"
+        [cssClass]="'center'" [elementType]="'canvas'" [errorCorrectionLevel]="'M'" [colorDark]="obj.colores[0].value"
+        [colorLight]="'#FFFFFF'" [title]="urlLink" [width]=" rango.value "
+        [imageSrc]="url+'/upload/proveedores/'+obj.img" [imageHeight]="100" [imageWidth]="100">
+    </qrcode>
+
 </div>

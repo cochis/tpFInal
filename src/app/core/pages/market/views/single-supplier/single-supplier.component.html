@@ -59,7 +59,7 @@ background-image: url( {{url}}/upload/proveedores/{{proveedor.bannerImg}});backg
                         <div class="card-body">
                             <h5 class="card-title">{{getContact(item).nombre}}</h5>
                             <ng-container *ngIf="getContact(item).nombre === 'DIRECCIÓN'">
-                                <a href="{{item.value}}" target="_blank" class="btn  "
+                                <a href="{{proveedor.ubicacion}}" target="_blank" class="btn  "
                                     style=" color:{{getColor('P',proveedor.colores)}}">
                                     <b
                                         style=" color:{{getColor('S',proveedor.colores)}}; margin-right: 10px; font-size:35px;">
@@ -90,52 +90,20 @@ background-image: url( {{url}}/upload/proveedores/{{proveedor.bannerImg}});backg
                                         <i class="{{getContact(item).icon}}"></i>
                                     </b>{{item.value}}</a>
                             </ng-container>
+                            <ng-container *ngIf="getContact(item).nombre === 'WHATSAPP'">
+                                <a href="https://api.whatsapp.com/send?phone={{item.value}}&text=Hola%20quiero%20información"
+                                    target="_blank" class="btn  " style=" color:{{getColor('P',proveedor.colores)}}">
+                                    <b
+                                        style=" color:{{getColor('S',proveedor.colores)}}; margin-right: 10px; font-size:35px;">
+                                        <i class="{{getContact(item).icon}}"></i>
+                                    </b></a>
+                            </ng-container>
 
                         </div>
                     </div>
 
                 </div>
-                <!-- <div class="col-12 col-md-6 ma">
-                    <div class="card text-center">
 
-                        <div class="card-body">
-                            <h5 class="card-title">Correo electrónico</h5>
-
-                            <a href="mailto:info@example.com" class="btn  " style=" color:{{getColor('P',proveedor.colores)}}">
-                                <b style=" color:{{getColor('S',proveedor.colores)}}; margin-right: 10px; font-size:35px;">
-                                    <i class="bi bi-envelope-fill"></i>
-                                </b> </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 ma">
-                    <div class="card text-center">
-
-                        <div class="card-body">
-                            <h5 class="card-title">Dirección</h5>
-
-                            <a href="https://www.google.com/maps/place/MERC.+S.A.+DE+C.V./@19.4380324,-98.8961026,16z/data=!4m6!3m5!1s0x85d1e1338cb7ce4d:0xe7ba7e0cc320e43c!8m2!3d19.4407972!4d-98.8965804!16s%2Fg%2F11b6s14v1_?entry=ttu&g_ep=EgoyMDI1MDEyNi4wIKXMDSoASAFQAw%3D%3D"
-                                target="_blank" class="btn  " style=" color:{{getColor('P',proveedor.colores)}}">
-                                <b style=" color:{{getColor('S',proveedor.colores)}}; margin-right: 10px; font-size:35px;">
-                                    <i class="bi bi-pin-fill"></i>
-                                </b> </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 ma">
-                    <div class="card text-center">
-
-                        <div class="card-body">
-                            <h5 class="card-title">Pagina web</h5>
-
-                            <a href="https://myticketparty.com" target="_blank" class="btn  "
-                                style=" color:{{getColor('P',proveedor.colores)}}">
-                                <b style=" color:{{getColor('S',proveedor.colores)}}; margin-right: 10px; font-size:35px;">
-                                    <i class="bi bi-box-arrow-up-right"></i>
-                                </b>Myticketparty.com</a>
-                        </div>
-                    </div>
-                </div> -->
             </div>
         </div>
 

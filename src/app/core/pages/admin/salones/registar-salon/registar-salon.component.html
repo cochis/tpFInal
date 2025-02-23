@@ -58,33 +58,28 @@
                                 </div>
                                 <div class="col-6 col-md-4 mt-3">
                                     <div class="form-group">
-                                        <label for="municipioDelegacion">Municipio o Delegación</label>
-                                        <input type="text" class="form-control upper" id="municipioDelegacion"
-                                            formControlName="municipioDelegacion" placeholder="Municipio o Delegacion">
+                                        <label for="pais">País</label>
+                                        <select name="" id="pais" formControlName="pais" class="form-control upper"
+                                            #pais class="form-control upper">
+                                            <option value="">Selecciona un país</option>
+                                            <option [value]="item.clave " *ngFor="let item of paises">{{item.nombre }}
+                                            </option>
+                                        </select>
+
                                     </div>
-                                    <span *ngIf="submited && errorControl['municipioDelegacion'].errors "
-                                        class="error">Es
-                                        requerido</span>
-                                </div>
-                                <div class="col-6 col-md-4 mt-3">
-                                    <div class="form-group">
-                                        <label for="coloniaBarrio">Colonia o Barrio</label>
-                                        <input type="text" class="form-control upper" id="coloniaBarrio"
-                                            formControlName="coloniaBarrio" placeholder="Colonia o Barrio">
-                                    </div>
-                                    <span *ngIf="submited && errorControl['coloniaBarrio'].errors " class="error">Es
+                                    <span *ngIf="submited && errorControl['pais'].errors " class="error">Es
                                         requerido</span>
                                 </div>
                                 <div class="col-6 col-md-4 mt-3">
                                     <div class="form-group">
                                         <label for="cp">Código postal</label>
                                         <input type="text" class="form-control upper" id="cp" formControlName="cp"
-                                            placeholder="Código postal">
+                                            placeholder="Código postal" #cp (keyup)="getCps(pais.value,cp.value)">
                                     </div>
                                     <span *ngIf="submited && errorControl['cp'].errors " class="error">Es
                                         requerido</span>
                                 </div>
-                                <div class="col-6 col-md-3 mt-3">
+                                <div class="col-6 col-md-4 mt-3">
                                     <div class="form-group">
                                         <label for="estado">Estado</label>
                                         <input type="text" class="form-control upper" id="estado"
@@ -93,13 +88,36 @@
                                     <span *ngIf="submited && errorControl['estado'].errors " class="error">Es
                                         requerido</span>
                                 </div>
-                                <div class="col-6 col-md-3 mt-3">
+
+                                <div class="col-6 col-md-4 mt-3">
                                     <div class="form-group">
-                                        <label for="pais">País</label>
-                                        <input type="text" class="form-control upper" id="pais" formControlName="pais"
-                                            placeholder="País">
+                                        <label for="municipioDelegacion">Municipio o Delegación</label>
+                                        <select name="" id="municipioDelegacion" formControlName="municipioDelegacion"
+                                            class="form-control upper" #municipioDelegacion class="form-control upper">
+                                            <option value="">Selecciona un Municipio o Delegación</option>
+                                            <option [value]="item " *ngFor="let item of municipios">{{item }}
+                                            </option>
+                                        </select>
+
+
+
+
                                     </div>
-                                    <span *ngIf="submited && errorControl['pais'].errors " class="error">Es
+                                    <span *ngIf="submited && errorControl['municipioDelegacion'].errors "
+                                        class="error">Es
+                                        requerido</span>
+                                </div>
+                                <div class="col-6 col-md-4 mt-3">
+                                    <div class="form-group">
+                                        <label for="coloniaBarrio">Colonia o Barrio</label>
+                                        <select name="" id="coloniaBarrio" formControlName="coloniaBarrio"
+                                            class="form-control upper" #coloniaBarrio class="form-control upper">
+                                            <option value="">Selecciona una Colonia o Barrio</option>
+                                            <option [value]="item " *ngFor="let item of colonias">{{item }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <span *ngIf="submited && errorControl['coloniaBarrio'].errors " class="error">Es
                                         requerido</span>
                                 </div>
 

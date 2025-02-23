@@ -142,14 +142,18 @@ export class SingleProductComponent implements AfterViewInit {
 
 
   setCarrito(opcSelected) {
+
     this.form.value.usuario = (this.functionsService.getLocal('uid')) ? this.functionsService.getLocal('uid') : ''
 
 
     if (opcSelected !== null && this.cantidadSelected !== 0) {
       if (this.functionsService.getLocal('carrito')) {
         let carrito = this.functionsService.getLocal('carrito')
-
-        carrito.push(this.form.value)
+        let car = {
+          ...this.form.value,
+          idItem: this.id
+        }
+        carrito.push(car)
         this.functionsService.setLocal('carrito', carrito)
 
         this.cantidadSelected = 0
@@ -158,8 +162,12 @@ export class SingleProductComponent implements AfterViewInit {
 
       } else {
         let carrito = []
-
+        let car = {
+          ...this.form.value,
+          idItem: this.id
+        }
         carrito.push(this.form.value)
+
         this.functionsService.setLocal('carrito', carrito)
 
         this.cantidadSelected = 0

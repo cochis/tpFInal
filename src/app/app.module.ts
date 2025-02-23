@@ -18,6 +18,7 @@ import { UnauthorizedInterceptorService } from './interceptors/unauthorized-inte
 import { ModalModule } from '@developer-partners/ngx-modal-dialog';
 
 
+
 @NgModule({
   declarations: [
     AppComponent
@@ -36,6 +37,7 @@ import { ModalModule } from '@developer-partners/ngx-modal-dialog';
     QRCodeModule,
     NgbModalModule,
     ModalModule,
+
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable
@@ -43,6 +45,7 @@ import { ModalModule } from '@developer-partners/ngx-modal-dialog';
       registrationStrategy: 'registerWhenStable:30000'
     }),
     NgbModule,
+
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

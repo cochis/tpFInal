@@ -17,7 +17,7 @@
                     <div class="row">
                         <div class="row mt-5 text-center">
                             <div class="col-12  text-center">
-                                <button class="btn but   " (click)="newItem()">Nuevo item</button>
+                                <button class="btn but   " (click)="newItem()">Nuevo producto o servicio</button>
 
                             </div>
 
@@ -28,7 +28,7 @@
             <div class="row">
 
                 <div class="col-lg-12 col-12 text-center">
-                    <h2 class="mb-5">Items</h2>
+                    <h2 class="mb-5">Productos y Servicios</h2>
                 </div>
 
                 <div class="col-12 text-center">
@@ -80,8 +80,10 @@
 
 
                                     </td>
-                                    <td class="upper">
-
+                                    <td class="upper text-center">
+                                        <span *ngIf="item.calificacion ==0">
+                                            Sin valoración
+                                        </span>
                                         <i class="bi bi-star-fill m-1"
                                             style="font-size: 10px;  color: var(--primary-color) !important;"
                                             *ngIf="item.calificacion>0 && item.calificacion <=1"></i>

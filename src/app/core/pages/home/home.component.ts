@@ -10,6 +10,7 @@ import { TokenPushsService } from '../../services/tokenPush.service';
 import { SwPush } from '@angular/service-worker';
 import { MetaService } from '../../services/meta.service';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { ProveedorsService } from '../../services/proveedor.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -22,6 +23,7 @@ export class HomeComponent implements AfterViewInit {
   SLN = environment.salon_role
   URS = environment.user_role
   ANF = environment.anf_role
+  PRV = environment.prv_role
   editBoleto = false
   role = ''
   uid = ''
@@ -32,6 +34,7 @@ export class HomeComponent implements AfterViewInit {
   constructor(
     private functionsService: FunctionsService,
     private usuariosService: UsuariosService,
+    private proveedorsService: ProveedorsService,
     private boletosService: BoletosService,
     private tokenPushService: TokenPushsService,
     private swpush: SwPush,
@@ -59,6 +62,9 @@ export class HomeComponent implements AfterViewInit {
 
 
 
+
+
+
   }
 
   getUser(role) {
@@ -76,6 +82,13 @@ export class HomeComponent implements AfterViewInit {
         (error) => {
           this.functionsService.alertError(error, 'Home')
         })
+    } else if (role == this.PRV) {
+      this.proveedorsService.cargarProveedorsByCreador(this.uid).subscribe(resp => {
+        if (resp.proveedors.length == 0) {
+          this.functionsService.navigateTo('core/proveedores/editar-datos')
+        }
+
+      })
     }
   }
   scan() {

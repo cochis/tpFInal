@@ -35,7 +35,8 @@
                         <div class="checks" *ngIf="roles ">
 
                             <ng-container *ngFor="let item of roles">
-                                <div class="form-check" *ngIf="  item.clave == SLN || item.clave == ANF">
+                                <div class="form-check"
+                                    *ngIf="  item.clave == SLN || item.clave == ANF || item.clave == PRV">
                                     <input class="form-check-input" type="radio" formControlName="role" name="role"
                                         [value]="item.uid" id="role" checked>
                                     <label class="form-check-label" style="color:#fff" for="role">

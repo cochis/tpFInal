@@ -24,8 +24,8 @@ export class VerificationComponent {
 
     this.authService.verificationEmail(this.email).subscribe((resp: any) => {
       setTimeout(() => {
-        this.functionsService.clearLocal()
-        this.functionsService.navigateTo('auth/login')
+        /*  this.functionsService.clearLocal() */
+        /*  this.functionsService.navigateTo('auth/login') */
       }, 1500);
     })
 
