@@ -11,16 +11,20 @@ import { environment } from '../../../../environments/environment';
 export class MapViewComponent implements AfterViewInit {
   @Output() coordenadas!: EventEmitter<object>;
   @Output() coordenadasSelect!: EventEmitter<object>;
+  @Output() idMap!: EventEmitter<object>;
   @Input() sendCoords!: [number, number];
   @Input() isEdit!: boolean;
+  @Input() showBar!: boolean;
   @Input() type!: string;
   @ViewChild('mapDiv') mapDivElement?: ElementRef
+  mapID: any
   @Input() $coords: any
   constructor(
     private mapService: MapsService
   ) {
     this.coordenadas = new EventEmitter()
     this.coordenadasSelect = new EventEmitter()
+    this.idMap = new EventEmitter()
   }
   classMap = 'map-expand'
   map!: any
@@ -28,7 +32,10 @@ export class MapViewComponent implements AfterViewInit {
   makerMe!: any
   CP = environment.cPrimary
   CS = environment.cSecond
+
   ngAfterViewInit(): void {
+
+
     if (this.sendCoords) {
 
       this.map = new Map({
@@ -67,17 +74,25 @@ export class MapViewComponent implements AfterViewInit {
         center: this.mapService.userLocation, // starting position [lng, lat]
         zoom: 14, // starting zoom
       });
+
       const popup = new Popup()
         .setHTML(`
-          <h6> Mi Ubicación</h6>
-          <span> Estoy en este lugar</span>
-            `);
+        <h6> Mi Ubicación</h6>
+        <span> Estoy en este lugar</span>
+        `);
+
       let makerBase = new Marker({ color: this.CP })
         .setLngLat(this.mapService.userLocation)
         .setPopup(popup)
         .addTo(this.map)
     }
-    this.mapService.setMap(this.map)
+    if (this.map) {
+
+      this.mapID = this.map
+    }
+
+
+
   }
 
   getCoords() {
@@ -115,6 +130,7 @@ export class MapViewComponent implements AfterViewInit {
 
   }
   showCoordenadas(event) {
+
 
     this.coordenadasSelect.emit(event)
   }

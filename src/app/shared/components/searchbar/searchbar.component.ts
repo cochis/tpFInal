@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, Output } from '@angular/core';
 import { clear } from 'console';
 import { MapsService } from '../../services/maps.service';
 import { PlacesResponse } from 'src/app/core/interfaces/places';
@@ -8,19 +8,28 @@ import { PlacesResponse } from 'src/app/core/interfaces/places';
   templateUrl: './searchbar.component.html',
   styleUrls: ['./searchbar.component.css']
 })
-export class SearchbarComponent {
+export class SearchbarComponent implements AfterViewInit {
   private dobounceTimer?: NodeJS.Timeout
   loadingPlaces = false
   places = []
   @Output() coordenadas!: EventEmitter<object>;
+  @Input() showBar
+  @Input() type
+  @Input() mapID
   constructor(
     private mapsService: MapsService,
   ) { this.coordenadas = new EventEmitter() }
+  ngAfterViewInit() {
+
+
+  }
 
   onQueryChanged(txt: string = '') {
+    this.mapsService.deleteKaker()
     if (txt.length === 0) {
       this.loadingPlaces = false
       this.places = []
+
       return
     }
 
@@ -36,7 +45,7 @@ export class SearchbarComponent {
 
         this.places = res.features
 
-        this.mapsService.createMarkersFromPlaces(this.places)
+        this.mapsService.createMarkersFromPlaces(this.mapID, this.places)
 
 
         if (res.features.length == 0) {
@@ -53,7 +62,14 @@ export class SearchbarComponent {
   }
   showCoordenadas(event) {
 
-    this.coordenadas.emit(event)
+
+    let res = {
+      lng: event[0],
+      lat: event[1],
+      type: this.type
+    }
+
+    this.coordenadas.emit(res)
 
   }
 }

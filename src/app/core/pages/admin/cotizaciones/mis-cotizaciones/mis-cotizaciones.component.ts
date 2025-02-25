@@ -79,13 +79,14 @@ export class MisCotizacionesComponent {
     if (this.rol === this.ADM) {
       this.cotizacionesService.cargarCotizacionesAll().subscribe((resp: CargarCotizaciones) => {
 
+
         this.cotizaciones = resp.cotizaciones
 
         this.cotizacionesTemp = resp.cotizaciones
         setTimeout(() => {
 
           this.loading = false
-        }, 1500);
+        }, 500);
       },
         (error) => {
           this.loading = false
@@ -100,31 +101,54 @@ export class MisCotizacionesComponent {
         setTimeout(() => {
 
           this.loading = false
-        }, 1500);
+        }, 500);
       });
     } else if (this.rol == this.PRV) {
       let usr = this.functionsService.getLocal('uid')
 
-      this.empresas.forEach(emp => {
+
+      if (this.empresas.length > 0) {
+
+        this.empresas.forEach(emp => {
 
 
-        this.cotizacionesService.cargarCotizacionesByProveedor(emp.uid).subscribe((resp: any) => {
 
-          let cots = this.functionsService.getActives(resp.cotizaciones)
+          this.cotizacionesService.cargarCotizacionesByProveedor(emp.uid).subscribe((resp: any) => {
+
+            let cots = this.functionsService.getActives(resp.cotizaciones)
+
+            cots.forEach(c => {
+
+              this.cotizaciones.push(c)
+            });
+
+
+
+          });
+          this.cotizacionesService.cargarCotizacionesByCreador(this.uid).subscribe(res => {
+            let cots = this.functionsService.getActives(res.cotizaciones)
+
+            cots.forEach(c => {
+
+              this.cotizaciones.push(c)
+            });
+          })
+          setTimeout(() => {
+
+            this.loading = false
+          }, 3500);
+        });
+      } else {
+        this.cotizacionesService.cargarCotizacionesByCreador(this.uid).subscribe(res => {
+          let cots = this.functionsService.getActives(res.cotizaciones)
 
           cots.forEach(c => {
 
             this.cotizaciones.push(c)
           });
-
-
-
-        });
-        setTimeout(() => {
-
-          this.loading = false
-        }, 3500);
-      });
+        })
+        this.loading = false
+      }
     }
   }
 

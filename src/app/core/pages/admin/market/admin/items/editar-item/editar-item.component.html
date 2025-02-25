@@ -668,6 +668,8 @@
                                                 </div>
                                                 <div class="col-12 col-md-6 mt-3">
                                                     <div class="form-group">
+
+
                                                         <label for="tipoMedia">Tipo de medio</label>
                                                         <select name="" id="tipoMedia" formControlName="tipoMedia"
                                                             class="form-control upper" required>{{tipoMedias}}
@@ -675,7 +677,7 @@
                                                                 <option value="">Selecciona el tipoMedia</option>
                                                                 <option [value]="item.uid"
                                                                     *ngFor="let item of tipoMedias">
-                                                                    {{item.nombre}}
+                                                                    {{item.nombre}} -{{item.clave}}
                                                                 </option>
                                                             </ng-container>
                                                         </select>
@@ -717,17 +719,65 @@
 
                                                             <ng-container class="text-center ma">
 
+                                                                <ng-container
+                                                                    *ngIf="functionsService.getValueCatalog(form.value.photos[index].tipoMedia,'clave',tipoMedias)=='image/*'">
 
-                                                                <img src="/assets/images/media.png"
-                                                                    alt="Click aquí para subir tu foto"
-                                                                    title="Click aquí para subir tu foto"
-                                                                    class="img-avatar"
-                                                                    *ngIf="form.value.photos[index].img ==''">
-                                                                <img src="{{url}}/upload/items/{{form.value.photos[index].img}}"
-                                                                    alt="Click aquí para subir tu foto"
-                                                                    title="Click aquí para subir tu foto"
-                                                                    class="img-avatar"
-                                                                    *ngIf="form.value.photos[index].img !==''">
+                                                                    <img src="/assets/images/media.png"
+                                                                        alt="Click aquí para subir tu foto"
+                                                                        title="Click aquí para subir tu foto"
+                                                                        class="img-avatar"
+                                                                        *ngIf="form.value.photos[index].img ==''">
+                                                                    <img src="{{url}}/upload/items/{{form.value.photos[index].img}}"
+                                                                        alt="Click aquí para subir tu foto"
+                                                                        title="Click aquí para subir tu foto"
+                                                                        class="img-avatar"
+                                                                        *ngIf="form.value.photos[index].img !==''">
+                                                                </ng-container>
+                                                                <ng-container
+                                                                    *ngIf="functionsService.getValueCatalog(form.value.photos[index].tipoMedia,'clave',tipoMedias)=='audio/*'">
+
+                                                                    <img src="/assets/images/media.png"
+                                                                        alt="Click aquí para subir tu foto"
+                                                                        title="Click aquí para subir tu foto"
+                                                                        class="img-avatar"
+                                                                        *ngIf="form.value.photos[index].img ==''">
+
+
+                                                                    <audio preload="auto" controls
+                                                                        [src]="url+'/upload/items/'+form.value.photos[index].img"
+                                                                        class="ma" id="myAudio"
+                                                                        *ngIf=" form.value.photos[index].img!==''">
+                                                                    </audio>
+                                                                    <div class="btn but ma mt-3"
+                                                                        style="max-width: 150px;"
+                                                                        *ngIf=" form.value.photos[index].img!==''">
+                                                                        Cambiar
+                                                                    </div>
+
+                                                                </ng-container>
+                                                                <ng-container
+                                                                    *ngIf="functionsService.getValueCatalog(form.value.photos[index].tipoMedia,'clave',tipoMedias)=='video/*'">
+
+                                                                    <img src="/assets/images/media.png"
+                                                                        alt="Click aquí para subir tu foto"
+                                                                        title="Click aquí para subir tu foto"
+                                                                        class="img-avatar"
+                                                                        *ngIf="form.value.photos[index].img ==''">
+
+
+                                                                    <video preload="auto" controls
+                                                                        [src]="url+'/upload/items/'+form.value.photos[index].img"
+                                                                        class="ma" id="myVideo"
+                                                                        *ngIf=" form.value.photos[index].img!==''">
+                                                                    </video>
+                                                                    <div class="btn but ma mt-3"
+                                                                        style="max-width: 150px;"
+                                                                        *ngIf=" form.value.photos[index].img!==''">
+                                                                        Cambiar
+                                                                    </div>
+
+                                                                </ng-container>
+
 
 
 
@@ -742,7 +792,10 @@
                                                             </ng-container>
 
                                                         </label>
+
+
                                                         <input [id]="'file-input'+index" type="file"
+                                                            [accept]="functionsService.getValueCatalog(form.value.photos[index].tipoMedia,'clave',tipoMedias)"
                                                             class="ion-no-border"
                                                             (change)="cambiarImagen($event,'imgItems' ,index)"
                                                             *ngIf="edit=='true'" />

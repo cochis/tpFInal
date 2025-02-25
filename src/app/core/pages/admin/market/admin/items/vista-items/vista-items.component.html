@@ -42,7 +42,7 @@
                                 <th class="upper">Opciones</th>
                                 <th class="upper">calificación</th>
                                 <th class="upper">nombre</th>
-                                <th class="upper">imagen</th>
+                                <!--  <th class="upper">imagen</th> -->
                                 <th class="upper">Precio por</th>
                                 <th class="upper">Cantidad</th>
 
@@ -80,35 +80,39 @@
 
 
                                     </td>
-                                    <td class="upper text-center">
-                                        <span *ngIf="item.calificacion ==0">
+                                    <td class="upper text-center" style="font-size: 10px; color :#ffd05b">
+                                        <span *ngIf="item.promedioCalificacion ==0">
                                             Sin valoración
                                         </span>
-                                        <i class="bi bi-star-fill m-1"
-                                            style="font-size: 10px;  color: var(--primary-color) !important;"
-                                            *ngIf="item.calificacion>0 && item.calificacion <=1"></i>
-                                        <i class="bi bi-star-fill m-1"
-                                            style="font-size: 10px;  color: var(--primary-color) !important;"
-                                            *ngIf="item.calificacion>0 && item.calificacion <=2"></i>
-                                        <i class="bi bi-star-fill m-1"
-                                            style="font-size: 10px;  color: var(--primary-color) !important;"
-                                            *ngIf="item.calificacion>0 && item.calificacion <=3"></i>
-                                        <i class="bi bi-star-fill m-1"
-                                            style="font-size: 10px;  color: var(--primary-color) !important;"
-                                            *ngIf="item.calificacion>0 && item.calificacion <=4"></i>
-                                        <i class="bi bi-star-fill m-1"
-                                            style="font-size: 10px;  color: var(--primary-color) !important;"
-                                            *ngIf="item.calificacion>0 && item.calificacion <=5"></i>
+                                        <i class="bi bi-star-fill m-1" *ngIf="item.promedioCalificacion>1"></i>
+                                        <i class="bi bi-star-fill m-1" *ngIf="item.promedioCalificacion>2"></i>
+                                        <i class="bi bi-star-fill m-1" *ngIf="item.promedioCalificacion>3"></i>
+                                        <i class="bi bi-star-fill m-1" *ngIf="item.promedioCalificacion>4  "></i>
+                                        <i class="bi bi-star-fill m-1" *ngIf="item.promedioCalificacion==5"></i>
                                     </td>
                                     <td class=" upper ">{{item.nombre}}
                                     </td>
-                                    <td>
+                                    <!--  <td>
 
-                                        <img src="{{url}}/upload/items/{{getPrincipal(item)}}" alt="{{item.nombre}}"
-                                            title="{{item.nombre}}" class="img-avatar"
-                                            style="width: 180px;height: 120px;   " *ngIf="getPrincipal(item)!=''">
+                                        
+                                        <ng-container *ngIf="mediaItem[i] =='video/*'">
 
-                                    </td>
+                                            <i class="bi bi-camera-video iconView"></i>
+                                        </ng-container>
+
+                                        <ng-container *ngIf="mediaItem[i] =='audio/*'">
+                                            <i class="bi bi-volume-up iconView"></i>
+                                        </ng-container>
+
+                                        <ng-container *ngIf="mediaItem[i] =='image/*'">
+
+                                            <img src="{{url}}/upload/items/{{imgItem[i]}}" alt="{{item.nombre}}"
+                                                title="{{item.nombre}}" class="img-avatar"
+                                                style="width: 180px;height: 120px;   " *ngIf="getPrincipal(item)!=''">
+
+                                        </ng-container>
+
+                                    </td> -->
                                     <td>
                                         {{getPrecio(item)}}
 

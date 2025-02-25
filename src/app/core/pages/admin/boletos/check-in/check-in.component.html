@@ -1,223 +1,232 @@
 <app-header></app-header>
 <app-loading *ngIf="loading"></app-loading>
-<ng-container *ngIf="!loading">
-    <section class="hero-section d-flex justify-content-center align-items-center" id="section_1" *ngIf="!editBoleto">
-        <div class="container">
-            <div class="row">
 
-                <div class="col-lg-8 col-12 mx-auto">
-                    <h1 class="text-white text-center">Ticket Party</h1>
+<div class="animate__animated animate__fadeIn">
 
-                    <h6 class="text-center">Registra tu asistencia</h6>
+    <ng-container *ngIf="!loading">
+        <section class="hero-section d-flex justify-content-center align-items-center " id="section_1"
+            *ngIf="!editBoleto">
+            <div class="container">
+                <div class="row">
 
+                    <div class="col-lg-8 col-12 mx-auto">
+                        <h1 class="text-white text-center">Ticket Party</h1>
+
+                        <h6 class="text-center">Registra tu asistencia</h6>
+
+
+                    </div>
 
                 </div>
-
             </div>
-        </div>
-    </section>
-    <section class="featured-section" *ngIf="!editBoleto">
-        <div class="container">
-            <div class="row justify-content-center">
+        </section>
+        <section class="featured-section" *ngIf="!editBoleto">
+            <div class="container">
+                <div class="row justify-content-center">
 
-                <div class="col-lg-4 col-12 mb-4 mb-lg-0">
-                    <div class="custom-block bg-white shadow-lg">
-                        <div class="d-flex">
-                            <div class="justify-content-center text-center">
-                                <h5 class=" mb-2">Escanea tu QR</h5>
+                    <div class="col-lg-4 col-12 mb-4 mb-lg-0">
+                        <div class="custom-block bg-white shadow-lg">
+                            <div class="d-flex">
+                                <div class="justify-content-center text-center">
+                                    <h5 class=" mb-2">Escanea tu QR</h5>
+
+                                </div>
 
                             </div>
+                            <a (click)="scan()">
 
+                                <img src="/assets/images/qr.jpeg" class="custom-block-image img-fluid img-scan"
+                                    *ngIf="!scannerActive" alt="">
+                            </a>
+                            <app-scanner *ngIf="scannerActive" (qr)="showQr($event)"></app-scanner>
                         </div>
-                        <a (click)="scan()">
-
-                            <img src="/assets/images/qr.jpeg" class="custom-block-image img-fluid img-scan"
-                                *ngIf="!scannerActive" alt="">
-                        </a>
-                        <app-scanner *ngIf="scannerActive" (qr)="showQr($event)"></app-scanner>
                     </div>
-                </div>
 
 
 
-
-
-            </div>
-        </div>
-
-    </section>
-
-
-    <div class="container mt-2 ma text-center" *ngIf="!editBoleto">
-
-        <div class="justify-content-center text-center">
-            <h5 class=" mb-2">Búsqueda por lista</h5>
-
-        </div>
-        <div class="row" *ngIf="role.includes('ADM')">
-            <div class="col-12   mb-3   mt-3 ">
-                <div class="form-group">
-                    <div style="width: 100%;" class="ma text-center">
-
-                        <label class="form-check-label ma " for="example">
-                            Ver Ejemplos
-                        </label>
-                    </div>
-                    <div style="width: 100%;" class="ma text-center">
-
-                        <input class="form-check-input ma mt-4" type="checkbox" id="example"
-                            style="margin-left:50px;margin-right: 50px;" #example
-                            (click)="viewEjemplos(example.checked)">
-                    </div>
 
 
                 </div>
             </div>
-        </div>
-        <form [formGroup]="formInit" (ngSubmit)="findInvite()">
-            <div class="row ma">
+
+        </section>
 
 
-                <div class="col-12 col-md-3 mt-3 ma">
-                    <div class="form-group">
-                        <label for="fiesta">Fiesta</label>
-                        <select name="fiesta" id="fiesta" formControlName="fiesta" #fiesta class="form-control upper"
-                            (change)="setFiesta(fiesta.value)">
-                            <option value="">Selecciona un fiesta</option>
-                            <option [value]="item.uid" *ngFor="let item of fiestas">
-                                {{item.nombre}}
-                            </option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-12 col-md-3 mt-3 ma" *ngIf="formInit.value.fiesta != ''">
-                    <div class="form-group">
-                        <label for="tipo">Tipo</label>
-                        <select name="tipo" id="tipo" formControlName="tipo" class="form-control upper"
-                            (change)="filterBy(formInit.value)">
-                            <option value="">Selecciona un tipo</option>
-                            <option value="nombre">Nombre </option>
+        <div class="container mt-2 ma text-center" *ngIf="!editBoleto">
 
-
-
-                        </select>
-                    </div>
-                </div>
-                <div class="col-12 col-md-3 mt-3 ma"
-                    *ngIf="formInit.value.fiesta != '' && formInit.value.tipo =='nombre'">
-                    <div class="form-group">
-                        <label for="boleto">Boleto</label>
-                        <select name="boleto" id="boleto" formControlName="boleto" #boleto class="form-control upper"
-                            (change)="setBoleto(boleto.value)">
-                            <option value="">Selecciona un boleto</option>
-                            <option [value]="item.uid" *ngFor="let item of boletosFind">{{item.nombreGrupo}}
-                            </option>
-
-
-                        </select>
-                    </div>
-                </div>
-                <div class="col-12 col-md-3 mt-3 ma"
-                    *ngIf="formInit.value.fiesta != '' && formInit.value.tipo =='mesa'">
-                    <div class="form-group">
-                        <label for="boleto">Boleto</label>
-                        <select name="boleto" id="boleto" formControlName="boleto" #boleto class="form-control upper"
-                            (change)="setBoleto(boleto.value)">
-                            <option value="">Selecciona un boleto</option>
-                            <option [value]="item.uid" *ngFor="let item of boletosFind">{{item.mesa}}</option>
-
-
-                        </select>
-                    </div>
-                </div>
-                <div class="col-12 col-md-3 mt-3 ma" *ngIf="formInit.value.fiesta != '' && formInit.value.tipo !=''">
-                    <div class="form-group mt-3">
-                        <button type="submit" class="btn btn-lg btn-block but  ">CheckIn</button>
-                    </div>
-                </div>
+            <div class="justify-content-center text-center">
+                <h5 class=" mb-2">Búsqueda por lista</h5>
 
             </div>
+            <div class="row" *ngIf="role.includes('ADM')">
+                <div class="col-12   mb-3   mt-3 ">
+                    <div class="form-group">
+                        <div style="width: 100%;" class="ma text-center">
+
+                            <label class="form-check-label ma " for="example">
+                                Ver Ejemplos
+                            </label>
+                        </div>
+                        <div style="width: 100%;" class="ma text-center">
+
+                            <input class="form-check-input ma mt-4" type="checkbox" id="example"
+                                style="margin-left:50px;margin-right: 50px;" #example
+                                (click)="viewEjemplos(example.checked)">
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <form [formGroup]="formInit" (ngSubmit)="findInvite()">
+                <div class="row ma">
+
+
+                    <div class="col-12 col-md-3 mt-3 ma">
+                        <div class="form-group">
+                            <label for="fiesta">Fiesta</label>
+                            <select name="fiesta" id="fiesta" formControlName="fiesta" #fiesta
+                                class="form-control upper" (change)="setFiesta(fiesta.value)">
+                                <option value="">Selecciona un fiesta</option>
+                                <option [value]="item.uid" *ngFor="let item of fiestas">
+                                    {{item.nombre}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-3 mt-3 ma" *ngIf="formInit.value.fiesta != ''">
+                        <div class="form-group">
+                            <label for="tipo">Tipo</label>
+                            <select name="tipo" id="tipo" formControlName="tipo" class="form-control upper"
+                                (change)="filterBy(formInit.value)">
+                                <option value="">Selecciona un tipo</option>
+                                <option value="nombre">Nombre </option>
+
+
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-3 mt-3 ma"
+                        *ngIf="formInit.value.fiesta != '' && formInit.value.tipo =='nombre'">
+                        <div class="form-group">
+                            <label for="boleto">Boleto</label>
+                            <select name="boleto" id="boleto" formControlName="boleto" #boleto
+                                class="form-control upper" (change)="setBoleto(boleto.value)">
+                                <option value="">Selecciona un boleto</option>
+                                <option [value]="item.uid" *ngFor="let item of boletosFind">{{item.nombreGrupo}}
+                                </option>
+
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-3 mt-3 ma"
+                        *ngIf="formInit.value.fiesta != '' && formInit.value.tipo =='mesa'">
+                        <div class="form-group">
+                            <label for="boleto">Boleto</label>
+                            <select name="boleto" id="boleto" formControlName="boleto" #boleto
+                                class="form-control upper" (change)="setBoleto(boleto.value)">
+                                <option value="">Selecciona un boleto</option>
+                                <option [value]="item.uid" *ngFor="let item of boletosFind">{{item.mesa}}</option>
+
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-3 mt-3 ma"
+                        *ngIf="formInit.value.fiesta != '' && formInit.value.tipo !=''">
+                        <div class="form-group mt-3">
+                            <button type="submit" class="btn btn-lg btn-block but  ">CheckIn</button>
+                        </div>
+                    </div>
+
+                </div>
 
 
 
 
 
 
-        </form>
+            </form>
 
-    </div>
-
-
-    <section class="contact-section section-padding section-bg animated1 fadeIn " id="section_5" *ngIf="editBoleto">
-
-        <div class="container bw">
-            <div class="card">
-
-                <div class="card-body">
-                    <div class="row">
-                        <div class="row text-center" *ngIf="checking">
-                            <div class="col-12">
-
-                                <h3>Cantidad de invitaciones: {{boleto.cantidadInvitados}} </h3>
-                                <h3 *ngIf="boleto.cantidadInvitados >0 && boleto.cantidadInvitados > boleto.ocupados">Te
-                                    restan:
-                                    {{boleto.cantidadInvitados - boleto.ocupados}} </h3>
-                                <h3 *ngIf="boleto.cantidadInvitados === boleto.ocupados">
-                                    Ya no pueden entrar más
-                                </h3>
-
-                                <h3 *ngIf="boleto.mesa!=''">
-                                    Tu mesa es : {{boleto.mesa}}
-                                </h3>
+        </div>
 
 
+        <section class="contact-section section-padding section-bg animated1 fadeIn " id="section_5" *ngIf="editBoleto">
+
+            <div class="container bw">
+                <div class="card">
+
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="row text-center" *ngIf="checking">
+                                <div class="col-12">
+
+                                    <h3>Cantidad de invitaciones: {{boleto.cantidadInvitados}} </h3>
+                                    <h3
+                                        *ngIf="boleto.cantidadInvitados >0 && boleto.cantidadInvitados > boleto.ocupados">
+                                        Te
+                                        restan:
+                                        {{boleto.cantidadInvitados - boleto.ocupados}} </h3>
+                                    <h3 *ngIf="boleto.cantidadInvitados === boleto.ocupados">
+                                        Ya no pueden entrar más
+                                    </h3>
+
+                                    <h3 *ngIf="boleto.mesa!=''">
+                                        Tu mesa es : {{boleto.mesa}}
+                                    </h3>
+
+
+
+                                </div>
 
                             </div>
+                            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                                <div class="row">
 
-                        </div>
-                        <form [formGroup]="form" (ngSubmit)="onSubmit()">
-                            <div class="row">
+                                    <div class="col-12 col-md-12 mt-3">
+                                        <div class="form-group">
+                                            <label for="cantidad">¿Cuantos ingresan?</label>
+                                            <input type="number" class="form-control upper" id="cantidad"
+                                                formControlName="cantidad" required placeholder="Cantidad que ingresan">
+                                        </div>
 
-                                <div class="col-12 col-md-12 mt-3">
-                                    <div class="form-group">
-                                        <label for="cantidad">¿Cuantos ingresan?</label>
-                                        <input type="number" class="form-control upper" id="cantidad"
-                                            formControlName="cantidad" required placeholder="Cantidad que ingresan">
+
                                     </div>
 
-
                                 </div>
 
-                            </div>
 
 
 
 
+                                <div class="row mt-5 text-center">
 
-                            <div class="row mt-5 text-center">
 
+                                    <div class="col-12 col-md-6  mt-3 text-center ">
 
-                                <div class="col-12 col-md-6  mt-3 text-center ">
+                                        <button type="submit" class="btn btn-lg btn-block but  "
+                                            [disabled]="((boleto.cantidadInvitados < (boleto.ocupados + this.form.value.cantidad)) || boleto.ocupados == boleto.cantidadInvitados) && checking">Editar</button>
 
-                                    <button type="submit" class="btn btn-lg btn-block but  "
-                                        [disabled]="((boleto.cantidadInvitados < (boleto.ocupados + this.form.value.cantidad)) || boleto.ocupados == boleto.cantidadInvitados) && checking">Editar</button>
+                                    </div>
+                                    <div class="col-12 col-md-6  mt-3 text-center">
+                                        <button class="btn btn-lg btn-block btn-warning"
+                                            (click)="back()">Regresar</button>
 
+                                    </div>
                                 </div>
-                                <div class="col-12 col-md-6  mt-3 text-center">
-                                    <button class="btn btn-lg btn-block btn-warning" (click)="back()">Regresar</button>
-
-                                </div>
-                            </div>
 
 
-                        </form>
+                            </form>
 
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-</ng-container>
+        </section>
+    </ng-container>
+</div>
 
 
 <app-footer></app-footer>

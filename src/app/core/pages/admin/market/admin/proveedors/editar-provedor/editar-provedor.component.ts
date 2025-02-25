@@ -12,6 +12,7 @@ import { TipoContactosService } from 'src/app/core/services/tipoContacto.service
 
 
 import { FunctionsService } from 'src/app/shared/services/functions.service';
+import { MapsService } from 'src/app/shared/services/maps.service';
 import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-editar-provedor',
@@ -34,6 +35,11 @@ export class EditarProvedorComponent {
   url = environment.base_url
   tipoContactos: TipoContacto[]
   tipoColores: TipoColor[]
+  text_url = environment.text_url
+  urlLink = ''
+  MAPURL = environment.mapsGoogleUrl
+  MAPZOOM = environment.mapsGoogleZoom
+  location: any = undefined
   constructor(
     private fb: FormBuilder,
     private functionsService: FunctionsService,
@@ -43,8 +49,12 @@ export class EditarProvedorComponent {
     private tipoContactosService: TipoContactosService,
     private route: ActivatedRoute,
     private fileService: FileService,
+    private mapService: MapsService
 
   ) {
+    this.mapService.getUserLocation().then(res => {
+      this.location = res
+    })
     this.loading = true
     this.id = this.route.snapshot.params['id']
     this.edit = this.route.snapshot.params['edit']
@@ -110,7 +120,10 @@ export class EditarProvedorComponent {
     this.proveedorsService.cargarProveedorById(id).subscribe((resp: CargarProveedor) => {
 
       this.proveedor = resp.proveedor
-
+      this.urlLink = this.text_url + 'core/vista-proveedor/' + this.proveedor.uid
+      if (this.proveedor.lng && this.proveedor.lat) {
+        this.location = [this.proveedor.lng, this.proveedor.lat]
+      }
 
       setTimeout(() => {
 
@@ -138,6 +151,9 @@ export class EditarProvedorComponent {
       clave: ['', [Validators.required, Validators.minLength(3)]],
       bannerImg: ['', [Validators.required, Validators.minLength(3)]],
       img: ['', [Validators.required, Validators.minLength(3)]],
+      lng: ['', [Validators.required, Validators.minLength(3)]],
+      lat: ['', [Validators.required, Validators.minLength(3)]],
+      ubicacion: ['', [Validators.required, Validators.minLength(3)]],
       descripcion: ['', [Validators.required, Validators.minLength(3)]],
       contactos: this.fb.array([]),
       colores: this.fb.array([]),
@@ -156,6 +172,9 @@ export class EditarProvedorComponent {
       clave: [proveedor.clave, [Validators.required, Validators.minLength(3)]],
       descripcion: [proveedor.descripcion, [Validators.required, Validators.minLength(3)]],
       img: [proveedor.img, [Validators.required]],
+      lng: [proveedor.lng, [Validators.required]],
+      lat: [proveedor.lat, [Validators.required]],
+      ubicacion: [proveedor.ubicacion, [Validators.required]],
       contactos: this.fb.array([]),
       colores: this.fb.array([]),
       bannerImg: [proveedor.bannerImg, [Validators.required]],
@@ -309,6 +328,16 @@ export class EditarProvedorComponent {
   }
 
 
+  showCoordenadas(e) {
 
+
+    this.form.patchValue({
+      lng: e.lng,
+      lat: e.lat,
+      [e.type]: `${this.MAPURL}?q=${e.lat},${e.lng}&z=${this.MAPZOOM}`
+    })
+
+
+  }
 
 }

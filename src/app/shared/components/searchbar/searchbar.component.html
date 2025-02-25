@@ -1,9 +1,10 @@
-<div style="top:20px; left: 20px;">
+<div style="top:20px; left: 20px;" *ngIf="showBar">
 
     <div class="search-container">
+
         <input type="text" class="form-control" placeholder="Buscar Lugar" #txt (keyup)="onQueryChanged(txt.value)">
         <app-search-results (coordenadas)="showCoordenadas($event)" [places]="places" [loading]="loadingPlaces"
-            getCor></app-search-results>
+            [mapID]="mapID"></app-search-results>
     </div>
 
 

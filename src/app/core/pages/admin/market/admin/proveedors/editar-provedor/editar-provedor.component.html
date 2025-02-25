@@ -119,13 +119,13 @@
                                 </div>
                                 <div class="row mt-3 text-center">
 
-                                    <div class="col-3 ma " *ngIf="editBol">
+                                    <div class="col-12 col-md-4 mt-3 " *ngIf="editBol">
 
                                         <button class="btn primaB white" type="button" (click)="addContactos()">
                                             <i class="icon-plus"></i> Agregar contacto
                                         </button>
                                     </div>
-                                    <div class="col-3 ma " *ngIf="!editBol">
+                                    <div class="col-12 col-md-4 mt-3 " *ngIf="!editBol">
                                         <h5>Contactos</h5>
                                     </div>
                                 </div>
@@ -194,13 +194,13 @@
 
                                 <div class="row mt-3 text-center">
 
-                                    <div class="col-3 ma " *ngIf="editBol">
+                                    <div class="col-12 col-md-4 mt-3" *ngIf="editBol">
 
                                         <button class="btn primaB white" type="button" (click)="addColors()">
                                             <i class="icon-plus"></i> Agregar Color
                                         </button>
                                     </div>
-                                    <div class="col-3 ma " *ngIf="!editBol">
+                                    <div class="col-12 col-md-4 mt-3 " *ngIf="!editBol">
                                         <h5>Colores</h5>
                                     </div>
                                 </div>
@@ -267,6 +267,42 @@
 
 
 
+                            </div>
+                            <div class="row mt-5" *ngIf="proveedor">
+                                <div class="col-6  text-center ma">
+                                    <label for="customRange2" class="form-label">
+                                        QR de tu pagina
+                                    </label>
+                                    <span>
+                                        <a [href]="urlLink" target="_blank"
+                                            style="text-decoration: none; color:var(--cPrincipal); font-weight: 800;">
+                                            {{urlLink}}
+                                        </a>
+                                    </span>
+
+                                    <div class="qrcodeImage">
+                                        <qrcode [qrdata]="urlLink" [allowEmptyString]="true"
+                                            [ariaLabel]="'QR Code image with the following content...'"
+                                            [cssClass]="'center'" [colorDark]="proveedor.colores[0].value"
+                                            [colorLight]="'#ffffffff'" [elementType]="'canvas'"
+                                            [errorCorrectionLevel]="'M'"
+                                            [imageSrc]="url+'/upload/proveedores/'+proveedor.img" [imageHeight]="75"
+                                            [imageWidth]="75" [margin]="4" [scale]="1"
+                                            [title]="'A custom title attribute'" [width]="300"></qrcode>
+                                    </div>
+
+
+                                </div>
+                                <div class="col-12   mt-3" *ngIf="location">
+                                    <label for="ubicacion ">Ubicación </label>
+                                    <app-mapscreen [showBar]="true" (coordenadasSelect)="showCoordenadas($event)"
+                                        (coordenadas)="showCoordenadas($event)" [sendCoords]="location" [isEditV]="true"
+                                        type="ubicacion"></app-mapscreen>
+                                    <span *ngIf="submited && errorControlCot ['ubicacion'].errors " class="error">Favor
+                                        de
+                                        seleccionar un lugar
+                                    </span>
+                                </div>
                             </div>
 
                             <div class="row mt-5 text-center  ">

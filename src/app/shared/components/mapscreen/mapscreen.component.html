@@ -1,10 +1,10 @@
 <app-loading *ngIf="!isUserLocationReady && isUserLocationReady!==undefined ; else mapReady"></app-loading>
 
 
-
 <ng-template #mapReady>
 
     <app-map-view (coordenadas)="showCoordenadas($event)" [isEdit]="isEditV" [sendCoords]="sendCoords"
-        (coordenadasSelect)="showMapSelected($event)"></app-map-view>
+        (coordenadasSelect)="showMapSelected($event)" [type]="type" [showBar]="showBar"
+        (idMap)="getIdMap($event)"></app-map-view>
 
 </ng-template>

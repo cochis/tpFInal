@@ -6,14 +6,22 @@
         Espere por favor...
     </span>
 </div>
+<div style="margin-top: 15px;">
 
-<ul class="list-group mt-2 text-center" *ngIf="!loading  &&  places.length>0">
+    <b class="mt-3" style="font-size: 25px;" (click)="chageView()">
+
+        <i class="icon-minus " *ngIf="viewOk && places.length>0"></i>
+        <i class="icon-eye " *ngIf="!viewOk "></i>
+    </b>
+</div>
+
+<ul class="list-group mt-2 text-center" *ngIf="!loading  &&  places.length>0 && viewOk">
     <li class="list-group-item  list-group-item-action pointer" *ngFor="let item of places"
         [class.active]="selected !='' && item.id == selected ">
         <h6>{{item.properties.name}}</h6>
-        <p>{{item.properties.place_formatted}}</p>
+        <p style="color: var(--cSecond);">{{item.properties.place_formatted}}</p>
 
-        <button class="btn btn-sm " type="button" (click)="flyTo(item)"
+        <button class="btn btn-sm " type="button" (click)="flyTo(item )"
             [ngClass]="(item.id == selected)?'btn-outline-light':'btn-outline-primary'">
             Ver
         </button>

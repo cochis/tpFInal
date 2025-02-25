@@ -11,6 +11,8 @@ import { FileService } from 'src/app/core/services/file.service';
 import { Invitacion } from 'src/app/core/models/invitacion.model';
 import { environment } from 'src/environments/environment';
 import { MapsService } from 'src/app/shared/services/maps.service';
+import { SalonsService } from '../../../../services/salon.service';
+import { Salon } from 'src/app/core/models/salon.model';
 @Component({
   selector: 'app-editar-invitacion',
   templateUrl: './editar-invitacion.component.html',
@@ -246,6 +248,7 @@ export class EditarInvitacionComponent {
   fec: boolean = false
   inv: boolean = false
   ent: boolean = false
+  salon: Salon
 
   constructor(
     private fb: FormBuilder,
@@ -255,7 +258,8 @@ export class EditarInvitacionComponent {
     private invitacionsService: InvitacionsService,
     private router: Router,
     private fileService: FileService,
-    private mapService: MapsService
+    private mapService: MapsService,
+    private salonsService: SalonsService
 
   ) {
     this.getExamples()
@@ -394,6 +398,8 @@ export class EditarInvitacionComponent {
       donde1Date: [(typeof (this.fiesta.fecha) == "number") ? this.functionsService.numberDateTimeLocal(this.fiesta.fecha) : this.fiesta.fecha],
       donde1Icon: ['mt-2 mb-2 text-center bi bi-map pointer'],
       donde1AddressUbicacion: [''],
+      donde1AddressUbicacionLng: [''],
+      donde1AddressUbicacionLat: [''],
       donde1Address: [''],
       donde2Check: [true],
       donde2Img: [''],
@@ -402,6 +408,8 @@ export class EditarInvitacionComponent {
       donde2Date: [(typeof (this.fiesta.fecha) == "number") ? this.functionsService.numberDateTimeLocal(this.fiesta.fecha) : this.fiesta.fecha],
       donde2Icon: ['mt-2 mb-2 text-center bi bi-map pointer'],
       donde2AddressUbicacion: [''],
+      donde2AddressUbicacionLng: [''],
+      donde2AddressUbicacionLat: [''],
       donde2Address: [''],
       donde3Check: [true],
       donde3Img: [this.fiesta.salon.img],
@@ -410,6 +418,8 @@ export class EditarInvitacionComponent {
       donde3Date: [(typeof (this.fiesta.fecha) == "number") ? this.functionsService.numberDateTimeLocal(this.fiesta.fecha) : this.fiesta.fecha],
       donde3Icon: ['mt-2 mb-2 text-center bi bi-map pointer'],
       donde3AddressUbicacion: [this.fiesta.salon.ubicacionGoogle],
+      donde3AddressUbicacionLng: [this.fiesta.salon.lng],
+      donde3AddressUbicacionLat: [this.fiesta.salon.lat],
       donde3Address: [
         this.fiesta.salon.calle + ' ' + this.fiesta.salon.numeroExt + ' ' +
         this.fiesta.salon.numeroInt + ' ' + this.fiesta.salon.coloniaBarrio + ' ' +
@@ -421,6 +431,8 @@ export class EditarInvitacionComponent {
       hospedajeIcon: ['mt-2 mb-2 text-center  bi-info-circle pointer'],
       hospedajeAddress: [''],
       hospedajeUbicacion: [''],
+      hospedajeUbicacionLng: [''],
+      hospedajeUbicacionLat: [''],
       hospedajePhone: [''],
       mesaRegalosCheck: [true],
       confirmacionCheck: [true],
@@ -492,6 +504,7 @@ export class EditarInvitacionComponent {
     this.createForm(fiesta)
   }
   getCoords(data) {
+
     if (data.donde1AddressUbicacion != '') {
       let donde1AddressUbicacionRes = data.donde1AddressUbicacion.replace(this.MAPURL + '?q=', '')
       donde1AddressUbicacionRes = donde1AddressUbicacionRes.replace('&z=' + this.MAPZOOM, '')
@@ -564,6 +577,8 @@ export class EditarInvitacionComponent {
       donde1Date: [invitacion.data.donde1Date],
       donde1Icon: [invitacion.data.donde1Icon],
       donde1AddressUbicacion: [invitacion.data.donde1AddressUbicacion],
+      donde1AddressUbicacionLng: [invitacion.data.donde1AddressUbicacionLng],
+      donde1AddressUbicacionLat: [invitacion.data.donde1AddressUbicacionLat],
       donde1Address: [invitacion.data.donde1Address],
       donde2Check: [invitacion.data.donde2Check],
       donde2Img: [invitacion.data.donde2Img],
@@ -572,6 +587,8 @@ export class EditarInvitacionComponent {
       donde2Date: [invitacion.data.donde2Date],
       donde2Icon: [invitacion.data.donde2Icon],
       donde2AddressUbicacion: [invitacion.data.donde2AddressUbicacion],
+      donde2AddressUbicacionLng: [invitacion.data.donde2AddressUbicacionLng],
+      donde2AddressUbicacionLat: [invitacion.data.donde2AddressUbicacionLat],
       donde2Address: [invitacion.data.donde2Address],
       donde3Check: [invitacion.data.donde3Check],
       donde3Img: [invitacion.data.donde3Img],
@@ -580,6 +597,8 @@ export class EditarInvitacionComponent {
       donde3Date: [invitacion.data.donde3Date],
       donde3Icon: [invitacion.data.donde3Icon],
       donde3AddressUbicacion: [invitacion.data.donde3AddressUbicacion],
+      donde3AddressUbicacionLng: [invitacion.data.donde3AddressUbicacionLng],
+      donde3AddressUbicacionLat: [invitacion.data.donde3AddressUbicacionLat],
       donde3Address: [invitacion.data.donde3Address],
       hospedajeCheck: [invitacion.data.hospedajeCheck],
       hospedajeImg: [invitacion.data.hospedajeImg],
@@ -587,6 +606,8 @@ export class EditarInvitacionComponent {
       hospedajeIcon: [invitacion.data.hospedajeIcon],
       hospedajeAddress: [invitacion.data.hospedajeAddress],
       hospedajeUbicacion: [invitacion.data.hospedajeUbicacion],
+      hospedajeUbicacionLng: [invitacion.data.hospedajeUbicacionLng],
+      hospedajeUbicacionLat: [invitacion.data.hospedajeUbicacionLat],
       hospedajePhone: [invitacion.data.hospedajePhone],
       mesaRegalosCheck: [invitacion.data.mesaRegalosCheck],
       confirmacionCheck: [invitacion.data.confirmacionCheck],
@@ -803,6 +824,8 @@ export class EditarInvitacionComponent {
       donde1Date: [temp.donde1Date],
       donde1Icon: [temp.donde1Icon],
       donde1AddressUbicacion: [temp.donde1AddressUbicacion],
+      donde1AddressUbicacionLng: [temp.donde1AddressUbicacionLng],
+      donde1AddressUbicacionLat: [temp.donde1AddressUbicacionLat],
       donde1Address: [temp.donde1Address],
       donde2Check: [temp.donde2Check],
       donde2Img: [temp.donde2Img],
@@ -811,6 +834,8 @@ export class EditarInvitacionComponent {
       donde2Date: [temp.donde2Date],
       donde2Icon: [temp.cPrincipal],
       donde2AddressUbicacion: [temp.donde2AddressUbicacion],
+      donde2AddressUbicacionLng: [temp.donde2AddressUbicacionLng],
+      donde2AddressUbicacionLat: [temp.donde2AddressUbicacionLat],
       donde2Address: [temp.donde2Address],
       donde3Check: [temp.donde3Check],
       donde3Img: [temp.donde3Img],
@@ -819,6 +844,8 @@ export class EditarInvitacionComponent {
       donde3Date: [temp.donde3Date],
       donde3Icon: [temp.donde3Icon],
       donde3AddressUbicacion: [temp.donde3AddressUbicacion],
+      donde3AddressUbicacionLng: [temp.donde3AddressUbicacionLng],
+      donde3AddressUbicacionLat: [temp.donde3AddressUbicacionLat],
       donde3Address: [temp.donde3Address],
       hospedajeCheck: [temp.hospedajeCheck],
       hospedajeImg: [temp.hospedajeImg],
@@ -826,6 +853,8 @@ export class EditarInvitacionComponent {
       hospedajeIcon: [temp.hospedajeIcon],
       hospedajeAddress: [temp.hospedajeAddress],
       hospedajeUbicacion: [temp.hospedajeUbicacion],
+      hospedajeUbicacionLng: [temp.hospedajeUbicacionLng],
+      hospedajeUbicacionLat: [temp.hospedajeUbicacionLat],
       hospedajePhone: [temp.hospedajePhone],
       mesaRegalosCheck: [temp.mesaRegalosCheck],
       confirmacionCheck: [temp.confirmacionCheck],
@@ -1150,6 +1179,7 @@ export class EditarInvitacionComponent {
     this.loading = true
     this.invitacionsService.cargarInvitacionByFiesta(id).subscribe(async resp => {
 
+
       this.invitacion = resp.invitacion
       if (!this.invitacion) {
         setTimeout(() => {
@@ -1190,6 +1220,8 @@ export class EditarInvitacionComponent {
             donde1Date: (typeof (this.fiesta.fecha) == "string") ? this.functionsService.dateToNumber(this.fiesta.fecha) : this.fiesta.fecha,
             donde1Icon: 'mt-2 mb-2 text-center bi bi-map pointer',
             donde1AddressUbicacion: '',
+            donde1AddressUbicacionLng: '',
+            donde1AddressUbicacionLat: '',
             donde1Address: '',
             donde2Check: true,
             donde2Img: '',
@@ -1198,6 +1230,8 @@ export class EditarInvitacionComponent {
             donde2Date: (typeof (this.fiesta.fecha) == "number") ? this.functionsService.dateToNumber(this.fiesta.fecha) : this.fiesta.fecha,
             donde2Icon: 'mt-2 mb-2 text-center bi bi-map pointer',
             donde2AddressUbicacion: '',
+            donde2AddressUbicacionLng: '',
+            donde2AddressUbicacionLat: '',
             donde2Address: '',
             donde3Check: true,
             donde3Img: this.fiesta.salon.img,
@@ -1206,6 +1240,8 @@ export class EditarInvitacionComponent {
             donde3Date: (typeof (this.fiesta.fecha) == "number") ? this.functionsService.dateToNumber(this.fiesta.fecha) : this.fiesta.fecha,
             donde3Icon: 'mt-2 mb-2 text-center bi bi-map pointer',
             donde3AddressUbicacion: this.fiesta.salon.ubicacionGoogle,
+            donde3AddressUbicacionlng: this.fiesta.salon.lng,
+            donde3AddressUbicacionLat: this.fiesta.salon.lat,
             donde3Address:
               this.fiesta.salon.calle + ' ' + this.fiesta.salon.numeroExt + ' ' +
               this.fiesta.salon.numeroInt + ' ' + this.fiesta.salon.coloniaBarrio + ' ' +
@@ -1217,6 +1253,8 @@ export class EditarInvitacionComponent {
             hospedajeIcon: 'mt-2 mb-2 text-center  bi-info-circle pointer',
             hospedajeAddress: '',
             hospedajeUbicacion: '',
+            hospedajeUbicacionLng: '',
+            hospedajeUbicacionLat: '',
             hospedajePhone: '',
             mesaRegalosCheck: true,
             confirmacionCheck: true,
@@ -1872,9 +1910,24 @@ export class EditarInvitacionComponent {
   }
   showCoordenadas(e) {
 
+
+
+
     this.form.patchValue({
-      [e.type]: `${this.MAPURL}?q=${e.lat},${e.lng}&z=${this.MAPZOOM}`
+
+      [e.type + 'Lng']: e.lng,
+      [e.type + 'Lat']: e.lat,
+      [e.type]: `${this.MAPURL}?q=${e.lat},${e.lng}&z=${this.MAPZOOM}`,
     })
+
+
+    this.form.value
+
+
+  }
+  getIdMap(event) {
+
+
 
   }
 }

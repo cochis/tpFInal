@@ -168,7 +168,7 @@
                                                 </span>
                                             </div>
 
-                                            <div class="col-12 col-md-4 mt-3" *ngIf="fiesta.checking" >
+                                            <div class="col-12 col-md-4 mt-3" *ngIf="fiesta.checking">
                                                 <div class="form-group" style="margin-top:15px">
                                                     <label for="cantidadInvitados">Cantidad de invitados</label>
                                                     <input type="number" class="form-control upper"
@@ -179,13 +179,14 @@
                                             </div>
                                             <div class="col-12 col-md-4 mt-3" *ngIf="fiesta.checking">
                                                 <div class="form-group">
-                                                    <label for="requeridos"*ngIf="requeridos.value==0" style="margin-top:15px">Boletos Requeridos</label>
+                                                    <label for="requeridos" *ngIf="requeridos.value==0"
+                                                        style="margin-top:15px">Boletos Requeridos</label>
 
-                                                 
-                                                    <label for="requeridos" class="requeridos" *ngIf="requeridos.value>0"> Boletos Requeridos</label>
-                                                    <input type="number" class="form-control upper"
-                                                        id="requeridos" min="1"
-                                                        formControlName="requeridos" #requeridos
+
+                                                    <label for="requeridos" class="requeridos"
+                                                        *ngIf="requeridos.value>0"> Boletos Requeridos</label>
+                                                    <input type="number" class="form-control upper" id="requeridos"
+                                                        min="1" formControlName="requeridos" #requeridos
                                                         placeholder="Boletos requeridos">
                                                 </div>
                                             </div>
@@ -266,7 +267,7 @@
 
 
                                                 <a (click)="removeInvitados(i)" *ngIf="edit==='true'   "
-                                                    class="custom-btn  ">Quitar invitado</a>
+                                                    class="custom-btn  "><i class="bi bi-trash"></i></a>
                                             </div>
 
 

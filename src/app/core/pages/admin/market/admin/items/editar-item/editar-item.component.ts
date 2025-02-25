@@ -483,6 +483,7 @@ export class EditarItemComponent {
     this.tipoitemsService.cargarTipoItemsAll().subscribe((resp: CargarTipoItems) => {
       this.tipoItems = this.functionsService.getActivos(resp.tipoItems)
 
+
     },
       (error) => {
         // console.error('error::: ', error);
@@ -506,6 +507,7 @@ export class EditarItemComponent {
       })
     this.tipoMediasService.cargarTipoMediasAll().subscribe((resp: CargarTipoMedias) => {
       this.tipoMedias = this.functionsService.getActivos(resp.tipoMedias)
+
 
 
     },

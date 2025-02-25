@@ -32,12 +32,12 @@
                             <thead class="thead-dark">
                                 <th class="upper">ID</th>
                                 <th class="upper">Opciones</th>
+                                <th class="upper">Estatus</th>
                                 <th class="upper">Nombre del Evento</th>
                                 <th class="upper">Fecha del Evento</th>
                                 <th class="upper">Proveedor</th>
                                 <th class="upper"># Productos</th>
                                 <th class="upper">Creador</th>
-                                <th class="upper">Estatus</th>
                                 <th class="upper">Creación</th>
                                 <th class="upper">Edición</th>
                             </thead>
@@ -56,17 +56,12 @@
 
 
                                     </td>
+                                    <td> {{cotizacion.estatusCotizacion.nombre}} </td>
                                     <td class="upper">{{cotizacion.nombreEvento }}</td>
                                     <td class="upper">{{cotizacion.fechaEvento | date}}</td>
                                     <td class="upper">{{cotizacion.proveedor.nombre}}</td>
                                     <td class="upper">{{cotizacion.productos.length}}</td>
                                     <td class="upper">{{cotizacion.usuarioCreated.email}}</td>
-                                    <td>
-
-                                        {{cotizacion.estatusCotizacion.nombre}}
-                                        <!--    <i *ngIf="cotizacion.activated" class="icon-ok-circled text-success"></i>
-                                        <i *ngIf="!cotizacion.activated" class="icon-cancel-circled text-danger"></i> -->
-                                    </td>
                                     <td>{{cotizacion.dateCreated | date:'dd/MM/YYYY'}}</td>
                                     <td>{{cotizacion.lastEdited | date:'dd/MM/YYYY'}}</td>
 

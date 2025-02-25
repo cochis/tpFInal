@@ -170,9 +170,10 @@
                                 </div>
                                 <div class="col-12 mt-3" *ngIf="sendCoords">
 
-                                    <app-mapscreen (coordenadas)="showCoordenadas($event)"
-                                        (coordenadasSelect)="showCoordenadasSelect($event)" [sendCoords]="sendCoords"
-                                        [isEditV]="true"></app-mapscreen>
+                                    <app-mapscreen [showBar]="true" (coordenadasSelect)="showCoordenadas($event)"
+                                        (coordenadas)="showCoordenadas($event)"
+                                        (coordenadasSelect)="showCoordenadasSelect($event)" [type]="'ubicacionGoogle'"
+                                        [sendCoords]="sendCoords" [isEditV]="true"></app-mapscreen>
                                 </div>
                                 <div class="col-12 col-md-6 mt-3" style="display: none;">
                                     <div class="form-group">

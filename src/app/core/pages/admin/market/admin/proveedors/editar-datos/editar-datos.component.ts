@@ -24,7 +24,6 @@ export class EditarDatosComponent {
   proveedor: Proveedor = undefined
   proveedorQr = undefined
   qrOK = false
-  urlLink = ''
   location: any = undefined
   public form!: FormGroup
   today: Number = this.functionsService.getToday()
@@ -35,6 +34,7 @@ export class EditarDatosComponent {
   tipoColores: TipoColor[]
   url = environment.base_url
   text_url = environment.text_url
+  urlLink = ''
   isProveedor = false
   uid = this.functionsService.getLocal('uid')
   public imagenSubir!: File

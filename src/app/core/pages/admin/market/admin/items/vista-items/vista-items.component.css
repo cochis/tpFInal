@@ -1,0 +1,8 @@
+.iconView {
+    margin-left: 7px;
+    font-size: 35px;
+    margin-right: 7px;
+    font-weight: 800;
+    background-color: var(--cPrimary);
+
+}

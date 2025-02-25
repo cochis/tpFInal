@@ -430,6 +430,7 @@ export class CrearItemComponent {
     this.tipoitemsService.cargarTipoItemsAll().subscribe((resp: CargarTipoItems) => {
       this.tipoItems = resp.tipoItems
 
+
     },
       (error) => {
         console.error('error::: ', error);
@@ -438,6 +439,7 @@ export class CrearItemComponent {
 
     this.categoriaItemsService.cargarCategoriaItemsAll().subscribe((resp: CargarCategoriaItems) => {
       this.categoriaItems = resp.categoriaItems
+
 
     },
       (error) => {

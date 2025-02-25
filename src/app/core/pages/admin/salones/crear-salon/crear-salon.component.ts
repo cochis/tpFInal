@@ -220,7 +220,8 @@ export class CrearSalonComponent {
 
   }
   back() {
-    this.functionsService.navigateTo('core/salones/vista-salones')
+    this.functionsService.navigateTo('..')
+    /* this.functionsService.navigateTo('core/salones/vista-salones') */
   }
 
 

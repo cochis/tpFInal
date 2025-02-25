@@ -2,36 +2,85 @@
 <app-loading *ngIf="loading"></app-loading>
 
 
-<div class="container " *ngIf="!loading && item">
+<div class="container animate__animated animate__fadeIn " *ngIf="!loading && item && !viewImgOk">
+
     <div class="row mt-5 text-center">
-        <div class="col-12 col-md-8 text-center">
-            <img [src]="url+'/upload/items/'+getImgPrincipal()" style="width: 100%;  max-width: 600px; "
-                [alt]="item.nombre">
+
+        <div class="col-12 col-md-8 text-center" (click)="viewImg(url+'/upload/items/'+getImgPrincipal())">
+            <ng-container *ngFor="let item of item.photos; let i= index">
+
+                <ng-container
+                    *ngIf="functionsService.getValueCatalog(tipoMediaView,'clave',tipoMedias)=='image/*'  && (indexToView == i)">
+                    <img [src]="url+'/upload/items/'+getImgPrincipal()" class="imgSingleProducto" [alt]="item.nombre">
+
+                    <br>
+                </ng-container>
+                <ng-container
+                    *ngIf="functionsService.getValueCatalog(tipoMediaView,'clave',tipoMedias)=='audio/*' && (indexToView == i)">
+
+
+                    <audio preload="auto" controls [src]="url+'/upload/items/'+getImgPrincipal()" class="ma"
+                        id="myAudio">
+                    </audio>
+
+
+                    <br>
+                </ng-container>
+                <ng-container
+                    *ngIf="functionsService.getValueCatalog(tipoMediaView,'clave',tipoMedias)=='video/*'  && (indexToView == i)">
+
+                    <video preload="auto" controls height="auto" [src]="url+'/upload/items/'+getImgPrincipal()"
+                        class="videoPlay ma" id="myAudio">
+                    </video>
+
+
+                    <br>
+                </ng-container>
+
+            </ng-container>
+
+
+
+
+
+
+
+            <div class="mt-3">
+
+                <h3>
+                    {{textToView}}
+                </h3>
+                <span>
+                    {{titleToView}}
+                </span>
+            </div>
+
         </div>
 
 
-        <div class="col-12 col-md-4 text-start  " *ngIf="item">
-            <h3 class="mt-2" class="upper" style="color:{{cP}} ;font-size: 35px;">
-                <b>{{item.nombre}}</b> &nbsp; &nbsp;&nbsp;
-                <span style="font-size: 20px; cursor: pointer; color:{{cS}} ;"
-                    routerLink="/core/vista-proveedor/{{item.proveedor._id}}">{{item.proveedor.nombre}} </span>
+        <div class="col-12 col-md-4 mt-3" *ngIf="item">
+            <h3 class="mt-2" class="upper" class="titleProducto" [style]="{'color':cP} ">
+                <b>{{item.nombre}}</b>
             </h3>
-            <h4 class="mt-3" style="color: {{cS}} !important; font-size: 20px;" *ngIf="item.isByCantidad">
-                {{mayorMenor(item.cantidades,'menor') | currency}} - {{mayorMenor(item.cantidades,'mayor') | currency}}
+            <span class="linkProveedor" class="linkProveedor" [style]="{ color:cS} "
+                routerLink="/core/vista-proveedor/{{item.proveedor._id}}">{{item.proveedor.nombre}} </span>
+            <h4 class="mt-3 cantidadProducto" [style]="{'color': cS + '!important'}" *ngIf="item.isByCantidad">
+                {{mayorMenor(item.cantidades,'menor') | currency}} - {{mayorMenor(item.cantidades,'mayor') |
+                currency}}
             </h4>
-            <h4 class="mt-3" style="color: {{cS}} !important; font-size: 20px;" *ngIf="item.isByColor">
+            <h4 class="mt-3 cantidadProducto" [style]="{'color': cS + '!important'}" *ngIf="item.isByColor">
                 {{mayorMenor(item.colores,'menor') | currency}} - {{mayorMenor(item.colores,'mayor') | currency}}
             </h4>
-            <h4 class="mt-3" style="color: {{cS}} !important; font-size: 20px;" *ngIf="item.isByService">
+            <h4 class="mt-3 cantidadProducto" [style]="{'color': cS + '!important'}" *ngIf="item.isByService">
                 {{mayorMenor(item.servicios,'menor') | currency}} - {{mayorMenor(item.servicios,'mayor') | currency}}
             </h4>
-            <h4 class="mt-3" style="color: {{cS}} !important; font-size: 20px;" *ngIf="item.isBySize">
+            <h4 class="mt-3 cantidadProducto" [style]="{'color': cS + '!important'}" *ngIf="item.isBySize">
                 {{mayorMenor(item.sizes,'menor') | currency}} - {{mayorMenor(item.sizes,'mayor') | currency}}
             </h4>
             <!-- <p>
                 <b>Referencia</b> Lorem ipsum
             </p> -->
-            <p style=" font-size: 20px; color: {{cP}} !important ; text-align: justify; ">
+            <p class="descripcionProdructo" [style]=" {'color': cP + '!important '} ">
                 {{item.descripcion}}
             </p>
 
@@ -49,14 +98,14 @@
                             </option>
                         </select>
                         <select id="opciones" class="form-select form-select-sm  upper" #opciones
-                            formControlName="opcion" (change)="opcSeleccion($event,item.cantidades)"
+                            formControlName="opcion" (change)="opcSeleccion($event,item.colores)"
                             *ngIf="item.isByColor">
                             <option value='' class="upper"> Selecciona una opción</option>
                             <option [value]="it.nombre" *ngFor="let it of item.colores" class="upper">{{it.nombre}}
                             </option>
                         </select>
                         <select id="opciones" class="form-select form-select-sm upper" #opciones
-                            formControlName="opcion" (change)="opcSeleccion($event,item.colores)"
+                            formControlName="opcion" (change)="opcSeleccion($event,item.servicios)"
                             *ngIf="item.isByService">
                             <option value='' class="upper"> Selecciona una opción</option>
                             <option [value]="it.nombre" *ngFor="let it of item.servicios" class="upper">{{it.nombre}}
@@ -81,27 +130,27 @@
                 <div class="row mt-2">
                     <div class="carrucel">
 
-                        <div class="item-market pointer" *ngFor="let item of item.photos">
-                            <img [src]="url+'/upload/items/'+item.img" class=" img-item-market  select-img-market"
-                                [alt]="item.nombre" (click)="viewPhoto(item.img)">
+                        <div class="item-market pointer" *ngFor="let item of item.photos;let i =index">
+                            <ng-container
+                                *ngIf="functionsService.getValueCatalog(item.tipoMedia,'clave',tipoMedias)=='image/*'">
+                                <img [src]="url+'/upload/items/'+item.img" class=" img-item-market  select-img-market"
+                                    [alt]="item.nombre" (click)="viewPhoto(item,i)">
+                            </ng-container>
+                            <ng-container
+                                *ngIf="functionsService.getValueCatalog(item.tipoMedia,'clave',tipoMedias)=='audio/*'">
+                                <i class="bi bi-volume-up iconView"
+                                    [style]="{'color': cP+ '!important','background-color': cS + '!important'}"
+                                    (click)="viewPhoto(item,i)"></i>
+                            </ng-container>
+                            <ng-container
+                                *ngIf="functionsService.getValueCatalog(item.tipoMedia,'clave',tipoMedias)=='video/*'">
+                                <i class="bi bi-camera-video iconView"
+                                    [style]="{'color': cP+ '!important','background-color': cS + '!important'}"
+                                    (click)="viewPhoto(item,i)"></i>
+                            </ng-container>
+
 
                         </div>
-                        <!-- <div class="item-market pointer">
-                            <img src="assets/icons/flores2.jpeg" class=" img-item-market " alt="Iglesia">
-    
-                        </div>
-                        <div class="item-market pointer">
-                            <img src="assets/icons/flores3.jpeg" class=" img-item-market " alt="Iglesia">
-    
-                        </div>
-                        <div class="item-market pointer">
-                            <img src="assets/icons/flores4.jpeg" class=" img-item-market " alt="Iglesia">
-    
-                        </div>
-                        <div class="item-market pointer">
-                            <img src="assets/icons/flores5.jpeg" class=" img-item-market " alt="Iglesia">
-    
-                        </div> -->
 
 
 
@@ -112,7 +161,7 @@
 
                     <div class="col-12 text-center ">
                         <button class="btn   ma" type="button"
-                            style="color:{{CW}}!important; background-color:{{cP}} !important"
+                            [style]="{'color':CW +'!important', 'background-color':cP+ '!important'}"
                             (click)="setCarrito(opcSelected)"> Agregar al
                             carrito</button>
                     </div>
@@ -129,16 +178,18 @@
                     Descripción de {{opcSelected.nombre}}
                 </h3>
 
-                <p class="upper" style="text-align: justify">
-                    {{opcSelected.descripcion}}
-                </p>
+
+
+                <div [innerHTML]="descripcionHTML"></div>
+
+
             </div>
             <div class="col-12">
                 <h3 class="upper">
                     Precio
                 </h3>
 
-                <p class="upper" style="color: {{cP}} !important; font-size: 25px;">
+                <p class="upper precioProducto" [style]="{'color': cP+ '!important'} ">
                     {{opcSelected.precio | currency}}
                 </p>
             </div>
@@ -154,12 +205,32 @@
             </ul>
         </div>
     </div>
+    <div class="row" *ngIf="provLocation">
+        <div class="col-12">
+            <app-mapscreen [showBar]="false" [sendCoords]="provLocation" [isEditV]="false"></app-mapscreen>
+        </div>
+    </div>
     <div class="row mt-5  text-center">
 
         <div class="col-6  ma ">
-            <button class="btn " style="background-color: {{cS}};color:{{CW}}" (click)="back()"> Regresar al
+            <button class="btn " [style]="{'background-color': cS,'color':CW}" (click)="back()"> Regresar al
                 marketplace</button>
         </div>
     </div>
+</div>
+<div class="container  animate__animated animate__fadeIn " *ngIf="!loading && item && viewImgOk">
+    <div class="row" animate__animated animate__fadeIn>
+        <div class="col-12 text-center mt-3">
+
+            <img [src]="imgToView" class="imgToView" alt="">
+        </div>
+        <div class="col-12 col-md-6 ma text-center ">
+
+            <button class="btn but2 mt-3" (click)="viewImg()">
+                Salir
+            </button>
+        </div>
+    </div>
+
 </div>
 <app-footer></app-footer>

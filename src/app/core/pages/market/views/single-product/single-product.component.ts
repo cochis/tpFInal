@@ -6,12 +6,16 @@ import { ItemsService } from 'src/app/core/services/item.service';
 import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { TipoMediasService } from 'src/app/core/services/tipoMedia.service';
+import { TipoMedia } from 'src/app/core/models/tipoMedia.model';
+import { CargarTipoMedias } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
 @Component({
   selector: 'app-single-product',
   templateUrl: './single-product.component.html',
   styleUrls: ['./single-product.component.css']
 })
-export class SingleProductComponent implements AfterViewInit {
+export class SingleProductComponent {
   id!: string
   item: any
   CP = environment.cPrimary
@@ -30,20 +34,39 @@ export class SingleProductComponent implements AfterViewInit {
   public form!: FormGroup
   today: Number = this.functionsService.getToday()
   loading: boolean = false
+  viewImgOk = false
+  imgToView = ''
+  tipoMediaView: string = ''
+  titleToView: string = ''
+  textToView: string = ''
+  indexToView: number = 0
+  descripcionHTML: SafeHtml;
+  provLocation: any
+  tipoMedias: TipoMedia[]
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private itemsService: ItemsService,
     private fb: FormBuilder,
     private functionsService: FunctionsService,
-
+    private tipoMediasService: TipoMediasService,
+    private sanitizer: DomSanitizer
   ) {
-
+    this.getCatalogos()
     this.id = this.route.snapshot.params['id']
     this.getId(this.id)
   }
-  ngAfterViewInit() {
+  getCatalogos() {
+    this.tipoMediasService.cargarTipoMediasAll().subscribe((resp: CargarTipoMedias) => {
+      this.tipoMedias = this.functionsService.getActivos(resp.tipoMedias)
 
+
+
+    },
+      (error) => {
+        // console.error('error::: ', error);
+        this.functionsService.alertError(error, 'Tipo de medios')
+      })
 
   }
   createForm() {
@@ -63,27 +86,78 @@ export class SingleProductComponent implements AfterViewInit {
   opcSeleccion(itm, items) {
 
 
+
+
     let r = items.filter((res) => { return res.nombre == itm.target.value })
+
 
 
     this.opcSelected = r[0]
 
+    this.convertDes(this.opcSelected.descripcion)
+
   }
-  viewPhoto(id) {
+  viewPhoto(item, index) {
+
+
+    this.indexToView = index
 
     this.item.photos.forEach((pic: any) => {
-      if (pic.img === id) {
+      if (pic.img === item.img) {
+        this.titleToView = pic.nombre
+        this.textToView = pic.descripcion
+        this.tipoMediaView = pic.tipoMedia
+
         pic.isPrincipal = true
       } else {
         pic.isPrincipal = false
       }
     });
   }
+  convertDes(des: string) {
+    if (des) {
+      let spl = des.split('\n')
+      var desc = '<ul style="list-style:none">'
+      spl.forEach(element => {
+        desc += `<li>${element}</li>`
+
+
+      });
+      desc += '</ul>'
+
+      this.descripcionHTML = this.sanitizer.bypassSecurityTrustHtml(desc);
+
+    } else {
+      this.descripcionHTML = this.sanitizer.bypassSecurityTrustHtml('desc');
+
+    }
+
+
+    des = des.replace('\n', '"</br>"')
+
+  }
   getId(id) {
     this.loading = true
     this.itemsService.cargarItemById(id).subscribe((res: any) => {
 
       this.item = res.item
+
+      if (this.item.proveedor.lng && this.item.proveedor.lat) {
+
+        this.provLocation = [this.item.proveedor.lng, this.item.proveedor.lat]
+      } else {
+        this.provLocation = [-98.8955876, 19.4345723]
+      }
+      this.item.photos.forEach((ph, i) => {
+        if (ph.isPrincipal) {
+          this.titleToView = ph.nombre
+          this.textToView = ph.descripcion
+          this.tipoMediaView = ph.tipoMedia
+          this.indexToView = i
+
+        }
+
+      });
 
       this.item.proveedor.colores.forEach(pv => {
 
@@ -107,6 +181,7 @@ export class SingleProductComponent implements AfterViewInit {
     })
   }
   mayorMenor(items, type) {
+
     if (type == 'mayor') {
 
       for (var i = 0; i < items.length; i++) {
@@ -126,6 +201,7 @@ export class SingleProductComponent implements AfterViewInit {
           this.menor = items[i].precio;
         }
       }
+
 
       return this.menor
     }
@@ -216,5 +292,15 @@ export class SingleProductComponent implements AfterViewInit {
 
       }
     });
+  }
+  viewImg(photo?: any) {
+
+    this.viewImgOk = !this.viewImgOk
+    if (photo != '') {
+
+      this.imgToView = photo
+
+    }
+
   }
 }

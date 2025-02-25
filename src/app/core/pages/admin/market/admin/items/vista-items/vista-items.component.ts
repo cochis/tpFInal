@@ -3,12 +3,14 @@ import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { BusquedasService } from 'src/app/shared/services/busquedas.service';
 import { environment } from 'src/environments/environment';
 import { Item } from 'src/app/core/models/item.model';
-import { CargarItems, CargarTipoColors, CargarTipoContactos } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
+import { CargarItems, CargarTipoColors, CargarTipoContactos, CargarTipoMedias } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
 import { TipoContacto } from 'src/app/core/models/tipoContacto.model';
 import { TipoColor } from 'src/app/core/models/tipoColor.model';
 import { TipoColorsService } from 'src/app/core/services/tipoColores.service';
 import { TipoContactosService } from 'src/app/core/services/tipoContacto.service';
 import { ItemsService } from 'src/app/core/services/item.service';
+import { TipoMediasService } from 'src/app/core/services/tipoMedia.service';
+import { TipoMedia } from 'src/app/core/models/tipoMedia.model';
 @Component({
   selector: 'app-vista-items',
   templateUrl: './vista-items.component.html',
@@ -28,12 +30,16 @@ export class VistaItemsComponent {
   SLN = environment.salon_role
   URS = environment.user_role
   rol = this.functionsService.getLocal('role')
+  tipoMedias: TipoMedia[]
+  mediaItem: any = []
+  imgItem: any = []
   constructor(
     private functionsService: FunctionsService,
     private busquedasService: BusquedasService,
     private itemsService: ItemsService,
     private tipoColoresService: TipoColorsService,
     private tipoContactosService: TipoContactosService,
+    private tipoMediasService: TipoMediasService,
   ) {
     this.getCatalogos()
     this.getItems()
@@ -75,6 +81,7 @@ export class VistaItemsComponent {
       this.itemsService.cargarItemsAll().subscribe((resp: CargarItems) => {
 
         this.items = resp.items
+
 
 
         this.itemsTemp = resp.items
@@ -181,22 +188,39 @@ export class VistaItemsComponent {
     return id
   }
 
-  getPrincipal(item) {
+  getPrincipal(item, i?) {
 
-    if (item.photos.length > 0) {
 
-      let r = item.photos.filter(ph => {
+    if (i !== undefined) {
 
-        return ph.isPrincipal == true
-      })
+      if (item.photos.length > 0) {
 
-      return r[0].img
-    } else {
-      return ''
+        let r = item.photos.filter(ph => {
+          if (ph.isPrincipal) {
+
+
+            this.mediaItem.push(this.functionsService.getValueCatalog(ph.tipoMedia, 'clave', this.tipoMedias))
+            this.imgItem.push(this.functionsService.getValueCatalog(ph.tipoMedia, 'clave', this.tipoMedias))
+
+          }
+        })
+
+
+      }
+
+
     }
-
   }
   getCatalogos() {
+    this.tipoMediasService.cargarTipoMediasAll().subscribe((resp: CargarTipoMedias) => {
+      this.tipoMedias = this.functionsService.getActivos(resp.tipoMedias)
+
+
+    },
+      (error) => {
+        // console.error('error::: ', error);
+        this.functionsService.alertError(error, 'Tipo de medios')
+      })
     this.tipoContactosService.cargarTipoContactosAll().subscribe((resp: CargarTipoContactos) => {
       this.tipoContactos = resp.tipoContactos
 

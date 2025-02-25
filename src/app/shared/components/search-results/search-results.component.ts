@@ -9,8 +9,10 @@ import { MapsService } from '../../services/maps.service';
 })
 export class SearchResultsComponent implements AfterViewInit {
   @Input() places = undefined
+  @Input() mapID
   @Input() loading = false
   @Output() coordenadas!: EventEmitter<object>;
+  viewOk = true
   selected = ''
   constructor(
     private mapsService: MapsService
@@ -18,16 +20,29 @@ export class SearchResultsComponent implements AfterViewInit {
   ) {
     this.coordenadas = new EventEmitter()
 
+
   }
   ngAfterViewInit() {
 
 
+
   }
   flyTo(place: Feature) {
+
+    this.chageView()
     this.selected = place.id
 
     const [lng, lat] = place.geometry.coordinates
+
+
     this.coordenadas.emit([lng, lat])
-    this.mapsService.flyTo([Number(lng), Number(lat)])
+    if (this.mapsService.getMap()) {
+
+      this.mapsService.flyTo(this.mapID, [Number(lng), Number(lat)])
+    }
+  }
+
+  chageView() {
+    this.viewOk = !this.viewOk
   }
 }

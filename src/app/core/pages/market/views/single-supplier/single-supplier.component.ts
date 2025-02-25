@@ -40,9 +40,12 @@ export class SingleSupplierComponent {
     private fb: FormBuilder) {
     this.CLPR.forEach(cl => {
       if (cl.clave == 'cPrincipalWP') {
+
         this.CP = cl.value
+
       } else {
         this.CS = cl.value
+
       }
     });
     this.id = this.route.snapshot.params['id']
@@ -462,6 +465,7 @@ export class SingleSupplierComponent {
 
 
   getColor(type, colors) {
+
 
     var color = ''
     if (type === 'P') {

@@ -48,7 +48,7 @@
 
                                         <label for="file-input-img">
                                             <!--  [ngClass]=" {'pointer':edit ==='true'}" -->
-
+                                            <h3>Imagen del proveedor</h3>
 
                                             <img *ngIf="form.value.img =='' && !imgTemp"
                                                 [src]="url+'/upload/proveedor/default.jpg' "
@@ -76,7 +76,7 @@
                                         <label for="file-input-bannerImg">
                                             <!--  [ngClass]=" {'pointer':edit ==='true'}" -->
 
-
+                                            <h3>Imagen del banner </h3>
                                             <img *ngIf="form.value.bannerImg =='' && !imgTemp"
                                                 [src]="url+'/upload/proveedor/default.jpg' "
                                                 alt="Click aquí para subir tu foto"
@@ -98,9 +98,9 @@
                                 </div>
                                 <div class="row mt-3 text-center">
 
-                                    <div class="col-3 ma ">
+                                    <div class="col-12 col-md-4 ma ">
 
-                                        <button class="btn primaB white" type="button" (click)="addContactos()">
+                                        <button class="btn primaB white ma" type="button" (click)="addContactos()">
                                             <i class="icon-plus"></i> Agregar contacto
                                         </button>
                                     </div>
@@ -167,9 +167,9 @@
 
                                 <div class="row mt-3 text-center">
 
-                                    <div class="col-3 ma ">
+                                    <div class="col-12 col-md-4 ma ">
 
-                                        <button class="btn primaB white" type="button" (click)="addColors()">
+                                        <button class="btn primaB white ma" type="button" (click)="addColors()">
                                             <i class="icon-plus"></i> Agregar Color
                                         </button>
                                     </div>

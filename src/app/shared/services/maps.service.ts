@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment';
 })
 export class MapsService {
 
-  private map?: Map;
+  public map?: Map;
   public userLocation?: [number, number]
   /* public base_url = 'https://api.mapbox.com/geocoding/v5/mapbox.places' */
   public base_url = 'https://api.mapbox.com/search/geocode/v6/forward?'
@@ -33,13 +33,38 @@ export class MapsService {
 
   setMap(map: Map) {
 
+
     this.map = map
+
+
+    this.getUserLocation().then(res => {
+      this.userLocation = res
+      const popup = new Popup()
+        .setHTML(`
+        <h6>¡Aquí Estas!</h6>
+        <span>AQUÍ</span>
+
+        `)
+      if (this.userLocation) {
+
+
+        new Marker({ color: 'red', rotation: 45 })
+          .setLngLat(this.userLocation)
+          .setPopup(popup)
+          .addTo(this.map)
+
+      }
+    })
+
+
   }
 
-  flyTo(coords: any) {
+  flyTo(map, coords: any) {
+
+
 
     if (!this.isMapReady) throw Error('El mapa no esta inicializado')
-    this.map?.flyTo({
+    map?.flyTo({
       zoom: 15,
       center: coords
     })
@@ -73,7 +98,7 @@ export class MapsService {
 
   }
 
-  createMarkersFromPlaces(places: Feature[]) {
+  createMarkersFromPlaces(map, places: Feature[]) {
 
     if (!this.map) throw Error('Mapa nop inicializado')
     this.markers.forEach(marker => marker.remove());
@@ -90,11 +115,20 @@ export class MapsService {
       const newMarker = new Marker()
         .setLngLat([lgn, lat])
         .setPopup(popup)
-        .addTo(this.map)
+        .addTo(map)
 
       newMarkers.push(newMarker)
     }
     this.markers = newMarkers
+  }
+
+
+  getMap() {
+    return this.map._mapId
+  }
+
+  deleteKaker() {
+    this.markers.forEach(marker => marker.remove());
   }
 
 }

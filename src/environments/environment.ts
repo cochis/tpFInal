@@ -6,20 +6,11 @@ export const environment = {
   production: false,
   user_ID: '64ff4f79da409a7d91056a5b',
   secret: '1f2d1e2e67df',
-  version: "2.0.0",
+  version: "2.0.4",
   publicKey: "BJqZ8KY_kguwLf27SsteILLRHlWY2pJOvrKlyZNeFlEg4O15ut0t7oYMgXHcLPSh2WYCRPwTS3WEPnhXCMZO4Wg",
   privateKey: "v04F9j6-aAZRvYl25BtZu1cezaWT-m4P0sHtE0JbE7g",
   stripeKeyD: 'pk_test_51PipskAbE4XYrXNxNi1oiwylWr7B9mNMfUfQ070Cy09dDPj5HBFYObSajMGjNzlAynX23dT8thcx8sdJxpnP7Vov00wzIocDLR',
   stripeKeyP: 'pk_live_51PipskAbE4XYrXNxZ0yWqN3yzqmd10zuGlQfrTjw5Xq6qJKieygAzLP82XsSdLC108X9U6fpR7JesWItmvnQBv2H00fBlsrNTw',
-  //DEV
-  //base_url: "http://localhost:3008/api",
-  //text_url: "http://localhost:4200/",
-  //QA
-  base_url: "https://tickets.cochisweb.com/api",
-  text_url: "https://tickets.cochisweb.com/",
-  //PROD
-  //base_url: "https://www.myticketparty.com/api",
-  //text_url: "https://www.myticketparty.com/",
   //   PARAMETROS
   urlInvitacion: 'https://tickets.cochisweb.com/core/templates/default/67004d6552152ca21abfb790/670b203aeb2ab02d2eb494e2',
   urlInvitacionFile: 'https://tickets.cochisweb.com/core/templates/byFile/67006e4d81d8c3a51137cdd7/670b2eadeb2ab02d2eb49670',
@@ -57,6 +48,11 @@ export const environment = {
   apiKey_mapBox: 'pk.eyJ1IjoiY29jaGlzIiwiYSI6ImNsb2c0M3NxNDByazEya3Jydmc2amtrNTcifQ.j0MCmbfTjEUQMtby7r42Cw',
   cPrimary: '#13547a',
   cSecond: '#80d0c7',
+  //Variables DEV
+  /*
+ 
+  base_url: "http://localhost:3008/api",
+  text_url: "http://localhost:4200/",
   cProvedores: [
     {
       value: "679a73e437dec3f0672e2ec1",
@@ -90,6 +86,97 @@ export const environment = {
     {
       value: "679a6d03d7603c6c58018354",
       clave: "PAGINA WEB"
+    },
+    {
+      value: "67b95a049b1aac6f7ff9c0c9",
+      clave: "WHATSAPP"
+    },
+  ] */
+
+
+
+  //Variables QA
+  /*  base_url: "https://tickets.cochisweb.com/api",
+   text_url: "https://tickets.cochisweb.com/",
+   cProvedores: [
+     {
+       value: "67bb92939279f84e078263a9",
+       clave: "cPrincipalWP"
+     },
+     {
+       value: "67bb92ad9279f84e078263b0",
+       clave: "cSecondWP"
+     },
+   ],
+   tiProducto: '67bb934a9279f84e078263ec',
+   tiServicio: '67bb93559279f84e078263f3',
+   contactosProveedor: [
+     {
+       value: "67bb93149279f84e078263dc",
+       clave: "TELÉFONO"
+     }
+     ,
+     {
+       value: "67bb92e89279f84e078263ce",
+       clave: "MAIL"
+     },
+ 
+     {
+       value: "67bb92d09279f84e078263c7",
+       clave: "DIRECCIÓN"
+     },
+     {
+       value: "67bb92fc9279f84e078263d5",
+       clave: "PAGINA WEB"
+     },
+     {
+       value: "67bb93279279f84e078263e3",
+       clave: "WHATSAPP"
+     },
+   ] */
+
+
+
+
+
+
+  //Variables PROD
+  base_url: "https://www.myticketparty.com/api",
+  text_url: "https://www.myticketparty.com/",
+  cProvedores: [
+    {
+      value: "67bb99a9c539cb99eb40fe22",
+      clave: "cPrincipalWP"
+    },
+    {
+      value: "67bb99b7c539cb99eb40fe29",
+      clave: "cSecondWP"
+    },
+  ],
+  tiProducto: '67bb9a31c539cb99eb40fe65',
+  tiServicio: '67bb9a3cc539cb99eb40fe6c',
+  contactosProveedor: [
+    {
+      value: "67bb9a11c539cb99eb40fe55",
+      clave: "TELÉFONO"
+    }
+    ,
+    {
+      value: "67bb99ecc539cb99eb40fe47",
+      clave: "MAIL"
+    },
+
+    {
+      value: "67bb99dac539cb99eb40fe40",
+      clave: "DIRECCIÓN"
+    },
+    {
+      value: "67bb9a02c539cb99eb40fe4e",
+      clave: "PAGINA WEB"
+    },
+    {
+      value: "67bb9a22c539cb99eb40fe5c",
+      clave: "WHATSAPP"
     },
   ]
 

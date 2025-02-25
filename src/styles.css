@@ -133,7 +133,7 @@ input[type="file"] {
 }
 
 .less {
-    background: var(--error);
+    background: var(--cSecond) !important;
     border-radius: 100%;
     width: 50px;
     height: 50px;
@@ -481,4 +481,8 @@ input[type="file"] {
 
 .animate__animated {
     --animate-duration: 3s;
+}
+
+.table-over {
+    min-height: 450px !important;
 }

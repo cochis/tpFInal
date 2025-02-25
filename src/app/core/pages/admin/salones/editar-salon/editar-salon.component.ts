@@ -323,14 +323,16 @@ export class EditarSalonComponent {
   }
   showCoordenadasSelect(e) {
 
+
     let uno = `${this.MAPURL}?q=${e[1]},${e[0]}&z=${this.MAPZOOM}`
 
     this.form.patchValue({
 
-      lat: e[1],
-      long: e[0],
-      ubicacionGoogle: `${this.MAPURL}?q=${e[1]},${e[0]}&z=${this.MAPZOOM}`
+      lat: e.lat,
+      long: e.lng,
+      ubicacionGoogle: `${this.MAPURL}?q=${e.lat},${e.lng}&z=${this.MAPZOOM}`
     })
+
 
 
 

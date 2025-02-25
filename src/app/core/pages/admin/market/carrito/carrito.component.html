@@ -47,7 +47,7 @@
 
 
                         <form [formGroup]="form" (ngSubmit)="onSubmit()">
-                            <div class="row">
+                            <div class="row table-over">
 
                                 <table class="table">
                                     <thead>
@@ -71,7 +71,7 @@
                                                         <th>
                                                             <button class="btn less " (click)="removeCarrito(i)"
                                                                 *ngIf="this.form.value.fiesta !==''"> <i
-                                                                    class="icon-minus"></i></button>
+                                                                    class="bi bi-trash"></i></button>
                                                         </th>
                                                         <th class="text-center">
                                                             <a
@@ -320,8 +320,9 @@ ubicacion:   -->
                             </div>
                             <div class="col-12   mt-3" *ngIf="location">
                                 <label for="ubicacion ">Ubicación </label>
-                                <app-mapscreen (coordenadas)="showCoordenadas($event)" [sendCoords]="location"
-                                    [isEditV]="true" type="ubicacion"></app-mapscreen>
+                                <app-mapscreen [showBar]="true" (coordenadasSelect)="showCoordenadas($event)"
+                                    (coordenadas)="showCoordenadas($event)" [sendCoords]="location" [isEditV]="true"
+                                    type="ubicacion"></app-mapscreen>
                                 <span *ngIf="submited && errorControlCot ['ubicacion'].errors " class="error">Favor de
                                     seleccionar un lugar
                                 </span>
@@ -341,7 +342,7 @@ ubicacion:   -->
 
 
 
-                    <div class="col-12 mt-5">
+                    <div class="col-12 mt-5 table-over">
                         <table class="table">
                             <thead>
                                 <tr>
@@ -364,12 +365,12 @@ ubicacion:   -->
                                     <tr *ngFor="let item of carrito, let i=index">
                                         <ng-container *ngIf="item.item && item.item.proveedor._id ==prov">
 
-                                            <th class="text-center upper" style="line-height: 50px;">
+                                            <th class="text-center upper">
 
                                                 <img [src]="url+'/upload/items/'+getImagen(item.item.photos)"
                                                     style="width: 50px; height: 50px;" [alt]="item.nombre">
                                             </th>
-                                            <th class="text-center upper" style="line-height: 50px;">
+                                            <th class="text-center upper">
                                                 {{item.item.nombre?item.item.nombre:''}}
 
                                             </th>
@@ -386,8 +387,7 @@ ubicacion:   -->
 
                                             <td>
 
-                                                <b *ngFor="let ct of item.item.proveedor.contactos"
-                                                    style="line-height: 50px;">
+                                                <b *ngFor="let ct of item.item.proveedor.contactos">
                                                     <ng-container *ngIf="getContact(ct).nombre === 'DIRECCIÓN'">
                                                         <a href="{{ct.value}}" target="_blank">
                                                             <b
@@ -423,14 +423,14 @@ ubicacion:   -->
 
                                             </td>
 
-                                            <td class="text-center upper" style="line-height: 50px;">
+                                            <td class="text-center upper">
                                                 {{item.opcion?item.opcion:''}}</td>
-                                            <td class="text-center upper" style="line-height: 50px;">
+                                            <td class="text-center upper">
                                                 {{getPrecio(item.item,item.opcion) | currency}}
                                             </td>
-                                            <td class="text-center upper" style="line-height: 50px;">
+                                            <td class="text-center upper">
                                                 {{item.cantidad?item.cantidad:''}}</td>
-                                            <td class="text-center upper" style="line-height: 50px;">
+                                            <td class="text-center upper">
                                                 {{getTotal(item.item,item.opcion,item.cantidad)|
                                                 currency}}
                                             </td>

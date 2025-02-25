@@ -1,3 +1,22 @@
 p {
     font-size: 12px;
 }
+
+.active {
+    background-color: var(--cPrimary);
+}
+
+.btn:hover {
+    background-color: var(--cPrimary);
+
+}
+
+.btn:active {
+    background-color: var(--cSecond);
+
+}
+
+.btn:focus {
+    background-color: var(--cSecond);
+
+}

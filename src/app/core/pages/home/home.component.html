@@ -1,476 +1,484 @@
 <app-header></app-header>
+<div class="animate__animated animate__fadeIn">
 
-<section class="hero-section d-flex justify-content-center align-items-center" id="section_1">
-    <div class="container">
-        <div class="row">
+    <section class="hero-section d-flex justify-content-center align-items-center" id="section_1">
+        <div class="container">
+            <div class="row">
 
-            <div class="col-lg-8 col-12 mx-auto text-center">
-                <img src="assets/images/lg.png" style="width:250px" alt="">
-                <!-- <h6 class="text-center mt-3" style="color: white; font-weight: 800;">Confirma tu asistencia</h6>
- -->
+                <div class="col-lg-8 col-12 mx-auto text-center">
+                    <img src="assets/images/lg.png" style="width:250px" alt="">
+                    <!-- <h6 class="text-center mt-3" style="color: white; font-weight: 800;">Confirma tu asistencia</h6>
+     -->
+
+                </div>
 
             </div>
-
         </div>
-    </div>
-</section>
-<section class="featured-section">
-    <div class="container">
-        <div class="row justify-content-center">
+    </section>
+    <section class="featured-section">
+        <div class="container">
+            <div class="row justify-content-center">
 
-            <div class="col-lg-4 col-12 mb-4 mb-lg-0">
-                <div class="custom-block bg-white shadow-lg">
-                    <div class="d-flex" style="justify-content: center;">
-                        <div class="justify-content-center text-center">
+                <div class="col-lg-4 col-12 mb-4 mb-lg-0">
+                    <div class="custom-block bg-white shadow-lg">
+                        <div class="d-flex" style="justify-content: center;">
+                            <div class="justify-content-center text-center">
 
-                            <!-- 
-                            <h5 class=" mb-3 upper" style="color:#13547a ; font-weight: 800;">Escanea tu QR</h5> -->
+                                <!-- 
+                                <h5 class=" mb-3 upper" style="color:#13547a ; font-weight: 800;">Escanea tu QR</h5> -->
 
+
+                            </div>
 
                         </div>
+                        <a>
 
+                            <img src="/assets/images/qr.jpeg" class="custom-block-image img-fluid img-scan"
+                                *ngIf="!scannerActive" alt="">
+                        </a>
+                        <app-scanner *ngIf="scannerActive" (qr)="showQr($event)"></app-scanner>
                     </div>
-                    <a>
-
-                        <img src="/assets/images/qr.jpeg" class="custom-block-image img-fluid img-scan"
-                            *ngIf="!scannerActive" alt="">
-                    </a>
-                    <app-scanner *ngIf="scannerActive" (qr)="showQr($event)"></app-scanner>
                 </div>
+
+
+
+            </div>
+        </div>
+    </section>
+    <section class="explore-section section-padding" id="section_2">
+        <div class="container">
+
+            <div class="col-12 text-center">
+                <h2 class="mb-4">Asegúrate que su evento, se lleve a cabo sin contratiempos.</h2>
             </div>
 
-
-
-        </div>
-    </div>
-</section>
-<section class="explore-section section-padding" id="section_2">
-    <div class="container">
-
-        <div class="col-12 text-center">
-            <h2 class="mb-4">Asegúrate que su evento, se lleve a cabo sin contratiempos.</h2>
         </div>
 
-    </div>
+
+        <div class="container-fluid mb-3">
+            <div class="row">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="design-tab" data-bs-toggle="tab"
+                            data-bs-target="#tipo-centro-evento-tab" type="button" role="tab"
+                            aria-controls="tipo-centro-evento-tab" aria-selected="true">Tipo de centro de
+                            eventos</button>
+                    </li>
+
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="tipo-evento-tab" data-bs-toggle="tab"
+                            data-bs-target="#tipo-evento-tab-pane" type="button" role="tab"
+                            aria-controls="tipo-evento-tab-pane" aria-selected="false">Tipo de eventos</button>
+                    </li>
+
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="invitacion-tab" data-bs-toggle="tab"
+                            data-bs-target="#invitacion-tab-pane" type="button" role="tab"
+                            aria-controls="invitacion-tab-pane" aria-selected="false">Invitación
+                        </button>
+                    </li>
 
 
-    <div class="container-fluid mb-3">
-        <div class="row">
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="design-tab" data-bs-toggle="tab"
-                        data-bs-target="#tipo-centro-evento-tab" type="button" role="tab"
-                        aria-controls="tipo-centro-evento-tab" aria-selected="true">Tipo de centro de eventos</button>
-                </li>
 
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="tipo-evento-tab" data-bs-toggle="tab"
-                        data-bs-target="#tipo-evento-tab-pane" type="button" role="tab"
-                        aria-controls="tipo-evento-tab-pane" aria-selected="false">Tipo de eventos</button>
-                </li>
-
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="invitacion-tab" data-bs-toggle="tab"
-                        data-bs-target="#invitacion-tab-pane" type="button" role="tab"
-                        aria-controls="invitacion-tab-pane" aria-selected="false">Invitación
-                    </button>
-                </li>
-
-
-
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="checking-tab" data-bs-toggle="tab" data-bs-target="#checking-tab-pane"
-                        type="button" role="tab" aria-controls="checking-tab-pane"
-                        aria-selected="false">Checking</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="galeria-tab" data-bs-toggle="tab" data-bs-target="#galeria-tab-pane"
-                        type="button" role="tab" aria-controls="galeria-tab-pane" aria-selected="false">Galería</button>
-                </li>
-            </ul>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="checking-tab" data-bs-toggle="tab"
+                            data-bs-target="#checking-tab-pane" type="button" role="tab"
+                            aria-controls="checking-tab-pane" aria-selected="false">Checking</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="galeria-tab" data-bs-toggle="tab"
+                            data-bs-target="#galeria-tab-pane" type="button" role="tab" aria-controls="galeria-tab-pane"
+                            aria-selected="false">Galería</button>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
 
-    <div class="container">
-        <div class="row">
+        <div class="container">
+            <div class="row">
 
-            <div class="col-12">
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="tipo-centro-evento-tab" role="tabpanel"
-                        aria-labelledby="design-tab" tabindex="0">
-                        <div class="row">
-                            <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
-                                <div class="custom-block bg-white shadow-lg">
+                <div class="col-12">
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="tipo-centro-evento-tab" role="tabpanel"
+                            aria-labelledby="design-tab" tabindex="0">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
+                                    <div class="custom-block bg-white shadow-lg">
 
-                                    <div class="d-flex">
-                                        <div class="ma title">
-                                            <h5 class="mb-2 ma">Salón de eventos</h5>
+                                        <div class="d-flex">
+                                            <div class="ma title">
+                                                <h5 class="mb-2 ma">Salón de eventos</h5>
+                                                <!-- 
+                                                    <p class="mb-0">Como salón de eventos puedes</p> -->
+                                            </div>
+
+                                            <!--  <span class="badge bg-design rounded-pill ms-auto">14</span> -->
+                                        </div>
+
+                                        <img src="/assets/icons/evento.png" class="custom-block-image img-fluid" alt="">
+
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
+                                    <div class="custom-block bg-white shadow-lg">
+                                        <div class="d-flex">
+                                            <div class="ma title">
+                                                <h5 class="mb-2 ma">Escuelas</h5>
+                                            </div>
+                                        </div>
+                                        <img src="/assets/icons/school.png" class="custom-block-image img-fluid" alt="">
+
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-md-6 col-12 ma mt-3">
+                                    <div class="custom-block bg-white shadow-lg">
+                                        <div class="d-flex">
+                                            <div class="ma title">
+                                                <h5 class="mb-2 ma">Grupos sociales</h5>
+                                            </div>
+                                        </div>
+                                        <img src="/assets/icons/grupos.png" class="custom-block-image img-fluid" alt="">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-12 ma mt-3">
+                                    <div class="custom-block bg-white shadow-lg">
+                                        <div class="d-flex">
+                                            <div class="ma title">
+                                                <h5 class="mb-2 ma">Particulares</h5>
+                                            </div>
+                                        </div>
+                                        <img src="/assets/icons/person.png" class="custom-block-image img-fluid" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="tipo-evento-tab-pane" role="tabpanel"
+                            aria-labelledby="tipo-evento-tab" tabindex="0">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3 ma">
+                                    <div class="custom-block bg-white shadow-lg">
+
+                                        <div class="d-flex">
+                                            <div class="ma title">
+                                                <h5 class="mb-2 ma">Cumpleaños</h5>
+
+                                                <!--  <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p> -->
+                                            </div>
+
+                                            <!--    <span class="badge bg-advertising rounded-pill ms-auto">30</span> -->
+                                        </div>
+
+                                        <img src="/assets/icons/birthday.png" class="custom-block-image img-fluid"
+                                            alt="">
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3 ma">
+                                    <div class="custom-block bg-white shadow-lg">
+
+                                        <div class="d-flex">
+                                            <div class="ma title">
+                                                <h5 class="mb-2 ma">Eventos sociales</h5>
+
+                                                <!--  <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p> -->
+                                            </div>
+
+                                            <!--    <span class="badge bg-advertising rounded-pill ms-auto">30</span> -->
+                                        </div>
+
+                                        <img src="/assets/icons/social.png" class="custom-block-image img-fluid" alt="">
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3 ma">
+                                    <div class="custom-block bg-white shadow-lg">
+
+                                        <div class="d-flex">
+                                            <div class="ma title">
+                                                <h5 class="mb-2 ma">Eventos laborales</h5>
+
+                                                <!--  <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p> -->
+                                            </div>
+
+                                            <!--    <span class="badge bg-advertising rounded-pill ms-auto">30</span> -->
+                                        </div>
+
+                                        <img src="/assets/icons/people.png" class="custom-block-image img-fluid" alt="">
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3 ma">
+                                    <div class="custom-block bg-white shadow-lg">
+
+                                        <div class="d-flex">
+                                            <div class="ma title">
+                                                <h5 class="mb-2 ma">Eventos escolares</h5>
+
+                                                <!--  <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p> -->
+                                            </div>
+
+                                            <!--    <span class="badge bg-advertising rounded-pill ms-auto">30</span> -->
+                                        </div>
+
+                                        <img src="/assets/icons/escolar.png" class="custom-block-image img-fluid"
+                                            alt="">
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3 ma">
+                                    <div class="custom-block bg-white shadow-lg">
+
+                                        <div class="d-flex">
+                                            <div class="ma title">
+                                                <h5 class="mb-2 ma">Y muchos más</h5>
+
+                                                <!--  <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p> -->
+                                            </div>
+
+                                            <!--    <span class="badge bg-advertising rounded-pill ms-auto">30</span> -->
+                                        </div>
+
+                                        <img src="/assets/icons/icon-152x152.png" class="custom-block-image img-fluid"
+                                            alt="">
+
+                                    </div>
+                                </div>
+
+                                <!-- <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3 ma">
+                                    <div class="custom-block bg-white shadow-lg">
+                                        <a href="topics-detail.html">
+                                            <div class="d-flex">
+                                                <div>
+                                                    <h5 class="mb-2">Video Content</h5>
+    
+                                                    <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
+                                                </div>
+    
+                                                <span class="badge bg-advertising rounded-pill ms-auto">65</span>
+                                            </div>
+    
+                                            <img src="/assets/images/topics/undraw_Group_video_re_btu7.png"
+                                                class="custom-block-image img-fluid" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+    
+                                <div class="col-lg-4 col-md-6 col-12 ma mt-3">
+                                    <div class="custom-block bg-white shadow-lg">
+                                        <a href="topics-detail.html">
+                                            <div class="d-flex">
+                                                <div>
+                                                    <h5 class="mb-2">Viral Tweet</h5>
+    
+                                                    <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
+                                                </div>
+    
+                                                <span class="badge bg-advertising rounded-pill ms-auto">50</span>
+                                            </div>
+    
+                                            <img src="/assets/images/topics/undraw_viral_tweet_gndb.png"
+                                                class="custom-block-image img-fluid" alt="">
+                                        </a>
+                                    </div>
+                                </div> -->
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="invitacion-tab-pane" role="tabpanel"
+                            aria-labelledby="invitacion-tab" tabindex="0">
+                            <div class="row">
+                                <div class=" col-12 mb-4 mb-lg-0">
+                                    <div class="custom-block bg-white shadow-lg">
+
+                                        <div class="d-flex">
+                                            <div class="ma title">
+                                                <h5 class="mb-2 ma">Crea y edita tu invitación</h5>
+
+
+                                            </div>
                                             <!-- 
-                                                <p class="mb-0">Como salón de eventos puedes</p> -->
+                                                <span class="badge bg-finance rounded-pill ms-auto">30</span> -->
                                         </div>
 
-                                        <!--  <span class="badge bg-design rounded-pill ms-auto">14</span> -->
+                                        <img src="/assets/icons/invitacion.png" class="custom-block-image img-fluid"
+                                            alt="">
+
                                     </div>
-
-                                    <img src="/assets/icons/evento.png" class="custom-block-image img-fluid" alt="">
-
                                 </div>
+
+                                <!--  <div class="col-lg-6 col-md-6 col-12">
+                                    <div class="custom-block custom-block-overlay">
+                                        <div class="d-flex flex-column h-100">
+                                            <img src="/assets/images/businesswoman-using-tablet-analysis-graph-company-finance-strategy-statistics-success-concept-planning-future-office-room.jpg"
+                                                class="custom-block-image img-fluid" alt="">
+    
+                                            <div class="custom-block-overlay-text d-flex">
+                                                <div>
+                                                    <h5 class="text-white mb-2">Finance</h5>
+    
+                                                    <p class="text-white">Lorem ipsum dolor, sit amet consectetur
+                                                        adipisicing elit. Sint animi necessitatibus aperiam
+                                                        repudiandae nam omnis</p>
+    
+                                                    <a href="topics-detail.html" class="btn custom-btn mt-2 mt-lg-3">Learn
+                                                        More</a>
+                                                </div>
+    
+                                                <span class="badge bg-finance rounded-pill ms-auto">25</span>
+                                            </div>
+    
+                                            <div class="social-share d-flex">
+                                                <p class="text-white me-4">Share:</p>
+    
+                                                <ul class="social-icon">
+                                                    <li class="social-icon-item">
+                                                        <a href="#" class="social-icon-link bi-twitter"></a>
+                                                    </li>
+    
+                                                    <li class="social-icon-item">
+                                                        <a href="#" class="social-icon-link bi-facebook"></a>
+                                                    </li>
+    
+                                                    <li class="social-icon-item">
+                                                        <a href="#" class="social-icon-link bi-pinterest"></a>
+                                                    </li>
+                                                </ul>
+    
+                                                <a href="#" class="custom-icon bi-bookmark ms-auto"></a>
+                                            </div>
+    
+                                            <div class="section-overlay"></div>
+                                        </div>
+                                    </div>
+                                </div> -->
                             </div>
+                        </div>
 
-                            <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
-                                <div class="custom-block bg-white shadow-lg">
-                                    <div class="d-flex">
-                                        <div class="ma title">
-                                            <h5 class="mb-2 ma">Escuelas</h5>
+                        <div class="tab-pane fade" id="galeria-tab-pane" role="tabpanel" aria-labelledby="galeria-tab"
+                            tabindex="0">
+                            <div class="row">
+                                <div class=" col-12 mb-4 mb-lg-3 ma">
+                                    <div class="custom-block bg-white shadow-lg">
+
+                                        <div class="d-flex">
+                                            <div class="ma title">
+                                                <h5 class="mb-2">Pidele a tus invitados que suban las fotos del evento y
+                                                    descargalas</h5>
+
+
+                                            </div>
+
+                                            <!--      <span class="badge bg-music rounded-pill ms-auto">45</span> -->
                                         </div>
-                                    </div>
-                                    <img src="/assets/icons/school.png" class="custom-block-image img-fluid" alt="">
 
+                                        <img src="/assets/icons/galeria.png" class="custom-block-image img-fluid"
+                                            alt="">
+
+
+                                    </div>
                                 </div>
+
+                                <!--  <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3 ma">
+                                    <div class="custom-block bg-white shadow-lg">
+                                        <a href="topics-detail.html">
+                                            <div class="d-flex">
+                                                <div>
+                                                    <h5 class="mb-2">Online Music</h5>
+    
+                                                    <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
+                                                </div>
+    
+                                                <span class="badge bg-music rounded-pill ms-auto">45</span>
+                                            </div>
+    
+                                            <img src="/assets/images/topics/undraw_happy_music_g6wc.png"
+                                                class="custom-block-image img-fluid" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+    
+                                <div class="col-lg-4 col-md-6 col-12 ma mt-3">
+                                    <div class="custom-block bg-white shadow-lg">
+                                        <a href="topics-detail.html">
+                                            <div class="d-flex">
+                                                <div>
+                                                    <h5 class="mb-2">Podcast</h5>
+    
+                                                    <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
+                                                </div>
+    
+                                                <span class="badge bg-music rounded-pill ms-auto">20</span>
+                                            </div>
+    
+                                            <img src="/assets/images/topics/undraw_Podcast_audience_re_4i5q.png"
+                                                class="custom-block-image img-fluid" alt="">
+                                        </a>
+                                    </div>
+                                </div> -->
                             </div>
+                        </div>
 
-                            <div class="col-lg-4 col-md-6 col-12 ma mt-3">
-                                <div class="custom-block bg-white shadow-lg">
-                                    <div class="d-flex">
-                                        <div class="ma title">
-                                            <h5 class="mb-2 ma">Grupos sociales</h5>
+                        <div class="tab-pane fade" id="checking-tab-pane" role="tabpanel" aria-labelledby="checking-tab"
+                            tabindex="0">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-12 mb-4 mb-lg-3 ma">
+                                    <div class="custom-block bg-white shadow-lg">
+
+                                        <div class="d-flex  ma">
+                                            <div class="ma title">
+                                                <h5 class="mb-2 ma">Checking por código QR
+                                                </h5>
+                                            </div>
                                         </div>
+                                        <img src="/assets/icons/qr.png" class="custom-block-image img-fluid" alt="">
                                     </div>
-                                    <img src="/assets/icons/grupos.png" class="custom-block-image img-fluid" alt="">
                                 </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6 col-12 ma mt-3">
-                                <div class="custom-block bg-white shadow-lg">
-                                    <div class="d-flex">
-                                        <div class="ma title">
-                                            <h5 class="mb-2 ma">Particulares</h5>
+                                <div class="col-lg-6 col-md-6 col-12 mb-4 mb-lg-3 ma">
+                                    <div class="custom-block bg-white shadow-lg">
+
+                                        <div class="d-flex  ma">
+                                            <div class="ma title">
+                                                <h5 class="mb-2 ma">Visualización en tiempo real
+                                                </h5>
+                                            </div>
                                         </div>
+
+                                        <img src="/assets/icons/evento-checking.png"
+                                            class="custom-block-image img-fluid" alt="">
                                     </div>
-                                    <img src="/assets/icons/person.png" class="custom-block-image img-fluid" alt="">
                                 </div>
+
+
+
+                                <!--  <div class="col-lg-6 col-md-6 col-12">
+                                    <div class="custom-block bg-white shadow-lg">
+                                        <a href="topics-detail.html">
+                                            <div class="d-flex">
+                                                <div>
+                                                    <h5 class="mb-2">Educator</h5>
+    
+                                                    <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
+                                                </div>
+    
+                                                <span class="badge bg-education rounded-pill ms-auto">75</span>
+                                            </div>
+    
+                                            <img src="/assets/images/topics/undraw_Educator_re_ju47.png"
+                                                class="custom-block-image img-fluid" alt="">
+                                        </a>
+                                    </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="tipo-evento-tab-pane" role="tabpanel"
-                        aria-labelledby="tipo-evento-tab" tabindex="0">
-                        <div class="row">
-                            <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3 ma">
-                                <div class="custom-block bg-white shadow-lg">
 
-                                    <div class="d-flex">
-                                        <div class="ma title">
-                                            <h5 class="mb-2 ma">Cumpleaños</h5>
-
-                                            <!--  <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p> -->
-                                        </div>
-
-                                        <!--    <span class="badge bg-advertising rounded-pill ms-auto">30</span> -->
-                                    </div>
-
-                                    <img src="/assets/icons/birthday.png" class="custom-block-image img-fluid" alt="">
-
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3 ma">
-                                <div class="custom-block bg-white shadow-lg">
-
-                                    <div class="d-flex">
-                                        <div class="ma title">
-                                            <h5 class="mb-2 ma">Eventos sociales</h5>
-
-                                            <!--  <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p> -->
-                                        </div>
-
-                                        <!--    <span class="badge bg-advertising rounded-pill ms-auto">30</span> -->
-                                    </div>
-
-                                    <img src="/assets/icons/social.png" class="custom-block-image img-fluid" alt="">
-
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3 ma">
-                                <div class="custom-block bg-white shadow-lg">
-
-                                    <div class="d-flex">
-                                        <div class="ma title">
-                                            <h5 class="mb-2 ma">Eventos laborales</h5>
-
-                                            <!--  <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p> -->
-                                        </div>
-
-                                        <!--    <span class="badge bg-advertising rounded-pill ms-auto">30</span> -->
-                                    </div>
-
-                                    <img src="/assets/icons/people.png" class="custom-block-image img-fluid" alt="">
-
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3 ma">
-                                <div class="custom-block bg-white shadow-lg">
-
-                                    <div class="d-flex">
-                                        <div class="ma title">
-                                            <h5 class="mb-2 ma">Eventos escolares</h5>
-
-                                            <!--  <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p> -->
-                                        </div>
-
-                                        <!--    <span class="badge bg-advertising rounded-pill ms-auto">30</span> -->
-                                    </div>
-
-                                    <img src="/assets/icons/escolar.png" class="custom-block-image img-fluid" alt="">
-
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3 ma">
-                                <div class="custom-block bg-white shadow-lg">
-
-                                    <div class="d-flex">
-                                        <div class="ma title">
-                                            <h5 class="mb-2 ma">Y muchos más</h5>
-
-                                            <!--  <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p> -->
-                                        </div>
-
-                                        <!--    <span class="badge bg-advertising rounded-pill ms-auto">30</span> -->
-                                    </div>
-
-                                    <img src="/assets/icons/icon-152x152.png" class="custom-block-image img-fluid"
-                                        alt="">
-
-                                </div>
-                            </div>
-
-                            <!-- <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3 ma">
-                                <div class="custom-block bg-white shadow-lg">
-                                    <a href="topics-detail.html">
-                                        <div class="d-flex">
-                                            <div>
-                                                <h5 class="mb-2">Video Content</h5>
-
-                                                <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-                                            </div>
-
-                                            <span class="badge bg-advertising rounded-pill ms-auto">65</span>
-                                        </div>
-
-                                        <img src="/assets/images/topics/undraw_Group_video_re_btu7.png"
-                                            class="custom-block-image img-fluid" alt="">
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4 col-md-6 col-12 ma mt-3">
-                                <div class="custom-block bg-white shadow-lg">
-                                    <a href="topics-detail.html">
-                                        <div class="d-flex">
-                                            <div>
-                                                <h5 class="mb-2">Viral Tweet</h5>
-
-                                                <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-                                            </div>
-
-                                            <span class="badge bg-advertising rounded-pill ms-auto">50</span>
-                                        </div>
-
-                                        <img src="/assets/images/topics/undraw_viral_tweet_gndb.png"
-                                            class="custom-block-image img-fluid" alt="">
-                                    </a>
-                                </div>
-                            </div> -->
-                        </div>
-                    </div>
-
-                    <div class="tab-pane fade" id="invitacion-tab-pane" role="tabpanel" aria-labelledby="invitacion-tab"
-                        tabindex="0">
-                        <div class="row">
-                            <div class=" col-12 mb-4 mb-lg-0">
-                                <div class="custom-block bg-white shadow-lg">
-
-                                    <div class="d-flex">
-                                        <div class="ma title">
-                                            <h5 class="mb-2 ma">Crea y edita tu invitación</h5>
-
-
-                                        </div>
-                                        <!-- 
-                                            <span class="badge bg-finance rounded-pill ms-auto">30</span> -->
-                                    </div>
-
-                                    <img src="/assets/icons/invitacion.png" class="custom-block-image img-fluid" alt="">
-
-                                </div>
-                            </div>
-
-                            <!--  <div class="col-lg-6 col-md-6 col-12">
-                                <div class="custom-block custom-block-overlay">
-                                    <div class="d-flex flex-column h-100">
-                                        <img src="/assets/images/businesswoman-using-tablet-analysis-graph-company-finance-strategy-statistics-success-concept-planning-future-office-room.jpg"
-                                            class="custom-block-image img-fluid" alt="">
-
-                                        <div class="custom-block-overlay-text d-flex">
-                                            <div>
-                                                <h5 class="text-white mb-2">Finance</h5>
-
-                                                <p class="text-white">Lorem ipsum dolor, sit amet consectetur
-                                                    adipisicing elit. Sint animi necessitatibus aperiam
-                                                    repudiandae nam omnis</p>
-
-                                                <a href="topics-detail.html" class="btn custom-btn mt-2 mt-lg-3">Learn
-                                                    More</a>
-                                            </div>
-
-                                            <span class="badge bg-finance rounded-pill ms-auto">25</span>
-                                        </div>
-
-                                        <div class="social-share d-flex">
-                                            <p class="text-white me-4">Share:</p>
-
-                                            <ul class="social-icon">
-                                                <li class="social-icon-item">
-                                                    <a href="#" class="social-icon-link bi-twitter"></a>
-                                                </li>
-
-                                                <li class="social-icon-item">
-                                                    <a href="#" class="social-icon-link bi-facebook"></a>
-                                                </li>
-
-                                                <li class="social-icon-item">
-                                                    <a href="#" class="social-icon-link bi-pinterest"></a>
-                                                </li>
-                                            </ul>
-
-                                            <a href="#" class="custom-icon bi-bookmark ms-auto"></a>
-                                        </div>
-
-                                        <div class="section-overlay"></div>
-                                    </div>
-                                </div>
-                            </div> -->
-                        </div>
-                    </div>
-
-                    <div class="tab-pane fade" id="galeria-tab-pane" role="tabpanel" aria-labelledby="galeria-tab"
-                        tabindex="0">
-                        <div class="row">
-                            <div class=" col-12 mb-4 mb-lg-3 ma">
-                                <div class="custom-block bg-white shadow-lg">
-
-                                    <div class="d-flex">
-                                        <div class="ma title">
-                                            <h5 class="mb-2">Pidele a tus invitados que suban las fotos del evento y
-                                                descargalas</h5>
-
-
-                                        </div>
-
-                                        <!--      <span class="badge bg-music rounded-pill ms-auto">45</span> -->
-                                    </div>
-
-                                    <img src="/assets/icons/galeria.png" class="custom-block-image img-fluid" alt="">
-
-
-                                </div>
-                            </div>
-
-                            <!--  <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3 ma">
-                                <div class="custom-block bg-white shadow-lg">
-                                    <a href="topics-detail.html">
-                                        <div class="d-flex">
-                                            <div>
-                                                <h5 class="mb-2">Online Music</h5>
-
-                                                <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-                                            </div>
-
-                                            <span class="badge bg-music rounded-pill ms-auto">45</span>
-                                        </div>
-
-                                        <img src="/assets/images/topics/undraw_happy_music_g6wc.png"
-                                            class="custom-block-image img-fluid" alt="">
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4 col-md-6 col-12 ma mt-3">
-                                <div class="custom-block bg-white shadow-lg">
-                                    <a href="topics-detail.html">
-                                        <div class="d-flex">
-                                            <div>
-                                                <h5 class="mb-2">Podcast</h5>
-
-                                                <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-                                            </div>
-
-                                            <span class="badge bg-music rounded-pill ms-auto">20</span>
-                                        </div>
-
-                                        <img src="/assets/images/topics/undraw_Podcast_audience_re_4i5q.png"
-                                            class="custom-block-image img-fluid" alt="">
-                                    </a>
-                                </div>
-                            </div> -->
-                        </div>
-                    </div>
-
-                    <div class="tab-pane fade" id="checking-tab-pane" role="tabpanel" aria-labelledby="checking-tab"
-                        tabindex="0">
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6 col-12 mb-4 mb-lg-3 ma">
-                                <div class="custom-block bg-white shadow-lg">
-
-                                    <div class="d-flex  ma">
-                                        <div class="ma title">
-                                            <h5 class="mb-2 ma">Checking por código QR
-                                            </h5>
-                                        </div>
-                                    </div>
-                                    <img src="/assets/icons/qr.png" class="custom-block-image img-fluid" alt="">
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-12 mb-4 mb-lg-3 ma">
-                                <div class="custom-block bg-white shadow-lg">
-
-                                    <div class="d-flex  ma">
-                                        <div class="ma title">
-                                            <h5 class="mb-2 ma">Visualización en tiempo real
-                                            </h5>
-                                        </div>
-                                    </div>
-
-                                    <img src="/assets/icons/evento-checking.png" class="custom-block-image img-fluid"
-                                        alt="">
-                                </div>
-                            </div>
-
-
-
-                            <!--  <div class="col-lg-6 col-md-6 col-12">
-                                <div class="custom-block bg-white shadow-lg">
-                                    <a href="topics-detail.html">
-                                        <div class="d-flex">
-                                            <div>
-                                                <h5 class="mb-2">Educator</h5>
-
-                                                <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-                                            </div>
-
-                                            <span class="badge bg-education rounded-pill ms-auto">75</span>
-                                        </div>
-
-                                        <img src="/assets/images/topics/undraw_Educator_re_ju47.png"
-                                            class="custom-block-image img-fluid" alt="">
-                                    </a>
-                                </div>
-                            </div> -->
-                        </div>
-                    </div>
                 </div>
-
             </div>
         </div>
-    </div>
-</section>
+    </section>
+</div>
 
 
 <app-footer></app-footer>
