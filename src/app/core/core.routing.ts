@@ -126,8 +126,8 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: HomeComponent,
-        data: { titulo: 'Home' }
+        component: MarketComponent,
+        data: { titulo: 'Market' }
 
       },
       {

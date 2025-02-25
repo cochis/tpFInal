@@ -106,8 +106,8 @@
 
                                     <div class="col-12 col-md-6  ma mt-3">
 
-                                        <button class="btn primaB white" type="button" (click)="addIdealTos()"
-                                            *ngIf="edit =='true'">
+                                        <button class="btn primaB white" type="button" id="btnIdealTo"
+                                            (click)="addIdealTos()" *ngIf="edit =='true'">
                                             <i class="icon-plus"></i> Agregar tipo de evento (Ideal para)
                                         </button>
                                         <h5 *ngIf="edit =='false' && form.value.idealTo.length>0">
@@ -123,14 +123,13 @@
                                 <div formArrayName="idealTo">
                                     <div *ngFor="let item of idealTo['controls'] ; let i=index">
 
-
                                         <div [formGroupName]="i">
                                             <div class="row">
 
-                                                <div class="col-12 col-md-4 ma mt-3">
+                                                <div class="col-12 col-md-4 ma mt-3" id="idealTo{{i}}">
                                                     <div class="form-group">
                                                         <label for="nombre">Nombre</label>
-                                                        <input type="text" class="form-control upper" id="nombre"
+                                                        <input type="text" class="form-control upper" id="nombre{{i}}"
                                                             formControlName="nombre" required placeholder="Nombre"
                                                             [readonly]="edit==='false'">
                                                     </div>
@@ -159,7 +158,7 @@
                                                 <div class=" col-12 col-md-4 mt-4  ma text-center"
                                                     *ngIf="edit =='true'">
                                                     <button class="btn less " (click)="removeIdealTos(i)" type="button">
-                                                        <i class="icon-minus"></i>
+                                                        <i class="icon-trash"></i>
                                                     </button>
 
                                                 </div>
@@ -168,10 +167,20 @@
 
                                         </div>
                                     </div>
+
+
                                 </div>
 
+                                <div id="finIdealTo" class=" col-6 mt-3 mb-3 text-center ma" *ngIf="idealTo.length>1">
 
 
+                                    <button class="btn but" type="button"
+                                        (click)="functionsService.scroolTo('btnIdealTo')"><i
+                                            class="bi bi-arrow-up"></i></button>
+
+                                </div>
+
+                                <div id="btnPrecio"></div>
                                 <div class="row">
                                     <div class="col-6 col-md-3 text-center">
                                         <h5 *ngIf="edit =='false' && item.isBySize">El Precio es por tamaño</h5>
@@ -283,7 +292,7 @@
                                     <div *ngFor="let size of sizes['controls'] ; let i=index">
 
 
-                                        <div [formGroupName]="i">
+                                        <div [formGroupName]="i" id="precio{{i}}">
                                             <div class="row">
                                                 <div class="col-12 col-md-4 mt-3">
                                                     <div class="form-group">
@@ -351,7 +360,7 @@
 
                                                 <div class="  col-md-4 mt-4 ma text-center" *ngIf="edit =='true'">
                                                     <button class="btn less " (click)="removeSizes(i)" type="button">
-                                                        <i class="icon-minus"></i>
+                                                        <i class="icon-trash"></i>
                                                     </button>
 
                                                 </div>
@@ -365,7 +374,7 @@
                                     <div *ngFor="let color of colores['controls'] ; let i=index">
 
 
-                                        <div [formGroupName]="i">
+                                        <div [formGroupName]="i" id="precio{{i}}">
                                             <div class="row">
 
                                                 <div class="col-12 col-md-4 mt-3">
@@ -431,7 +440,7 @@
 
                                                 <div class=" col-12 col-md-4 mt-4 ma text-center" *ngIf="edit =='true'">
                                                     <button class="btn less " (click)="removeColors(i)" type="button">
-                                                        <i class="icon-minus"></i>
+                                                        <i class="icon-trash"></i>
                                                     </button>
 
                                                 </div>
@@ -445,7 +454,7 @@
                                     <div *ngFor="let servicio of servicios['controls'] ; let i=index">
 
 
-                                        <div [formGroupName]="i">
+                                        <div [formGroupName]="i" id="precio{{i}}">
                                             <div class="row">
 
                                                 <div class="col-12 col-md-4 mt-3">
@@ -513,7 +522,7 @@
                                                     *ngIf="edit =='true'">
                                                     <button class="btn less " (click)="removeServicios(i)"
                                                         type="button">
-                                                        <i class="icon-minus"></i>
+                                                        <i class="icon-trash"></i>
                                                     </button>
 
                                                 </div>
@@ -527,7 +536,7 @@
                                     <div *ngFor="let cantidad of cantidades['controls'] ; let i=index">
 
 
-                                        <div [formGroupName]="i">
+                                        <div [formGroupName]="i" id="precio{{i}}">
                                             <div class="row">
 
                                                 <div class="col-12 col-md-4 mt-3">
@@ -595,7 +604,7 @@
                                                     *ngIf="edit =='true'">
                                                     <button class="btn less " (click)="removeCantidades(i)"
                                                         type="button">
-                                                        <i class="icon-minus"></i>
+                                                        <i class="icon-trash"></i>
                                                     </button>
 
                                                 </div>
@@ -606,7 +615,29 @@
                                     </div>
                                 </div>
 
+                                <div id="finPrecio" class=" col-6 mt-3 mb-3 text-center ma" *ngIf="
+                                                                    cantidades.length>1 || 
+                                                                    servicios.length>1 ||
+                                                                    colores.length>1 ||
+                                                                    sizes.length>1 
+                                                                    
+                                                                    ">
 
+
+                                    <button class="btn but" type="button"
+                                        (click)="functionsService.scroolTo('btnPrecio')"><i
+                                            class="bi bi-arrow-up"></i></button>
+
+                                </div>
+
+
+
+
+
+
+
+                                <!-- Inicia Fotos -->
+                                <div id="btnPhoto"></div>
                                 <div class="row mt-3 text-center" *ngIf="
                                                                 form.value.proveedor !=='' &&
                                                                 form.value.nombre !=='' &&
@@ -627,10 +658,11 @@
                                     </div>
                                 </div>
                                 <div formArrayName="photos">
+                                    photo{{i}}
                                     <div *ngFor="let photo of photos['controls'] ; let index=index">
 
-
-                                        <div [formGroupName]="index">
+                                        photo{{index}}
+                                        <div [formGroupName]="index" id="photo{{index}}">
                                             <div class="row">
                                                 <div class="col-6  mt-3 text-center">
                                                     <div class="form-group">
@@ -650,7 +682,7 @@
                                                     *ngIf="edit =='true'">
                                                     <button class="btn less " (click)="removePhotos(index)"
                                                         type="button">
-                                                        <i class="icon-minus"></i>
+                                                        <i class="icon-trash"></i>
                                                     </button>
 
                                                 </div>
@@ -677,7 +709,7 @@
                                                                 <option value="">Selecciona el tipoMedia</option>
                                                                 <option [value]="item.uid"
                                                                     *ngFor="let item of tipoMedias">
-                                                                    {{item.nombre}} -{{item.clave}}
+                                                                    {{item.nombre}}
                                                                 </option>
                                                             </ng-container>
                                                         </select>
@@ -741,18 +773,20 @@
                                                                         title="Click aquí para subir tu foto"
                                                                         class="img-avatar"
                                                                         *ngIf="form.value.photos[index].img ==''">
+                                                                    <div class="col-12">
 
-
-                                                                    <audio preload="auto" controls
-                                                                        [src]="url+'/upload/items/'+form.value.photos[index].img"
-                                                                        class="ma" id="myAudio"
-                                                                        *ngIf=" form.value.photos[index].img!==''">
-                                                                    </audio>
-                                                                    <div class="btn but ma mt-3"
-                                                                        style="max-width: 150px;"
-                                                                        *ngIf=" form.value.photos[index].img!==''">
-                                                                        Cambiar
+                                                                        <audio preload="auto" controls
+                                                                            [src]="url+'/upload/items/'+form.value.photos[index].img"
+                                                                            class="ma" id="myAudio"
+                                                                            *ngIf=" form.value.photos[index].img!==''">
+                                                                        </audio>
+                                                                        <div class="btn but ma mt-3"
+                                                                            style="max-width: 150px;  "
+                                                                            *ngIf=" form.value.photos[index].img!==''">
+                                                                            Cambiar
+                                                                        </div>
                                                                     </div>
+
 
                                                                 </ng-container>
                                                                 <ng-container
@@ -764,16 +798,19 @@
                                                                         class="img-avatar"
                                                                         *ngIf="form.value.photos[index].img ==''">
 
+                                                                    <div class="col-12">
 
-                                                                    <video preload="auto" controls
-                                                                        [src]="url+'/upload/items/'+form.value.photos[index].img"
-                                                                        class="ma" id="myVideo"
-                                                                        *ngIf=" form.value.photos[index].img!==''">
-                                                                    </video>
-                                                                    <div class="btn but ma mt-3"
-                                                                        style="max-width: 150px;"
-                                                                        *ngIf=" form.value.photos[index].img!==''">
-                                                                        Cambiar
+                                                                        <video preload="auto" controls
+                                                                            [src]="url+'/upload/items/'+form.value.photos[index].img"
+                                                                            class="ma" id="myVideo"
+                                                                            style=" width: 100%;"
+                                                                            *ngIf=" form.value.photos[index].img!==''">
+                                                                        </video>
+                                                                        <div class="btn but ma mt-3"
+                                                                            style="max-width: 150px; width: 100%; "
+                                                                            *ngIf=" form.value.photos[index].img!==''">
+                                                                            Cambiar
+                                                                        </div>
                                                                     </div>
 
                                                                 </ng-container>
@@ -815,10 +852,20 @@
 
                                         </div>
                                     </div>
+
+
                                 </div>
 
 
                             </div>
+                            <div id="finPrecio" class=" col-6 mt-3 mb-3 text-center ma" *ngIf="photos.length>1">
+
+
+                                <button class="btn but" type="button" (click)="functionsService.scroolTo('btnPhoto')"><i
+                                        class="bi bi-arrow-up"></i></button>
+
+                            </div>
+
 
 
 

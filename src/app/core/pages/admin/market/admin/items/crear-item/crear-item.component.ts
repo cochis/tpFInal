@@ -352,20 +352,20 @@ export class CrearItemComponent {
       this.itemsService.crearItem(this.form.value).subscribe((resp: any) => {
 
         this.item = resp.item
-        this.functionsService.alert('Item', 'Item creado', 'success')
+        this.functionsService.alert('Producto o servicio', 'Creado', 'success')
 
         this.functionsService.navigateTo(`/core/items/editar-item/true/${this.item.uid}`)
         this.loading = false
       },
         (error) => {
-          this.functionsService.alertError(error, 'Itemes')
+          this.functionsService.alertError(error, 'Producto o servicio')
           this.loading = false
           console.error('Error', error)
 
         })
     } else {
 
-      this.functionsService.alertForm('Items')
+      this.functionsService.alertForm('Producto o servicio')
       this.loading = false
       return // console.info('Please provide all the required values!');
     }
@@ -631,14 +631,14 @@ export class CrearItemComponent {
            this.loading = false */
         },
           (error) => {
-            this.functionsService.alertError(error, 'Itemes')
+            this.functionsService.alertError(error, 'Producto o servicio')
             this.loading = false
             console.error('Error', error)
 
           })
       } else {
 
-        this.functionsService.alertForm('Items')
+        this.functionsService.alertForm('Producto o servicio')
         this.loading = false
         return // console.info('Please provide all the required values!');
       }

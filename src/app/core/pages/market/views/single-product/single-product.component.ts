@@ -114,7 +114,7 @@ export class SingleProductComponent {
 
     if (des) {
       let spl = des.split('\n')
-      var desc = '<ul style="list-style:none">'
+      var desc = '<ul style="list-style:none;padding:0">'
       spl.forEach(element => {
         desc += `<li>${element}</li>`
 
@@ -137,7 +137,7 @@ export class SingleProductComponent {
 
     if (des) {
       let spl = des.split('\n')
-      var desc = '<ul style="list-style:none">'
+      var desc = '<ul style="list-style:none;padding:0">'
       spl.forEach(element => {
         desc += `<li>${element}</li>`
 

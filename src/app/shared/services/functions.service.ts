@@ -326,4 +326,11 @@ export class FunctionsService {
     const dataURL = canvas.toDataURL("image/png");
     return dataURL;
   }
+
+
+  scroolTo(id) {
+
+    var div = document.getElementById(id);
+    div.scrollIntoView();
+  }
 }

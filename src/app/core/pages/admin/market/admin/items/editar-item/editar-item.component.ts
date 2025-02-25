@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, Inject } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CargarCategoriaItems, CargarImgItem, CargarItem, CargarMonedas, CargarProveedors, CargarTipoColors, CargarTipoContactos, CargarTipoItems, CargarTipoMedias } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
@@ -64,7 +65,7 @@ export class EditarItemComponent {
   typeImg = ''
   imgItems: ImgItem[]
   noMoreImg = false
-
+  @Inject(DOCUMENT) document: Document
   constructor(
     private fb: FormBuilder,
     private functionsService: FunctionsService,
@@ -256,8 +257,11 @@ export class EditarItemComponent {
 
   addSizes() {
     this.sizes.push(this.newSize())
-
-    this.submited = false
+    let index = 'precio' + (Number(this.sizes.length) - 1)
+    setTimeout(() => {
+      this.functionsService.scroolTo(index)
+      this.submited = false
+    }, 500);
 
 
 
@@ -267,11 +271,11 @@ export class EditarItemComponent {
   }
   addIdealTos() {
     this.idealTo.push(this.newIdealTo())
-
-    this.submited = false
-
-
-
+    let index = 'idealTo' + (Number(this.idealTo.length) - 1)
+    setTimeout(() => {
+      this.functionsService.scroolTo(index)
+      this.submited = false
+    }, 500);
   }
   removeIdealTos(i: number) {
     this.idealTo.removeAt(i);
@@ -279,7 +283,11 @@ export class EditarItemComponent {
   addCantidades() {
     this.cantidades.push(this.newCantidad())
 
-    this.submited = false
+    let index = 'precio' + (Number(this.cantidades.length) - 1)
+    setTimeout(() => {
+      this.functionsService.scroolTo(index)
+      this.submited = false
+    }, 500);
 
 
 
@@ -290,7 +298,12 @@ export class EditarItemComponent {
   addColors() {
     this.colores.push(this.newColor())
 
-    this.submited = false
+    let index = 'precio' + (Number(this.colores.length) - 1)
+    setTimeout(() => {
+      this.functionsService.scroolTo(index)
+      this.submited = false
+    }, 500);
+
 
 
 
@@ -302,7 +315,11 @@ export class EditarItemComponent {
   addServicios() {
     this.servicios.push(this.newServicio())
 
-    this.submited = false
+    let index = 'precio' + (Number(this.servicios.length) - 1)
+    setTimeout(() => {
+      this.functionsService.scroolTo(index)
+      this.submited = false
+    }, 500);
 
 
 
@@ -313,7 +330,12 @@ export class EditarItemComponent {
   }
   addPhotos() {
     this.photos.push(this.newPhoto())
+    let index = 'photo' + (Number(this.photos.length) - 1)
 
+    setTimeout(() => {
+      this.functionsService.scroolTo(index)
+      this.submited = false
+    }, 500);
 
 
 
@@ -435,14 +457,14 @@ export class EditarItemComponent {
         (error) => {
           this.functionsService.alertError(error, 'Productos y Servicios')
           this.loading = false
-          // console.error('Error', error)
+          console.error('Error', error)
 
         })
     } else {
 
       this.functionsService.alertForm('Productos y Servicios')
       this.loading = false
-      return // console.info('Please provide all the required values!');
+      return console.info('Please provide all the required values!');
     }
 
 
@@ -461,7 +483,7 @@ export class EditarItemComponent {
 
     },
       (error) => {
-        // console.error('error::: ', error);
+        console.error('error::: ', error);
         this.functionsService.alertError(error, 'Tipo de Contactos')
       })
     this.tipoColoresService.cargarTipoColorsAll().subscribe((resp: CargarTipoColors) => {
@@ -469,7 +491,7 @@ export class EditarItemComponent {
 
     },
       (error) => {
-        // console.error('error::: ', error);
+        console.error('error::: ', error);
         this.functionsService.alertError(error, 'Tipo de Colores')
       })
     this.monedasService.cargarMonedasAll().subscribe((resp: CargarMonedas) => {
@@ -477,7 +499,7 @@ export class EditarItemComponent {
 
     },
       (error) => {
-        // console.error('error::: ', error);
+        console.error('error::: ', error);
         this.functionsService.alertError(error, 'Monedas')
       })
     this.tipoitemsService.cargarTipoItemsAll().subscribe((resp: CargarTipoItems) => {
@@ -486,7 +508,7 @@ export class EditarItemComponent {
 
     },
       (error) => {
-        // console.error('error::: ', error);
+        console.error('error::: ', error);
         this.functionsService.alertError(error, 'Tipo de items')
       })
     this.proveedorsService.cargarProveedorsAll().subscribe((resp: CargarProveedors) => {
@@ -494,7 +516,7 @@ export class EditarItemComponent {
 
     },
       (error) => {
-        // console.error('error::: ', error);
+        console.error('error::: ', error);
         this.functionsService.alertError(error, 'Tipo de proveedores')
       })
     this.categoriaItemsService.cargarCategoriaItemsAll().subscribe((resp: CargarCategoriaItems) => {
@@ -502,7 +524,7 @@ export class EditarItemComponent {
 
     },
       (error) => {
-        // console.error('error::: ', error);
+        console.error('error::: ', error);
         this.functionsService.alertError(error, 'Tipo de categoria de productos')
       })
     this.tipoMediasService.cargarTipoMediasAll().subscribe((resp: CargarTipoMedias) => {
@@ -512,7 +534,7 @@ export class EditarItemComponent {
 
     },
       (error) => {
-        // console.error('error::: ', error);
+        console.error('error::: ', error);
         this.functionsService.alertError(error, 'Tipo de medios')
       })
 
@@ -658,7 +680,7 @@ export class EditarItemComponent {
             this.loading = false
           },
             (error) => {
-              // console.error('error::: ', error);
+              console.error('error::: ', error);
 
             })
 
@@ -666,7 +688,7 @@ export class EditarItemComponent {
 
         },
         (err) => {
-          // console.error('error::: ', err);
+          console.error('error::: ', err);
 
         },
       )
@@ -724,7 +746,7 @@ export class EditarItemComponent {
                   })
                 },
                 (err) => {
-                  // console.error('error::: ', err);
+                  console.error('error::: ', err);
 
                 },
               )
@@ -783,7 +805,7 @@ export class EditarItemComponent {
 
                   })
                 .catch(error => {
-                  // console.error('error::: ', error);
+                  console.error('error::: ', error);
 
                 })
 
@@ -840,7 +862,7 @@ export class EditarItemComponent {
                     })
                   },
                   (err) => {
-                    // console.error('error::: ', err);
+                    console.error('error::: ', err);
 
                   },
                 )
@@ -893,7 +915,7 @@ export class EditarItemComponent {
  
                 })
               .catch(error => {
-                // console.error('error::: ', error);
+                console.error('error::: ', error);
  
               })
  
@@ -950,7 +972,7 @@ export class EditarItemComponent {
                             })
                           },
                           (err) => {
-                            // console.error('error::: ', err);
+                            console.error('error::: ', err);
  
                           },
                         )
@@ -998,7 +1020,7 @@ export class EditarItemComponent {
                             })
                           },
                           (err) => {
-                            // console.error('error::: ', err);
+                            console.error('error::: ', err);
  
                           },
                         )
@@ -1036,7 +1058,7 @@ export class EditarItemComponent {
                       })
                     },
                     (err) => {
-                      // console.error('error::: ', err);
+                      console.error('error::: ', err);
  
                     },
                   )
@@ -1102,7 +1124,7 @@ export class EditarItemComponent {
           })
         },
         (err) => {
-          // console.error('error::: ', err);
+          console.error('error::: ', err);
 
         },
       )
@@ -1116,7 +1138,7 @@ export class EditarItemComponent {
 
     },
       (error: any) => {
-        // console.error('error::: ', error);
+        console.error('error::: ', error);
 
       })
 
@@ -1128,7 +1150,7 @@ export class EditarItemComponent {
 
     },
       (error: any) => {
-        // console.error('error::: ', error);
+        console.error('error::: ', error);
 
       })
 

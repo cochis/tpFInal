@@ -33,7 +33,7 @@
                         *ngIf="functionsService.getValueCatalog(tipoMediaView,'clave',tipoMedias)=='video/*'  && (indexToView == i)">
 
                         <video preload="auto" controls height="auto" [src]="url+'/upload/items/'+getImgPrincipal()"
-                            class="videoPlay ma" id="myAudio">
+                            class="videoPlay ma" id="myAudio" style="max-height: 350px;">
                         </video>
 
 
@@ -106,7 +106,7 @@
                             *ngIf="functionsService.getValueCatalog(tipoMediaView,'clave',tipoMedias)=='video/*'  && (indexToView == i)">
 
                             <video preload="auto" controls height="auto" [src]="url+'/upload/items/'+getImgPrincipal()"
-                                class="videoPlay ma" id="myAudio">
+                                class="videoPlay ma" id="myAudio" style="max-height: 350px;">
                             </video>
 
 
@@ -249,7 +249,7 @@
                 Ideal para
             </h3>
 
-            <ul style="list-style: none;">
+            <ul style="list-style: none; padding: 0 !important;  ">
                 <li *ngFor="let it of item.idealTo" class="upper">{{it.nombre}} </li>
 
             </ul>

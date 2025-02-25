@@ -6,8 +6,9 @@
     <div class=" col-12" [style]="{'background-color': cP, 'color':cS  }">
 
         <h4 class="title-market pointer  " routerLink="/core/vista-producto/{{item.uid}}">
-            <span [style]=" {'width':'50px','margin-left':'15px','background-color':cS,
-            'color': 'white', 'font-size': '35px' , 'border-radius':' 0 0 15px 15px'}">{{getTypeItem(items)}}</span>
+            <span
+                [style]=" {'width':'50px','margin-left':'15px','background-color':cS,
+            'color': 'white', 'font-size': '35px' , 'border-radius':' 0 0 15px 15px'}">{{getTypeItem(item.tipoItem)}}</span>
 
 
             {{item.nombre}}
@@ -22,7 +23,26 @@
 
     <ng-container *ngFor="let pic of item.photos">
         <div style="width: 100%;text-align: center; max-height: 150px; overflow: hidden;" *ngIf="pic.isPrincipal">
-            <img [src]="url+'/upload/items/'+pic.img" style="width:60%; height: 150px;">
+            <ng-container
+                *ngIf="functionsService.getTypeValueCatalog(pic.tipoMedia, 'uid', this.tipoMedias, 'clave') =='image/*'">
+
+                <img [src]="url+'/upload/items/'+pic.img" style="width:60%; height: 150px;">
+            </ng-container>
+
+            <ng-container *ngIf="functionsService.getValueCatalog(pic.tipoMedia,'clave',tipoMedias)=='audio/*'">
+                <audio preload="auto" controls [src]="url+'/upload/items/'+pic.img" class="ma" id="myAudio"
+                    style="width:60%; height: 150px;">
+                </audio>
+            </ng-container>
+            <ng-container *ngIf="functionsService.getValueCatalog(pic.tipoMedia,'clave',tipoMedias)=='video/*'">
+                <video preload="auto" controls height="auto" [src]="url+'/upload/items/'+pic.img" class="videoPlay ma"
+                    id="myVideo" style="width:60%; height: 150px;">
+                </video>
+
+            </ng-container>
+
+
+
         </div>
     </ng-container>
     <!-- <div class="row mt-2" *ngIf="item.isByColor">
@@ -73,24 +93,27 @@
         </select>
 
     </div> -->
-    <div class="row mt-2" *ngIf="!item.isByColor" style="height:30px"></div>
+
     <div class="row mt-2">
         <div class="carrucel">
 
-            <div class="item-market pointer" *ngFor="let item of item.photos;let i =index">
-                <ng-container *ngIf="functionsService.getValueCatalog(item.tipoMedia,'clave',tipoMedias)=='image/*'">
-                    <img [src]="url+'/upload/items/'+item.img" class=" img-item-market  select-img-market"
-                        [alt]="item.nombre" (click)="viewPhoto(item,i)">
+            <div class="item-market pointer" *ngFor="let ph of item.photos;let i =index">
+                <ng-container *ngIf="functionsService.getValueCatalog(ph.tipoMedia,'clave',tipoMedias)=='image/*'">
+                    <img [src]="url+'/upload/items/'+ph.img" class=" img-item-market  select-img-market"
+                        [alt]="ph.nombre" (click)="viewPhoto(ph.img )">
                 </ng-container>
-                <ng-container *ngIf="functionsService.getValueCatalog(item.tipoMedia,'clave',tipoMedias)=='audio/*'">
-                    <i class="bi bi-volume-up iconView"
-                        [style]="{'color': cP+ '!important','background-color': cS + '!important'}"
-                        (click)="viewPhoto(item,i)"></i>
+                <ng-container *ngIf="functionsService.getValueCatalog(ph.tipoMedia,'clave',tipoMedias)=='audio/*'">
+                    <div class="img-item-market  select-img-market " style="padding-top: 6px !important;">
+
+                        <i class="bi bi-volume-up iconView" (click)="viewPhoto(ph.img )"></i>
+                    </div>
                 </ng-container>
-                <ng-container *ngIf="functionsService.getValueCatalog(item.tipoMedia,'clave',tipoMedias)=='video/*'">
-                    <i class="bi bi-camera-video iconView"
-                        [style]="{'color': cP+ '!important','background-color': cS + '!important'}"
-                        (click)="viewPhoto(item,i)"></i>
+                <ng-container *ngIf="functionsService.getValueCatalog(ph.tipoMedia,'clave',tipoMedias)=='video/*'">
+                    <div class="img-item-market  select-img-market " style="padding-top: 6px !important;">
+
+                        <i class="bi bi-camera-video iconView" (click)="viewPhoto(ph.img )"></i>
+                    </div>
+
                 </ng-container>
 
 

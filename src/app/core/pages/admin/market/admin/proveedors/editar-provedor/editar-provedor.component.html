@@ -8,8 +8,8 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-lg-12 col-12 text-center">
-                            <h2 class="mb-5" *ngIf="edit=='true'">Editar evento</h2>
-                            <h2 class="mb-5" *ngIf="edit=='false'">Ver evento</h2>
+                            <h2 class="mb-5" *ngIf="edit=='true'">Editar proveedor</h2>
+                            <h2 class="mb-5" *ngIf="edit=='false'">Ver proveedor</h2>
                         </div>
                         <form [formGroup]="form" (ngSubmit)="onSubmit()">
                             <div class="row">
@@ -119,9 +119,10 @@
                                 </div>
                                 <div class="row mt-3 text-center">
 
-                                    <div class="col-12 col-md-4 mt-3 " *ngIf="editBol">
+                                    <div class="col-12 col-md-4 mt-3 ma " *ngIf="editBol">
 
-                                        <button class="btn primaB white" type="button" (click)="addContactos()">
+                                        <button class="btn primaB white" id="btnContacto" type="button"
+                                            (click)="addContactos()">
                                             <i class="icon-plus"></i> Agregar contacto
                                         </button>
                                     </div>
@@ -134,7 +135,7 @@
 
 
                                         <div [formGroupName]="i">
-                                            <div class="row">
+                                            <div class="row" id="contacto{{i}}">
 
                                                 <div class="col-12 col-md-4 mt-3 ma">
 
@@ -178,7 +179,7 @@
 
                                                 <div class=" col-12 col-md-4 mt-4 text-center" *ngIf="editBol">
                                                     <button class="btn less " (click)="removeContactos(i)">
-                                                        <i class="icon-minus"></i>
+                                                        <i class="icon-trash"></i>
                                                     </button>
 
                                                 </div>
@@ -187,6 +188,15 @@
 
                                         </div>
                                     </div>
+                                    <div id="finContacto" class=" col-6 mt-3 mb-3 text-center ma"
+                                        *ngIf="contactos.length>1">
+
+
+                                        <button class="btn but" type="button"
+                                            (click)="functionsService.scroolTo('btnContacto')"><i
+                                                class="bi bi-arrow-up"></i></button>
+
+                                    </div>
                                 </div>
 
 
@@ -194,9 +204,11 @@
 
                                 <div class="row mt-3 text-center">
 
-                                    <div class="col-12 col-md-4 mt-3" *ngIf="editBol">
+                                    <div class="col-12 col-md-4 mt-3 ma" *ngIf="editBol">
 
-                                        <button class="btn primaB white" type="button" (click)="addColors()">
+                                        <button class="btn primaB white" type="button" id="btnColors"
+                                            (click)="addColors()"
+                                            *ngIf="form.value.colores.length >0 && form.value.colores.length<2">
                                             <i class="icon-plus"></i> Agregar Color
                                         </button>
                                     </div>
@@ -208,7 +220,7 @@
                                     <div *ngFor="let color of colores['controls'] ; let i=index">
 
 
-                                        <div [formGroupName]="i">
+                                        <div [formGroupName]="i" id="colors{{i}}">
                                             <div class="row ma">
 
                                                 <div class="col-12 col-md-4 mt-3 ma">
@@ -253,7 +265,7 @@
 
                                                 <div class=" col-12 col-md-4 mt-4 text-center" *ngIf="editBol">
                                                     <button class="btn less " (click)="removeColors(i)">
-                                                        <i class="icon-minus"></i>
+                                                        <i class="icon-trash"></i>
                                                     </button>
 
                                                 </div>
@@ -261,8 +273,10 @@
                                             </div>
 
                                         </div>
+
                                     </div>
                                 </div>
+
 
 
 
@@ -273,10 +287,9 @@
                                     <label for="customRange2" class="form-label">
                                         QR de tu pagina
                                     </label>
-
-                                    <span style="width: 80%; margin: auto;">
+                                    <span>
                                         <a [href]="urlLink" target="_blank"
-                                            style="text-decoration: none; color:var(--cPrincipal); font-weight: 800;">
+                                            style="text-decoration: none; color:var(--cPrincipal); font-weight: 800;width: 100%;">
                                             {{urlLink}}
                                         </a>
                                     </span>
@@ -287,9 +300,9 @@
                                             [cssClass]="'center'" [colorDark]="proveedor.colores[0].value"
                                             [colorLight]="'#ffffffff'" [elementType]="'canvas'"
                                             [errorCorrectionLevel]="'M'"
-                                            [imageSrc]="url+'/upload/proveedores/'+proveedor.img" [imageHeight]="75"
-                                            [imageWidth]="75" [margin]="4" [scale]="1"
-                                            [title]="'A custom title attribute'" [width]="300"></qrcode>
+                                            [imageSrc]="url+'/upload/proveedores/'+proveedor.img" [imageHeight]="35"
+                                            [imageWidth]="35" [margin]="4" [scale]="1"
+                                            [title]="'A custom title attribute'" [width]="150"></qrcode>
                                     </div>
                                 </div>
 

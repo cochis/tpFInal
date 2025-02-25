@@ -65,6 +65,7 @@ export class EditarProvedorComponent {
     this.loading = true
     this.getCatalogos()
     this.getId(this.id)
+
     this.createForm()
     setTimeout(() => {
       this.loading = false
@@ -82,9 +83,11 @@ export class EditarProvedorComponent {
 
   addContactos() {
     this.contactos.push(this.newContacto())
-
-    this.submited = false
-    window.scrollTo(0, (document.body.scrollHeight - 100));
+    let index = 'contacto' + (Number(this.contactos.length) - 1)
+    setTimeout(() => {
+      this.functionsService.scroolTo(index)
+      this.submited = false
+    }, 500);
 
 
   }
@@ -96,8 +99,11 @@ export class EditarProvedorComponent {
   addColors() {
     this.colores.push(this.newColor())
 
-    this.submited = false
-    window.scrollTo(0, (document.body.scrollHeight - 100));
+    let index = 'colors' + (Number(this.colores.length) - 1)
+    setTimeout(() => {
+      this.functionsService.scroolTo(index)
+      this.submited = false
+    }, 500);
 
 
   }
@@ -121,16 +127,17 @@ export class EditarProvedorComponent {
 
     var res
     this.form.value.contactos.forEach(ct => {
+      console.log('this.ContactoP[2]::: ', this.ContactoP[2]);
+
+      console.log('ct.tipoContacto ::: ', ct.tipoContacto);
       if (ct.tipoContacto == this.ContactoP[2].value) {
 
         res = true
-      } else {
-
-        res = false
       }
 
     });
 
+    console.log('res::: ', res);
     return res
   }
   getId(id: string) {
@@ -209,12 +216,17 @@ export class EditarProvedorComponent {
     proveedor.contactos.forEach(contacto => {
       this.contactos.push(this.setContacto(contacto))
     });
+
+
+
+    this.isMas()
     this.loading = false
   }
 
   onSubmit() {
     this.loading = true
     this.submited = true
+    console.log('this.form::: ', this.form);
     this.form.value.nombre = this.form.value.nombre.toUpperCase().trim()
     this.form.value.clave = this.form.value.clave.toUpperCase().trim()
     if (this.form.value.nombre === '' || this.form.value.clave === '') {

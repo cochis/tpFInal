@@ -3,7 +3,7 @@ import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { BusquedasService } from 'src/app/shared/services/busquedas.service';
 import { environment } from 'src/environments/environment';
 import { Item } from 'src/app/core/models/item.model';
-import { CargarItems, CargarTipoColors, CargarTipoContactos, CargarTipoMedias } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
+import { CargarItems, CargarTipoColors, CargarTipoContactos, CargarTipoItems, CargarTipoMedias } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
 import { TipoContacto } from 'src/app/core/models/tipoContacto.model';
 import { TipoColor } from 'src/app/core/models/tipoColor.model';
 import { TipoColorsService } from 'src/app/core/services/tipoColores.service';
@@ -11,6 +11,8 @@ import { TipoContactosService } from 'src/app/core/services/tipoContacto.service
 import { ItemsService } from 'src/app/core/services/item.service';
 import { TipoMediasService } from 'src/app/core/services/tipoMedia.service';
 import { TipoMedia } from 'src/app/core/models/tipoMedia.model';
+import { TipoItemsService } from 'src/app/core/services/tipoItem.service';
+import { TipoItem } from 'src/app/core/models/tipoItem.model';
 @Component({
   selector: 'app-vista-items',
   templateUrl: './vista-items.component.html',
@@ -31,6 +33,7 @@ export class VistaItemsComponent {
   URS = environment.user_role
   rol = this.functionsService.getLocal('role')
   tipoMedias: TipoMedia[]
+  tipoItems: TipoItem[]
   mediaItem: any = []
   imgItem: any = []
   constructor(
@@ -40,6 +43,7 @@ export class VistaItemsComponent {
     private tipoColoresService: TipoColorsService,
     private tipoContactosService: TipoContactosService,
     private tipoMediasService: TipoMediasService,
+    private tipoItemsService: TipoItemsService,
   ) {
     this.getCatalogos()
     this.getItems()
@@ -60,7 +64,17 @@ export class VistaItemsComponent {
 
 
 
+  getType(id) {
+    var res
+    this.tipoItems.forEach(ti => {
 
+      if (id == ti.uid) {
+        res = ti.clave.substring(0, 1)
+      }
+
+    });
+    return res
+  }
   setItems() {
     this.loading = true
     setTimeout(() => {
@@ -231,6 +245,14 @@ export class VistaItemsComponent {
       })
     this.tipoColoresService.cargarTipoColorsAll().subscribe((resp: CargarTipoColors) => {
       this.tipoColores = resp.tipoColors
+
+    },
+      (error) => {
+        console.error('error::: ', error);
+        this.functionsService.alertError(error, 'Tipo de colores')
+      })
+    this.tipoItemsService.cargarTipoItemsAll().subscribe((resp: CargarTipoItems) => {
+      this.tipoItems = resp.tipoItems
 
     },
       (error) => {

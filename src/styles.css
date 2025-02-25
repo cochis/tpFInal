@@ -405,8 +405,105 @@ input[type="file"] {
 }
 
 .img-item-market {
-    width: 100%;
+    width: 35px;
+    height: 35px;
     padding: 3px;
+}
+
+.iconView {
+    width: 35px;
+    height: 35px;
+    padding: 3px;
+    margin: auto;
+    background-color: #fff;
+    border: 3px solid #13547a;
+
+
+}
+
+.imgSingleProducto {
+    width: 100%;
+    max-width: 600px;
+    max-height: 600px;
+}
+
+.titleProducto {
+    font-size: 30px;
+    text-align: left;
+}
+
+.linkProveedor {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.cantidadProducto {
+    font-size: 20px;
+
+}
+
+.descripcionProdructo {
+    font-size: 20px;
+    text-align: justify;
+}
+
+.precioProducto {
+    font-size: 25px;
+}
+
+.imgToView {
+    margin: auto;
+    width: 100%;
+    max-width: 650px;
+    max-height: 500px;
+}
+
+.imgSecond {
+    display: none;
+}
+
+.imgPrimary {
+    display: block;
+}
+
+.videoPlay {
+    width: 100%;
+}
+
+
+
+.imgViewer {
+    height: 620px;
+}
+
+@media screen and (max-width: 760px) {
+    .imgSingleProducto {
+
+        max-width: 250px;
+        height: 250px;
+    }
+
+    .titleProducto {
+        text-align: center;
+        font-size: 25px;
+    }
+
+    .imgViewer {
+        height: 250px;
+    }
+
+    .imgSecond {
+        display: block;
+    }
+
+    .imgPrimary {
+        display: none;
+    }
+
+    .descripcionProdructo {
+
+        text-align: center;
+    }
 }
 
 .title-market {

@@ -10,7 +10,7 @@
                 <div class="mt-3"
                     [style]="{'width': '100%','text-align': 'center','margin':'auto', 'background-color': data.cPrincipal}">
 
-                    <div style="width: 60%; max-width: 450px; margin: auto;" class="mb-5">
+                    <div style="width: 80%; max-width: 450px; margin: auto;" class="mb-5">
                         <div class="card  p-0 nborder">
 
 
@@ -26,7 +26,7 @@
                                     </tr>
                                     <tr
                                         [style]="{ 'border-top': '2px solid' +data.cPrincipal, 'height': '60px', 'line-height': '60px'}">
-                                        <th class="text-center ps-3  upper">
+                                        <th class="text-center   upper">
                                             <span class="  lato-regular-italic mt-2"
                                                 [style]="{'color':data.cPrincipal}">{{pad.name}}</span>
                                         </th>
@@ -58,7 +58,7 @@
                 <div class="mt-3"
                     [style]="{'width': '100%','text-align': 'center','margin':'auto', 'background-color': data.cPrincipal}">
 
-                    <div style="width: 60%; max-width: 450px; margin: auto;" class="mb-5">
+                    <div style="width: 80%; max-width: 450px; margin: auto;" class="mb-5">
                         <div class="card  p-0 nborder">
 
 
@@ -68,7 +68,7 @@
 
                                     <tr
                                         [style]="{ 'border-top': '2px solid' +data.cPrincipal, 'height': '60px', 'line-height': '60px'}">
-                                        <th class="text-center ps-3  upper">
+                                        <th class="text-center   upper">
                                             <span class="  lato-regular-italic mt-2"
                                                 [style]="{'color':data.cPrincipal}">{{pad.name}}</span>
                                         </th>
@@ -101,7 +101,7 @@
                 <div class="mt-3"
                     [style]="{'width': '100%','text-align': 'center','margin':'auto', 'background-color': data.cPrincipal}">
 
-                    <div style="width: 60%; max-width: 450px; margin: auto;" class="mb-5">
+                    <div style="width: 80%; max-width: 450px; margin: auto;" class="mb-5">
                         <div class="card  p-0 nborder">
 
 
@@ -111,7 +111,7 @@
 
                                     <tr
                                         [style]="{ 'border-top': '2px solid' +data.cPrincipal, 'height': '60px', 'line-height': '60px'}">
-                                        <th class="text-center ps-3  upper">
+                                        <th class="text-center   upper">
                                             <span class="  lato-regular-italic mt-2"
                                                 [style]="{'color':data.cPrincipal}">{{pad.name}}</span>
                                         </th>
@@ -213,50 +213,53 @@
     <div [style]=" {'background-color': data.cPrincipal, 'margin': 'auto', 'border-radius':'10px'}"
         *ngIf=" data.codigoVestimentaCheck  && type=='codigoVestimenta' && type=='codigoVestimenta' ">
 
-        <div class="row text-center" style="margin: auto;">
+
+        <div class="col-12 col-md-6 mt-3 text-center ma">
             <h1 class="mt-3 {{data.nombreFont}}" [style]="{color:data.cWhite}">
                 Código de vestimenta
             </h1>
-            <div class="col-12 col-md-6 mt-3" style="text-align: center; margin: auto;">
-                <div class="  mt-3 "
-                    [style]="{'width': '100%','text-align': 'center','margin':'auto', 'background-color': data.cPrincipal}">
-                    <div style="width: 60%; max-width: 450px; margin: auto;" class="mb-5"
-                        *ngIf=" data.codigoVestimentaCheck ">
-                        <div class="card  p-0 nborder">
-                            <table class="ma">
-                                <tr class="ma"
-                                    [style]="{ 'border-top': '2px solid ' +data.cPrincipal, 'height': '60px', 'line-height': '60px'}">
+        </div>
 
-                                    <th class="upper ma">
-                                        <span class="ma"
-                                            [style]="{'color':data.cPrincipal}">{{data.codigoVestimentaMujer}}</span>
-                                    </th>
-                                    <th class="upper">
-                                        <img [src]="url+'/upload/invitaciones/'+((data.codigoVestimentaMujerImg !== '') ? data.codigoVestimentaMujerImg :'notImage') "
-                                            class="card-img-top ma">
-                                    </th>
-                                </tr>
-                                <tr
-                                    [style]="{ 'border-top': '2px solid '+ data.cPrincipal, 'height': '60px', 'line-height': '60px'}">
+        <div class="col-12 col-md-6 mt-3 text-center ma">
+            <div class="  mt-3 "
+                [style]="{'width': '100%','text-align': 'center','margin':'auto', 'background-color': data.cPrincipal}">
+                <div style="width: 80%; max-width: 450px; margin: auto;" class="mb-5"
+                    *ngIf=" data.codigoVestimentaCheck ">
+                    <div class="card  p-0 nborder">
+                        <table class="ma">
+                            <tr class="ma"
+                                [style]="{ 'border-top': '2px solid ' +data.cPrincipal, 'height': '60px', 'line-height': '60px'}">
 
-                                    <th class="upper">
-                                        <span [style]="{'color':data.cPrincipal}">{{data.codigoVestimentaHombre}}</span>
-                                    </th>
-                                    <th class="upper">
-                                        <img [src]="url+'/upload/invitaciones/'+((data.codigoVestimentaHombreImg !== '') ? data.codigoVestimentaHombreImg :'notImage') "
-                                            class="card-img-top ma">
-                                    </th>
-                                </tr>
+                                <th class="upper ma">
+                                    <span class="ma"
+                                        [style]="{'color':data.cPrincipal}">{{data.codigoVestimentaMujer}}</span>
+                                </th>
+                                <th class="upper">
+                                    <img [src]="url+'/upload/invitaciones/'+((data.codigoVestimentaMujerImg !== '') ? data.codigoVestimentaMujerImg :'notImage') "
+                                        class="card-img-top ma">
+                                </th>
+                            </tr>
+                            <tr
+                                [style]="{ 'border-top': '2px solid '+ data.cPrincipal, 'height': '60px', 'line-height': '60px'}">
+
+                                <th class="upper">
+                                    <span [style]="{'color':data.cPrincipal}">{{data.codigoVestimentaHombre}}</span>
+                                </th>
+                                <th class="upper">
+                                    <img [src]="url+'/upload/invitaciones/'+((data.codigoVestimentaHombreImg !== '') ? data.codigoVestimentaHombreImg :'notImage') "
+                                        class="card-img-top ma">
+                                </th>
+                            </tr>
 
 
 
-                            </table>
-                        </div>
+                        </table>
                     </div>
                 </div>
             </div>
-
         </div>
+
+
 
 
 
@@ -327,7 +330,7 @@
                     </tr>
                     <tr class="text-center" [style]=" { 'height': '60px', 'line-height': '60px'}"
                         *ngFor="let iti of itinerarios">
-                        <th class="text-center ps-3  upper">
+                        <th class="text-center   upper">
                             <span class="  lato-regular-italic mt-2 text-center"
                                 [style]="{'color':data.cPrincipal}">{{iti.name}}</span>
                         </th>
@@ -357,7 +360,7 @@
         <ul
             [style]="{'background-color':data.cSecond,'color':data.cWhite,'list-style': 'none','border-bottom-left-radius':'20px','border-bottom-right-radius':'20px' }">
             <li class="upper" *ngFor="let nota of  notas">
-                <b [style]="{'font-weight': '800', 'color': data.cPrincipal, 'padding ':'15px',  }">
+                <b [style]="{'font-weight': '800', 'color': data.cPrincipal, 'padding ':'0',  }">
                     {{nota.texto}}
                 </b>
             </li>
@@ -400,23 +403,21 @@
                 <div class="mt-3"
                     [style]="{'width': '100%','text-align': 'center','margin':'auto', 'background-color': data.cPrincipal}">
 
-                    <div style="width: 60%; max-width: 450px; margin: auto;" class="mb-5">
+                    <div style="width: 80%; max-width: 450px; margin: auto;" class="mb-5">
                         <div class="card  p-0 nborder">
 
 
                             <table *ngIf="padres.length >0">
                                 <ng-container *ngFor="let pad of padres">
 
-                                    <tr
-                                        [style]="{ 'border-top': '2px solid' + data.cPrincipal, 'height': '60px', 'line-height': '60px'}">
+                                    <tr [style]="{ 'border-top': '2px solid' + data.cPrincipal, 'height': '60px',  }">
 
                                         <th class="upper">
                                             <span [style]="{'color':data.cSecond}">{{pad.tipo}}</span>
                                         </th>
                                     </tr>
-                                    <tr
-                                        [style]="{ 'border-top': '2px solid' +data.cPrincipal, 'height': '60px', 'line-height': '60px'}">
-                                        <th class="text-center ps-3  upper">
+                                    <tr [style]="{ 'border-top': '2px solid' +data.cPrincipal, 'height': '60px',  }">
+                                        <th class="text-center   upper">
                                             <span class="  lato-regular-italic mt-2"
                                                 [style]="{'color':data.cPrincipal}">{{pad.name}}</span>
                                         </th>
@@ -448,7 +449,7 @@
                 <div class="mt-3"
                     [style]="{'width': '100%','text-align': 'center','margin':'auto', 'background-color': data.cPrincipal}">
 
-                    <div style="width: 60%; max-width: 450px; margin: auto;" class="mb-5">
+                    <div style="width: 80%; max-width: 450px; margin: auto;" class="mb-5">
                         <div class="card  p-0 nborder">
 
 
@@ -456,9 +457,8 @@
                                 <ng-container *ngFor="let pad of padrinos">
 
 
-                                    <tr
-                                        [style]="{ 'border-top': '2px solid' +data.cPrincipal, 'height': '60px', 'line-height': '60px'}">
-                                        <th class="text-center ps-3  upper">
+                                    <tr [style]="{ 'border-top': '2px solid' +data.cPrincipal, 'height': '60px',  }">
+                                        <th class="text-center    upper">
                                             <span class="  lato-regular-italic mt-2"
                                                 [style]="{'color':data.cPrincipal}">{{pad.name}}</span>
                                         </th>
@@ -491,7 +491,7 @@
                 <div class="mt-3"
                     [style]="{'width': '100%','text-align': 'center','margin':'auto', 'background-color': data.cPrincipal}">
 
-                    <div style="width: 60%; max-width: 450px; margin: auto;" class="mb-5">
+                    <div style="width: 80%; max-width: 450px; margin: auto;" class="mb-5">
                         <div class="card  p-0 nborder">
 
 
@@ -499,9 +499,8 @@
                                 <ng-container *ngFor="let pad of chambelanes">
 
 
-                                    <tr
-                                        [style]="{ 'border-top': '2px solid' +data.cPrincipal, 'height': '60px', 'line-height': '60px'}">
-                                        <th class="text-center ps-3  upper">
+                                    <tr [style]="{ 'border-top': '2px solid' +data.cPrincipal, 'height': '60px',  }">
+                                        <th class="text-center   upper">
                                             <span class="  lato-regular-italic mt-2"
                                                 [style]="{'color':data.cPrincipal}">{{pad.name}}</span>
                                         </th>
@@ -541,7 +540,7 @@
             <table *ngIf="menu.length >0">
                 <ng-container *ngFor="let pad of menu">
 
-                    <tr [style]="{   'height': '60px', 'line-height':'50px'}">
+                    <tr [style]="{   'height': '60px',  }">
 
                         <th class="upper">
                             <span [style]="{'color':data.cSecond}">{{pad.tipo}}</span>
@@ -610,17 +609,14 @@
             <div class="col-12 col-md-6 mt-3" style="text-align: center; margin: auto;">
                 <div class="  mt-3 "
                     [style]="{'width': '100%','text-align': 'center','margin':'auto', 'background-color': data.cPrincipal}">
-                    <div style="width: 60%; max-width: 450px; margin: auto;" class="mb-5"
+                    <div style="width: 80%; max-width: 450px; margin: auto;" class="mb-5"
                         *ngIf=" data.codigoVestimentaCheck ">
                         <div class="card  p-0 nborder">
                             <table class="ma">
                                 <tr class="ma"
                                     [style]="{ 'border-top': '2px solid ' +data.cPrincipal, 'height': '60px', 'line-height': '60px'}">
 
-                                    <th class="upper ma">
-                                        <span class="ma"
-                                            [style]="{'color':data.cPrincipal}">{{data.codigoVestimentaMujer}}</span>
-                                    </th>
+
                                     <th class="upper">
                                         <img [src]="url+'/upload/invitaciones/'+((data.codigoVestimentaMujerImg !== '') ? data.codigoVestimentaMujerImg :'notImage') "
                                             class="card-img-top ma">
@@ -629,9 +625,7 @@
                                 <tr
                                     [style]="{ 'border-top': '2px solid '+ data.cPrincipal, 'height': '60px', 'line-height': '60px'}">
 
-                                    <th class="upper">
-                                        <span [style]="{'color':data.cPrincipal}">{{data.codigoVestimentaHombre}}</span>
-                                    </th>
+
                                     <th class="upper">
                                         <img [src]="url+'/upload/invitaciones/'+((data.codigoVestimentaHombreImg !== '') ? data.codigoVestimentaHombreImg :'notImage') "
                                             class="card-img-top ma">
@@ -716,7 +710,7 @@
                     </tr>
                     <tr class="text-center" [style]=" { 'height': '60px', 'line-height': '60px'}"
                         *ngFor="let iti of itinerarios">
-                        <th class="text-center ps-3  upper">
+                        <th class="text-center   upper">
                             <span class="  lato-regular-italic mt-2 text-center"
                                 [style]="{'color':data.cPrincipal}">{{iti.name}}</span>
                         </th>
@@ -744,7 +738,7 @@
             </div>
         </div>
         <ul
-            [style]="{'background-color':data.cSecond,'color':data.cWhite,'list-style': 'none','border-bottom-left-radius':'20px','border-bottom-right-radius':'20px' }">
+            [style]="{'background-color':data.cSecond,'color':data.cWhite,'list-style': 'none','border-bottom-left-radius':'20px','border-bottom-right-radius':'20px' ,'padding':'none'}">
             <li class="upper" *ngFor="let nota of  notas">
                 <b [style]="{'font-weight': '800', 'color': data.cPrincipal, 'padding ':'15px',  }">
                     {{nota.texto}}

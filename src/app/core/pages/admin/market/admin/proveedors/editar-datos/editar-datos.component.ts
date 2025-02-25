@@ -42,6 +42,7 @@ export class EditarDatosComponent {
   MAPURL = environment.mapsGoogleUrl
   MAPZOOM = environment.mapsGoogleZoom
   setColor = true
+  ContactoP = environment.contactosProveedor
   constructor(
     private fb: FormBuilder,
     private functionsService: FunctionsService,
@@ -84,6 +85,24 @@ export class EditarDatosComponent {
       lastEdited: [this.today],
     })
     this.loading = false
+  }
+  isDirection() {
+
+
+    var res
+    this.form.value.contactos.forEach(ct => {
+      console.log('this.ContactoP[2]::: ', this.ContactoP[2]);
+
+      console.log('ct.tipoContacto ::: ', ct.tipoContacto);
+      if (ct.tipoContacto == this.ContactoP[2].value) {
+
+        res = true
+      }
+
+    });
+
+    console.log('res::: ', res);
+    return res
   }
   get contactos(): FormArray {
     return this.form.get('contactos') as FormArray
