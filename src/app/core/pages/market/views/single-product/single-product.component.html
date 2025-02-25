@@ -6,53 +6,49 @@
 
     <div class="row mt-5 text-center">
 
-        <div class="col-12 col-md-8 text-center" (click)="viewImg(url+'/upload/items/'+getImgPrincipal())">
-            <ng-container *ngFor="let item of item.photos; let i= index">
+        <div class="col-12 col-md-8 text-center imgPrimary " (click)="viewImg(url+'/upload/items/'+getImgPrincipal())">
+            <div class="imgViewer">
 
-                <ng-container
-                    *ngIf="functionsService.getValueCatalog(tipoMediaView,'clave',tipoMedias)=='image/*'  && (indexToView == i)">
-                    <img [src]="url+'/upload/items/'+getImgPrincipal()" class="imgSingleProducto" [alt]="item.nombre">
+                <ng-container *ngFor="let item of item.photos; let i= index">
 
-                    <br>
+                    <ng-container
+                        *ngIf="functionsService.getValueCatalog(tipoMediaView,'clave',tipoMedias)=='image/*'  && (indexToView == i)">
+                        <img [src]="url+'/upload/items/'+getImgPrincipal()" class="imgSingleProducto"
+                            [alt]="item.nombre">
+
+                        <br>
+                    </ng-container>
+                    <ng-container
+                        *ngIf="functionsService.getValueCatalog(tipoMediaView,'clave',tipoMedias)=='audio/*' && (indexToView == i)">
+
+
+                        <audio preload="auto" controls [src]="url+'/upload/items/'+getImgPrincipal()" class="ma"
+                            id="myAudio">
+                        </audio>
+
+
+                        <br>
+                    </ng-container>
+                    <ng-container
+                        *ngIf="functionsService.getValueCatalog(tipoMediaView,'clave',tipoMedias)=='video/*'  && (indexToView == i)">
+
+                        <video preload="auto" controls height="auto" [src]="url+'/upload/items/'+getImgPrincipal()"
+                            class="videoPlay ma" id="myAudio">
+                        </video>
+
+
+                        <br>
+                    </ng-container>
+
                 </ng-container>
-                <ng-container
-                    *ngIf="functionsService.getValueCatalog(tipoMediaView,'clave',tipoMedias)=='audio/*' && (indexToView == i)">
-
-
-                    <audio preload="auto" controls [src]="url+'/upload/items/'+getImgPrincipal()" class="ma"
-                        id="myAudio">
-                    </audio>
-
-
-                    <br>
-                </ng-container>
-                <ng-container
-                    *ngIf="functionsService.getValueCatalog(tipoMediaView,'clave',tipoMedias)=='video/*'  && (indexToView == i)">
-
-                    <video preload="auto" controls height="auto" [src]="url+'/upload/items/'+getImgPrincipal()"
-                        class="videoPlay ma" id="myAudio">
-                    </video>
-
-
-                    <br>
-                </ng-container>
-
-            </ng-container>
-
-
-
-
-
-
-
+            </div>
             <div class="mt-3">
 
                 <h3>
-                    {{textToView}}
-                </h3>
-                <span>
                     {{titleToView}}
-                </span>
+                </h3>
+                <div [innerHTML]="descripcionPhotoHTML"></div>
+
             </div>
 
         </div>
@@ -64,6 +60,9 @@
             </h3>
             <span class="linkProveedor" class="linkProveedor" [style]="{ color:cS} "
                 routerLink="/core/vista-proveedor/{{item.proveedor._id}}">{{item.proveedor.nombre}} </span>
+
+
+
             <h4 class="mt-3 cantidadProducto" [style]="{'color': cS + '!important'}" *ngIf="item.isByCantidad">
                 {{mayorMenor(item.cantidades,'menor') | currency}} - {{mayorMenor(item.cantidades,'mayor') |
                 currency}}
@@ -72,17 +71,67 @@
                 {{mayorMenor(item.colores,'menor') | currency}} - {{mayorMenor(item.colores,'mayor') | currency}}
             </h4>
             <h4 class="mt-3 cantidadProducto" [style]="{'color': cS + '!important'}" *ngIf="item.isByService">
-                {{mayorMenor(item.servicios,'menor') | currency}} - {{mayorMenor(item.servicios,'mayor') | currency}}
+                {{mayorMenor(item.servicios,'menor') | currency}} - {{mayorMenor(item.servicios,'mayor') |
+                currency}}
             </h4>
             <h4 class="mt-3 cantidadProducto" [style]="{'color': cS + '!important'}" *ngIf="item.isBySize">
                 {{mayorMenor(item.sizes,'menor') | currency}} - {{mayorMenor(item.sizes,'mayor') | currency}}
             </h4>
-            <!-- <p>
-                <b>Referencia</b> Lorem ipsum
-            </p> -->
+
+            <div class="col-12 col-md-8 text-center imgSecond "
+                (click)="viewImg(url+'/upload/items/'+getImgPrincipal())">
+                <div class="imgViewer">
+
+                    <ng-container *ngFor="let item of item.photos; let i= index">
+
+                        <ng-container
+                            *ngIf="functionsService.getValueCatalog(tipoMediaView,'clave',tipoMedias)=='image/*'  && (indexToView == i)">
+                            <img [src]="url+'/upload/items/'+getImgPrincipal()" class="imgSingleProducto"
+                                [alt]="item.nombre">
+
+                            <br>
+                        </ng-container>
+                        <ng-container
+                            *ngIf="functionsService.getValueCatalog(tipoMediaView,'clave',tipoMedias)=='audio/*' && (indexToView == i)">
+
+
+                            <audio preload="auto" controls [src]="url+'/upload/items/'+getImgPrincipal()" class="ma"
+                                id="myAudio">
+                            </audio>
+
+
+                            <br>
+                        </ng-container>
+                        <ng-container
+                            *ngIf="functionsService.getValueCatalog(tipoMediaView,'clave',tipoMedias)=='video/*'  && (indexToView == i)">
+
+                            <video preload="auto" controls height="auto" [src]="url+'/upload/items/'+getImgPrincipal()"
+                                class="videoPlay ma" id="myAudio">
+                            </video>
+
+
+                            <br>
+                        </ng-container>
+
+                    </ng-container>
+                </div>
+                <div class="mt-3">
+
+                    <h3>
+                        {{titleToView}}
+                    </h3>
+                    <div [innerHTML]="descripcionPhotoHTML"></div>
+
+                </div>
+
+            </div>
+
             <p class="descripcionProdructo" [style]=" {'color': cP + '!important '} ">
+
                 {{item.descripcion}}
             </p>
+
+
 
             <app-divisor [color]="cS"></app-divisor>
             <form [formGroup]="form" (ngSubmit)="onSubmit()">
@@ -174,6 +223,7 @@
         <ng-container *ngIf="opcSelected">
 
             <div class="col-12 mt-5">
+
                 <h3 class="upper">
                     Descripción de {{opcSelected.nombre}}
                 </h3>
@@ -205,7 +255,7 @@
             </ul>
         </div>
     </div>
-    <div class="row" *ngIf="provLocation">
+    <div class="row" *ngIf="provLocation && isMap">
         <div class="col-12">
             <app-mapscreen [showBar]="false" [sendCoords]="provLocation" [isEditV]="false"></app-mapscreen>
         </div>
@@ -218,7 +268,7 @@
         </div>
     </div>
 </div>
-<div class="container  animate__animated animate__fadeIn " *ngIf="!loading && item && viewImgOk">
+<div class="container  animate__animated animate__fadeIn  " *ngIf="!loading && item && viewImgOk">
     <div class="row" animate__animated animate__fadeIn>
         <div class="col-12 text-center mt-3">
 

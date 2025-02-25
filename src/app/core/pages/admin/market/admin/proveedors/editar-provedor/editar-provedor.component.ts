@@ -40,6 +40,8 @@ export class EditarProvedorComponent {
   MAPURL = environment.mapsGoogleUrl
   MAPZOOM = environment.mapsGoogleZoom
   location: any = undefined
+  ContactoP = environment.contactosProveedor
+  isMap = false
   constructor(
     private fb: FormBuilder,
     private functionsService: FunctionsService,
@@ -114,7 +116,23 @@ export class EditarProvedorComponent {
       value: ['', [Validators.required]],
     })
   }
+  isDirection() {
 
+
+    var res
+    this.form.value.contactos.forEach(ct => {
+      if (ct.tipoContacto == this.ContactoP[2].value) {
+
+        res = true
+      } else {
+
+        res = false
+      }
+
+    });
+
+    return res
+  }
   getId(id: string) {
     this.loading = true
     this.proveedorsService.cargarProveedorById(id).subscribe((resp: CargarProveedor) => {
@@ -238,6 +256,16 @@ export class EditarProvedorComponent {
 
   }
 
+  isMas() {
+    this.form.value.contactos.forEach(ct => {
+      if (ct.tipoContacto == this.ContactoP[2].value) {
+        this.isMap = true
+      }
+
+    });
+    console.log('this.isMap::: ', this.isMap);
+
+  }
   setColores(color: any): FormGroup {
     return this.fb.group({
 

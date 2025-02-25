@@ -41,8 +41,11 @@ export class SingleProductComponent {
   textToView: string = ''
   indexToView: number = 0
   descripcionHTML: SafeHtml;
+  descripcionPhotoHTML: SafeHtml;
   provLocation: any
   tipoMedias: TipoMedia[]
+  ContactoP = environment.contactosProveedor
+  isMap = false
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -84,18 +87,10 @@ export class SingleProductComponent {
 
   }
   opcSeleccion(itm, items) {
-
-
-
-
     let r = items.filter((res) => { return res.nombre == itm.target.value })
-
-
-
     this.opcSelected = r[0]
-
+    console.log('this.opcSelected::: ', this.opcSelected);
     this.convertDes(this.opcSelected.descripcion)
-
   }
   viewPhoto(item, index) {
 
@@ -107,6 +102,7 @@ export class SingleProductComponent {
         this.titleToView = pic.nombre
         this.textToView = pic.descripcion
         this.tipoMediaView = pic.tipoMedia
+        this.convertPhotoDes(pic.descripcion)
 
         pic.isPrincipal = true
       } else {
@@ -115,6 +111,7 @@ export class SingleProductComponent {
     });
   }
   convertDes(des: string) {
+
     if (des) {
       let spl = des.split('\n')
       var desc = '<ul style="list-style:none">'
@@ -126,27 +123,59 @@ export class SingleProductComponent {
       desc += '</ul>'
 
       this.descripcionHTML = this.sanitizer.bypassSecurityTrustHtml(desc);
+      console.log('desc::: ', desc);
 
     } else {
-      this.descripcionHTML = this.sanitizer.bypassSecurityTrustHtml('desc');
+      this.descripcionHTML = this.sanitizer.bypassSecurityTrustHtml('');
 
     }
 
 
-    des = des.replace('\n', '"</br>"')
 
   }
+  convertPhotoDes(des: string) {
+
+    if (des) {
+      let spl = des.split('\n')
+      var desc = '<ul style="list-style:none">'
+      spl.forEach(element => {
+        desc += `<li>${element}</li>`
+
+
+      });
+      desc += '</ul>'
+
+      this.descripcionPhotoHTML = this.sanitizer.bypassSecurityTrustHtml(desc);
+
+    } else {
+      this.descripcionPhotoHTML = this.sanitizer.bypassSecurityTrustHtml('');
+
+    }
+
+
+
+  }
+
   getId(id) {
     this.loading = true
     this.itemsService.cargarItemById(id).subscribe((res: any) => {
 
       this.item = res.item
+      console.log('this.item ::: ', this.item);
+
+      console.log(this.ContactoP[2].value);
+      this.item.proveedor.contactos.forEach(ct => {
+        if (ct.tipoContacto == this.ContactoP[2].value) {
+          this.isMap = true
+        }
+
+      });
+      console.log('this.isMap::: ', this.isMap);
+
 
       if (this.item.proveedor.lng && this.item.proveedor.lat) {
 
         this.provLocation = [this.item.proveedor.lng, this.item.proveedor.lat]
-      } else {
-        this.provLocation = [-98.8955876, 19.4345723]
       }
       this.item.photos.forEach((ph, i) => {
         if (ph.isPrincipal) {
@@ -154,6 +183,7 @@ export class SingleProductComponent {
           this.textToView = ph.descripcion
           this.tipoMediaView = ph.tipoMedia
           this.indexToView = i
+          this.convertPhotoDes(ph.descripcion)
 
         }
 
@@ -181,10 +211,14 @@ export class SingleProductComponent {
     })
   }
   mayorMenor(items, type) {
-
+    this.menor = items[0].precio
     if (type == 'mayor') {
-
       for (var i = 0; i < items.length; i++) {
+
+        if (i == 0) {
+
+          this.menor = items[i].precio
+        }
         if (this.mayor < items[i].precio) {
           this.mayor = items[i].precio;
         }
@@ -196,6 +230,7 @@ export class SingleProductComponent {
     } else {
 
       for (var i = 0; i < items.length; i++) {
+
 
         if (items[i].precio < this.mayor) {
           this.menor = items[i].precio;

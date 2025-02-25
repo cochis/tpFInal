@@ -825,27 +825,32 @@
 
 
 
+                                    <div [style]="{'min-height': '550px', 'background-color':form.value.cPrincipal}">
+                                        <app-view-template [data]="{
+                                            type:'seccionMensaje',
+                                            size:viewSizeM,
+                                            cPrincipal: form.value.cPrincipal,
+                                            cSecond: form.value.cSecond,
+                                            cWhite: form.value.cWhite,
+                                            mensajeImg: form.value.mensajeImg,
+                                                mensajeImg: (invitacion == undefined || invitacion.data.mensajeImg == '') ? '/assets/images/tp.png' : url + '/upload/invitaciones/' + invitacion.data.mensajeImg,
+                                            mensaje1: form.value.mensaje1,
+                                            mensajeSize: form.value.mensajeSize,
+                                            mensajeEfecto: form.value.mensajeEfecto,
+                                            mensajeEfectoRep: form.value.mensajeEfectoRep,
+                                            bxMensajeImg: form.value.bxMensajeImg,
+                                            byMensajeImg: form.value.byMensajeImg,
+                                            mensajeFont: form.value.mensajeFont,
+                                            mensajeImgWidth: mensajeImgWidth.value,
+                                            alturaMensaje: alturaMensaje .value,
+                                        }"></app-view-template>
+
+                                    </div>
 
 
 
-                                    <app-view-template [data]="{
-                                        type:'seccionMensaje',
-                                        size:viewSizeM,
-                                        cPrincipal: form.value.cPrincipal,
-                                        cSecond: form.value.cSecond,
-                                        cWhite: form.value.cWhite,
-                                        mensajeImg: form.value.mensajeImg,
-                                            mensajeImg: (invitacion == undefined || invitacion.data.mensajeImg == '') ? '/assets/images/tp.png' : url + '/upload/invitaciones/' + invitacion.data.mensajeImg,
-                                        mensaje1: form.value.mensaje1,
-                                        mensajeSize: form.value.mensajeSize,
-                                        mensajeEfecto: form.value.mensajeEfecto,
-                                        mensajeEfectoRep: form.value.mensajeEfectoRep,
-                                        bxMensajeImg: form.value.bxMensajeImg,
-                                        byMensajeImg: form.value.byMensajeImg,
-                                        mensajeFont: form.value.mensajeFont,
-                                        mensajeImgWidth: mensajeImgWidth.value,
-                                        alturaMensaje: alturaMensaje .value,
-                                    }"></app-view-template>
+
+
                                     <div class="row text-center mt-3" *ngIf="fiesta.checking">
                                         <h5>Seccion QR</h5>
                                         <hr class="mt-3 mb-3">
@@ -963,7 +968,7 @@
 
                                                 <div class="row" *ngIf="padresCheck.checked">
 
-                                                    <div class="col-6 text-center" style="margin:auto">
+                                                    <div class="col-12 col-md-6 text-center" style="margin:auto">
 
                                                         <button type="button" class="btn btn-lg btn-block but "
                                                             (click)="addPadres()">Agregar
@@ -1070,7 +1075,7 @@
 
                                                 <div class="row" *ngIf="padrinosCheck.checked">
 
-                                                    <div class="col-6 text-center" style="margin:auto">
+                                                    <div class="col-12 col-md-6 text-center" style="margin:auto">
 
                                                         <button type="button" class="btn btn-lg btn-block but "
                                                             (click)="addPadrinos()">Agregar
@@ -1128,7 +1133,7 @@
 
                                                 <div class="row" *ngIf="chambelanesCheck.checked">
 
-                                                    <div class="col-6 text-center" style="margin:auto">
+                                                    <div class="col-12 col-md-6 text-center" style="margin:auto">
 
                                                         <button type="button" class="btn btn-lg btn-block but "
                                                             (click)="addChambelan()">Agregar
@@ -1183,7 +1188,7 @@
 
                                                 <div class="row" *ngIf="menuCheck.checked">
 
-                                                    <div class="col-6 text-center" style="margin:auto">
+                                                    <div class="col-12 col-md-6 text-center" style="margin:auto">
 
                                                         <button type="button" class="btn btn-lg btn-block but "
                                                             (click)="addMenus()">Agregar
@@ -1250,7 +1255,7 @@
 
                                                 <div class="row" *ngIf="musicaCheck.checked">
 
-                                                    <div class="col-6 text-center" style="margin:auto">
+                                                    <div class="col-12 col-md-6 text-center" style="margin:auto">
 
                                                         <button type="button" class="btn btn-lg btn-block but "
                                                             (click)="addMusica()">Agregar Música</button>
@@ -1678,7 +1683,7 @@
 
                                             <div class="row" *ngIf="itinerarioCheck.checked">
 
-                                                <div class="col-6 text-center" style="margin:auto">
+                                                <div class="col-12 col-md-6 text-center" style="margin:auto">
 
                                                     <button type="button" class="btn btn-lg btn-block but "
                                                         (click)="addItinerarios()">Agregar itinerario</button>
@@ -1737,7 +1742,7 @@
                                                 </div>
                                                 <div class="row">
                                                 </div>
-                                                <div class="col-6 text-center" style="margin:auto"
+                                                <div class="col-12 col-md-6 text-center" style="margin:auto"
                                                     *ngIf="notaCheck.checked">
 
                                                     <button type="button" class="btn btn-lg btn-block but "
@@ -2350,7 +2355,7 @@
 
                                             <div class="row" *ngIf="padresCheck.checked">
 
-                                                <div class="col-6 text-center" style="margin:auto">
+                                                <div class="col-12 col-md-6 text-center" style="margin:auto">
 
                                                     <button type="button" class="btn btn-lg btn-block but "
                                                         (click)="addPadres()">Agregar
@@ -2443,7 +2448,7 @@
 
                                             <div class="row" *ngIf="padrinosCheck.checked">
 
-                                                <div class="col-6 text-center" style="margin:auto">
+                                                <div class="col-12 col-md-6 text-center" style="margin:auto">
 
                                                     <button type="button" class="btn btn-lg btn-block but "
                                                         (click)="addPadrinos()">Agregar
@@ -2499,7 +2504,7 @@
 
                                             <div class="row" *ngIf="chambelanesCheck.checked">
 
-                                                <div class="col-6 text-center" style="margin:auto">
+                                                <div class="col-12 col-md-6 text-center" style="margin:auto">
 
                                                     <button type="button" class="btn btn-lg btn-block but "
                                                         (click)="addChambelan()">Agregar
@@ -2552,7 +2557,7 @@
 
                                             <div class="row" *ngIf="menuCheck.checked">
 
-                                                <div class="col-6 text-center" style="margin:auto">
+                                                <div class="col-12 col-md-6 text-center" style="margin:auto">
 
                                                     <button type="button" class="btn btn-lg btn-block but "
                                                         (click)="addMenus()">Agregar
@@ -2617,7 +2622,7 @@
 
                                             <div class="row" *ngIf="musicaCheck.checked">
 
-                                                <div class="col-6 text-center" style="margin:auto">
+                                                <div class="col-12 col-md-6 text-center" style="margin:auto">
 
                                                     <button type="button" class="btn btn-lg btn-block but "
                                                         (click)="addMusica()">Agregar
@@ -2815,7 +2820,7 @@
                                                 </div>
                                                 <div class="row">
                                                 </div>
-                                                <div class="col-6 text-center" style="margin:auto"
+                                                <div class="col-12 col-md-6  text-center" style="margin:auto"
                                                     *ngIf="notaCheck.checked">
 
                                                     <button type="button" class="btn btn-lg btn-block but "
@@ -2866,7 +2871,7 @@
 
                                         <div class="row" *ngIf="itinerarioCheck.checked">
 
-                                            <div class="col-6 text-center" style="margin:auto">
+                                            <div class="col-12 col-md-6  text-center" style="margin:auto">
 
                                                 <button type="button" class="btn btn-lg btn-block but "
                                                     (click)="addItinerarios()">Agregar

@@ -84,12 +84,13 @@ export class CalificacionComponent {
     this.productos.removeAt(i);
   }
   setProducto(pc: any): FormGroup {
+    console.log('pc::: ', pc);
 
     return this.fb.group({
-      calificacion: [3, [Validators.required]],
-      prod: [pc.item.uid, [Validators.required]],
-      nombre: [(pc.item.nombre !== '') ? pc.item.nombre : '', [Validators.required]],
-      opcion: [pc.opcion, [Validators.required]],
+      calificacion: [3],
+      prod: [pc.item.uid],
+      nombre: [pc.item.nombre],
+      opcion: [pc.opcion],
 
 
     })
@@ -111,6 +112,7 @@ export class CalificacionComponent {
 
 
 
+    console.log('this.form::: ', this.form);
     if (this.form.valid) {
 
 

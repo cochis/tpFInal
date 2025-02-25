@@ -77,6 +77,30 @@
     <div class="row mt-2">
         <div class="carrucel">
 
+            <div class="item-market pointer" *ngFor="let item of item.photos;let i =index">
+                <ng-container *ngIf="functionsService.getValueCatalog(item.tipoMedia,'clave',tipoMedias)=='image/*'">
+                    <img [src]="url+'/upload/items/'+item.img" class=" img-item-market  select-img-market"
+                        [alt]="item.nombre" (click)="viewPhoto(item,i)">
+                </ng-container>
+                <ng-container *ngIf="functionsService.getValueCatalog(item.tipoMedia,'clave',tipoMedias)=='audio/*'">
+                    <i class="bi bi-volume-up iconView"
+                        [style]="{'color': cP+ '!important','background-color': cS + '!important'}"
+                        (click)="viewPhoto(item,i)"></i>
+                </ng-container>
+                <ng-container *ngIf="functionsService.getValueCatalog(item.tipoMedia,'clave',tipoMedias)=='video/*'">
+                    <i class="bi bi-camera-video iconView"
+                        [style]="{'color': cP+ '!important','background-color': cS + '!important'}"
+                        (click)="viewPhoto(item,i)"></i>
+                </ng-container>
+
+
+            </div>
+
+
+
+        </div>
+        <!-- <div class="carrucel">
+
             <div class="item-market pointer" *ngFor="let pic of item.photos">
 
                 <img [src]="url+'/upload/items/'+pic.img" class=" img-item-market  select-img-market"
@@ -86,7 +110,7 @@
 
 
 
-        </div>
+        </div> -->
 
     </div>
     <div class="row mt-2">

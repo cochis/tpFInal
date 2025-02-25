@@ -269,11 +269,12 @@
 
                             </div>
                             <div class="row mt-5" *ngIf="proveedor">
-                                <div class="col-6  text-center ma">
+                                <div class="col-12 col-md-6  text-center ma">
                                     <label for="customRange2" class="form-label">
                                         QR de tu pagina
                                     </label>
-                                    <span>
+
+                                    <span style="width: 80%; margin: auto;">
                                         <a [href]="urlLink" target="_blank"
                                             style="text-decoration: none; color:var(--cPrincipal); font-weight: 800;">
                                             {{urlLink}}
@@ -290,10 +291,10 @@
                                             [imageWidth]="75" [margin]="4" [scale]="1"
                                             [title]="'A custom title attribute'" [width]="300"></qrcode>
                                     </div>
-
-
                                 </div>
-                                <div class="col-12   mt-3" *ngIf="location">
+
+
+                                <div class="col-12   mt-3" *ngIf="location &&  isDirection()">
                                     <label for="ubicacion ">Ubicación </label>
                                     <app-mapscreen [showBar]="true" (coordenadasSelect)="showCoordenadas($event)"
                                         (coordenadas)="showCoordenadas($event)" [sendCoords]="location" [isEditV]="true"

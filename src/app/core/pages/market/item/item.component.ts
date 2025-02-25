@@ -1,4 +1,8 @@
 import { AfterViewInit, Component, Input } from '@angular/core';
+import { CargarTipoMedias } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
+import { TipoMedia } from 'src/app/core/models/tipoMedia.model';
+import { TipoMediasService } from 'src/app/core/services/tipoMedia.service';
+import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -10,6 +14,7 @@ export class ItemComponent implements AfterViewInit {
   CP = environment.cPrimary
   CS = environment.cSecond
   CW = '#ffffff'
+  tipoMedias: TipoMedia[]
   @Input() item: any;
   @Input() cP: any = this.CP;
   @Input() cS: any = this.CS;
@@ -17,11 +22,28 @@ export class ItemComponent implements AfterViewInit {
   PRODUCTO = environment.tiProducto
   SERVICIO = environment.tiServicio
   url = environment.base_url
-  constructor() {
+  constructor(
+    private tipoMediasService: TipoMediasService,
+    private functionsService: FunctionsService,
+  ) {
     this.loading = true
+    this.getCatalogos()
 
 
 
+  }
+  getCatalogos() {
+    this.tipoMediasService.cargarTipoMediasAll().subscribe((resp: CargarTipoMedias) => {
+      this.tipoMedias = this.functionsService.getActivos(resp.tipoMedias)
+      console.log(' this.tipoMedias::: ', this.tipoMedias);
+
+
+
+    },
+      (error) => {
+        // console.error('error::: ', error);
+        this.functionsService.alertError(error, 'Tipo de medios')
+      })
 
   }
   ngAfterViewInit(): void {

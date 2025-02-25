@@ -1,6 +1,7 @@
 .imgSingleProducto {
     width: 100%;
     max-width: 600px;
+    max-height: 600px;
 }
 
 .titleProducto {
@@ -30,7 +31,16 @@
 .imgToView {
     margin: auto;
     width: 100%;
-    max-width: 800px;
+    max-width: 650px;
+    max-height: 500px;
+}
+
+.imgSecond {
+    display: none;
+}
+
+.imgPrimary {
+    display: block;
 }
 
 .videoPlay {
@@ -45,10 +55,15 @@
 
 }
 
+.imgViewer {
+    height: 620px;
+}
+
 @media screen and (max-width: 760px) {
     .imgSingleProducto {
 
         max-width: 250px;
+        height: 250px;
     }
 
     .titleProducto {
@@ -56,4 +71,15 @@
         font-size: 25px;
     }
 
+    .imgViewer {
+        height: 250px;
+    }
+
+    .imgSecond {
+        display: block;
+    }
+
+    .imgPrimary {
+        display: none;
+    }
 }
