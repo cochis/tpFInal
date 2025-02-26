@@ -54,7 +54,7 @@
                     Contacto
                 </h2>
                 <app-divisor [color]="getColor('P',proveedor.colores)"></app-divisor>
-                <div class="row mt-3">
+                <div class="row mt-3" *ngIf="proveedor">
 
                     <div class="col-12 col-md-6 ma" *ngFor="let item of proveedor.contactos">
                         <div class="card text-center">

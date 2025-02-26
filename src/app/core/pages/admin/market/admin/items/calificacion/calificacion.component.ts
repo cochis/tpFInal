@@ -84,7 +84,7 @@ export class CalificacionComponent {
     this.productos.removeAt(i);
   }
   setProducto(pc: any): FormGroup {
-    console.log('pc::: ', pc);
+
 
     return this.fb.group({
       calificacion: [3],
@@ -109,10 +109,6 @@ export class CalificacionComponent {
     this.submited = true
 
 
-
-
-
-    console.log('this.form::: ', this.form);
     if (this.form.valid) {
 
 

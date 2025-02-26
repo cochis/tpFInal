@@ -127,9 +127,7 @@ export class EditarProvedorComponent {
 
     var res
     this.form.value.contactos.forEach(ct => {
-      console.log('this.ContactoP[2]::: ', this.ContactoP[2]);
 
-      console.log('ct.tipoContacto ::: ', ct.tipoContacto);
       if (ct.tipoContacto == this.ContactoP[2].value) {
 
         res = true
@@ -137,7 +135,7 @@ export class EditarProvedorComponent {
 
     });
 
-    console.log('res::: ', res);
+
     return res
   }
   getId(id: string) {
@@ -226,7 +224,7 @@ export class EditarProvedorComponent {
   onSubmit() {
     this.loading = true
     this.submited = true
-    console.log('this.form::: ', this.form);
+
     this.form.value.nombre = this.form.value.nombre.toUpperCase().trim()
     this.form.value.clave = this.form.value.clave.toUpperCase().trim()
     if (this.form.value.nombre === '' || this.form.value.clave === '') {
@@ -275,7 +273,7 @@ export class EditarProvedorComponent {
       }
 
     });
-    console.log('this.isMap::: ', this.isMap);
+
 
   }
   setColores(color: any): FormGroup {

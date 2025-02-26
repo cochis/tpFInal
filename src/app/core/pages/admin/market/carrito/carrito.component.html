@@ -76,7 +76,7 @@
                                                         <th class="text-center">
                                                             <a
                                                                 routerLink="/core/vista-producto/{{item.value.item.uid}}">
-                                                                <img [src]="url+'/upload/items/'+getImagen(item.value.item.photos)"
+                                                                <img [src]="getImagen(item.value.item.photos,i)"
                                                                     style="width: 50px; height: 50px;"
                                                                     [alt]="item.nombre">
                                                             </a>
@@ -367,7 +367,7 @@ ubicacion:   -->
 
                                             <th class="text-center upper">
 
-                                                <img [src]="url+'/upload/items/'+getImagen(item.item.photos)"
+                                                <img [src]="getImagen(item.item.photos,i)"
                                                     style="width: 50px; height: 50px;" [alt]="item.nombre">
                                             </th>
                                             <th class="text-center upper">

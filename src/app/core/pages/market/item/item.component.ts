@@ -35,9 +35,6 @@ export class ItemComponent implements AfterViewInit {
   getCatalogos() {
     this.tipoMediasService.cargarTipoMediasAll().subscribe((resp: CargarTipoMedias) => {
       this.tipoMedias = this.functionsService.getActivos(resp.tipoMedias)
-      console.log('this.tipoMedias::: ', this.tipoMedias);
-
-
 
 
     },
@@ -66,7 +63,7 @@ export class ItemComponent implements AfterViewInit {
   }
 
   viewPhoto(id) {
-    console.log('id::: ', id);
+
 
     this.item.photos.forEach(pic => {
       if (pic.img === id) {

@@ -58,7 +58,6 @@ export class EditarDatosComponent {
     this.getProveedor(this.uid)
 
 
-
   }
 
   get errorControl() {
@@ -91,9 +90,7 @@ export class EditarDatosComponent {
 
     var res
     this.form.value.contactos.forEach(ct => {
-      console.log('this.ContactoP[2]::: ', this.ContactoP[2]);
 
-      console.log('ct.tipoContacto ::: ', ct.tipoContacto);
       if (ct.tipoContacto == this.ContactoP[2].value) {
 
         res = true
@@ -101,7 +98,6 @@ export class EditarDatosComponent {
 
     });
 
-    console.log('res::: ', res);
     return res
   }
   get contactos(): FormArray {
@@ -114,7 +110,11 @@ export class EditarDatosComponent {
   addContactos() {
 
     this.contactos.push(this.newContacto())
-    this.submited = false
+    let index = 'contacto' + (Number(this.contactos.length) - 1)
+    setTimeout(() => {
+      this.functionsService.scroolTo(index)
+      this.submited = false
+    }, 500);
 
   }
   removeContactos(i: number) {
@@ -126,13 +126,11 @@ export class EditarDatosComponent {
 
     this.colores.push(this.newColor())
 
-    if (this.colores.value.length == 2) {
-      this.setColor = false
-
-    }
-
-
-    window.scrollTo(0, (document.body.scrollHeight - 100));
+    let index = 'colors' + (Number(this.colores.length) - 1)
+    setTimeout(() => {
+      this.functionsService.scroolTo(index)
+      this.submited = false
+    }, 500);
 
 
   }
@@ -361,7 +359,7 @@ export class EditarDatosComponent {
           this.setForm(this.proveedor)
           this.qrOK = true
 
-          if (this.proveedor.colores.length <= 2) {
+          if (this.form.value.colores.length <= 2) {
             this.setColor = false
           }
 

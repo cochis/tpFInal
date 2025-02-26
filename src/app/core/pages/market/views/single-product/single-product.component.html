@@ -6,7 +6,8 @@
 
     <div class="row mt-5 text-center">
 
-        <div class="col-12 col-md-8 text-center imgPrimary " (click)="viewImg(url+'/upload/items/'+getImgPrincipal())">
+        <div class="col-12 col-md-8 text-center imgPrimary "
+            (click)="viewImg(url+'/upload/items/'+getImgPrincipal() ,functionsService.getValueCatalog(tipoMediaView,'clave',tipoMedias))">
             <div class="imgViewer">
 
                 <ng-container *ngFor="let item of item.photos; let i= index">
@@ -79,7 +80,7 @@
             </h4>
 
             <div class="col-12 col-md-8 text-center imgSecond "
-                (click)="viewImg(url+'/upload/items/'+getImgPrincipal())">
+                (click)="viewImg(url+'/upload/items/'+getImgPrincipal(),functionsService.getValueCatalog(tipoMediaView,'clave',tipoMedias))">
                 <div class="imgViewer">
 
                     <ng-container *ngFor="let item of item.photos; let i= index">
@@ -271,6 +272,31 @@
 <div class="container  animate__animated animate__fadeIn  " *ngIf="!loading && item && viewImgOk">
     <div class="row" animate__animated animate__fadeIn>
         <div class="col-12 text-center mt-3">
+
+
+            <ng-container *ngIf="tpFile=='image/*'  ">
+                <img [src]="imgToView" class="imgToView">
+
+                <br>
+            </ng-container>
+            <ng-container *ngIf="tpFile=='audio/*' ">
+
+
+                <audio preload="auto" controls [src]="imgToView" class="imgToView" id="myAudio">
+                </audio>
+
+
+                <br>
+            </ng-container>
+            <ng-container *ngIf="tpFile=='video/*'  ">
+
+                <video preload="auto" controls height="auto" [src]="imgToView" class="imgToView" id="myVideo">
+                </video>
+
+
+                <br>
+            </ng-container>
+
 
             <img [src]="imgToView" class="imgToView" alt="">
         </div>

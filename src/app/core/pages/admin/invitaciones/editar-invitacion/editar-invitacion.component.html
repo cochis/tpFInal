@@ -80,7 +80,7 @@
                                     </div> -->
                                     <div class="row text-center mb-5" style="display: none;">
                                         <h5>Tipo de Vista </h5>
-                                        <div class="col-6 ma">
+                                        <div class="col-12 col-md-6 ma">
                                             <select name="viewSize" id="viewSize" #viewSize class="form-select"
                                                 (change)="changeSize(viewSize.value)">
                                                 <option value="">Selecciona el tamaño de vista</option>
@@ -90,9 +90,9 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="row text-center mb-3">
+                                    <div class="text-center mb-3">
                                         <h5>Música de invitación</h5>
-                                        <div class="col-6 col-md-3 mt-3 ma ">
+                                        <div class="col-12 col-md-6 col-md-3 mt-3 ma ">
 
                                             <button class="btn but2" type="button" data-bs-toggle="collapse"
                                                 data-bs-target="#collapseMusica" aria-expanded="false"
@@ -131,6 +131,7 @@
                                             </div>
                                         </div>
                                     </div>
+
                                     <hr>
 
                                     <!--  Inicia Sección principal -->
@@ -158,7 +159,7 @@
                                             </select>
                                             <ng-container *ngIf="col">
                                                 <div class="row text-center mt-3 animate__animated animate__fadeInDown">
-                                                    <div class="col-4   mt-3">
+                                                    <div class="col-12 col-md-4  mt-3">
                                                         <div class="form-group ">
                                                             <label for="cPrincipal ">Principal
                                                             </label>
@@ -171,7 +172,7 @@
                                                             class="error">Es requerido
                                                         </span>
                                                     </div>
-                                                    <div class="col-4   mt-3">
+                                                    <div class="col-12 col-md-4  mt-3">
                                                         <div class="form-group ">
                                                             <label for="byFileColorFr ">Secundario </label>
                                                             <input type="color" class="form-control upper" id="cSecond"
@@ -180,7 +181,7 @@
                                                                 [readonly]="edit==='false'">
                                                         </div>
                                                     </div>
-                                                    <div class="col-4   mt-3">
+                                                    <div class="col-12 col-md-4  mt-3">
                                                         <div class="form-group ">
                                                             <label for="cWhite ">Terciario </label>
                                                             <input type="color" class="form-control upper" id="cWhite"
@@ -195,7 +196,7 @@
                                             <ng-container *ngIf="ima">
                                                 <div class="row text-center mt-3 animate__animated animate__fadeInDown">
 
-                                                    <div class="col-6   col-md-12    mt-3">
+                                                    <div class="col-12 col-md-6 col-md-12    mt-3">
                                                         <div class="form-group ">
                                                             <label for="img1">Imagen de fondo
                                                                 <img src="/assets/images/tp.png" alt="" class="pointer"
@@ -645,7 +646,7 @@
                                     <hr class="mt-3 mb-3">
                                     <div class="row text-center mb-3">
                                         <h5>Seccion Mensaje</h5>
-                                        <div class="col-6 col-md-3 mt-3 ma ">
+                                        <div class="col-12 col-md-6 col-md-3 mt-3 ma ">
 
                                             <button class="btn but2" type="button" data-bs-toggle="collapse"
                                                 data-bs-target="#collapseImagenMensaje" aria-expanded="false"
@@ -653,7 +654,7 @@
                                                 Imagen del mensaje
                                             </button>
                                         </div>
-                                        <div class="col-6 col-md-3 mt-3 ma ">
+                                        <div class="col-12 col-md-6 col-md-3 mt-3 ma ">
 
                                             <button class="btn but2" type="button" data-bs-toggle="collapse"
                                                 data-bs-target="#collapseTextoMensaje" aria-expanded="false"
@@ -663,7 +664,7 @@
                                         </div>
                                         <div class="collapse " id="collapseImagenMensaje">
                                             <div class="row text-center mt-3">
-                                                <div class="col-6   col-md-12    mt-3 ma">
+                                                <div class="col-12 col-md-6 col-md-12    mt-3 ma">
                                                     <div class="form-group    image-upload ">
                                                         <label for="mensajeImg">Imagen de fondo
                                                             <br>
@@ -682,7 +683,7 @@
                                                             (change)="cambiarImagen($event,'mensajeImg' )">
                                                     </div>
                                                 </div>
-                                                <div class="col-6  col-md-4  mt-3">
+                                                <div class="col-12 col-md-6  col-md-4  mt-3">
                                                     <div class="form-group ">
                                                         <label for="mensajeImgWidth ">Tamaño de la imagen del
                                                             mensaje
@@ -700,7 +701,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="col-6  col-md-4  mt-3">
+                                                <div class="col-12 col-md-6  col-md-4  mt-3">
                                                     <div class="form-group ">
                                                         <label for="bxMensajeImg ">Horizontal imagen mensaje
                                                         </label>
@@ -714,7 +715,7 @@
 
                                                     </div>
                                                 </div>
-                                                <div class="col-6  col-md-4  mt-3">
+                                                <div class="col-12 col-md-6  col-md-4  mt-3">
                                                     <div class="form-group ">
                                                         <label for="bxMensajeImg ">Vertical imagen mensaje </label>
                                                         <a class="range" (click)="changeRange('byMensajeImg','-')">
@@ -738,7 +739,7 @@
                                                             formControlName="mensaje1" class="form-control"></textarea>
                                                     </div>
                                                 </div>
-                                                <div class="col-6  col-md-4 mt-3 ma">
+                                                <div class="col-12 col-md-6  col-md-4 mt-3 ma">
                                                     <div class="form-group ">
                                                         <label for="mensajeSize ">Tamaño letra mensaje </label>
                                                         <a class="range" (click)="changeRange('mensajeSize','-')">
@@ -751,7 +752,7 @@
                                                 </div>
 
 
-                                                <div class="col-6  col-md-6 mt-3 ma" style="display:none">
+                                                <div class="col-12 col-md-6 mt-3 ma" style="display:none">
                                                     <div class="form-group ">
                                                         <label for="alturaMensaje ">Altura mensaje</label>
                                                         <a class="range" (click)="changeRange('alturaMensaje','-')">
@@ -762,7 +763,7 @@
                                                             <b class="range-icon">+</b> </a>
                                                     </div>
                                                 </div>
-                                                <div class="col-6  col-md-6 mt-3 ma">
+                                                <div class="col-12 col-md-6 mt-3 ma">
 
                                                     <div class="form-group ">
                                                         <label for="mensajeFont ">Fuente de mensaje</label>
@@ -857,19 +858,19 @@
 
 
 
-                                        <div class="row mt-3" *ngIf="invitacion" style="width: 100%;">
-                                            <b>Si tu invitación tiene check in este es tu QR </b>
 
-                                            <div class="col-6 ma mt-3">
-                                                <qrcode [qrdata]="getQr()" [allowEmptyString]="true"
-                                                    [ariaLabel]="'Saludos...'" [cssClass]="'center'"
-                                                    [colorDark]="form.value.cPrincipal" [colorLight]="'#fff'"
-                                                    [elementType]="'canvas'" [errorCorrectionLevel]="'M'"
-                                                    [imageHeight]="50" [imageWidth]="50" [margin]="4" [scale]="1"
-                                                    [width]="200" class="ma mt-3">
-                                                </qrcode>
-                                            </div>
+                                        <b>Si tu invitación tiene check in este es tu QR </b>
+
+                                        <div class="col-12 col-md-6 ma mt-3">
+                                            <qrcode [qrdata]="getQr()" [allowEmptyString]="true"
+                                                [ariaLabel]="'Saludos...'" [cssClass]="'center'"
+                                                [colorDark]="form.value.cPrincipal" [colorLight]="'#fff'"
+                                                [elementType]="'canvas'" [errorCorrectionLevel]="'M'" [imageHeight]="50"
+                                                [imageWidth]="50" [margin]="4" [scale]="1" [width]="200"
+                                                class="ma mt-3">
+                                            </qrcode>
                                         </div>
+
 
 
 
@@ -904,14 +905,14 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-6  col-md-6   mt-3">
+                                            <div class="col-12 col-md-6   mt-3">
                                                 <div class="form-group ">
                                                     <label for="donde3Text ">Nombre </label>
                                                     <input type="text" id="donde3Text" #donde3Text
                                                         formControlName="donde3Text" class="form-control" readonly>
                                                 </div>
                                             </div>
-                                            <div class="col-6  col-md-6   mt-3">
+                                            <div class="col-12 col-md-6   mt-3">
                                                 <div class="form-group ">
                                                     <label for="donde3Date ">Fecha </label>
                                                     <input type="datetime-local" id="donde3Date" #donde3Date
@@ -959,27 +960,30 @@
                                             <div class="row text-center mt-3 ma">
                                                 <h5>Padres</h5>
                                                 <div class="row text-center ma">
-                                                    <div class="col-6 ma">
+                                                    <div class="col-12 col-md-6 ma">
 
                                                         <input class="form-check-input" type="checkbox" id="padresCheck"
                                                             #padresCheck formControlName="padresCheck">
                                                     </div>
                                                 </div>
 
-                                                <div class="row" *ngIf="padresCheck.checked">
+                                                <ng-container *ngIf="padresCheck.checked">
 
                                                     <div class="col-12 col-md-6 text-center" style="margin:auto">
 
                                                         <button type="button" class="btn btn-lg btn-block but "
-                                                            (click)="addPadres()">Agregar
+                                                            id="btnPadreDefault" (click)="addPadres('d')">Agregar
                                                             padre</button>
                                                     </div>
-                                                </div>
+                                                </ng-container>
+
+
+
                                                 <ng-container formArrayName="padres" *ngIf="padresCheck.checked">
 
                                                     <ng-container *ngFor="let padre of padres.controls; let i=index">
                                                         <ng-container [formGroupName]="i">
-                                                            <div class="col-4   mt-3">
+                                                            <div class="col-12 col-md-4   mt-3" id="padreDefault{{i}}">
                                                                 <div class="form-group ">
                                                                     <label for="name ">Nombre</label>
                                                                     <input type="text" class="form-control upper"
@@ -992,7 +996,7 @@
                                                                     class="error">Es requerido
                                                                 </span>
                                                             </div>
-                                                            <div class="col-4   mt-3">
+                                                            <div class="col-12 col-md-4   mt-3">
                                                                 <div class="form-group ">
                                                                     <label for="tipo">Tipo</label>
                                                                     <select name="" id="tipo" formControlName="tipo"
@@ -1045,7 +1049,7 @@
                                                                 </span>
                                                             </div>
 
-                                                            <div class="col-4 mt-3">
+                                                            <div class="col-12 col-md-4 mt-3">
                                                                 <button class="btn btn-lg btn-block btn-warning mt-3"
                                                                     (click)="removePadre(i)"><i
                                                                         class="icon-trash"></i></button>
@@ -1055,6 +1059,19 @@
 
                                                         </ng-container>
                                                     </ng-container>
+
+
+                                                    <div id="finPadreDefault"
+                                                        cclass="col-12 col-md-6 mt-3 mb-3 text-center ma"
+                                                        *ngIf="padres.length>1">
+
+
+                                                        <button class="btn but" type="button"
+                                                            (click)="functionsService.scroolTo('btnPadreDefault')"><i
+                                                                class="bi bi-arrow-up"></i></button>
+
+                                                    </div>
+
                                                 </ng-container>
                                             </div>
 
@@ -1065,29 +1082,28 @@
                                             <div class="row text-center mt-3 ma">
                                                 <h5>Padrinos</h5>
                                                 <div class="row text-center ma">
-                                                    <div class="col-6 ma">
+                                                    <div class="col-12 col-md-6 ma">
 
                                                         <input class="form-check-input" type="checkbox"
                                                             id="padrinosCheck" #padrinosCheck
                                                             formControlName="padrinosCheck">
                                                     </div>
                                                 </div>
-
-                                                <div class="row" *ngIf="padrinosCheck.checked">
-
+                                                <ng-container *ngIf="padrinosCheck.checked">
                                                     <div class="col-12 col-md-6 text-center" style="margin:auto">
 
                                                         <button type="button" class="btn btn-lg btn-block but "
-                                                            (click)="addPadrinos()">Agregar
+                                                            id="btnPadrinoDefault" (click)="addPadrinos('d')">Agregar
                                                             padrino</button>
                                                     </div>
-                                                </div>
+                                                </ng-container>
+
                                                 <ng-container formArrayName="padrinos" *ngIf="padrinosCheck.checked">
 
                                                     <ng-container
                                                         *ngFor="let padrino of padrinos.controls; let i=index">
                                                         <ng-container [formGroupName]="i">
-                                                            <div class="col-8  mt-3">
+                                                            <div class="col-12 col-md-8  mt-3" id="padrinoDefault{{i}}">
                                                                 <div class="form-group ">
                                                                     <label for="name ">Nombre</label>
                                                                     <input type="text" class="form-control upper"
@@ -1102,17 +1118,34 @@
                                                             </div>
 
 
-                                                            <div class="col-4 mt-3">
-                                                                <button class="btn btn-lg btn-block btn-warning mt-3"
+
+
+                                                            <div class="col-12 col-md-4 mt-3 ma text-center">
+                                                                <button
+                                                                    class="btn btn-lg btn-block btn-warning mt-3 ma text-center"
                                                                     (click)="removePadrino(i)"><i
                                                                         class="icon-trash"></i></button>
                                                             </div>
 
 
 
+
                                                         </ng-container>
                                                     </ng-container>
+                                                    <div id="finPadrinoDefault"
+                                                        cclass="col-12 col-md-6 mt-3 mb-3 text-center ma"
+                                                        *ngIf="padrinos.length>1">
+
+
+                                                        <button class="btn but" type="button"
+                                                            (click)="functionsService.scroolTo('btnPadrinoDefault')"><i
+                                                                class="bi bi-arrow-up"></i></button>
+
+                                                    </div>
                                                 </ng-container>
+
+
+
                                             </div>
 
 
@@ -1123,7 +1156,7 @@
                                             <div class="row text-center mt-3 ma">
                                                 <h5>Chambelanes</h5>
                                                 <div class="row text-center ma">
-                                                    <div class="col-6 ma">
+                                                    <div class="col-12 col-md-6 ma">
 
                                                         <input class="form-check-input" type="checkbox"
                                                             id="chambelanesCheck" #chambelanesCheck
@@ -1131,22 +1164,25 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="row" *ngIf="chambelanesCheck.checked">
-
+                                                <ng-container *ngIf="chambelanesCheck.checked">
                                                     <div class="col-12 col-md-6 text-center" style="margin:auto">
 
                                                         <button type="button" class="btn btn-lg btn-block but "
-                                                            (click)="addChambelan()">Agregar
+                                                            id="btnChambelanDefault" (click)="addChambelan('d')">Agregar
                                                             chambelan</button>
                                                     </div>
-                                                </div>
+                                                </ng-container>
+
+
+
                                                 <ng-container formArrayName="chambelanes"
                                                     *ngIf="chambelanesCheck.checked">
 
                                                     <ng-container
                                                         *ngFor="let chambelan of chambelanes.controls; let i=index">
                                                         <ng-container [formGroupName]="i">
-                                                            <div class="col-8  mt-3">
+                                                            <div class="col-12 col-md-8  mt-3"
+                                                                id="chambelanDefault{{i}}">
                                                                 <div class="form-group ">
                                                                     <label for="name ">Nombre</label>
                                                                     <input type="text" class="form-control upper"
@@ -1161,7 +1197,7 @@
                                                             </div>
 
 
-                                                            <div class="col-4 mt-3">
+                                                            <div class="col-12 col-md-4 mt-3">
                                                                 <button class="btn btn-lg btn-block btn-warning mt-3"
                                                                     (click)="removeChambelan(i)"><i
                                                                         class="icon-trash"></i></button>
@@ -1171,6 +1207,17 @@
 
                                                         </ng-container>
                                                     </ng-container>
+                                                    <div id="finChambelarDefault"
+                                                        cclass="col-12 col-md-6 mt-3 mb-3 text-center ma"
+                                                        *ngIf="chambelanes.length>1">
+
+
+                                                        <button class="btn but" type="button"
+                                                            (click)="functionsService.scroolTo('btnChambelanDefault')"><i
+                                                                class="bi bi-arrow-up"></i></button>
+
+                                                    </div>
+
                                                 </ng-container>
                                             </div>
 
@@ -1179,27 +1226,30 @@
                                             <div class="row text-center mt-3 ma">
                                                 <h5>Menu</h5>
                                                 <div class="row text-center ma">
-                                                    <div class="col-6 ma">
+                                                    <div class="col-12 col-md-6 ma">
 
                                                         <input class="form-check-input" type="checkbox" id="menuCheck"
                                                             #menuCheck formControlName="menuCheck">
                                                     </div>
                                                 </div>
 
-                                                <div class="row" *ngIf="menuCheck.checked">
+                                                <ng-container *ngIf="menuCheck.checked">
 
                                                     <div class="col-12 col-md-6 text-center" style="margin:auto">
 
-                                                        <button type="button" class="btn btn-lg btn-block but "
-                                                            (click)="addMenus()">Agregar
+                                                        <button type="button" id="btnMenuDefault"
+                                                            class="btn btn-lg btn-block but "
+                                                            (click)="addMenus('d')">Agregar
                                                             Menu</button>
                                                     </div>
-                                                </div>
+                                                </ng-container>
+
+                                                <div class="col-12"></div>
                                                 <ng-container formArrayName="menu" *ngIf="menuCheck.checked">
 
                                                     <ng-container *ngFor="let men of menu.controls; let i=index">
                                                         <ng-container [formGroupName]="i">
-                                                            <div class="col-4  mt-3">
+                                                            <div class="col-12 col-md-4  mt-3" id="menuDefault{{i}}">
                                                                 <div class="form-group ">
                                                                     <label for="tipo ">Tipo</label>
                                                                     <input type="text" class="form-control upper"
@@ -1212,7 +1262,7 @@
                                                                     class="error">Es requerido
                                                                 </span>
                                                             </div>
-                                                            <div class="col-4  mt-3">
+                                                            <div class="col-12 col-md-4 mt-3">
                                                                 <div class="form-group ">
                                                                     <label for="name ">Platillo</label>
                                                                     <input type="text" class="form-control upper"
@@ -1227,7 +1277,7 @@
                                                             </div>
 
 
-                                                            <div class="col-4 mt-3">
+                                                            <div class="col-12 col-md-4 mt-3">
                                                                 <button class="btn btn-lg btn-block btn-warning mt-3"
                                                                     (click)="removeMenu(i)"><i
                                                                         class="icon-trash"></i></button>
@@ -1237,7 +1287,18 @@
 
                                                         </ng-container>
                                                     </ng-container>
+                                                    <div id="finMenuDefault"
+                                                        cclass="col-12 col-md-6 mt-3 mb-3 text-center ma"
+                                                        *ngIf="menu.length>1">
+
+
+                                                        <button class="btn but" type="button"
+                                                            (click)="functionsService.scroolTo('btnMenuDefault')"><i
+                                                                class="bi bi-arrow-up"></i></button>
+
+                                                    </div>
                                                 </ng-container>
+
                                             </div>
 
 
@@ -1246,27 +1307,31 @@
                                             <div class="row text-center mt-3 ma">
                                                 <h5>Música</h5>
                                                 <div class="row text-center ma">
-                                                    <div class="col-6 ma">
+                                                    <div class="col-12 col-md-6 ma">
 
                                                         <input class="form-check-input" type="checkbox" id="musicaCheck"
                                                             #musicaCheck formControlName="musicaCheck">
                                                     </div>
                                                 </div>
 
-                                                <div class="row" *ngIf="musicaCheck.checked">
-
+                                                <ng-container *ngIf="musicaCheck.checked">
                                                     <div class="col-12 col-md-6 text-center" style="margin:auto">
 
                                                         <button type="button" class="btn btn-lg btn-block but "
-                                                            (click)="addMusica()">Agregar Música</button>
+                                                            (click)="addMusica('d')" id="btnMusicaDefault">Agregar
+                                                            Música</button>
                                                     </div>
-                                                </div>
+                                                </ng-container>
+
+
+
+
                                                 <ng-container formArrayName="musica" *ngIf="musicaCheck.checked">
 
                                                     <ng-container *ngFor="let mus of musica.controls; let i=index">
                                                         <ng-container [formGroupName]="i">
 
-                                                            <div class="col-8 mt-3">
+                                                            <div class="col-12 col-md-8 mt-3" id="musicaDefault{{i}}">
                                                                 <div class="form-group ">
                                                                     <label for="name ">Tipo de música</label>
                                                                     <input type="text" class="form-control upper"
@@ -1281,7 +1346,7 @@
                                                             </div>
 
 
-                                                            <div class="col-4 mt-3">
+                                                            <div class="col-12 col-md-4 mt-3">
                                                                 <button class="btn btn-lg btn-block btn-warning mt-3"
                                                                     (click)="removeMusica(i)"><i
                                                                         class="icon-trash"></i></button>
@@ -1291,6 +1356,16 @@
 
                                                         </ng-container>
                                                     </ng-container>
+                                                    <div id="finMusicaDefault"
+                                                        cclass="col-12 col-md-6 mt-3 mb-3 text-center ma"
+                                                        *ngIf="musica.length>1">
+
+
+                                                        <button class="btn but" type="button"
+                                                            (click)="functionsService.scroolTo('btnMusicaDefault')"><i
+                                                                class="bi bi-arrow-up"></i></button>
+
+                                                    </div>
                                                 </ng-container>
                                             </div>
 
@@ -1419,14 +1494,14 @@
                                                         (change)="cambiarImagen($event,'donde1Img' )">
                                                 </div>
                                             </div>
-                                            <!-- <div class="col-6  col-md-6   mt-3">
+                                            <!-- <div class="col-12 col-md-6   mt-3">
                                                 <div class="form-group ">
                                                     <label for="donde1Title ">Nombre de la Iglesia </label>
                                                     <input type="text" id="donde1Title" #donde1Title
                                                         formControlName="donde1Title">
                                                 </div>
                                             </div> -->
-                                            <div class="col-6  col-md-6   mt-3 animated1 fadeIn"
+                                            <div class="col-12 col-md-6   mt-3 animated1 fadeIn"
                                                 *ngIf="form.value.donde1Check">
                                                 <div class="form-group ">
                                                     <label for="donde1Text ">Nombre de la iglesia </label>
@@ -1435,7 +1510,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-6  col-md-6   mt-3" *ngIf="form.value.donde1Check">
+                                            <div class="col-12 col-md-6   mt-3" *ngIf="form.value.donde1Check">
                                                 <div class="form-group ">
                                                     <label for="donde1Date ">Fecha </label>
                                                     <input type="datetime-local" id="donde1Date" #donde1Date
@@ -1498,14 +1573,14 @@
                                                         class="form-control">
                                                 </div>
                                             </div>
-                                            <div class="col-6  col-md-6   mt-3" *ngIf="form.value.donde2Check">
+                                            <div class="col-12 col-md-6   mt-3" *ngIf="form.value.donde2Check">
                                                 <div class="form-group ">
                                                     <label for="donde2Text ">Nombre del registro </label>
                                                     <input type="text" id="donde2Text" #donde2Text
                                                         formControlName="donde2Text" class="form-control">
                                                 </div>
                                             </div>
-                                            <div class="col-6  col-md-6   mt-3" *ngIf="form.value.donde2Check">
+                                            <div class="col-12 col-md-6   mt-3" *ngIf="form.value.donde2Check">
                                                 <div class="form-group ">
                                                     <label for="donde2Date ">Fecha </label>
                                                     <input type="datetime-local" id="donde2Date" #donde2Date
@@ -1543,7 +1618,7 @@
                                             <h5>Hospedaje</h5>
 
 
-                                            <div class="col-6  col-md-4     mt-3 ma ">
+                                            <div class="col-12 col-md-6  col-md-4     mt-3 ma ">
 
 
                                                 <label class="form-check-label" for="hospedajeCheck">
@@ -1575,14 +1650,15 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-6   mt-3" *ngIf="form.value.hospedajeCheck">
+                                            <div class="col-12 col-md-6 mt-3" *ngIf="form.value.hospedajeCheck">
                                                 <div class="form-group ">
                                                     <label for="hospedajeName ">Nombre de hotel </label>
                                                     <input type="text" id="hospedajeName" #hospedajeName
                                                         formControlName="hospedajeName" class="form-control">
                                                 </div>
                                             </div>
-                                            <div class="col-6  col-md-4   mt-3" *ngIf="form.value.hospedajeCheck">
+                                            <div class="col-12 col-md-6  col-md-4   mt-3"
+                                                *ngIf="form.value.hospedajeCheck">
                                                 <div class="form-group ">
                                                     <label for="hospedajePhone ">Teléfono </label>
                                                     <input type="text" id="hospedajePhone" #hospedajePhone
@@ -1615,7 +1691,7 @@
                                             <h5>Mesa de regalos</h5>
 
 
-                                            <div class="col-6  col-md-4     mt-3 ma ">
+                                            <div class="col-12 col-md-6  col-md-4     mt-3 ma ">
 
 
                                                 <label class="form-check-label" for="mesaRegalosCheck">
@@ -1647,7 +1723,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-6   mt-3 ma" *ngIf="form.value.mesaRegalosCheck">
+                                            <div class="col-12 col-md-6  mt-3 ma" *ngIf="form.value.mesaRegalosCheck">
                                                 <div class="form-group ">
                                                     <label for="mesaRegalosLugar ">Tienda</label>
                                                     <input type="text" id="mesaRegalosLugar" #mesaRegalosLugar
@@ -1674,27 +1750,28 @@
                                         <div class="row text-center mt-3">
                                             <h5>Itinerarios</h5>
                                             <div class="row">
-                                                <div class="col-6 ma">
+                                                <div class="col-12 col-md-6 ma">
 
                                                     <input class="form-check-input" type="checkbox" id="itinerarioCheck"
                                                         #itinerarioCheck formControlName="itinerarioCheck">
                                                 </div>
                                             </div>
 
-                                            <div class="row" *ngIf="itinerarioCheck.checked">
-
+                                            <ng-container *ngIf="itinerarioCheck.checked">
                                                 <div class="col-12 col-md-6 text-center" style="margin:auto">
 
                                                     <button type="button" class="btn btn-lg btn-block but "
-                                                        (click)="addItinerarios()">Agregar itinerario</button>
+                                                        id="btnItinerarioDeafult" (click)="addItinerarios('d')">Agregar
+                                                        itinerario</button>
                                                 </div>
-                                            </div>
+                                            </ng-container>
+
                                             <ng-container formArrayName="itinerarios" *ngIf="itinerarioCheck.checked">
 
                                                 <ng-container
                                                     *ngFor="let itinerario of itinerarios.controls; let i=index">
                                                     <ng-container [formGroupName]="i">
-                                                        <div class="col-4   mt-3">
+                                                        <div class="col-12 col-md-4  mt-3" id="itinerarioDefault{{i}}">
                                                             <div class="form-group ">
                                                                 <label for="name ">Evento</label>
                                                                 <input type="text" class="form-control upper" id="name"
@@ -1706,7 +1783,7 @@
                                                                 class="error">Es requerido
                                                             </span>
                                                         </div>
-                                                        <div class="col-4   mt-3">
+                                                        <div class="col-12 col-md-4  mt-3">
                                                             <div class="form-group ">
                                                                 <label for="hr ">Hora</label>
                                                                 <input type="text" class="form-control upper" id="hr"
@@ -1719,7 +1796,7 @@
                                                             </span>
                                                         </div>
 
-                                                        <div class="col-4 mt-3">
+                                                        <div class="col-12 col-md-4 mt-3">
                                                             <button class="btn btn-lg btn-block btn-warning mt-3"
                                                                 (click)="removeItinerario(i)"><i
                                                                     class="icon-trash"></i></button>
@@ -1729,31 +1806,43 @@
 
                                                     </ng-container>
                                                 </ng-container>
+
+                                                <div id="finItinerarioDefault"
+                                                    cclass="col-12 col-md-6 mt-3 mb-3 text-center ma"
+                                                    *ngIf="itinerarios.length>1">
+
+
+                                                    <button class="btn but" type="button"
+                                                        (click)="functionsService.scroolTo('btnItinerarioDeafult')"><i
+                                                            class="bi bi-arrow-up"></i></button>
+
+                                                </div>
                                             </ng-container>
                                         </div>
                                         <hr class="mt-3 mb-3">
                                         <div class="row text-center mt-3">
                                             <h5>Notas</h5>
-                                            <div class="row">
-                                                <div class="col-6 ma">
 
-                                                    <input class="form-check-input" type="checkbox" id="notaCheck"
-                                                        #notaCheck formControlName="notaCheck">
-                                                </div>
-                                                <div class="row">
-                                                </div>
-                                                <div class="col-12 col-md-6 text-center" style="margin:auto"
-                                                    *ngIf="notaCheck.checked">
+                                            <div class="col-12 col-md-6 ma">
 
-                                                    <button type="button" class="btn btn-lg btn-block but "
-                                                        (click)="addNotas()">Agregar nota</button>
-                                                </div>
+                                                <input class="form-check-input" type="checkbox" id="notaCheck"
+                                                    #notaCheck formControlName="notaCheck">
                                             </div>
+                                            <div class="row">
+                                            </div>
+                                            <div class="col-12 col-md-6 text-center" style="margin:auto"
+                                                *ngIf="notaCheck.checked">
+
+                                                <button type="button" id="btnNotaDefault"
+                                                    class="btn btn-lg btn-block but " (click)="addNotas('d')">Agregar
+                                                    nota</button>
+                                            </div>
+
                                             <ng-container formArrayName="notas" *ngIf="notaCheck.checked">
 
                                                 <ng-container *ngFor="let nota of notas.controls; let i=index">
                                                     <ng-container [formGroupName]="i">
-                                                        <div class="col-6   mt-3">
+                                                        <div class="col-12 col-md-6 mt-3" id="notaDefault{{i}}">
                                                             <div class="form-group ">
                                                                 <label for="texto ">Texto</label>
                                                                 <input type="text" class="form-control upper" id="texto"
@@ -1766,7 +1855,7 @@
                                                         </div>
 
 
-                                                        <div class="col-6 mt-3">
+                                                        <div class="col-12 col-md-6 mt-3">
                                                             <button class="btn btn-lg btn-block btn-warning mt-3"
                                                                 (click)="removeNota(i)"><i
                                                                     class="icon-trash"></i></button>
@@ -1775,7 +1864,19 @@
 
 
                                                     </ng-container>
+
+
                                                 </ng-container>
+                                                <div id="finNotaDefault"
+                                                    cclass="col-12 col-md-6 mt-3 mb-3 text-center ma"
+                                                    *ngIf="notas.length>1">
+
+
+                                                    <button class="btn but" type="button"
+                                                        (click)="functionsService.scroolTo('btnNotaDefault')"><i
+                                                            class="bi bi-arrow-up"></i></button>
+
+                                                </div>
                                             </ng-container>
                                         </div>
                                     </ng-container>
@@ -1814,7 +1915,7 @@
                                 <form [formGroup]="form" (ngSubmit)="onSubmit()">
                                     <div class="row text-center">
                                         <h5>Colores</h5>
-                                        <div class="col-6 col-md-3   mt-3">
+                                        <div class=" col-12 col-md-3    mt-3">
                                             <div class="form-group ">
                                                 <label for="byFileColorBG ">Color de fondo</label>
                                                 <input type="color" class="form-control upper" id="byFileColorBG"
@@ -1825,7 +1926,7 @@
                                                 class="error">Es requerido
                                             </span>
                                         </div>
-                                        <div class="col-6 col-md-3   mt-3">
+                                        <div class=" col-12 col-md-3    mt-3">
                                             <div class="form-group ">
                                                 <label for="byFileColorFr ">Color de marco</label>
                                                 <input type="color" class="form-control upper" id="byFileColorFr"
@@ -1833,7 +1934,7 @@
                                                     placeholder="Color de marco" [readonly]="edit==='false'">
                                             </div>
                                         </div>
-                                        <div class="col-6 col-md-3   mt-3">
+                                        <div class=" col-12 col-md-3    mt-3">
                                             <div class="form-group ">
                                                 <label for="byFileColorTx ">Color de texto</label>
                                                 <input type="color" class="form-control upper" id="byFileColorTx"
@@ -1841,7 +1942,7 @@
                                                     placeholder="Color de marco" [readonly]="edit==='false'">
                                             </div>
                                         </div>
-                                        <div class="col-6 col-md-3   mt-3">
+                                        <div class=" col-12 col-md-3    mt-3">
                                             <div class="form-group ">
                                                 <label for="byFileColorQr ">Color de QR</label>
                                                 <input type="color" class="form-control upper" id="byFileColorQr"
@@ -1859,7 +1960,7 @@
                                         <h5>Seccion inicial</h5>
 
 
-                                        <div class="col-6 mt-3 ma">
+                                        <div class="col-12 col-md-6 mt-3 ma">
                                             <div class="form-group">
                                                 <label for="typeFile">Invitación</label>
                                                 <select name="" id="typeFile" formControlName="typeFile" #typeFile
@@ -2015,7 +2116,7 @@
                                                 inviFont:form.value.inviFont,
                                                 inviFont2:form.value.inviFont2,
 
-                                            }"></app-view-template>
+                                            }" style="max-width: 100%;"></app-view-template>
                                         </div>
 
                                     </div>
@@ -2049,14 +2150,14 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-6  col-md-6   mt-3">
+                                            <div class="col-12 col-md-6   mt-3">
                                                 <div class="form-group ">
                                                     <label for="donde3Text ">Nombre </label>
                                                     <input type="text" id="donde3Text" #donde3Text
                                                         formControlName="donde3Text" readonly class="form-control">
                                                 </div>
                                             </div>
-                                            <div class="col-6  col-md-6   mt-3">
+                                            <div class="col-12 col-md-6   mt-3">
                                                 <div class="form-group ">
                                                     <label for="donde3Date ">Fecha </label>
                                                     <input type="datetime-local" id="donde3Date" #donde3Date
@@ -2073,7 +2174,7 @@
                                             </div>
                                             <div class="col-12   mt-3">
                                                 <div class="form-group ">
-
+                                                    {{salonLocation}}
                                                     <label for="donde3AddressUbicacion ">Ubicación </label>
                                                     <app-mapscreen [showBar]="false"
                                                         (coordenadas)="showCoordenadas($event)"
@@ -2117,14 +2218,15 @@
                                                         (change)="cambiarImagen($event,'donde1Img' )">
                                                 </div>
                                             </div>
-                                            <!-- <div class="col-6  col-md-6   mt-3">
+                                            <!-- <div class="col-12 col-md-6   mt-3">
                                                                                     <div class="form-group ">
                                                                                         <label for="donde1Title ">Nombre de la Iglesia </label>
                                                                                         <input type="text" id="donde1Title" #donde1Title
                                                                                             formControlName="donde1Title">
                                                                                     </div>
                                                                                 </div> -->
-                                            <div class="col-6  col-md-6   mt-3" *ngIf="form.value.donde1Check">
+                                            <div class="col-12 col-md-6  col-md-6   mt-3"
+                                                *ngIf="form.value.donde1Check">
                                                 <div class="form-group ">
                                                     <label for="donde1Text ">Nombre de la iglesia </label>
                                                     <input type="text" id="donde1Text" #donde1Text
@@ -2132,7 +2234,8 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-6  col-md-6   mt-3" *ngIf="form.value.donde1Check">
+                                            <div class="col-12 col-md-6  col-md-6   mt-3"
+                                                *ngIf="form.value.donde1Check">
                                                 <div class="form-group ">
                                                     <label for="donde1Date ">Fecha </label>
                                                     <input type="datetime-local" id="donde1Date" #donde1Date
@@ -2149,7 +2252,11 @@
                                             </div>
                                             <div class="col-12   mt-3" *ngIf="form.value.donde1Check">
                                                 <div class="form-group ">
-                                                    <label for="donde1AddressUbicacion ">Ubicación </label>
+                                                    <label for="donde1AddressUbicacion "
+                                                        *ngIf="iglesiaLocation">Ubicación </label>
+
+
+
                                                     <app-mapscreen [showBar]="true"
                                                         (coordenadasSelect)="showCoordenadas($event)"
                                                         (coordenadas)="showCoordenadas($event)"
@@ -2192,14 +2299,14 @@
                                                         class="form-control">
                                                 </div>
                                             </div>
-                                            <div class="col-6  col-md-6   mt-3" *ngIf="form.value.donde2Check">
+                                            <div class="col-12 col-md-6   mt-3" *ngIf="form.value.donde2Check">
                                                 <div class="form-group ">
                                                     <label for="donde2Text ">Nombre del registro </label>
                                                     <input type="text" id="donde2Text" #donde2Text
                                                         formControlName="donde2Text" class="form-control">
                                                 </div>
                                             </div>
-                                            <div class="col-6  col-md-6   mt-3" *ngIf="form.value.donde2Check">
+                                            <div class="col-12 col-md-6   mt-3" *ngIf="form.value.donde2Check">
                                                 <div class="form-group ">
                                                     <label for="donde2Date ">Fecha </label>
                                                     <input type="datetime-local" id="donde2Date" #donde2Date
@@ -2227,8 +2334,10 @@
                                                         (coordenadasSelect)="showCoordenadas($event)"
                                                         (coordenadas)="showCoordenadas($event)"
                                                         [sendCoords]="registroLocation" [isEditV]="true"
-                                                        (idMapSend)="getIdMap( $event)"
-                                                        type="donde2AddressUbicacion"></app-mapscreen>
+                                                        type="donde2AddressUbicacion"
+                                                        (idMapSend)="getIdMap( $event)"></app-mapscreen>
+
+
                                                 </div>
                                             </div>
 
@@ -2241,7 +2350,7 @@
                                             <h5>Hospedaje</h5>
 
 
-                                            <div class="col-6  col-md-4     mt-3 ma ">
+                                            <div class="col-12 col-md-6  col-md-4     mt-3 ma ">
 
 
                                                 <label class="form-check-label" for="hospedajeCheck">
@@ -2274,14 +2383,15 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-6   mt-3" *ngIf="form.value.hospedajeCheck">
+                                            <div class="col-12 col-md-6 mt-3" *ngIf="form.value.hospedajeCheck">
                                                 <div class="form-group ">
                                                     <label for="hospedajeName ">Nombre de hotel </label>
                                                     <input type="text" id="hospedajeName" #hospedajeName
                                                         formControlName="hospedajeName" class="form-control">
                                                 </div>
                                             </div>
-                                            <div class="col-6  col-md-4   mt-3" *ngIf="form.value.hospedajeCheck">
+                                            <div class="col-12 col-md-6  col-md-4   mt-3"
+                                                *ngIf="form.value.hospedajeCheck">
                                                 <div class="form-group ">
                                                     <label for="hospedajePhone ">Teléfono </label>
                                                     <input type="text" id="hospedajePhone" #hospedajePhone
@@ -2301,12 +2411,17 @@
                                             <div class="col-12   mt-3"
                                                 *ngIf="form.value.hospedajeCheck && hospedajeLocation">
                                                 <label for="hospedajeUbicacion ">Ubicación </label>
+
+
                                                 <app-mapscreen [showBar]="true"
                                                     (coordenadasSelect)="showCoordenadas($event)"
                                                     (coordenadas)="showCoordenadas($event)"
                                                     [sendCoords]="hospedajeLocation" [isEditV]="true"
-                                                    (idMapSend)="getIdMap( $event)"
-                                                    type="hospedajeUbicacion"></app-mapscreen>
+                                                    type="hospedajeUbicacion"
+                                                    (idMapSend)="getIdMap( $event)"></app-mapscreen>
+
+
+
                                             </div>
 
                                         </div>
@@ -2346,7 +2461,7 @@
                                         <div class="row text-center mt-3 ma">
                                             <h5>Padres</h5>
                                             <div class="row text-center ma">
-                                                <div class="col-6 ma">
+                                                <div class="col-12 col-md-6 ma">
 
                                                     <input class="form-check-input" type="checkbox" id="padresCheck"
                                                         #padresCheck formControlName="padresCheck">
@@ -2358,7 +2473,7 @@
                                                 <div class="col-12 col-md-6 text-center" style="margin:auto">
 
                                                     <button type="button" class="btn btn-lg btn-block but "
-                                                        (click)="addPadres()">Agregar
+                                                        id="btnPadreFile" (click)="addPadres('f')">Agregar
                                                         padre</button>
                                                 </div>
                                             </div>
@@ -2366,7 +2481,7 @@
 
                                                 <ng-container *ngFor="let padre of padres.controls; let i=index">
                                                     <ng-container [formGroupName]="i">
-                                                        <div class="col-4   mt-3">
+                                                        <div class="col-12 col-md-4  mt-3" id="padreFile{{i}}">
                                                             <div class="form-group ">
                                                                 <label for="name ">Nombre</label>
                                                                 <input type="text" class="form-control upper" id="name"
@@ -2378,7 +2493,7 @@
                                                                 class="error">Es requerido
                                                             </span>
                                                         </div>
-                                                        <div class="col-4   mt-3">
+                                                        <div class="col-12 col-md-4  mt-3">
                                                             <div class="form-group ">
                                                                 <label for="tipo">Tipo</label>
                                                                 <select name="" id="tipo" formControlName="tipo"
@@ -2419,7 +2534,7 @@
                                                             </span>
                                                         </div>
 
-                                                        <div class="col-4 mt-3">
+                                                        <div class="col-12 col-md-4 mt-3">
                                                             <button class="btn btn-lg btn-block btn-warning mt-3"
                                                                 (click)="removePadre(i)"><i
                                                                     class="icon-trash"></i></button>
@@ -2429,6 +2544,15 @@
 
                                                     </ng-container>
                                                 </ng-container>
+                                                <div id="finPadreFile" class=" col-6 mt-3 mb-3 text-center ma"
+                                                    *ngIf="padres.length>1">
+
+
+                                                    <button class="btn but" type="button"
+                                                        (click)="functionsService.scroolTo('btnPadreFile')"><i
+                                                            class="bi bi-arrow-up"></i></button>
+
+                                                </div>
                                             </ng-container>
                                         </div>
 
@@ -2439,51 +2563,71 @@
                                         <div class="row text-center mt-3 ma">
                                             <h5>Padrinos</h5>
                                             <div class="row text-center ma">
-                                                <div class="col-6 ma">
+                                                <div class="col-12 col-md-6 ma">
 
                                                     <input class="form-check-input" type="checkbox" id="padrinosCheck"
                                                         #padrinosCheck formControlName="padrinosCheck">
                                                 </div>
                                             </div>
+                                            <ng-container *ngIf="padrinosCheck.checked">
 
-                                            <div class="row" *ngIf="padrinosCheck.checked">
 
                                                 <div class="col-12 col-md-6 text-center" style="margin:auto">
 
                                                     <button type="button" class="btn btn-lg btn-block but "
-                                                        (click)="addPadrinos()">Agregar
+                                                        (click)="addPadrinos('f')" id="btnPadrinoFile">Agregar
                                                         padrino</button>
                                                 </div>
-                                            </div>
-                                            <ng-container formArrayName="padrinos" *ngIf="padrinosCheck.checked">
 
-                                                <ng-container *ngFor="let padrino of padrinos.controls; let i=index">
-                                                    <ng-container [formGroupName]="i">
-                                                        <div class="col-8  mt-3">
-                                                            <div class="form-group ">
-                                                                <label for="name ">Nombre</label>
-                                                                <input type="text" class="form-control upper" id="name"
-                                                                    formControlName="name" required
-                                                                    placeholder="Oscar Ramirez"
-                                                                    [readonly]="edit==='false'" class="form-control">
+                                                <ng-container formArrayName="padrinos" *ngIf="padrinosCheck.checked">
+
+                                                    <ng-container
+                                                        *ngFor="let padrino of padrinos.controls; let i=index">
+                                                        <ng-container [formGroupName]="i">
+                                                            <div class="col-12 col-md-8  mt-3" id="padrinoFile{{i}}">
+                                                                <div class="form-group ">
+                                                                    <label for="name ">Nombre</label>
+                                                                    <input type="text" class="form-control upper"
+                                                                        id="name" formControlName="name" required
+                                                                        placeholder="Oscar Ramirez"
+                                                                        [readonly]="edit==='false'"
+                                                                        class="form-control">
+                                                                </div>
+                                                                <span *ngIf="submited && errorControl['name'].errors "
+                                                                    class="error">Es requerido
+                                                                </span>
                                                             </div>
-                                                            <span *ngIf="submited && errorControl['name'].errors "
-                                                                class="error">Es requerido
-                                                            </span>
-                                                        </div>
 
 
-                                                        <div class="col-4 mt-3">
-                                                            <button class="btn btn-lg btn-block btn-warning mt-3"
-                                                                (click)="removePadrino(i)"><i
-                                                                    class="icon-trash"></i></button>
-                                                        </div>
+                                                            <div class="col-12 col-md-4 mt-3">
+                                                                <button class="btn btn-lg btn-block btn-warning mt-3"
+                                                                    (click)="removePadrino(i)"><i
+                                                                        class="icon-trash"></i></button>
+                                                            </div>
 
 
 
+                                                        </ng-container>
                                                     </ng-container>
                                                 </ng-container>
+
+                                                <div id="finPadrinoFile" class=" col-6 mt-3 mb-3 text-center ma"
+                                                    *ngIf="padrinos.length>1">
+
+
+                                                    <button class="btn but" type="button"
+                                                        (click)="functionsService.scroolTo('btnPadrinoFile')"><i
+                                                            class="bi bi-arrow-up"></i></button>
+
+                                                </div>
                                             </ng-container>
+
+
+
+
+
+
+
                                         </div>
 
 
@@ -2494,7 +2638,7 @@
                                         <div class="row text-center mt-3 ma">
                                             <h5>Chambelanes</h5>
                                             <div class="row text-center ma">
-                                                <div class="col-6 ma">
+                                                <div class="col-12 col-md-6 ma">
 
                                                     <input class="form-check-input" type="checkbox"
                                                         id="chambelanesCheck" #chambelanesCheck
@@ -2502,21 +2646,24 @@
                                                 </div>
                                             </div>
 
-                                            <div class="row" *ngIf="chambelanesCheck.checked">
-
+                                            <ng-container *ngIf="chambelanesCheck.checked">
                                                 <div class="col-12 col-md-6 text-center" style="margin:auto">
 
                                                     <button type="button" class="btn btn-lg btn-block but "
-                                                        (click)="addChambelan()">Agregar
+                                                        (click)="addChambelan('f')" id="btnChambelanFile">Agregar
                                                         chambelan</button>
                                                 </div>
-                                            </div>
+                                            </ng-container>
+
+
+
+
                                             <ng-container formArrayName="chambelanes" *ngIf="chambelanesCheck.checked">
 
                                                 <ng-container
                                                     *ngFor="let chambelan of chambelanes.controls; let i=index">
                                                     <ng-container [formGroupName]="i">
-                                                        <div class="col-8  mt-3">
+                                                        <div class="col-12 col-md-8  mt-3" id="chambelanFile{{i}}">
                                                             <div class="form-group ">
                                                                 <label for="name ">Nombre</label>
                                                                 <input type="text" class="form-control upper" id="name"
@@ -2530,7 +2677,7 @@
                                                         </div>
 
 
-                                                        <div class="col-4 mt-3">
+                                                        <div class="col-12 col-md-4 mt-3">
                                                             <button class="btn btn-lg btn-block btn-warning mt-3"
                                                                 (click)="removeChambelan(i)"><i
                                                                     class="icon-trash"></i></button>
@@ -2540,6 +2687,16 @@
 
                                                     </ng-container>
                                                 </ng-container>
+
+                                                <div id="finChambelanFile" class=" col-6 mt-3 mb-3 text-center ma"
+                                                    *ngIf="chambelanes.length>1">
+
+
+                                                    <button class="btn but" type="button"
+                                                        (click)="functionsService.scroolTo('btnChambelanFile')"><i
+                                                            class="bi bi-arrow-up"></i></button>
+
+                                                </div>
                                             </ng-container>
                                         </div>
 
@@ -2548,7 +2705,7 @@
                                         <div class="row text-center mt-3 ma">
                                             <h5>Menu</h5>
                                             <div class="row text-center ma">
-                                                <div class="col-6 ma">
+                                                <div class="col-12 col-md-6 ma">
 
                                                     <input class="form-check-input" type="checkbox" id="menuCheck"
                                                         #menuCheck formControlName="menuCheck">
@@ -2560,7 +2717,7 @@
                                                 <div class="col-12 col-md-6 text-center" style="margin:auto">
 
                                                     <button type="button" class="btn btn-lg btn-block but "
-                                                        (click)="addMenus()">Agregar
+                                                        (click)="addMenus('f')" id="btnMenuFile">Agregar
                                                         Menu</button>
                                                 </div>
                                             </div>
@@ -2568,7 +2725,7 @@
 
                                                 <ng-container *ngFor="let men of menu.controls; let i=index">
                                                     <ng-container [formGroupName]="i">
-                                                        <div class="col-4  mt-3">
+                                                        <div class="col-12 col-md-4 mt-3" id="menuFile{{i}}">
                                                             <div class="form-group ">
                                                                 <label for="tipo ">Tipo</label>
                                                                 <input type="text" class="form-control upper" id="tipo"
@@ -2580,7 +2737,7 @@
                                                                 class="error">Es requerido
                                                             </span>
                                                         </div>
-                                                        <div class="col-4  mt-3">
+                                                        <div class="col-12 col-md-4 mt-3">
                                                             <div class="form-group ">
                                                                 <label for="name ">Platillo</label>
                                                                 <input type="text" class="form-control upper" id="name"
@@ -2594,16 +2751,26 @@
                                                         </div>
 
 
-                                                        <div class="col-4 mt-3">
-                                                            <button class="btn btn-lg btn-block btn-warning mt-3"
-                                                                (click)="removeMenu(i)"><i
-                                                                    class="icon-trash"></i></button>
-                                                        </div>
 
 
 
                                                     </ng-container>
+                                                    <div class="col-12 col-md-4 mt-3">
+                                                        <button class="btn btn-lg btn-block btn-warning mt-3"
+                                                            (click)="removeMenu(i)"><i class="icon-trash"></i></button>
+                                                    </div>
                                                 </ng-container>
+
+
+                                                <div id="finMenuFile" class=" col-6 mt-3 mb-3 text-center ma"
+                                                    *ngIf="menu.length>1">
+
+
+                                                    <button class="btn but" type="button"
+                                                        (click)="functionsService.scroolTo('btnMenuFile')"><i
+                                                            class="bi bi-arrow-up"></i></button>
+
+                                                </div>
                                             </ng-container>
                                         </div>
 
@@ -2613,7 +2780,7 @@
                                         <div class="row text-center mt-3 ma">
                                             <h5>Música</h5>
                                             <div class="row text-center ma">
-                                                <div class="col-6 ma">
+                                                <div class="col-12 col-md-6 ma">
 
                                                     <input class="form-check-input" type="checkbox" id="musicaCheck"
                                                         #musicaCheck formControlName="musicaCheck">
@@ -2624,8 +2791,9 @@
 
                                                 <div class="col-12 col-md-6 text-center" style="margin:auto">
 
-                                                    <button type="button" class="btn btn-lg btn-block but "
-                                                        (click)="addMusica()">Agregar
+                                                    <button type="button" id="btnMusicaFile"
+                                                        class="btn btn-lg btn-block but "
+                                                        (click)="addMusica('f')">Agregar
                                                         Música</button>
                                                 </div>
                                             </div>
@@ -2634,7 +2802,7 @@
                                                 <ng-container *ngFor="let mus of musica.controls; let i=index">
                                                     <ng-container [formGroupName]="i">
 
-                                                        <div class="col-8 mt-3">
+                                                        <div class="col-12 col-md-8 mt-3" id="musicaFile{{i}}">
                                                             <div class="form-group ">
                                                                 <label for="name ">Tipo de música</label>
                                                                 <input type="text" class="form-control upper" id="name"
@@ -2648,7 +2816,7 @@
                                                         </div>
 
 
-                                                        <div class="col-4 mt-3">
+                                                        <div class="col-12 col-md-4 mt-3">
                                                             <button class="btn btn-lg btn-block btn-warning mt-3"
                                                                 (click)="removeMusica(i)"><i
                                                                     class="icon-trash"></i></button>
@@ -2658,7 +2826,18 @@
 
                                                     </ng-container>
                                                 </ng-container>
+
+
                                             </ng-container>
+                                            <div id="finMusicaFile" class=" col-6 mt-3 mb-3 text-center ma"
+                                                *ngIf="musica.length>1">
+
+
+                                                <button class="btn but" type="button"
+                                                    (click)="functionsService.scroolTo('btnMusicaFile')"><i
+                                                        class="bi bi-arrow-up"></i></button>
+
+                                            </div>
                                         </div>
 
 
@@ -2752,7 +2931,7 @@
                                             <h5>Mesa de regalos</h5>
 
 
-                                            <div class="col-6  col-md-4     mt-3 ma ">
+                                            <div class="col-12 col-md-6  col-md-4     mt-3 ma ">
 
 
                                                 <label class="form-check-label" for="mesaRegalosCheck">
@@ -2784,7 +2963,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-6   mt-3 ma" *ngIf="form.value.mesaRegalosCheck">
+                                            <div class="col-12 col-md-6   mt-3 ma" *ngIf="form.value.mesaRegalosCheck">
                                                 <div class="form-group ">
                                                     <label for="mesaRegalosLugar ">Tienda</label>
                                                     <input type="text" id="mesaRegalosLugar" #mesaRegalosLugar
@@ -2813,7 +2992,7 @@
                                         <div class="row text-center mt-3">
                                             <h5>Notas</h5>
                                             <div class="row">
-                                                <div class="col-6 ma">
+                                                <div class="col-12 col-md-6 ma">
 
                                                     <input class="form-check-input" type="checkbox" id="notaCheck"
                                                         #notaCheck formControlName="notaCheck">
@@ -2824,14 +3003,14 @@
                                                     *ngIf="notaCheck.checked">
 
                                                     <button type="button" class="btn btn-lg btn-block but "
-                                                        (click)="addNotas()">Agregar nota</button>
+                                                        (click)="addNotas('f')" id="btnNotaFile">Agregar nota</button>
                                                 </div>
                                             </div>
                                             <ng-container formArrayName="notas" *ngIf="notaCheck.checked">
 
                                                 <ng-container *ngFor="let nota of notas.controls; let i=index">
                                                     <ng-container [formGroupName]="i">
-                                                        <div class="col-6   mt-3">
+                                                        <div class="col-12 col-md-6 mt-3" id="notaFile{{i}}">
                                                             <div class="form-group ">
                                                                 <label for="texto ">Texto</label>
                                                                 <input type="text" class="form-control upper" id="texto"
@@ -2844,7 +3023,7 @@
                                                         </div>
 
 
-                                                        <div class="col-6 mt-3">
+                                                        <div class="col-12 col-md-6 mt-3">
                                                             <button class="btn btn-lg btn-block btn-warning mt-3"
                                                                 (click)="removeNota(i)"><i
                                                                     class="icon-trash"></i></button>
@@ -2855,6 +3034,15 @@
                                                     </ng-container>
                                                 </ng-container>
                                             </ng-container>
+                                            <div id="finNotaFile" class=" col-6 mt-3 mb-3 text-center ma"
+                                                *ngIf="notas.length>1">
+
+
+                                                <button class="btn but" type="button"
+                                                    (click)="functionsService.scroolTo('btnNotaFile')"><i
+                                                        class="bi bi-arrow-up"></i></button>
+
+                                            </div>
                                         </div>
                                     </ng-container>
 
@@ -2862,7 +3050,7 @@
                                     <div class="row text-center mt-3">
                                         <h5>Itinerarios</h5>
                                         <div class="row">
-                                            <div class="col-6 ma">
+                                            <div class="col-12 col-md-6 ma">
 
                                                 <input class="form-check-input" type="checkbox" id="itinerarioCheck"
                                                     #itinerarioCheck formControlName="itinerarioCheck">
@@ -2874,7 +3062,7 @@
                                             <div class="col-12 col-md-6  text-center" style="margin:auto">
 
                                                 <button type="button" class="btn btn-lg btn-block but "
-                                                    (click)="addItinerarios()">Agregar
+                                                    (click)="addItinerarios('f')" id="btnItinerarioFile">Agregar
                                                     itinerario</button>
                                             </div>
                                         </div>
@@ -2882,7 +3070,7 @@
 
                                             <ng-container *ngFor="let itinerario of itinerarios.controls; let i=index">
                                                 <ng-container [formGroupName]="i">
-                                                    <div class="col-4   mt-3">
+                                                    <div class="col-12 col-md-4  mt-3" id="itinerarioFile{{i}}">
                                                         <div class="form-group ">
                                                             <label for="name ">Evento</label>
                                                             <input type="text" class="form-control upper" id="name"
@@ -2893,7 +3081,7 @@
                                                             class="error">Es requerido
                                                         </span>
                                                     </div>
-                                                    <div class="col-4   mt-3">
+                                                    <div class="col-12 col-md-4  mt-3">
                                                         <div class="form-group ">
                                                             <label for="hr ">Hora</label>
                                                             <input type="text" class="form-control upper" id="hr"
@@ -2906,7 +3094,7 @@
                                                         </span>
                                                     </div>
 
-                                                    <div class="col-4 mt-3">
+                                                    <div class="col-12 col-md-4 mt-3">
                                                         <button class="btn btn-lg btn-block btn-warning mt-3"
                                                             (click)="removeItinerario(i)"><i
                                                                 class="icon-trash"></i></button>
@@ -2917,6 +3105,15 @@
                                                 </ng-container>
                                             </ng-container>
                                         </ng-container>
+                                        <div id="finItinerarioFile" class=" col-6 mt-3 mb-3 text-center ma"
+                                            *ngIf="itinerarios.length>1">
+
+
+                                            <button class="btn but" type="button"
+                                                (click)="functionsService.scroolTo('btnItinerarioFile')"><i
+                                                    class="bi bi-arrow-up"></i></button>
+
+                                        </div>
                                     </div>
 
 

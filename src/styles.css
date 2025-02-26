@@ -51,6 +51,12 @@ body {
     color: var(--cWhite);
 }
 
+.btn:active {
+    background: var(--cSecond);
+    border: 1px solid var(--cSecond);
+    color: var(--cWhite);
+}
+
 .btn-warning:hover {
     color: var(--cWhite);
     background: var(--cSecond);
@@ -75,12 +81,24 @@ body {
     opacity: .7;
 }
 
+.but:active {
+    color: var(--cWhite);
+    background: var(--cPrimary);
+    opacity: .7;
+}
+
 .but2 {
     background: var(--cSecond) !important;
     color: var(--cWhite) !important;
 }
 
 .but2:hover {
+    color: var(--cWhite);
+    background: var(--cSecond);
+    opacity: .7;
+}
+
+.but2:active {
     color: var(--cWhite);
     background: var(--cSecond);
     opacity: .7;

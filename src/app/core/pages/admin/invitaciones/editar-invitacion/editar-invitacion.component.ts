@@ -1114,7 +1114,7 @@ export class EditarInvitacionComponent {
     }
   }
   back() {
-    if (this.rol != this.URS) {
+    if (this.rol == this.ADM || this.rol == this.SLN || this.rol == this.ANF) {
       this.functionsService.navigateTo('core/fiestas/vista-fiestas')
     } else {
       this.functionsService.navigateTo('core/mis-fiestas')
@@ -1486,26 +1486,113 @@ export class EditarInvitacionComponent {
       })
     }
   }
-  addItinerarios() {
+  addItinerarios(tp) {
+    var typeP = ''
+    if (tp == 'd') {
+      typeP = 'Default'
+    } else {
+      typeP = 'File'
+
+    }
     this.itinerarios.push(this.newItinerario());
+    let index = 'itinerario' + typeP + (Number(this.itinerarios.length) - 1)
+    setTimeout(() => {
+      this.functionsService.scroolTo(index)
+      this.submited = false
+    }, 500);
+
+
   }
-  addNotas() {
+  addNotas(tp) {
+    var typeP = ''
+    if (tp == 'd') {
+      typeP = 'Default'
+    } else {
+      typeP = 'File'
+
+    }
     this.notas.push(this.newNota());
+    let index = 'nota' + typeP + (Number(this.notas.length) - 1)
+    setTimeout(() => {
+      this.functionsService.scroolTo(index)
+      this.submited = false
+    }, 500);
   }
-  addChambelan() {
+  addChambelan(tp) {
+    var typeP = ''
+    if (tp == 'd') {
+      typeP = 'Default'
+    } else {
+      typeP = 'File'
+
+    }
     this.chambelanes.push(this.newChambelan());
+    let index = 'chambelan' + typeP + (Number(this.chambelanes.length) - 1)
+
+    setTimeout(() => {
+      this.functionsService.scroolTo(index)
+    }, 500);
   }
-  addPadres() {
+  addPadres(tp) {
+    var typeP = ''
+    if (tp == 'd') {
+      typeP = 'Default'
+    } else {
+      typeP = 'File'
+
+    }
     this.padres.push(this.newPadre());
+    let index = 'padre' + typeP + (Number(this.padres.length) - 1)
+
+    setTimeout(() => {
+      this.functionsService.scroolTo(index)
+    }, 500);
   }
-  addPadrinos() {
+  addPadrinos(tp) {
+    var typeP = ''
+    if (tp == 'd') {
+      typeP = 'Default'
+    } else {
+      typeP = 'File'
+
+    }
     this.padrinos.push(this.newPadrino());
+    let index = 'padrino' + typeP + (Number(this.padrinos.length) - 1)
+
+    setTimeout(() => {
+      this.functionsService.scroolTo(index)
+    }, 500);
   }
-  addMenus() {
+  addMenus(tp) {
     this.menu.push(this.newMenu());
+    var typeP = ''
+    if (tp == 'd') {
+      typeP = 'Default'
+    } else {
+      typeP = 'File'
+
+    }
+    let index = 'menu' + typeP + (Number(this.menu.length) - 1)
+
+    setTimeout(() => {
+      this.functionsService.scroolTo(index)
+    }, 500);
   }
-  addMusica() {
+  addMusica(tp) {
+    this.menu.push(this.newMenu());
+    var typeP = ''
+    if (tp == 'd') {
+      typeP = 'Default'
+    } else {
+      typeP = 'File'
+
+    }
     this.musica.push(this.newMusica());
+    let index = 'musica' + typeP + (Number(this.musica.length) - 1)
+
+    setTimeout(() => {
+      this.functionsService.scroolTo(index)
+    }, 500);
   }
   removeItinerario(i: number) {
     this.itinerarios.removeAt(i);

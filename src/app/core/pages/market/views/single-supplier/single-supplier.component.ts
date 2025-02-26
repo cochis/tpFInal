@@ -492,17 +492,19 @@ export class SingleSupplierComponent {
 
 
     var res: any = {}
+    if (this.tipoContactos) {
 
-    this.tipoContactos.forEach(ct => {
+      this.tipoContactos.forEach(ct => {
 
-      if (ct.uid === contacto.tipoContacto) {
+        if (ct.uid === contacto.tipoContacto) {
 
-        res = ct
+          res = ct
 
-      }
-    });
+        }
+      });
 
-    return res
+      return res
+    }
 
 
   }

@@ -119,7 +119,7 @@ export class CrearProvedorComponent {
   onSubmit() {
     this.loading = true
     this.submited = true
-    console.log('this.form::: ', this.form);
+
     if (this.form.valid) {
       this.form.value.nombre = this.form.value.nombre.toUpperCase().trim()
       this.form.value.clave = this.form.value.clave.toUpperCase().trim()

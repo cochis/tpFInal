@@ -15,70 +15,87 @@
                         <h2 class="mb-5" *ngIf="edit=='false'">Ver boletos</h2>
 
 
-                        <div class="row text-center">
-                            <div class="col-12" *ngIf="fiesta.checking">
 
-                                <h3>Cantidad de invitaciones: {{numeroInvitados}} </h3>
-                                <h3 *ngIf="form.value.invitados.length==0" class="ion-text-center">Cargando
-                                </h3>
-                                <h3 *ngIf="form.value.invitados.length>0" class="ion-text-center">Invitados {{total}}
-                                </h3>
+                        <div class="col-12" *ngIf="fiesta.checking">
+
+                            <h3>Cantidad de invitaciones: {{numeroInvitados}} </h3>
+                            <h3 *ngIf="form.value.invitados.length==0" class="ion-text-center">Cargando
+                            </h3>
+                            <h3 *ngIf="form.value.invitados.length>0" class="ion-text-center">Invitados {{total}}
+                            </h3>
+                        </div>
+                        <div class="col-12" color="danger" *ngIf="numeroInvitados >0 &&numeroInvitados<total">
+                            <h3> Ya no tiene boletos disponibles </h3>
+                        </div>
+
+
+                        <div class="col-12   mt-50">
+
+                            <br>
+                            <a class="btn btn-lg btn-block btn-warning" href="/assets/download/invitados.xlsx"
+                                download="invitados.xlsx">
+                                Plantilla para subir invitados
+                            </a>
+                            <br>
+                            <br>
+                            <input type="file" name="invitadosXls" id="invitadosXls" #invitadosXls
+                                (change)="uploadBoletos($event)">
+                            <label for="invitadosXls" class="custom-btn  but "> Agregar por archivo</label>
+                        </div>
+
+                        <div class="col-12   mt-50" *ngIf="total >0">
+
+                            <button class="custom-btn  but " (click)="showConfirmados(content)" style="margin: auto;">
+                                Confirmados</button>
+                        </div>
+
+
+
+
+
+                        <div class="row">
+
+                            <div class=" col-12 col-md-6 mt-3 mb-3 text-center ma"
+                                *ngIf="this.form.value.fiesta !=='' && role !== URS && edit ==='true'">
+
+
+                                <button class="btn but" type="button" id="btnInvitado"
+                                    *ngIf="this.form.value.fiesta !==''" (click)="addInvitados()"
+                                    [disabled]="getDisabled()"><i class="icon-plus"></i>
+                                    Invitado</button>
+
                             </div>
-                            <div class="col-12" color="danger" *ngIf="numeroInvitados >0 &&numeroInvitados<total">
-                                <h3> Ya no tiene boletos disponibles </h3>
-                            </div>
+                            <div id="IniInvitado" class=" col-12 col-md-6 mt-3 mb-3 text-center ma"
+                                *ngIf="invitados.length>1">
 
 
-                            <div class="col-12   mt-50">
+                                <button class="btn but" type="button" (click)="functionsService.scroolTo('finInvitado')"
+                                    *ngIf="invitados.length >1"><i class="bi bi-arrow-down"></i></button>
 
-                                <br>
-                                <a class="btn btn-lg btn-block btn-warning" href="/assets/download/invitados.xlsx"
-                                    download="invitados.xlsx">
-                                    Plantilla para subir invitados
-                                </a>
-                                <br>
-                                <br>
-                                <input type="file" name="invitadosXls" id="invitadosXls" #invitadosXls
-                                    (change)="uploadBoletos($event)">
-                                <label for="invitadosXls" class="custom-btn  but "> Agregar por archivo</label>
-                            </div>
-
-                            <div class="col-12   mt-50" *ngIf="total >0">
-
-                                <button class="custom-btn  but " (click)="showConfirmados(content)"
-                                    style="margin: auto;">
-                                    Confirmados</button>
                             </div>
                         </div>
+
+
                         <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
                             <div class="row">
 
 
 
-                                <div class="col-6  mt-3" *ngIf="role !== URS">
+                                <div class="col-12 col-md-6 ma mt-3" *ngIf="role !== URS">
                                     <div class="form-group">
                                         <label for="nombreGrupo">Fiesta</label>
                                         <input type="text" class="form-control upper" id="fiesta"
                                             formControlName="fiesta" required placeholder="Fiesta" readonly>
                                     </div>
                                 </div>
-                                <div class="col-6   mt-3" *ngIf="role !== URS && edit ==='true'">
-                                    <div class="col-6 col-md-6 mt-3 text-center" *ngIf="this.form.value.fiesta !==''">
-
-
-                                        <a class="custom-btn pr  " (click)="addInvitados()" [disabled]="getDisabled()"
-                                            *ngIf="this.form.value.fiesta !==''"> <i class="icon-plus"></i></a>
-                                        Invitado
 
 
 
-                                    </div>
-                                </div>
 
 
 
-                                <div class="col-12 col-md-6 mt-3" *ngIf="role == URS">
+                                <div class="col-12 col-md-6 ma mt-3" *ngIf="role == URS">
                                     <div class="form-group">
                                         <label for="nombreGrupo">Fiesta</label>
                                         <input type="text" class="form-control upper" id="fiesta"
@@ -86,21 +103,6 @@
                                     </div>
 
 
-                                </div>
-                                <div class="col-6 col-md-6 mt-3" *ngIf="role == URS">
-                                    <div class="col-6 col-md-6 mt-3 text-center" *ngIf="this.form.value.fiesta !==''">
-                                        <div style="width: 100%;">
-
-                                            <a class="btn plus " (click)="addInvitados()"
-                                                [disabled]="(numeroInvitados===0) "
-                                                *ngIf="this.form.value.fiesta !==''"> <i class="icon-plus"></i></a>
-                                        </div>
-                                        <div style="width: 100%;">
-                                            <span>Invitado</span>
-
-                                        </div>
-
-                                    </div>
                                 </div>
 
 
@@ -111,7 +113,7 @@
 
                                     <div [formGroupName]="i" *ngIf="  invitado.value.activated ">
 
-                                        <div class="row">
+                                        <div class="row" id="boleto{{i}}">
                                             <div class="col-12 col-md-6 mt-3">
 
                                                 <div class="form-group">
@@ -277,11 +279,19 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6 ma" *ngIf="this.form.value.invitados.length >0">
-                                <a class="custom-btn pr  " (click)="addInvitados()" [disabled]="getDisabled()"
-                                    *ngIf="this.form.value.fiesta !==''"> <i class="icon-plus"></i></a>
-                                Invitado
+
+                            <div class="col-6 ma">
+                                <div id="finInvitado" class=" col-6 mt-3 mb-3 text-center ma"
+                                    *ngIf="invitados.length>1">
+
+
+                                    <button class="btn but" type="button"
+                                        (click)="functionsService.scroolTo('btnInvitado')"><i
+                                            class="bi bi-arrow-up"></i></button>
+
+                                </div>
                             </div>
+
 
                             <div class="row mt-5 text-center" *ngIf="role !== URS">
 

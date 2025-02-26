@@ -16,6 +16,7 @@ import { CargarTipoMedias } from 'src/app/core/interfaces/cargar-interfaces.inte
   styleUrls: ['./single-product.component.css']
 })
 export class SingleProductComponent {
+  uid = this.functionsService.getLocal('uid')
   id!: string
   item: any
   CP = environment.cPrimary
@@ -46,6 +47,7 @@ export class SingleProductComponent {
   tipoMedias: TipoMedia[]
   ContactoP = environment.contactosProveedor
   isMap = false
+  tpFile = ''
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -58,6 +60,7 @@ export class SingleProductComponent {
     this.getCatalogos()
     this.id = this.route.snapshot.params['id']
     this.getId(this.id)
+
   }
   getCatalogos() {
     this.tipoMediasService.cargarTipoMediasAll().subscribe((resp: CargarTipoMedias) => {
@@ -89,7 +92,7 @@ export class SingleProductComponent {
   opcSeleccion(itm, items) {
     let r = items.filter((res) => { return res.nombre == itm.target.value })
     this.opcSelected = r[0]
-    console.log('this.opcSelected::: ', this.opcSelected);
+
     this.convertDes(this.opcSelected.descripcion)
   }
   viewPhoto(item, index) {
@@ -123,7 +126,7 @@ export class SingleProductComponent {
       desc += '</ul>'
 
       this.descripcionHTML = this.sanitizer.bypassSecurityTrustHtml(desc);
-      console.log('desc::: ', desc);
+
 
     } else {
       this.descripcionHTML = this.sanitizer.bypassSecurityTrustHtml('');
@@ -161,16 +164,14 @@ export class SingleProductComponent {
     this.itemsService.cargarItemById(id).subscribe((res: any) => {
 
       this.item = res.item
-      console.log('this.item ::: ', this.item);
 
-      console.log(this.ContactoP[2].value);
       this.item.proveedor.contactos.forEach(ct => {
         if (ct.tipoContacto == this.ContactoP[2].value) {
           this.isMap = true
         }
 
       });
-      console.log('this.isMap::: ', this.isMap);
+
 
 
       if (this.item.proveedor.lng && this.item.proveedor.lat) {
@@ -254,6 +255,11 @@ export class SingleProductComponent {
 
   setCarrito(opcSelected) {
 
+    if (this.uid == '') {
+      this.functionsService.alert('Carrito', 'Tienes que ingresar a tu cuenta para hacer una cotización', 'info')
+      this.functionsService.navigateTo('/auth/login')
+      return
+    }
     this.form.value.usuario = (this.functionsService.getLocal('uid')) ? this.functionsService.getLocal('uid') : ''
 
 
@@ -328,7 +334,11 @@ export class SingleProductComponent {
       }
     });
   }
-  viewImg(photo?: any) {
+  viewImg(photo?: any, tpFile?: any) {
+
+    this.tpFile = tpFile
+
+
 
     this.viewImgOk = !this.viewImgOk
     if (photo != '') {

@@ -1,7 +1,7 @@
 import { AfterContentInit, AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CargarEstatusCotizacion, CargarEstatusCotizaciones, CargarTipoContactos } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
+import { CargarEstatusCotizacion, CargarEstatusCotizaciones, CargarTipoContactos, CargarTipoMedias } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
 import { TipoContacto } from 'src/app/core/models/tipoContacto.model';
 import { Usuario } from 'src/app/core/models/usuario.model';
 import { TipoContactosService } from 'src/app/core/services/tipoContacto.service';
@@ -17,6 +17,8 @@ import { CotizacionesService } from 'src/app/core/services/cotizacion.service';
 import { EstatusCotizacion } from 'src/app/core/models/estatusCotizacion.model';
 import { EstatusCotizacionesService } from 'src/app/core/services/estatusCotizaciones.service';
 import { EmailsService } from 'src/app/core/services/email.service';
+import { TipoMedia } from 'src/app/core/models/tipoMedia.model';
+import { TipoMediasService } from 'src/app/core/services/tipoMedia.service';
 
 @Component({
   selector: 'app-carrito',
@@ -37,6 +39,7 @@ export class CarritoComponent implements OnInit {
   public form!: FormGroup
   public formCot!: FormGroup
   tipoContactos: TipoContacto[]
+  tipoMedias: TipoMedia[]
   proveedores = []
   estatusCotizacion: any
   prvs = []
@@ -69,6 +72,7 @@ export class CarritoComponent implements OnInit {
     private cotizacionesService: CotizacionesService,
     private estatusCotizacionesService: EstatusCotizacionesService,
     private tipoContactosService: TipoContactosService,
+    private tipoMediasService: TipoMediasService,
     private emailService: EmailsService,
     private router: Router,) {
 
@@ -87,12 +91,14 @@ export class CarritoComponent implements OnInit {
     this.loading = true
     this.qr = JSON.stringify(this.qr)
 
+
     setTimeout(() => {
       if (this.functionsService.getLocal('uid')) {
         this.isLogin = true
         this.loading = false
       }
       this.carrito = (this.functionsService.getLocal('carrito')) ? this.functionsService.getLocal('carrito') : []
+
 
       this.setForm(this.carrito)
       this.uniqueObj()
@@ -253,16 +259,18 @@ export class CarritoComponent implements OnInit {
     })
   }
 
-  getImagen(photos) {
-
+  getImagen(photos, i) {
     var img = ''
-
     photos.forEach(im => {
-
-      if (im.isPrincipal) {
-        img = im.img
-      }
-
+      this.tipoMedias.forEach(tm => {
+        if (tm.uid === im.tipoMedia && tm.clave == 'image/*') {
+          if (im.isPrincipal) {
+            img = this.url + '/upload/items/' + im.img
+          } else {
+            img = this.url + '/upload/proveedores/' + this.carrito[i].item.proveedor.img
+          }
+        }
+      });
     });
 
 
@@ -646,6 +654,16 @@ export class CarritoComponent implements OnInit {
     this.estatusCotizacionesService.cargarEstatusCotizacionesByStep('1').subscribe((resp: CargarEstatusCotizaciones) => {
 
       this.estatusCotizacion = resp.estatusCotizaciones
+
+
+    },
+      (error: any) => {
+        this.functionsService.alertError(error, 'Tipo Contactos')
+        this.loading = false
+      })
+    this.tipoMediasService.cargarTipoMediasAll().subscribe((resp: CargarTipoMedias) => {
+
+      this.tipoMedias = resp.tipoMedias
 
 
     },
