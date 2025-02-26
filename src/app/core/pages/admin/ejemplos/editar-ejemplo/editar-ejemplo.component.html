@@ -55,12 +55,13 @@
                                     <span *ngIf="submited && errorControl['tipo'].errors " class="error">Es requerido
                                     </span>
                                 </div>
-                                <div class="col-12 col-md-6 mt-3">
+                                <div class="col-12   mt-3">
                                     <div class="form-group">
                                         <label for="recomendacion">Recomendación</label>
-                                        <input type="text" class="form-control upper" id="recomendacion"
+                                        <textarea type="text" class="form-control upper" id="recomendacion"
                                             formControlName="recomendacion" required placeholder="Recomendación"
-                                            [readonly]="edit==='false'">
+                                            [readonly]="edit==='false'"> </textarea>
+
                                     </div>
                                     <span *ngIf="submited && errorControl['recomendacion'].errors " class="error">Es
                                         requerido

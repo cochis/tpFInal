@@ -24,9 +24,9 @@
         </section>
 
 
+        <app-loading *ngIf="!ejemplos  "></app-loading>
 
-
-        <div class="container">
+        <div class="container" *ngIf="ejemplos  ">
 
             <div class="row mt-5">
                 <div class="col-12 text-center">
@@ -34,9 +34,40 @@
                     <small> Tu escoges y editas lo que deseas</small>
                 </div>
 
-                <ng-container *ngIf="fiestas && fiestas.length>0">
+                <ng-container *ngIf="ejemplos && ejemplos.length>0">
+                    <ng-container *ngFor="let item of ejemplos">
+                        <div class="col-12 text-center ma mt-3">
 
-                    <div class=" col-lg-3 col-md-4 col-12 mb-4 mb-lg-0 ma text-center" style="margin-top: 25px;"
+
+                            <a [href]="item.urlFiestaBoleto" target="_blank">
+                                <div class="ejemploImgDiv">
+
+
+                                    <img [src]="(item.fiesta.img!=='')?url+'/upload/fiestas/'+item.fiesta.img:url+'/upload/fiestas/default.jpg'"
+                                        class="custom-block-image img-fluid ma pulseAnimation" alt=""
+                                        class="ejemploImg">
+                                </div>
+
+
+
+
+
+
+                                <h2 class=" mt-3" style="line-height: 40px;">
+                                    {{item.fiesta.nombre}}
+                                </h2>
+
+                            </a>
+                        </div>
+                        <div class="col-12 text-center ma">
+                            {{item.recomendacion}}
+                            <!--  <div [innerHTML]=" getExamplesURL('file', item.recomendacion , item.uid)"></div> -->
+                        </div>
+
+                    </ng-container>
+
+
+                    <!--      <div class=" col-lg-3 col-md-4 col-12 mb-4 mb-lg-0 ma text-center" style="margin-top: 25px;"
                         *ngFor="let item of fiestas">
 
 
@@ -58,10 +89,10 @@
 
 
 
-                    </div>
+                    </div> -->
                 </ng-container>
             </div>
-            <div class="row mt-5">
+            <div class="row mt-5" *ngIf="sanitizedUrl">
                 <div class="col-12 text-center">
                     <h2 class="mb-4">Invitaciones dinámicas</h2>
                 </div>
@@ -105,7 +136,7 @@
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row" *ngIf="sanitizedUrlFile">
                 <div class="col-12 text-center">
                     <h2 class="mb-4">Invitaciones por archivo</h2>
                 </div>
@@ -136,7 +167,8 @@
                     </li>
 
                 </ul>
-                <div class=" col-md-6 col-12 mb-4  mt-4 mb-lg-0 ma text-center" style="margin-top: 25px;">
+                <div class=" col-md-6 col-12 mb-4  mt-4 mb-lg-0 ma text-center" style="margin-top: 25px;"
+                    *ngIf="sanitizedUrlFile">
                     <iframe [src]="sanitizedUrlFile" class="ma"
                         style="width: 100%; max-width: 450px; height: 600px;"></iframe>
                 </div>

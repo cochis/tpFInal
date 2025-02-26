@@ -4,7 +4,7 @@ import { PaquetesService } from '../../services/paquete.service';
 import { Paquete } from '../../models/paquete.model';
 import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { environment } from 'src/environments/environment';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { DomSanitizer, SafeHtml, SafeUrl } from '@angular/platform-browser';
 import { FiestasService } from '../../services/fiestas.service';
 import { EjemplosService } from '../../services/ejemplo.service';
 import { CargarEjemplos } from '../../interfaces/cargar-interfaces.interfaces';
@@ -21,14 +21,18 @@ export class EjemplosComponent implements OnInit {
   urlInvitacionFile = environment.urlInvitacionFile
   fiestas = []
   ejemplos = []
-  sanitizedUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(this.urlInvitacion);
-  sanitizedUrlFile = this.domSanitizer.bypassSecurityTrustResourceUrl(this.urlInvitacionFile);
+  res = []
+  sanitizedUrl: any
+  sanitizedUrlFile: any
+  descripcionHTML: SafeHtml;
+
   constructor(private metaService: MetaService,
     private functionsService: FunctionsService,
     private paquetesService: PaquetesService,
     private domSanitizer: DomSanitizer,
     private fiestasService: FiestasService,
-    private ejemplosService: EjemplosService
+    private ejemplosService: EjemplosService,
+    private sanitizer: DomSanitizer
   ) {
     this.metaService.createCanonicalURL()
     let data = {
@@ -68,6 +72,13 @@ export class EjemplosComponent implements OnInit {
   getCatalogos() {
     this.ejemplosService.cargarEjemplosAll().subscribe((resp: CargarEjemplos) => {
 
+      this.ejemplos = resp.ejemplos
+
+      this.sanitizedUrl = this.getExamplesURL('default', 'url')
+      this.sanitizedUrlFile = this.getExamplesURL('file', 'url')
+
+
+
       resp.ejemplos = this.functionsService.getActives(resp.ejemplos)
       resp.ejemplos.forEach(ej => {
         let r = {
@@ -77,5 +88,52 @@ export class EjemplosComponent implements OnInit {
       });
 
     })
+  }
+
+  getExamplesURL(type, tipo, id?) {
+
+
+    if (tipo == 'url') {
+
+      let res: any
+      this.ejemplos.forEach(ex => {
+        if (ex.activated && type == ex.tipo.toLowerCase()) {
+
+          res = this.domSanitizer.bypassSecurityTrustResourceUrl(ex.urlFiestaBoleto);
+
+          return
+        }
+
+      });
+      return res
+    } else {
+
+
+
+
+
+      return this.convertDes(tipo)
+    }
+  }
+  convertDes(des: string) {
+
+
+    let spl = des.split('\n')
+    var desc = '<ul style="list-style:none;padding:0;">'
+    spl.forEach(element => {
+      desc += `<li  ">${element}</li>`
+
+
+    });
+    desc += '</ul>'
+
+
+    return this.sanitizer.bypassSecurityTrustHtml(desc);
+
+
+
+
+
+
   }
 }

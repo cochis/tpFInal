@@ -6,6 +6,10 @@
     --error: #c83434;
 }
 
+textarea {
+    height: 250px;
+}
+
 .bw {
     background-color: var(--cWhite);
     border-radius: 20px;
@@ -494,35 +498,6 @@ input[type="file"] {
     height: 620px;
 }
 
-@media screen and (max-width: 760px) {
-    .imgSingleProducto {
-
-        max-width: 250px;
-        height: 250px;
-    }
-
-    .titleProducto {
-        text-align: center;
-        font-size: 25px;
-    }
-
-    .imgViewer {
-        height: 250px;
-    }
-
-    .imgSecond {
-        display: block;
-    }
-
-    .imgPrimary {
-        display: none;
-    }
-
-    .descripcionProdructo {
-
-        text-align: center;
-    }
-}
 
 .title-market {
     font-size: 13px;
@@ -568,6 +543,54 @@ input[type="file"] {
     padding: 10px;
 }
 
+.ejemploImgDiv {
+
+    margin: auto;
+    text-align: center;
+    overflow: hidden;
+}
+
+.ejemploImg {
+
+    width: 100%;
+}
+
+@media screen and (max-width: 760px) {
+    .imgSingleProducto {
+
+        max-width: 250px;
+        height: 250px;
+    }
+
+    .titleProducto {
+        text-align: center;
+        font-size: 25px;
+    }
+
+    .imgViewer {
+        height: 250px;
+    }
+
+    .imgSecond {
+        display: block;
+    }
+
+    .imgPrimary {
+        display: none;
+    }
+
+    .descripcionProdructo {
+
+        text-align: center;
+    }
+
+    .ejemploImgDiv {
+        width: 100%;
+        height: 150px;
+        line-height: 150px;
+    }
+}
+
 @media screen and (min-width:576px) and (max-width: 768px) {
     .principal {
         width: 100% !important;
@@ -582,6 +605,14 @@ input[type="file"] {
         height: 750px !important;
         background-size: 180% !important;
     }
+
+    .ejemploImgDiv {
+        width: 80%;
+        height: 200px;
+        line-height: 200px;
+    }
+
+
 }
 
 @media screen and (min-width:1024px) {
@@ -591,6 +622,12 @@ input[type="file"] {
         background-size: 135% !important;
         background-position-x: center;
         background-position-y: center;
+    }
+
+    .ejemploImgDiv {
+        width: 75%;
+        height: 250px;
+        line-height: 250px;
     }
 }
 
