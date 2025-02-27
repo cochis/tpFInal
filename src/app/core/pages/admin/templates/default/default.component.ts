@@ -12,7 +12,6 @@ import { SwPush } from '@angular/service-worker';
 import Swal from 'sweetalert2';
 import { MetaService } from 'src/app/core/services/meta.service';
 import { PushsService } from 'src/app/core/services/push.service';
-import { Push } from 'src/app/core/models/push.model';
 import { ImgTemplate } from 'src/app/core/models/img.model';
 import { ModalService } from '@developer-partners/ngx-modal-dialog';
 import { ImagenComponent } from 'src/app/shared/components/modals/imagen/imagen.component';
@@ -136,7 +135,8 @@ export class DefaultComponent implements OnInit, AfterViewInit {
           this.restParty()
           this.invitacion = await this.dateToNumber(this.invitacion)
           this.invitacion.mesa = this.boleto.mesa
-          this.date = this.fiesta.fecha
+          this.date = !this.fiesta.example ? this.fiesta.fecha : this.today + 30000
+
           this.invitacion.cantidad = this.boleto.cantidadInvitados
           this.invitacion.invitado = this.boleto.nombreGrupo
           this.donde1Check = this.invitacion.donde1Check

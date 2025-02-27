@@ -279,3 +279,18 @@ h5 {
     width: 100%;
     margin: auto;
 }
+
+.shadowFin {
+    -webkit-box-shadow: 4px 6px 20px -5px rgba(0, 0, 0, 0.75) !important;
+    -moz-box-shadow: 4px 6px 20px -5px rgba(0, 0, 0, 0.75) !important;
+    box-shadow: 4px 6px 20px -5px rgba(0, 0, 0, 0.75) !important;
+}
+
+img {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 20px;
+    -webkit-box-shadow: 4px 6px 20px -5px rgba(0, 0, 0, 0.75) !important;
+    -moz-box-shadow: 4px 6px 20px -5px rgba(0, 0, 0, 0.75) !important;
+    box-shadow: 4px 6px 20px -5px rgba(0, 0, 0, 0.75) !important;
+}

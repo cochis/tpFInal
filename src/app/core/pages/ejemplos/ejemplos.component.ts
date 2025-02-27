@@ -79,7 +79,8 @@ export class EjemplosComponent implements OnInit {
 
 
 
-      resp.ejemplos = this.functionsService.getActives(resp.ejemplos)
+      this.ejemplos = this.functionsService.getActives(resp.ejemplos)
+
       resp.ejemplos.forEach(ej => {
         let r = {
           fiesta: ej.fiesta, url: ej.urlFiestaBoleto
@@ -119,6 +120,7 @@ export class EjemplosComponent implements OnInit {
 
 
     let spl = des.split('\n')
+
     var desc = '<ul style="list-style:none;padding:0;">'
     spl.forEach(element => {
       desc += `<li  ">${element}</li>`

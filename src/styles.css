@@ -638,3 +638,9 @@ input[type="file"] {
 .table-over {
     min-height: 450px !important;
 }
+
+.shadowFin {
+    -webkit-box-shadow: 4px 6px 20px -5px rgba(0, 0, 0, 0.75) !important;
+    -moz-box-shadow: 4px 6px 20px -5px rgba(0, 0, 0, 0.75) !important;
+    box-shadow: 4px 6px 20px -5px rgba(0, 0, 0, 0.75) !important;
+}

@@ -85,10 +85,10 @@
                                         </td>
                                         <td class="upper">{{ fiesta.nombre}}</td>
                                         <td class="upper">
-                                            {{fiesta.usuarioCreated.nombre}}
-                                            {{fiesta.usuarioCreated.apellidoPaterno}}
-                                            {{fiesta.usuarioCreated.apellidoMaterno}}
-                                            {{fiesta.usuarioCreated.email}}
+                                            {{fiesta.usuarioCreated.nombre?fiesta.usuarioCreated.nombre:''}}
+                                            {{fiesta.usuarioCreated.apellidoPaterno?fiesta.usuarioCreated.apellidoPaterno:''}}
+                                            {{fiesta.usuarioCreated.apellidoMaterno?fiesta.usuarioCreated.apellidoMaterno:''}}
+                                            {{fiesta.usuarioCreated.email?fiesta.usuarioCreated.email:''}}
 
                                         </td>
                                         <td class="upper" *ngIf="fiesta.salon">
@@ -129,26 +129,7 @@
                                             *ngIf="getPorcentaje(fiesta.cantidad,fiterBoletos(fiesta.uid)) == 100">
                                             <i class="icon-battery-4"></i>
                                         </td>
-                                        <!-- <td class="upper"
-                                        *ngIf="getPorcentaje(boleto.fiesta.cantidad, getInvitados(boleto.invitados))>0 && getPorcentaje(boleto.fiesta.cantidad, getInvitados(boleto.invitados))<=25">
-                                        <i class="icon-battery-1"></i>
-                                    </td>
-                                    <td class="upper"
-                                        *ngIf="getPorcentaje(boleto.fiesta.cantidad, getInvitados(boleto.invitados))>25 && getPorcentaje(boleto.fiesta.cantidad, getInvitados(boleto.invitados))<=50">
-                                        <i class="icon-battery-2"></i>
-                                    </td>
-                                    <td class="upper"
-                                        *ngIf="getPorcentaje(boleto.fiesta.cantidad, getInvitados(boleto.invitados))>50 && getPorcentaje(boleto.fiesta.cantidad, getInvitados(boleto.invitados))<=75">
-                                        <i class="icon-battery-3"></i>
-                                    </td>
-                                    <td class="upper"
-                                        *ngIf="getPorcentaje(boleto.fiesta.cantidad, getInvitados(boleto.invitados))>75 && getPorcentaje(boleto.fiesta.cantidad, getInvitados(boleto.invitados))<100">
-                                        <i class="icon-battery-3"></i>
-                                    </td>
-                                    <td class="upper"
-                                        *ngIf="getPorcentaje(boleto.fiesta.cantidad, getInvitados(boleto.invitados))>75 && getPorcentaje(boleto.fiesta.cantidad, getInvitados(boleto.invitados))==100">
-                                        <i class="icon-battery-4"></i>
-                                    </td> -->
+
 
                                         <td>{{fiesta.dateCreated | date:'dd/MM/YYYY'}}</td>
                                         <td>{{fiesta.lastEdited | date:'dd/MM/YYYY'}}</td>
