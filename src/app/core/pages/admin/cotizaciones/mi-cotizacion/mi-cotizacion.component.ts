@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { CargarCotizacion, CargarTipoContactos } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
+import { CargarCotizacion, CargarTipoContactos, CargarTipoMedias } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
 import { Cotizacion } from 'src/app/core/models/cotizacion.model';
 import { CotizacionesService } from 'src/app/core/services/cotizacion.service';
 import { EmailsService } from 'src/app/core/services/email.service';
@@ -15,6 +15,8 @@ import { ProveedorsService } from 'src/app/core/services/proveedor.service';
 import { EstatusCotizacion } from 'src/app/core/models/estatusCotizacion.model';
 import { CargarEstatusCotizaciones } from '../../../../interfaces/cargar-interfaces.interfaces';
 import { EstatusCotizacionesService } from 'src/app/core/services/estatusCotizaciones.service';
+import { TipoMediasService } from 'src/app/core/services/tipoMedia.service';
+import { TipoMedia } from 'src/app/core/models/tipoMedia.model';
 @Component({
   selector: 'app-mi-cotizacion',
   templateUrl: './mi-cotizacion.component.html',
@@ -40,6 +42,7 @@ export class MiCotizacionComponent {
   proveedores = []
   estatusCotizaciones: any = []
   prvs = []
+  tipoMedias: TipoMedia[]
   empresas = this.functionsService.getLocal('proveedor')
   constructor(
     private fb: FormBuilder,
@@ -50,6 +53,7 @@ export class MiCotizacionComponent {
     private emailService: EmailsService,
     private tipoContactosService: TipoContactosService,
     private route: ActivatedRoute,
+    private tipoMediasService: TipoMediasService,
 
   ) {
 
@@ -106,7 +110,7 @@ export class MiCotizacionComponent {
       //message
       this.loading = false
 
-      return // console.info('Please provide all the required values!');
+      return console.info('Please provide all the required values!');
     }
   }
   getId(id: string) {
@@ -119,6 +123,7 @@ export class MiCotizacionComponent {
     this.cotizacionsService.cargarCotizacionById(id).subscribe((resp: CargarCotizacion) => {
 
       this.cotizacion = resp.cotizacion
+
       this.location = [this.cotizacion.lng, this.cotizacion.lat]
 
 
@@ -482,7 +487,7 @@ export class MiCotizacionComponent {
       //message
       this.loading = false
 
-      return // console.info('Please provide all the required values!');
+      return console.info('Please provide all the required values!');
     }
 
 
@@ -514,10 +519,12 @@ export class MiCotizacionComponent {
     correoProveedor = this.cotizacion.productos[0].item.proveedor.contactos.filter(ct => { return ct.value.includes('@') })
 
 
+
     let productos = {
       productos: this.cotizacion.productos,
-      correoProveedor: correoProveedor[0].value
+      correoProveedor: (correoProveedor.length > 0) ? correoProveedor[0].value : ''
     }
+
     this.emailService.sendMailCotizacion(this.cotizacion.uid, productos).subscribe(res => {
 
     })
@@ -870,6 +877,16 @@ export class MiCotizacionComponent {
 
   }
   getCatalogos() {
+    this.tipoMediasService.cargarTipoMediasAll().subscribe((resp: CargarTipoMedias) => {
+
+      this.tipoMedias = resp.tipoMedias
+
+
+    },
+      (error: any) => {
+        this.functionsService.alertError(error, 'Tipo Contactos')
+        this.loading = false
+      })
 
 
     this.estatusCotizacionServices.cargarEstatusCotizacionesAll().subscribe((resp: CargarEstatusCotizaciones) => {
@@ -881,6 +898,38 @@ export class MiCotizacionComponent {
         console.error('error::: ', error);
         this.functionsService.alertError(error, 'Tipo de centros de eventos')
       })
+  }
+
+  getImagenProd(photos, i) {
+
+    var img = ''
+    photos.forEach(im => {
+
+      this.tipoMedias.forEach(tm => {
+
+        if (im.isPrincipal) {
+
+
+          if (tm.uid === im.tipoMedia && tm.clave == 'image/*') {
+
+
+            img = this.url + '/upload/items/' + im.img
+          }
+          else if (tm.uid === im.tipoMedia && tm.clave != 'image/*') {
+
+            img = this.url + '/upload/proveedores/' + this.cotizacion.productos[i].item.proveedor.img
+
+            return
+          }
+
+        }
+
+      });
+    });
+
+
+
+    return img
   }
 }
 

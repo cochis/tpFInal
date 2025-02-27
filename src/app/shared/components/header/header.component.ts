@@ -76,7 +76,7 @@ export class HeaderComponent {
     this.rol = this.functionsService.getLocal('role')
 
     if (!this.rol) {
-      this.functionsService.navigateTo('/')
+      this.functionsService.navigateTo("/core/inicio")
     }
 
 

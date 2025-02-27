@@ -208,7 +208,7 @@ export class PerfilComponent {
       )
   }
   back() {
-    this.functionsService.navigateTo('/')
+    this.functionsService.navigateTo("/core/inicio")
   }
   getCatalog(tipo: string, id: string) {
     if (id) {

@@ -45,6 +45,7 @@ export class SearchbarComponent implements AfterViewInit {
 
         this.places = res.features
 
+
         this.mapsService.createMarkersFromPlaces(this.mapID, this.places)
 
 

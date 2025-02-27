@@ -53,11 +53,14 @@ export class EditarDatosComponent {
     private mapsServices: MapsService,
 
   ) {
-    this.getCatalogos()
     this.loading = true
+
+    this.getCatalogos()
     this.getProveedor(this.uid)
 
-
+    setTimeout(() => {
+      this.loading = false
+    }, 2000);
   }
 
   get errorControl() {
@@ -83,7 +86,8 @@ export class EditarDatosComponent {
       dateCreated: [this.today],
       lastEdited: [this.today],
     })
-    this.loading = false
+
+
   }
   isDirection() {
 
@@ -126,11 +130,7 @@ export class EditarDatosComponent {
 
     this.colores.push(this.newColor())
 
-    let index = 'colors' + (Number(this.colores.length) - 1)
-    setTimeout(() => {
-      this.functionsService.scroolTo(index)
-      this.submited = false
-    }, 500);
+
 
 
   }
@@ -155,7 +155,7 @@ export class EditarDatosComponent {
     this.loading = true
     this.submited = true
 
-    if (this.form.valid && this.form.value.contactos.length > 0 && this.form.value.colores.length == 2) {
+    if (this.form.valid && this.form.value.contactos.length > 0) {
       this.form.value.nombre = this.form.value.nombre.toUpperCase().trim()
       this.form.value.clave = this.form.value.clave.toUpperCase().trim()
 
@@ -165,7 +165,7 @@ export class EditarDatosComponent {
         this.functionsService.alert('Proveedor', 'Proveedor creado', 'success')
         if (this.isProveedor) {
 
-          this.functionsService.navigateTo('/')
+          this.functionsService.navigateTo('/core/inicio')
         } else {
           setTimeout(() => {
 
@@ -200,7 +200,7 @@ export class EditarDatosComponent {
   }
 
   back() {
-    this.functionsService.navigateTo('/')
+    this.functionsService.navigateTo('/core/inicio')
   }
   getCatalogos() {
     this.tipoContactosService.cargarTipoContactosAll().subscribe((resp: CargarTipoContactos) => {
@@ -227,8 +227,6 @@ export class EditarDatosComponent {
     this.mapsServices.getUserLocation().then(res => {
       this.location = res
 
-
-      this.loading = false
 
     })
   }
@@ -271,6 +269,7 @@ export class EditarDatosComponent {
             this.loading = true
             this.imgTemp = undefined
             this.getProveedor(this.uid)
+
           },
           (err) => {
             console.error('error::: ', err);
@@ -319,7 +318,7 @@ export class EditarDatosComponent {
           })
       } else {
 
-        this.functionsService.alertForm('Proveedors')
+        this.functionsService.alertForm('Proveedor')
         this.loading = false
         return console.info('Please provide all the required values!');
       }
@@ -340,57 +339,43 @@ export class EditarDatosComponent {
 
   getProveedor(id) {
 
-
-
     this.loading = true
+    this.proveedorsService.cargarProveedorsByCreador(id).subscribe(resp => {
+      if (resp.proveedors.length > 0) {
+        this.isProveedor = true
+        this.proveedor = resp.proveedors[0]
 
 
-    setTimeout(() => {
+        this.urlLink = JSON.stringify(this.text_url + 'core/vista-proveedor/' + this.proveedor.uid)
 
-      this.proveedorsService.cargarProveedorsByCreador(id).subscribe(resp => {
+        this.proveedorQr = this.proveedor
 
-        if (resp.proveedors.length > 0) {
-          this.isProveedor = true
-          this.proveedor = resp.proveedors[0]
-
-          this.urlLink = this.text_url + 'core/vista-proveedor/' + this.proveedor.uid
-
-          this.proveedorQr = this.proveedor
-          this.setForm(this.proveedor)
-          this.qrOK = true
-
-          if (this.form.value.colores.length <= 2) {
-            this.setColor = false
-          }
-
-          if (this.proveedor.lng == null && this.proveedor.lat == null) {
-
-
-            this.getLocation()
-          } else {
-
-            this.location = [this.proveedor.lng, this.proveedor.lat]
-
-
-
-            this.loading = false
-
-          }
-
-
-
-
-
-        } else {
-          this.qrOK = false
-          this.isProveedor = false
+        this.setForm(this.proveedor)
+        this.qrOK = true
+        if (this.form.value.colores.length <= 2) {
+          this.setColor = false
+        }
+        if (this.proveedor.lng == null && this.proveedor.lat == null) {
           this.getLocation()
-          this.loading = false
-          this.createForm()
+        } else {
+          this.location = [this.proveedor.lng, this.proveedor.lat]
         }
 
-      })
-    }, 500);
+
+        this.loading = false
+
+
+      } else {
+        this.qrOK = false
+        this.isProveedor = false
+        this.getLocation()
+
+        this.loading = false
+        this.createForm()
+      }
+
+    })
+
 
   }
 
@@ -423,7 +408,7 @@ export class EditarDatosComponent {
     proveedor.contactos.forEach(contacto => {
       this.contactos.push(this.setContacto(contacto))
     });
-    this.loading = false
+
   }
   setColores(color: any): FormGroup {
     return this.fb.group({
@@ -445,7 +430,7 @@ export class EditarDatosComponent {
     this.form.value.nombre = this.form.value.nombre.toUpperCase().trim()
     this.form.value.clave = this.form.value.clave.toUpperCase().trim()
     if (this.form.value.nombre === '' || this.form.value.clave === '') {
-      this.functionsService.alertForm('Proveedors')
+      this.functionsService.alertForm('Proveedor')
       this.loading = false
       return
     }
@@ -459,10 +444,10 @@ export class EditarDatosComponent {
       }
 
       this.proveedorsService.actualizarProveedor(this.proveedor).subscribe((resp: any) => {
-        this.functionsService.alertUpdate('Proveedors')
+        this.functionsService.alertUpdate('Proveedor')
         if (this.isProveedor) {
 
-          this.functionsService.navigateTo('/')
+          this.functionsService.navigateTo('/core/inicio')
         } else {
           this.functionsService.navigateTo('core/proveedores/editar-datos')
 
@@ -473,7 +458,7 @@ export class EditarDatosComponent {
 
           //message
           this.loading = false
-          this.functionsService.alertError(error, 'Proveedors')
+          this.functionsService.alertError(error, 'Proveedor')
 
 
         })

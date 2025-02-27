@@ -54,6 +54,7 @@ export class MapscreenComponent implements AfterViewInit {
   }
   getIdMap(event) {
 
+
     this.idMapSend.emit(event)
 
   }

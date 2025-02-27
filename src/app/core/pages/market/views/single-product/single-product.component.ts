@@ -113,9 +113,29 @@ export class SingleProductComponent {
       }
     });
   }
-  convertDes(des: string) {
+  convertDes(des: string, type?) {
+    if (!type) {
 
-    if (des) {
+      if (des) {
+        let spl = des.split('\n')
+        var desc = '<ul style="list-style:none;padding:0">'
+        spl.forEach(element => {
+          desc += `<li>${element}</li>`
+
+
+        });
+        desc += '</ul>'
+
+        this.descripcionHTML = this.sanitizer.bypassSecurityTrustHtml(desc);
+
+
+      } else {
+        this.descripcionHTML = this.sanitizer.bypassSecurityTrustHtml('');
+
+      }
+      return this.descripcionHTML
+    } else {
+
       let spl = des.split('\n')
       var desc = '<ul style="list-style:none;padding:0">'
       spl.forEach(element => {
@@ -125,11 +145,10 @@ export class SingleProductComponent {
       });
       desc += '</ul>'
 
-      this.descripcionHTML = this.sanitizer.bypassSecurityTrustHtml(desc);
 
 
-    } else {
-      this.descripcionHTML = this.sanitizer.bypassSecurityTrustHtml('');
+      return this.sanitizer.bypassSecurityTrustHtml(desc);
+
 
     }
 

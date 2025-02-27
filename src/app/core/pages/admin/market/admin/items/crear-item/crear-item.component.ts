@@ -367,7 +367,7 @@ export class CrearItemComponent {
 
       this.functionsService.alertForm('Producto o servicio')
       this.loading = false
-      return // console.info('Please provide all the required values!');
+      return console.info('Please provide all the required values!');
     }
 
 
@@ -640,7 +640,7 @@ export class CrearItemComponent {
 
         this.functionsService.alertForm('Producto o servicio')
         this.loading = false
-        return // console.info('Please provide all the required values!');
+        return console.info('Please provide all the required values!');
       }
 
     }

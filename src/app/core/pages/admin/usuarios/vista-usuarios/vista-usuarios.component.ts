@@ -128,6 +128,7 @@ export class VistaUsuariosComponent {
         this.usuariosShow = resp.usuarios.filter(usuario => usuario.uid !== this.uid)
         this.usuarios = resp.usuarios
 
+
         this.usuariosTemp = resp.usuarios
 
         this.loading = false

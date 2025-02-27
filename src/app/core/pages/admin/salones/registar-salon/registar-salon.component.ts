@@ -27,7 +27,7 @@ export class RegistarSalonComponent {
   loading = false
   salones: Salon[]
 
-
+  location: any = undefined
   public form!: FormGroup
   EVTRGL = environment.EVTRGL
   today: Number = this.functionsService.getToday()
@@ -51,6 +51,7 @@ export class RegistarSalonComponent {
   estados = []
   municipios = []
   colonias = []
+  isPais = false
   constructor(
     private fb: FormBuilder,
     private functionsService: FunctionsService,
@@ -58,9 +59,10 @@ export class RegistarSalonComponent {
     private usuariosService: UsuariosService,
     private paquetesService: PaquetesService,
     private modalService: NgbModal,
-    private mapService: MapsService,
+
     private paisesService: PaisesService,
     private cpsService: CpsService,
+    private mapsServices: MapsService,
   ) {
     this.getCatalogos()
     if (this.functionsService.getLocal('uid')) {
@@ -70,7 +72,7 @@ export class RegistarSalonComponent {
 
 
     this.loading = true
-
+    this.getLocation()
     this.createForm()
     this.getUser()
 
@@ -78,6 +80,14 @@ export class RegistarSalonComponent {
 
       this.loading = false
     }, 1500);
+  }
+
+  getLocation() {
+    this.mapsServices.getUserLocation().then(res => {
+      this.location = res
+
+
+    })
   }
   getUser() {
 
@@ -96,6 +106,19 @@ export class RegistarSalonComponent {
   }
   get errorControl() {
     return this.form.controls;
+  }
+  checkPais() {
+
+
+    if (this.form.value.pais == '') {
+
+      this.isPais = false
+    } else {
+      this.isPais = true
+    }
+
+
+
   }
   createForm() {
     this.form = this.fb.group({
@@ -287,5 +310,11 @@ export class RegistarSalonComponent {
     }
 
     return result;
+  }
+  getIdMap(event) {
+
+
+
+
   }
 }

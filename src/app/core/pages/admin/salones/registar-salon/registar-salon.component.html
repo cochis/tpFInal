@@ -60,7 +60,7 @@
                                     <div class="form-group">
                                         <label for="pais">País</label>
                                         <select name="" id="pais" formControlName="pais" class="form-control upper"
-                                            #pais class="form-control upper">
+                                            #pais class="form-control upper" (change)="checkPais()">
                                             <option value="">Selecciona un país</option>
                                             <option [value]="item.clave " *ngFor="let item of paises">{{item.nombre }}
                                             </option>
@@ -70,7 +70,7 @@
                                     <span *ngIf="submited && errorControl['pais'].errors " class="error">Es
                                         requerido</span>
                                 </div>
-                                <div class="col-6 col-md-4 mt-3">
+                                <div class="col-6 col-md-4 mt-3" *ngIf="isPais">
                                     <div class="form-group">
                                         <label for="cp">Código postal</label>
                                         <input type="text" class="form-control upper" id="cp" formControlName="cp"
@@ -79,7 +79,7 @@
                                     <span *ngIf="submited && errorControl['cp'].errors " class="error">Es
                                         requerido</span>
                                 </div>
-                                <div class="col-6 col-md-4 mt-3">
+                                <div class="col-6 col-md-4 mt-3" *ngIf="isPais">
                                     <div class="form-group">
                                         <label for="estado">Estado</label>
                                         <input type="text" class="form-control upper" id="estado"
@@ -89,7 +89,7 @@
                                         requerido</span>
                                 </div>
 
-                                <div class="col-6 col-md-4 mt-3">
+                                <div class="col-6 col-md-4 mt-3" *ngIf="isPais">
                                     <div class="form-group">
                                         <label for="municipioDelegacion">Municipio o Delegación</label>
                                         <select name="" id="municipioDelegacion" formControlName="municipioDelegacion"
@@ -107,7 +107,7 @@
                                         class="error">Es
                                         requerido</span>
                                 </div>
-                                <div class="col-6 col-md-4 mt-3">
+                                <div class="col-6 col-md-4 mt-3" *ngIf="isPais">
                                     <div class="form-group">
                                         <label for="coloniaBarrio">Colonia o Barrio</label>
                                         <select name="" id="coloniaBarrio" formControlName="coloniaBarrio"
@@ -121,42 +121,29 @@
                                         requerido</span>
                                 </div>
 
+                                <div class="row">
 
-                                <div class="col-6 col-md-3 mt-3">
+                                    <div class="col-6 col-md-3 mt-3">
 
-                                    <div class="form-group">
-                                        <label for="telefono">Teléfono</label>
-                                        <input type="number" class="form-control upper" id="telefono"
-                                            placeholder="Teléfono" formControlName="telefono">
+                                        <div class="form-group">
+                                            <label for="telefono">Teléfono</label>
+                                            <input type="number" class="form-control upper" id="telefono"
+                                                placeholder="Teléfono" formControlName="telefono">
+                                        </div>
+                                        <span *ngIf="submited && errorControl['telefono'].errors " class="error">Es
+                                            requerido</span>
                                     </div>
-                                    <span *ngIf="submited && errorControl['telefono'].errors " class="error">Es
-                                        requerido</span>
-                                </div>
-                                <div class="col-12 col-md-3 mt-3">
+                                    <div class="col-12 col-md-3 mt-3">
 
-                                    <div class="form-group">
-                                        <label for="email">Correo electrónico</label>
-                                        <input type="email" class="form-control upper" id="telefono"
-                                            placeholder="Correo electrónico" formControlName="email" readonly>
-                                    </div>
-                                </div>
-
-                                <!-- <div class="col-6 col-md-6 mt-3">
-
-                                    <div class="form-group">
-                                        <label for="lat">Latitud</label>
-                                        <input type="number" class="form-control upper" id="lat" placeholder="Latitud"
-                                            formControlName="lat">
+                                        <div class="form-group">
+                                            <label for="email">Correo electrónico</label>
+                                            <input type="email" class="form-control upper" id="telefono"
+                                                placeholder="Correo electrónico" formControlName="email" readonly>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-6 col-md-6 mt-3">
 
-                                    <div class="form-group">
-                                        <label for="long">Longitud</label>
-                                        <input type="number" class="form-control upper" id="long" placeholder="Longitud"
-                                            formControlName="long">
-                                    </div>
-                                </div> -->
+
                                 <div class="col-12 col-md-12 mt-3" style="display: none;">
                                     <div class="form-group">
                                         <label for="ubicacionGoogle">Ubicación Maps Google
@@ -172,17 +159,25 @@
                                     </div>
                                 </div>
 
-                                <div class="col-12 mt-3">
+                                <div class="col-12 mt-3" *ngIf="isPais">
+
+
 
                                     <app-mapscreen [showBar]="true" (coordenadasSelect)="showCoordenadas($event)"
-                                        (coordenadas)="showCoordenadas($event)" [sendCoords]="sendCoords"
-                                        [isEditV]="true" type="ubicacionGoogle"></app-mapscreen>
+                                        (coordenadas)="showCoordenadas($event)" [sendCoords]="location" [isEditV]="true"
+                                        type="ubicacionGoogle"></app-mapscreen>
+
+
+
+
+
+
                                     <span *ngIf="submited && errorControl['ubicacionGoogle'].errors "
                                         class="error">Favor de seleccionar la ubicación
                                         del entro de evento</span>
                                 </div>
 
-                                <div class="col-12 col-md-12 mt-3">
+                                <div class="col-12 col-md-12 mt-3" *ngIf="isPais">
                                     <span *ngIf="submited && errorControl['comoLlegar'].errors " class="error">Es
                                         requerido</span>
                                     <div class="form-group">

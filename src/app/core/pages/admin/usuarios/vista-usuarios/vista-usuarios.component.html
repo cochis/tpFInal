@@ -47,7 +47,7 @@
                                 <th class="upper">imagen</th>
                                 <th class="upper">rol</th>
                                 <th class="upper">tipo de centro</th>
-                                <th class="upper" *ngIf="rol===ADM">salón</th>
+                                <!-- <th class="upper" *ngIf="rol===ADM">salón</th> -->
                                 <th class="upper" *ngIf="rol===ADM">eventos y galerias</th>
                                 <!--  <th class="upper" *ngIf="rol===ADM"># Fiestas</th> -->
                                 <!--   <th class="upper">google</th> -->
@@ -107,18 +107,19 @@
                                         </td>
                                         <td class="upper" *ngIf="!usuario.tipoCentro">usuario</td>
 
-                                        <td class="upper" *ngIf="  rol ===ADM">
+                                        <!--  <td class="upper" *ngIf="  rol ===ADM  ">
                                             <ul style="text-decoration: none;">
-                                                <ng-container *ngIf="usuario.salon.length==0">
+
+                                                <ng-container *ngIf="usuario.salon.length == 0 ">
                                                     Sin Salones
                                                 </ng-container>
-                                                <ng-container *ngIf="usuario.salon.length>0">
+                                                <ng-container *ngIf="usuario.salon.length >1">
                                                     <li style="list-style: none;" *ngFor="let item of usuario.salon">
                                                         {{ getCatalog('salon',item) }}
                                                     </li>
                                                 </ng-container>
                                             </ul>
-                                        </td>
+                                        </td> -->
 
                                         <td class="upper" *ngIf="  rol ===ADM">
 

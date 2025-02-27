@@ -16,7 +16,8 @@
                                     <div class="form-group">
                                         <label for="nombre">Nombre</label>
                                         <input type="text" class="form-control upper" id="nombre"
-                                            formControlName="nombre" required placeholder="Nombre">
+                                            formControlName="nombre" required placeholder="Nombre"
+                                            (keyup)="  setClave()">
                                     </div>
                                     <span *ngIf="submited && errorControl['nombre'].errors " class="error">Es requerido
                                     </span>
@@ -26,7 +27,7 @@
                                     <div class="form-group">
                                         <label for="clave">Clave</label>
                                         <input type="text" class="form-control upper" id="clave" formControlName="clave"
-                                            placeholder="Clave">
+                                            placeholder="Clave" readonly>
                                     </div>
                                     <span *ngIf="submited && errorControl['clave'].errors " class="error">Es requerido
                                     </span>
@@ -42,194 +43,7 @@
                                         requerido
                                     </span>
                                 </div>
-                                <div class="col-12 col-md-6 mt-3">
 
-                                    <div class="image-upload" class="text-center">
-
-                                        <label for="file-input-img">
-                                            <!--  [ngClass]=" {'pointer':edit ==='true'}" -->
-                                            <h3>Imagen del proveedor</h3>
-
-                                            <img *ngIf="form.value.img =='' && !imgTemp"
-                                                [src]="url+'/upload/proveedor/default.jpg' "
-                                                alt="Click aquí para subir tu foto"
-                                                title="Click aquí para subir tu foto" class="img-avatar">
-                                            <img *ngIf="form.value.img !=='' && !imgTemp"
-                                                [src]="url+'/upload/proveedor/'+form.value.img"
-                                                alt="Click aquí para subir tu foto "
-                                                title="Click aquí para subir tu foto" class="img-avatar">
-
-
-                                        </label>
-
-                                        <input id="file-input-img" type="file" class="ion-no-border"
-                                            (change)="cambiarImagen($event,'img')" />
-
-
-
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 mt-3">
-
-                                    <div class="image-upload" class="text-center">
-
-                                        <label for="file-input-bannerImg">
-                                            <!--  [ngClass]=" {'pointer':edit ==='true'}" -->
-
-                                            <h3>Imagen del banner </h3>
-                                            <img *ngIf="form.value.bannerImg =='' && !imgTemp"
-                                                [src]="url+'/upload/proveedor/default.jpg' "
-                                                alt="Click aquí para subir tu foto"
-                                                title="Click aquí para subir tu foto" class="img-avatar">
-                                            <img *ngIf="form.value.bannerImg !=='' && !imgTemp"
-                                                [src]="url+'/upload/proveedor/'+form.value.bannerImg"
-                                                alt="Click aquí para subir tu foto "
-                                                title="Click aquí para subir tu foto" class="img-avatar">
-
-
-                                        </label>
-
-                                        <input id="file-input-bannerImg" type="file" class="ion-no-border"
-                                            (change)="cambiarImagen($event,'bannerImg')" />
-
-
-
-                                    </div>
-                                </div>
-                                <div class="row mt-3 text-center">
-
-                                    <div class="col-12 col-md-4 ma ">
-
-                                        <button class="btn primaB white ma" type="button" (click)="addContactos()">
-                                            <i class="icon-plus"></i> Agregar contacto
-                                        </button>
-                                    </div>
-                                </div>
-                                <div formArrayName="contactos">
-                                    <div *ngFor="let contacto of contactos['controls'] ; let i=index">
-
-
-                                        <div [formGroupName]="i">
-                                            <div class="row">
-
-                                                <div class="col-12 col-md-4 mt-3">
-
-                                                    <div class="form-group">
-                                                        <label for="tipoContacto">Tipo de contacto</label> 
-                                                        <select name="" id="tipoContacto" formControlName="tipoContacto"
-                                                            class="form-control upper">
-
-                                                            <ng-container *ngIf="tipoContactos">
-                                                                <option value="">Selecciona el tipo de contacto</option>
-                                                                <option [value]="item.uid"
-                                                                    *ngFor="let item of tipoContactos">
-
-                                                                    {{item.nombre}}
-                                                                </option>
-                                                            </ng-container>
-                                                        </select>
-                                                    </div>
-                                                    <span
-                                                        *ngIf="submited && errorControl['contactos']['controls'][i]['controls']['tipoContacto'].errors "
-                                                        class="error">Es
-                                                        requerido
-                                                    </span>
-                                                </div>
-                                                <div class="col-12 col-md-4 mt-3">
-                                                    <div class="form-group">
-                                                        <label for="value">Valor</label>
-                                                        <input type="text" class="form-control upper" id="value"
-                                                            formControlName="value" required placeholder="Valor">
-                                                    </div>
-                                                    <span
-                                                        *ngIf="submited && errorControl['contactos']['controls'][i]['controls']['value'].errors "
-                                                        class="error">Es
-                                                        requerido
-                                                    </span>
-                                                </div>
-
-
-                                                <div class=" col-12 col-md-4 mt-4 text-center">
-                                                    <button class="btn less " (click)="removeContactos(i)">
-                                                        <i class="icon-trash"></i>
-                                                    </button>
-
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
-
-                                <div class="row mt-3 text-center">
-
-                                    <div class="col-12 col-md-4 ma ">
-
-                                        <button class="btn primaB white ma" type="button" (click)="addColors()">
-                                            <i class="icon-plus"></i> Agregar Color
-                                        </button>
-                                    </div>
-                                </div>
-                                <div formArrayName="colores">
-                                    <div *ngFor="let color of colores['controls'] ; let i=index">
-
-
-                                        <div [formGroupName]="i">
-                                            <div class="row">
-
-                                                <div class="col-12 col-md-4 mt-3">
-
-                                                    <div class="form-group">
-                                                        <label for="tipoColor">Tipo de color</label> 
-                                                        <select name="" id="tipoColor" formControlName="tipoColor"
-                                                            class="form-control upper">
-
-                                                            <ng-container *ngIf="tipoColores">
-                                                                <option value="">Selecciona el tipo de color</option>
-                                                                <option [value]="item.uid"
-                                                                    *ngFor="let item of tipoColores">
-
-                                                                    {{item.nombre}}
-                                                                </option>
-                                                            </ng-container>
-                                                        </select>
-                                                    </div>
-                                                    <span
-                                                        *ngIf="submited && errorControl['colores']['controls'][i]['controls']['tipoColor'].errors "
-                                                        class="error">Es
-                                                        requerido
-                                                    </span>
-                                                </div>
-                                                <div class="col-12 col-md-4 mt-3">
-                                                    <div class="form-group">
-                                                        <label for="value">Valor</label>
-                                                        <input type="color" class="form-control upper" id="value"
-                                                            formControlName="value" required placeholder="Valor">
-                                                    </div>
-                                                    <span
-                                                        *ngIf="submited && errorControl['colores']['controls'][i]['controls']['value'].errors "
-                                                        class="error">Es
-                                                        requerido
-                                                    </span>
-                                                </div>
-
-
-                                                <div class=" col-12 col-md-4 mt-4 text-center">
-                                                    <button class="btn less " (click)="removeColors(i)">
-                                                        <i class="icon-trash"></i>
-                                                    </button>
-
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
 
 
                             </div>

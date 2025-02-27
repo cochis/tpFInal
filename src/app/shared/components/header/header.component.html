@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark" *ngIf="!rol">
     <div class="container-fluid">
-        <a class="navbar-brand" routerLink="/">
+        <a class="navbar-brand" routerLink="/core/inicio">
             <!-- <i class="bi-back"></i> -->
             <img src="assets/images/logo.png" class="logo-header" alt="">
             <img src="assets/images/lg.png" class="" alt="">
@@ -13,7 +13,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" routerLink="/">Inicio</a>
+                    <a class="nav-link active" aria-current="page" routerLink="/core/inicio">Inicio</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" routerLink="/core/market"> Marketplace </a>
@@ -71,7 +71,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark"
     *ngIf="rol ===ADM  ||rol ===ANF  || rol ===SLN || rol ===CHK || rol ===URS || rol ===PRV">
     <div class="container-fluid">
-        <a class="navbar-brand" routerLink="/">
+        <a class="navbar-brand" routerLink="/core/inicio">
             <!-- <i class="bi-back"></i> -->
             <img src="assets/images/logo.png" class="logo-header" alt="">
             <img src="assets/images/lg.png" class="" alt="">
@@ -86,7 +86,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" routerLink="/">Inicio</a>
+                    <a class="nav-link active" aria-current="page" routerLink="/core/inicio">Inicio</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" routerLink="/core/market">Marketplace</a>
@@ -109,7 +109,7 @@
 
 
 
-                <li class="nav-item dropdown" *ngIf="rol ===ADM ||   rol ===SLN ||   rol ===ANF">
+                <li class="nav-item dropdown" *ngIf="rol.includes(ADM) ||   rol.includes(SLN) ||   rol.includes(ANF)">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         Admin
@@ -126,12 +126,15 @@
                         </li>
                         <li><a class="dropdown-item" routerLink="/core/mis-compras">Mis compras</a>
                         </li>
-                        <hr>
-                        <h5 class="ma" style="margin-left: 15px;"><b>Market place</b></h5>
-                        <li><a class="dropdown-item" routerLink="/core/proveedores/vista-proveedores">Ver
-                                proveedores</a></li>
-                        <li><a class="dropdown-item" routerLink="/core/items/vista-items">Ver
-                                Productos</a></li>
+                        <ng-container *ngIf="rol.includes(ADM)">
+
+                            <hr>
+                            <h5 class="ma" style="margin-left: 15px;"><b>Market place</b></h5>
+                            <li><a class="dropdown-item" routerLink="/core/proveedores/vista-proveedores">Ver
+                                    proveedores</a></li>
+                            <li><a class="dropdown-item" routerLink="/core/items/vista-items">Ver
+                                    Productos</a></li>
+                        </ng-container>
 
 
 

@@ -175,6 +175,6 @@ export const environment = {
       value: "67bb9a22c539cb99eb40fe5c",
       clave: "WHATSAPP"
     },
-  ] */
-
+  ]
+ */
 };

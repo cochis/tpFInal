@@ -427,6 +427,7 @@ export class EditarItemComponent {
     })
   }
   onSubmit() {
+
     this.loading = true
     this.submited = true
 
@@ -434,7 +435,6 @@ export class EditarItemComponent {
       uid: this.item.uid,
       ...this.form.value
     }
-
 
 
     if (this.form.valid) {

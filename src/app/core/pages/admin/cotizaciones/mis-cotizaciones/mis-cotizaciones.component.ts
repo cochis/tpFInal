@@ -4,7 +4,9 @@ import { BusquedasService } from 'src/app/shared/services/busquedas.service';
 import { environment } from 'src/environments/environment';
 import { CotizacionesService } from 'src/app/core/services/cotizacion.service';
 import { Cotizacion } from 'src/app/core/models/cotizacion.model';
-import { CargarCotizaciones } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
+import { CargarCotizaciones, CargarTipoMedias } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
+import { TipoMedia } from 'src/app/core/models/tipoMedia.model';
+import { TipoMediasService } from 'src/app/core/services/tipoMedia.service';
 
 
 @Component({
@@ -26,15 +28,16 @@ export class MisCotizacionesComponent {
   rol = this.functionsService.getLocal('role')
   uid = this.functionsService.getLocal('uid')
   empresas = this.functionsService.getLocal('proveedor')
-
-
+  tipoMedias: TipoMedia[]
   constructor(
     private functionsService: FunctionsService,
+    private tipoMediasService: TipoMediasService,
 
     private busquedasService: BusquedasService,
     private cotizacionesService: CotizacionesService,
 
   ) {
+    this.getCatalogos()
     this.getCotizaciones()
 
 
@@ -82,6 +85,7 @@ export class MisCotizacionesComponent {
 
         this.cotizaciones = resp.cotizaciones
 
+
         this.cotizacionesTemp = resp.cotizaciones
         setTimeout(() => {
 
@@ -97,6 +101,7 @@ export class MisCotizacionesComponent {
       this.cotizacionesService.cargarCotizacionesByEmail(usr).subscribe((resp: CargarCotizaciones) => {
 
         this.cotizaciones = resp.cotizaciones
+
         this.cotizacionesTemp = resp.cotizaciones
         setTimeout(() => {
 
@@ -178,5 +183,42 @@ export class MisCotizacionesComponent {
 
     this.functionsService.navigateTo('core/cotizaciones/crear-cotizacion')
   }
+  getImagen(photos, i) {
+    var img = ''
+    photos.forEach(im => {
 
+      this.tipoMedias.forEach(tm => {
+
+        if (im.isPrincipal) {
+
+          if (tm.uid === im.tipoMedia && tm.clave == 'image/*') {
+
+            img = this.url + '/upload/items/' + im.img
+          }
+          /*  else {
+ 
+             img = this.url + '/upload/proveedores/' + this.carrito[i].item.proveedor.img
+           } */
+
+        }
+
+      });
+    });
+
+
+    return img
+  }
+  getCatalogos() {
+    this.tipoMediasService.cargarTipoMediasAll().subscribe((resp: CargarTipoMedias) => {
+
+      this.tipoMedias = resp.tipoMedias
+
+
+    },
+      (error: any) => {
+        this.functionsService.alertError(error, 'Tipo Contactos')
+        this.loading = false
+      })
+
+  }
 }

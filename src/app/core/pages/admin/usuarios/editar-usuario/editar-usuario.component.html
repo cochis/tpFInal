@@ -117,10 +117,10 @@
                                 <div class="col-12 col-md-4 mt-3">
 
                                     <div class="form-group" *ngIf="edit ==='true'  ">
-                                        <label for="salon">Tipo de centro</label>
+                                        <label for="salon">Centro de eventos</label>
                                         <select name="" id="salon" formControlName="salon" class="form-control upper"
                                             multiple>
-                                            <option value="">Selecciona un salon</option>
+                                            <option value="">Selecciona un centro de eventos</option>
                                             <option [value]="item.uid" *ngFor="let item of salones">{{item.nombre}}
                                             </option>
                                         </select>

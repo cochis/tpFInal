@@ -63,6 +63,7 @@ export class EditarUsuarioComponent {
     this.usuariosService.cargarUsuarioById(id).subscribe((resp: CargarUsuario) => {
       this.usuario = resp.usuario
 
+
       setTimeout(() => {
         this.setForm(this.usuario)
       }, 500);

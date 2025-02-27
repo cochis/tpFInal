@@ -131,6 +131,12 @@ const routes: Routes = [
 
       },
       {
+        path: 'inicio',
+        component: HomeComponent,
+        data: { titulo: 'Market' }
+
+      },
+      {
         path: 'about',
         component: AboutComponent,
         data: { titulo: 'Quienes somos' }

@@ -80,6 +80,14 @@
 
                         <div class="input-group form-group mb-1">
 
+                            <input type="text" class="form-control" formControlName="telefono" name="telefono"
+                                placeholder="5566828251">
+
+                        </div>
+                        <span *ngIf="submited && errorControl['telefono'].errors " class="error"> Error en el formato de
+                            correo</span>
+                        <div class="input-group form-group mb-1">
+
                             <input type="text" class="form-control" formControlName="email" name="email"
                                 placeholder="Correo electrónico">
 

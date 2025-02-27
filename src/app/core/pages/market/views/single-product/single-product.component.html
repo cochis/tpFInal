@@ -129,7 +129,7 @@
 
             <p class="descripcionProdructo" [style]=" {'color': cP + '!important '} ">
 
-                {{item.descripcion}}
+                <b [innerHTML]="convertDes(item.descripcion,'descripcionProdructo')"></b>
             </p>
 
 
@@ -223,7 +223,7 @@
         </div>
         <ng-container *ngIf="opcSelected">
 
-            <div class="col-12 mt-5">
+            <div class="col-12 mt-5 animate__animated animate__fadeIn">
 
                 <h3 class="upper">
                     Descripción de {{opcSelected.nombre}}

@@ -26,6 +26,7 @@ export class SearchResultsComponent implements AfterViewInit {
 
 
 
+
   }
   flyTo(place: Feature) {
 

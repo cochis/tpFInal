@@ -59,7 +59,8 @@
                                     <td> {{cotizacion.estatusCotizacion.nombre}} </td>
                                     <td class="upper">{{cotizacion.nombreEvento }}</td>
                                     <td class="upper">{{cotizacion.fechaEvento | date}}</td>
-                                    <td class="upper">{{cotizacion.proveedor.nombre}}</td>
+                                    <td class="upper" *ngIf="cotizacion.proveedor">{{cotizacion.proveedor.nombre}}</td>
+                                    <td class="upper" *ngIf="!cotizacion.proveedor">Proveedor no disponible</td>
                                     <td class="upper">{{cotizacion.productos.length}}</td>
                                     <td class="upper">{{cotizacion.usuarioCreated.email}}</td>
                                     <td>{{cotizacion.dateCreated | date:'dd/MM/YYYY'}}</td>

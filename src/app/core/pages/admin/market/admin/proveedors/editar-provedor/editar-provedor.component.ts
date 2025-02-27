@@ -62,6 +62,7 @@ export class EditarProvedorComponent {
     this.edit = this.route.snapshot.params['edit']
 
     this.editBol = (this.edit == 'true') ? true : false
+
     this.loading = true
     this.getCatalogos()
     this.getId(this.id)
@@ -82,6 +83,9 @@ export class EditarProvedorComponent {
 
 
   addContactos() {
+
+
+
     this.contactos.push(this.newContacto())
     let index = 'contacto' + (Number(this.contactos.length) - 1)
     setTimeout(() => {
@@ -143,15 +147,14 @@ export class EditarProvedorComponent {
     this.proveedorsService.cargarProveedorById(id).subscribe((resp: CargarProveedor) => {
 
       this.proveedor = resp.proveedor
+
       this.urlLink = this.text_url + 'core/vista-proveedor/' + this.proveedor.uid
       if (this.proveedor.lng && this.proveedor.lat) {
         this.location = [this.proveedor.lng, this.proveedor.lat]
       }
 
-      setTimeout(() => {
+      this.setForm(this.proveedor)
 
-        this.setForm(this.proveedor)
-      }, 500);
 
     },
       (error: any) => {
@@ -208,17 +211,25 @@ export class EditarProvedorComponent {
 
 
 
-    proveedor.colores.forEach(color => {
-      this.colores.push(this.setColores(color))
-    });
-    proveedor.contactos.forEach(contacto => {
-      this.contactos.push(this.setContacto(contacto))
-    });
+    if (proveedor.colores.length > 0) {
+
+      proveedor.colores.forEach(color => {
+        this.colores.push(this.setColores(color))
+      });
+    }
+    if (proveedor.contactos.length > 0) {
+      proveedor.contactos.forEach(contacto => {
+        this.contactos.push(this.setContacto(contacto))
+      });
+    }
 
 
+    this.isMapView()
 
-    this.isMas()
-    this.loading = false
+    setTimeout(() => {
+
+      this.loading = false
+    }, 1500);
   }
 
   onSubmit() {
@@ -266,7 +277,7 @@ export class EditarProvedorComponent {
 
   }
 
-  isMas() {
+  isMapView() {
     this.form.value.contactos.forEach(ct => {
       if (ct.tipoContacto == this.ContactoP[2].value) {
         this.isMap = true
@@ -365,7 +376,30 @@ export class EditarProvedorComponent {
 
   }
 
+  getColoresQR() {
+    var res = true
 
+
+    this.form.value.colores.forEach(cl => {
+
+      if (cl.tipoColor == '' || cl.value == '') {
+        res = false
+        return
+
+      }
+
+
+    });
+
+    if (this.form.value.colores.length < 2) {
+      res = false
+    }
+
+
+    return res
+
+
+  }
   showCoordenadas(e) {
 
 

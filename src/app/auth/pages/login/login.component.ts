@@ -23,9 +23,9 @@ export class LoginComponent {
     private authService: AuthService,
     private functionsService: FunctionsService,
     private metaService: MetaService
-  ) { 
+  ) {
 
-    let  data = {
+    let data = {
       title: 'Ticket Party | Login ',
       description:
         'Ingresa a nuestra aplicación con usuario y contraseña',
@@ -49,7 +49,7 @@ export class LoginComponent {
 
       setTimeout(() => {
 
-        this.functionsService.navigateTo('core')
+        this.functionsService.navigateTo('core/inicio')
         this.loading = false
       }, 2000);
       //message

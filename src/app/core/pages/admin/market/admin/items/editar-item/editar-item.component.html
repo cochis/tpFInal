@@ -149,7 +149,7 @@
                                                             [readonly]="edit==='false'"></textarea>
                                                     </div>
                                                     <span
-                                                        *ngIf="submited && errorControl['idealTo']['controls'][i]['controls']['moneda'].errors "
+                                                        *ngIf="submited && errorControl['idealTo']['controls'][i]['controls']['descripcion'].errors "
                                                         class="error">Es
                                                         requerido
                                                     </span>
@@ -337,6 +337,8 @@
                                                             </ng-container>
                                                         </select>
                                                     </div>
+
+
                                                     <span
                                                         *ngIf="submited && errorControl['sizes']['controls'][i]['controls']['moneda'].errors "
                                                         class="error">Es
@@ -352,7 +354,7 @@
                                                             [readonly]="edit==='false'"></textarea>
                                                     </div>
                                                     <span
-                                                        *ngIf="submited && errorControl['sizes']['controls'][i]['controls']['moneda'].errors "
+                                                        *ngIf="submited && errorControl['sizes']['controls'][i]['controls']['descripcion'].errors "
                                                         class="error">Es
                                                         requerido
                                                     </span>
@@ -658,10 +660,10 @@
                                     </div>
                                 </div>
                                 <div formArrayName="photos">
-                                    photo{{i}}
+
                                     <div *ngFor="let photo of photos['controls'] ; let index=index">
 
-                                        photo{{index}}
+
                                         <div [formGroupName]="index" id="photo{{index}}">
                                             <div class="row">
                                                 <div class="col-6  mt-3 text-center">

@@ -143,7 +143,7 @@ export class CalificacionComponent {
 
       this.functionsService.alertForm('Productos y Servicios')
       this.loading = false
-      return // console.info('Please provide all the required values!');
+      return console.info('Please provide all the required values!');
     }
 
 
@@ -186,7 +186,7 @@ export class CalificacionComponent {
     this.loading = false
   }
   back() {
-    this.functionsService.navigateTo('/')
+    this.functionsService.navigateTo("/core/inicio")
   }
   setCalificacion(i) {
 

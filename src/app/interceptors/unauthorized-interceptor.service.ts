@@ -17,7 +17,7 @@ export class UnauthorizedInterceptorService implements HttpInterceptor {
   constructor(
     private functionService: FunctionsService,
     private logsService: LogsService,
-    private authService:AuthService
+    private authService: AuthService
 
   ) { }
 
@@ -51,11 +51,14 @@ export class UnauthorizedInterceptorService implements HttpInterceptor {
         }
       }),
       catchError((err) => {
-       
-        if(err.status ==401){
-          funtionsService.alert('Alerta', 'Se cerro la sesión por inactividad', 'warning')
-          this.functionService.logout()
-       return next.handle(request)
+
+        if (err.status == 401) {
+          setTimeout(() => {
+
+            funtionsService.alert('Alerta', 'Se cerro la sesión por inactividad', 'warning')
+            this.functionService.logout()
+            return next.handle(request)
+          }, 200);
 
 
         }
@@ -64,7 +67,7 @@ export class UnauthorizedInterceptorService implements HttpInterceptor {
         if (err && err.error.msg !== 'Error inesperado...  revisar logs') {
           funtionsService.alert('Error', 'Sucedió algo extraño', 'error')
           this.functionService.logout()
-         
+
         }
         const error = err.error?.message || err.statusText
         return next.handle(request)

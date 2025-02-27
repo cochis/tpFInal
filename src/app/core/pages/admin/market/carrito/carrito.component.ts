@@ -78,6 +78,8 @@ export class CarritoComponent implements OnInit {
 
     console.log('this.pdfFonts::: ', pdfFonts);
 
+
+
     this.mapsServices.getUserLocation().then(res => {
       this.location = res
 
@@ -250,6 +252,9 @@ export class CarritoComponent implements OnInit {
   removeCarrito(i: number) {
     this.carritos.removeAt(i);
     this.changeValor()
+    if (this.carrito.length == 0) {
+      this.functionsService.navigateTo('/')
+    }
   }
   newCarrito(): FormGroup {
     return this.fb.group({
@@ -262,14 +267,22 @@ export class CarritoComponent implements OnInit {
   getImagen(photos, i) {
     var img = ''
     photos.forEach(im => {
+
       this.tipoMedias.forEach(tm => {
-        if (tm.uid === im.tipoMedia && tm.clave == 'image/*') {
-          if (im.isPrincipal) {
+
+        if (im.isPrincipal) {
+
+          if (tm.uid === im.tipoMedia && tm.clave == 'image/*') {
+
             img = this.url + '/upload/items/' + im.img
-          } else {
+          }
+          else {
+
             img = this.url + '/upload/proveedores/' + this.carrito[i].item.proveedor.img
           }
+
         }
+
       });
     });
 
@@ -799,6 +812,7 @@ export class CarritoComponent implements OnInit {
       lastEdited: this.today,
     }
 
+
     this.cotizacionesService.crearCotizacion(cot).subscribe((res: any) => {
 
       let coti = res.cotizacion
@@ -813,6 +827,7 @@ export class CarritoComponent implements OnInit {
         correoProveedor: correoProveedor[0].value
       }
       this.emailService.sendMailCotizacion(coti.uid, productos).subscribe(res => {
+
 
 
       })

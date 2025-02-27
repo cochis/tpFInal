@@ -53,18 +53,11 @@ export class CrearProvedorComponent {
   get errorControl() {
     return this.form.controls;
   }
-
-
   createForm() {
     this.form = this.fb.group({
       nombre: ['', [Validators.required, Validators.minLength(3)]],
       clave: ['', [Validators.required, Validators.minLength(3)]],
-      calificacion: [null],
-      img: [''],
-      bannerImg: [''],
       descripcion: ['', [Validators.required]],
-      contactos: this.fb.array([]),
-      colores: this.fb.array([]),
       activated: [true],
       dateCreated: [this.today],
       lastEdited: [this.today],
@@ -89,8 +82,6 @@ export class CrearProvedorComponent {
   removeContactos(i: number) {
     this.contactos.removeAt(i);
   }
-
-
   addColors() {
     this.colores.push(this.newColor())
 
@@ -114,8 +105,6 @@ export class CrearProvedorComponent {
       value: ['', [Validators.required]],
     })
   }
-
-
   onSubmit() {
     this.loading = true
     this.submited = true
@@ -128,7 +117,7 @@ export class CrearProvedorComponent {
 
         this.proveedor = resp.proveedor
         this.functionsService.alert('Proveedor', 'Proveedor creado', 'success')
-        this.functionsService.navigateTo('core/proveedores/vista-proveedores')
+        this.functionsService.navigateTo(`core/proveedores/editar-proveedor/true/${this.proveedor.uid}`)
         this.loading = false
       },
         (error) => {
@@ -149,7 +138,6 @@ export class CrearProvedorComponent {
 
 
   }
-
   back() {
     this.functionsService.navigateTo('core/proveedores/vista-proveedores')
   }
@@ -172,8 +160,6 @@ export class CrearProvedorComponent {
       })
 
   }
-
-
   cambiarImagen(file: any, type) {
 
 
@@ -266,6 +252,15 @@ export class CrearProvedorComponent {
       }
 
     }
+  }
+  setClave() {
+    let clave = this.form.value.nombre.substring(1, 4) + (this.today.toString().substring(1, 3)) + new Date().getFullYear()
+
+    this.form.patchValue({
+      clave: clave
+    })
+
+
   }
 }
 

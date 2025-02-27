@@ -82,7 +82,8 @@ export class MapsService {
         },
         (err) => {
           console.error('err::: ', err);
-          this.functionsService.alertError(err, 'error')
+          navigator.geolocation.getCurrentPosition((data) => { }, (err) => console.error(err))
+          /*        this.functionsService.alertError(err, 'error') */
         }
       )
     })
@@ -124,6 +125,7 @@ export class MapsService {
 
 
   getMap() {
+
     return this.map._mapId
   }
 

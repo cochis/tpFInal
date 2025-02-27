@@ -207,8 +207,7 @@
                                     <div class="col-12 col-md-4 mt-3 ma" *ngIf="editBol">
 
                                         <button class="btn primaB white" type="button" id="btnColors"
-                                            (click)="addColors()"
-                                            *ngIf="form.value.colores.length >0 && form.value.colores.length<2">
+                                            (click)="addColors()" [disabled]="form.value.colores.length >2">
                                             <i class="icon-plus"></i> Agregar Color
                                         </button>
                                     </div>
@@ -282,7 +281,8 @@
 
 
                             </div>
-                            <div class="row mt-5" *ngIf="proveedor">
+
+                            <div class="row mt-5" *ngIf="proveedor && getColoresQR()   ">
                                 <div class="col-12 col-md-6  text-center ma">
                                     <label for="customRange2" class="form-label">
                                         QR de tu pagina
@@ -297,7 +297,7 @@
                                     <div class="qrcodeImage">
                                         <qrcode [qrdata]="urlLink" [allowEmptyString]="true"
                                             [ariaLabel]="'QR Code image with the following content...'"
-                                            [cssClass]="'center'" [colorDark]="proveedor.colores[0].value"
+                                            [cssClass]="'center'" [colorDark]="form.value.colores[0].value"
                                             [colorLight]="'#ffffffff'" [elementType]="'canvas'"
                                             [errorCorrectionLevel]="'M'"
                                             [imageSrc]="url+'/upload/proveedores/'+proveedor.img" [imageHeight]="35"

@@ -80,13 +80,13 @@ export class Xv2Component {
       this.boletosService.actualizarBoleto(this.boleto).subscribe((resp: any) => {
         this.boleto = resp.boletoActualizado
       })
-       
+
       this.cantidad = this.boleto.cantidadInvitados
       this.loading = false
 
     }, (error) => {
       this.functionsService.alertError(error, 'No se encontro el boleto')
-      this.functionsService.navigateTo('/')
+      this.functionsService.navigateTo("/core/inicio")
     })
     this.fiestasService.cargarFiestaById(this.fiestaid).subscribe((resp: CargarFiesta) => {
       this.fiesta = resp.fiesta
@@ -102,14 +102,14 @@ export class Xv2Component {
 
       });
       setTimeout(() => {
-        
-        this.setData(this.fiesta,this.boleto)
+
+        this.setData(this.fiesta, this.boleto)
       }, 200);
       this.loading = false
 
     }, (error) => {
       this.functionsService.alertError(error, 'No se encontro la fiesta')
-      this.functionsService.navigateTo('/')
+      this.functionsService.navigateTo("/core/inicio")
     })
 
     setTimeout(() => {
@@ -128,7 +128,7 @@ export class Xv2Component {
       keywords:
         'No faltes, te espero ',
       slug: `core/templates/default/${fiesta.uid}/${boleto.uid}`,
-      colorBar:'#153860',
+      colorBar: '#153860',
       image:
         this.urlT + 'assets/invitaciones/xv/1.png',
     });

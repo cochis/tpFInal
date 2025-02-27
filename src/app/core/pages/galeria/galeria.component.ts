@@ -113,7 +113,7 @@ export class GaleriaComponent implements OnInit, OnDestroy {
       (err) => {
         console.error('Error', err)
         this.functionsService.alert('Evento', 'El evento no existe', 'error')
-        this.functionsService.navigateTo('/')
+        this.functionsService.navigateTo("/core/inicio")
       }
     )
 
@@ -140,14 +140,14 @@ export class GaleriaComponent implements OnInit, OnDestroy {
       (err) => {
         console.error('Error', err)
         this.functionsService.alert('Evento', 'El evento no existe', 'error')
-        this.functionsService.navigateTo('/')
+        this.functionsService.navigateTo("/core/inicio")
       }
     )
     this.boletoService.cargarBoletoById(this.boletoId).subscribe((resp) => {
       this.boletoDB = resp.boleto
       if (!this.boletoDB.activated) {
         this.functionsService.alert('Boleto', 'El boleto no existe', 'error')
-        this.functionsService.navigateTo('/')
+        this.functionsService.navigateTo("/core/inicio")
 
       }
 
@@ -155,7 +155,7 @@ export class GaleriaComponent implements OnInit, OnDestroy {
       (err) => {
         console.error('Error', err)
         this.functionsService.alert('Boleto', 'El boleto no existe', 'error')
-        this.functionsService.navigateTo('/')
+        this.functionsService.navigateTo("/core/inicio")
       })
 
   }

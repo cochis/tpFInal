@@ -96,7 +96,7 @@ export class ByFileComponent {
 
         if (!this.boleto.activated) {
           this.functionsService.alert('Boleto eliminado', 'Contactar con el anfitrion', 'info')
-          this.functionsService.navigateTo('/')
+          this.functionsService.navigateTo("/core/inicio")
         }
         this.boleto.vista = true
         this.boletosService.registrarPushNotification(this.boleto).subscribe((resp: any) => {
@@ -147,12 +147,12 @@ export class ByFileComponent {
         }, (error) => {
           console.error('Error', error)
           this.functionsService.alertError(error, 'Fiestas')
-          this.functionsService.navigateTo('/')
+          this.functionsService.navigateTo("/core/inicio")
         })
       }, (error) => {
         console.error('Error', error)
         this.functionsService.alertError(error, 'Fiestas')
-        this.functionsService.navigateTo('/')
+        this.functionsService.navigateTo("/core/inicio")
       })
     } else {
       this.restParty()
