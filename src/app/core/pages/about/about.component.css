@@ -1,0 +1,15 @@
+.img-scan {
+    width: 250px;
+    height: 250px;
+    margin: auto;
+}
+
+.img-fluid {
+    margin-top: 15px;
+    width: 80%;
+    max-width: 250px;
+}
+
+.custom-block {
+    min-height: 415px;
+}

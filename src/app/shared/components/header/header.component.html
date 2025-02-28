@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark" *ngIf="!rol">
     <div class="container-fluid">
-        <a class="navbar-brand" routerLink="/core/inicio">
+        <a class="navbar-brand" routerLink="/">
             <!-- <i class="bi-back"></i> -->
             <img src="assets/images/logo.png" class="logo-header" alt="">
             <img src="assets/images/lg.png" class="" alt="">
@@ -109,7 +109,8 @@
 
 
 
-                <li class="nav-item dropdown" *ngIf="rol.includes(ADM) ||   rol.includes(SLN) ||   rol.includes(ANF)">
+                <li class="nav-item dropdown"
+                    *ngIf="rol.includes(ADM) ||   rol.includes(SLN) ||   rol.includes(ANF) ||   rol.includes(PRV)">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         Admin
@@ -138,40 +139,26 @@
 
 
 
-                    </ul>
-                </li>
-
-                <li class="nav-item dropdown" *ngIf="rol ===PRV ">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Admin Market
-                    </a>
-                    <ul class="dropdown-menu">
-
-
-                        <li><a class="dropdown-item" routerLink="/core/proveedores/editar-datos">Ver
-                                Edita datos de proveedor</a>
-                        </li>
-                        <li><a class="dropdown-item" routerLink="/core/productos/agregar">
-                                Agregar Productos o servicios</a>
-                        </li>
-                        <li><a class="dropdown-item" routerLink="/core/mis-productos">
-                                Mis Productos o servicios</a>
-                        </li>
-                        <!--  <li><a class="dropdown-item" routerLink="/core/status-compra/vista-status-compra">Ver estatus de
-                                compras</a></li> -->
-                        <!--<li><a class="dropdown-item" routerLink="/core/tipo-modulos/vista-tipo-modulos">Ver tipo de
-                                modulos</a></li>
-                          <li><a class="dropdown-item" routerLink="/core/modulo-templates/vista-modulo-templates">Ver de
-                                modulos de templates</a></li>
-                        <li><a class="dropdown-item" routerLink="/core/templates/vista-templates">Ver templates</a></li>
- -->
-
+                        <ng-container *ngIf="rol.includes(PRV)">
+                            <hr>
+                            <h5 class="ma" style="margin-left: 15px;"><b>Market</b></h5>
+                            <li><a class="dropdown-item" routerLink="/core/proveedores/editar-datos">Ver
+                                    Edita datos de proveedor</a>
+                            </li>
+                            <li><a class="dropdown-item" routerLink="/core/productos/agregar">
+                                    Agregar Productos o servicios</a>
+                            </li>
+                            <li><a class="dropdown-item" routerLink="/core/mis-productos">
+                                    Mis Productos o servicios</a>
+                            </li>
+                        </ng-container>
 
 
 
                     </ul>
                 </li>
+
+
                 <li class="nav-item dropdown" *ngIf="rol ===ADM ">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">

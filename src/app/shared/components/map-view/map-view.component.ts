@@ -58,14 +58,7 @@ export class MapViewComponent implements AfterViewInit {
         .setHTML(`
       <h6> Nueva Ubicación</h6>   
         `);
-      if (this.mapService.userLocation) {
-        setTimeout(() => {
-          this.maker2 = new Marker({ color: this.CS, rotation: 45 })
-            .setLngLat(this.mapService.userLocation)
-            .setPopup(popup2)
-            .addTo(this.map)
-        }, 500);
-      }
+
       this.mapService.setMap(this.map)
     } else {
       this.map = new Map({

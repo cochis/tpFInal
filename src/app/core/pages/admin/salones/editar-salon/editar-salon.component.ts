@@ -127,8 +127,11 @@ export class EditarSalonComponent {
   }
   setForm(salon: Salon) {
 
-    if (salon.long && salon.lat) {
+    let lat: any = salon.lat
+    let lng: any = salon.long
+    if (lng !== 0 && lat !== 0) {
       this.sendCoords = [Number(salon.long), Number(salon.lat)]
+
 
     } else {
       this.mapService.getUserLocation().then(res => {

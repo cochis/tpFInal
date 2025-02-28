@@ -1,3 +1,9 @@
 a {
     text-decoration: none;
 }
+
+
+
+.cWhite {
+    color: var(--cWhite) !important;
+}

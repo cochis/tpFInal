@@ -90,7 +90,7 @@ export class VistaProvedorsComponent {
       },
         (error) => {
           this.loading = false
-          this.functionsService.alertError(error, 'Proveedors')
+          this.functionsService.alertError(error, 'Proveedores')
         });
     } else if (this.rol === this.SLN || this.rol == this.ANF) {
       let usr = this.functionsService.getLocal('uid')
@@ -119,7 +119,7 @@ export class VistaProvedorsComponent {
 
     },
       (error: any) => {
-        this.functionsService.alertError(error, 'Proveedors')
+        this.functionsService.alertError(error, 'Proveedores')
 
       })
   }

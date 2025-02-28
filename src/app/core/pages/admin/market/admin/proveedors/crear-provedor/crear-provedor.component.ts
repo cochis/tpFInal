@@ -128,7 +128,7 @@ export class CrearProvedorComponent {
         })
     } else {
 
-      this.functionsService.alertForm('Proveedors')
+      this.functionsService.alertForm('Proveedores')
       this.loading = false
       return console.info('Please provide all the required values!');
     }
@@ -246,7 +246,7 @@ export class CrearProvedorComponent {
           })
       } else {
 
-        this.functionsService.alertForm('Proveedors')
+        this.functionsService.alertForm('Proveedores')
         this.loading = false
         return console.info('Please provide all the required values!');
       }

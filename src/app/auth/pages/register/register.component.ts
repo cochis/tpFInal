@@ -25,6 +25,7 @@ import { TerminosYCondicionesComponent } from 'src/app/core/pages/terminos-y-con
 import { PoliticaDePrivacidadComponent } from 'src/app/core/pages/politica-de-privacidad/politica-de-privacidad.component';
 import { ParametrosService } from 'src/app/core/services/parametro.service';
 import { Parametro } from 'src/app/core/models/parametro.model';
+import { validateHeaderValue } from 'http';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -54,11 +55,11 @@ export class RegisterComponent {
   respuesta: any = undefined
   readonly VAPID_PUBLIC_KEY = environment.publicKey
   form: FormGroup = this.fb.group({
-    tipoCentro: [''],
+    tipoCentro: ['', [Validators.required]],
     nombre: ['', [Validators.required, Validators.minLength(3)]],
     apellidoPaterno: ['', [Validators.required, Validators.minLength(3)]],
     apellidoMaterno: [''],
-    telefono: [''],
+    telefono: ['', [Validators.required, Validators.minLength(10)]],
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.pattern(".{6,}")]],
     role: ['', [Validators.required]],
@@ -66,7 +67,6 @@ export class RegisterComponent {
     aceptoTerminos: [''],
     aceptoPolitica: [''],
     activated: [false],
-    dateCreated: [this.today],
     lastEdited: [this.today],
     uid: [''],
   });
@@ -105,7 +105,11 @@ export class RegisterComponent {
     return this.form.controls;
   }
   async submit(): Promise<void> {
-
+    this.submited = true
+    if (this.form.invalid) {
+      this.functionsService.alert('Registro', 'Favor de revisar el formulario', 'info')
+      return
+    }
 
     if (this.form.value.aceptoPolitica == false) {
       this.functionsService.alert('Registro', 'Debe de aceptar  politica de privacidad', 'info')
@@ -181,7 +185,16 @@ export class RegisterComponent {
         }
       })
   }
+
+  setPhone(tel) {
+    tel = tel.replace(/ /g, "")
+    var regex = /(\d+)/g;
+    this.form.patchValue({
+      telefono: tel.match(regex)
+    })
+  }
   register(push?: object) {
+
 
 
 
@@ -198,10 +211,10 @@ export class RegisterComponent {
       this.form.value.role == ''
     ) {
       this.loading = false
+      this.submited = true
       this.functionsService.alertForm('Registro')
 
     }
-
 
     let user = {
       ...this.form.value,
@@ -222,6 +235,8 @@ export class RegisterComponent {
         this.loading = false
         let usr = resp.usuario
         this.functionsService.setLocal('token', resp.token)
+
+
         usr.usuarioCreated = usr.uid
         this.usuariosService.actualizarUsuario(usr).subscribe((resp: any) => {
 
@@ -241,7 +256,9 @@ export class RegisterComponent {
                 }
               )
                 .then(respuesta => {
+                  console.log('respuesta::: ', respuesta);
                   this.pushsService.crearPush(respuesta).subscribe((res: any) => {
+                    console.log('res::: ', res);
 
 
                     var bl: any
@@ -249,14 +266,16 @@ export class RegisterComponent {
                       ...resp.usuarioActualizado,
                       pushNotification: (res.pushDB) ? res.pushDB.uid : res.push.uid
                     }
+                    console.log('usr::: ', usr);
 
                     this.usuariosService.actualizarUsuario(usr).subscribe(resA => {
                       this.loading = false
+                      this.functionsService.alertUpdate('Revisa tu correo , puede haber llegado a SPAM')
                       this.functionsService.navigateTo('auth/login')
                     },
                       (err) => {
                         console.error('err::: ', err);
-                        this.functionsService.alertError(error, 'Registro')
+
                         this.loading = false
                       })
                   })
@@ -264,7 +283,7 @@ export class RegisterComponent {
                 })
                 .catch(err => {
                   console.error('err::: ', err);
-                  this.functionsService.alertError(err, 'Error')
+
                   this.functionsService.navigateTo('auth/login')
                 })
             } else if (result.isDenied) {

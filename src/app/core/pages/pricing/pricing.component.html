@@ -86,15 +86,7 @@
 
                                                     <div class="accordion" id="accordion{{i}}">
                                                         <div class="accordion-item">
-                                                            <h2 class="accordion-header" id="costo">
-                                                                <button class="accordion-button" type="button"
-                                                                    data-bs-toggle="collapse"
-                                                                    data-bs-target="#collapseEvento"
-                                                                    aria-expanded="true" aria-controls="collapseEvento"
-                                                                    disabled>
-                                                                    Costo
-                                                                </button>
-                                                            </h2>
+
 
                                                             <div id="collapseEvento"
                                                                 class="accordion-collapse collapse show"
@@ -110,15 +102,7 @@
                                                         </div>
 
                                                         <div class="accordion-item">
-                                                            <h2 class="accordion-header" id="descripcion">
-                                                                <button class="accordion-button collapsed" type="button"
-                                                                    data-bs-toggle="collapse"
-                                                                    data-bs-target="#collapseEventoDes"
-                                                                    aria-expanded="false"
-                                                                    aria-controls="collapseEventoDes" disabled>
-                                                                    Descripción
-                                                                </button>
-                                                            </h2>
+
 
                                                             <div id="collapseEventoDes"
                                                                 class="accordion-collapse collapse show"
@@ -132,9 +116,12 @@
                                                                     <strong
                                                                         *ngIf="paquete.tipo =='galerias'">{{((paquete.value>=0)?(paquete.value
                                                                         + ' fotos'):'Fotos ilimitadas')}}</strong>
-                                                                    <ul class="lsn">
+                                                                    <ul class="lsn" style="padding: 0; ">
                                                                         <li *ngFor="let desc of paquete.descripciones">
-                                                                            {{desc.info}}
+                                                                            <div
+                                                                                [innerHTML]="functionsService.convertDes(desc.info)">
+                                                                            </div>
+
                                                                         </li>
 
                                                                     </ul>

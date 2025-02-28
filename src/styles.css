@@ -644,3 +644,87 @@ input[type="file"] {
     -moz-box-shadow: 4px 6px 20px -5px rgba(0, 0, 0, 0.75) !important;
     box-shadow: 4px 6px 20px -5px rgba(0, 0, 0, 0.75) !important;
 }
+
+.btn:focus-visible {
+    background-color: #80d0c7 !important;
+    color: white !important;
+    border: 2px soli #13547a !important;
+    box-shadow: none !important;
+}
+
+.redesLI {
+    margin-top: 5px;
+    display: inline-block;
+    margin-right: 7px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    border-radius: 100%;
+    color: var(--cWhite) !important;
+    background-color: var(--cPrimary);
+    transition: all .5s ease-out;
+    -webkit-transition: all .5s ease-out;
+    -moz-transition: all .5s ease-out;
+    -ms-transition: all .5s ease-out;
+    -o-transition: all .5s ease-out;
+}
+
+button,
+a {
+    transition: all .5s ease-out !important;
+    -webkit-transition: all .5s ease-out !important;
+    -moz-transition: all .5s ease-out !important;
+    -ms-transition: all .5s ease-out !important;
+    -o-transition: all .5s ease-out !important;
+}
+
+.btnClose {
+    position: relative;
+    top: 20px;
+    left: 20px;
+    width: 35px;
+    height: 35px;
+    color: var(--cWhite) !important;
+    background-color: var(--cPrimary);
+    transition: all .5s ease-out;
+    text-align: center;
+    border-radius: 100%;
+}
+
+
+.btnClose {
+    position: relative;
+    top: 20px;
+    left: 20px;
+    width: 35px;
+    height: 35px;
+    color: var(--cWhite) !important;
+    background-color: var(--cPrimary);
+    transition: all .5s ease-out;
+    text-align: center;
+    border-radius: 100%;
+}
+
+.btnClose:hover,
+.btn:hover,
+.redesLI:hover {
+
+    background-color: var(--cSecond) !important;
+    color: var(--cPrimary) !important
+}
+
+.welcome {
+    font-size: 35px;
+    font-weight: 800;
+    color: var(--cPrimary);
+    text-shadow:
+        0 0 5px var(--cWhite),
+        0 0 10px var(--cWhite),
+        0 0 20px var(--cWhite),
+        0 0 40px var(--cWhite),
+        0 0 80px var(--cWhite);
+
+    padding: 20px;
+    text-align: center;
+    ;
+}

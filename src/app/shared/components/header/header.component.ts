@@ -38,6 +38,8 @@ export class HeaderComponent {
     private functionsService: FunctionsService,
     private fiestasService: FiestasService
   ) {
+    this.functionsService.scrollToTop()
+
     this.carrito = this.functionsService.getLocal('carrito')
     window.addEventListener("storage", () => {
       this.carrito = this.functionsService.getLocal('carrito')
@@ -84,5 +86,6 @@ export class HeaderComponent {
 
 
   }
+
 
 }

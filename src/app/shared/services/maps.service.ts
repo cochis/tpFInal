@@ -37,24 +37,6 @@ export class MapsService {
     this.map = map
 
 
-    this.getUserLocation().then(res => {
-      this.userLocation = res
-      const popup = new Popup()
-        .setHTML(`
-        <h6>¡Aquí Estas!</h6>
-        <span>AQUÍ</span>
-
-        `)
-      if (this.userLocation) {
-
-
-        new Marker({ color: 'red', rotation: 45 })
-          .setLngLat(this.userLocation)
-          .setPopup(popup)
-          .addTo(this.map)
-
-      }
-    })
 
 
   }

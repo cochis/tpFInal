@@ -1,4 +1,4 @@
-<div class="body">
+<div class="body animate__animated animate__fadeIn">
     <app-header></app-header>
 
 
@@ -32,6 +32,9 @@
 
                             </select>
                         </div>
+                        <span *ngIf="submited && errorControl['tipoCentro'].errors " class="error">Debe de seleccionar
+                            tipo de centro de evento</span>
+
                         <div class="checks" *ngIf="roles ">
 
                             <ng-container *ngFor="let item of roles">
@@ -45,10 +48,10 @@
 
                                 </div>
                             </ng-container>
-
-                            <span *ngIf="submited && errorControl['role'].errors " class="error">Debe se seleccionar
-                                rol</span>
                         </div>
+
+                        <span *ngIf="submited && errorControl['role'].errors " class="error">Debe se seleccionar
+                            rol</span>
 
 
 
@@ -81,11 +84,14 @@
                         <div class="input-group form-group mb-1">
 
                             <input type="text" class="form-control" formControlName="telefono" name="telefono"
-                                placeholder="5566828251">
+                                placeholder="5566828251" #telefono (keyup)="setPhone(telefono.value)">
 
                         </div>
-                        <span *ngIf="submited && errorControl['telefono'].errors " class="error"> Error en el formato de
-                            correo</span>
+                        <span *ngIf="submited && errorControl['role'].errors " class="error">Agregar telefono</span>
+
+
+
+
                         <div class="input-group form-group mb-1">
 
                             <input type="text" class="form-control" formControlName="email" name="email"
@@ -137,10 +143,10 @@
 
                                 </div>
                             </ng-container>
-
-                            <span *ngIf="submited && errorControl['role'].errors " class="error">Debe se seleccionar
-                                rol</span>
                         </div>
+
+                        <span *ngIf="submited && errorControl['role'].errors " class="error">Debe se aceptar
+                            Términos y condiciones y Política de Privacidad</span>
                         <div class="form-group mt-5 text-center">
                             <input type="submit" value="Registrar" class="btn  login_btn">
                         </div>

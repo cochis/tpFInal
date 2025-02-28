@@ -8,21 +8,36 @@ import { SwPush } from '@angular/service-worker';
 import * as SecureLS from 'secure-ls';
 import { Parametro } from 'src/app/core/models/parametro.model';
 import { Location } from '@angular/common';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 @Injectable({
   providedIn: 'root'
 })
 export class FunctionsService {
   device_token: any
   ls = new SecureLS();
+  textToHTML: SafeHtml;
   public readonly VAPID_PUBLICK_KEY = environment.publicKey
   constructor(
     private router: Router,
     private location: Location,
     private swPush: SwPush,
     private http: HttpClient,
+    private sanitizer: DomSanitizer
   ) { }
   getIp() {
     return this.http.get("https://geolocation-db.com/json/");
+  }
+
+  convertDes(des: string) {
+    let spl = des.split('\n')
+    var desc = '<ul style="list-style:none;    padding: 0;">'
+    spl.forEach(element => {
+      desc += `<li>${element}</li>`
+    });
+    desc += '</ul>'
+    this.textToHTML = this.sanitizer.bypassSecurityTrustHtml(desc)
+
+    return this.textToHTML
   }
   back() {
     this.location.back();
@@ -332,5 +347,14 @@ export class FunctionsService {
 
     var div = document.getElementById(id);
     div.scrollIntoView();
+  }
+
+
+  scrollToTop() {
+
+
+    window.scrollTo(0, 0);
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
   }
 }

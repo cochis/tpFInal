@@ -35,6 +35,7 @@ export class EditarDatosComponent {
   url = environment.base_url
   text_url = environment.text_url
   urlLink = ''
+  link = ''
   isProveedor = false
   uid = this.functionsService.getLocal('uid')
   public imagenSubir!: File
@@ -42,6 +43,8 @@ export class EditarDatosComponent {
   MAPURL = environment.mapsGoogleUrl
   MAPZOOM = environment.mapsGoogleZoom
   setColor = true
+  viewModal = false
+  classModal = 'animate__fadeInLeftBig'
   ContactoP = environment.contactosProveedor
   constructor(
     private fb: FormBuilder,
@@ -66,7 +69,24 @@ export class EditarDatosComponent {
   get errorControl() {
     return this.form.controls;
   }
+  quitModal() {
 
+
+    if (!this.viewModal) {
+      this.classModal = 'animate__fadeInLeftBig'
+
+      this.viewModal = !this.viewModal
+
+
+
+    } else {
+
+      this.classModal = 'animate__fadeOutRight'
+      setTimeout(() => {
+        this.viewModal = !this.viewModal
+      }, 2000);
+    }
+  }
 
   createForm() {
     this.form = this.fb.group({
@@ -347,6 +367,7 @@ export class EditarDatosComponent {
 
 
         this.urlLink = JSON.stringify(this.text_url + 'core/vista-proveedor/' + this.proveedor.uid)
+        this.link = this.text_url + 'core/vista-proveedor/' + this.proveedor.uid
 
         this.proveedorQr = this.proveedor
 

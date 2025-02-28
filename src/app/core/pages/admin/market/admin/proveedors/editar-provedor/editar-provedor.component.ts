@@ -159,7 +159,7 @@ export class EditarProvedorComponent {
     },
       (error: any) => {
 
-        this.functionsService.alertError(error, 'Proveedors')
+        this.functionsService.alertError(error, 'Proveedores')
         this.loading = false
 
 
@@ -239,7 +239,7 @@ export class EditarProvedorComponent {
     this.form.value.nombre = this.form.value.nombre.toUpperCase().trim()
     this.form.value.clave = this.form.value.clave.toUpperCase().trim()
     if (this.form.value.nombre === '' || this.form.value.clave === '') {
-      this.functionsService.alertForm('Proveedors')
+      this.functionsService.alertForm('Proveedores')
       this.loading = false
       return
     }
@@ -253,7 +253,7 @@ export class EditarProvedorComponent {
       }
 
       this.proveedorsService.actualizarProveedor(this.proveedor).subscribe((resp: any) => {
-        this.functionsService.alertUpdate('Proveedors')
+        this.functionsService.alertUpdate('Proveedores')
         this.functionsService.navigateTo('core/proveedores/vista-proveedores')
         this.loading = false
       },
@@ -261,7 +261,7 @@ export class EditarProvedorComponent {
 
           //message
           this.loading = false
-          this.functionsService.alertError(error, 'Proveedors')
+          this.functionsService.alertError(error, 'Proveedores')
 
 
         })
