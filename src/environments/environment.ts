@@ -52,7 +52,7 @@ export const environment = {
   //Variables DEV
 
 
-  /* base_url: "http://localhost:3008/api",
+  base_url: "http://localhost:3008/api",
   text_url: "http://localhost:4200/",
   cProvedores: [
     {
@@ -89,7 +89,7 @@ export const environment = {
       value: "67b95a049b1aac6f7ff9c0c9",
       clave: "WHATSAPP"
     },
-  ] */
+  ]
 
 
 
@@ -118,7 +118,7 @@ export const environment = {
       value: "67bb92e89279f84e078263ce",
       clave: "MAIL"
     },
-
+  
     {
       value: "67bb92d09279f84e078263c7",
       clave: "DIRECCIÓN"
@@ -139,7 +139,7 @@ export const environment = {
 
 
   //Variables PROD
-  base_url: "https://www.myticketparty.com/api",
+  /* base_url: "https://www.myticketparty.com/api",
   text_url: "https://www.myticketparty.com/",
   cProvedores: [
     {
@@ -163,7 +163,7 @@ export const environment = {
       value: "67bb99ecc539cb99eb40fe47",
       clave: "MAIL"
     },
-
+  
     {
       value: "67bb99dac539cb99eb40fe40",
       clave: "DIRECCIÓN"
@@ -176,6 +176,6 @@ export const environment = {
       value: "67bb9a22c539cb99eb40fe5c",
       clave: "WHATSAPP"
     },
-  ]
+  ]*/
 
-};
+}; 

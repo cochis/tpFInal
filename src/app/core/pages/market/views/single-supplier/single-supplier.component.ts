@@ -440,25 +440,15 @@ export class SingleSupplierComponent {
   getId(id) {
     this.loading = true
     this.proveedorsService.cargarProveedorById(id).subscribe(res => {
-
       this.proveedor = res.proveedor
-
       this.itemsService.cargarItemsByProovedor(this.proveedor.uid).subscribe(res => {
-
         this.items = this.functionsService.getActivos(res.items)
+        setTimeout(() => {
+          this.loading = false
+        }, 800);
 
-        this.proveedor.colores.forEach(pv => {
-
-          this.CLPR.forEach(cl => {
-
-
-          });
-        });
       })
-      setTimeout(() => {
 
-        this.loading = false
-      }, 1000);
 
     })
   }
