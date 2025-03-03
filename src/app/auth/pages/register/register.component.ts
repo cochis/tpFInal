@@ -26,6 +26,7 @@ import { PoliticaDePrivacidadComponent } from 'src/app/core/pages/politica-de-pr
 import { ParametrosService } from 'src/app/core/services/parametro.service';
 import { Parametro } from 'src/app/core/models/parametro.model';
 import { validateHeaderValue } from 'http';
+import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -59,7 +60,7 @@ export class RegisterComponent {
     nombre: ['', [Validators.required, Validators.minLength(3)]],
     apellidoPaterno: ['', [Validators.required, Validators.minLength(3)]],
     apellidoMaterno: [''],
-    telefono: ['', [Validators.required, Validators.minLength(10)]],
+    telefono: [''],
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.pattern(".{6,}")]],
     role: ['', [Validators.required]],
@@ -82,22 +83,27 @@ export class RegisterComponent {
     private tipoCentrosService: TipoCentrosService,
     private swPush: SwPush,
     private metaService: MetaService,
-    private readonly _modalService: ModalService
+    private readonly _modalService: ModalService,
+    private title: Title,
   ) {
-    this.getParams()
+
     this.metaService.createCanonicalURL()
+    let t: string = 'My Ticket Party | Login';
+    this.title.setTitle(t);
     let data = {
-      title: 'Ticket Party | Registro ',
+      title: 'Ticket Party | Login ',
       description:
-        'Puedes registrarte como salon o como anfitrión de tu fiesta',
+        'Ingresa a nuestra aplicación con usuario y contraseña',
       keywords:
-        'Eventos sociales públicos privados gestión tiempo real invitados invitaciones personalizadas código QR notificaciones correo electrónico WhatsApp push notification',
-      slug: 'auth/register',
+        'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in',
+      slug: 'auth/login',
       colorBar: '#13547a',
       image:
-        window.location.origin + '/assets/img/logo/l_100.png',
+        window.location.origin + '/assets/images/qr.jpeg',
     }
     this.metaService.generateTags(data)
+    this.getParams()
+
     this.getCatalogos()
 
   }
@@ -195,7 +201,7 @@ export class RegisterComponent {
   }
   register(push?: object) {
 
-
+    this.form.value.telefono = Number(this.form.value.telefono[0])
 
 
     this.form.value.email = this.form.value.email.toLowerCase()
@@ -256,18 +262,13 @@ export class RegisterComponent {
                 }
               )
                 .then(respuesta => {
-                  console.log('respuesta::: ', respuesta);
+
                   this.pushsService.crearPush(respuesta).subscribe((res: any) => {
-                    console.log('res::: ', res);
-
-
                     var bl: any
                     let usr = {
                       ...resp.usuarioActualizado,
                       pushNotification: (res.pushDB) ? res.pushDB.uid : res.push.uid
                     }
-                    console.log('usr::: ', usr);
-
                     this.usuariosService.actualizarUsuario(usr).subscribe(resA => {
                       this.loading = false
                       this.functionsService.alertUpdate('Revisa tu correo , puede haber llegado a SPAM')

@@ -35,6 +35,7 @@ import { BtnMyLocationComponent } from './components/btn-my-location/btn-my-loca
 import { MtpLogoComponent } from './components/mtp-logo/mtp-logo.component';
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
+import { NgxCurrencyDirective } from 'ngx-currency';
 
 
 
@@ -101,7 +102,8 @@ import { SearchResultsComponent } from './components/search-results/search-resul
     RouterModule,
     ReactiveFormsModule,
     ZXingScannerModule,
-    QRCodeModule
+    QRCodeModule,
+    NgxCurrencyDirective
   ],
 })
 export class SharedModule { }

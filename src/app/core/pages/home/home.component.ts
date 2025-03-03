@@ -1,16 +1,15 @@
 import { AfterViewInit, Component } from '@angular/core';
-import { FunctionsService } from 'src/app/shared/services/functions.service';
+import { Title } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
 import { UsuariosService } from '../../services/usuarios.service';
-import { CargarUsuario } from '../../interfaces/cargar-interfaces.interfaces';
+import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { BoletosService } from '../../services/boleto.service';
-import { Boleto } from '../../models/boleto.model';
-import Swal from 'sweetalert2';
-import { TokenPushsService } from '../../services/tokenPush.service';
-import { SwPush } from '@angular/service-worker';
-import { MetaService } from '../../services/meta.service';
-import { AuthService } from 'src/app/auth/services/auth.service';
 import { ProveedorsService } from '../../services/proveedor.service';
+import { MetaService } from '../../services/meta.service';
+import { Boleto } from '../../models/boleto.model';
+import { CargarUsuario } from '../../interfaces/cargar-interfaces.interfaces';
+
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -36,15 +35,25 @@ export class HomeComponent implements AfterViewInit {
     private usuariosService: UsuariosService,
     private proveedorsService: ProveedorsService,
     private boletosService: BoletosService,
-    private tokenPushService: TokenPushsService,
-    private swpush: SwPush,
     private metaService: MetaService,
-    private authService: AuthService
+    private title: Title,
 
   ) {
     this.metaService.createCanonicalURL()
+    let t: string = 'My Ticket Party | Inicio';
+    this.title.setTitle(t);
 
-    this.metaService.generateTags()
+    this.metaService.generateTags({
+      title: 'My Ticket Party | Inicio',
+      description:
+        'La implementación de invitaciones digitales y un marketplace de productos y servicios representa una evolución positiva en la logística de eventos. Al facilitar tanto la convocatoria como la gestión de recursos, estas herramientas no solo optimizan la planificación y ejecución de eventos',
+      keywords:
+        'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in',
+      slug: 'core/inicio',
+      colorBar: '#13547a',
+      image:
+        window.location.origin + '/assets/images/qr.jpeg',
+    });
     this.role = this.functionsService.getLocal('role')
     this.uid = this.functionsService.getLocal('uid')
     this.functionsService.getIp().subscribe(resp => {

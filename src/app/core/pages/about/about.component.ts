@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MetaService } from '../../services/meta.service';
+import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
@@ -9,24 +10,26 @@ import { MetaService } from '../../services/meta.service';
 export class AboutComponent {
   img: String = ''
   constructor(private modalService: NgbModal,
-    private metaService: MetaService
+    private metaService: MetaService,
+    private title: Title,
   ) {
     this.metaService.createCanonicalURL()
-    let  data = {
-      title: 'Ticket Party | Quienes somos ',
+    let t: string = 'My Ticket Party | Nosotros';
+    this.title.setTitle(t);
+
+    this.metaService.generateTags({
+      title: 'My Ticket Party | Nosotros',
       description:
-        'Empresa dedicada a la administración y gestión de eventos sociales, públicos o privados para Salones de eventos  o personas, administramos a tus invitados con el envido e invitaciones personalizadas a tu gusto se envían por correo electrónico o WhatsApp, donde la entrada se valida por código QR  , se generan notificaciones push se gestiona la entrada de todos los invitados en tiempo real.',
+        'Nosotros , Invitaciones digitales, logistica y marketplace de servicios y productos para eventos ha revolucionado la forma en que se planifican y organizan celebraciones.',
       keywords:
-        'Eventos sociales públicos privados gestión tiempo real invitados invitaciones personalizadas código QR notificaciones correo electrónico WhatsApp push notification',
-      slug: 'about',
+        'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in',
+      slug: 'core/about',
       colorBar: '#13547a',
       image:
-        window.location.origin + '/assets/img/logo/l_100.png',
-    }
-    this.metaService.generateTags(data)
+        window.location.origin + '/assets/images/qr.jpeg',
+    });
 
-
-   }
+  }
   openXl(content, img) {
 
     this.modalService.open(content, { fullscreen: true });

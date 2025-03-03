@@ -9,6 +9,7 @@ import * as SecureLS from 'secure-ls';
 import { Parametro } from 'src/app/core/models/parametro.model';
 import { Location } from '@angular/common';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { SeoService } from './seo.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -22,17 +23,21 @@ export class FunctionsService {
     private location: Location,
     private swPush: SwPush,
     private http: HttpClient,
+    private seo: SeoService,
     private sanitizer: DomSanitizer
   ) { }
   getIp() {
     return this.http.get("https://geolocation-db.com/json/");
   }
+  createLinkForCanonicalURL() {
+    this.seo.createLinkForCanonicalURL();
+  }
 
-  convertDes(des: string) {
+  convertDes(des: string, style) {
     let spl = des.split('\n')
     var desc = '<ul style="list-style:none;    padding: 0;">'
     spl.forEach(element => {
-      desc += `<li>${element}</li>`
+      desc += `<li style="${style}">${element}</li>`
     });
     desc += '</ul>'
     this.textToHTML = this.sanitizer.bypassSecurityTrustHtml(desc)
@@ -67,7 +72,6 @@ export class FunctionsService {
     localStorage.removeItem(name)
   }
   getValueCatalog(id: string, filter: string, catalogo: any) {
-
     if (id && catalogo) {
       let ret = catalogo.filter((cat: any) => {
         return cat.uid === id
@@ -349,7 +353,12 @@ export class FunctionsService {
     div.scrollIntoView();
   }
 
+  setInt(num) {
+    num = num.replace(/ /g, "")
+    var regex = /(\d+)/g;
 
+    return num.match(regex)
+  }
   scrollToTop() {
 
 

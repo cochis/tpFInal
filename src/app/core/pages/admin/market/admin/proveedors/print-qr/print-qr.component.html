@@ -1,0 +1,47 @@
+<div class="row" *ngIf="proveedor" style="display: none;">
+
+    <div id="print-section">
+
+
+        <div class="container-fluid">
+            <header class="row  ">
+
+
+                <div class="  col-md-8  m-auto text-center mt-5">
+                    <img src="{{url}}/upload/proveedores/{{proveedor.img}}"
+                        style=" width: 100%; max-width: 400px; line-height: 140px;display:inline-block ; margin-top: 25px;;"
+                        alt="{{proveedor.nombre}}">
+
+                </div>
+
+            </header>
+
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="col-12 text-center">
+
+                    <div class="qrcodeImage">
+                        <qrcode [qrdata]="urlLink" [allowEmptyString]="true" [ariaLabel]="proveedor.nombre"
+                            [cssClass]="'center'" [colorDark]="proveedor.colores[0].value" [colorLight]="'#ffffffff'"
+                            [elementType]="'img'" [errorCorrectionLevel]="'H'"
+                            [imageSrc]="url+'/upload/proveedores/'+proveedor.img" [margin]="4" [scale]="1"
+                            [title]="proveedor.nombre" [width]="500">
+                        </qrcode>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="row mt-5">
+    <div class="col-6 ma text-center">
+
+        <button printSectionId="print-section" type="button" class="btn but" printSectionId="ticket"
+            styleSheetFile="assets/css/bootstrap.min.css" ngxPrint (click)="printMe()">Imprimir</button>
+    </div>
+</div>

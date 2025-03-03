@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { NgxPrintService, PrintOptions } from 'ngx-print';
 import { CargarProveedor, CargarTipoColors, CargarTipoContactos } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
 import { Proveedor } from 'src/app/core/models/proveedor.model';
 import { TipoColor } from 'src/app/core/models/tipoColor.model';
@@ -51,7 +52,8 @@ export class EditarProvedorComponent {
     private tipoContactosService: TipoContactosService,
     private route: ActivatedRoute,
     private fileService: FileService,
-    private mapService: MapsService
+    private mapService: MapsService,
+    private printService: NgxPrintService
 
   ) {
     this.mapService.getUserLocation().then(res => {
@@ -412,4 +414,17 @@ export class EditarProvedorComponent {
 
   }
 
+  hexToRgbA(hex) {
+    var c;
+    if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)) {
+      c = hex.substring(1).split('');
+      if (c.length == 3) {
+        c = [c[0], c[0], c[1], c[1], c[2], c[2]];
+      }
+      c = '0x' + c.join('');
+
+      return 'rgba(' + [(c >> 16) & 255, (c >> 8) & 255, c & 255].join(',') + ',.3)';
+    }
+    throw new Error('Bad Hex');
+  }
 }

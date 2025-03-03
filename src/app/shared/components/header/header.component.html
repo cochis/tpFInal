@@ -15,9 +15,21 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" routerLink="/core/inicio">Inicio</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" routerLink="/core/market"> Marketplace </a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        MarketPlace
+                    </a>
+                    <ul class="dropdown-menu">
+
+                        <li><a class="dropdown-item" routerLink="/core/market">Productos</a></li>
+                        <li><a class="dropdown-item" routerLink="/core/market/proveedores">Proveedores</a></li>
+
+
+
+                    </ul>
                 </li>
+
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/core/about">Nosotros</a>
                 </li>
@@ -71,7 +83,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark"
     *ngIf="rol ===ADM  ||rol ===ANF  || rol ===SLN || rol ===CHK || rol ===URS || rol ===PRV">
     <div class="container-fluid">
-        <a class="navbar-brand" routerLink="/core/inicio">
+        <a class="navbar-brand" routerLink="/">
             <!-- <i class="bi-back"></i> -->
             <img src="assets/images/logo.png" class="logo-header" alt="">
             <img src="assets/images/lg.png" class="" alt="">
@@ -88,8 +100,19 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" routerLink="/core/inicio">Inicio</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" routerLink="/core/market">Marketplace</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        MarketPlace
+                    </a>
+                    <ul class="dropdown-menu">
+
+                        <li><a class="dropdown-item" routerLink="/core/market">Productos</a></li>
+                        <li><a class="dropdown-item" routerLink="/core/market/proveedores">Proveedores</a></li>
+
+
+
+                    </ul>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/core/pricing">Pricing</a>
@@ -245,3 +268,8 @@
         </div>
     </div>
 </nav>
+
+<div class="fixed-bottom"
+    style="width: 100%; height: 40px; background-color: rgb(202, 79, 79); line-height: 40px;text-align: center;margin: auto;text-transform: uppercase;color:white;font-weight: 900;"
+    *ngIf="demo">
+    {{msnDemo}} </div>

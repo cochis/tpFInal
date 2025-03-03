@@ -1,5 +1,76 @@
 <div class="container">
-    <div class="row ">
+    <app-loading *ngIf="loading"></app-loading>
+    <div class="row" *ngIf="!loading">
+        <!-- <div class="row">
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div class="row">
+                    <div class="col-12 col-md-6 mt-3">
+                        <div class="form-group">
+                            <label for="fliter">Filtros</label>
+                            <select class="form-control upper" name="filter" id="filter" formControlName="filter"
+                                #filter>
+                                <ng-container>
+                                    <option value="" selected>Filtrar por</option>
+                                          <option value="precios">Precio</option>
+                                    <option value="categorias">Categoría</option>
+                                    <option value="nombre">Nombre</option>
+
+                                </ng-container>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 mt-3" *ngIf="form.value.filter =='categorias'">
+                        <div class="form-group">
+                            <label for="valueSelect">Categorías</label>
+                            <select class="form-control upper" name="valueSelect" id="valueSelect"
+                                formControlName="valueSelect"
+                                (change)="filterValues(form.value.filter, form.value.valueSelect)">
+                                <ng-container>
+                                    <option value="" selected>Selecciona una categoría</option>
+                                    <ng-container *ngFor="let item of categoriaItems">
+
+                                        <option [value]="item.uid" selected>{{item.nombre}}</option>
+                                    </ng-container>
+
+
+                                </ng-container>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 mt-3" *ngIf="form.value.filter =='nombre'">
+                        <div class="form-group">
+                            <label for="nombre">Nombre</label>
+                            <input class="form-control upper" type="text" name="valueInput" id="valueInput"
+                                formControlName="valueInput" placeholder="Ingresa un nombre"
+                                (keyup)="filterValues(form.value.filter, form.value.valueInput)">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 mt-3" *ngIf="form.value.filter =='precios'">
+                        <div class="form-group">
+                            <label for="valueMin">Precio mínimo</label>
+                            <input class="form-control upper" type="text" name="valueMin" id="valueMin"
+                                formControlName="valueMin" placeholder="Ingresa un nombre"
+                                [currencyMask]="{ prefix: '$ ', thousands: '.', decimal: ',' }"
+                                (keyup)="filterValues(form.value.filter, form.value.valueMin)">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 mt-3" *ngIf="form.value.filter =='precios'">
+                        <div class="form-group">
+                            <label for="valueMax">Precio máximo</label>
+                            <input class="form-control upper" type="text" name="valueMax" id="valueMax"
+                                formControlName="valueMax" placeholder="Ingresa un nombre"
+                                [currencyMask]="{ prefix: '$ ', thousands: '.', decimal: ',' }"
+                                (keyup)="filterValues(form.value.filter, form.value.valueMax)">
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+
+
+        </div> -->
+    </div>
+    <div class="row " *ngIf="!loading">
         <div class="col-lg-4 col-md-6 col-12  mt-3"
             *ngFor="let item of items  | paginate: { itemsPerPage: 12, currentPage: p }  ; let i=index">
             <app-item [item]="item" [cP]="cP" [cS]="cS"></app-item>

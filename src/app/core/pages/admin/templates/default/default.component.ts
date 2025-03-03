@@ -15,6 +15,7 @@ import { PushsService } from 'src/app/core/services/push.service';
 import { ImgTemplate } from 'src/app/core/models/img.model';
 import { ModalService } from '@developer-partners/ngx-modal-dialog';
 import { ImagenComponent } from 'src/app/shared/components/modals/imagen/imagen.component';
+import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-default',
   templateUrl: './default.component.html',
@@ -95,11 +96,16 @@ export class DefaultComponent implements OnInit, AfterViewInit {
     private route: ActivatedRoute,
     private boletosService: BoletosService,
     private swPush: SwPush,
-    private metaService: MetaService,
     private pushsService: PushsService,
-    private readonly _modalService: ModalService
+    private readonly _modalService: ModalService,
+    private metaService: MetaService,
+    private title: Title,
   ) {
-    this.metaService.createCanonicalURL();
+
+
+
+
+
     this.loading = true
     this.fiestaId = this.route.snapshot.params['fiesta']
     this.copyId = this.route.snapshot.params['copy']
@@ -118,6 +124,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
           this.boletosService.isVistaBoleto(this.boleto).subscribe((resp2: any) => {
             this.boleto = resp.boletoActualizado
 
+
             this.subscribeNotification()
           })
         })
@@ -129,9 +136,33 @@ export class DefaultComponent implements OnInit, AfterViewInit {
         this.fiesta = resp.fiesta
 
 
+
+
+
         this.checking = this.fiesta.checking
         this.invitacionsService.cargarInvitacionByFiesta(this.fiestaId).subscribe(async (resp: any) => {
           this.invitacion = resp.invitacion.data
+
+
+
+          setTimeout(() => {
+            this.metaService.createCanonicalURL()
+            let t: string = `My Ticket Party | ${this.fiesta.nombre}  -  ${this.functionsService.numberToDate(Number(this.fiesta.fecha))} - para ${this.boleto.grupo} `;
+            this.title.setTitle(t.toUpperCase());
+            let data = {
+              title: t.toUpperCase(),
+              description:
+                `${this.dataDondeCard.mensaje1} `,
+              keywords:
+                'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in',
+              slug: 'core/templates/default',
+              colorBar: '#13547a',
+              image: `${this.url}/upload/invitaciones/${this.invitacion.img1}`
+
+            }
+            this.metaService.generateTags(data)
+
+          }, 500);
           this.restParty()
           this.invitacion = await this.dateToNumber(this.invitacion)
           this.invitacion.mesa = this.boleto.mesa
@@ -511,6 +542,33 @@ export class DefaultComponent implements OnInit, AfterViewInit {
 
       }
     }
+
+
+    if (this.dataDondeCard) {
+
+      setTimeout(() => {
+        this.metaService.createCanonicalURL()
+        let t: string = `My Ticket Party | ${this.dataDondeCard.nombreFiesta}  -  ${this.functionsService.numberToDate(Number(this.dataDondeCard.fiestaDate))}`;
+        this.title.setTitle(t);
+        let data = {
+          title: t,
+          description:
+            `${this.dataDondeCard.mensaje1} `,
+          keywords:
+            'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in',
+          slug: 'core/templates/default',
+          colorBar: '#13547a',
+          image: `${this.url}/upload/invitaciones/${this.dataDondeCard.img1}`
+
+        }
+        this.metaService.generateTags(data)
+
+      }, 500);
+    }
+
+
+
+
   }
   ngOnInit() { }
   async dateToNumber(data) {

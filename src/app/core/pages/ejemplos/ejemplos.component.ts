@@ -4,7 +4,7 @@ import { PaquetesService } from '../../services/paquete.service';
 import { Paquete } from '../../models/paquete.model';
 import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { environment } from 'src/environments/environment';
-import { DomSanitizer, SafeHtml, SafeUrl } from '@angular/platform-browser';
+import { DomSanitizer, SafeHtml, SafeUrl, Title } from '@angular/platform-browser';
 import { FiestasService } from '../../services/fiestas.service';
 import { EjemplosService } from '../../services/ejemplo.service';
 import { CargarEjemplos } from '../../interfaces/cargar-interfaces.interfaces';
@@ -26,27 +26,32 @@ export class EjemplosComponent implements OnInit {
   sanitizedUrlFile: any
   descripcionHTML: SafeHtml;
 
-  constructor(private metaService: MetaService,
+  constructor(
+
     private functionsService: FunctionsService,
     private paquetesService: PaquetesService,
     private domSanitizer: DomSanitizer,
     private fiestasService: FiestasService,
     private ejemplosService: EjemplosService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private metaService: MetaService,
+    private title: Title,
   ) {
     this.metaService.createCanonicalURL()
-    let data = {
-      title: 'Ticket Party | Ejemplos ',
+    let t: string = 'My Ticket Party | Inicio';
+    this.title.setTitle(t);
+
+    this.metaService.generateTags({
+      title: 'My Ticket Party | Ejemplos de invitaciones digitales',
       description:
-        'Muestra de Invitaciones, Galerías, Envíos y Logística',
+        'Las invitaciones digitales para logística son herramientas eficaces para coordinar eventos, reuniones o capacitaciones en el sector.',
       keywords:
-        'Eventos sociales públicos privados gestión tiempo real invitados invitaciones personalizadas código QR notificaciones correo electrónico WhatsApp push notification',
-      slug: 'examples',
+        'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in',
+      slug: 'core/examples',
       colorBar: '#13547a',
       image:
-        window.location.origin + '/assets/img/logo/l_100.png',
-    }
-    this.metaService.generateTags(data)
+        window.location.origin + '/assets/images/qr.jpeg',
+    });
     this.examples
     this.getCatalogos()
   }

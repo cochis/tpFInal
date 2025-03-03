@@ -5,7 +5,6 @@
     <app-message class="animated1 fadeIn" *ngIf="msnOk"></app-message>
 
 
-
     <section class="contact-section section-padding section-bg animated1 fadeIn " id="section_5" *ngIf="!loading">
         <div class="container bw">
 
@@ -68,16 +67,16 @@
                                     <span *ngIf="submited && errorControl['nombre'].errors " class="error">Es requerido
                                     </span>
                                 </div>
-                                <!--  <div class="col-12 col-md-6 mt-3">
+                                <div class="col-12 col-md-6 mt-3">
 
                                     <div class="form-group">
                                         <label for="clave">Clave</label>
                                         <input type="text" class="form-control upper" id="clave" formControlName="clave"
-                                            placeholder="Clave">
+                                            placeholder="Clave" readonly>
                                     </div>
                                     <span *ngIf="submited && errorControl['clave'].errors " class="error">Es requerido
                                     </span>
-                                </div> -->
+                                </div>
                                 <div class="col-12   mt-3">
 
                                     <div class="form-group">
@@ -347,7 +346,17 @@
                                     </div>
 
 
+
+
+                                    <app-print-qr [proveedor]="proveedor"></app-print-qr>
+
+
+
+
+
                                 </div>
+
+
                                 <div class="col-12   mt-3" *ngIf="location &&  isDirection()">
                                     <label for="ubicacion ">Ubicación </label>
                                     <app-mapscreen [showBar]="true" (coordenadasSelect)="showCoordenadas($event)"
@@ -403,6 +412,8 @@
         title="Click aquí para subir tu foto" style="width: 80%;height: auto;">
 
 </div>
+
+
 
 
 

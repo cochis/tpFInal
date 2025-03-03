@@ -112,7 +112,7 @@ export class VistaItemsComponent {
       let usr = this.functionsService.getLocal('uid')
       this.itemsService.cargarItemsByEmail(usr).subscribe((resp: CargarItems) => {
 
-        this.items = this.functionsService.getActivos(resp.items)
+        this.items = resp.items
         this.itemsTemp = resp.items
 
         setTimeout(() => {

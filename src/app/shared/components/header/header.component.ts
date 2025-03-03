@@ -1,10 +1,12 @@
 import { Component, HostListener, } from '@angular/core';
+
 import { FunctionsService } from '../../services/functions.service';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { FiestasService } from 'src/app/core/services/fiestas.service';
 import { Fiesta } from 'src/app/core/models/fiesta.model';
 import { CargarFiestas } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
+import { ParametrosService } from 'src/app/core/services/parametro.service';
 
 @Component({
   selector: 'app-header',
@@ -26,6 +28,7 @@ export class HeaderComponent {
   PRV = environment.prv_role
   ANF = environment.anf_role
   ver = environment.version
+  URLBASE = environment.base_url
   rol = this.functionsService.getLocal('role')
   uid = this.functionsService.getLocal('uid')
   carrito: any
@@ -33,11 +36,28 @@ export class HeaderComponent {
   totalFiestas = 0
   islogin = false
   email !: string
+  demo = false
+  DEMO = environment.DEMO
+  msnDemo = ''
   constructor(
     private router: Router,
     private functionsService: FunctionsService,
-    private fiestasService: FiestasService
+    private fiestasService: FiestasService,
+    private parametrosService: ParametrosService
   ) {
+
+
+    if (this.URLBASE.includes('cochisweb')) {
+      this.demo = true
+      this.parametrosService.cargarParametrosByClave(this.DEMO).subscribe((res: any) => {
+
+        this.demo = true
+
+        this.msnDemo = res.parametro.value
+
+      })
+    }
+
     this.functionsService.scrollToTop()
 
     this.carrito = this.functionsService.getLocal('carrito')

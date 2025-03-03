@@ -16,7 +16,7 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { QRCodeModule } from 'angularx-qrcode';
 import { UnauthorizedInterceptorService } from './interceptors/unauthorized-interceptor.service';
 import { ModalModule } from '@developer-partners/ngx-modal-dialog';
-
+import { NgxPrintModule } from 'ngx-print';
 
 
 @NgModule({
@@ -37,6 +37,7 @@ import { ModalModule } from '@developer-partners/ngx-modal-dialog';
     QRCodeModule,
     NgbModalModule,
     ModalModule,
+    NgxPrintModule,
 
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),

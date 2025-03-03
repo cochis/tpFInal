@@ -29,22 +29,17 @@
             <div class="container">
 
                 <div class="col-12 text-center">
-                    <h2 class="mb-3">Productos y Servicios</h2>
-                    <div
-                        style="height: 10%; background-color: var(--cPrimary); color:var(--cWhite); padding: 15px; border: 5px solid var(--cSecond) ;border-radius:20px">
-                        <span>
-                            Solo se realizan cotizaciones los proveedores se comunicaran con ustedes para la atención a
-                            su
-                            evento
+                    <h2 class="mb-3">Proveedores</h2>
 
-                        </span>
-
-                    </div>
                 </div>
 
 
             </div>
-            <app-market-items [items]="items"></app-market-items>
+            <ng-container *ngIf="proveedores">
+
+                <app-proveedores-items [proveedores]="proveedores"></app-proveedores-items>
+            </ng-container>
+            <!--     <app-market-items [items]="items"></app-market-items> -->
 
 
 

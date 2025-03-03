@@ -21,39 +21,23 @@ export class MetaService {
     linkAlternate.setAttribute('href', this.doc.URL);
     linkAlternate.setAttribute('hreflang', 'es-mx');
   }
-  generateTags(data?: any) {
 
-    if (!data) {
 
-      data = {
-        title: 'Ticket Party  | Inicio',
-        description:
-          'Empresa dedicada a la administración y gestión de eventos sociales, públicos o privados para Salones de eventos  o personas, administramos a tus invitados con el envido e invitaciones personalizadas a tu gusto se envían por correo electrónico o WhatsApp, donde la entrada se valida por código QR  , se generan notificaciones push se gestiona la entrada de todos los invitados en tiempo real.',
-        keywords:
-          'Eventos sociales públicos privados gestión tiempo real invitados invitaciones personalizadas código QR notificaciones correo electrónico WhatsApp push notification',
-        slug: 'Inicio',
-        colorBar: '#13547a',
-        image:
-          window.location.origin + '/assets/img/logo/l_100.png',
-      }
 
-    }
 
-    let config = {
-      title: 'Tickets Party | Administra tu fiesta',
-      description: '¡¡Ven te pruebalo!!',
+
+  generateTags(config: any) {
+    config = {
+      title: 'Ticket Party',
+      description:
+        'Empresa dedicada a la administración y gestión de eventos sociales,y marketplace de servicios y productos para públicos o privados para Salones de eventos  o personas.',
       keywords:
-        'Administracion, Fiestas , invitaciones, boletos, CheckIn, Galeria de Imagenes',
-      image: this.url + 'assets/images/logo.png',
-      slug: '',
+        'Marketplace Productos Servicios Eventos sociales públicos privados gestión tiempo real invitados invitaciones personalizadas código QR notificaciones correo electrónico WhatsApp push notification',
+      image: '',
+      slug: '/',
       colorBar: '#13547a',
-      ...data,
+      ...config,
     };
-
-
-
-
-
     this.meta.updateTag({ name: 'description', content: config.description });
     this.meta.updateTag({ name: 'keywords', content: config.keywords });
     this.meta.updateTag({ name: 'theme-color', content: config.colorBar });
@@ -78,7 +62,7 @@ export class MetaService {
     this.meta.updateTag({ property: 'og:image', content: config.image });
     this.meta.updateTag({
       property: 'og:url',
-      content: `${this.url}${config.slug}`,
+      content: `https://myticketparty.com/${config.slug}`,
     });
   }
 }

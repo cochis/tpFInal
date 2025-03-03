@@ -13,6 +13,7 @@ import Swal from 'sweetalert2';
 import { MetaService } from 'src/app/core/services/meta.service';
 import { PushsService } from 'src/app/core/services/push.service';
 import { Push } from 'src/app/core/models/push.model';
+import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-by-file',
   templateUrl: './by-file.component.html',
@@ -82,9 +83,10 @@ export class ByFileComponent {
     private boletosService: BoletosService,
     private swPush: SwPush,
     private metaService: MetaService,
-    private pushsService: PushsService
+    private pushsService: PushsService,
+    private title: Title,
   ) {
-    this.metaService.createCanonicalURL();
+
     this.loading = true
     this.fiestaId = this.route.snapshot.params['fiesta']
     this.copyId = this.route.snapshot.params['copy']
@@ -118,6 +120,24 @@ export class ByFileComponent {
 
         this.invitacionsService.cargarInvitacionByFiesta(this.fiestaId).subscribe(async (resp: any) => {
           this.invitacion = resp.invitacion.data
+
+          this.metaService.createCanonicalURL()
+          let t: string = `My Ticket Party | ${this.fiesta.nombre}  -  ${this.functionsService.numberToDate(Number(this.fiesta.fecha))} `;
+          this.title.setTitle(t.toUpperCase());
+          let data = {
+            title: t.toUpperCase(),
+            description:
+              t.toUpperCase(),
+            keywords:
+              'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in',
+            slug: 'core/templates/byFile',
+            colorBar: '#13547a',
+            image: `${this.url}/upload/invitaciones/${this.invitacion.byFileInvitacion}`
+
+          }
+          this.metaService.generateTags(data)
+
+
           this.restParty()
           this.invitacion = await this.dateToNumber(this.invitacion)
           this.invitacion.mesa = this.boleto.mesa
@@ -279,6 +299,28 @@ export class ByFileComponent {
         this.date = this.invitacion.fiestaDate
         this.btnBack = true
         this.checking = (this.state.checking == 'true') ? true : false
+
+
+
+        setTimeout(() => {
+          this.metaService.createCanonicalURL()
+          let t: string = `My Ticket Party | ${this.state.nombreFiesta}  -  ${this.functionsService.numberToDate(Number(this.state.fiestaDate))}  `;
+          this.title.setTitle(t.toUpperCase());
+          let data = {
+            title: t.toUpperCase(),
+            description:
+              `${this.state.nombreFiesta} `,
+            keywords:
+              'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in',
+            slug: 'core/templates/byFile',
+            colorBar: '#13547a',
+            image: `${this.url}/upload/invitaciones/${this.state.byFileInvitacion}`
+
+          }
+          this.metaService.generateTags(data)
+
+        }, 500);
+
       }
     }
   }

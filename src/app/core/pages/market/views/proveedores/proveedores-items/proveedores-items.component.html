@@ -1,0 +1,240 @@
+<app-loading *ngIf="loading"></app-loading>
+
+<div class="row " *ngIf="!loading && proveedores.length >0">
+    <div class="  col-md-6 col-12  mt-3"
+        *ngFor="let item of proveedores  | paginate: { itemsPerPage: 12, currentPage: p }  ; let i=index">
+        <!--  <app-item [item]="item" [cP]="cP" [cS]="cS"></app-item> -->
+
+
+
+        <div class="custom-block bg-white shadow-lg ma pointer" *ngIf="!loading && item.colores && item.nombre "
+            style="height: 100% !important; max-height: 750px;   text-align: center;"
+            routerLink="/core/vista-proveedor/{{item.uid}}">
+
+            <div class=" col-12"
+                [style]="{   'background-color': getColor(item.colores,'P'), 'color':getColor(item.colores,'S'),'border-radius':20+'px','height': 50+'px'}">
+
+                <h4 class="title-market pointer   "
+                    style="font-size: 25px;line-height: 50px;text-shadow: 0 0 5px var(--cWhite), 0 0 10px var(--cWhite), 0 0 20px var(--cWhite), 0 0 40px var(--cWhite), 0 0 80px var(--cWhite);">
+
+                    {{item.nombre}}
+
+
+
+                </h4>
+
+
+                <!-- <h5 class="category-market    pb-3 mt-2" style="margin-left: 25px;"><b class="pointer"
+                        routerLink="/core/vista-proveedor/{{item.proveedor._id}}"> {{item.proveedor.nombre}}
+                    </b> - {{item.categoriaItem.nombre}} </h5> -->
+            </div>
+
+            <div style=" display: flex;
+  width: 250px;
+  height: 250px;
+  margin: 0 auto;
+  margin-top: 20px;
+ 
+ 
+  justify-content: center;">
+
+                <img [style]=" {'width': 100+'%','background-color':hexToRgbA(getColor(item.colores,'P')),'padding': 10+'px','border-radius':20+'px'}"
+                    src="{{url}}/upload/proveedores/{{item.img}}" alt="">
+            </div>
+
+            <!--  <div class="col-12 col-md-6 ma" *ngFor="let pr of item.contactos">
+
+                    <div class="card text-center">
+
+                        <div class="card-body">
+                            {{getContact(pr).nombre | json}}
+                            <ng-container *ngIf="getContact(pr).nombre === 'DIRECCIÓN' | async">
+                                <a href="{{item.ubicacion}}" target="_blank" class="btn  "
+                                    [style]=" {'color':getColor(item.colores,'P')}">
+                                    <b
+                                        [style]="{ 'color':getColor('S',item.colores),' margin-right': '10px', 'font-size':'35px'}">
+                                        D
+                                        <i class="{{getContact(pr).icon}}"></i>
+                                    </b> </a>
+                            </ng-container>
+                            <ng-container *ngIf="getContact(pr).nombre === 'TELÉFONO'">
+                                <a href="tel:+{{pr.value}}" class="btn  "
+                                    [style]=" {'color':getColor(item.colores,'P')}" alt="+{{pr.value}}">
+                                    <b
+                                        [style]="{ 'color':getColor('S',item.colores), 'margin-right':'10px', 'font-size':'35px'}">
+                                        T
+                                        <i class="{{getContact(pr).icon}}"></i>
+                                    </b> </a>
+                            </ng-container>
+                            <ng-container *ngIf="getContact(pr).nombre === 'MAIL'">
+                                <a href="mailto:{{pr.value}}" class="btn  "
+                                    [style]=" {'color':getColor(item.colores,'P')}">
+                                    <b
+                                        [style]=" {'color':getColor('S',item.colores), 'margin-right': '10px', 'font-size':'35px'}">
+                                        M
+                                        <i class="{{getContact(pr).icon}}"></i>
+                                    </b> </a>
+                            </ng-container>
+                            <ng-container *ngIf="getContact(pr).nombre === 'PAGINA WEB'">
+                                <a href="{{pr.value}}" target="_blank" class="btn  "
+                                    [style]=" {'color':getColor(item.colores,'P')}">
+                                    <b
+                                        [style]="{ 'color':getColor('S',item.colores), 'margin-right': '10px', 'font-size':'35px'}">
+                                        PW
+                                        <i class="{{getContact(pr).icon}}"></i>
+                                    </b>{{pr.value}}</a>
+                            </ng-container>
+                            <ng-container *ngIf="getContact(pr).nombre === 'WHATSAPP'">
+                                <a href="https://api.whatsapp.com/send?phone={{pr.value}}&text=Hola%20quiero%20información"
+                                    target="_blank" class="btn  " [style]=" {'color':getColor(item.colores,'P')}">
+                                    <b
+                                        [style]="{ 'color':getColor('S',item.colores), 'margin-right': '10px', 'font-size':'35px'}">
+                                        W
+                                        <i class="{{getContact(pr).icon}}"></i>
+
+                                    </b></a>
+                            </ng-container>
+
+                        </div>
+                    </div>
+
+                </div> -->
+            <!--      <div class="row mt-2">
+                    <div class="carrucel">
+
+                        <div class="item-market pointer" *ngFor="let ct of item.contactos;let i =index">
+
+                            <h5 class="card-title">{{getContact(item).nombre}}</h5>
+                            <ng-container *ngIf="getContact(item).nombre === 'DIRECCIÓN'">
+                                <a href="{{proveedor.ubicacion}}" target="_blank" class="btn  "
+                                    [style]=" {'color':getColor('P',proveedor.colores)}">
+                                    <b
+                                        [style]="{ 'color':getColor('S',proveedor.colores),' margin-right': '10px', 'font-size':'35px'}">
+                                        <i class="{{getContact(item).icon}}"></i>
+                                    </b> </a>
+                            </ng-container>
+                            <ng-container *ngIf="getContact(item).nombre === 'TELÉFONO'">
+                                <a href="tel:+{{item.value}}" class="btn  "
+                                    [style]=" {'color':getColor('P',proveedor.colores)}" alt="+{{item.value}}">
+                                    <b
+                                        [style]="{ 'color':getColor('S',proveedor.colores), 'margin-right':'10px', 'font-size':'35px'}">
+                                        <i class="{{getContact(item).icon}}"></i>
+                                    </b> </a>
+                            </ng-container>
+                            <ng-container *ngIf="getContact(item).nombre === 'MAIL'">
+                                <a href="mailto:{{item.value}}" class="btn  "
+                                    [style]=" {'color':getColor('P',proveedor.colores)}">
+                                    <b
+                                        [style]=" {'color':getColor('S',proveedor.colores), 'margin-right': '10px', 'font-size':'35px'}">
+                                        <i class="{{getContact(item).icon}}"></i>
+                                    </b> </a>
+                            </ng-container>
+                            <ng-container *ngIf="getContact(item).nombre === 'PAGINA WEB'">
+                                <a href="{{item.value}}" target="_blank" class="btn  "
+                                    [style]=" {'color':getColor('P',proveedor.colores)}">
+                                    <b
+                                        [style]="{ 'color':getColor('S',proveedor.colores), 'margin-right': '10px', 'font-size':'35px'}">
+                                        <i class="{{getContact(item).icon}}"></i>
+                                    </b>{{item.value}}</a>
+                            </ng-container>
+                            <ng-container *ngIf="getContact(item).nombre === 'WHATSAPP'">
+                                <a href="https://api.whatsapp.com/send?phone={{item.value}}&text=Hola%20quiero%20información"
+                                    target="_blank" class="btn  " [style]=" {'color':getColor('P',proveedor.colores)}">
+                                    <b
+                                        [style]="{ 'color':getColor('S',proveedor.colores), 'margin-right': '10px', 'font-size':'35px'}">
+                                        <i class="{{getContact(item).icon}}"></i>
+                                    </b></a>
+                            </ng-container>
+
+                         
+
+
+                        </div>
+
+
+
+                    </div>
+
+
+                </div> -->
+            <!--  <div class="row mt-2">
+                    <div class="col-12 upper">
+                        <p style="color:var(--cPrimary); font-size: 20px; font-weight: 900;">{{getPrecio(item)[0]
+                            |currency : 'USD'
+                            : 'symbol' : '1.0-0'}} -
+                            {{getPrecio(item)[1] |
+                            currency : 'USD' : 'symbol' : '1.0-0'}}</p>
+                        <b>Descripción:</b>
+                        <p style="text-align: justify; font-size: 13px;">
+                            {{item.descripcion | slice:0:50}} ...
+                        </p>
+                    </div>
+
+                </div>
+                <div class="row mt-2" style="    margin-bottom: 50px;">
+                    <div class="col-12" *ngIf="item.idealTo.length>0">
+                        <b>Ideal para:</b>
+                        <ul style="list-style: none; padding: 0; ">
+                            <li class="list-market upper" style=" padding: 0; margin: 0;"
+                                *ngFor="let ideal of  item.idealTo">
+                                {{ideal.nombre}}
+                            </li>
+
+
+
+
+                        </ul>
+                    </div>
+                    <div class="col-12 upper  " *ngIf="item.idealTo.length==0">
+                        <b>Ideal para cualquier evento</b>
+                    </div>
+
+                </div>
+                <div style=" 
+    bottom: 0px;
+    left: 0px;
+    width: 100%; position: absolute; bottom: 2%;">
+
+                    <div class="col-12 text-center" style="font-size: 10px; color :#ffd05b">
+                        <b class="col-12 text-center text-black-50" *ngIf="item.promedioCalificacion ==0">
+                            Sin valoración
+                        </b>
+
+                        <i class="bi bi-star-fill m-2" *ngIf="item.promedioCalificacion>1"></i>
+                        <i class="bi bi-star-fill m-2" *ngIf="item.promedioCalificacion>2"></i>
+                        <i class="bi bi-star-fill m-2" *ngIf="item.promedioCalificacion>3"></i>
+                        <i class="bi bi-star-fill m-2" *ngIf="item.promedioCalificacion>4  "></i>
+                        <i class="bi bi-star-fill m-2" *ngIf="item.promedioCalificacion==5"></i>
+
+
+
+                    </div>
+                    <div class="col-12 text-center">
+                       
+
+                        <h5 class="btn   m-2 pointer "
+                            [style]="{'font-size': '.8rem', 'color':CW+'!important', 'background-color':cP+ '!important'}"
+                            routerLink="/core/vista-producto/{{item.uid}}">
+                            Vista previa
+
+                        </h5>
+                    </div>
+                   
+                </div> -->
+        </div>
+
+
+
+
+    </div>
+    <div class="col-12 mt-5 text-center">
+        <pagination-controls (pageChange)="p = $event" autoHide="true" previousLabel="Anterior" nextLabel="Siguiente"
+            responsive="true"></pagination-controls>
+
+    </div>
+</div>
+
+<div class="row " *ngIf="!loading && proveedores.length ==0">
+    <h5>Sin proveedores</h5>
+
+</div>

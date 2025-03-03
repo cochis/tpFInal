@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { AuthService } from '../../services/auth.service';
 import { MetaService } from 'src/app/core/services/meta.service';
+import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -22,19 +23,22 @@ export class LoginComponent {
     private readonly router: Router,
     private authService: AuthService,
     private functionsService: FunctionsService,
-    private metaService: MetaService
+    private metaService: MetaService,
+    private title: Title,
   ) {
-
+    this.metaService.createCanonicalURL()
+    let t: string = 'My Ticket Party | Login';
+    this.title.setTitle(t);
     let data = {
       title: 'Ticket Party | Login ',
       description:
         'Ingresa a nuestra aplicación con usuario y contraseña',
       keywords:
-        'Eventos sociales públicos privados gestión tiempo real invitados invitaciones personalizadas código QR notificaciones correo electrónico WhatsApp push notification',
+        'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in',
       slug: 'auth/login',
       colorBar: '#13547a',
       image:
-        window.location.origin + '/assets/img/logo/l_100.png',
+        window.location.origin + '/assets/images/qr.jpeg',
     }
     this.metaService.generateTags(data)
   }

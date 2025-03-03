@@ -64,19 +64,6 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
     private tokenPushService: TokenPushsService,
     private metaService: MetaService
   ) {
-    this.metaService.createCanonicalURL()
-    let data = {
-      title: 'Ticket Party  | Mis Fiestas',
-      description:
-        'Visualiza tus eventos en tiempo real, cuantas invitaciones creaste, cuantos lugares tienes disponibles u ocupados, cuantos confirmaron  cuantos están en el evento o puedes enviar las notificaciones push.',
-      keywords:
-        'Eventos sociales públicos privados gestión tiempo real invitados invitaciones personalizadas código QR notificaciones correo electrónico WhatsApp push notification',
-      slug: 'mis-fiestas',
-      colorBar: '#13547a',
-      image:
-        window.location.origin + '/assets/img/logo/l_100.png',
-    }
-    this.metaService.generateTags(data)
 
     this.loading = true
     this.getUsuario(this.uid)

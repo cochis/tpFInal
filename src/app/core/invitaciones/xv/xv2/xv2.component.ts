@@ -64,7 +64,7 @@ export class Xv2Component {
     private tokenPushService: TokenPushsService,
     private metaService: MetaService,
   ) {
-    this.metaService.createCanonicalURL();
+
     this.init()
     this.restParty()
   }

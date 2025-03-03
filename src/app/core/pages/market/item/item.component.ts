@@ -93,4 +93,66 @@ export class ItemComponent implements AfterViewInit {
       return 'S'
     }
   }
+
+
+
+  mayorMenor(items) {
+    let mayor = 0
+    let menor = items[0].precio
+
+    for (var i = 0; i < items.length; i++) {
+
+      if (i == 0) {
+
+        menor = items[i].precio
+      }
+      if (mayor < items[i].precio) {
+        mayor = items[i].precio;
+      }
+
+    }
+
+
+
+    for (var i = 0; i < items.length; i++) {
+
+
+      if (items[i].precio < mayor) {
+        menor = items[i].precio;
+      }
+    }
+
+
+    return [menor, mayor]
+  }
+
+
+
+
+  getPrecio(item) {
+    var precios
+
+
+    if (item.isByCantidad) {
+
+      precios = this.mayorMenor(item.cantidades)
+    }
+    if (item.isByColor) {
+
+      precios = this.mayorMenor(item.colores)
+    }
+    if (item.isByService) {
+
+      precios = this.mayorMenor(item.servicios)
+    }
+    if (item.isBySize) {
+
+
+      precios = this.mayorMenor(item.sizes)
+    }
+
+
+    return precios
+  }
+
 }

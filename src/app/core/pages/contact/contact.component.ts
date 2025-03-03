@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { ContactosService } from '../../services/contacto.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FunctionsService } from 'src/app/shared/services/functions.service';
+import { Title } from '@angular/platform-browser';
+import { MetaService } from '../../services/meta.service';
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
@@ -15,7 +17,30 @@ export class ContactComponent {
   constructor(
     private contactoService: ContactosService,
     private fb: FormBuilder,
-    private functionsService: FunctionsService,) {
+    private functionsService: FunctionsService,
+    private metaService: MetaService,
+    private title: Title,
+  ) {
+
+    this.metaService.createCanonicalURL()
+    let t: string = 'My Ticket Party | Contacto';
+    this.title.setTitle(t);
+
+    this.metaService.generateTags({
+      title: 'My Ticket Party | Contacto',
+      description:
+        'Si está buscando un contacto para una empresa de logística que ofrezca invitaciones digitales y un marketplace de servicios y productos para eventos, es importante considerar opciones que se especialicen en estas áreas.',
+      keywords:
+        'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in',
+      slug: 'core/contact',
+      colorBar: '#13547a',
+      image:
+        window.location.origin + '/assets/images/qr.jpeg',
+    });
+
+
+
+
     this.createForm()
   }
 

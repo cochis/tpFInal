@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgxPrintService, PrintOptions } from 'ngx-print';
 import { CargarTipoColors, CargarTipoContactos } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
 import { Proveedor } from 'src/app/core/models/proveedor.model';
 import { TipoColor } from 'src/app/core/models/tipoColor.model';
@@ -14,6 +15,7 @@ import { TipoContactosService } from 'src/app/core/services/tipoContacto.service
 import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { MapsService } from 'src/app/shared/services/maps.service';
 import { environment } from 'src/environments/environment';
+
 @Component({
   selector: 'app-editar-datos',
   templateUrl: './editar-datos.component.html',
@@ -46,6 +48,9 @@ export class EditarDatosComponent {
   viewModal = false
   classModal = 'animate__fadeInLeftBig'
   ContactoP = environment.contactosProveedor
+  CLPR = environment.cProvedores
+  CP: string;
+  CS: string;
   constructor(
     private fb: FormBuilder,
     private functionsService: FunctionsService,
@@ -54,10 +59,20 @@ export class EditarDatosComponent {
     private tipoContactosService: TipoContactosService,
     private fileService: FileService,
     private mapsServices: MapsService,
+    private printService: NgxPrintService
 
   ) {
     this.loading = true
+    this.CLPR.forEach(cl => {
+      if (cl.clave == 'cPrincipalWP') {
 
+        this.CP = cl.value
+
+      } else {
+        this.CS = cl.value
+
+      }
+    });
     this.getCatalogos()
     this.getProveedor(this.uid)
 
@@ -348,11 +363,15 @@ export class EditarDatosComponent {
 
 
   setClave() {
-    let clave = this.form.value.nombre.substring(1, 4) + (this.today.toString().substring(1, 3)) + new Date().getFullYear()
 
-    this.form.patchValue({
-      clave: clave
-    })
+    if (this.form.value.clave == '') {
+
+      let clave = this.form.value.nombre.substring(1, 4) + (this.today.toString().substring(1, 3)) + new Date().getFullYear()
+
+      this.form.patchValue({
+        clave: clave
+      })
+    }
 
 
   }
@@ -504,6 +523,46 @@ export class EditarDatosComponent {
       [e.type]: `${this.MAPURL}?q=${e.lat},${e.lng}&z=${this.MAPZOOM}`
     })
 
+
+  }
+
+  printMe() {
+
+
+
+
+
+    const customPrintOptions: PrintOptions = new PrintOptions({
+
+      printSectionId: 'print-section',
+      // Add any other print options as needed
+    });
+    customPrintOptions.useExistingCss = true
+
+    this.printService.print(customPrintOptions)
+  }
+
+  getColor(type, colors) {
+
+
+    var color = ''
+    if (type === 'P') {
+      colors.forEach(cl => {
+
+        if (cl.tipoColor == this.CP) {
+          color = cl.value
+        }
+      });
+    } else {
+      colors.forEach(cl => {
+
+        if (cl.tipoColor == this.CS) {
+          color = cl.value
+        }
+      });
+    }
+
+    return color
 
   }
 }

@@ -1,11 +1,13 @@
 import { AfterViewInit, Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { error } from 'jquery';
 import { CargarUsuario } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
 import { Boleto } from 'src/app/core/models/boleto.model';
 import { Fiesta } from 'src/app/core/models/fiesta.model';
 import { BoletosService } from 'src/app/core/services/boleto.service';
 import { FiestasService } from 'src/app/core/services/fiestas.service';
+import { MetaService } from 'src/app/core/services/meta.service';
 import { UsuariosService } from 'src/app/core/services/usuarios.service';
 import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { environment } from 'src/environments/environment';
@@ -42,7 +44,25 @@ export class CheckInComponent implements AfterViewInit {
     private boletosService: BoletosService,
     private fiestasService: FiestasService,
     private fb: FormBuilder,
+    private metaService: MetaService,
+    private title: Title,
   ) {
+
+    this.metaService.createCanonicalURL()
+    let t: string = 'My Ticket Party | Check In';
+    this.title.setTitle(t);
+    let data = {
+      title: 'Ticket Party |  Check In ',
+      description:
+        'El "check in" de eventos  permite a los organizadores y participantes gestionar la entrada a un evento de manera eficiente',
+      keywords:
+        'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in',
+      slug: 'core/check-in',
+      colorBar: '#13547a',
+      image:
+        window.location.origin + '/assets/images/qr.jpeg',
+    }
+    this.metaService.generateTags(data)
     this.formInit = this.fb.group({
       tipo: ['', [Validators.required]],
       fiesta: ['', [Validators.required]],

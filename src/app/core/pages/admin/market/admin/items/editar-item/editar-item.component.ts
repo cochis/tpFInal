@@ -2,16 +2,13 @@ import { DOCUMENT } from '@angular/common';
 import { Component, Inject } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+
+import { environment } from 'src/environments/environment';
+
 import { CargarCategoriaItems, CargarImgItem, CargarItem, CargarMonedas, CargarProveedors, CargarTipoColors, CargarTipoContactos, CargarTipoItems, CargarTipoMedias } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
-import { CategoriaItem } from 'src/app/core/models/categoriaItem.model';
-import { ImgItem } from 'src/app/core/models/imgItem.model';
-import { Item } from 'src/app/core/models/item.model';
-import { Moneda } from 'src/app/core/models/moneda.model';
-import { Proveedor } from 'src/app/core/models/proveedor.model';
-import { TipoColor } from 'src/app/core/models/tipoColor.model';
-import { TipoContacto } from 'src/app/core/models/tipoContacto.model';
-import { TipoItem } from 'src/app/core/models/tipoItem.model';
-import { TipoMedia } from 'src/app/core/models/tipoMedia.model';
+
+
+import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { CategoriaItemsService } from 'src/app/core/services/categoriaItem.service';
 import { FileService } from 'src/app/core/services/file.service';
 import { ImgItemsService } from 'src/app/core/services/imgItem.service';
@@ -23,9 +20,17 @@ import { TipoContactosService } from 'src/app/core/services/tipoContacto.service
 import { TipoItemsService } from 'src/app/core/services/tipoItem.service';
 import { TipoMediasService } from 'src/app/core/services/tipoMedia.service';
 
+import { CategoriaItem } from 'src/app/core/models/categoriaItem.model';
+import { ImgItem } from 'src/app/core/models/imgItem.model';
+import { Item } from 'src/app/core/models/item.model';
+import { Moneda } from 'src/app/core/models/moneda.model';
+import { Proveedor } from 'src/app/core/models/proveedor.model';
+import { TipoColor } from 'src/app/core/models/tipoColor.model';
+import { TipoContacto } from 'src/app/core/models/tipoContacto.model';
+import { TipoItem } from 'src/app/core/models/tipoItem.model';
+import { TipoMedia } from 'src/app/core/models/tipoMedia.model';
 
-import { FunctionsService } from 'src/app/shared/services/functions.service';
-import { environment } from 'src/environments/environment';
+
 @Component({
   selector: 'app-editar-item',
   templateUrl: './editar-item.component.html',
@@ -539,6 +544,33 @@ export class EditarItemComponent {
       })
 
   }
+  delProductos(type) {
+    switch (type) {
+      case 'colores':
+        this.colores.value.forEach(i => {
+          this.removeColors(i)
+        });
+        break;
+      case 'cantidades':
+        this.cantidades.value.forEach(i => {
+          this.removeCantidades(i)
+        });
+        break;
+      case 'sizes':
+        this.sizes.value.forEach(i => {
+          this.removeSizes(i)
+        });
+        break;
+      case 'servicios':
+        this.servicios.value.forEach(i => {
+          this.removeServicios(i)
+        });
+        break;
+
+      default:
+        break;
+    }
+  }
   changePrice(type) {
 
     if (this.form.value[type]) {
@@ -551,9 +583,15 @@ export class EditarItemComponent {
             isByService: false,
             isByCantidad: false,
           })
+          this.delProductos('colores')
+          this.delProductos('cantidades')
+          this.delProductos('sizes')
+          this.delProductos('servicios')
+
           this.form.patchValue({
             isSelectedBy: 'isBySize'
           })
+
 
           break;
         case 'isByCantidad':
@@ -563,6 +601,10 @@ export class EditarItemComponent {
             isByService: false,
             isBySize: false,
           })
+          this.delProductos('colores')
+          this.delProductos('cantidades')
+          this.delProductos('sizes')
+          this.delProductos('servicios')
           this.form.patchValue({
             isSelectedBy: 'isByCantidad'
           })
@@ -575,6 +617,10 @@ export class EditarItemComponent {
             isBySize: false,
             isByCantidad: false,
           })
+          this.delProductos('colores')
+          this.delProductos('cantidades')
+          this.delProductos('sizes')
+          this.delProductos('servicios')
           this.form.patchValue({
             isSelectedBy: 'isByService'
           })
@@ -586,6 +632,10 @@ export class EditarItemComponent {
             isByService: false,
             isByCantidad: false,
           })
+          this.delProductos('colores')
+          this.delProductos('cantidades')
+          this.delProductos('sizes')
+          this.delProductos('servicios')
           this.form.patchValue({
             isSelectedBy: 'isByColor'
           })
@@ -602,6 +652,10 @@ export class EditarItemComponent {
           this.form.patchValue({
             isSelectedBy: ' '
           })
+          this.delProductos('colores')
+          this.delProductos('cantidades')
+          this.delProductos('sizes')
+          this.delProductos('servicios')
           break;
       }
     } else {
@@ -612,6 +666,10 @@ export class EditarItemComponent {
         isByService: false,
         isByCantidad: false,
       })
+      this.delProductos('colores')
+      this.delProductos('cantidades')
+      this.delProductos('sizes')
+      this.delProductos('servicios')
       this.form.patchValue({
         isSelectedBy: ' '
       })
@@ -678,6 +736,10 @@ export class EditarItemComponent {
 
             this.setForm(res.itemActualizado)
             this.loading = false
+            let index = 'photo' + (Number(this.photos.length) - 1)
+            setTimeout(() => {
+              this.functionsService.scroolTo(index)
+            }, 500);
           },
             (error) => {
               console.error('error::: ', error);
@@ -1131,6 +1193,9 @@ export class EditarItemComponent {
       this.loading = false
     }) */
   }
+
+
+
   async crearItemImg(img: any) {
     this.imgItemsService.crearImgItem(img).subscribe(async (resp: any) => {
 

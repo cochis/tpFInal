@@ -138,6 +138,9 @@ import { MisCotizacionesComponent } from './pages/admin/cotizaciones/mis-cotizac
 import { MiCotizacionComponent } from './pages/admin/cotizaciones/mi-cotizacion/mi-cotizacion.component';
 import { EditarDatosComponent } from './pages/admin/market/admin/proveedors/editar-datos/editar-datos.component';
 import { CalificacionComponent } from './pages/admin/market/admin/items/calificacion/calificacion.component';
+import { ProveedoresComponent } from './pages/market/views/proveedores/proveedores.component';
+import { ProveedoresItemsComponent } from './pages/market/views/proveedores/proveedores-items/proveedores-items.component';
+import { PrintQrComponent } from './pages/admin/market/admin/proveedors/print-qr/print-qr.component';
 
 
 
@@ -278,7 +281,10 @@ import { CalificacionComponent } from './pages/admin/market/admin/items/califica
     MisCotizacionesComponent,
     MiCotizacionComponent,
     EditarDatosComponent,
-    CalificacionComponent
+    CalificacionComponent,
+    ProveedoresComponent,
+    ProveedoresItemsComponent,
+    PrintQrComponent
 
   ],
   imports: [
@@ -290,8 +296,7 @@ import { CalificacionComponent } from './pages/admin/market/admin/items/califica
     SharedModule,
     QRCodeModule,
     NgxPaginationModule,
-    NgxCurrencyDirective
-
+    NgxCurrencyDirective,
   ],
   exports: [MarketItemsComponent]
 })
