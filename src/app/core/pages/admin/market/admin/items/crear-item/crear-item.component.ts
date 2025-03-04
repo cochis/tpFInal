@@ -107,6 +107,8 @@ export class CrearItemComponent {
       isByCantidad: [false],
       idealTo: this.fb.array([]),
       calificacion: [0],
+      envios: [false],
+      descripcionEnvios: [''],
 
       sizes: this.fb.array([]),
       colores: this.fb.array([]),
@@ -136,6 +138,8 @@ export class CrearItemComponent {
         isByCantidad: [(item.isByCantidad) ? item.isByCantidad : false],
         idealTo: this.fb.array([]),
         calificacion: [(item.calificacion) ? item.calificacion : 0],
+        envios: [(item.envios) ? item.envios : false],
+        descripcionEnvios: [(item.descripcionEnvios) ? item.descripcionEnvios : ''],
         sizes: this.fb.array([]),
         colores: this.fb.array([]),
         servicios: this.fb.array([]),

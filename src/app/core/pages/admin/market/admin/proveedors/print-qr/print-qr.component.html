@@ -1,27 +1,21 @@
-<div class="row" *ngIf="proveedor" style="display: none;">
-
-    <div id="print-section">
-
-
-        <div class="container-fluid">
-            <header class="row  ">
-
-
-                <div class="  col-md-8  m-auto text-center mt-5">
+<div class="row" *ngIf="proveedor">
+    <div id="print-section" style="display: none;">
+        <div class="container">
+            <header class="row mt-5  ">
+                <div class="  col-md-8  m-auto text-center ">
+                    <!--      [style]="{'background': hexToRgbA(proveedor.colores[0].value),
+                    'padding': 10+'px','border-radius':20+'px !important' }" -->
                     <img src="{{url}}/upload/proveedores/{{proveedor.img}}"
-                        style=" width: 100%; max-width: 400px; line-height: 140px;display:inline-block ; margin-top: 25px;;"
-                        alt="{{proveedor.nombre}}">
-
+                        style=" width: 100%; max-width: 450px; padding: 20px" alt="{{proveedor.nombre}}">
                 </div>
-
             </header>
-
         </div>
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
-
                 <div class="col-12 text-center">
-
+                    <h2 [style]="{'color':proveedor.colores[0].value, 'font-weight':'800', 'margin-top':'25px'}">
+                        Ve nuestra pagina
+                    </h2>
                     <div class="qrcodeImage">
                         <qrcode [qrdata]="urlLink" [allowEmptyString]="true" [ariaLabel]="proveedor.nombre"
                             [cssClass]="'center'" [colorDark]="proveedor.colores[0].value" [colorLight]="'#ffffffff'"
@@ -42,6 +36,7 @@
     <div class="col-6 ma text-center">
 
         <button printSectionId="print-section" type="button" class="btn but" printSectionId="ticket"
-            styleSheetFile="assets/css/bootstrap.min.css" ngxPrint (click)="printMe()">Imprimir</button>
+            styleSheetFile="assets/css/bootstrap.min.css" ngxPrint (click)="printMe()" ngxPrint>Hoja de presentación
+        </button>
     </div>
 </div>

@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CargarTipoColors, CargarTipoContactos } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
 import { Proveedor } from 'src/app/core/models/proveedor.model';
+import { Salon } from 'src/app/core/models/salon.model';
 import { TipoColor } from 'src/app/core/models/tipoColor.model';
 import { TipoContacto } from 'src/app/core/models/tipoContacto.model';
 import { FileService } from 'src/app/core/services/file.service';
 
 import { ProveedorsService } from 'src/app/core/services/proveedor.service';
+import { SalonsService } from 'src/app/core/services/salon.service';
 import { TipoColorsService } from 'src/app/core/services/tipoColores.service';
 import { TipoContactosService } from 'src/app/core/services/tipoContacto.service';
 
@@ -28,6 +30,7 @@ export class CrearProvedorComponent {
   msnOk: boolean = false
   tipoContactos: TipoContacto[]
   tipoColores: TipoColor[]
+  salon: Salon
   url = environment.base_url
   public imagenSubir!: File
   public imgTemp: any = undefined
@@ -37,6 +40,7 @@ export class CrearProvedorComponent {
     private functionsService: FunctionsService,
     private proveedorsService: ProveedorsService,
     private tipoColoresService: TipoColorsService,
+    private salonsService: SalonsService,
     private tipoContactosService: TipoContactosService,
     private fileService: FileService,
 
@@ -106,8 +110,10 @@ export class CrearProvedorComponent {
     })
   }
   onSubmit() {
-    this.loading = true
-    this.submited = true
+    /*    this.loading = true
+       this.submited = true */
+
+
 
     if (this.form.valid) {
       this.form.value.nombre = this.form.value.nombre.toUpperCase().trim()

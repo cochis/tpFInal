@@ -8,7 +8,8 @@ import { ProveedorsService } from '../../services/proveedor.service';
 import { MetaService } from '../../services/meta.service';
 import { Boleto } from '../../models/boleto.model';
 import { CargarUsuario } from '../../interfaces/cargar-interfaces.interfaces';
-
+import Swal from 'sweetalert2';
+import { ItemsService } from '../../services/item.service';
 
 @Component({
   selector: 'app-home',
@@ -36,6 +37,7 @@ export class HomeComponent implements AfterViewInit {
     private proveedorsService: ProveedorsService,
     private boletosService: BoletosService,
     private metaService: MetaService,
+    private itemsService: ItemsService,
     private title: Title,
 
   ) {
@@ -91,15 +93,70 @@ export class HomeComponent implements AfterViewInit {
         (error) => {
           this.functionsService.alertError(error, 'Home')
         })
-    } else if (role == this.PRV) {
-      this.proveedorsService.cargarProveedorsByCreador(this.uid).subscribe(resp => {
-        if (resp.proveedors.length == 0) {
-          this.functionsService.navigateTo('core/proveedores/editar-datos')
+    }
+    else if (role == this.PRV) {
+
+      this.usuariosService.cargarUsuarioById(this.uid).subscribe((resp: CargarUsuario) => {
+
+
+        if (resp.usuario.salon.length < 1 || resp.usuario.salon == undefined || resp.usuario.salon == null) {
+
+          Swal.fire({
+            title: "¿Tienes alguna ubicación?  ",
+            showDenyButton: true,
+            showCancelButton: false,
+            confirmButtonText: "Si",
+            confirmButtonColor: "#13547a",
+            denyButtonText: `No`,
+            denyButtonColor: "#81d0c7",
+          }).then((result) => {
+
+
+            if (result.isConfirmed) {
+
+              this.functionsService.navigateTo('core/salones/registrar-salon')
+
+
+
+            } else if (result.isDenied) {
+
+              this.proveedorsService.cargarProveedorsByCreador(this.uid).subscribe(resp => {
+                if (resp.proveedors.length == 0) {
+                  this.functionsService.navigateTo('core/proveedores/editar-datos')
+                }
+
+              })
+            }
+          });
+
         }
 
-      })
+        /* if (resp.usuario.proveedor.length < 1 || resp.usuario.proveedor == undefined || resp.usuario.proveedor == null) {
+          this.functionsService.navigateTo('core/proveedores/editar-datos')
+        } */
+
+
+      },
+        (error) => {
+          this.functionsService.alertError(error, 'Home')
+        })
+
+
+
+
+
+
+
+
     }
   }
+
+
+
+
+
+
+
   scan() {
 
 

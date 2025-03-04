@@ -141,6 +141,9 @@ import { CalificacionComponent } from './pages/admin/market/admin/items/califica
 import { ProveedoresComponent } from './pages/market/views/proveedores/proveedores.component';
 import { ProveedoresItemsComponent } from './pages/market/views/proveedores/proveedores-items/proveedores-items.component';
 import { PrintQrComponent } from './pages/admin/market/admin/proveedors/print-qr/print-qr.component';
+import { VistaTipoUbicacionesComponent } from './pages/admin/tipo-ubicaciones/vista-tipo-ubicaciones/vista-tipo-ubicaciones.component';
+import { CrearTipoUbicacionComponent } from './pages/admin/tipo-ubicaciones/crear-tipo-ubicacion/crear-tipo-ubicacion.component';
+import { EditarTipoUbicacionComponent } from './pages/admin/tipo-ubicaciones/editar-tipo-ubicacion/editar-tipo-ubicacion.component';
 
 
 
@@ -284,7 +287,10 @@ import { PrintQrComponent } from './pages/admin/market/admin/proveedors/print-qr
     CalificacionComponent,
     ProveedoresComponent,
     ProveedoresItemsComponent,
-    PrintQrComponent
+    PrintQrComponent,
+    VistaTipoUbicacionesComponent,
+    CrearTipoUbicacionComponent,
+    EditarTipoUbicacionComponent
 
   ],
   imports: [

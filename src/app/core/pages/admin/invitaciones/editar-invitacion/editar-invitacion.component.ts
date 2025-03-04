@@ -299,7 +299,7 @@ export class EditarInvitacionComponent {
           resolve(this.userLocation)
         },
         (err) => {
-          // console.error('err::: ', err);
+          console.error('err::: ', err);
           this.functionsService.alertError(err, 'error')
         }
       )
@@ -316,7 +316,7 @@ export class EditarInvitacionComponent {
       this.functionsService.setLocal('tipoInvitacion', this.fiesta.invitacion)
     },
       (error: any) => {
-        // console.error('Error', error)
+        console.error('Error', error)
         this.loading = false
         this.functionsService.alert('Fiesta', 'Por favor intente mas tarde', 'error')
       })
@@ -1397,7 +1397,7 @@ export class EditarInvitacionComponent {
       }
     },
       (error) => {
-        // console.error('Error', error)
+        console.error('Error', error)
         this.functionsService.alertError(error, 'Invitacion')
       })
   }
@@ -1698,7 +1698,7 @@ export class EditarInvitacionComponent {
               }, 800);
             },
             (err) => {
-              // console.error('Error', err)
+              console.error('Error', err)
               this.functionsService.alertError(err, 'Error')
             },
           )
@@ -1756,7 +1756,7 @@ export class EditarInvitacionComponent {
             }, 800);
           },
           (err) => {
-            // console.error('Error', err)
+            console.error('Error', err)
             this.functionsService.alertError(err, 'Error')
           },
         )
@@ -1796,7 +1796,7 @@ export class EditarInvitacionComponent {
               }, 800);
             },
             (err) => {
-              // console.error('Error', err)
+              console.error('Error', err)
               this.functionsService.alertError(err, 'Error')
             },
           )
@@ -1823,7 +1823,7 @@ export class EditarInvitacionComponent {
             }, 800);
           },
           (err) => {
-            // console.error('Error', err)
+            console.error('Error', err)
             this.functionsService.alertError(err, 'Error')
           },
         )

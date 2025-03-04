@@ -39,6 +39,7 @@ export class BusquedasService {
           user.img,
           user.role,
           user.salon,
+          user.proveedor,
           user.cantidadFiestas,
           user.cantidadGalerias,
           user.paqueteActual,
@@ -157,6 +158,7 @@ export class BusquedasService {
           sln.email,
           sln.ubicacionGoogle,
           sln.img,
+          sln.tipoUbicacion,
 
           sln.usuarioCreated,
           sln.activated,

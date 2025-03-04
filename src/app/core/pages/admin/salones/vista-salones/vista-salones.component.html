@@ -17,10 +17,13 @@
                     <div class="row mt-3">
                         <div class="row  text-center">
                             <div class="col-12 col-md-6 mt-3  text-center">
-                                <button class="btn but   " (click)="newSalon()" *ngIf="rol==SLN ">Nuevo centro de
+                                <button class="btn but   " (click)="newSalon()" *ngIf="rol.includes(SLN) ">Nuevo centro
+                                    de
                                     eventos</button>
-                                <button class="btn but   " (click)="newSalon()" *ngIf="rol==ADM ">Nuevo centro</button>
-                                <button class="btn but   " (click)="newSalon()" *ngIf="rol==ANF">Nueva
+                                <button class="btn but   " (click)="newSalon()" *ngIf="rol.includes(ADM) ">Nuevo
+                                    centro</button>
+                                <button class="btn but   " (click)="newSalon()"
+                                    *ngIf="rol.includes(ANF) || rol.includes(PRV)">Nueva
                                     ubicación</button>
 
                             </div>
@@ -54,7 +57,7 @@
                                 <th class="upper">teléfono</th>
                                 <th class="upper">correo electrónico</th>
                                 <th class="upper">imagen</th>
-                           
+
                                 <th class="upper">Creador</th>
                                 <th class="upper">Activado</th>
                                 <th class="upper">creación</th>
@@ -118,7 +121,7 @@
 
 
                                     </td>
-                                   
+
                                     <td class="upper">{{salon.usuarioCreated?salon.usuarioCreated.email:''}}</td>
 
                                     <td>

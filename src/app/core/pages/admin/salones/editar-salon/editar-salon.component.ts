@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { CargarPaises, CargarRoles, CargarSalon, CargarSalons, CargarUsuario } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
+import { CargarPaises, CargarRoles, CargarSalon, CargarSalons, CargarTipoUbicaciones, CargarUsuario } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
 import { Role } from 'src/app/core/models/role.model';
 import { Salon } from 'src/app/core/models/salon.model';
 import { Usuario } from 'src/app/core/models/usuario.model';
@@ -18,6 +18,10 @@ import { PaisesService } from 'src/app/core/services/pais.service';
 import { Cp } from 'src/app/core/models/cp.model';
 import { Pais } from 'src/app/core/models/pais.model';
 import { CpsService } from 'src/app/core/services/cp.service';
+import { TipoUbicacion } from 'src/app/core/models/tipoUbicacion.model';
+import { TipoUbicacionesService } from 'src/app/core/services/tipoUbicacion.service';
+import { ProveedorsService } from 'src/app/core/services/proveedor.service';
+import { Proveedor } from 'src/app/core/models/proveedor.model';
 @Component({
   selector: 'app-editar-salon',
   templateUrl: './editar-salon.component.html',
@@ -37,7 +41,7 @@ export class EditarSalonComponent {
   id!: string
   edit!: string
   url = environment.base_url
-
+  role = this.functionsService.getLocal('role')
   submited: boolean = false
   sendCoords: any = undefined
   MAPURL = environment.mapsGoogleUrl
@@ -47,6 +51,15 @@ export class EditarSalonComponent {
   estados = []
   municipios = []
   colonias = []
+  proveedores: Proveedor[]
+  roles: Role[]
+  uid = this.functionsService.getLocal('uid')
+  ADM = environment.admin_role
+  SLN = environment.salon_role
+  URS = environment.user_role
+  ANF = environment.anf_role
+  PRV = environment.prv_role
+  tipoUbicaciones: TipoUbicacion[]
   constructor(
     private fb: FormBuilder,
     private functionsService: FunctionsService,
@@ -58,9 +71,12 @@ export class EditarSalonComponent {
     private mapService: MapsService,
     private paisesService: PaisesService,
     private cpsService: CpsService,
+    private tipoUbicacionesServices: TipoUbicacionesService,
+    private rolesService: RolesService,
+    private proveedorsService: ProveedorsService,
   ) {
-    this.loading = true
     this.getCatalogos()
+    this.loading = true
     this.id = this.route.snapshot.params['id']
 
     this.edit = this.route.snapshot.params['edit']
@@ -81,6 +97,7 @@ export class EditarSalonComponent {
 
 
 
+
       setTimeout(() => {
 
         this.setForm(this.salon)
@@ -89,7 +106,7 @@ export class EditarSalonComponent {
     },
       (error: any) => {
 
-        this.functionsService.alertError(error, 'Salones')
+        this.functionsService.alertError(error, 'Ubicaciones')
         this.loading = false
 
       })
@@ -120,6 +137,7 @@ export class EditarSalonComponent {
       email: [this.functionsService.getLocal('email'), [Validators.required, Validators.email]],
       ubicacionGoogle: [''],
       img: [''],
+      tipoUbicacion: [''],
       activated: [false],
       dateCreated: [''],
       lastEdited: [this.today],
@@ -156,6 +174,7 @@ export class EditarSalonComponent {
       email: [salon.email, [Validators.required, Validators.email]],
       ubicacionGoogle: [salon.ubicacionGoogle ? salon.ubicacionGoogle : ''],
       img: [this.salon.img],
+      tipoUbicacion: [this.salon.tipoUbicacion],
       activated: [true],
       dateCreated: [salon.dateCreated],
       lastEdited: [this.today],
@@ -175,7 +194,7 @@ export class EditarSalonComponent {
       || this.form.value.telefono === ''
       || this.form.value.email === ''
     ) {
-      this.functionsService.alertForm('Salones')
+      this.functionsService.alertForm('Ubicaciones')
       this.loading = false
       return
     }
@@ -192,55 +211,59 @@ export class EditarSalonComponent {
         img: this.salon.img
 
 
+
       }
 
       this.salonesService.actualizarSalon(this.salon).subscribe((resp: any) => {
-        this.fiestasService.cargarFiestasBySalon(this.salon.uid).subscribe((res: any) => {
-          if (res.fiestas.length == 0) {
-            this.functionsService.alertUpdate('Salon')
-            this.functionsService.navigateTo('core/salones/vista-salones')
-          } else {
-            let fsts: any = this.functionsService.getActives(res.fiestas)
-            fsts.forEach(fst => {
-              this.invitacionesServices.cargarInvitacionByFiesta(fst.uid).subscribe(((r: any) => {
-                if (r.invitacion) {
-                  let inv = {
-                    ...r.invitacion,
-                    data: {
 
-                      ...r.invitacion.data,
-                      donde3AddressUbicacion: this.salon.ubicacionGoogle,
-                      donde3Address: this.salon.direccion,
-                      donde3Img: this.salon.img,
-                      donde3Text: this.salon.nombre,
-                      donde3Title: this.salon.nombre,
-                    },
-                    fiesta: (typeof (r.invitacion.fiesta) == 'object') ? r.invitacion.fiesta._id : r.invitacion.fiesta,
-                    usuarioCreated: (typeof (r.invitacion.usuarioCreated) == 'object') ? r.invitacion.usuarioCreated._id : r.invitacion.usuarioCreated
-                  }
+        if (this.role !== this.PRV) {
 
-                  this.invitacionesServices.actualizarInvitacion(inv).subscribe(ri => {
+          this.fiestasService.cargarFiestasBySalon(this.salon.uid).subscribe((res: any) => {
+            if (res.fiestas.length == 0) {
+              this.functionsService.alertUpdate('Ubicación')
+              this.functionsService.navigateTo('core/salones/vista-salones')
+            } else {
+              let fsts: any = this.functionsService.getActives(res.fiestas)
+              fsts.forEach(fst => {
+                this.invitacionesServices.cargarInvitacionByFiesta(fst.uid).subscribe(((r: any) => {
+                  if (r.invitacion) {
+                    let inv = {
+                      ...r.invitacion,
+                      data: {
 
-                    this.functionsService.alertUpdate('Salon e Invitaciones')
+                        ...r.invitacion.data,
+                        donde3AddressUbicacion: this.salon.ubicacionGoogle,
+                        donde3Address: this.salon.direccion,
+                        donde3Img: this.salon.img,
+                        donde3Text: this.salon.nombre,
+                        donde3Title: this.salon.nombre,
+                      },
+                      fiesta: (typeof (r.invitacion.fiesta) == 'object') ? r.invitacion.fiesta._id : r.invitacion.fiesta,
+                      usuarioCreated: (typeof (r.invitacion.usuarioCreated) == 'object') ? r.invitacion.usuarioCreated._id : r.invitacion.usuarioCreated
+                    }
+
+                    this.invitacionesServices.actualizarInvitacion(inv).subscribe(ri => {
+
+                      this.functionsService.alertUpdate('Ubicación e Invitaciones')
+                      this.functionsService.navigateTo('core/salones/vista-salones')
+
+
+                    })
+                    this.functionsService.alertUpdate('Ubicación')
                     this.functionsService.navigateTo('core/salones/vista-salones')
 
+                  } else {
+                    this.functionsService.alertUpdate('Ubicación')
+                    this.functionsService.navigateTo('core/salones/vista-salones')
+                  }
 
-                  })
-                  this.functionsService.alertUpdate('Salon')
-                  this.functionsService.navigateTo('core/salones/vista-salones')
-
-                } else {
-                  this.functionsService.alertUpdate('Salon')
-                  this.functionsService.navigateTo('core/salones/vista-salones')
-                }
-
-              }))
+                }))
 
 
 
 
-            });
-          }
+              });
+            }
 
 
 
@@ -249,7 +272,20 @@ export class EditarSalonComponent {
 
 
 
-        })
+          })
+        } else {
+          this.proveedorsService.cargarProveedorsByCreador(this.uid).subscribe(resp => {
+
+
+            if (resp.proveedors.length == 0) {
+              this.functionsService.navigateTo('core/proveedores/editar-datos')
+            } else {
+
+              this.functionsService.navigateTo('/')
+            }
+
+          })
+        }
 
 
 
@@ -259,14 +295,14 @@ export class EditarSalonComponent {
         (error) => {
 
 
-          this.functionsService.alertError(error, 'Salones')
+          this.functionsService.alertError(error, 'Ubicaciones')
           this.loading = true
 
 
         })
     } else {
 
-      this.functionsService.alertForm('Salones')
+      this.functionsService.alertForm('Ubicaciones')
       this.loading = false
 
       return console.info('Please provide all the required values!');
@@ -303,7 +339,7 @@ export class EditarSalonComponent {
 
           this.salon.img = img
 
-          this.functionsService.alert('Salon', 'Imagen actualizada', 'success')
+          this.functionsService.alert('Ubicación', 'Imagen actualizada', 'success')
         },
         (err) => {
 
@@ -311,6 +347,12 @@ export class EditarSalonComponent {
 
         },
       )
+  }
+  getRolClave(clave) {
+
+    let res = this.roles.find(element => element.clave == clave);
+
+    return res.uid
   }
   showCoordenadas(e) {
 
@@ -352,9 +394,28 @@ export class EditarSalonComponent {
       this.loading = false
     },
       (error: any) => {
-        // console.error('Error', error)
+        console.error('Error', error)
         this.functionsService.alertError(error, 'Centro de eventos (Países)')
         this.loading = false
+      })
+    this.tipoUbicacionesServices.cargarTipoUbicacionesAll().subscribe((resp: CargarTipoUbicaciones) => {
+      this.tipoUbicaciones = resp.tipoUbicaciones
+
+
+
+    },
+      (error: any) => {
+        console.error('Error', error)
+        this.functionsService.alertError(error, 'Tipo Ubicaciones')
+        this.loading = false
+      })
+    this.rolesService.cargarRolesInit().subscribe((resp: CargarRoles) => {
+      this.roles = resp.roles
+
+    },
+      (error) => {
+        console.error('error::: ', error);
+        this.functionsService.alertError(error, 'Registro')
       })
 
 
@@ -432,7 +493,7 @@ export class EditarSalonComponent {
 
       },
         (error: any) => {
-          // console.error('Error', error)
+          console.error('Error', error)
           this.functionsService.alertError(error, 'CPs')
           this.loading = false
         })

@@ -47,8 +47,15 @@ export class PrintQrComponent {
         // Add any other print options as needed
       });
       customPrintOptions.useExistingCss = true
+      customPrintOptions.printTitle = this.proveedor.nombre
+      /*    customPrintOptions.previewOnly = true  */
+
+
+
+
 
       this.printService.print(customPrintOptions)
     }, 500);
   }
+
 }

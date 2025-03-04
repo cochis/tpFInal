@@ -1,6 +1,8 @@
 import { AfterViewInit, Component, Input } from '@angular/core';
-import { CargarTipoMedias } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
+import { CargarSalons, CargarTipoMedias } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
+import { Salon } from 'src/app/core/models/salon.model';
 import { TipoMedia } from 'src/app/core/models/tipoMedia.model';
+import { SalonsService } from 'src/app/core/services/salon.service';
 import { TipoMediasService } from 'src/app/core/services/tipoMedia.service';
 import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { environment } from 'src/environments/environment';
@@ -22,9 +24,11 @@ export class ItemComponent implements AfterViewInit {
   PRODUCTO = environment.tiProducto
   SERVICIO = environment.tiServicio
   url = environment.base_url
+  salons: Salon[]
   constructor(
     private tipoMediasService: TipoMediasService,
     private functionsService: FunctionsService,
+    private salonsService: SalonsService,
   ) {
     this.loading = true
     this.getCatalogos()
@@ -39,13 +43,47 @@ export class ItemComponent implements AfterViewInit {
 
     },
       (error) => {
-        // console.error('error::: ', error);
+        console.error('error::: ', error);
         this.functionsService.alertError(error, 'Tipo de medios')
       })
+
+
+    this.salonsService.cargarSalonsAll().subscribe((res: CargarSalons) => {
+      this.salons = res.salons
+    })
+
+  }
+
+
+  getUbicacionProveedor(id, type) {
+    if (id && type && this.salons) {
+
+      let res = this.salons.find(element => element.uid == id);
+
+      switch (type) {
+        case 'P':
+          return res.pais
+          break;
+        case 'E':
+          return res.estado
+          break;
+        case 'C':
+          return res.coloniaBarrio
+          break;
+
+        default:
+          return ''
+          break;
+      }
+    } else {
+      return ''
+    }
 
   }
   ngAfterViewInit(): void {
     setTimeout(() => {
+      ;
+
 
       this.loading = false
       this.item.photos.sort(function (x, y) {

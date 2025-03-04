@@ -10,6 +10,8 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { TipoMediasService } from 'src/app/core/services/tipoMedia.service';
 import { TipoMedia } from 'src/app/core/models/tipoMedia.model';
 import { CargarTipoMedias } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
+import { SalonsService } from 'src/app/core/services/salon.service';
+import { Salon } from 'src/app/core/models/salon.model';
 @Component({
   selector: 'app-single-product',
   templateUrl: './single-product.component.html',
@@ -48,6 +50,7 @@ export class SingleProductComponent {
   ContactoP = environment.contactosProveedor
   isMap = false
   tpFile = ''
+  salon: Salon
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -55,7 +58,8 @@ export class SingleProductComponent {
     private fb: FormBuilder,
     private functionsService: FunctionsService,
     private tipoMediasService: TipoMediasService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private salonsService: SalonsService
   ) {
     this.getCatalogos()
     this.id = this.route.snapshot.params['id']
@@ -70,7 +74,7 @@ export class SingleProductComponent {
 
     },
       (error) => {
-        // console.error('error::: ', error);
+        console.error('error::: ', error);
         this.functionsService.alertError(error, 'Tipo de medios')
       })
 
@@ -112,6 +116,18 @@ export class SingleProductComponent {
         pic.isPrincipal = false
       }
     });
+  }
+  getUbicacion(id) {
+
+    this.salonsService.cargarSalonById(id).subscribe(res => {
+
+      if (res.salon.long && res.salon.lat) {
+
+        this.provLocation = [res.salon.long, res.salon.lat]
+
+      }
+
+    })
   }
   convertDes(des: string, type?) {
     if (!type) {
@@ -184,6 +200,11 @@ export class SingleProductComponent {
 
       this.item = res.item
 
+      if (this.item.proveedor.ubicaciones && this.item.proveedor.ubicaciones.length > 0) {
+
+        this.getUbicacion(this.item.proveedor.ubicaciones[0])
+      }
+
       this.item.proveedor.contactos.forEach(ct => {
         if (ct.tipoContacto == this.ContactoP[2].value) {
           this.isMap = true
@@ -193,10 +214,7 @@ export class SingleProductComponent {
 
 
 
-      if (this.item.proveedor.lng && this.item.proveedor.lat) {
 
-        this.provLocation = [this.item.proveedor.lng, this.item.proveedor.lat]
-      }
       this.item.photos.forEach((ph, i) => {
         if (ph.isPrincipal) {
           this.titleToView = ph.nombre

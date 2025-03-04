@@ -37,6 +37,7 @@ import { Pais } from "../models/pais.model"
 import { Cotizacion } from "../models/cotizacion.model"
 import { EstatusCotizacion } from "../models/estatusCotizacion.model"
 import { Calificacion } from "../models/calificacion.model"
+import { TipoUbicacion } from "../models/tipoUbicacion.model"
 
 
 
@@ -122,6 +123,13 @@ export interface CargarEvento {
 export interface CargarEventos {
     total: number
     eventos: Evento[]
+}
+export interface CargarTipoUbicacion {
+    tipoUbicacion: TipoUbicacion
+}
+export interface CargarTipoUbicaciones {
+    total: number
+    tipoUbicaciones: TipoUbicacion[]
 }
 export interface CargarCalificacion {
     calificacion: Calificacion

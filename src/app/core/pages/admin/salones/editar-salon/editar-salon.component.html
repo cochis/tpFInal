@@ -157,6 +157,29 @@
                                     <span *ngIf="submited && errorControl['email'].errors " class="error">Es
                                         requerido</span>
                                 </div>
+                                <div class="col-12 col-md-3 mt-3">
+                                    <div class="form-group">
+                                        <label for="tipoUbicacion">Tipo de ubicación</label>
+
+
+                                        <select name="" id="tipoUbicacion" formControlName="tipoUbicacion"
+                                            class="form-control upper">
+                                            <option value="" selected>Tipo de ubicación</option>
+                                            <ng-container *ngFor="let item of tipoUbicaciones">
+                                                {{item.roles | json}}
+                                                <option [value]="item.uid"
+                                                    *ngIf="item.roles.includes(getRolClave(role))"
+                                                    [disabled]="edit==='false'">
+                                                    {{item.nombre}}
+                                                </option>
+                                            </ng-container>
+                                        </select>
+
+
+                                    </div>
+                                    <span *ngIf="submited && errorControl['tipoUbicacion'].errors " class="error">Es
+                                        requerido</span>
+                                </div>
                                 <div class="col-12 col-md-12 mt-3" style="display: none;">
                                     <div class="form-group">
                                         <label for="ubicacionGoogle">Ubicación Maps Google

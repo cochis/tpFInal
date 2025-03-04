@@ -86,14 +86,48 @@
                                     </span>
                                 </div>
 
+                                <div class="row text-center">
+                                    <div class="col-6 ma mt-3">
+                                        <div class="form-group">
+                                            <label for="envios">¿Realiza enviós?</label>
+                                            <div class=" form-switch">
+                                                <input class="form-check-input" type="checkbox" role="switch"
+                                                    id="envios" formControlName="envios">
+                                            </div>
+                                        </div>
+                                        <span *ngIf="submited && errorControl['envios'].errors " class="error">Es
+                                            requerido
+                                        </span>
+                                    </div>
+                                    <!--  <div class="col-12   mt-3" *ngIf="form.value.envios">
+
+                                        <div class="form-group">
+                                            <label for="descripcionEnvios">Descripción para los envíos</label>
+                                            <textarea type="text" class="form-control upper" id="descripcionEnvios"
+                                                formControlName="descripcionEnvios"
+                                                placeholder="Descripción de envios"> </textarea>
+                                        </div>
+                                        <span *ngIf="submited && errorControl['descripcionEnvios'].errors "
+                                            class="error">Es
+                                            requerido
+                                        </span>
+                                    </div> -->
+
+                                </div>
 
 
+                                <div class="col-12 text-center">
+
+                                    <b>
+                                        Si es recomendado para todos los eventos no agregar
+                                    </b>
+                                </div>
                                 <div class="row text-center">
 
                                     <div class="col-12 col-md-6  ma mt-3">
 
                                         <button class="btn primaB white" type="button" (click)="addIdealTos()">
-                                            <i class="icon-plus"></i> Agregar tipo de evento
+                                            <i class="icon-plus"></i> Para que tipo de evento se recomienda
                                         </button>
 
 

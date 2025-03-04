@@ -17,7 +17,9 @@ export class Salon {
         public email: string,
         public ubicacionGoogle: string,
         public img: string,
-      
+
+        public tipoUbicacion: string,
+
         public usuarioCreated: any,
         public activated: boolean,
         public dateCreated: number,

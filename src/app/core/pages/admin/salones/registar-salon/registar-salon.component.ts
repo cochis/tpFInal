@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
-import { CargarPaises, CargarPaquete, CargarUsuario } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
+import { CargarPaises, CargarPaquete, CargarRoles, CargarTipoUbicaciones, CargarUsuario } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
 
 import { Salon } from 'src/app/core/models/salon.model';
 import { Paquete } from 'src/app/core/models/paquete.model';
@@ -18,6 +18,9 @@ import { CpsService } from 'src/app/core/services/cp.service';
 import { MapsService } from 'src/app/shared/services/maps.service';
 import { Cp } from 'src/app/core/models/cp.model';
 import { Pais } from 'src/app/core/models/pais.model';
+import { Role } from 'src/app/core/models/role.model';
+import { TipoUbicacion } from 'src/app/core/models/tipoUbicacion.model';
+import { TipoUbicacionesService } from 'src/app/core/services/tipoUbicacion.service';
 @Component({
   selector: 'app-registar-salon',
   templateUrl: './registar-salon.component.html',
@@ -52,6 +55,8 @@ export class RegistarSalonComponent {
   municipios = []
   colonias = []
   isPais = false
+  roles: Role[]
+  tipoUbicaciones: TipoUbicacion[]
   constructor(
     private fb: FormBuilder,
     private functionsService: FunctionsService,
@@ -63,6 +68,8 @@ export class RegistarSalonComponent {
     private paisesService: PaisesService,
     private cpsService: CpsService,
     private mapsServices: MapsService,
+    private tipoUbicacionesServices: TipoUbicacionesService,
+    private rolesService: RolesService,
   ) {
     this.getCatalogos()
     if (this.functionsService.getLocal('uid')) {
@@ -138,6 +145,7 @@ export class RegistarSalonComponent {
       telefono: ['', [Validators.required, Validators.pattern(".{10,10}")]],
       email: [this.functionsService.getLocal('email'), [Validators.required, Validators.email]],
       img: [''],
+      tipoUbicacion: [''],
       activated: [false],
       dateCreated: [this.today],
       lastEdited: [this.today],
@@ -167,33 +175,33 @@ export class RegistarSalonComponent {
       this.salonesService.crearSalon(salon).subscribe((resp: any) => {
 
 
-        this.functionsService.alert('Centro de Eventos', 'Creado', 'success')
+        this.functionsService.alert('Ubicaciones', 'Creado', 'success')
 
         this.usuario.salon = resp.salon.uid
         this.usuario.lastEdited = this.functionsService.getToday()
 
         this.usuariosService.actualizarUsuario(this.usuario).subscribe((resp: CargarUsuario) => {
-          this.functionsService.alert('Centro de Eventos', 'Se ha registrado tu centro de eventos', 'success')
+          this.functionsService.alert('Ubicaciones', 'Se ha registrado tu centro de eventos', 'success')
           this.loading = false
           this.functionsService.navigateTo(`core/salones/editar-salon/true/${this.usuario.salon}`)
 
         },
           (error) => {
             console.error('Error', error)
-            this.functionsService.alertError(error, 'Centro de Eventos')
+            this.functionsService.alertError(error, 'Ubicaciones')
             this.loading = false
           })
       },
         (error) => {
           console.error('Error', error)
-          this.functionsService.alertError(error, 'Centro de Eventos')
+          this.functionsService.alertError(error, 'Ubicaciones')
           this.loading = false
 
 
         })
     } else {
 
-      this.functionsService.alertForm('Centro de Eventos')
+      this.functionsService.alertForm('Ubicaciones')
       this.loading = false
       return console.info('Please provide all the required values!');
     }
@@ -202,7 +210,11 @@ export class RegistarSalonComponent {
 
 
   }
+  getRolClave(clave) {
+    let res = this.roles.find(element => element.clave == clave);
 
+    return res.uid
+  }
   getCatalogos() {
     this.paquetesService.cargarPaqueteByClave(this.EVTRGL).subscribe((resp: CargarPaquete) => {
       this.paquete = resp.paquete
@@ -219,9 +231,28 @@ export class RegistarSalonComponent {
 
     },
       (error: any) => {
-        // console.error('Error', error)
+        console.error('Error', error)
         this.functionsService.alertError(error, 'Centro de eventos (Países)')
         this.loading = false
+      })
+    this.tipoUbicacionesServices.cargarTipoUbicacionesAll().subscribe((resp: CargarTipoUbicaciones) => {
+      this.tipoUbicaciones = resp.tipoUbicaciones
+
+
+
+    },
+      (error: any) => {
+        console.error('Error', error)
+        this.functionsService.alertError(error, 'Tipo Ubicaciones')
+        this.loading = false
+      })
+    this.rolesService.cargarRolesInit().subscribe((resp: CargarRoles) => {
+      this.roles = resp.roles
+
+    },
+      (error) => {
+        console.error('error::: ', error);
+        this.functionsService.alertError(error, 'Registro')
       })
   }
   back() {
@@ -287,7 +318,7 @@ export class RegistarSalonComponent {
 
       },
         (error: any) => {
-          // console.error('Error', error)
+          console.error('Error', error)
           this.functionsService.alertError(error, 'CPs')
           this.loading = false
         })

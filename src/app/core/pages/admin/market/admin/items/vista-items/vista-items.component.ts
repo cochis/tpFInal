@@ -232,7 +232,7 @@ export class VistaItemsComponent {
 
     },
       (error) => {
-        // console.error('error::: ', error);
+        console.error('error::: ', error);
         this.functionsService.alertError(error, 'Tipo de medios')
       })
     this.tipoContactosService.cargarTipoContactosAll().subscribe((resp: CargarTipoContactos) => {

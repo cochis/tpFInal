@@ -1,7 +1,7 @@
 <app-loading *ngIf="loading"></app-loading>
 
 <div class="custom-block bg-white shadow-lg ma" *ngIf="!loading && item!=undefined"
-    style="height: 100% !important; max-height: 750px; max-width: 380px; text-align: center;">
+    style="height: 100% !important; max-height: 850px; max-width: 380px; text-align: center;">
 
     <div class=" col-12" [style]="{   'background-color': cP, 'color':cS}">
 
@@ -167,12 +167,56 @@
         </div>
 
     </div>
+
+    <br>
     <div style=" 
     bottom: 0px;
     left: 0px;
     width: 100%; position: absolute; bottom: 2%;">
 
-        <div class="col-12 text-center" style="font-size: 10px; color :#ffd05b">
+        <div class="col-12 text-center upper" style="font-size: 10px; color :#ffd05b">
+
+
+            <ng-container class="col-12   text-center"
+                *ngIf="item.proveedor.ubicaciones && item.proveedor.ubicaciones.length>0">
+                <b [style]="{'font-size': 12+'px', 'color':CP}">
+                    ({{getUbicacionProveedor(item.proveedor.ubicaciones[0],'P')}})&#32;
+                    {{getUbicacionProveedor(item.proveedor.ubicaciones[0],'E')}}&#32;
+                    {{getUbicacionProveedor(item.proveedor.ubicaciones[0],'C')}}
+                </b>
+
+
+
+
+
+            </ng-container>
+            <ng-container class="col-12   text-center"
+                *ngIf="!item.proveedor.ubicaciones && item.proveedor.ubicaciones.length==0">
+                <b [style]="{'font-size': 12+'px', 'color':CP}">
+
+                </b>
+
+
+
+
+
+            </ng-container>
+
+            <ng-container class="col-12   text-center" *ngIf="item.envios">
+                <br>
+                <b [style]="{'font-size': 12+'px', 'color':CS}">
+                    Se realizan envios
+                </b>
+
+
+
+
+
+            </ng-container>
+
+
+            <br>
+
             <b class="col-12 text-center text-black-50" *ngIf="item.promedioCalificacion ==0">
                 Sin valoración
             </b>
@@ -186,6 +230,9 @@
 
 
         </div>
+
+
+
         <div class="col-12 text-center">
             <!--  <button class="btn but m-2">
                 Agregar al carrito

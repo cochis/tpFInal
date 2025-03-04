@@ -1,15 +1,19 @@
 import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxPrintService, PrintOptions } from 'ngx-print';
-import { CargarTipoColors, CargarTipoContactos } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
+import { CargarTipoColors, CargarTipoContactos, CargarUsuario } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
 import { Proveedor } from 'src/app/core/models/proveedor.model';
+import { Salon } from 'src/app/core/models/salon.model';
 import { TipoColor } from 'src/app/core/models/tipoColor.model';
 import { TipoContacto } from 'src/app/core/models/tipoContacto.model';
+import { Usuario } from 'src/app/core/models/usuario.model';
 import { FileService } from 'src/app/core/services/file.service';
 
 import { ProveedorsService } from 'src/app/core/services/proveedor.service';
+import { SalonsService } from 'src/app/core/services/salon.service';
 import { TipoColorsService } from 'src/app/core/services/tipoColores.service';
 import { TipoContactosService } from 'src/app/core/services/tipoContacto.service';
+import { UsuariosService } from 'src/app/core/services/usuarios.service';
 
 
 import { FunctionsService } from 'src/app/shared/services/functions.service';
@@ -22,6 +26,8 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./editar-datos.component.css']
 })
 export class EditarDatosComponent {
+  email = this.functionsService.getLocal('email')
+  uid = this.functionsService.getLocal('uid')
   loading = false
   proveedor: Proveedor = undefined
   proveedorQr = undefined
@@ -39,7 +45,7 @@ export class EditarDatosComponent {
   urlLink = ''
   link = ''
   isProveedor = false
-  uid = this.functionsService.getLocal('uid')
+  usuario: Usuario
   public imagenSubir!: File
   public imgTemp: any = undefined
   MAPURL = environment.mapsGoogleUrl
@@ -51,12 +57,15 @@ export class EditarDatosComponent {
   CLPR = environment.cProvedores
   CP: string;
   CS: string;
+  salon: Salon
   constructor(
     private fb: FormBuilder,
     private functionsService: FunctionsService,
     private proveedorsService: ProveedorsService,
     private tipoColoresService: TipoColorsService,
     private tipoContactosService: TipoContactosService,
+    private salonsService: SalonsService,
+    private usuariosService: UsuariosService,
     private fileService: FileService,
     private mapsServices: MapsService,
     private printService: NgxPrintService
@@ -115,6 +124,8 @@ export class EditarDatosComponent {
       ubicacion: [''],
       lng: [''],
       lat: [''],
+      envios: [''],
+      descripcionEnvios: [''],
       contactos: this.fb.array([]),
       colores: this.fb.array([]),
       activated: [true],
@@ -190,6 +201,7 @@ export class EditarDatosComponent {
     this.loading = true
     this.submited = true
 
+
     if (this.form.valid && this.form.value.contactos.length > 0) {
       this.form.value.nombre = this.form.value.nombre.toUpperCase().trim()
       this.form.value.clave = this.form.value.clave.toUpperCase().trim()
@@ -197,19 +209,48 @@ export class EditarDatosComponent {
       this.proveedorsService.crearProveedor(this.form.value).subscribe((resp: any) => {
 
         this.proveedor = resp.proveedor
-        this.functionsService.alert('Proveedor', 'Proveedor creado', 'success')
-        if (this.isProveedor) {
-
-          this.functionsService.navigateTo('/core/inicio')
-        } else {
-          setTimeout(() => {
-
-            window.location.reload();
-          }, 500);
 
 
 
-        }
+        this.salonsService.cargarSalonByMail(this.email).subscribe(res => {
+
+
+          if (res.salons.length > 0) {
+            if (!this.proveedor.ubicaciones.includes(res.salons[0].uid)) {
+
+              this.proveedor.ubicaciones.push(res.salons[0].uid)
+
+
+              this.proveedorsService.actualizarProveedor(this.proveedor).subscribe(res => {
+                this.functionsService.alert('Proveedor', 'Proveedor creado', 'success')
+
+
+                this.functionsService.navigateTo('/core/inicio')
+
+              })
+            } else {
+              if (this.isProveedor) {
+
+
+                this.functionsService.navigateTo('/core/inicio')
+              } else {
+                setTimeout(() => {
+
+                  window.location.reload();
+                }, 500);
+
+
+
+              }
+            }
+          }
+
+        })
+
+
+
+
+
         setTimeout(() => {
 
           this.loading = false
@@ -246,6 +287,16 @@ export class EditarDatosComponent {
       (error) => {
         console.error('error::: ', error);
         this.functionsService.alertError(error, 'Tipo de Contactos')
+      })
+    this.usuariosService.cargarUsuarioById(this.uid).subscribe((resp: CargarUsuario) => {
+      this.usuario = resp.usuario
+
+
+
+    },
+      (error) => {
+        console.error('error::: ', error);
+        this.functionsService.alertError(error, 'Usuario')
       })
     this.tipoColoresService.cargarTipoColorsAll().subscribe((resp: CargarTipoColors) => {
       this.tipoColores = resp.tipoColors
@@ -428,13 +479,15 @@ export class EditarDatosComponent {
       nombre: [proveedor.nombre, [Validators.required, Validators.minLength(3)]],
       clave: [proveedor.clave, [Validators.required, Validators.minLength(3)]],
       descripcion: [proveedor.descripcion, [Validators.required, Validators.minLength(3)]],
-      img: [proveedor.img, [Validators.required]],
+      img: [proveedor.img],
       contactos: this.fb.array([]),
       colores: this.fb.array([]),
       ubicacion: [proveedor.ubicacion],
       lng: [proveedor.lng],
       lat: [proveedor.lat],
-      bannerImg: [proveedor.bannerImg, [Validators.required]],
+      envios: [proveedor.envios],
+      descripcionEnvios: [proveedor.descripcionEnvios],
+      bannerImg: [proveedor.bannerImg],
       activated: [proveedor.activated],
       dateCreated: [proveedor.dateCreated],
       lastEdited: [this.today],
@@ -467,6 +520,7 @@ export class EditarDatosComponent {
   onSubmitEdit() {
     this.loading = true
     this.submited = true
+
     this.form.value.nombre = this.form.value.nombre.toUpperCase().trim()
     this.form.value.clave = this.form.value.clave.toUpperCase().trim()
     if (this.form.value.nombre === '' || this.form.value.clave === '') {
@@ -482,26 +536,34 @@ export class EditarDatosComponent {
 
 
       }
+      this.salonsService.cargarSalonByMail(this.email).subscribe(resU => {
 
-      this.proveedorsService.actualizarProveedor(this.proveedor).subscribe((resp: any) => {
-        this.functionsService.alertUpdate('Proveedor')
-        if (this.isProveedor) {
+        if (!this.proveedor.ubicaciones.includes(resU.salons[0].uid)) {
 
-          this.functionsService.navigateTo('/core/inicio')
-        } else {
-          this.functionsService.navigateTo('core/proveedores/editar-datos')
-
+          this.proveedor.ubicaciones.push(resU.salons[0].uid)
         }
-        this.loading = false
-      },
-        (error) => {
 
-          //message
+
+        this.proveedorsService.actualizarProveedor(this.proveedor).subscribe((resp: any) => {
+          this.functionsService.alertUpdate('Proveedor')
+          if (this.isProveedor) {
+
+            this.functionsService.navigateTo('/core/inicio')
+          } else {
+            this.functionsService.navigateTo('core/proveedores/editar-datos')
+
+          }
           this.loading = false
-          this.functionsService.alertError(error, 'Proveedor')
+        },
+          (error) => {
+
+            //message
+            this.loading = false
+            this.functionsService.alertError(error, 'Proveedor')
 
 
-        })
+          })
+      })
     } else {
 
       //message

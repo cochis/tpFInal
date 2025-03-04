@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   user_ID: '64ff4f79da409a7d91056a5b',
   secret: '1f2d1e2e67df',
-  version: "1.2.1.15",
+  version: "1.2.1.17",
   publicKey: "BJqZ8KY_kguwLf27SsteILLRHlWY2pJOvrKlyZNeFlEg4O15ut0t7oYMgXHcLPSh2WYCRPwTS3WEPnhXCMZO4Wg",
   privateKey: "v04F9j6-aAZRvYl25BtZu1cezaWT-m4P0sHtE0JbE7g",
   stripeKeyD: 'pk_test_51PipskAbE4XYrXNxNi1oiwylWr7B9mNMfUfQ070Cy09dDPj5HBFYObSajMGjNzlAynX23dT8thcx8sdJxpnP7Vov00wzIocDLR',
@@ -46,13 +46,13 @@ export const environment = {
     '6727cf9dccbd48678e4b79c8|https://www.myticketparty.com/core/templates/default/6727cf9dccbd48678e4b79c8/6727eeaaccbd48678e4b8809|Aniversario|default',
     '6727d2dbccbd48678e4b7b2b|https://www.myticketparty.com/core/templates/default/6727d2dbccbd48678e4b7b2b/6727d886ccbd48678e4b7e94|Deportivo|default'
   ],
+
   apiKey_mapBox: 'pk.eyJ1IjoiY29jaGlzIiwiYSI6ImNsb2c0M3NxNDByazEya3Jydmc2amtrNTcifQ.j0MCmbfTjEUQMtby7r42Cw',
   cPrimary: '#13547a',
   cSecond: '#80d0c7',
   //Variables DEV
 
-
-  base_url: "http://localhost:3008/api",
+  /* base_url: "http://localhost:3008/api",
   text_url: "http://localhost:4200/",
   cProvedores: [
     {
@@ -89,12 +89,12 @@ export const environment = {
       value: "67b95a049b1aac6f7ff9c0c9",
       clave: "WHATSAPP"
     },
-  ]
+  ] */
 
 
 
   //Variables QA
-  /* base_url: "https://tickets.cochisweb.com/api",
+  base_url: "https://tickets.cochisweb.com/api",
   text_url: "https://tickets.cochisweb.com/",
   cProvedores: [
     {
@@ -118,7 +118,7 @@ export const environment = {
       value: "67bb92e89279f84e078263ce",
       clave: "MAIL"
     },
-  
+
     {
       value: "67bb92d09279f84e078263c7",
       clave: "DIRECCIÓN"
@@ -131,7 +131,7 @@ export const environment = {
       value: "67bb93279279f84e078263e3",
       clave: "WHATSAPP"
     },
-  ] */
+  ]
 
 
 
@@ -163,7 +163,7 @@ export const environment = {
       value: "67bb99ecc539cb99eb40fe47",
       clave: "MAIL"
     },
-  
+
     {
       value: "67bb99dac539cb99eb40fe40",
       clave: "DIRECCIÓN"
@@ -176,6 +176,6 @@ export const environment = {
       value: "67bb9a22c539cb99eb40fe5c",
       clave: "WHATSAPP"
     },
-  ]*/
-
+  ]
+ */
 }; 

@@ -1,16 +1,19 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { CargarPaises, CargarUsuarios } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
+import { CargarPaises, CargarRoles, CargarTipoUbicaciones, CargarUsuarios } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
 import { Cp } from 'src/app/core/models/cp.model';
 import { Pais } from 'src/app/core/models/pais.model';
+import { Role } from 'src/app/core/models/role.model';
 
 import { Salon } from 'src/app/core/models/salon.model';
+import { TipoUbicacion } from 'src/app/core/models/tipoUbicacion.model';
 import { Usuario } from 'src/app/core/models/usuario.model';
 import { CpsService } from 'src/app/core/services/cp.service';
 import { PaisesService } from 'src/app/core/services/pais.service';
 
 import { RolesService } from 'src/app/core/services/roles.service';
 import { SalonsService } from 'src/app/core/services/salon.service';
+import { TipoUbicacionesService } from 'src/app/core/services/tipoUbicacion.service';
 import { UsuariosService } from 'src/app/core/services/usuarios.service';
 import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { MapsService } from 'src/app/shared/services/maps.service';
@@ -46,7 +49,8 @@ export class CrearSalonComponent {
   estados = []
   municipios = []
   colonias = []
-
+  roles: Role[]
+  tipoUbicaciones: TipoUbicacion[]
   constructor(
     private fb: FormBuilder,
     private functionsService: FunctionsService,
@@ -55,8 +59,10 @@ export class CrearSalonComponent {
     private mapsService: MapsService,
     private cpsService: CpsService,
     private paisesService: PaisesService,
-
+    private tipoUbicacionesServices: TipoUbicacionesService,
+    private rolesService: RolesService,
   ) {
+
 
     this.mapsService.getUserLocation().then(res => {
       this.sendCoords = res
@@ -91,9 +97,12 @@ export class CrearSalonComponent {
       email: [this.functionsService.getLocal('email'), [Validators.required, Validators.email]],
       ubicacionGoogle: [''],
       img: [''],
+      tipoUbicacion: [''],
       activated: [true],
       dateCreated: [this.today],
       lastEdited: [this.today],
+
+
     })
   }
   onSubmit() {
@@ -150,7 +159,10 @@ export class CrearSalonComponent {
 
     return result;
   }
-
+  getRolClave(clave) {
+    let res = this.roles.find(element => element.clave == clave);
+    return res.uid
+  }
   getCps(pais, cp) {
 
     if (pais == '') {
@@ -216,7 +228,25 @@ export class CrearSalonComponent {
         this.functionsService.alertError(error, 'Centro de eventos (Países)')
         this.loading = false
       })
+    this.tipoUbicacionesServices.cargarTipoUbicacionesAll().subscribe((resp: CargarTipoUbicaciones) => {
+      this.tipoUbicaciones = resp.tipoUbicaciones
 
+
+
+    },
+      (error: any) => {
+        console.error('Error', error)
+        this.functionsService.alertError(error, 'Tipo Ubicaciones')
+        this.loading = false
+      })
+    this.rolesService.cargarRolesInit().subscribe((resp: CargarRoles) => {
+      this.roles = resp.roles
+
+    },
+      (error) => {
+        console.error('error::: ', error);
+        this.functionsService.alertError(error, 'Registro')
+      })
 
   }
   back() {

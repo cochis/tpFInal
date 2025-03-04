@@ -120,6 +120,9 @@ import { MiCotizacionComponent } from './pages/admin/cotizaciones/mi-cotizacion/
 import { EditarDatosComponent } from './pages/admin/market/admin/proveedors/editar-datos/editar-datos.component';
 import { CalificacionComponent } from './pages/admin/market/admin/items/calificacion/calificacion.component';
 import { ProveedoresComponent } from './pages/market/views/proveedores/proveedores.component';
+import { EditarTipoUbicacionComponent } from './pages/admin/tipo-ubicaciones/editar-tipo-ubicacion/editar-tipo-ubicacion.component';
+import { CrearTipoUbicacionComponent } from './pages/admin/tipo-ubicaciones/crear-tipo-ubicacion/crear-tipo-ubicacion.component';
+import { VistaTipoUbicacionesComponent } from './pages/admin/tipo-ubicaciones/vista-tipo-ubicaciones/vista-tipo-ubicaciones.component';
 const routes: Routes = [
   {
     path: 'core',
@@ -134,7 +137,7 @@ const routes: Routes = [
       {
         path: 'inicio',
         component: HomeComponent,
-        data: { titulo: 'Market' }
+        data: { titulo: 'Home' }
 
       },
       {
@@ -380,6 +383,27 @@ const routes: Routes = [
         path: 'eventos/vista-eventos',
         component: VistaEventosComponent,
         data: { titulo: 'Vista eventos' }
+
+      },
+      //Tipo Ubicaciones
+      {
+        path: 'tipo-ubicaciones/editar-tipo-ubicacion/:edit/:id',
+        component: EditarTipoUbicacionComponent,
+        data: { titulo: 'Editar tipo ubicacion' },
+        canActivate: [authGuard]
+
+      },
+      {
+        path: 'tipo-ubicaciones/crear-tipo-ubicacion',
+        component: CrearTipoUbicacionComponent,
+        data: { titulo: 'Crear tipo ubicacion' },
+        canActivate: [authGuard]
+
+      },
+      {
+        path: 'tipo-ubicaciones/vista-tipo-ubicaciones',
+        component: VistaTipoUbicacionesComponent,
+        data: { titulo: 'Vista tipo ubicaciones' }
 
       },
       //Paises

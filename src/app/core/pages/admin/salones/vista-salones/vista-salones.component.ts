@@ -24,6 +24,7 @@ export class VistaSalonesComponent {
   URS = environment.user_role
   CHK = environment.chk_role
   ANF = environment.anf_role
+  PRV = environment.prv_role
   rol = this.functionsService.getLocal('role')
   ver = environment.version
   email = this.functionsService.getLocal('email')

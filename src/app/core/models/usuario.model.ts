@@ -10,6 +10,7 @@ export class Usuario {
         public img: string,
         public role: string,
         public salon: [string],
+        public proveedor: [string],
         public cantidadFiestas: number,
         public cantidadGalerias: number,
         public paqueteActual: string,

@@ -13,7 +13,7 @@
                         </div>
                         <form [formGroup]="form" (ngSubmit)="onSubmit()">
                             <div class="row">
-                                <div class="col-12 col-md-12 mt-3" *ngIf="role == SLN">
+                                <div class="col-12 col-md-12 mt-3" *ngIf="role == SLN ">
                                     <div class="form-group">
                                         <label for="nombre">Nombre</label>
                                         <input type="text" class="form-control upper" id="nombre"
@@ -27,6 +27,15 @@
                                         <label for="nombre">Dale un nombre a tu ubicación</label>
                                         <input type="text" class="form-control upper" id="nombre"
                                             formControlName="nombre" required placeholder="Mi casa">
+                                    </div>
+                                    <span *ngIf="submited && errorControl['nombre'].errors " class="error">Es
+                                        requerido</span>
+                                </div>
+                                <div class="col-12 col-md-12 mt-3" *ngIf="role == PRV">
+                                    <div class="form-group">
+                                        <label for="nombre">Dale un nombre a tu ubicación</label>
+                                        <input type="text" class="form-control upper" id="nombre"
+                                            formControlName="nombre" required placeholder="Sucursal CDMX">
                                     </div>
                                     <span *ngIf="submited && errorControl['nombre'].errors " class="error">Es
                                         requerido</span>
@@ -79,7 +88,7 @@
                                     <span *ngIf="submited && errorControl['cp'].errors " class="error">Es
                                         requerido</span>
                                 </div>
-                                <div class="col-6 col-md-4 mt-3" *ngIf="isPais">
+                                <div class="col-6 col-md-4 mt-3" *ngIf="isPais && form.value.cp.length ==5 ">
                                     <div class="form-group">
                                         <label for="estado">Estado</label>
                                         <input type="text" class="form-control upper" id="estado"
@@ -89,7 +98,8 @@
                                         requerido</span>
                                 </div>
 
-                                <div class="col-6 col-md-4 mt-3" *ngIf="isPais">
+                                <div class="col-6 col-md-4 mt-3"
+                                    *ngIf="isPais && form.value.cp.length ==5 && form.value.estado !==''">
                                     <div class="form-group">
                                         <label for="municipioDelegacion">Municipio o Delegación</label>
                                         <select name="" id="municipioDelegacion" formControlName="municipioDelegacion"
@@ -107,7 +117,8 @@
                                         class="error">Es
                                         requerido</span>
                                 </div>
-                                <div class="col-6 col-md-4 mt-3" *ngIf="isPais">
+                                <div class="col-6 col-md-4 mt-3"
+                                    *ngIf="isPais  && form.value.cp.length ==5  && form.value.estado !==''">
                                     <div class="form-group">
                                         <label for="coloniaBarrio">Colonia o Barrio</label>
                                         <select name="" id="coloniaBarrio" formControlName="coloniaBarrio"
@@ -140,6 +151,27 @@
                                             <input type="email" class="form-control upper" id="telefono"
                                                 placeholder="Correo electrónico" formControlName="email" readonly>
                                         </div>
+                                    </div>
+                                    <div class="col-12 col-md-3 mt-3">
+
+
+                                        <div class="form-group">
+                                            <label for="tipoUbicacion">Tipo ubicación</label>
+
+                                            <select name="" id="tipoUbicacion" formControlName="tipoUbicacion"
+                                                class="form-control upper" required>
+                                                <option value="" selected>Tipo de ubicación</option>
+                                                <ng-container *ngFor="let item of tipoUbicaciones">
+                                                    {{item.roles | json}}
+                                                    <option [value]="item.uid"
+                                                        *ngIf="item.roles.includes(getRolClave(role))">
+                                                        {{item.nombre}}
+                                                    </option>
+                                                </ng-container>
+                                            </select>
+                                        </div>
+                                        <span *ngIf="submited && errorControl['tipoUbicacion'].errors " class="error">Es
+                                            requerido</span>
                                     </div>
                                 </div>
 
