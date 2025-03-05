@@ -10,7 +10,7 @@ import { Item } from 'src/app/core/models/item.model';
 import { TipoContactosService } from '../../../../services/tipoContacto.service';
 import { CargarTipoContactos } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
 import { TipoContacto } from 'src/app/core/models/tipoContacto.model';
-
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 @Component({
   selector: 'app-single-supplier',
   templateUrl: './single-supplier.component.html',
@@ -30,13 +30,15 @@ export class SingleSupplierComponent {
   CLPR = environment.cProvedores
   CP: string;
   CS: string;
-
+  calificacionProveedor = 0
+  descripcionHTML: SafeHtml;
   constructor(private router: Router,
     private route: ActivatedRoute,
     private itemsService: ItemsService,
     private proveedorsService: ProveedorsService,
     private tipoContactosService: TipoContactosService,
     private functionsService: FunctionsService,
+    private sanitizer: DomSanitizer,
     private fb: FormBuilder) {
     this.CLPR.forEach(cl => {
       if (cl.clave == 'cPrincipalWP') {
@@ -443,6 +445,18 @@ export class SingleSupplierComponent {
       this.proveedor = res.proveedor
       this.itemsService.cargarItemsByProovedor(this.proveedor.uid).subscribe(res => {
         this.items = this.functionsService.getActivos(res.items)
+
+
+        var cals = 0
+        this.items.forEach((it) => {
+          if (it.promedioCalificacion && (Number(it.promedioCalificacion) > 0)) {
+            cals = cals + 1
+            this.calificacionProveedor = this.calificacionProveedor + Number(it.promedioCalificacion)
+          }
+
+        });
+        this.calificacionProveedor = this.calificacionProveedor / cals
+
         setTimeout(() => {
           this.loading = false
         }, 800);
@@ -513,6 +527,14 @@ export class SingleSupplierComponent {
         this.functionsService.alertError(error, 'Tipo Contactos')
         this.loading = false
       })
+
+
+  }
+
+  convertDes(des: string) {
+    return this.sanitizer.bypassSecurityTrustHtml(des);
+
+
 
 
   }

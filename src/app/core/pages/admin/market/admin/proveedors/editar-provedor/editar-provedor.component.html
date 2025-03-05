@@ -35,9 +35,12 @@
                                 <div class="col-12   mt-3">
                                     <div class="form-group">
                                         <label for="descripcion">Descripción</label>
-                                        <textarea type="text" class="form-control upper" id="descripcion"
-                                            formControlName="descripcion" required placeholder="Descripción"
-                                            [readonly]="edit==='false'"></textarea>
+                                        <div class="NgxEditor__Wrapper">
+                                            <ngx-editor-menu [editor]="descripcion" [toolbar]="toolbar">
+                                            </ngx-editor-menu>
+                                            <ngx-editor [editor]="descripcion"
+                                                formControlName="descripcion"></ngx-editor>
+                                        </div>
                                     </div>
                                     <span *ngIf="submited && errorControl['descripcion'].errors " class="error">Es
                                         requerido

@@ -44,7 +44,16 @@
 
 
             </div>
-            <app-market-items [items]="items"></app-market-items>
+            <ng-container *ngIf="items.length==0">
+                <div class="mt-4 text-center">
+
+                    <b2>Sin productos o servicios registrados</b2>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="items.length>0">
+
+                <app-market-items [items]="items"></app-market-items>
+            </ng-container>
 
 
 

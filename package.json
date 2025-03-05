@@ -40,6 +40,7 @@
     "mapbox-gl": "^3.9.4",
     "ncrypt-js": "^2.0.0",
     "ngx-currency": "^19.0.0",
+    "ngx-editor": "^18.0.0",
     "ngx-pagination": "^6.0.3",
     "ngx-print": "^2.0.0",
     "ngx-qrcode2": "^9.0.0",

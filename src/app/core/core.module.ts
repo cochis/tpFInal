@@ -144,6 +144,8 @@ import { PrintQrComponent } from './pages/admin/market/admin/proveedors/print-qr
 import { VistaTipoUbicacionesComponent } from './pages/admin/tipo-ubicaciones/vista-tipo-ubicaciones/vista-tipo-ubicaciones.component';
 import { CrearTipoUbicacionComponent } from './pages/admin/tipo-ubicaciones/crear-tipo-ubicacion/crear-tipo-ubicacion.component';
 import { EditarTipoUbicacionComponent } from './pages/admin/tipo-ubicaciones/editar-tipo-ubicacion/editar-tipo-ubicacion.component';
+import { CrearPromoComponent } from './pages/admin/promos/crear-promo/crear-promo.component';
+import { NgxEditorModule } from 'ngx-editor';
 
 
 
@@ -290,7 +292,8 @@ import { EditarTipoUbicacionComponent } from './pages/admin/tipo-ubicaciones/edi
     PrintQrComponent,
     VistaTipoUbicacionesComponent,
     CrearTipoUbicacionComponent,
-    EditarTipoUbicacionComponent
+    EditarTipoUbicacionComponent,
+    CrearPromoComponent
 
   ],
   imports: [
@@ -303,6 +306,7 @@ import { EditarTipoUbicacionComponent } from './pages/admin/tipo-ubicaciones/edi
     QRCodeModule,
     NgxPaginationModule,
     NgxCurrencyDirective,
+    NgxEditorModule
   ],
   exports: [MarketItemsComponent]
 })

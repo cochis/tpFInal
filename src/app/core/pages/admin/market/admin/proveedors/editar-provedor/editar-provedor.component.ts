@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { NgxPrintService, PrintOptions } from 'ngx-print';
@@ -10,7 +10,7 @@ import { FileService } from 'src/app/core/services/file.service';
 import { ProveedorsService } from 'src/app/core/services/proveedor.service';
 import { TipoColorsService } from 'src/app/core/services/tipoColores.service';
 import { TipoContactosService } from 'src/app/core/services/tipoContacto.service';
-
+import { Editor, Toolbar } from 'ngx-editor';
 
 import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { MapsService } from 'src/app/shared/services/maps.service';
@@ -20,7 +20,7 @@ import { environment } from 'src/environments/environment';
   templateUrl: './editar-provedor.component.html',
   styleUrls: ['./editar-provedor.component.css']
 })
-export class EditarProvedorComponent {
+export class EditarProvedorComponent implements OnDestroy {
   loading = false
   public imagenSubir!: File
   public imgTemp: any = undefined
@@ -43,6 +43,18 @@ export class EditarProvedorComponent {
   location: any = undefined
   ContactoP = environment.contactosProveedor
   isMap = false
+  descripcion: Editor
+
+  toolbar: Toolbar = [
+    ['bold', 'italic'],
+    ['underline', 'strike'],
+    ['code', 'blockquote'],
+    ['ordered_list', 'bullet_list'],
+    [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
+    ['link', 'image'],
+    ['text_color', 'background_color'],
+    ['align_left', 'align_center', 'align_right', 'align_justify'],
+  ];
   constructor(
     private fb: FormBuilder,
     private functionsService: FunctionsService,
@@ -59,6 +71,7 @@ export class EditarProvedorComponent {
     this.mapService.getUserLocation().then(res => {
       this.location = res
     })
+    this.descripcion = new Editor();
     this.loading = true
     this.id = this.route.snapshot.params['id']
     this.edit = this.route.snapshot.params['edit']
@@ -179,9 +192,7 @@ export class EditarProvedorComponent {
       clave: ['', [Validators.required, Validators.minLength(3)]],
       bannerImg: ['', [Validators.required, Validators.minLength(3)]],
       img: ['', [Validators.required, Validators.minLength(3)]],
-      lng: ['', [Validators.required, Validators.minLength(3)]],
-      lat: ['', [Validators.required, Validators.minLength(3)]],
-      ubicacion: ['', [Validators.required, Validators.minLength(3)]],
+
       descripcion: ['', [Validators.required, Validators.minLength(3)]],
       contactos: this.fb.array([]),
       colores: this.fb.array([]),
@@ -200,9 +211,8 @@ export class EditarProvedorComponent {
       clave: [proveedor.clave, [Validators.required, Validators.minLength(3)]],
       descripcion: [proveedor.descripcion, [Validators.required, Validators.minLength(3)]],
       img: [proveedor.img, [Validators.required]],
-      lng: [proveedor.lng, [Validators.required]],
-      lat: [proveedor.lat, [Validators.required]],
-      ubicacion: [proveedor.ubicacion, [Validators.required]],
+
+
       contactos: this.fb.array([]),
       colores: this.fb.array([]),
       bannerImg: [proveedor.bannerImg, [Validators.required]],
@@ -235,6 +245,7 @@ export class EditarProvedorComponent {
   }
 
   onSubmit() {
+
     this.loading = true
     this.submited = true
 
@@ -426,5 +437,9 @@ export class EditarProvedorComponent {
       return 'rgba(' + [(c >> 16) & 255, (c >> 8) & 255, c & 255].join(',') + ',.3)';
     }
     throw new Error('Bad Hex');
+  }
+  ngOnDestroy() {
+    this.descripcion.destroy();
+
   }
 }

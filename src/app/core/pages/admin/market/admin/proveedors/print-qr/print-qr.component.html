@@ -3,14 +3,12 @@
         <div class="container">
             <header class="row mt-5  ">
                 <div class="  col-md-8  m-auto text-center ">
-                    <!--      [style]="{'background': hexToRgbA(proveedor.colores[0].value),
-                    'padding': 10+'px','border-radius':20+'px !important' }" -->
                     <img src="{{url}}/upload/proveedores/{{proveedor.img}}"
-                        style=" width: 100%; max-width: 450px; padding: 20px" alt="{{proveedor.nombre}}">
+                        style=" width: 100%; max-width: 300px; padding: 20px" alt="{{proveedor.nombre}}">
                 </div>
             </header>
         </div>
-        <div class="container">
+        <div class="container" *ngIf="proveedor.colores.length==2">
             <div class="row">
                 <div class="col-12 text-center">
                     <h2 [style]="{'color':proveedor.colores[0].value, 'font-weight':'800', 'margin-top':'25px'}">
@@ -21,7 +19,7 @@
                             [cssClass]="'center'" [colorDark]="proveedor.colores[0].value" [colorLight]="'#ffffffff'"
                             [elementType]="'img'" [errorCorrectionLevel]="'H'"
                             [imageSrc]="url+'/upload/proveedores/'+proveedor.img" [margin]="4" [scale]="1"
-                            [title]="proveedor.nombre" [width]="500">
+                            [title]="proveedor.nombre" [width]="350">
                         </qrcode>
                     </div>
                 </div>

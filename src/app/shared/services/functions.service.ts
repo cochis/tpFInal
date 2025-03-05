@@ -35,9 +35,9 @@ export class FunctionsService {
 
   convertDes(des: string, style) {
     let spl = des.split('\n')
-    var desc = '<ul style="list-style:none;    padding: 0;">'
+    var desc = `<ul class='text-start' style="list-style:none;    padding: 0; ">`
     spl.forEach(element => {
-      desc += `<li style="${style}">${element}</li>`
+      desc += `<li  class='text-capitalize text-start' style="${style}">${element}</li>`
     });
     desc += '</ul>'
     this.textToHTML = this.sanitizer.bypassSecurityTrustHtml(desc)

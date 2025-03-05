@@ -17,7 +17,7 @@
                                     <div class="form-group">
                                         <label for="proveedor">Proveedor</label>
                                         <select name="" id="proveedor" formControlName="proveedor"
-                                            class="form-control upper">
+                                            class="form-control  ">
                                             <ng-container *ngIf="proveedors">
                                                 <option value="" [disabled]="edit=='false'">Selecciona el proveedor
                                                 </option>
@@ -35,9 +35,8 @@
                                 <div class="col-12 col-md-6 mt-3">
                                     <div class="form-group">
                                         <label for="nombre">Nombre</label>
-                                        <input type="text" class="form-control upper" id="nombre"
-                                            formControlName="nombre" required placeholder="Nombre"
-                                            [readonly]="edit==='false'">
+                                        <input type="text" class="form-control  " id="nombre" formControlName="nombre"
+                                            required placeholder="Nombre" [readonly]="edit==='false'">
                                     </div>
                                     <span *ngIf="submited && errorControl['nombre'].errors " class="error">Es requerido
                                     </span>
@@ -45,8 +44,7 @@
                                 <div class="col-12 col-md-4 mt-3">
                                     <div class="form-group">
                                         <label for="tipoItem">Tipo de producto</label>
-                                        <select name="" id="tipoItem" formControlName="tipoItem"
-                                            class="form-control upper">
+                                        <select name="" id="tipoItem" formControlName="tipoItem" class="form-control  ">
                                             <ng-container *ngIf="tipoItems">
                                                 <option value="" [disabled]="edit=='false'">Selecciona el tipo</option>
                                                 <option [value]="item.uid" *ngFor="let item of tipoItems"
@@ -64,7 +62,7 @@
                                     <div class="form-group">
                                         <label for="categoriaItem">Categoría de producto</label>
                                         <select name="" id="categoriaItem" formControlName="categoriaItem"
-                                            class="form-control upper">
+                                            class="form-control  ">
                                             <ng-container *ngIf="categoriaItems">
                                                 <option value="" [disabled]="edit=='false'">Selecciona el tipo</option>
                                                 <option [value]="item.uid" *ngFor="let item of categoriaItems"
@@ -93,9 +91,24 @@
                                 <div class="col-12 mt-3">
                                     <div class="form-group">
                                         <label for="descripcion">Descripción</label>
-                                        <textarea type="text" class="form-control upper" id="descripcion"
-                                            formControlName="descripcion" required placeholder="Descripción"
-                                            [readonly]="edit==='false'"> </textarea>
+                                        <ng-container *ngIf="editores && editoresOK">
+
+                                            <ng-container *ngFor="let item of editores; let i =index">
+
+                                                <div class="NgxEditor__Wrapper" *ngIf="item.type=='item'">
+                                                    <ngx-editor-menu [editor]="item.editor"
+                                                        [toolbar]="toolbar"></ngx-editor-menu>
+                                                    <ngx-editor class="textDesc" [editor]="item.editor" id="descripcion"
+                                                        formControlName="descripcion" required
+                                                        [disabled]="(edit=='false')?true:false"
+                                                        [placeholder]="'Escribe tu descripción...'"></ngx-editor>
+                                                </div>
+                                            </ng-container>
+                                        </ng-container>
+
+
+
+
                                     </div>
                                     <span *ngIf="submited && errorControl['descripcion'].errors " class="error">Es
                                         requerido
@@ -120,7 +133,7 @@
 
                                         <div class="form-group">
                                             <label for="descripcionEnvios">Descripción para los envíos</label>
-                                            <textarea type="text" class="form-control upper" id="descripcionEnvios"
+                                            <textarea type="text" class="form-control  " id="descripcionEnvios"
                                                 formControlName="descripcionEnvios" placeholder="Descripción de envios"
                                                 [readonly]="edit==='false'"> </textarea>
                                         </div>
@@ -167,7 +180,7 @@
                                                 <div class="col-12 col-md-4 ma mt-3" id="idealTo{{i}}">
                                                     <div class="form-group">
                                                         <label for="nombre">Nombre</label>
-                                                        <input type="text" class="form-control upper" id="nombre{{i}}"
+                                                        <input type="text" class="form-control  " id="nombre{{i}}"
                                                             formControlName="nombre" required placeholder="Nombre"
                                                             [readonly]="edit==='false'">
                                                     </div>
@@ -181,10 +194,31 @@
                                                 <div class="col-12  mt-3">
                                                     <div class="form-group">
                                                         <label for="descripcion">Descripción</label>
-                                                        <textarea type="text" class="form-control upper"
-                                                            id="descripcion" formControlName="descripcion" required
+
+
+
+                                                        <ng-container *ngIf="editores && editoresOK">
+
+                                                            <ng-container *ngFor="let item of editores; let j =index">
+
+                                                                <div class="NgxEditor__Wrapper"
+                                                                    *ngIf="item.type=='idealTo' && item.id == i ">
+                                                                    <ngx-editor-menu [editor]="item.editor"
+                                                                        [toolbar]="toolbar"></ngx-editor-menu>
+                                                                    <ngx-editor class="textDesc" [editor]="item.editor"
+                                                                        id="descripcion" formControlName="descripcion"
+                                                                        required [disabled]="(edit=='false')?true:false"
+                                                                        [placeholder]="'Escribe tu descripción...'"></ngx-editor>
+                                                                </div>
+                                                            </ng-container>
+                                                        </ng-container>
+
+
+
+                                                        <!--  <textarea type="text" class="form-control  " id="descripcion"
+                                                            formControlName="descripcion" required
                                                             placeholder="Descripción"
-                                                            [readonly]="edit==='false'"></textarea>
+                                                            [readonly]="edit==='false'"></textarea> -->
                                                     </div>
                                                     <span
                                                         *ngIf="submited && errorControl['idealTo']['controls'][i]['controls']['descripcion'].errors "
@@ -346,7 +380,7 @@
                                                 <div class="col-12 col-md-4 mt-3">
                                                     <div class="form-group">
                                                         <label for="nombre">Nombre</label>
-                                                        <input type="text" class="form-control upper" id="nombre"
+                                                        <input type="text" class="form-control  " id="nombre"
                                                             formControlName="nombre" required placeholder="Nombre"
                                                             [readonly]="edit==='false'">
                                                     </div>
@@ -359,7 +393,7 @@
                                                 <div class="col-12 col-md-4 mt-3">
                                                     <div class="form-group">
                                                         <label for="precio">Precio</label>
-                                                        <input type="text" class="form-control upper" id="precio"
+                                                        <input type="text" class="form-control  " id="precio"
                                                             formControlName="precio" required placeholder="Precio"
                                                             [currencyMask]="{ prefix: '$ ', thousands: '.', decimal: ',' }"
                                                             [readonly]="edit==='false'">
@@ -374,7 +408,7 @@
                                                     <div class="form-group">
                                                         <label for="moneda">Moneda</label>
                                                         <select name="" id="moneda" formControlName="moneda"
-                                                            class="form-control upper">
+                                                            class="form-control  ">
                                                             <ng-container *ngIf="monedas">
                                                                 <option value="" [disabled]="edit=='false'">Selecciona
                                                                     el
@@ -397,10 +431,31 @@
                                                 <div class="col-12  mt-3">
                                                     <div class="form-group">
                                                         <label for="descripcion">Descripción</label>
-                                                        <textarea type="text" class="form-control upper"
-                                                            id="descripcion" formControlName="descripcion" required
+
+                                                        <ng-container *ngIf="editores && editoresOK">
+
+                                                            <ng-container *ngFor="let item of editores; let j =index">
+
+                                                                <div class="NgxEditor__Wrapper"
+                                                                    *ngIf="item.type=='sizes' && item.id == i ">
+                                                                    <ngx-editor-menu [editor]="item.editor"
+                                                                        [toolbar]="toolbar"></ngx-editor-menu>
+                                                                    <ngx-editor class="textDesc" [editor]="item.editor"
+                                                                        id="descripcion" formControlName="descripcion"
+                                                                        required [disabled]="(edit=='false')?true:false"
+                                                                        [placeholder]="'Escribe tu descripción...'"></ngx-editor>
+                                                                </div>
+                                                            </ng-container>
+                                                        </ng-container>
+
+
+
+
+
+                                                        <!--   <textarea type="text" class="form-control  " id="descripcion"
+                                                            formControlName="descripcion" required
                                                             placeholder="Descripción"
-                                                            [readonly]="edit==='false'"></textarea>
+                                                            [readonly]="edit==='false'"></textarea> -->
                                                     </div>
                                                     <span
                                                         *ngIf="submited && errorControl['sizes']['controls'][i]['controls']['descripcion'].errors "
@@ -431,7 +486,7 @@
                                                 <div class="col-12 col-md-4 mt-3">
                                                     <div class="form-group">
                                                         <label for="nombre">Nombre</label>
-                                                        <input type="text" class="form-control upper" id="nombre"
+                                                        <input type="text" class="form-control  " id="nombre"
                                                             formControlName="nombre" required placeholder="Nombre"
                                                             [readonly]="edit==='false'">
                                                     </div>
@@ -444,7 +499,7 @@
                                                 <div class="col-12 col-md-4 mt-3">
                                                     <div class="form-group">
                                                         <label for="precio">Precio</label>
-                                                        <input type="text" class="form-control upper" id="precio"
+                                                        <input type="text" class="form-control  " id="precio"
                                                             formControlName="precio" required placeholder="Precio"
                                                             [currencyMask]="{ prefix: '$ ', thousands: '.', decimal: ',' }"
                                                             [readonly]="edit==='false'">
@@ -459,7 +514,7 @@
                                                     <div class="form-group">
                                                         <label for="moneda">Moneda</label>
                                                         <select name="" id="moneda" formControlName="moneda"
-                                                            class="form-control upper">
+                                                            class="form-control  ">
                                                             <ng-container *ngIf="monedas">
                                                                 <option value="">Selecciona el moneda</option>
                                                                 <option [value]="item.uid" *ngFor="let item of monedas">
@@ -477,10 +532,22 @@
                                                 <div class="col-12  mt-3">
                                                     <div class="form-group">
                                                         <label for="descripcion">Descripción</label>
-                                                        <textarea type="text" class="form-control upper"
-                                                            id="descripcion" formControlName="descripcion" required
-                                                            placeholder="Descripción"
-                                                            [readonly]="edit==='false'"></textarea>
+
+                                                        <ng-container *ngIf="editores && editoresOK">
+
+                                                            <ng-container *ngFor="let item of editores; let j =index">
+
+                                                                <div class="NgxEditor__Wrapper"
+                                                                    *ngIf="item.type=='colores' && item.id == i ">
+                                                                    <ngx-editor-menu [editor]="item.editor"
+                                                                        [toolbar]="toolbar"></ngx-editor-menu>
+                                                                    <ngx-editor class="textDesc" [editor]="item.editor"
+                                                                        id="descripcion" formControlName="descripcion"
+                                                                        required [disabled]="(edit=='false')?true:false"
+                                                                        [placeholder]="'Escribe tu descripción...'"></ngx-editor>
+                                                                </div>
+                                                            </ng-container>
+                                                        </ng-container>
                                                     </div>
                                                     <span
                                                         *ngIf="submited && errorControl['colores']['controls'][i]['controls']['descripcion'].errors "
@@ -511,7 +578,7 @@
                                                 <div class="col-12 col-md-4 mt-3">
                                                     <div class="form-group">
                                                         <label for="nombre">Nombre</label>
-                                                        <input type="text" class="form-control upper" id="nombre"
+                                                        <input type="text" class="form-control  " id="nombre"
                                                             formControlName="nombre" required placeholder="Nombre"
                                                             [readonly]="edit==='false'">
                                                     </div>
@@ -524,7 +591,7 @@
                                                 <div class="col-12 col-md-4 mt-3">
                                                     <div class="form-group">
                                                         <label for="precio">Precio</label>
-                                                        <input type="text" class="form-control upper" id="precio"
+                                                        <input type="text" class="form-control  " id="precio"
                                                             formControlName="precio" required placeholder="Precio"
                                                             [currencyMask]="{ prefix: '$ ', thousands: '.', decimal: ',' }"
                                                             [readonly]="edit==='false'">
@@ -539,7 +606,7 @@
                                                     <div class="form-group">
                                                         <label for="moneda">Moneda</label>
                                                         <select name="" id="moneda" formControlName="moneda"
-                                                            class="form-control upper">
+                                                            class="form-control  ">
                                                             <ng-container *ngIf="monedas">
                                                                 <option value="">Selecciona el moneda</option>
                                                                 <option [value]="item.uid" *ngFor="let item of monedas">
@@ -557,10 +624,21 @@
                                                 <div class="col-12  mt-3">
                                                     <div class="form-group">
                                                         <label for="descripcion">Descripción</label>
-                                                        <textarea type="text" class="form-control upper"
-                                                            id="descripcion" formControlName="descripcion" required
-                                                            placeholder="Descripción"
-                                                            [readonly]="edit==='false'"></textarea>
+                                                        <ng-container *ngIf="editores && editoresOK">
+
+                                                            <ng-container *ngFor="let item of editores; let j =index">
+
+                                                                <div class="NgxEditor__Wrapper"
+                                                                    *ngIf="item.type=='servicios' && item.id == i ">
+                                                                    <ngx-editor-menu [editor]="item.editor"
+                                                                        [toolbar]="toolbar"></ngx-editor-menu>
+                                                                    <ngx-editor class="textDesc" [editor]="item.editor"
+                                                                        id="descripcion" formControlName="descripcion"
+                                                                        required [disabled]="(edit=='false')?true:false"
+                                                                        [placeholder]="'Escribe tu descripción...'"></ngx-editor>
+                                                                </div>
+                                                            </ng-container>
+                                                        </ng-container>
                                                     </div>
                                                     <span
                                                         *ngIf="submited && errorControl['servicios']['controls'][i]['controls']['moneda'].errors "
@@ -593,7 +671,7 @@
                                                 <div class="col-12 col-md-4 mt-3">
                                                     <div class="form-group">
                                                         <label for="nombre">Nombre</label>
-                                                        <input type="text" class="form-control upper" id="nombre"
+                                                        <input type="text" class="form-control  " id="nombre"
                                                             formControlName="nombre" required placeholder="Nombre"
                                                             [readonly]="edit==='false'">
                                                     </div>
@@ -606,7 +684,7 @@
                                                 <div class="col-12 col-md-4 mt-3">
                                                     <div class="form-group">
                                                         <label for="precio">Precio</label>
-                                                        <input type="text" class="form-control upper" id="precio"
+                                                        <input type="text" class="form-control  " id="precio"
                                                             formControlName="precio" required placeholder="Precio"
                                                             [currencyMask]="{ prefix: '$ ', thousands: '.', decimal: ',' }"
                                                             [readonly]="edit==='false'">
@@ -621,7 +699,7 @@
                                                     <div class="form-group">
                                                         <label for="moneda">Moneda</label>
                                                         <select name="" id="moneda" formControlName="moneda"
-                                                            class="form-control upper">
+                                                            class="form-control  ">
                                                             <ng-container *ngIf="monedas">
                                                                 <option value="">Selecciona el moneda</option>
                                                                 <option [value]="item.uid" *ngFor="let item of monedas">
@@ -639,10 +717,21 @@
                                                 <div class="col-12  mt-3">
                                                     <div class="form-group">
                                                         <label for="descripcion">Descripción</label>
-                                                        <textarea type="text" class="form-control upper"
-                                                            id="descripcion" formControlName="descripcion" required
-                                                            placeholder="Descripción"
-                                                            [readonly]="edit==='false'"></textarea>
+                                                        <ng-container *ngIf="editores && editoresOK">
+
+                                                            <ng-container *ngFor="let item of editores; let j =index">
+
+                                                                <div class="NgxEditor__Wrapper"
+                                                                    *ngIf="item.type=='cantidades' && item.id == i ">
+                                                                    <ngx-editor-menu [editor]="item.editor"
+                                                                        [toolbar]="toolbar"></ngx-editor-menu>
+                                                                    <ngx-editor class="textDesc" [editor]="item.editor"
+                                                                        id="descripcion" formControlName="descripcion"
+                                                                        required [disabled]="(edit=='false')?true:false"
+                                                                        [placeholder]="'Escribe tu descripción...'"></ngx-editor>
+                                                                </div>
+                                                            </ng-container>
+                                                        </ng-container>
                                                     </div>
                                                     <span
                                                         *ngIf="submited && errorControl['cantidades']['controls'][i]['controls']['moneda'].errors "
@@ -740,7 +829,7 @@
                                                 <div class="col-12 col-md-6 mt-3">
                                                     <div class="form-group">
                                                         <label for="nombre">Nombre</label>
-                                                        <input type="text" class="form-control upper" id="nombre"
+                                                        <input type="text" class="form-control  " id="nombre"
                                                             formControlName="nombre" required placeholder="Nombre">
                                                     </div>
                                                     <span
@@ -755,7 +844,7 @@
 
                                                         <label for="tipoMedia">Tipo de medio</label>
                                                         <select name="" id="tipoMedia" formControlName="tipoMedia"
-                                                            class="form-control upper" required>{{tipoMedias}}
+                                                            class="form-control  " required>{{tipoMedias}}
                                                             <ng-container *ngIf="tipoMedias" #medias>
                                                                 <option value="">Selecciona el tipoMedia</option>
                                                                 <option [value]="item.uid"
@@ -777,9 +866,21 @@
                                                 <div class="col-12  mt-3">
                                                     <div class="form-group">
                                                         <label for="descripcion">Descripción</label>
-                                                        <textarea type="text" class="form-control upper"
-                                                            id="descripcion" formControlName="descripcion" required
-                                                            placeholder="Descripción"></textarea>
+                                                        <ng-container *ngIf="editores && editoresOK">
+
+                                                            <ng-container *ngFor="let item of editores; let j =index">
+
+                                                                <div class="NgxEditor__Wrapper"
+                                                                    *ngIf="item.type=='photos' && item.id == index ">
+                                                                    <ngx-editor-menu [editor]="item.editor"
+                                                                        [toolbar]="toolbar"></ngx-editor-menu>
+                                                                    <ngx-editor class="textDesc" [editor]="item.editor"
+                                                                        id="descripcion" formControlName="descripcion"
+                                                                        required [disabled]="(edit=='false')?true:false"
+                                                                        [placeholder]="'Escribe tu descripción...'"></ngx-editor>
+                                                                </div>
+                                                            </ng-container>
+                                                        </ng-container>
                                                     </div>
                                                     <span
                                                         *ngIf="submited && errorControl['photos']['controls'][index]['controls']['descripcion'].errors "

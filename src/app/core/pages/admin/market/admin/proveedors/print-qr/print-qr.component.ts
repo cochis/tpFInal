@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { AfterViewInit, Component, Input } from '@angular/core';
 import { NgxPrintService, PrintOptions } from 'ngx-print';
 import { environment } from 'src/environments/environment';
 
@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
   templateUrl: './print-qr.component.html',
   styleUrls: ['./print-qr.component.css']
 })
-export class PrintQrComponent {
+export class PrintQrComponent implements AfterViewInit {
   @Input() proveedor: any
   url = environment.base_url
   text_url = environment.text_url
@@ -17,6 +17,10 @@ export class PrintQrComponent {
   constructor(
     private printService: NgxPrintService
   ) {
+
+  }
+  ngAfterViewInit() {
+
 
   }
   hexToRgbA(hex) {
@@ -48,7 +52,7 @@ export class PrintQrComponent {
       });
       customPrintOptions.useExistingCss = true
       customPrintOptions.printTitle = this.proveedor.nombre
-      /*    customPrintOptions.previewOnly = true  */
+      customPrintOptions.previewOnly = true
 
 
 

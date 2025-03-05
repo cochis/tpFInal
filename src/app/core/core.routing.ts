@@ -123,6 +123,7 @@ import { ProveedoresComponent } from './pages/market/views/proveedores/proveedor
 import { EditarTipoUbicacionComponent } from './pages/admin/tipo-ubicaciones/editar-tipo-ubicacion/editar-tipo-ubicacion.component';
 import { CrearTipoUbicacionComponent } from './pages/admin/tipo-ubicaciones/crear-tipo-ubicacion/crear-tipo-ubicacion.component';
 import { VistaTipoUbicacionesComponent } from './pages/admin/tipo-ubicaciones/vista-tipo-ubicaciones/vista-tipo-ubicaciones.component';
+import { CrearPromoComponent } from './pages/admin/promos/crear-promo/crear-promo.component';
 const routes: Routes = [
   {
     path: 'core',
@@ -192,6 +193,12 @@ const routes: Routes = [
         path: 'borrado',
         component: BorradoComponent,
         data: { titulo: 'Borrado' },
+        canActivate: [authGuard]
+      },
+      {
+        path: 'promos',
+        component: CrearPromoComponent,
+        data: { titulo: 'promo' },
         canActivate: [authGuard]
       },
 

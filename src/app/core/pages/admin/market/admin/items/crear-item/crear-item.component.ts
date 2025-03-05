@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CargarCategoriaItems, CargarImgItem, CargarImgItems, CargarMonedas, CargarProveedors, CargarTipoColors, CargarTipoContactos, CargarTipoItems, CargarTipoMedias } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
 import { CategoriaItem } from 'src/app/core/models/categoriaItem.model';
@@ -22,7 +22,7 @@ import { TipoContactosService } from 'src/app/core/services/tipoContacto.service
 import { TipoItemsService } from 'src/app/core/services/tipoItem.service';
 import { TipoMediasService } from 'src/app/core/services/tipoMedia.service';
 import { NgxCurrencyDirective } from "ngx-currency";
-
+import { Editor, Toolbar } from 'ngx-editor';
 
 import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { environment } from 'src/environments/environment';
@@ -31,7 +31,7 @@ import { environment } from 'src/environments/environment';
   templateUrl: './crear-item.component.html',
   styleUrls: ['./crear-item.component.css']
 })
-export class CrearItemComponent {
+export class CrearItemComponent implements OnInit, OnDestroy {
   loading = false
   item: any
   rol = this.functionsService.getLocal('role')
@@ -59,10 +59,19 @@ export class CrearItemComponent {
   typeImg = ''
 
   url = environment.base_url
-
-
-
-
+  editores: any = []
+  descripcion: Editor;
+  html = '';
+  toolbar: Toolbar = [
+    ['bold', 'italic'],
+    ['underline', 'strike'],
+    ['code', 'blockquote'],
+    ['ordered_list', 'bullet_list'],
+    [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
+    ['link', 'image'],
+    ['text_color', 'background_color'],
+    ['align_left', 'align_center', 'align_right', 'align_justify'],
+  ];
   public imagenSubir!: File
   public imgTemp: any = undefined
 
@@ -90,6 +99,11 @@ export class CrearItemComponent {
     setTimeout(() => {
       this.loading = false
     }, 1500);
+  }
+  ngOnInit() {
+
+    this.descripcion = new Editor();
+    this.editores.push({ type: 'item', editor: this.descripcion, id: 0 })
   }
   get errorControl() {
     return this.form.controls;
@@ -122,7 +136,7 @@ export class CrearItemComponent {
 
   }
   setForm(item: Item) {
-
+    this.editores = []
 
     setTimeout(() => {
       this.loading = true
@@ -242,9 +256,13 @@ export class CrearItemComponent {
   }
   removeSizes(i: number) {
     this.sizes.removeAt(i);
+
   }
   addIdealTos() {
+
     this.idealTo.push(this.newIdealTo())
+    this.editores.push({ type: 'idealTo', editor: new Editor(), id: this.idealTo.length - 1 })
+
 
     this.submited = false
     window.scrollTo(0, (document.body.scrollHeight - 100));
@@ -253,6 +271,7 @@ export class CrearItemComponent {
   }
   removeIdealTos(i: number) {
     this.idealTo.removeAt(i);
+    this.removeEditor('idealTo', i)
   }
   addCantidades() {
     this.cantidades.push(this.newCantidad())
@@ -347,6 +366,7 @@ export class CrearItemComponent {
     })
   }
   onSubmit() {
+
     this.loading = true
     this.submited = true
 
@@ -653,6 +673,7 @@ export class CrearItemComponent {
 
   changePrice(type) {
 
+
     if (this.form.value[type]) {
 
       switch (type) {
@@ -733,5 +754,30 @@ export class CrearItemComponent {
       photos: this.form.value.photos
     })
   }
+
+  removeEditor(type, i) {
+    var n = 0
+    this.editores.forEach((ed, j) => {
+      if (ed.type == type && ed.id == i) {
+        this.editores.splice(this.editores.indexOf(ed), 1);
+      }
+    });
+    this.editores.forEach((ed, j) => {
+      if (ed.type == type) {
+        this.editores[j].id = n
+        n = n + 1
+      }
+    })
+
+  }
+  ngOnDestroy(): void {
+    this.editores.forEach(ed => {
+
+
+      ed.editor.destroy();
+    });
+  }
+
+
 }
 

@@ -1,10 +1,10 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnDestroy } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 import { environment } from 'src/environments/environment';
-
+import { Editor, Toolbar } from 'ngx-editor';
 import { CargarCategoriaItems, CargarImgItem, CargarItem, CargarMonedas, CargarProveedors, CargarTipoColors, CargarTipoContactos, CargarTipoItems, CargarTipoMedias } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
 
 
@@ -36,8 +36,9 @@ import { TipoMedia } from 'src/app/core/models/tipoMedia.model';
   templateUrl: './editar-item.component.html',
   styleUrls: ['./editar-item.component.css']
 })
-export class EditarItemComponent {
+export class EditarItemComponent implements OnDestroy {
 
+  descripcion: Editor;
 
   rol = this.functionsService.getLocal('role')
   ADM = environment.admin_role
@@ -70,6 +71,20 @@ export class EditarItemComponent {
   typeImg = ''
   imgItems: ImgItem[]
   noMoreImg = false
+
+
+  editores: any = []
+  editoresOK = false
+  toolbar: Toolbar = [
+    ['bold', 'italic'],
+    ['underline', 'strike'],
+    ['code', 'blockquote'],
+    ['ordered_list', 'bullet_list'],
+    [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
+    ['link', 'image'],
+    ['text_color', 'background_color'],
+    ['align_left', 'align_center', 'align_right', 'align_justify'],
+  ];
   @Inject(DOCUMENT) document: Document
   constructor(
     private fb: FormBuilder,
@@ -87,6 +102,7 @@ export class EditarItemComponent {
     private fileService: FileService,
 
   ) {
+
     this.id = this.route.snapshot.params['id']
     this.edit = this.route.snapshot.params['edit']
     this.loading = true
@@ -106,10 +122,10 @@ export class EditarItemComponent {
 
       this.itemTemp = resp.item
 
-      setTimeout(() => {
 
-        this.setForm(this.item)
-      }, 500);
+
+      this.setForm(this.item)
+
 
     },
       (error: any) => {
@@ -156,65 +172,79 @@ export class EditarItemComponent {
   }
   setForm(item: any) {
 
-
+    this.editores = []
     let pro = (typeof (item.proveedor) == 'string') ? item.proveedor : ((item.proveedor._id) ? item.proveedor._id : item.proveedor.uid)
     let cat = (typeof (item.categoriaItem) == 'string') ? item.categoriaItem : ((item.categoriaItem._id) ? item.categoriaItem._id : item.categoriaItem.uid)
+
+    this.loading = true
+    this.form = this.fb.group({
+      nombre: [(item.nombre) ? item.nombre : '', [Validators.required, Validators.minLength(3)]],
+      descripcion: [(item.descripcion) ? item.descripcion : '', [Validators.required, Validators.minLength(3)]],
+      proveedor: [pro, [Validators.required, Validators.minLength(3)]],
+      tipoItem: [(item.tipoItem) ? item.tipoItem : '', [Validators.required, Validators.minLength(3)]],
+      categoriaItem: [cat, [Validators.required, Validators.minLength(3)]],
+
+      isSelectedBy: [(item.isSelectedBy) ? item.isSelectedBy : '', [Validators.required]],
+      isBySize: { value: item.isBySize, disabled: (this.edit == 'false') ? true : false },
+      isByService: { value: item.isByService, disabled: (this.edit == 'false') ? true : false },
+      isByColor: { value: item.isByColor, disabled: (this.edit == 'false') ? true : false },
+      isByCantidad: { value: item.isByCantidad, disabled: (this.edit == 'false') ? true : false },
+      idealTo: this.fb.array([]),
+      calificacion: [(item.calificacion) ? item.calificacion : 0],
+      envios: [(item.envios) ? item.envios : false],
+      descripcionEnvios: [(item.descripcionEnvios) ? item.descripcionEnvios : ''],
+      sizes: this.fb.array([]),
+      colores: this.fb.array([]),
+      servicios: this.fb.array([]),
+      cantidades: this.fb.array([]),
+      photos: this.fb.array([]),
+      activated: [(item.activated) ? item.activated : false],
+      dateCreated: [this.today],
+      lastEdited: [this.today],
+    })
+    this.editores.push({ type: 'item', editor: new Editor(), id: 0 })
+
+    item.photos.forEach((ph: any) => {
+      this.photos.push(this.setPh(ph))
+      this.editores.push({ type: 'photos', editor: new Editor(), id: this.photos.length - 1 })
+
+
+    });
+    item.sizes.forEach((pc: any) => {
+      this.sizes.push(this.setPrices(pc))
+      this.editores.push({ type: 'sizes', editor: new Editor(), id: this.sizes.length - 1 })
+
+    });
+    item.colores.forEach((pc: any) => {
+      this.colores.push(this.setPrices(pc))
+      this.editores.push({ type: 'colores', editor: new Editor(), id: this.colores.length - 1 })
+
+    });
+    item.servicios.forEach((pc: any) => {
+      this.servicios.push(this.setPrices(pc))
+      this.editores.push({ type: 'servicios', editor: new Editor(), id: this.servicios.length - 1 })
+
+    });
+    item.cantidades.forEach((pc: any) => {
+      this.cantidades.push(this.setPrices(pc))
+      this.editores.push({ type: 'cantidades', editor: new Editor(), id: this.cantidades.length - 1 })
+
+    });
+    item.idealTo.forEach((id: any) => {
+      this.idealTo.push(this.setIdeal(id))
+      this.editores.push({ type: 'idealTo', editor: new Editor(), id: this.idealTo.length - 1 })
+
+    });
+
     setTimeout(() => {
-      this.loading = true
-      this.form = this.fb.group({
-        nombre: [(item.nombre) ? item.nombre : '', [Validators.required, Validators.minLength(3)]],
-        descripcion: [(item.descripcion) ? item.descripcion : '', [Validators.required, Validators.minLength(3)]],
-        proveedor: [pro, [Validators.required, Validators.minLength(3)]],
-        tipoItem: [(item.tipoItem) ? item.tipoItem : '', [Validators.required, Validators.minLength(3)]],
-        categoriaItem: [cat, [Validators.required, Validators.minLength(3)]],
 
-        isSelectedBy: [(item.isSelectedBy) ? item.isSelectedBy : '', [Validators.required]],
-        isBySize: { value: item.isBySize, disabled: (this.edit == 'false') ? true : false },
-        isByService: { value: item.isByService, disabled: (this.edit == 'false') ? true : false },
-        isByColor: { value: item.isByColor, disabled: (this.edit == 'false') ? true : false },
-        isByCantidad: { value: item.isByCantidad, disabled: (this.edit == 'false') ? true : false },
-        idealTo: this.fb.array([]),
-        calificacion: [(item.calificacion) ? item.calificacion : 0],
-        envios: [(item.envios) ? item.envios : false],
-        descripcionEnvios: [(item.descripcionEnvios) ? item.descripcionEnvios : ''],
-        sizes: this.fb.array([]),
-        colores: this.fb.array([]),
-        servicios: this.fb.array([]),
-        cantidades: this.fb.array([]),
-        photos: this.fb.array([]),
-        activated: [(item.activated) ? item.activated : false],
-        dateCreated: [this.today],
-        lastEdited: [this.today],
-      })
-
-
-      item.photos.forEach((ph: any) => {
-        this.photos.push(this.setPh(ph))
-
-      });
-      item.sizes.forEach((pc: any) => {
-        this.sizes.push(this.setPrices(pc))
-      });
-      item.colores.forEach((pc: any) => {
-        this.colores.push(this.setPrices(pc))
-      });
-      item.servicios.forEach((pc: any) => {
-        this.servicios.push(this.setPrices(pc))
-      });
-      item.cantidades.forEach((pc: any) => {
-        this.cantidades.push(this.setPrices(pc))
-      });
-      item.idealTo.forEach((id: any) => {
-        this.idealTo.push(this.setIdeal(id))
-      });
-
-
-
+      this.editoresOK = true
       this.loading = false
 
-
-
     }, 500);
+
+
+
   }
 
   setPh(ph: any): FormGroup {
@@ -268,6 +298,9 @@ export class EditarItemComponent {
   addSizes() {
     this.sizes.push(this.newSize())
     let index = 'precio' + (Number(this.sizes.length) - 1)
+
+    this.editores.push({ type: 'sizes', editor: new Editor(), id: this.sizes.length - 1 })
+
     setTimeout(() => {
       this.functionsService.scroolTo(index)
       this.submited = false
@@ -276,12 +309,34 @@ export class EditarItemComponent {
 
 
   }
+
+
+  removeEditor(type, i) {
+    var n = 0
+    this.editores.forEach((ed, j) => {
+      if (ed.type == type && ed.id == i) {
+        this.editores.splice(this.editores.indexOf(ed), 1);
+      }
+    });
+    this.editores.forEach((ed, j) => {
+      if (ed.type == type) {
+        this.editores[j].id = n
+        n = n + 1
+      }
+    })
+
+  }
   removeSizes(i: number) {
     this.sizes.removeAt(i);
+    this.removeEditor('sizes', i)
   }
   addIdealTos() {
     this.idealTo.push(this.newIdealTo())
     let index = 'idealTo' + (Number(this.idealTo.length) - 1)
+
+
+    this.editores.push({ type: 'idealTo', editor: new Editor(), id: this.idealTo.length - 1 })
+
     setTimeout(() => {
       this.functionsService.scroolTo(index)
       this.submited = false
@@ -289,9 +344,11 @@ export class EditarItemComponent {
   }
   removeIdealTos(i: number) {
     this.idealTo.removeAt(i);
+    this.removeEditor('idealTo', i)
   }
   addCantidades() {
     this.cantidades.push(this.newCantidad())
+    this.editores.push({ type: 'cantidades', editor: new Editor(), id: this.cantidades.length - 1 })
 
     let index = 'precio' + (Number(this.cantidades.length) - 1)
     setTimeout(() => {
@@ -304,9 +361,11 @@ export class EditarItemComponent {
   }
   removeCantidades(i: number) {
     this.cantidades.removeAt(i);
+    this.removeEditor('cantidades', i)
   }
   addColors() {
     this.colores.push(this.newColor())
+    this.editores.push({ type: 'colores', editor: new Editor(), id: this.colores.length - 1 })
 
     let index = 'precio' + (Number(this.colores.length) - 1)
     setTimeout(() => {
@@ -321,9 +380,11 @@ export class EditarItemComponent {
   removeColors(i: number) {
 
     this.colores.removeAt(i);
+    this.removeEditor('colores', i)
   }
   addServicios() {
     this.servicios.push(this.newServicio())
+    this.editores.push({ type: 'servicios', editor: new Editor(), id: this.servicios.length - 1 })
 
     let index = 'precio' + (Number(this.servicios.length) - 1)
     setTimeout(() => {
@@ -337,10 +398,12 @@ export class EditarItemComponent {
 
   removeServicios(i: number) {
     this.servicios.removeAt(i);
+    this.removeEditor('servicios', i)
   }
   addPhotos() {
     this.photos.push(this.newPhoto())
     let index = 'photo' + (Number(this.photos.length) - 1)
+    this.editores.push({ type: 'photos', editor: new Editor(), id: this.photos.length - 1 })
 
     setTimeout(() => {
       this.functionsService.scroolTo(index)
@@ -385,6 +448,7 @@ export class EditarItemComponent {
     } else {
 
       this.photos.removeAt(i);
+      this.removeEditor('photos', i)
     }
 
 
@@ -577,6 +641,12 @@ export class EditarItemComponent {
     }
   }
   changePrice(type) {
+
+
+    this.editores = this.editores.filter(res => {
+      return res.type == 'item'
+    })
+
 
     if (this.form.value[type]) {
 
@@ -1224,6 +1294,13 @@ export class EditarItemComponent {
 
       })
 
+  }
+  ngOnDestroy(): void {
+    this.editores.forEach(ed => {
+
+
+      ed.editor.destroy();
+    });
   }
 
 }

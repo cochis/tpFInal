@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Proveedor } from '../../../../models/proveedor.model';
 import { ProveedorsService } from '../../../../services/proveedor.service';
 import { CargarProveedors } from '../../../../interfaces/cargar-interfaces.interfaces';
+import { FunctionsService } from 'src/app/shared/services/functions.service';
 
 @Component({
   selector: 'app-proveedores',
@@ -11,7 +12,8 @@ import { CargarProveedors } from '../../../../interfaces/cargar-interfaces.inter
 export class ProveedoresComponent {
   proveedores: Proveedor[] = undefined
   constructor(
-    private proveedoresService: ProveedorsService
+    private proveedoresService: ProveedorsService,
+    private functionsService: FunctionsService
   ) {
     this.getCatalogos()
   }
@@ -19,7 +21,7 @@ export class ProveedoresComponent {
   getCatalogos() {
     this.proveedoresService.cargarProveedorsAll().subscribe((res: CargarProveedors) => {
 
-      this.proveedores = res.proveedors
+      this.proveedores = this.functionsService.getActivos(res.proveedors)
 
 
 

@@ -77,9 +77,15 @@
                                 <div class="col-12 mt-3">
                                     <div class="form-group">
                                         <label for="descripcion">Descripción</label>
-                                        <textarea type="text" class="form-control upper" id="descripcion"
+                                        <!-- <textarea type="text" class="form-control  " id="descripcion"
                                             formControlName="descripcion" required
-                                            placeholder="Descripción"> </textarea>
+                                            placeholder="Descripción"> </textarea> -->
+                                        <div class="NgxEditor__Wrapper">
+                                            <ngx-editor-menu [editor]="editores[0].editor" [toolbar]="toolbar">
+                                            </ngx-editor-menu>
+                                            <ngx-editor [editor]="editores[0].editor"
+                                                formControlName="descripcion"></ngx-editor>
+                                        </div>
                                     </div>
                                     <span *ngIf="submited && errorControl['descripcion'].errors " class="error">Es
                                         requerido
@@ -159,9 +165,20 @@
                                                 <div class="col-12  mt-3">
                                                     <div class="form-group">
                                                         <label for="descripcion">Descripción</label>
-                                                        <textarea type="text" class="form-control upper"
-                                                            id="descripcion" formControlName="descripcion" required
-                                                            placeholder="Descripción"></textarea>
+                                                        <div class="NgxEditor__Wrapper">
+
+                                                            <ngx-editor-menu [editor]="editores[i+1].editor"
+                                                                [toolbar]="toolbar">
+                                                            </ngx-editor-menu>
+
+                                                            <ngx-editor [editor]="editores[i+1].editor"
+                                                                formControlName="descripcion" [disabled]="false"
+                                                                [placeholder]="'Type here...'"></ngx-editor>
+                                                        </div>
+
+                                                        <!--  <textarea type="text" class="form-control  " id="descripcion"
+                                                            formControlName="descripcion" required
+                                                            placeholder="Descripción"></textarea> -->
                                                     </div>
                                                     <span
                                                         *ngIf="submited && errorControl['idealTo']['controls'][i]['controls']['moneda'].errors "

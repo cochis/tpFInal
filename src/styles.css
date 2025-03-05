@@ -6,7 +6,8 @@
     --error: #c83434;
 }
 
-textarea {
+textarea,
+.textDesc {
     height: 250px;
 }
 
@@ -451,7 +452,7 @@ input[type="file"] {
 
 .titleProducto {
     font-size: 30px;
-    text-align: left;
+    text-align: center;
 }
 
 .linkProveedor {
@@ -495,7 +496,7 @@ input[type="file"] {
 
 
 .imgViewer {
-    height: 620px;
+    height: auto;
 }
 
 

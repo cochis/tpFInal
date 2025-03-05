@@ -126,9 +126,9 @@ export class EjemplosComponent implements OnInit {
 
     let spl = des.split('\n')
 
-    var desc = '<ul style="list-style:none;padding:0;">'
+    var desc = `<ul class ='text-start' style="list-style:none;padding:0;">`
     spl.forEach(element => {
-      desc += `<li  ">${element}</li>`
+      desc += `<li class='text-capitalize text-start' ">${element}</li>`
 
 
     });

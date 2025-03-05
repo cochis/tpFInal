@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CargarTipoColors, CargarTipoContactos } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
 import { Proveedor } from 'src/app/core/models/proveedor.model';
@@ -12,6 +12,7 @@ import { SalonsService } from 'src/app/core/services/salon.service';
 import { TipoColorsService } from 'src/app/core/services/tipoColores.service';
 import { TipoContactosService } from 'src/app/core/services/tipoContacto.service';
 
+import { Editor, Toolbar } from 'ngx-editor';
 
 import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { environment } from 'src/environments/environment';
@@ -20,7 +21,7 @@ import { environment } from 'src/environments/environment';
   templateUrl: './crear-provedor.component.html',
   styleUrls: ['./crear-provedor.component.css']
 })
-export class CrearProvedorComponent {
+export class CrearProvedorComponent implements OnDestroy {
   loading = false
   proveedor: Proveedor
   public form!: FormGroup
@@ -33,8 +34,18 @@ export class CrearProvedorComponent {
   salon: Salon
   url = environment.base_url
   public imagenSubir!: File
+  descripcion: Editor
   public imgTemp: any = undefined
-
+  toolbar: Toolbar = [
+    ['bold', 'italic'],
+    ['underline', 'strike'],
+    ['code', 'blockquote'],
+    ['ordered_list', 'bullet_list'],
+    [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
+    ['link', 'image'],
+    ['text_color', 'background_color'],
+    ['align_left', 'align_center', 'align_right', 'align_justify'],
+  ];
   constructor(
     private fb: FormBuilder,
     private functionsService: FunctionsService,
@@ -49,7 +60,7 @@ export class CrearProvedorComponent {
     this.getCatalogos()
     this.createForm()
     setTimeout(() => {
-
+      this.descripcion = new Editor();
       this.loading = false
     }, 1500);
   }
@@ -266,6 +277,10 @@ export class CrearProvedorComponent {
       clave: clave
     })
 
+
+  }
+  ngOnDestroy(): void {
+    this.descripcion.destroy();
 
   }
 }
