@@ -10,7 +10,8 @@ import { Item } from 'src/app/core/models/item.model';
 import { TipoContactosService } from '../../../../services/tipoContacto.service';
 import { CargarTipoContactos } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
 import { TipoContacto } from 'src/app/core/models/tipoContacto.model';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { DomSanitizer, SafeHtml, Title } from '@angular/platform-browser';
+import { MetaService } from 'src/app/core/services/meta.service';
 @Component({
   selector: 'app-single-supplier',
   templateUrl: './single-supplier.component.html',
@@ -32,13 +33,17 @@ export class SingleSupplierComponent {
   CS: string;
   calificacionProveedor = 0
   descripcionHTML: SafeHtml;
-  constructor(private router: Router,
+  constructor(
+    private metaService: MetaService,
+    private title: Title,
+    private router: Router,
     private route: ActivatedRoute,
     private itemsService: ItemsService,
     private proveedorsService: ProveedorsService,
     private tipoContactosService: TipoContactosService,
     private functionsService: FunctionsService,
     private sanitizer: DomSanitizer,
+
     private fb: FormBuilder) {
     this.CLPR.forEach(cl => {
       if (cl.clave == 'cPrincipalWP') {
@@ -443,6 +448,34 @@ export class SingleSupplierComponent {
     this.loading = true
     this.proveedorsService.cargarProveedorById(id).subscribe(res => {
       this.proveedor = res.proveedor
+
+
+      let t: string = `My Ticket Party | ${this.proveedor.nombre}`;
+      this.title.setTitle(t);
+
+      this.metaService.generateTags({
+        title: `My Ticket Party| ${this.proveedor.nombre}`,
+        description:
+          `Descripción del producto : ${this.proveedor.descripcion}`,
+        keywords:
+          'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in',
+        slug: 'core/faqs',
+        colorBar: '#13547a',
+        image: this.url + '/upload/proveedores/' + this.proveedor.img,
+      });
+
+
+
+
+
+
+
+
+
+
+
+
+
       this.itemsService.cargarItemsByProovedor(this.proveedor.uid).subscribe(res => {
         this.items = this.functionsService.getActivos(res.items)
 

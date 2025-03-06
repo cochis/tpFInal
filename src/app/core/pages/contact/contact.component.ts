@@ -22,7 +22,7 @@ export class ContactComponent {
     private title: Title,
   ) {
 
-    this.metaService.createCanonicalURL()
+
     let t: string = 'My Ticket Party | Contacto';
     this.title.setTitle(t);
 

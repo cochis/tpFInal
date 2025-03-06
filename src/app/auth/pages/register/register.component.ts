@@ -87,7 +87,7 @@ export class RegisterComponent {
     private title: Title,
   ) {
 
-    this.metaService.createCanonicalURL()
+
     let t: string = 'My Ticket Party | Login';
     this.title.setTitle(t);
     let data = {

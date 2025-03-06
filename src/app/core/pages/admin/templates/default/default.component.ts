@@ -146,7 +146,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
 
 
           setTimeout(() => {
-            this.metaService.createCanonicalURL()
+
             let t: string = `My Ticket Party | ${this.fiesta.nombre}  -  ${this.functionsService.numberToDate(Number(this.fiesta.fecha))} - para ${this.boleto.grupo} `;
             this.title.setTitle(t.toUpperCase());
             let data = {
@@ -547,7 +547,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
     if (this.dataDondeCard) {
 
       setTimeout(() => {
-        this.metaService.createCanonicalURL()
+
         let t: string = `My Ticket Party | ${this.dataDondeCard.nombreFiesta}  -  ${this.functionsService.numberToDate(Number(this.dataDondeCard.fiestaDate))}`;
         this.title.setTitle(t);
         let data = {

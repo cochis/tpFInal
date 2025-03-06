@@ -41,7 +41,7 @@ export class HomeComponent implements AfterViewInit {
     private title: Title,
 
   ) {
-    this.metaService.createCanonicalURL()
+
     let t: string = 'My Ticket Party | Inicio';
     this.title.setTitle(t);
 

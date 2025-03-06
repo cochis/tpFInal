@@ -6,12 +6,13 @@ import { ItemsService } from 'src/app/core/services/item.service';
 import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { DomSanitizer, SafeHtml, Title } from '@angular/platform-browser';
 import { TipoMediasService } from 'src/app/core/services/tipoMedia.service';
 import { TipoMedia } from 'src/app/core/models/tipoMedia.model';
 import { CargarTipoMedias } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
 import { SalonsService } from 'src/app/core/services/salon.service';
 import { Salon } from 'src/app/core/models/salon.model';
+import { MetaService } from 'src/app/core/services/meta.service';
 @Component({
   selector: 'app-single-product',
   templateUrl: './single-product.component.html',
@@ -59,8 +60,19 @@ export class SingleProductComponent {
     private functionsService: FunctionsService,
     private tipoMediasService: TipoMediasService,
     private sanitizer: DomSanitizer,
-    private salonsService: SalonsService
+    private salonsService: SalonsService,
+    private metaService: MetaService,
+    private title: Title,
   ) {
+
+
+
+
+
+
+
+
+
     this.getCatalogos()
     this.id = this.route.snapshot.params['id']
     this.getId(this.id)
@@ -199,6 +211,30 @@ export class SingleProductComponent {
     this.itemsService.cargarItemById(id).subscribe((res: any) => {
 
       this.item = res.item
+
+
+
+      let t: string = `My Ticket Party | ${this.item.nombre}`;
+      this.title.setTitle(t);
+
+      this.metaService.generateTags({
+        title: `My Ticket Party| ${this.item.nombre}`,
+        description:
+          `Descripción del producto : ${this.item.descripcion}`,
+        keywords:
+          'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in',
+        slug: 'core/faqs',
+        colorBar: '#13547a',
+        image: this.url + '/upload/items/' + this.getImgPrincipal(),
+      });
+
+
+
+
+
+
+
+
 
       if (this.item.proveedor.ubicaciones && this.item.proveedor.ubicaciones.length > 0) {
 

@@ -37,7 +37,7 @@ export class EjemplosComponent implements OnInit {
     private metaService: MetaService,
     private title: Title,
   ) {
-    this.metaService.createCanonicalURL()
+
     let t: string = 'My Ticket Party | Inicio';
     this.title.setTitle(t);
 

@@ -30,7 +30,7 @@ export class MarketComponent implements AfterViewInit {
     private fb: FormBuilder,
   ) {
 
-    this.metaService.createCanonicalURL()
+
     let t: string = 'My Ticket Party | Marketplace';
     this.title.setTitle(t);
 

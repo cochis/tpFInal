@@ -48,7 +48,7 @@ export class CheckInComponent implements AfterViewInit {
     private title: Title,
   ) {
 
-    this.metaService.createCanonicalURL()
+
     let t: string = 'My Ticket Party | Check In';
     this.title.setTitle(t);
     let data = {

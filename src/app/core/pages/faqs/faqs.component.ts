@@ -12,7 +12,7 @@ export class FaqsComponent {
     private metaService: MetaService,
     private title: Title,
   ) {
-    this.metaService.createCanonicalURL()
+
     let t: string = "My Ticket Party | FAQ'S";
     this.title.setTitle(t);
 

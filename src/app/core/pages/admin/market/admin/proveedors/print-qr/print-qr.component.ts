@@ -52,12 +52,9 @@ export class PrintQrComponent implements AfterViewInit {
       });
       customPrintOptions.useExistingCss = true
       customPrintOptions.printTitle = this.proveedor.nombre
-      customPrintOptions.previewOnly = true
-
-
-
-
-
+      customPrintOptions.openNewTab = true;
+      customPrintOptions.closeWindow = true;
+      customPrintOptions.printDelay = 2000;
       this.printService.print(customPrintOptions)
     }, 500);
   }
