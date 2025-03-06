@@ -8,6 +8,8 @@ import { EjemplosService } from 'src/app/core/services/ejemplo.service';
 import { FiestasService } from 'src/app/core/services/fiestas.service';
 import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { environment } from 'src/environments/environment';
+import { Editor, Toolbar } from 'ngx-editor';
+
 @Component({
   selector: 'app-editar-ejemplo',
   templateUrl: './editar-ejemplo.component.html',
@@ -27,6 +29,17 @@ export class EditarEjemploComponent {
   id!: string
   edit!: string
   url = environment.base_url
+  recomendacion: Editor
+  toolbar: Toolbar = [
+    ['bold', 'italic'],
+    ['underline', 'strike'],
+    ['code', 'blockquote'],
+    ['ordered_list', 'bullet_list'],
+    [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
+    ['link', 'image'],
+    ['text_color', 'background_color'],
+    ['align_left', 'align_center', 'align_right', 'align_justify'],
+  ];
   constructor(
     private fb: FormBuilder,
     private functionsService: FunctionsService,
@@ -37,6 +50,7 @@ export class EditarEjemploComponent {
     this.id = this.route.snapshot.params['id']
     this.edit = this.route.snapshot.params['edit']
     this.loading = true
+    this.recomendacion = new Editor();
     this.getId(this.id)
     this.getCatalogos()
     this.createForm()

@@ -8,6 +8,7 @@ import { DomSanitizer, SafeHtml, SafeUrl, Title } from '@angular/platform-browse
 import { FiestasService } from '../../services/fiestas.service';
 import { EjemplosService } from '../../services/ejemplo.service';
 import { CargarEjemplos } from '../../interfaces/cargar-interfaces.interfaces';
+
 @Component({
   selector: 'app-ejemplos',
   templateUrl: './ejemplos.component.html',
@@ -25,6 +26,8 @@ export class EjemplosComponent implements OnInit {
   sanitizedUrl: any
   sanitizedUrlFile: any
   descripcionHTML: SafeHtml;
+  classView = ''
+  showOk = false
 
   constructor(
 
@@ -74,10 +77,15 @@ export class EjemplosComponent implements OnInit {
       })
     });
   }
+
+  viewAcooridion(i) {
+
+  }
   getCatalogos() {
     this.ejemplosService.cargarEjemplosAll().subscribe((resp: CargarEjemplos) => {
 
       this.ejemplos = resp.ejemplos
+      console.log('   this.ejemplos ::: ', this.ejemplos);
 
       this.sanitizedUrl = this.getExamplesURL('default', 'url')
       this.sanitizedUrlFile = this.getExamplesURL('file', 'url')
@@ -122,25 +130,6 @@ export class EjemplosComponent implements OnInit {
     }
   }
   convertDes(des: string) {
-
-
-    let spl = des.split('\n')
-
-    var desc = `<ul class ='text-start' style="list-style:none;padding:0;">`
-    spl.forEach(element => {
-      desc += `<li class='text-capitalize text-start' ">${element}</li>`
-
-
-    });
-    desc += '</ul>'
-
-
-    return this.sanitizer.bypassSecurityTrustHtml(desc);
-
-
-
-
-
-
+    return this.sanitizer.bypassSecurityTrustHtml(des);
   }
 }

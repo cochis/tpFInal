@@ -34,8 +34,8 @@ export class CrearProvedorComponent implements OnDestroy {
   salon: Salon
   url = environment.base_url
   public imagenSubir!: File
-  descripcion: Editor
   public imgTemp: any = undefined
+  descripcion: Editor
   toolbar: Toolbar = [
     ['bold', 'italic'],
     ['underline', 'strike'],

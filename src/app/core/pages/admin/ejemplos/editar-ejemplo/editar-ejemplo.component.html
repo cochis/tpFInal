@@ -58,9 +58,13 @@
                                 <div class="col-12   mt-3">
                                     <div class="form-group">
                                         <label for="recomendacion">Recomendación</label>
-                                        <textarea type="text" class="form-control upper" id="recomendacion"
-                                            formControlName="recomendacion" required placeholder="Recomendación"
-                                            [readonly]="edit==='false'"> </textarea>
+                                        <div class="NgxEditor__Wrapper">
+                                            <ngx-editor-menu [editor]="recomendacion" [toolbar]="toolbar">
+                                            </ngx-editor-menu>
+                                            <ngx-editor [editor]="recomendacion"
+                                                formControlName="recomendacion"></ngx-editor>
+                                        </div>
+
 
                                     </div>
                                     <span *ngIf="submited && errorControl['recomendacion'].errors " class="error">Es
