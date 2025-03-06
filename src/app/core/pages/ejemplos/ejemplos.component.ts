@@ -85,7 +85,7 @@ export class EjemplosComponent implements OnInit {
     this.ejemplosService.cargarEjemplosAll().subscribe((resp: CargarEjemplos) => {
 
       this.ejemplos = resp.ejemplos
-      console.log('   this.ejemplos ::: ', this.ejemplos);
+
 
       this.sanitizedUrl = this.getExamplesURL('default', 'url')
       this.sanitizedUrlFile = this.getExamplesURL('file', 'url')

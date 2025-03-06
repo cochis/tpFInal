@@ -13,6 +13,8 @@ import { environment } from 'src/environments/environment';
 import { MapsService } from 'src/app/shared/services/maps.service';
 import { SalonsService } from '../../../../services/salon.service';
 import { Salon } from 'src/app/core/models/salon.model';
+import { EjemplosService } from 'src/app/core/services/ejemplo.service';
+import { Ejemplo } from 'src/app/core/models/ejemplo.model';
 @Component({
   selector: 'app-editar-invitacion',
   templateUrl: './editar-invitacion.component.html',
@@ -53,6 +55,7 @@ export class EditarInvitacionComponent {
   viewSizeM = ''
   usuarioFiesta = ''
   viewInicial = false
+  textUrl: any = environment.text_url
   efectos: any = [
     {
       nombre: "Bounce",
@@ -249,12 +252,14 @@ export class EditarInvitacionComponent {
   inv: boolean = false
   ent: boolean = false
   salon: Salon
+  ejemplos: Ejemplo[]
 
   constructor(
     private fb: FormBuilder,
     private functionsService: FunctionsService,
     private route: ActivatedRoute,
     private fiestasService: FiestasService,
+    private ejemplosServices: EjemplosService,
     private invitacionsService: InvitacionsService,
     private router: Router,
     private fileService: FileService,
@@ -262,7 +267,7 @@ export class EditarInvitacionComponent {
     private salonsService: SalonsService
 
   ) {
-    this.getExamples()
+
     setTimeout(() => {
       this.viewInicial = true
     }, 500);
@@ -345,7 +350,6 @@ export class EditarInvitacionComponent {
       cPrincipal: ['#ffc0cb'],
       cSecond: ['#c0354e'],
       cWhite: ['#ffffff'],
-
       img1: [''],
       imgWidth: [100],
       xImg1: [50],
@@ -375,8 +379,6 @@ export class EditarInvitacionComponent {
       inicialTSize: [10],
       finalTSize: [10],
       musicaInvitacion: [''],
-
-
       finalTFont: ['pacifico'],
       inviFont: ['pacifico'],
       inviFont2: ['pacifico'],
@@ -390,7 +392,6 @@ export class EditarInvitacionComponent {
       mensajeSize: [25],
       mensajeEfecto: [''],
       mensajeEfectoRep: [1],
-
       donde1Check: [true],
       donde1Img: [''],
       donde1Title: ['Iglesia'],
@@ -442,8 +443,6 @@ export class EditarInvitacionComponent {
       mesaRegalosLugar: [''],
       mesaRegalosUrl: [''],
       mesaRegalosImg: [''],
-
-
       itinerarioCheck: [true],
       itinerarioName: [this.fiesta.nombre],
       itinerarios: this.fb.array([]),
@@ -460,25 +459,18 @@ export class EditarInvitacionComponent {
       menu: this.fb.array([]),
       musicaCheck: [true],
       musica: this.fb.array([]),
-
       codigoVestimentaCheck: [true],
       codigoVestimentaHombre: [''],
       codigoVestimentaHombreImg: [''],
       codigoVestimentaMujer: [''],
       codigoVestimentaMujerImg: [''],
-
-
-
       colorQr: ['#ffffff'],
       colorBgQr: ['#c0354e'],
       usuarioCreated: [this.usuarioFiesta],
       activated: [true],
       dateCreated: [this.today],
       lastEdited: [this.today],
-
-
       //byFIle
-
       typeFile: [''],
       byFileColorTx: [''],
       byFileColorBG: [''],
@@ -488,7 +480,6 @@ export class EditarInvitacionComponent {
       byFileInvitacion: [''],
       byFileUrl: [''],
       byFileWidth: [''],
-
       byFileHeight: [''],
       byFileFrame: [''],
       byFileFrameWidth: [''],
@@ -511,8 +502,10 @@ export class EditarInvitacionComponent {
       donde1AddressUbicacionRes = donde1AddressUbicacionRes.split(',')
       this.iglesiaLocation = [Number(donde1AddressUbicacionRes[1]), Number(donde1AddressUbicacionRes[0])]
     } else {
-      this.mapService.getUserLocation().then(res => {
-        this.iglesiaLocation = res
+      this.mapService.getUserLocation().then(async res => {
+
+        this.iglesiaLocation = await res
+
       })
     }
     if (data.donde2AddressUbicacion != '') {
@@ -521,8 +514,8 @@ export class EditarInvitacionComponent {
       donde2AddressUbicacionRes = donde2AddressUbicacionRes.split(',')
       this.registroLocation = [Number(donde2AddressUbicacionRes[1]), Number(donde2AddressUbicacionRes[0])]
     } else {
-      this.mapService.getUserLocation().then(res => {
-        this.registroLocation = res
+      this.mapService.getUserLocation().then(async res => {
+        this.registroLocation = await res
       })
     }
     if (data.hospedajeUbicacion != '') {
@@ -533,8 +526,8 @@ export class EditarInvitacionComponent {
 
       this.hospedajeLocation = [Number(hospedajeUbicacionRes[1]), Number(hospedajeUbicacionRes[0])]
     } else {
-      this.mapService.getUserLocation().then(res => {
-        this.hospedajeLocation = res
+      this.mapService.getUserLocation().then(async res => {
+        this.hospedajeLocation = await res
       })
     }
   }
@@ -1355,6 +1348,7 @@ export class EditarInvitacionComponent {
         this.invitacion.data = await this.numberToData(this.invitacion.data)
         this.usuarioCreated = this.usuarioFiesta
         this.setFormWithData(this.invitacion)
+        this.getExamples()
         setTimeout(() => {
           if (this.invitacion.data.itinerarios && this.invitacion.data.itinerarios.length > 0) {
             this.invitacion.data.itinerarios.forEach(iti => {
@@ -1847,44 +1841,127 @@ export class EditarInvitacionComponent {
 
 
 
-    let url2 = example.split('https://www.myticketparty.com/core/')
 
 
 
-
-    return
     this.functionsService.setLocal('tipoInvitacion', this.fiesta.invitacion)
     if (example == '') {
       this.functionsService.alert('Alerta', 'Necesita seleccionar un ejemplo', 'warning')
       return
     }
-    let url = example.split('https://www.myticketparty.com/core/')
+    let url = example.split(this.textUrl)
+
     this.functionsService.setLocal('viewTemplate', this.id)
-    this.functionsService.navigateTo('core/' + url[1] + '/copy')
+    this.functionsService.navigateTo(url[1] + '/copy')
   }
   async copiarExample() {
+
+
     if (this.functionsService.getLocal('invitacion')) {
       let invitacion = this.functionsService.getLocal('invitacion')
+
       this.invitacion.data = await this.numberToData(invitacion)
-      this.invitacion.data.nombreFiesta = ''
+      //Seccion Principal
+      this.invitacion.data.img1 = ''
+      this.invitacion.data.nombreFiesta = this.fiesta.nombre
       this.invitacion.data.tipoFiesta = ''
-      this.invitacion.data.generalTexto = ''
+      //Seccion Mensaje
       this.invitacion.data.mensaje1 = ''
-      this.invitacion.data.codigoVestimentaMujer = ''
-      this.invitacion.data.codigoVestimentaHombre = ''
+      this.invitacion.data.mensajeImg = ''
+      //Donde y cuando Salon
+
+      this.invitacion.data.donde3Text = this.fiesta.salon.nombre
+      this.invitacion.data.donde3Img = this.fiesta.salon.img
+      this.invitacion.data.donde3Date = this.invitacion.fecha
+      this.invitacion.data.donde3Address = this.fiesta.salon.direccion.toUpperCase()
+      this.invitacion.data.donde3AddressUbicacion = this.fiesta.salon.ubicacionGoogle
+      this.invitacion.data.donde3AddressUbicacionLat = this.fiesta.salon.lat
+      this.invitacion.data.donde3AddressUbicacionLng = this.fiesta.salon.long
+      //Donde y cuando Iglesia
+      this.invitacion.data.donde1Check = false
+      this.invitacion.data.donde1Img = ''
+      this.invitacion.data.donde1Text = ''
+      this.invitacion.data.donde1Date = ''
+      this.invitacion.data.donde1Address = ''
+      this.invitacion.data.donde1AddressUbicacion = ''
+      this.invitacion.data.donde1AddressUbicacionLat = ''
+      this.invitacion.data.donde1AddressUbicacionLng = ''
+      //Donde y cuando Registro
+      this.invitacion.data.donde2Check = false
+      this.invitacion.data.donde2Img = ''
       this.invitacion.data.donde2Text = ''
-      this.invitacion.data.donde3Text = ''
-      this.invitacion.data.donde2Text = ''
+      this.invitacion.data.donde2Date = ''
+      this.invitacion.data.donde2Address = ''
+      this.invitacion.data.donde2AddressUbicacion = ''
+      this.invitacion.data.donde2AddressUbicacionLat = ''
+      this.invitacion.data.donde2AddressUbicacionLng = ''
+      //Donde y cuando Hospedaje
+      this.invitacion.data.hospedajeCheck = false
+      this.invitacion.data.hospedajeImg = ''
+      this.invitacion.data.hospedajeName = ''
+      this.invitacion.data.hospedajePhone = ''
+      this.invitacion.data.hospedajeAddress = ''
+      this.invitacion.data.hospedajeUbicacion = ''
+      this.invitacion.data.hospedajeUbicacionLng = ''
+      this.invitacion.data.hospedajeUbicacionLat = ''
+
+      //Boton confirmacion
+      this.invitacion.data.confirmacionCheck = false
+      //padres
+      this.invitacion.data.padresCheck = false
+      this.invitacion.data.padres = []
+      //padrinos
+      this.invitacion.data.padrinosCheck = false
+      this.invitacion.data.padrinos = []
+      //chambelanes
+      this.invitacion.data.chambelanesCheck = false
+      this.invitacion.data.chambelanes = []
+      //menu
+      this.invitacion.data.menuCheck = false
+      this.invitacion.data.menu = []
+      //musica
+      this.invitacion.data.musicaCheck = false
+      this.invitacion.data.musica = []
+      //Itinerarios
+      this.invitacion.data.itinerarioCheck = false
+      this.invitacion.data.itinerarios = []
+      //Notas
+      this.invitacion.data.notaCheck = false
+      this.invitacion.data.notas = []
+      //Mesa de regalos
+      this.invitacion.data.mesaRegalosCheck = false
+      this.invitacion.data.mesaRegalosImg = ""
+      //Codigo Vestimenta
+      this.invitacion.data.codigoVestimentaCheck = false
+      this.invitacion.data.codigoVestimentaMujerImg = ""
+      this.invitacion.data.codigoVestimentaMujer = ""
+      this.invitacion.data.codigoVestimentaHombreImg = ""
+      this.invitacion.data.codigoVestimentaHombre = ""
+
+
+
+      this.invitacion.data.generalTexto = ''
+      this.invitacion.data.mensajeFont = ''
+      this.invitacion.data.mensajeEfecto = ''
+      this.invitacion.data.mensajeEfectoRep = ''
+
       this.invitacion.data.mesaRegalosLugar = ''
       this.invitacion.data.mesaRegalosUrl = ''
-      this.invitacion.data.padres = []
-      this.invitacion.data.padrinos = []
-      this.invitacion.data.chambelanes = []
-      this.invitacion.data.menu = []
-      this.invitacion.data.musica = []
-      this.invitacion.data.itinerarios = []
-      this.invitacion.data.notas = []
+
+
+
+
+
+
+
+
+
+
+
+
+
       this.usuarioCreated = this.usuarioFiesta
+
       this.setFormWithData(this.invitacion)
       this.functionsService.removeItemLocal('invitacion')
     } else {
@@ -1907,10 +1984,17 @@ export class EditarInvitacionComponent {
     this.play = event
   }
   getExamples() {
-    this.fiestasService.cargarFiestasAll().subscribe(resp => {
 
 
-      this.examples = resp.fiestas.filter(fs => { return fs.example })
+
+    this.ejemplosServices.cargarEjemplosAll().subscribe(resp => {
+
+      var type = (this.invitacion.fiesta.invitacion.includes('default') ? 'default' : 'byFile')
+      let filtro = resp.ejemplos.filter(resp => {
+        return resp.urlFiestaBoleto.includes(type)
+      })
+
+      this.examples = this.functionsService.getActives(filtro)
 
 
     })

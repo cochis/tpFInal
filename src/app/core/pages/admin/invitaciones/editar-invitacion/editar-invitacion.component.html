@@ -12,7 +12,7 @@
                             <h2 class="mb-5" *ngIf="edit=='false'">Ver rol</h2>
                         </div>
                         <ng-container *ngIf="invitacion || (fiesta && form.valueId!='')   || form.value">
-                            <!--  <ng-container>
+                            <ng-container>
                                 <div class="row text-center">
                                     <h5>Ver ejemplos</h5>
                                     <div class="col-12 col-md-4 ma">
@@ -20,8 +20,7 @@
                                             <option value="">Invitaciones de ejemplo</option>
                                             <ng-container *ngFor="let item of examples; let i=index">
 
-                                                <option
-                                                    value="/core/templates/default/6726e81913060646af5826a9/6726f2f813060646af58294d">
+                                                <option [value]="item.urlFiestaBoleto">
                                                     {{item.nombre}}
                                                 </option>
                                             </ng-container>
@@ -42,7 +41,7 @@
 
                                 </div>
 
-                            </ng-container> -->
+                            </ng-container>
 
 
                             <!-- Inicia Deafult -->
@@ -876,6 +875,31 @@
 
 
                                     </div>
+
+
+
+                                    <div class="row   text-center mt-3">
+                                        <h5>Seccion Entrada general</h5>
+                                        <hr class="mt-3 mb-3">
+                                        <div class="col-12       mt-3 ma  text-center">
+                                            <label class="form-check-label" for="generalCheck">
+                                                Entrada general
+                                            </label>
+                                            <input class="form-check-input" type="checkbox" id="generalCheck"
+                                                #generalCheck formControlName="generalCheck">
+
+
+                                        </div>
+                                        <div class="col-12 col-md-6  ma  mt-3 text-center"
+                                            *ngIf="form.value.generalCheck">
+                                            <div class="form-group ">
+                                                <label for="generalTexto ">Texto como invitación General </label>
+                                                <input type="text" id="generalTexto" #generalTexto
+                                                    formControlName="generalTexto" placeholder="A toda la comunidad"
+                                                    class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
                                     <ng-container class="text-center  ma">
 
                                         <div class="row text-center mt-3 ma">
@@ -1594,7 +1618,8 @@
 
 
 
-                                            <div class="col-12   mt-3" *ngIf="form.value.donde2Check">
+                                            <div class="col-12   mt-3"
+                                                *ngIf="form.value.donde2Check && registroLocation">
                                                 <label for="donde2AddressUbicacion ">Ubicación </label>
                                                 <app-mapscreen [showBar]="true"
                                                     (coordenadasSelect)="showCoordenadas($event)"
@@ -1671,7 +1696,8 @@
                                                         class="form-control">
                                                 </div>
                                             </div>
-                                            <div class="col-12   mt-3" *ngIf="form.value.hospedajeCheck">
+                                            <div class="col-12   mt-3"
+                                                *ngIf="form.value.hospedajeCheck && hospedajeLocation">
                                                 <label for="hospedajeUbicacion ">Ubicación </label>
                                                 <app-mapscreen [showBar]="true"
                                                     (coordenadasSelect)="showCoordenadas($event)"
@@ -2244,10 +2270,10 @@
                                                         class="form-control">
                                                 </div>
                                             </div>
-                                            <div class="col-12   mt-3" *ngIf="form.value.donde1Check">
+                                            <div class="col-12   mt-3"
+                                                *ngIf="form.value.donde1Check && iglesiaLocation">
                                                 <div class="form-group ">
-                                                    <label for="donde1AddressUbicacion "
-                                                        *ngIf="iglesiaLocation">Ubicación </label>
+                                                    <label for="donde1AddressUbicacion ">Ubicación </label>
 
 
 

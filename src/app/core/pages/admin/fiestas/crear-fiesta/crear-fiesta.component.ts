@@ -53,7 +53,7 @@ export class CrearFiestaComponent {
   cantidadFiestas = 0
   cantidadGalerias = 0
   salonSelect = ''
-  usuarioSelect: Usuario
+  usuarioSelect: any
   constructor(
     private fb: FormBuilder,
     private functionsService: FunctionsService,
@@ -300,15 +300,28 @@ export class CrearFiestaComponent {
   }
   selectSalon(event) {
     this.salonesService.cargarSalonById(event.target.value).subscribe((resp) => {
+
       setTimeout(() => {
 
         this.salonSelect = resp.salon.usuarioCreated
+
         this.usuariosService.cargarUsuarioById(this.salonSelect).subscribe(resp => {
+
 
           this.usuarioSelect = resp.usuario
 
-          this.cantidadFiestas = this.usuarioSelect.cantidadFiestas
-          this.cantidadGalerias = this.usuarioSelect.cantidadGalerias
+
+          if (this.usuarioSelect.role.clave != this.ADM) {
+
+            this.cantidadFiestas = this.usuarioSelect.cantidadFiestas
+            this.cantidadGalerias = this.usuarioSelect.cantidadGalerias
+          } else {
+
+            this.cantidadFiestas = 1
+
+            this.cantidadGalerias = 1
+          }
+
           this.calcularItems(this.usuarioSelect.compras)
         })
 
