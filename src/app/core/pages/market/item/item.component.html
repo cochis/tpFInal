@@ -143,9 +143,8 @@
                 {{getPrecio(item)[1] |
                 currency : 'USD' : 'symbol' : '1.0-0'}}</p>
             <b>Descripción:</b>
-            <p style="text-align: justify; font-size: 13px;">
-                {{item.descripcion | slice:0:50}} ...
-            </p>
+            <div [innerHTML]="convertDes(item.descripcion) " style="margin-top: 10px; text-align: start;"></div>
+
         </div>
 
     </div>

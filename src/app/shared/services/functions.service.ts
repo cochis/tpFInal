@@ -44,6 +44,25 @@ export class FunctionsService {
 
     return this.textToHTML
   }
+
+
+  convertDesSinHtml(des: any) {
+
+    let regexp = /<[^<>]+>/g;
+    var desc = des
+    let rgx: any = []
+    rgx = des.match(regexp)
+    if (rgx && rgx.length > 0) {
+      rgx.forEach(el => {
+        desc = desc.replace(el, ' ')
+      });
+
+
+      return this.sanitizer.bypassSecurityTrustHtml(desc);
+    } else {
+      return ''
+    }
+  }
   back() {
     this.location.back();
   }

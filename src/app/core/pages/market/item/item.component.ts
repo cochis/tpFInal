@@ -6,7 +6,7 @@ import { SalonsService } from 'src/app/core/services/salon.service';
 import { TipoMediasService } from 'src/app/core/services/tipoMedia.service';
 import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { environment } from 'src/environments/environment';
-
+import { DomSanitizer, SafeHtml, Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-item',
   templateUrl: './item.component.html',
@@ -25,10 +25,12 @@ export class ItemComponent implements AfterViewInit {
   SERVICIO = environment.tiServicio
   url = environment.base_url
   salons: Salon[]
+  descripcionHTML: SafeHtml;
   constructor(
     private tipoMediasService: TipoMediasService,
     private functionsService: FunctionsService,
     private salonsService: SalonsService,
+    private sanitizer: DomSanitizer,
   ) {
     this.loading = true
     this.getCatalogos()
@@ -192,5 +194,22 @@ export class ItemComponent implements AfterViewInit {
 
     return precios
   }
+  convertDes(des: any) {
 
+    let regexp = /<[^<>]+>/g;
+    var desc = des
+    let rgx: any = []
+    rgx = des.match(regexp)
+    if (rgx && rgx.length > 0) {
+      rgx.forEach(el => {
+        desc = desc.replace(el, ' ')
+      });
+
+
+      desc = desc.substr(0, 80) + '...'
+      return this.sanitizer.bypassSecurityTrustHtml(desc);
+    } else {
+      return ''
+    }
+  }
 }

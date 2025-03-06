@@ -220,7 +220,7 @@ export class SingleProductComponent {
       this.metaService.generateTags({
         title: `My Ticket Party| ${this.item.nombre}`,
         description:
-          `Descripción del producto : ${this.item.descripcion}`,
+          `Descripción del producto : ${this.functionsService.convertDesSinHtml(this.item.descripcion)}`,
         keywords:
           'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in',
         slug: 'core/faqs',
