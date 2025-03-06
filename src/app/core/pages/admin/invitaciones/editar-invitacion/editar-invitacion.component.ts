@@ -1949,9 +1949,15 @@ export class EditarInvitacionComponent {
       this.invitacion.data.mesaRegalosUrl = ''
 
 
+      //Invitacion By flie
 
 
+      this.invitacion.data.byFileInvitacion = ''
 
+      //Entrada General
+
+      this.invitacion.data.generalCheck = false
+      this.invitacion.data.generalTexto = ''
 
 
 
