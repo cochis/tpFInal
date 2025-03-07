@@ -41,7 +41,7 @@ import { VistaInvitacionesComponent } from './pages/admin/invitaciones/vista-inv
 import { CrearInvitacionComponent } from './pages/admin/invitaciones/crear-invitacion/crear-invitacion.component';
 import { EditarInvitacionComponent } from './pages/admin/invitaciones/editar-invitacion/editar-invitacion.component';
 import { Xv2Component } from './invitaciones/xv/xv2/xv2.component';
-
+import { FullCalendarModule } from '@fullcalendar/angular';
 import { Pc1Component } from './invitaciones/primeraCominion/pc1/pc1.component';
 import { GaleriaComponent } from './pages/galeria/galeria.component';
 
@@ -306,7 +306,8 @@ import { NgxEditorModule } from 'ngx-editor';
     QRCodeModule,
     NgxPaginationModule,
     NgxCurrencyDirective,
-    NgxEditorModule
+    NgxEditorModule,
+    FullCalendarModule
   ],
   exports: [MarketItemsComponent]
 })

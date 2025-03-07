@@ -63,8 +63,8 @@ export class MapsService {
           resolve(this.userLocation)
         },
         (err) => {
-          console.error('err::: ', err);
-          navigator.geolocation.getCurrentPosition((data) => { }, (err) => console.error(err))
+
+          navigator.geolocation.getCurrentPosition((data) => { }, (err) => { })
           /*        this.functionsService.alertError(err, 'error') */
         }
       )

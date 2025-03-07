@@ -18,7 +18,7 @@ import { UnauthorizedInterceptorService } from './interceptors/unauthorized-inte
 import { ModalModule } from '@developer-partners/ngx-modal-dialog';
 import { NgxPrintModule } from 'ngx-print';
 import { NgxEditorModule } from 'ngx-editor';
-
+import { FullCalendarModule } from '@fullcalendar/angular';
 @NgModule({
   declarations: [
     AppComponent
@@ -39,6 +39,7 @@ import { NgxEditorModule } from 'ngx-editor';
     ModalModule,
     NgxPrintModule,
     NgxEditorModule,
+    FullCalendarModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable

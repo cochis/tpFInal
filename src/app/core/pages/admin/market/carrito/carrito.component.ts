@@ -32,6 +32,7 @@ export class CarritoComponent implements OnInit {
   carrito: any = []
   usuario: Usuario = undefined
   url = environment.base_url
+  urlT = environment.text_url
   today: Number = this.functionsService.getToday()
   todayDate = this.functionsService.numberToDate(this.today)
   isPago: boolean = false
@@ -46,22 +47,7 @@ export class CarritoComponent implements OnInit {
   MAPURL = environment.mapsGoogleUrl
   MAPZOOM = environment.mapsGoogleZoom
   submited = false
-  qr: any = {
-    data: {
-      nombreAnf: "OSCAR ALEJANDRO",
-      apellidoPatAnf: "RAMIREZ",
-      apellidoMatAnf: "ROSAS",
-      isAnfitironFestejado: false,
-      nombreFes: "",
-      apellidoPatFes: "",
-      apellidoMatFes: "",
 
-
-    },
-    img: 'http://localhost:3008/api/upload/items/18249c35-b348-4eea-b10a-c8d521f01d06.jpg',
-    colorP: '#13547a',
-    colorB: '#80d0c7'
-  }
   location: any
   pdfSrc = "https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf";
   constructor(
@@ -91,7 +77,7 @@ export class CarritoComponent implements OnInit {
   }
   ngOnInit(): void {
     this.loading = true
-    this.qr = JSON.stringify(this.qr)
+
 
 
     setTimeout(() => {
@@ -541,10 +527,11 @@ export class CarritoComponent implements OnInit {
       this.form.reset()
       this.formCot.reset()
       setTimeout(() => {
-        this.functionsService.removeItemLocal('carrito')
+
+        /*  this.functionsService.removeItemLocal('carrito') */
 
         this.functionsService.navigateTo('/core/mis-cotizaciones')
-      }, 1500);
+      }, 5500);
     } else {
       this.functionsService.alert('Cotización', 'Completa el formulario', 'info')
     }
@@ -554,6 +541,7 @@ export class CarritoComponent implements OnInit {
   getUser() {
     this.usuariosService.cargarUsuarioById(this.uid).subscribe(res => {
       this.usuario = res.usuario
+
 
     })
   }
@@ -721,31 +709,31 @@ export class CarritoComponent implements OnInit {
 
     if (typeV == 'Proveedor') {
 
-      cts.push({ text: 'Nombre: ', bold: true, fontSize: 8, color: '#13547a', },)
+      cts.push({ text: 'Nombre: ', bold: true, fontSize: 8, color: '#80d0c7', },)
       cts.push({ text: type.nombre + '\n ', fontSize: 8, color: '#13547a', },)
       type.contactos.forEach(ct => {
 
 
 
         if (this.getContactType(ct.tipoContacto) === 'TELÉFONO') {
-          cts.push({ text: 'TELÉFONO: ', bold: true, fontSize: 8, color: '#13547a', })
+          cts.push({ text: 'TELÉFONO: ', bold: true, fontSize: 8, color: '#80d0c7', })
           cts.push({ text: ct.value + '\n', bold: true, fontSize: 8, color: '#13547a', })
 
           ctsT.push(cts)
         }
         if (this.getContactType(ct.tipoContacto) === 'MAIL') {
-          cts.push({ text: 'MAIL: ', bold: true, fontSize: 8, color: '#13547a', })
+          cts.push({ text: 'MAIL: ', bold: true, fontSize: 8, color: '#80d0c7', })
           cts.push({ text: ct.value + '\n', bold: true, fontSize: 8, color: '#13547a', })
           ctsT.push(cts)
         }
 
         if (this.getContactType(ct.tipoContacto) === 'PAGINA WEB') {
-          cts.push({ text: 'PAGINA WEB: ', bold: true, fontSize: 8, color: '#13547a', })
+          cts.push({ text: 'PAGINA WEB: ', bold: true, fontSize: 8, color: '#80d0c7', })
           cts.push({ text: ct.value + '\n', bold: true, fontSize: 8, color: '#13547a', })
           ctsT.push(cts)
         }
         if (this.getContactType(ct.tipoContacto) === 'DIRECCIÓN') {
-          cts.push({ text: 'DIRECCIÓN: ', bold: true, fontSize: 8, color: '#13547a', })
+          cts.push({ text: 'DIRECCIÓN: ', bold: true, fontSize: 8, color: '#80d0c7', })
           cts.push({ text: ct.value + '\n', bold: true, fontSize: 8, color: '#13547a', })
           ctsT.push(cts)
         }
@@ -758,30 +746,30 @@ export class CarritoComponent implements OnInit {
       return cts
     } else {
 
-      cts.push({ text: 'Anfitrión: ', bold: true, fontSize: 8, color: '#13547a', },)
+      cts.push({ text: 'Anfitrión: ', bold: true, fontSize: 8, color: '#80d0c7', },)
       cts.push({ text: type.nombreAnf + ' ' + type.apellidoPatAnf + ' ' + type.apellidoMatAnf + '\n ', fontSize: 8, color: '#13547a', },)
       if (!type.isAnfitironFestejado && (type.nombreFes !== '' || type.apellidoPatFes !== '' || type.apellidoMatFes !== '')) {
-        cts.push({ text: 'Festejada(o): ', bold: true, fontSize: 8, color: '#13547a', },)
+        cts.push({ text: 'Festejada(o): ', bold: true, fontSize: 8, color: '#80d0c7', },)
         cts.push({ text: type.nombreFes + ' ' + type.apellidoPatFes + ' ' + type.apellidoMatFes + '\n ', fontSize: 8 },)
 
       }
       if (type.telfonoAnf !== '') {
-        cts.push({ text: 'Teléfono: ', bold: true, fontSize: 8, color: '#13547a', },)
+        cts.push({ text: 'Teléfono: ', bold: true, fontSize: 8, color: '#80d0c7', },)
         cts.push({ text: type.telfonoAnf + '\n ', fontSize: 8, color: '#13547a', },)
 
       }
       if (type.emailAnf !== '') {
-        cts.push({ text: 'EMAIL: ', bold: true, fontSize: 8, color: '#13547a', },)
+        cts.push({ text: 'EMAIL: ', bold: true, fontSize: 8, color: '#80d0c7', },)
         cts.push({ text: type.emailAnf + '\n ', fontSize: 8, color: '#13547a', },)
 
       }
       if (type.direccion !== '') {
-        cts.push({ text: 'Dirección: ', bold: true, fontSize: 8, color: '#13547a', },)
+        cts.push({ text: 'Dirección: ', bold: true, fontSize: 8, color: '#80d0c7', },)
         cts.push({ text: type.direccion + '\n ', fontSize: 8, color: '#13547a', },)
 
       }
       if (type.fechaEvento !== '') {
-        cts.push({ text: 'FechaEvento: ', bold: true, fontSize: 8, color: '#13547a', },)
+        cts.push({ text: 'FechaEvento: ', bold: true, fontSize: 8, color: '#80d0c7', },)
         cts.push({ text: type.fechaEvento + '\n ', fontSize: 8, color: '#13547a', },)
 
       }
@@ -826,9 +814,11 @@ export class CarritoComponent implements OnInit {
         productos: coti.productos,
         correoProveedor: correoProveedor[0].value
       }
+
+
       this.emailService.sendMailCotizacion(coti.uid, productos).subscribe(res => {
 
-
+        this.functionsService.alert('Cotizacion', 'Se genero correctamente, correo enviado ', 'success')
 
       })
 
@@ -888,84 +878,100 @@ export class CarritoComponent implements OnInit {
 
         Bf = ''
       }
-      let cot = [{
-        pageBreak: Bf,
-        alignment: 'center',
-        text: 'MyTicketparty',
-        style: 'header',
-        color: '#13547a',
-        fontSize: 23,
-        bold: true,
-        margin: [0, 10],
-      },
-      /*  [{ text: 'Cotizacion: ', bold: true, fontSize: 12, color: '#13547a', },
-       { text: '#' + await this.getNumCot(prv) + ' \n ', fontSize: 10, color: '#13547a', }], */
+      let cot = [
+        {
+          alignment: 'center',
+          image: await this.functionsService.imageUrlToBase64(`${this.urlT}/assets/images/logo.png`),
+          width: 70
+        },
+        {
+          pageBreak: Bf,
+          alignment: 'center',
+          text: 'MyTicketparty',
+          style: 'header',
+          color: '#13547a',
+          fontSize: 23,
+          bold: true,
+          margin: [0, 10],
+        },
+        {
 
-      {
-        style: 'tableExample',
-        table: {
-          headerRows: 1,
-          widths: ['50%', '50%'],
-          body: [
+          style: 'tableExample',
+          table: {
+            headerRows: 1,
+            widths: ['50%', '50%'],
+            body: [
 
-            [{ text: 'Proveedor', style: 'tableHeader', color: '#13547a', }, { text: 'Cliente', style: 'tableHeader', color: '#13547a', }],
-            [
+              [{ text: 'Proveedor', style: 'tableHeader', color: '#13547a', }, { text: 'Cliente', style: 'tableHeader', color: '#13547a', }],
               [
-                {
-                  text: this.getContactosPDF('Proveedor', prv),
-                }
-              ],
-              [
+                [
+                  {
+                    alignment: 'left',
+                    image: await this.functionsService.imageUrlToBase64(`${this.url}/upload/proveedores/${prv.img}`),
+                    width: 30
+                  },
+                  {
+                    text: this.getContactosPDF('Proveedor', prv),
+                  }
+                ],
+                [
 
 
-                {
-                  text: this.getContactosPDF('Cliente', this.formCot.value)
+                  {
+                    text: this.getContactosPDF('Cliente', this.formCot.value)
 
 
-                  ,
-                }
+                    ,
+                  }
+                ]
               ]
             ]
-          ]
-        }
-        ,
-        layout: 'noBorders'
-      },
-      {
-        style: 'tableExample',
-        borderColor: ['#13547a'],
-        table: {
-          widths: ['25%', '25%', '15%', '15%', '10%', '10%'],
-          headerRows: 1,
+          }
+          ,
+          layout: 'noBorders'
+        },
 
-          body: this.getProductsPdf(prv, this.carrito)
 
+
+
+
+
+
+
+        {
+          style: 'tableExample',
+          alignment: 'center',
+          table: {
+            alignment: 'center',
+            headerRows: 1,
+            widths: ['100%'],
+            body: [
+
+              [{ text: 'Total', style: 'tableHeader', color: '#13547a', alignment: 'center', }],
+              [{ text: this.getProvTotal(prv._id), color: '#80d0c7', alignment: 'center', }]
+            ]
+          }
+          ,
+          layout: 'noBorders'
+        },
+        {
+          alignment: 'center',
+          style: 'tableExample',
+          borderColor: ['#13547a'],
+          table: {
+            alignment: 'center',
+            widths: ['25%', '25%', '15%', '15%', '10%', '10%'],
+            headerRows: 1,
+
+            body: this.getProductsPdf(prv, this.carrito)
+
+
+
+          },
+          layout: 'headerLineOnly',
 
 
         },
-        layout: 'headerLineOnly',
-
-
-      },
-
-
-
-
-
-      {
-        style: 'tableExample',
-        table: {
-          headerRows: 1,
-          widths: ['100%'],
-          body: [
-
-            [{ text: 'Total', style: 'tableHeader', color: '#13547a', }],
-            [this.getProvTotal(prv._id)]
-          ]
-        }
-        ,
-        layout: 'noBorders'
-      },
 
 
 
@@ -1018,14 +1024,16 @@ export class CarritoComponent implements OnInit {
         }
       }
     };
-    const pdf = pdfMake.createPdf(docDefinition);
+    /* const pdf = pdfMake.createPdf(docDefinition); */
+    const pdf = pdfMake.createPdf(docDefinition)
 
     this.loading = true
     setTimeout(() => {
 
-      pdf.download('Cotizacion-' + Date.now() + '.pdf');
+
+      pdf.download('Cotizacion-' + (this.formCot.value.nombreEvento.replace(' ', '')) + '-' + this.functionsService.numberToDate(Date.now()) + '.pdf');
       this.loading = false
-    }, 2000);
+    }, 5000);
 
   }
   showCoordenadas(e) {

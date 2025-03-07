@@ -36,6 +36,8 @@ import { MtpLogoComponent } from './components/mtp-logo/mtp-logo.component';
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
 import { NgxCurrencyDirective } from 'ngx-currency';
+import { CalendarComponent } from './components/calendar/calendar.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 
 
@@ -73,6 +75,7 @@ import { NgxCurrencyDirective } from 'ngx-currency';
     MtpLogoComponent,
     SearchbarComponent,
     SearchResultsComponent,
+    CalendarComponent,
 
 
   ],
@@ -95,6 +98,7 @@ import { NgxCurrencyDirective } from 'ngx-currency';
     IsLoginComponent,
     QrComponent,
     MapscreenComponent,
+    CalendarComponent
 
   ],
   imports: [
@@ -103,7 +107,8 @@ import { NgxCurrencyDirective } from 'ngx-currency';
     ReactiveFormsModule,
     ZXingScannerModule,
     QRCodeModule,
-    NgxCurrencyDirective
+    NgxCurrencyDirective,
+    FullCalendarModule
   ],
 })
 export class SharedModule { }

@@ -39,11 +39,13 @@ export class MiCotizacionComponent {
   isProveedor = false
   public formCot!: FormGroup
   url = environment.base_url
+  urlT = environment.text_url
   proveedores = []
   estatusCotizaciones: any = []
   prvs = []
   tipoMedias: TipoMedia[]
   empresas = this.functionsService.getLocal('proveedor')
+  events: any = []
   constructor(
     private fb: FormBuilder,
     private functionsService: FunctionsService,
@@ -125,8 +127,12 @@ export class MiCotizacionComponent {
       this.cotizacion = resp.cotizacion
 
       this.location = [this.cotizacion.lng, this.cotizacion.lat]
-
-
+      let event = {
+        title: this.cotizacion.nombreEvento,
+        start: this.functionsService.numberDateTimeLocal(this.cotizacion.fechaEvento),
+        allDay: false // will make the time show
+      }
+      this.events.push(event)
 
 
 
@@ -551,83 +557,98 @@ export class MiCotizacionComponent {
 
         Bf = ''
       }
-      let cot = [{
-        pageBreak: Bf,
-        alignment: 'center',
-        text: 'MyTicketparty',
-        style: 'header',
-        color: '#13547a',
-        fontSize: 23,
-        bold: true,
-        margin: [0, 10],
-      },
+      let cot = [
+        {
+          alignment: 'center',
+          image: await this.functionsService.imageUrlToBase64(`${this.urlT}/assets/images/logo.png`),
+          width: 70
+        },
+        {
+          pageBreak: Bf,
+          alignment: 'center',
+          text: 'MyTicketparty',
+          style: 'header',
+          color: '#13547a',
+          fontSize: 23,
+          bold: true,
+          margin: [0, 10],
+        },
 
 
-      {
-        style: 'tableExample',
-        table: {
-          headerRows: 1,
-          widths: ['50%', '50%'],
-          body: [
+        {
+          style: 'tableExample',
+          table: {
+            headerRows: 1,
+            widths: ['50%', '50%'],
+            body: [
 
-            [{ text: 'Proveedor', style: 'tableHeader', color: '#13547a', }, { text: 'Cliente', style: 'tableHeader', color: '#13547a', }],
-            [
+              [{ text: 'Proveedor', style: 'tableHeader', color: '#13547a', }, { text: 'Cliente', style: 'tableHeader', color: '#13547a', }],
               [
-                {
-                  text: this.getContactosPDF('Proveedor', prv),
-                }
-              ],
-              [
+                [
+                  {
+                    alignment: 'left',
+                    image: await this.functionsService.imageUrlToBase64(`${this.url}/upload/proveedores/${prv.img}`),
+                    width: 30
+                  },
+                  {
+                    text: this.getContactosPDF('Proveedor', prv),
+                  }
+                ],
+                [
 
 
-                {
-                  text: this.getContactosPDF('Cliente', this.formCot.value)
+                  {
+                    text: this.getContactosPDF('Cliente', this.formCot.value)
 
 
-                  ,
-                }
+                    ,
+                  }
+                ]
               ]
             ]
-          ]
-        }
-        ,
-        layout: 'noBorders'
-      },
-      {
-        style: 'tableExample',
-        borderColor: ['#13547a'],
-        table: {
-          widths: ['25%', '25%', '15%', '15%', '10%', '10%'],
-          headerRows: 1,
+          }
+          ,
+          layout: 'noBorders'
+        },
+        {
+          style: 'tableExample',
+          alignment: 'center',
+          table: {
+            alignment: 'center',
+            headerRows: 1,
+            widths: ['100%'],
+            body: [
 
-          body: this.getProductsPdf(prv, this.cotizacion.productos)
+              [{ text: 'Total', style: 'tableHeader', color: '#13547a', alignment: 'center', }],
+              [{ text: this.getProvTotal(prv._id), color: '#80d0c7', alignment: 'center', }]
+            ]
+          }
+          ,
+          layout: 'noBorders'
+        },
 
+        {
+          alignment: 'center',
+          style: 'tableExample',
+          borderColor: ['#13547a'],
+          table: {
+            widths: ['25%', '25%', '15%', '15%', '10%', '10%'],
+            headerRows: 1,
+
+            body: this.getProductsPdf(prv, this.cotizacion.productos)
+
+
+
+          },
+          layout: 'headerLineOnly',
 
 
         },
-        layout: 'headerLineOnly',
-
-
-      },
 
 
 
 
 
-      {
-        style: 'tableExample',
-        table: {
-          headerRows: 1,
-          widths: ['100%'],
-          body: [
-
-            [{ text: 'Total', style: 'tableHeader', color: '#13547a', }],
-            [this.getProvTotal(prv._id)]
-          ]
-        }
-        ,
-        layout: 'noBorders'
-      },
 
 
 
@@ -689,7 +710,7 @@ export class MiCotizacionComponent {
       this.print()
 
       this.loading = false
-    }, 2000);
+    }, 5000);
 
   }
 
@@ -794,31 +815,31 @@ export class MiCotizacionComponent {
 
     if (typeV == 'Proveedor') {
 
-      cts.push({ text: 'Nombre: ', bold: true, fontSize: 8, color: '#13547a', },)
+      cts.push({ text: 'Nombre: ', bold: true, fontSize: 8, color: '#80d0c7', },)
       cts.push({ text: type.nombre + '\n ', fontSize: 8, color: '#13547a', },)
       type.contactos.forEach(ct => {
 
 
 
         if (this.getContactType(ct.tipoContacto) === 'TELÉFONO') {
-          cts.push({ text: 'TELÉFONO: ', bold: true, fontSize: 8, color: '#13547a', })
+          cts.push({ text: 'TELÉFONO: ', bold: true, fontSize: 8, color: '#80d0c7', })
           cts.push({ text: ct.value + '\n', bold: true, fontSize: 8, color: '#13547a', })
 
           ctsT.push(cts)
         }
         if (this.getContactType(ct.tipoContacto) === 'MAIL') {
-          cts.push({ text: 'MAIL: ', bold: true, fontSize: 8, color: '#13547a', })
+          cts.push({ text: 'MAIL: ', bold: true, fontSize: 8, color: '#80d0c7', })
           cts.push({ text: ct.value + '\n', bold: true, fontSize: 8, color: '#13547a', })
           ctsT.push(cts)
         }
 
         if (this.getContactType(ct.tipoContacto) === 'PAGINA WEB') {
-          cts.push({ text: 'PAGINA WEB: ', bold: true, fontSize: 8, color: '#13547a', })
+          cts.push({ text: 'PAGINA WEB: ', bold: true, fontSize: 8, color: '#80d0c7', })
           cts.push({ text: ct.value + '\n', bold: true, fontSize: 8, color: '#13547a', })
           ctsT.push(cts)
         }
         if (this.getContactType(ct.tipoContacto) === 'DIRECCIÓN') {
-          cts.push({ text: 'DIRECCIÓN: ', bold: true, fontSize: 8, color: '#13547a', })
+          cts.push({ text: 'DIRECCIÓN: ', bold: true, fontSize: 8, color: '#80d0c7', })
           cts.push({ text: ct.value + '\n', bold: true, fontSize: 8, color: '#13547a', })
           ctsT.push(cts)
         }
@@ -831,30 +852,30 @@ export class MiCotizacionComponent {
       return cts
     } else {
 
-      cts.push({ text: 'Anfitrión: ', bold: true, fontSize: 8, color: '#13547a', },)
+      cts.push({ text: 'Anfitrión: ', bold: true, fontSize: 8, color: '#80d0c7', },)
       cts.push({ text: type.nombreAnf + ' ' + type.apellidoPatAnf + ' ' + type.apellidoMatAnf + '\n ', fontSize: 8, color: '#13547a', },)
       if (!type.isAnfitironFestejado && (type.nombreFes !== '' || type.apellidoPatFes !== '' || type.apellidoMatFes !== '')) {
-        cts.push({ text: 'Festejada(o): ', bold: true, fontSize: 8, color: '#13547a', },)
+        cts.push({ text: 'Festejada(o): ', bold: true, fontSize: 8, color: '#80d0c7', },)
         cts.push({ text: type.nombreFes + ' ' + type.apellidoPatFes + ' ' + type.apellidoMatFes + '\n ', fontSize: 8, color: '#13547a' },)
 
       }
       if (type.telfonoAnf !== '') {
-        cts.push({ text: 'Teléfono: ', bold: true, fontSize: 8, color: '#13547a', },)
+        cts.push({ text: 'Teléfono: ', bold: true, fontSize: 8, color: '#80d0c7', },)
         cts.push({ text: type.telfonoAnf + '\n ', fontSize: 8, color: '#13547a', },)
 
       }
       if (type.emailAnf !== '') {
-        cts.push({ text: 'EMAIL: ', bold: true, fontSize: 8, color: '#13547a', },)
+        cts.push({ text: 'EMAIL: ', bold: true, fontSize: 8, color: '#80d0c7', },)
         cts.push({ text: type.emailAnf + '\n ', fontSize: 8, color: '#13547a', },)
 
       }
       if (type.direccion !== '') {
-        cts.push({ text: 'Dirección: ', bold: true, fontSize: 8, color: '#13547a', },)
+        cts.push({ text: 'Dirección: ', bold: true, fontSize: 8, color: '#80d0c7', },)
         cts.push({ text: type.direccion + '\n ', fontSize: 8, color: '#13547a', },)
 
       }
       if (type.fechaEvento !== '') {
-        cts.push({ text: 'FechaEvento: ', bold: true, fontSize: 8, color: '#13547a', },)
+        cts.push({ text: 'FechaEvento: ', bold: true, fontSize: 8, color: '#80d0c7', },)
         cts.push({ text: type.fechaEvento + '\n ', fontSize: 8, color: '#13547a', },)
 
       }

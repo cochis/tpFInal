@@ -358,12 +358,27 @@ export class FunctionsService {
 
 
   async getBase64Image(img) {
+
     const canvas = document.createElement("canvas");
     const ctx = canvas.getContext("2d");
     ctx.drawImage(img, 0, 0);
     const dataURL = canvas.toDataURL("image/png");
+
     return dataURL;
   }
+  imageUrlToBase64 = async (url) => {
+    const data = await fetch(url);
+    const blob = await data.blob();
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(blob);
+      reader.onloadend = () => {
+        const base64data = reader.result;
+        resolve(base64data);
+      };
+      reader.onerror = reject;
+    });
+  };
 
 
   scroolTo(id) {

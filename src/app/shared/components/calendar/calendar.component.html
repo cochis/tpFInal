@@ -1,0 +1,24 @@
+<app-loading *ngIf="loading"></app-loading>
+<div class=" upper" *ngIf="!loading  ">
+    <div class="container" *ngIf="!dateSelected">
+        <div class="row">
+            <div class="col-6 ma">
+                <h1>hola</h1>
+
+                <button type="button" (click)="desSelect()">
+                    hola
+                </button>
+
+            </div>
+        </div>
+    </div>
+    <ng-container *ngIf="dateSelected">
+
+        <full-calendar [options]="calendarOptions" deepChangeDetection="true" [events]="eventsPromise | async">
+            <ng-template #eventContent let-arg>
+                <b>{{arg.timeText}}</b>
+                <i>{{arg.event.title}}</i>
+            </ng-template>
+        </full-calendar>
+    </ng-container>
+</div>

@@ -299,13 +299,22 @@
 
                                     <div class="qrcodeImage">
                                         <!--   [imageSrc]="url+'/upload/proveedores/'+proveedor.img" [imageHeight]="150"   -->
+                                        <div style="display: none;">
+                                            <qrcode [qrdata]="urlLink" [allowEmptyString]="true"
+                                                [ariaLabel]="'QR Code image with the following content...'"
+                                                [cssClass]="'center'" [colorDark]="form.value.colores[0].value"
+                                                [colorLight]="'#ffffffff'" [elementType]="'canvas'"
+                                                [errorCorrectionLevel]="'M'" [imageWidth]="150" [margin]="4" [scale]="1"
+                                                [title]="'A custom title attribute'" [width]="500"
+                                                (qrCodeURL)="onChangeURL($event)"></qrcode>
+                                        </div>
                                         <qrcode [qrdata]="urlLink" [allowEmptyString]="true"
                                             [ariaLabel]="'QR Code image with the following content...'"
                                             [cssClass]="'center'" [colorDark]="form.value.colores[0].value"
                                             [colorLight]="'#ffffffff'" [elementType]="'canvas'"
                                             [errorCorrectionLevel]="'M'" [imageWidth]="150" [margin]="4" [scale]="1"
-                                            [title]="'A custom title attribute'" [width]="450"
-                                            (qrCodeURL)="onChangeURL($event)"></qrcode>
+                                            [title]="'A custom title attribute'" [width]="150"></qrcode>
+
                                     </div>
 
                                     <a class="btn  btn-warning" type="button" [href]="qrCodeDownloadLink"

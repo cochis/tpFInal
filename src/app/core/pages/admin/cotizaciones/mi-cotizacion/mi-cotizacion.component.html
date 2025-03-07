@@ -218,6 +218,21 @@
                                 requerido
                             </span>
                         </div>
+
+
+                        <!-- 
+                        <div class="col-8 ma" *ngIf="events.length>0">
+                            <div class="row">
+                                <app-calendar [events]="events"></app-calendar>
+
+
+                            </div>
+
+                        </div> -->
+
+
+
+
                         <div class="col-12   mt-3" *ngIf="location">
                             <label for="ubicacion ">Ubicación </label>
                             <app-mapscreen [showBar]="false" (coordenadas)=" showCoordenadas($event)"
