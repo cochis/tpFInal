@@ -15,6 +15,7 @@ import { Editor, Toolbar } from 'ngx-editor';
 import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { MapsService } from 'src/app/shared/services/maps.service';
 import { environment } from 'src/environments/environment';
+import { SafeUrl } from '@angular/platform-browser';
 @Component({
   selector: 'app-editar-provedor',
   templateUrl: './editar-provedor.component.html',
@@ -44,7 +45,7 @@ export class EditarProvedorComponent implements OnDestroy {
   ContactoP = environment.contactosProveedor
   isMap = false
   descripcion: Editor
-
+  public qrCodeDownloadLink: SafeUrl = "";
   toolbar: Toolbar = [
     ['bold', 'italic'],
     ['underline', 'strike'],
@@ -441,5 +442,8 @@ export class EditarProvedorComponent implements OnDestroy {
   ngOnDestroy() {
     this.descripcion.destroy();
 
+  }
+  onChangeURL(url: SafeUrl) {
+    this.qrCodeDownloadLink = url;
   }
 }

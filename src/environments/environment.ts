@@ -94,7 +94,7 @@ export const environment = {
 
 
   //Variables QA
-  base_url: "https://tickets.cochisweb.com/api",
+  /* base_url: "https://tickets.cochisweb.com/api",
   text_url: "https://tickets.cochisweb.com/",
   cProvedores: [
     {
@@ -131,7 +131,7 @@ export const environment = {
       value: "67bb93279279f84e078263e3",
       clave: "WHATSAPP"
     },
-  ]
+  ] */
 
 
 
@@ -139,7 +139,7 @@ export const environment = {
 
 
   //Variables PROD
-  /* base_url: "https://www.myticketparty.com/api",
+  base_url: "https://www.myticketparty.com/api",
   text_url: "https://www.myticketparty.com/",
   cProvedores: [
     {
@@ -176,6 +176,6 @@ export const environment = {
       value: "67bb9a22c539cb99eb40fe5c",
       clave: "WHATSAPP"
     },
-  ] */
+  ]
 
 }; 
