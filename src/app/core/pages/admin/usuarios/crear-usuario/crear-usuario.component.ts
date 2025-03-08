@@ -51,6 +51,8 @@ export class CrearUsuarioComponent {
     this.loading = true
 
     this.getCatalogos()
+
+
     this.createForm()
     setTimeout(() => {
 
@@ -101,7 +103,19 @@ export class CrearUsuarioComponent {
 
         })
     } else {
+      this.tipoCentrosServices.cargarTipoCentrosAll().subscribe((resp: CargarTipoCentros) => {
+        this.tipoCentros = this.functionsService.getActivos(resp.tipoCentros)
 
+
+
+      },
+        (error: any) => {
+          console.error('Error', error)
+          this.functionsService.alertError(error, 'Usuarios')
+          this.loading = false
+
+
+        })
       this.rolesService.cargarRolesSalon().subscribe((resp: CargarRoles) => {
         this.roles = this.functionsService.getActivos(resp.roles)
 
@@ -153,7 +167,7 @@ export class CrearUsuarioComponent {
       email: ['', [Validators.required, Validators.email]],
       telefono: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.pattern(".{6,}")]],
-      tipoCentro: ['', [Validators.required]],
+      tipoCentro: [''],
       cantidadFiestas: [''],
       cantidadGalerias: [''],
       paqueteActual: ['',],
@@ -169,6 +183,8 @@ export class CrearUsuarioComponent {
 
 
   onSubmit() {
+
+
     this.loading = true
     this.submited = true
 

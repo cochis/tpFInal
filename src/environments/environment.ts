@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   user_ID: '64ff4f79da409a7d91056a5b',
   secret: '1f2d1e2e67df',
-  version: "1.2.2.13",
+  version: "1.2.2.14",
   publicKey: "BJqZ8KY_kguwLf27SsteILLRHlWY2pJOvrKlyZNeFlEg4O15ut0t7oYMgXHcLPSh2WYCRPwTS3WEPnhXCMZO4Wg",
   privateKey: "v04F9j6-aAZRvYl25BtZu1cezaWT-m4P0sHtE0JbE7g",
   stripeKeyD: 'pk_test_51PipskAbE4XYrXNxNi1oiwylWr7B9mNMfUfQ070Cy09dDPj5HBFYObSajMGjNzlAynX23dT8thcx8sdJxpnP7Vov00wzIocDLR',
@@ -95,44 +95,44 @@ export const environment = {
 
   //Variables QA
 
-  base_url: "https://tickets.cochisweb.com/api",
-  text_url: "https://tickets.cochisweb.com/",
-  cProvedores: [
-    {
-      value: "67bb92939279f84e078263a9",
-      clave: "cPrincipalWP"
-    },
-    {
-      value: "67bb92ad9279f84e078263b0",
-      clave: "cSecondWP"
-    },
-  ],
-  tiProducto: '67bb934a9279f84e078263ec',
-  tiServicio: '67bb93559279f84e078263f3',
-  contactosProveedor: [
-    {
-      value: "67bb93149279f84e078263dc",
-      clave: "TELÉFONO"
-    }
-    ,
-    {
-      value: "67bb92e89279f84e078263ce",
-      clave: "MAIL"
-    },
-
-    {
-      value: "67bb92d09279f84e078263c7",
-      clave: "DIRECCIÓN"
-    },
-    {
-      value: "67bb92fc9279f84e078263d5",
-      clave: "PAGINA WEB"
-    },
-    {
-      value: "67bb93279279f84e078263e3",
-      clave: "WHATSAPP"
-    },
-  ]
+  /*  base_url: "https://tickets.cochisweb.com/api",
+   text_url: "https://tickets.cochisweb.com/",
+   cProvedores: [
+     {
+       value: "67bb92939279f84e078263a9",
+       clave: "cPrincipalWP"
+     },
+     {
+       value: "67bb92ad9279f84e078263b0",
+       clave: "cSecondWP"
+     },
+   ],
+   tiProducto: '67bb934a9279f84e078263ec',
+   tiServicio: '67bb93559279f84e078263f3',
+   contactosProveedor: [
+     {
+       value: "67bb93149279f84e078263dc",
+       clave: "TELÉFONO"
+     }
+     ,
+     {
+       value: "67bb92e89279f84e078263ce",
+       clave: "MAIL"
+     },
+ 
+     {
+       value: "67bb92d09279f84e078263c7",
+       clave: "DIRECCIÓN"
+     },
+     {
+       value: "67bb92fc9279f84e078263d5",
+       clave: "PAGINA WEB"
+     },
+     {
+       value: "67bb93279279f84e078263e3",
+       clave: "WHATSAPP"
+     },
+   ] */
 
 
 
@@ -141,7 +141,7 @@ export const environment = {
 
   //Variables PROD
 
-  /* base_url: "https://www.myticketparty.com/api",
+  base_url: "https://www.myticketparty.com/api",
   text_url: "https://www.myticketparty.com/",
   cProvedores: [
     {
@@ -178,6 +178,6 @@ export const environment = {
       value: "67bb9a22c539cb99eb40fe5c",
       clave: "WHATSAPP"
     },
-  ] */
+  ]
 
 }; 
