@@ -590,9 +590,30 @@ input[type="file"] {
         height: 150px;
         line-height: 150px;
     }
+
+
+    .carrucel {
+        display: none
+    }
+
+    .carrucelMobil {
+        display: inline-block;
+        text-align: center;
+
+        white-space: nowrap;
+        padding: 10px;
+    }
 }
 
 @media screen and (min-width:576px) and (max-width: 768px) {
+    .carrucelMobil {
+        display: inline-block;
+        text-align: center;
+
+        white-space: nowrap;
+        padding: 10px;
+    }
+
     .principal {
         width: 100% !important;
         height: 750px !important;
@@ -613,6 +634,9 @@ input[type="file"] {
         line-height: 200px;
     }
 
+    .carrucelMobil {
+        display: none
+    }
 
 }
 
@@ -629,6 +653,10 @@ input[type="file"] {
         width: 75%;
         height: 250px;
         line-height: 250px;
+    }
+
+    .carrucelMobil {
+        display: none
     }
 }
 

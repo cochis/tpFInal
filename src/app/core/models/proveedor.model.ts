@@ -7,6 +7,7 @@ export class Proveedor {
         public img: any,
         public calificacion: [Object],
         public descripcion: string,
+        public redes: [Object],
         public contactos: [Object],
         public colores: [Object],
         public ubicacion: string,

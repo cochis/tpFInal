@@ -146,6 +146,9 @@ import { CrearTipoUbicacionComponent } from './pages/admin/tipo-ubicaciones/crea
 import { EditarTipoUbicacionComponent } from './pages/admin/tipo-ubicaciones/editar-tipo-ubicacion/editar-tipo-ubicacion.component';
 import { CrearPromoComponent } from './pages/admin/promos/crear-promo/crear-promo.component';
 import { NgxEditorModule } from 'ngx-editor';
+import { CrearRedComponent } from './pages/admin/redes/crear-red/crear-red.component';
+import { EditarRedComponent } from './pages/admin/redes/editar-red/editar-red.component';
+import { VistaRedesComponent } from './pages/admin/redes/vista-redes/vista-redes.component';
 
 
 
@@ -293,7 +296,10 @@ import { NgxEditorModule } from 'ngx-editor';
     VistaTipoUbicacionesComponent,
     CrearTipoUbicacionComponent,
     EditarTipoUbicacionComponent,
-    CrearPromoComponent
+    CrearPromoComponent,
+    CrearRedComponent,
+    EditarRedComponent,
+    VistaRedesComponent
 
   ],
   imports: [

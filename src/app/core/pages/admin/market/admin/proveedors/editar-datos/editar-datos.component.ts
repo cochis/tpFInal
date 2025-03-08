@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxPrintService, PrintOptions } from 'ngx-print';
-import { CargarTipoColors, CargarTipoContactos, CargarUsuario } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
+import { CargarRedes, CargarTipoColors, CargarTipoContactos, CargarUsuario } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
 import { Proveedor } from 'src/app/core/models/proveedor.model';
 import { Salon } from 'src/app/core/models/salon.model';
 import { TipoColor } from 'src/app/core/models/tipoColor.model';
@@ -19,13 +19,15 @@ import { UsuariosService } from 'src/app/core/services/usuarios.service';
 import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { MapsService } from 'src/app/shared/services/maps.service';
 import { environment } from 'src/environments/environment';
-
+import { Red } from 'src/app/core/models/red.model';
+import { RedesService } from 'src/app/core/services/red.service';
 @Component({
   selector: 'app-editar-datos',
   templateUrl: './editar-datos.component.html',
   styleUrls: ['./editar-datos.component.css']
 })
 export class EditarDatosComponent {
+
   email = this.functionsService.getLocal('email')
   uid = this.functionsService.getLocal('uid')
   loading = false
@@ -58,6 +60,7 @@ export class EditarDatosComponent {
   CP: string;
   CS: string;
   salon: Salon
+  redesAll: Red[]
   constructor(
     private fb: FormBuilder,
     private functionsService: FunctionsService,
@@ -68,7 +71,8 @@ export class EditarDatosComponent {
     private usuariosService: UsuariosService,
     private fileService: FileService,
     private mapsServices: MapsService,
-    private printService: NgxPrintService
+    private printService: NgxPrintService,
+    private redesService: RedesService,
 
   ) {
     this.loading = true
@@ -120,7 +124,7 @@ export class EditarDatosComponent {
       img: [''],
       bannerImg: [''],
       descripcion: ['', [Validators.required]],
-
+      redes: this.fb.array([]),
       ubicacion: [''],
       lng: [''],
       lat: [''],
@@ -156,7 +160,9 @@ export class EditarDatosComponent {
   get colores(): FormArray {
     return this.form.get('colores') as FormArray
   }
-
+  get redes(): FormArray {
+    return this.form.get('redes') as FormArray
+  }
   addContactos() {
 
     this.contactos.push(this.newContacto())
@@ -170,7 +176,24 @@ export class EditarDatosComponent {
   removeContactos(i: number) {
     this.contactos.removeAt(i);
   }
+  addRedes() {
+    this.redes.push(this.newRed())
+    let index = 'red' + (Number(this.redes.length) - 1)
+    setTimeout(() => {
+      this.functionsService.scroolTo(index)
+      this.submited = false
+    }, 500);
+  }
+  removeRedes(i: number) {
+    this.redes.removeAt(i);
+  }
+  newRed(): FormGroup {
+    return this.fb.group({
+      red: ['', [Validators.required]],
 
+      value: ['', [Validators.required]],
+    })
+  }
 
   addColors() {
 
@@ -305,6 +328,15 @@ export class EditarDatosComponent {
       (error) => {
         console.error('error::: ', error);
         this.functionsService.alertError(error, 'Tipo de Colores')
+      })
+    this.redesService.cargarRedesAll().subscribe((resp: CargarRedes) => {
+      this.redesAll = resp.redes
+
+
+    },
+      (error) => {
+        console.error('error::: ', error);
+        this.functionsService.alertError(error, 'Tipo de Contactos')
       })
 
   }
@@ -483,6 +515,7 @@ export class EditarDatosComponent {
       contactos: this.fb.array([]),
       colores: this.fb.array([]),
       ubicacion: [proveedor.ubicacion],
+      redes: this.fb.array([]),
       lng: [proveedor.lng],
       lat: [proveedor.lat],
       envios: [proveedor.envios],
@@ -501,6 +534,12 @@ export class EditarDatosComponent {
     proveedor.contactos.forEach(contacto => {
       this.contactos.push(this.setContacto(contacto))
     });
+    if (proveedor.redes.length > 0) {
+
+      proveedor.redes.forEach(red => {
+        this.redes.push(this.setRed(red))
+      });
+    }
 
   }
   setColores(color: any): FormGroup {
@@ -515,6 +554,14 @@ export class EditarDatosComponent {
 
       tipoContacto: [(contacto.tipoContacto !== '') ? contacto.tipoContacto : '', [Validators.required]],
       value: [(contacto.value !== '') ? contacto.value : '', [Validators.required]]
+    })
+  }
+  setRed(red: any): FormGroup {
+    return this.fb.group({
+
+      red: [(red.red !== '') ? red.red : '', [Validators.required]],
+
+      value: [(red.value !== '') ? red.value : '', [Validators.required]]
     })
   }
   onSubmitEdit() {

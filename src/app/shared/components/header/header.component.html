@@ -140,8 +140,8 @@
                     </a>
                     <ul class="dropdown-menu  ">
                         <h5 class="ma" style="margin-left: 15px;"><b>General</b></h5>
-                        <li *ngIf="rol.includes(URS)"><a class="dropdown-item"
-                                routerLink="/core/salones/vista-salones">Ver
+                        <li *ngIf="rol.includes(ADM) || rol.includes(ANF) || rol.includes(SLN) || rol.includes(PRV) "><a
+                                class="dropdown-item" routerLink="/core/salones/vista-salones">Ver
                                 Centro de eventos</a></li>
                         <li><a class="dropdown-item" routerLink="/core/usuarios/vista-usuarios"
                                 *ngIf="rol.includes(ANF)  || !rol.includes(PRV)">Ver
@@ -204,6 +204,7 @@
                         <li><a class="dropdown-item" routerLink="/core/eventos/vista-eventos">Ver eventos</a></li>
                         <li><a class="dropdown-item" routerLink="/core/ejemplos/vista-ejemplos">Ver ejemplos</a></li>
                         <li><a class="dropdown-item" routerLink="/core/paquete/vista-paquetes">Ver tipo paquetes</a>
+                        <li><a class="dropdown-item" routerLink="/core/redes/vista-redes">Ver redes</a>
                         </li>
                         <li><a class="dropdown-item" routerLink="/core/monedas/vista-monedas">Ver monedas</a></li>
                         <li><a class="dropdown-item" routerLink="/core/cps/vista-cps">Ver cps</a></li>

@@ -2,7 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { NgxPrintService, PrintOptions } from 'ngx-print';
-import { CargarProveedor, CargarTipoColors, CargarTipoContactos } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
+import { CargarProveedor, CargarRedes, CargarTipoColors, CargarTipoContactos } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
 import { Proveedor } from 'src/app/core/models/proveedor.model';
 import { TipoColor } from 'src/app/core/models/tipoColor.model';
 import { TipoContacto } from 'src/app/core/models/tipoContacto.model';
@@ -16,6 +16,8 @@ import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { MapsService } from 'src/app/shared/services/maps.service';
 import { environment } from 'src/environments/environment';
 import { SafeUrl } from '@angular/platform-browser';
+import { Red } from 'src/app/core/models/red.model';
+import { RedesService } from 'src/app/core/services/red.service';
 @Component({
   selector: 'app-editar-provedor',
   templateUrl: './editar-provedor.component.html',
@@ -45,6 +47,7 @@ export class EditarProvedorComponent implements OnDestroy {
   ContactoP = environment.contactosProveedor
   isMap = false
   descripcion: Editor
+  redesAll: Red[]
   public qrCodeDownloadLink: SafeUrl = "";
   toolbar: Toolbar = [
     ['bold', 'italic'],
@@ -62,6 +65,7 @@ export class EditarProvedorComponent implements OnDestroy {
 
     private proveedorsService: ProveedorsService,
     private tipoColoresService: TipoColorsService,
+    private redesService: RedesService,
     private tipoContactosService: TipoContactosService,
     private route: ActivatedRoute,
     private fileService: FileService,
@@ -93,6 +97,9 @@ export class EditarProvedorComponent implements OnDestroy {
   get contactos(): FormArray {
     return this.form.get('contactos') as FormArray
   }
+  get redes(): FormArray {
+    return this.form.get('redes') as FormArray
+  }
   get colores(): FormArray {
     return this.form.get('colores') as FormArray
   }
@@ -111,8 +118,20 @@ export class EditarProvedorComponent implements OnDestroy {
 
 
   }
+
+  addRedes() {
+    this.redes.push(this.newRed())
+    let index = 'red' + (Number(this.redes.length) - 1)
+    setTimeout(() => {
+      this.functionsService.scroolTo(index)
+      this.submited = false
+    }, 500);
+  }
   removeContactos(i: number) {
     this.contactos.removeAt(i);
+  }
+  removeRedes(i: number) {
+    this.redes.removeAt(i);
   }
 
 
@@ -129,6 +148,13 @@ export class EditarProvedorComponent implements OnDestroy {
   }
   removeColors(i: number) {
     this.colores.removeAt(i);
+  }
+  newRed(): FormGroup {
+    return this.fb.group({
+      red: ['', [Validators.required]],
+
+      value: ['', [Validators.required]],
+    })
   }
   newContacto(): FormGroup {
     return this.fb.group({
@@ -196,6 +222,7 @@ export class EditarProvedorComponent implements OnDestroy {
 
       descripcion: ['', [Validators.required, Validators.minLength(3)]],
       contactos: this.fb.array([]),
+      redes: this.fb.array([]),
       colores: this.fb.array([]),
       dateCreated: [this.today],
       lastEdited: [this.today],
@@ -203,6 +230,7 @@ export class EditarProvedorComponent implements OnDestroy {
   }
 
   setForm(proveedor: Proveedor) {
+
 
     this.loading = true
 
@@ -215,8 +243,9 @@ export class EditarProvedorComponent implements OnDestroy {
 
 
       contactos: this.fb.array([]),
-      colores: this.fb.array([]),
+      redes: this.fb.array([]),
       bannerImg: [proveedor.bannerImg, [Validators.required]],
+      colores: this.fb.array([]),
       activated: [proveedor.activated],
       dateCreated: [proveedor.dateCreated],
       lastEdited: [this.today],
@@ -233,6 +262,12 @@ export class EditarProvedorComponent implements OnDestroy {
     if (proveedor.contactos.length > 0) {
       proveedor.contactos.forEach(contacto => {
         this.contactos.push(this.setContacto(contacto))
+      });
+    }
+    if (proveedor.redes.length > 0) {
+
+      proveedor.redes.forEach(red => {
+        this.redes.push(this.setRed(red))
       });
     }
 
@@ -266,7 +301,9 @@ export class EditarProvedorComponent implements OnDestroy {
 
       }
 
+
       this.proveedorsService.actualizarProveedor(this.proveedor).subscribe((resp: any) => {
+
         this.functionsService.alertUpdate('Proveedores')
         this.functionsService.navigateTo('core/proveedores/vista-proveedores')
         this.loading = false
@@ -313,6 +350,14 @@ export class EditarProvedorComponent implements OnDestroy {
 
       tipoContacto: [(contacto.tipoContacto !== '') ? contacto.tipoContacto : '', [Validators.required]],
       value: [(contacto.value !== '') ? contacto.value : '', [Validators.required]]
+    })
+  }
+  setRed(red: any): FormGroup {
+    return this.fb.group({
+
+      red: [(red.red !== '') ? red.red : '', [Validators.required]],
+
+      value: [(red.value !== '') ? red.value : '', [Validators.required]]
     })
   }
 
@@ -373,6 +418,15 @@ export class EditarProvedorComponent implements OnDestroy {
   getCatalogos() {
     this.tipoContactosService.cargarTipoContactosAll().subscribe((resp: CargarTipoContactos) => {
       this.tipoContactos = resp.tipoContactos
+
+    },
+      (error) => {
+        console.error('error::: ', error);
+        this.functionsService.alertError(error, 'Tipo de Contactos')
+      })
+    this.redesService.cargarRedesAll().subscribe((resp: CargarRedes) => {
+      this.redesAll = resp.redes
+
 
     },
       (error) => {

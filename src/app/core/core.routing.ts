@@ -124,6 +124,9 @@ import { EditarTipoUbicacionComponent } from './pages/admin/tipo-ubicaciones/edi
 import { CrearTipoUbicacionComponent } from './pages/admin/tipo-ubicaciones/crear-tipo-ubicacion/crear-tipo-ubicacion.component';
 import { VistaTipoUbicacionesComponent } from './pages/admin/tipo-ubicaciones/vista-tipo-ubicaciones/vista-tipo-ubicaciones.component';
 import { CrearPromoComponent } from './pages/admin/promos/crear-promo/crear-promo.component';
+import { EditarRedComponent } from './pages/admin/redes/editar-red/editar-red.component';
+import { CrearRedComponent } from './pages/admin/redes/crear-red/crear-red.component';
+import { VistaRedesComponent } from './pages/admin/redes/vista-redes/vista-redes.component';
 const routes: Routes = [
   {
     path: 'core',
@@ -390,6 +393,27 @@ const routes: Routes = [
         path: 'eventos/vista-eventos',
         component: VistaEventosComponent,
         data: { titulo: 'Vista eventos' }
+
+      },
+      //Eventos
+      {
+        path: 'redes/editar-red/:edit/:id',
+        component: EditarRedComponent,
+        data: { titulo: 'Editar red' },
+        canActivate: [authGuard]
+
+      },
+      {
+        path: 'redes/crear-red',
+        component: CrearRedComponent,
+        data: { titulo: 'Crear red' },
+        canActivate: [authGuard]
+
+      },
+      {
+        path: 'redes/vista-redes',
+        component: VistaRedesComponent,
+        data: { titulo: 'Vista redes' }
 
       },
       //Tipo Ubicaciones

@@ -8,10 +8,12 @@ import { ProveedorsService } from 'src/app/core/services/proveedor.service';
 import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { Item } from 'src/app/core/models/item.model';
 import { TipoContactosService } from '../../../../services/tipoContacto.service';
-import { CargarTipoContactos } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
+import { CargarRedes, CargarTipoContactos } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
 import { TipoContacto } from 'src/app/core/models/tipoContacto.model';
 import { DomSanitizer, SafeHtml, Title } from '@angular/platform-browser';
 import { MetaService } from 'src/app/core/services/meta.service';
+import { Red } from 'src/app/core/models/red.model';
+import { RedesService } from 'src/app/core/services/red.service';
 @Component({
   selector: 'app-single-supplier',
   templateUrl: './single-supplier.component.html',
@@ -33,6 +35,7 @@ export class SingleSupplierComponent {
   CS: string;
   calificacionProveedor = 0
   descripcionHTML: SafeHtml;
+  redesAll: Red[]
   constructor(
     private metaService: MetaService,
     private title: Title,
@@ -42,6 +45,7 @@ export class SingleSupplierComponent {
     private proveedorsService: ProveedorsService,
     private tipoContactosService: TipoContactosService,
     private functionsService: FunctionsService,
+    private redesService: RedesService,
     private sanitizer: DomSanitizer,
 
     private fb: FormBuilder) {
@@ -60,387 +64,7 @@ export class SingleSupplierComponent {
     this.getId(this.id)
 
   }
-  /*  items = [
-     {
-       uid: '1',
-       tipo: 'P',
-       typeSell: 'Cantidad',
-       name: 'Ramo de rosas',
-       proveedor: { name: "Floreria madeira" },
-       categoria: 'Flores',
-       isBySize: true,
-       isByService: false,
-       sizes: [
-         {
-           name: 'Chico',
-           precio: '150',
-           moneda: 'MXN'
-         },
-         {
-           name: 'Mediano',
-           precio: '250',
-           moneda: 'MXN'
-         },
-         {
-           name: 'Grande',
-           precio: '350',
-           moneda: 'MXN'
-         },
-       ],
-       isByColor: true,
-       colores: [
-         'B5828C',
-         'B82132',
-         '3B6790',
-         'A31D1D',
- 
-       ],
-       photos: [
-         {
-           isPrincipal: true,
-           color: 'B5828C',
-           size: 'Mediano',
-           type: 'img',
-           url: "assets/icons/flores1.jpeg"
-         },
- 
-         {
-           isPrincipal: false,
-           color: 'B5828C',
-           size: 'Mediano',
-           type: 'img',
-           url: "assets/icons/flores4.jpeg"
-         },
-         {
-           isPrincipal: false,
-           color: 'B5828C',
-           size: 'Mediano',
-           type: 'img',
-           url: "assets/icons/flores5.jpeg"
-         }
- 
-       ],
-       idealTo: ['XV años', 'Bautizo', '14 de Febrero'],
-       calificacion: 1,
- 
-     },
-     {
-       uid: '2',
-       tipo: 'P',
-       typeSell: 'Cantidad',
-       name: 'Eventos',
-       proveedor: { name: "Salon de fiestas" },
-       categoria: 'Flores',
-       isBySize: true,
-       isByService: false,
-       sizes: [
-         {
-           name: 'Chico',
-           precio: '150',
-           moneda: 'MXN'
-         },
-         {
-           name: 'Mediano',
-           precio: '250',
-           moneda: 'MXN'
-         },
-         {
-           name: 'Grande',
-           precio: '350',
-           moneda: 'MXN'
-         },
-       ],
-       isByColor: true,
-       colores: [
-         'B5828C',
- 
-       ],
-       photos: [
-         {
-           isPrincipal: true,
-           color: 'B5828C',
-           size: 'Mediano',
-           type: 'img',
-           url: "assets/icons/flores2.jpeg"
-         },
-         {
-           isPrincipal: false,
-           color: 'B5828C',
-           size: 'Mediano',
-           type: 'img',
-           url: "assets/icons/flores1.jpeg"
-         },
-         {
-           isPrincipal: false,
-           color: 'B5828C',
-           size: 'Mediano',
-           type: 'img',
-           url: "assets/icons/flores3.jpeg"
-         },
-         {
-           isPrincipal: false,
-           color: 'B5828C',
-           size: 'Mediano',
-           url: "assets/icons/flores4.jpeg"
-         },
-         {
-           isPrincipal: false,
-           color: 'B5828C',
-           size: 'Mediano',
-           type: 'img',
-           url: "assets/icons/flores5.jpeg"
-         }
- 
-       ],
-       idealTo: ['XV años', 'Bautizo', '14 de Febrero'],
-       calificacion: 5
-     },
-     {
-       uid: '3',
-       tipo: 'P',
-       typeSell: 'Cantidad',
-       proveedor: { name: "Peluches" },
-       name: 'Peluche',
-       categoria: 'Peluche',
-       isBySize: true,
-       sizes: [
-         {
-           name: 'Chico',
-           precio: '150',
-           moneda: 'MXN'
-         },
-         {
-           name: 'Mediano',
-           precio: '250',
-           moneda: 'MXN'
-         },
-         {
-           name: 'Grande',
-           precio: '350',
-           moneda: 'MXN'
-         },
-       ],
-       isByColor: false,
-       colores: [],
-       photos: [
-         {
-           isPrincipal: true,
-           color: 'B5828C',
-           size: 'Mediano',
-           type: 'img',
-           url: "assets/icons/flores3.jpeg"
-         },
- 
-         {
-           isPrincipal: false,
-           color: 'B5828C',
-           size: 'Mediano',
-           type: 'img',
-           url: "assets/icons/flores2.jpeg"
-         },
-         {
-           isPrincipal: false,
-           color: 'B5828C',
-           size: 'Mediano',
-           type: 'img',
-           url: "assets/icons/flores4.jpeg"
-         },
-         {
-           isPrincipal: false,
-           color: 'B5828C',
-           size: 'Mediano',
-           type: 'img',
-           url: "assets/icons/flores5.jpeg"
-         }
- 
-       ],
-       idealTo: ['XV años', 'Bautizo', '14 de Febrero'],
-       calificacion: 3
-     },
-     {
- 
-       uid: '4',
-       tipo: 'P',
-       name: 'Dulces',
-       typeSell: 'Cantidad',
-       proveedor: { name: "Dulces" },
-       categoria: 'Dulces',
-       isBySize: true,
-       isByService: false,
-       sizes: [
-         {
-           name: 'Chico',
-           precio: '150',
-           moneda: 'MXN'
-         },
-         {
-           name: 'Mediano',
-           precio: '250',
-           moneda: 'MXN'
-         },
-         {
-           name: 'Grande',
-           precio: '350',
-           moneda: 'MXN'
-         },
-       ],
-       isByColor: true,
-       colores: [
-         'B5828C',
-         'B82132',
- 
-         '809D3C',
-       ],
-       photos: [
-         {
-           isPrincipal: true,
-           color: 'B5828C',
-           size: 'Mediano',
-           type: 'img',
-           url: "assets/icons/flores4.jpeg"
-         },
- 
- 
-       ],
-       idealTo: ['XV años', 'Bautizo', '14 de Febrero'],
-       calificacion: 2
-     },
-     {
-       uid: '5',
-       tipo: 'P',
-       typeSell: 'Cantidad',
-       name: 'Fotos',
-       proveedor: { name: "Fotos" },
- 
-       categoria: 'Fotos',
-       isBySize: true,
-       isByService: false,
-       sizes: [
-         {
-           name: 'Chico',
-           precio: '150',
-           moneda: 'MXN'
-         },
-         {
-           name: 'Mediano',
-           precio: '250',
-           moneda: 'MXN'
-         },
-         {
-           name: 'Grande',
-           precio: '350',
-           moneda: 'MXN'
-         },
-       ],
-       isByColor: true,
-       colores: [
-         'B5828C',
-         'B82132',
-         '3B6790',
-         'A31D1D',
-         'E16A54',
-         '809D3C',
-       ],
-       photos: [
-         {
-           isPrincipal: true,
-           color: 'B5828C',
-           size: 'Mediano',
-           type: 'img',
-           url: "assets/icons/flores5.jpeg"
-         },
-         {
-           isPrincipal: false,
-           color: 'B5828C',
-           size: 'Mediano',
-           type: 'img',
-           url: "assets/icons/flores1.jpeg"
-         },
-         {
-           isPrincipal: false,
-           color: 'B5828C',
-           size: 'Mediano',
-           type: 'img',
-           url: "assets/icons/flores2.jpeg"
-         },
-         {
-           isPrincipal: false,
-           color: 'B5828C',
-           size: 'Mediano',
-           type: 'img',
-           url: "assets/icons/flores3.jpeg"
-         },
-         {
-           isPrincipal: false,
-           color: 'B5828C',
-           size: 'Mediano',
-           type: 'img',
-           url: "assets/icons/flores4.jpeg"
-         }
- 
-       ],
-       idealTo: ['XV años', 'Bautizo', '14 de Febrero'],
-       calificacion: 0
-     },
-     {
-       uid: '6',
-       tipo: 'S',
-       typeSell: 'Servicios',
-       name: 'Peinados',
-       proveedor: { name: "Estetica Fantasy" },
- 
-       categoria: 'Astethic',
-       isBySize: false,
-       isByService: true,
-       sizes: [],
-       isByColor: false,
-       colores: [],
-       photos: [
-         {
-           isPrincipal: true,
-           color: 'B5828C',
-           size: 'Mediano',
-           type: 'img',
-           url: "assets/icons/flores5.jpeg"
-         },
-         {
-           isPrincipal: false,
-           color: 'B5828C',
-           size: 'Mediano',
-           type: 'img',
-           url: "assets/icons/flores1.jpeg"
-         },
-         {
-           isPrincipal: false,
-           color: 'B5828C',
-           size: 'Mediano',
-           type: 'img',
-           url: "assets/icons/flores2.jpeg"
-         },
-         {
-           isPrincipal: false,
-           color: 'B5828C',
-           size: 'Mediano',
-           type: 'img',
-           url: "assets/icons/flores3.jpeg"
-         },
-         {
-           isPrincipal: false,
-           color: 'B5828C',
-           size: 'Mediano',
-           type: 'img',
-           url: "assets/icons/flores4.jpeg"
-         }
- 
-       ],
-       idealTo: ['XV años', 'Bautizo', '14 de Febrero'],
-       calificacion: 0
-     },
- 
-   ] */
   back(): void {
-
-
     this.router.navigate(['/core/market']);
   }
 
@@ -448,6 +72,7 @@ export class SingleSupplierComponent {
     this.loading = true
     this.proveedorsService.cargarProveedorById(id).subscribe(res => {
       this.proveedor = res.proveedor
+
 
 
       let t: string = `My Ticket Party | ${this.proveedor.nombre}`;
@@ -500,7 +125,15 @@ export class SingleSupplierComponent {
     })
   }
 
+  getRed(red) {
 
+
+    let rd = this.redesAll.filter(res => {
+
+      return res.uid == red.red
+    })
+    return rd[0]
+  }
   getColor(type, colors) {
 
 
@@ -550,6 +183,18 @@ export class SingleSupplierComponent {
 
     this.tipoContactosService.cargarTipoContactosAll().subscribe((resp: CargarTipoContactos) => {
       this.tipoContactos = this.functionsService.getActivos(resp.tipoContactos)
+
+
+
+
+
+    },
+      (error: any) => {
+        this.functionsService.alertError(error, 'Tipo Contactos')
+        this.loading = false
+      })
+    this.redesService.cargarRedesAll().subscribe((resp: CargarRedes) => {
+      this.redesAll = this.functionsService.getActivos(resp.redes)
 
 
 

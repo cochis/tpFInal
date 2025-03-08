@@ -234,6 +234,104 @@
                                 </div>
 
 
+
+
+
+                                <!-- inicio rede -->
+
+
+                                <div class="col-12 col-md-4 mt-3 ma ">
+
+                                    <button class="btn primaB white" type="button" id="btnRed" (click)="addRedes()">
+                                        <i class="icon-plus"></i> Agregar red social
+                                    </button>
+
+                                    <span *ngIf="submited && form.value.redes.length ==0 " class="error">Son
+                                        requeridos
+                                    </span>
+                                </div>
+                                <div formArrayName="redes">
+                                    <div *ngFor="let red of redes['controls'] ; let i=index">
+
+
+                                        <div [formGroupName]="i">
+                                            <div class="row" id="red{{i}}">
+
+                                                <div class="col-12 col-md-4 mt-3 ma">
+
+                                                    <div class="form-group">
+                                                        <label for="red">Red</label> 
+                                                        <select name="" id="red" formControlName="red"
+                                                            class="form-control upper">
+
+                                                            <ng-container *ngIf="redesAll">
+                                                                <option value="" [disabled]="edit==='false'">Selecciona
+                                                                    la red</option>
+                                                                <option [value]="item.uid" *ngFor="let item of redesAll"
+                                                                    [disabled]="edit==='false'">
+
+                                                                    {{item.nombre}}
+                                                                </option>
+                                                            </ng-container>
+                                                        </select>
+                                                    </div>
+                                                    <span
+                                                        *ngIf="submited && errorControl['contactos']['controls'][i]['controls']['red'].errors "
+                                                        class="error">Es
+                                                        requerido
+                                                    </span>
+                                                </div>
+
+                                                <div class="col-12 col-md-4 mt-3 ma">
+                                                    <div class="form-group">
+                                                        <label for="value">Dirección</label>
+                                                        <input type="text" class="form-control  " id="value"
+                                                            formControlName="value" required placeholder="Dirección"
+                                                            [readonly]="edit==='false'">
+                                                    </div>
+                                                    <span
+                                                        *ngIf="submited && errorControl['contactos']['controls'][i]['controls']['value'].errors "
+                                                        class="error">Es
+                                                        requerido
+                                                    </span>
+                                                </div>
+
+
+                                                <div class=" col-12 col-md-4 mt-4 text-center" *ngIf="editBol">
+                                                    <button class="btn less " (click)="removeContactos(i)">
+                                                        <i class="icon-trash"></i>
+                                                    </button>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div id="finContacto" class=" col-6 mt-3 mb-3 text-center ma"
+                                        *ngIf="contactos.length>1">
+
+
+                                        <button class="btn but" type="button"
+                                            (click)="functionsService.scroolTo('btnContacto')"><i
+                                                class="bi bi-arrow-up"></i></button>
+
+                                    </div>
+                                </div>
+
+                                <!-- fin rede -->
+
+
+
+
+
+
+
+
+
+
+
+
                                 <div class="row mt-3 text-center">
                                     <span class="success ma">
                                         <ul style="list-style: none;text-align: center;">

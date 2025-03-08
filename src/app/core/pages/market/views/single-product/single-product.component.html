@@ -8,6 +8,9 @@
 
         <div class="col-12 col-md-8 text-center imgPrimary "
             (click)="viewImg(url+'/upload/items/'+getImgPrincipal() ,functionsService.getValueCatalog(tipoMediaView,'clave',tipoMedias))">
+
+
+
             <div class="imgViewer">
 
                 <ng-container *ngFor="let item of item.photos; let i= index">
@@ -43,11 +46,17 @@
 
                 </ng-container>
             </div>
+
+
+
+
             <div class="mt-3">
 
                 <h3>
                     {{titleToView}}
                 </h3>
+
+
                 <div [innerHTML]="descripcionPhotoHTML"></div>
 
             </div>
@@ -78,7 +87,40 @@
             <h4 class="mt-3 cantidadProducto" [style]="{'color': cS + '!important'}" *ngIf="item.isBySize">
                 {{mayorMenor(item.sizes,'menor') | currency}} - {{mayorMenor(item.sizes,'mayor') | currency}}
             </h4>
+            <!-- inicia carrucelMobil -->
 
+            <div class="mb-3 mt-3" style="width: 100%;overflow-x: scroll">
+
+                <div class="carrucelMobil">
+
+
+                    <div class=" item-market pointer" *ngFor="let item of item.photos;let i =index">
+                        <ng-container
+                            *ngIf="functionsService.getValueCatalog(item.tipoMedia,'clave',tipoMedias)=='image/*'">
+                            <img [src]="url+'/upload/items/'+item.img" class=" img-item-market  select-img-market"
+                                [alt]="item.nombre" (click)="viewPhoto(item,i)">
+                        </ng-container>
+                        <ng-container
+                            *ngIf="functionsService.getValueCatalog(item.tipoMedia,'clave',tipoMedias)=='audio/*'">
+                            <i class="bi bi-volume-up iconView"
+                                [style]="{'color': cP+ '!important','background-color': cS + '!important'}"
+                                (click)="viewPhoto(item,i)"></i>
+                        </ng-container>
+                        <ng-container
+                            *ngIf="functionsService.getValueCatalog(item.tipoMedia,'clave',tipoMedias)=='video/*'">
+                            <i class="bi bi-camera-video iconView"
+                                [style]="{'color': cP+ '!important','background-color': cS + '!important'}"
+                                (click)="viewPhoto(item,i)"></i>
+                        </ng-container>
+
+
+                    </div>
+
+
+
+                </div>
+            </div>
+            <!-- finaliza carrucelMobil -->
             <div class="col-12 col-md-8 text-center imgSecond "
                 (click)="viewImg(url+'/upload/items/'+getImgPrincipal(),functionsService.getValueCatalog(tipoMediaView,'clave',tipoMedias))">
                 <div class="imgViewer">
@@ -116,6 +158,8 @@
 
                     </ng-container>
                 </div>
+
+
                 <div class="mt-3">
 
                     <h3>
@@ -126,6 +170,37 @@
                 </div>
 
             </div>
+            <!-- inicia Carrucel -->
+            <div class="carrucel">
+
+                <div class="item-market pointer" *ngFor="let item of item.photos;let i =index">
+                    <ng-container
+                        *ngIf="functionsService.getValueCatalog(item.tipoMedia,'clave',tipoMedias)=='image/*'">
+                        <img [src]="url+'/upload/items/'+item.img" class=" img-item-market  select-img-market"
+                            [alt]="item.nombre" (click)="viewPhoto(item,i)">
+                    </ng-container>
+                    <ng-container
+                        *ngIf="functionsService.getValueCatalog(item.tipoMedia,'clave',tipoMedias)=='audio/*'">
+                        <i class="bi bi-volume-up iconView"
+                            [style]="{'color': cP+ '!important','background-color': cS + '!important'}"
+                            (click)="viewPhoto(item,i)"></i>
+                    </ng-container>
+                    <ng-container
+                        *ngIf="functionsService.getValueCatalog(item.tipoMedia,'clave',tipoMedias)=='video/*'">
+                        <i class="bi bi-camera-video iconView"
+                            [style]="{'color': cP+ '!important','background-color': cS + '!important'}"
+                            (click)="viewPhoto(item,i)"></i>
+                    </ng-container>
+
+
+                </div>
+
+
+
+            </div>
+
+            <!-- finaliza Carrucel -->
+
 
             <p class="descripcionProdructo" [style]=" {'color': cP + '!important '} ">
 
@@ -177,36 +252,10 @@
 
 
                 </div>
-                <div class="row mt-2">
-                    <div class="carrucel">
-
-                        <div class="item-market pointer" *ngFor="let item of item.photos;let i =index">
-                            <ng-container
-                                *ngIf="functionsService.getValueCatalog(item.tipoMedia,'clave',tipoMedias)=='image/*'">
-                                <img [src]="url+'/upload/items/'+item.img" class=" img-item-market  select-img-market"
-                                    [alt]="item.nombre" (click)="viewPhoto(item,i)">
-                            </ng-container>
-                            <ng-container
-                                *ngIf="functionsService.getValueCatalog(item.tipoMedia,'clave',tipoMedias)=='audio/*'">
-                                <i class="bi bi-volume-up iconView"
-                                    [style]="{'color': cP+ '!important','background-color': cS + '!important'}"
-                                    (click)="viewPhoto(item,i)"></i>
-                            </ng-container>
-                            <ng-container
-                                *ngIf="functionsService.getValueCatalog(item.tipoMedia,'clave',tipoMedias)=='video/*'">
-                                <i class="bi bi-camera-video iconView"
-                                    [style]="{'color': cP+ '!important','background-color': cS + '!important'}"
-                                    (click)="viewPhoto(item,i)"></i>
-                            </ng-container>
-
-
-                        </div>
 
 
 
-                    </div>
 
-                </div>
                 <div class="row mt-3">
 
                     <div class="col-12 text-center ">

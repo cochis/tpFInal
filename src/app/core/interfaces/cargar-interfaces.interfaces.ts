@@ -38,6 +38,7 @@ import { Cotizacion } from "../models/cotizacion.model"
 import { EstatusCotizacion } from "../models/estatusCotizacion.model"
 import { Calificacion } from "../models/calificacion.model"
 import { TipoUbicacion } from "../models/tipoUbicacion.model"
+import { Red } from "../models/red.model"
 
 
 
@@ -123,6 +124,13 @@ export interface CargarEvento {
 export interface CargarEventos {
     total: number
     eventos: Evento[]
+}
+export interface CargarRed {
+    red: Red
+}
+export interface CargarRedes {
+    total: number
+    redes: Red[]
 }
 export interface CargarTipoUbicacion {
     tipoUbicacion: TipoUbicacion
