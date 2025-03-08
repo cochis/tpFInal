@@ -379,6 +379,8 @@ export class EditarInvitacionComponent {
       inicialTSize: [10],
       finalTSize: [10],
       musicaInvitacion: [''],
+      isMusic: [false],
+      musicRepit: [false],
       finalTFont: ['pacifico'],
       inviFont: ['pacifico'],
       inviFont2: ['pacifico'],
@@ -464,6 +466,7 @@ export class EditarInvitacionComponent {
       codigoVestimentaHombreImg: [''],
       codigoVestimentaMujer: [''],
       codigoVestimentaMujerImg: [''],
+
       colorQr: ['#ffffff'],
       colorBgQr: ['#c0354e'],
       usuarioCreated: [this.usuarioFiesta],
@@ -472,6 +475,7 @@ export class EditarInvitacionComponent {
       lastEdited: [this.today],
       //byFIle
       typeFile: [''],
+      repitVideo: [false],
       byFileColorTx: [''],
       byFileColorBG: [''],
       byFileColorFr: [''],
@@ -633,7 +637,8 @@ export class EditarInvitacionComponent {
       codigoVestimentaHombreImg: [invitacion.data.codigoVestimentaHombreImg],
       codigoVestimentaMujer: [invitacion.data.codigoVestimentaMujer],
       codigoVestimentaMujerImg: [invitacion.data.codigoVestimentaMujerImg],
-
+      isMusic: [invitacion.data.isMusic],
+      musicRepit: [invitacion.data.musicRepit],
 
 
 
@@ -644,6 +649,7 @@ export class EditarInvitacionComponent {
 
       //Invitacion byFile
       typeFile: [invitacion.data.typeFile],
+      repitVideo: [invitacion.data.repitVideo],
       byFileColorTx: [invitacion.data.byFileColorTx],
       byFileColorBG: [invitacion.data.byFileColorBG],
       byFileColorFr: [invitacion.data.byFileColorFr],
@@ -686,12 +692,14 @@ export class EditarInvitacionComponent {
 
 
 
+
       usuarioCreated: [this.usuarioFiesta],
       activated: [invitacion.data.activated],
       dateCreated: [invitacion.data.dateCreated],
       lastEdited: [this.today],
     })
     if (invitacion.data.byFileUrl && (this.form.value.typeFile == 'video' || this.form.value.typeFile == 'url')) {
+
       this.viewVideo = true
 
     }
@@ -871,6 +879,8 @@ export class EditarInvitacionComponent {
       inicialTSize: [temp.inicialTSize],
       finalTSize: [temp.finalTSize],
       musicaInvitacion: [temp.musicaInvitacion],
+      isMusic: [temp.isMusic],
+      musicRepit: [temp.musicRepit],
       finalTFont: [temp.finalTFont],
       inviFont: [temp.inviFont],
       inviFont2: [temp.inviFont2],
@@ -901,6 +911,8 @@ export class EditarInvitacionComponent {
       codigoVestimentaHombreImg: [temp.data.codigoVestimentaHombreImg],
       codigoVestimentaMujer: [temp.data.codigoVestimentaMujer],
       codigoVestimentaMujerImg: [temp.data.codigoVestimentaMujerImg],
+
+
 
       usuarioCreated: [this.usuarioFiesta],
       activated: [temp.activated],
@@ -1290,12 +1302,15 @@ export class EditarInvitacionComponent {
             inicialTSize: 10,
             finalTSize: 10,
             musicaInvitacion: '',
+            isMusic: '',
+            musicRepit: '',
             finalTFont: 'pacifico',
             inviFont: 'pacifico',
             inviFont2: 'pacifico',
             inviEfecto: '',
             inviEfectoRep: '1',
             typeFile: '',
+            repitVideo: false,
             byFileColorTx: '',
             byFileColorBG: '',
             byFileColorFr: '',
@@ -1937,6 +1952,8 @@ export class EditarInvitacionComponent {
       this.invitacion.data.codigoVestimentaMujer = ""
       this.invitacion.data.codigoVestimentaHombreImg = ""
       this.invitacion.data.codigoVestimentaHombre = ""
+      this.invitacion.data.isMusic = false
+      this.invitacion.data.musicRepit = false
 
 
 

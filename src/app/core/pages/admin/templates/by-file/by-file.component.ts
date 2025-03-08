@@ -59,6 +59,7 @@ export class ByFileComponent {
   chambelanes = []
   menu = []
   musica = []
+  repitVideo: boolean
   donde1Check: boolean
   donde2Check: boolean
   donde3Check: boolean
@@ -144,6 +145,7 @@ export class ByFileComponent {
           this.date = this.fiesta.fecha
           this.invitacion.cantidad = this.boleto.cantidadInvitados
           this.invitacion.invitado = this.boleto.nombreGrupo
+          this.repitVideo = this.invitacion.repitVideo
           this.donde1Check = this.invitacion.donde1Check
           this.donde2Check = this.invitacion.donde2Check
           this.donde3Check = this.invitacion.donde3Check
@@ -206,6 +208,7 @@ export class ByFileComponent {
           mensaje1: 'Tengo el vestido, la ilusión, la felicidad, el lugar y todo lo que se pueda soñar. Sólo me falta que ustedes estén conmigo en este día.',
           mensajeSize: 20,
           donde1Check: true,
+          repitVideo: true,
           donde1Img: '/assets/images/xv/xv2.jpg',
           donde1Title: 'Iglesia',
           donde1Text: 'Basilica de Guadalupe',
@@ -281,6 +284,7 @@ export class ByFileComponent {
         this.menu = JSON.parse(this.state.menu)
         this.musica = JSON.parse(this.state.musica)
         this.donde1Check = (this.state.donde1Check == 'true') ? true : false
+        this.repitVideo = (this.state.repitVideo == 'true') ? true : false
         this.donde2Check = (this.state.donde2Check == 'true') ? true : false
         this.donde3Check = (this.state.donde3Check == 'true') ? true : false
         this.mesaRegalosCheck = (this.state.mesaRegalosCheck == 'true') ? true : false
@@ -334,6 +338,7 @@ export class ByFileComponent {
     data.donde1Date = (typeof (data.donde1Date) == 'string') ? this.functionsService.dateToNumber(data.donde1Date) : data.donde1Date
     data.donde2Date = (typeof (data.donde2Date) == 'string') ? this.functionsService.dateToNumber(data.donde2Date) : data.donde2Date
     data.donde3Date = (typeof (data.donde3Date) == 'string') ? this.functionsService.dateToNumber(data.donde3Date) : data.donde3Date
+    data.repitVideo = (data.repitVideo == 'true' || data.repitVideo == true) ? true : false
     data.donde1Check = (data.donde1Check == 'true' || data.donde1Check == true) ? true : false
     data.donde2Check = (data.donde2Check == 'true' || data.donde2Check == true) ? true : false
     data.donde3Check = (data.donde3Check == 'true' || data.donde3Check == true) ? true : false
@@ -346,6 +351,7 @@ export class ByFileComponent {
     data.donde2Date = (typeof (data.donde2Date) == 'number') ? this.functionsService.numberDateTimeLocal(data.donde2Date) : data.donde2Date
     data.donde3Date = (typeof (data.donde3Date) == 'number') ? this.functionsService.numberDateTimeLocal(data.donde3Date) : data.donde3Date
     data.lastEdited = (typeof (data.lastEdited) == 'number') ? this.functionsService.numberDateTimeLocal(data.lastEdited) : data.lastEdited
+    data.repitVideo = (data.repitVideo == 'true' || data.repitVideo == true) ? true : false
     data.donde1Check = (data.donde1Check == 'true' || data.donde1Check == true) ? true : false
     data.donde2Check = (data.donde2Check == 'true' || data.donde2Check == true) ? true : false
     data.donde3Check = (data.donde3Check == 'true' || data.donde3Check == true) ? true : false
@@ -361,7 +367,7 @@ export class ByFileComponent {
       keywords:
         'No faltes, te espero ',
       slug: `core/templates/default/${fiesta.uid}/${boleto.uid}`,
-      colorBar: this.invitacion.cPrincipal,
+      colorBar: '#13547a',
       image:
         this.url + '/upload/invitaciones/' + this.invitacion.img1,
     });

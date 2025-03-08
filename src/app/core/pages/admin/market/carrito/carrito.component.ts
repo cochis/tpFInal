@@ -527,9 +527,7 @@ export class CarritoComponent implements OnInit {
       this.form.reset()
       this.formCot.reset()
       setTimeout(() => {
-
-        /*  this.functionsService.removeItemLocal('carrito') */
-
+        this.functionsService.removeItemLocal('carrito')
         this.functionsService.navigateTo('/core/mis-cotizaciones')
       }, 5500);
     } else {
@@ -1031,7 +1029,7 @@ export class CarritoComponent implements OnInit {
     setTimeout(() => {
 
 
-      pdf.download('Cotizacion-' + (this.formCot.value.nombreEvento.replace(' ', '')) + '-' + this.functionsService.numberToDate(Date.now()) + '.pdf');
+      pdf.download('Cotizacion-' + (this.formCot.value.nombreEvento) + '-' + this.functionsService.numberToDate(Date.now()) + '.pdf');
       this.loading = false
     }, 5000);
 

@@ -102,6 +102,17 @@
                                         </div>
                                         <div class="collapse " id="collapseMusica">
                                             <div class="row text-center mt-3">
+                                                <div class="col-12">
+                                                    <label for="isMusic">¿Quieres agregar musica?</label>
+                                                    <div class="form-group     ">
+                                                        <input class="form-check-input" type="checkbox" id="isMusic"
+                                                            #isMusic formControlName="isMusic">
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="row text-center mt-3" *ngIf="form.value.isMusic">
 
                                                 <div class="form-group    image-upload ">
                                                     <label for="musicaInvitacion">Seleciona tu musica
@@ -118,7 +129,8 @@
                                                 </div>
                                             </div>
 
-                                            <div>
+
+                                            <div *ngIf="form.value.isMusic">
 
                                                 <audio tabindex="0" id="beep-one" controls preload="auto"
                                                     *ngIf="invitacion && invitacion.data.musicaInvitacion && invitacion.data.musicaInvitacion!='' ">
@@ -128,6 +140,19 @@
                                                 </audio>
 
                                             </div>
+                                            <div class="row text-center mt-3" *ngIf="form.value.isMusic">
+                                                <div class="col-12">
+                                                    <label for="musicRepit">¿Quieres que se repita?</label>
+                                                    <div class="form-group     ">
+                                                        <input class="form-check-input" type="checkbox" id="musicRepit"
+                                                            #musicRepit formControlName="musicRepit">
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+
                                         </div>
                                     </div>
 
@@ -1994,6 +2019,18 @@
                                                                                                 *ngIf="rol ===ADM && usuarios">{{item.usuarioCreated.email}}</b>
                                                                                         </option> -->
                                                 </select>
+                                            </div>
+                                            <span *ngIf="submited && errorControl['typeFile'].errors " class="error">Es
+                                                requerido
+                                            </span>
+
+                                        </div>
+                                        <div class="col-12 col-md-6 mt-3 ma" *ngIf="form.value.typeFile=='video'">
+                                            <div class="form-group">
+                                                <label for="typeFile">Repetir Video</label>
+
+                                                <input class="form-check-input" type="checkbox" id="repitVideo"
+                                                    #repitVideo formControlName="repitVideo">
                                             </div>
                                             <span *ngIf="submited && errorControl['typeFile'].errors " class="error">Es
                                                 requerido

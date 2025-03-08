@@ -72,6 +72,8 @@ export class DefaultComponent implements OnInit, AfterViewInit {
   chambelanesCheck: boolean
   codigoVestimentaCheck: boolean
   padresCheck: boolean
+  isMusic: boolean
+  musicRepit: boolean
   padrinosCheck: boolean
   menuCheck: boolean
   musicaCheck: boolean
@@ -145,6 +147,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
 
 
 
+
           setTimeout(() => {
 
             let t: string = `My Ticket Party | ${this.fiesta.nombre}  -  ${this.functionsService.numberToDate(Number(this.fiesta.fecha))} - para ${this.boleto.grupo} `;
@@ -181,6 +184,8 @@ export class DefaultComponent implements OnInit, AfterViewInit {
           this.notas = this.invitacion.notas
           this.padres = this.invitacion.padres
           this.padresCheck = this.invitacion.padresCheck
+          this.isMusic = this.invitacion.isMusic
+          this.musicRepit = this.invitacion.musicRepit
           this.padrinos = this.invitacion.padrinos
           this.padrinosCheck = this.invitacion.padrinosCheck
           this.chambelanes = this.invitacion.chambelanes
@@ -433,6 +438,8 @@ export class DefaultComponent implements OnInit, AfterViewInit {
         this.codigoVestimentaCheck = (this.state.codigoVestimentaCheck == 'true') ? true : false
         this.chambelanesCheck = (this.state.chambelanesCheck == 'true') ? true : false
         this.padresCheck = (this.state.padresCheck == 'true') ? true : false
+        this.isMusic = (this.state.isMusic == 'true') ? true : false
+        this.musicRepit = (this.state.musicRepit == 'true') ? true : false
         this.padrinosCheck = (this.state.padrinosCheck == 'true') ? true : false
         this.menuCheck = (this.state.menuCheck == 'true') ? true : false
         this.musicaCheck = (this.state.musicaCheck == 'true') ? true : false
@@ -442,16 +449,18 @@ export class DefaultComponent implements OnInit, AfterViewInit {
         this.confirmacionCheck = (this.state.confirmacionCheck == 'true') ? true : false
         this.generalCheck = (this.state.generalCheck == 'true') ? true : false
         this.invitacion = this.state
-
         this.checking = (this.state.checking == 'true') ? true : false
         this.date = this.invitacion.fiestaDate
         this.croquisOk = (this.state.croquisOk == 'true') ? true : false
         this.btnBack = true
         this.checking = (this.state.checking == 'true') ? true : false
         this.notaCheck = (this.state.notaCheck == 'true') ? true : false
-
         this.padresCheck = (this.state.padresCheck == 'true') ? true : false
-        this.mesaRegalosCheck = (this.state.mesaRegalosCheck == 'true') ? true : false
+        this.isMusic = (this.state.isMusic == 'true') ? true : false
+
+        this.musicRepit = (this.state.musicRepit == 'true') ? true : false
+
+
 
 
 
@@ -526,6 +535,8 @@ export class DefaultComponent implements OnInit, AfterViewInit {
           menuCheck: this.menuCheck,
           musicaCheck: this.musicaCheck,
           padresCheck: this.padresCheck,
+          isMusic: this.isMusic,
+          musicRepit: this.musicRepit,
           padrinosCheck: this.padrinosCheck,
           codigoVestimentaCheck: this.codigoVestimentaCheck,
           itinerarioCheck: this.itinerarioCheck,

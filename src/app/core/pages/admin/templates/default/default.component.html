@@ -105,9 +105,10 @@
 
 
 
-        <ng-container class=" sticky-bottom " *ngIf="musicaInvitacion !=='' && musicaInvitacion !==undefined ">
+        <ng-container class=" sticky-bottom " *ngIf="isMusic">
             <div class="col-12 ma" style="text-align: center;">
-                <audio preload="auto" autoplay [src]="url+'/upload/sound/'+musicaInvitacion" class="ma" id="myAudio">
+                <audio preload="auto" autoplay [src]="url+'/upload/sound/'+musicaInvitacion" class="ma" id="myAudio"
+                    [loop]="musicRepit">
                 </audio>
 
             </div>

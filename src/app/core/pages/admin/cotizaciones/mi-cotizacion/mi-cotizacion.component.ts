@@ -516,28 +516,16 @@ export class MiCotizacionComponent {
     this.functionsService.navigateTo('core/mis-cotizaciones')
   }
 
-  print() {
-
-
-
+  sendPdf() {
     var correoProveedor: any
-
     correoProveedor = this.cotizacion.productos[0].item.proveedor.contactos.filter(ct => { return ct.value.includes('@') })
-
-
-
     let productos = {
       productos: this.cotizacion.productos,
       correoProveedor: (correoProveedor.length > 0) ? correoProveedor[0].value : ''
     }
-
     this.emailService.sendMailCotizacion(this.cotizacion.uid, productos).subscribe(res => {
-
+      this.functionsService.alert('Cotizacion', 'Se genero correctamente, correo enviado ', 'success')
     })
-
-
-
-
   }
 
 
@@ -706,9 +694,8 @@ export class MiCotizacionComponent {
     this.loading = true
     setTimeout(() => {
       this.functionsService.alert('Cotización', 'Se enviara correo y se esta trabajando en el PDF', 'info')
-      pdf.download('Cotizacion-' + Date.now() + '.pdf');
-      this.print()
-
+      pdf.download('Cotizacion-' + (this.formCot.value.nombreEvento) + '-' + this.functionsService.numberToDate(Date.now()) + '.pdf');
+      this.sendPdf()
       this.loading = false
     }, 5000);
 
