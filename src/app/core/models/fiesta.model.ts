@@ -24,6 +24,7 @@ export class Fiesta {
         public example: boolean,
         public croquis: string,
         public croquisOk: boolean,
+        public mensaje: string,
 
         public usuarioCreated: any,
         public activated: boolean,

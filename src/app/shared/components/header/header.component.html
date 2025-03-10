@@ -165,7 +165,7 @@
 
 
 
-                        <ng-container *ngIf="rol.includes(PRV)">
+                        <ng-container *ngIf="rol.includes(PRV) || rol.includes(SLN)">
                             <hr>
                             <h5 class="ma" style="margin-left: 15px;"><b>Market</b></h5>
                             <li><a class="dropdown-item" routerLink="/core/proveedores/editar-datos">Ver
@@ -191,41 +191,52 @@
                         Catalogos
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" routerLink="/core/paises/vista-paises">Ver paises</a>
-                        </li>
+
+                        <div class="text-center mt-2">
+                            <hr>
+                            <h5>General</h5>
+                            <hr>
+                        </div>
                         <li><a class="dropdown-item" routerLink="/core/parametros/vista-parametros">Ver parametros</a>
                         </li>
                         <li><a class="dropdown-item" routerLink="/core/roles/vista-roles">Ver Roles</a></li>
-                        <li><a class="dropdown-item" routerLink="/core/tipo-centros/vista-tipo-centros">Ver Tipo
-                                centros</a></li>
-                        <li><a class="dropdown-item" routerLink="/core/tipo-ubicaciones/vista-tipo-ubicaciones">Ver Tipo
-                                ubicaciones</a></li>
+                        <li><a class="dropdown-item" routerLink="/core/paises/vista-paises">Ver paises</a></li>
                         <li><a class="dropdown-item" routerLink="/core/grupos/vista-grupos">Ver grupos</a></li>
                         <li><a class="dropdown-item" routerLink="/core/eventos/vista-eventos">Ver eventos</a></li>
+                        <li><a class="dropdown-item" routerLink="/core/tipo-centros/vista-tipo-centros">Ver Tipo
+                                centros</a></li>
                         <li><a class="dropdown-item" routerLink="/core/ejemplos/vista-ejemplos">Ver ejemplos</a></li>
                         <li><a class="dropdown-item" routerLink="/core/paquete/vista-paquetes">Ver tipo paquetes</a>
-                        <li><a class="dropdown-item" routerLink="/core/redes/vista-redes">Ver redes</a>
                         </li>
-                        <li><a class="dropdown-item" routerLink="/core/monedas/vista-monedas">Ver monedas</a></li>
                         <li><a class="dropdown-item" routerLink="/core/cps/vista-cps">Ver cps</a></li>
-                        <li><a class="dropdown-item" routerLink="/core/tipo-colores/vista-tipo-colores">Ver tipo
-                                colores</a>
-                        </li>
+                        <li><a class="dropdown-item" routerLink="/core/tipo-medios/vista-tipo-medios">Ver tipo de
+                                medios</a> </li>
+                        <!--  <li><a class="dropdown-item" routerLink="/core/email-templates/vista-email-templates">Ver email
+                                templates</a> </li> -->
+
+
+                        <div class="text-center mt-2">
+                            <hr>
+                            <h5>Marketplace</h5>
+                            <hr>
+                        </div>
+                        <li><a class="dropdown-item" routerLink="/core/monedas/vista-monedas">Ver monedas</a></li>
                         <li><a class="dropdown-item" routerLink="/core/tipo-contactos/vista-tipo-contactos">Ver tipo
-                                contactos</a>
-                        </li>
-                        <li><a class="dropdown-item" routerLink="/core/tipo-items/vista-tipo-items">Ver tipo
-                                de venta de Items</a>
-                        <li><a class="dropdown-item" routerLink="/core/tipo-medios/vista-tipo-medios">Ver tipo
-                                de medios</a>
-                        </li>
-                        <li><a class="dropdown-item" routerLink="/core/categoria-items/vista-categoria-items">Ver
-                                categorias de Items</a>
-                        </li>
+                                contactos</a> </li>
+                        <li><a class="dropdown-item" routerLink="/core/tipo-colores/vista-tipo-colores">Ver tipo
+                                colores</a></li>
+                        <li><a class="dropdown-item" routerLink="/core/tipo-items/vista-tipo-items">Ver tipo de venta de
+                                Items</a></li>
+                        <li><a class="dropdown-item" routerLink="/core/redes/vista-redes">Ver redes</a></li>
+                        <li><a class="dropdown-item" routerLink="/core/tipo-ubicaciones/vista-tipo-ubicaciones">Ver Tipo
+                                ubicaciones</a></li>
                         <li><a class="dropdown-item"
-                                routerLink="/core/estatus-cotizaciones/vista-estatus-cotizaciones">Ver
-                                estatus de cotizaciones</a>
-                        </li>
+                                routerLink="/core/estatus-cotizaciones/vista-estatus-cotizaciones">Ver estatus de
+                                cotizaciones</a> </li>
+                        <li><a class="dropdown-item" routerLink="/core/categoria-items/vista-categoria-items">Ver
+                                categorias de Items</a></li>
+
+
                         <!--  <li><a class="dropdown-item" routerLink="/core/status-compra/vista-status-compra">Ver estatus de
                                 compras</a></li> -->
                         <!--<li><a class="dropdown-item" routerLink="/core/tipo-modulos/vista-tipo-modulos">Ver tipo de

@@ -39,6 +39,7 @@ import { EstatusCotizacion } from "../models/estatusCotizacion.model"
 import { Calificacion } from "../models/calificacion.model"
 import { TipoUbicacion } from "../models/tipoUbicacion.model"
 import { Red } from "../models/red.model"
+import { MailTemplate } from "../models/mailTemplate.model"
 
 
 
@@ -124,6 +125,13 @@ export interface CargarEvento {
 export interface CargarEventos {
     total: number
     eventos: Evento[]
+}
+export interface CargarMailTemplate {
+    mailTemplate: MailTemplate
+}
+export interface CargarMailTemplates {
+    total: number
+    mailTemplates: MailTemplate[]
 }
 export interface CargarRed {
     red: Red

@@ -26,6 +26,7 @@ export class EditarFiestaComponent {
   ADM = environment.admin_role
   ANF = environment.anf_role
   SLN = environment.salon_role
+  PRV = environment.prv_role
   URS = environment.user_role
   email = this.functionsService.getLocal('email')
   uid = this.functionsService.getLocal('uid')
@@ -137,7 +138,7 @@ export class EditarFiestaComponent {
 
 
         })
-    } else if (this.rol === this.SLN || this.rol == this.ANF) {
+    } else if (this.rol === this.SLN || this.rol == this.ANF || this.rol == this.PRV) {
 
       this.paquetesService.cargarPaquetesAll().subscribe((resp: CargarPaquetes) => {
         this.paquetes = this.functionsService.getActivos(resp.paquetes)

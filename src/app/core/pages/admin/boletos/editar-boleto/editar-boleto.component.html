@@ -1,14 +1,15 @@
 <app-header></app-header>
-<app-loading class="animated1 fadeIn" *ngIf="loading"></app-loading>
-<app-message class="animated1 fadeIn" *ngIf="msnOk"></app-message>
+<app-loading class="animate__animated animate__fadeIn" *ngIf="loading"></app-loading>
+<app-message class="animate__animated animate__fadeIn" *ngIf="msnOk"></app-message>
 
 
 
-<section class="contact-section section-padding section-bg animated1 fadeIn " id="section_5" *ngIf="!loading">
+<section class="contact-section section-padding section-bg animate__animated animate__fadeIn " id="section_5"
+    *ngIf="!loading">
     <div class="container bw">
         <div class="card">
 
-            <div class="card-body">
+            <div class="card-body animate__animated animate__fadeIn" *ngIf="!mensajeOk">
                 <div class="row">
                     <div class="col-lg-12 col-12 text-center">
                         <h2 class="mb-5" *ngIf="edit=='true'">Editar boletos</h2>
@@ -41,6 +42,11 @@
                             <input type="file" name="invitadosXls" id="invitadosXls" #invitadosXls
                                 (change)="uploadBoletos($event)">
                             <label for="invitadosXls" class="custom-btn  but "> Agregar por archivo</label>
+
+                        </div>
+                        <div class="col-12 mt-3">
+                            <label class="custom-btn  but2 mt-3" (click)="verMensaje()"> Editar mensaje WhatsApp
+                            </label>
                         </div>
 
                         <div class="col-12   mt-50" *ngIf="total >0">
@@ -56,11 +62,10 @@
                         <div class="row">
 
                             <div class=" col-12 col-md-6 mt-3 mb-3 text-center ma"
-                                *ngIf="this.form.value.fiesta !=='' && role !== URS && edit ==='true'">
-
+                                *ngIf="this.form.value.fiesta !=='' &&  edit ==='true'">
 
                                 <button class="btn but" type="button" id="btnInvitado"
-                                    *ngIf="this.form.value.fiesta !==''" (click)="addInvitados()"
+                                    *ngIf="this.form.value.fiesta !=='' " (click)="addInvitados()"
                                     [disabled]="getDisabled()"><i class="icon-plus"></i>
                                     Invitado</button>
 
@@ -70,7 +75,7 @@
 
 
                                 <button class="btn but" type="button" (click)="functionsService.scroolTo('finInvitado')"
-                                    *ngIf="invitados.length >1"><i class="bi bi-arrow-down"></i></button>
+                                    *ngIf="invitados.length >1">Bajar<i class="bi bi-arrow-down"></i></button>
 
                             </div>
                         </div>
@@ -111,7 +116,8 @@
                             <div formArrayName="invitados">
                                 <div *ngFor="let invitado of invitados['controls'] ; let i=index">
 
-                                    <div [formGroupName]="i" *ngIf="  invitado.value.activated ">
+                                    <div [formGroupName]="i" *ngIf="  invitado.value.activated "
+                                        class="animate__animated animate__fadeIn">
 
                                         <div class="row" id="boleto{{i}}">
                                             <div class="col-12 col-md-6 mt-3">
@@ -170,26 +176,30 @@
                                                 </span>
                                             </div>
 
-                                            <div class="col-12 col-md-4 mt-3" *ngIf="fiesta.checking">
+                                            <div class="col-12 col-md-6 mt-3" *ngIf="fiesta.checking">
                                                 <div class="form-group" style="margin-top:15px">
                                                     <label for="cantidadInvitados">Cantidad de invitados</label>
                                                     <input type="number" class="form-control upper"
                                                         id="cantidadInvitados" min="1"
                                                         formControlName="cantidadInvitados"
-                                                        placeholder="Cantidad de invitados">
+                                                        placeholder="Cantidad de invitados" #cantidadInvitados>
                                                 </div>
                                             </div>
-                                            <div class="col-12 col-md-4 mt-3" *ngIf="fiesta.checking">
+
+                                            <div class="col-12 col-md-6 mt-3"
+                                                *ngIf="boletoTemp && fiesta.checking && form.value.invitados[i].confirmado">
                                                 <div class="form-group">
-                                                    <label for="requeridos" *ngIf="requeridos.value==0"
+                                                    <label for="requeridos"
+                                                        *ngIf="requeridos.value<=form.value.invitados[i].cantidadInvitados"
                                                         style="margin-top:15px">Boletos Requeridos</label>
 
 
                                                     <label for="requeridos" class="requeridos"
-                                                        *ngIf="requeridos.value>0"> Boletos Requeridos</label>
+                                                        *ngIf="requeridos.value>form.value.invitados[i].cantidadInvitados">
+                                                        Boletos Requeridos</label>
                                                     <input type="number" class="form-control upper" id="requeridos"
                                                         min="1" formControlName="requeridos" #requeridos
-                                                        placeholder="Boletos requeridos">
+                                                        placeholder="Boletos requeridos" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-4 mt-3" *ngIf="fiesta.mesaOk">
@@ -253,10 +263,10 @@
 
                                             <div class="col-12   mt-3" *ngIf="edit==='true'  ">
 
-                                                <button (click)="saveBoleto(invitado.value)"
-                                                    *ngIf=" invitado.value.uid == '' && !getDisabled()"
+                                                <!--  <button (click)="saveBoleto(invitado.value)"
+                                                    *ngIf=" invitado.value.uid == '' && !getDisabled() && boletoTemp.length>0"
                                                     class="custom-btn  but   " [disabled]="getDisabled()">Guardar
-                                                    invitado</button>
+                                                    invitado</button> -->
                                                 <a (click)="enviarInvitacion(i)"
                                                     *ngIf="boleto[i] && boleto[i].invitacionEnviada == false"
                                                     class="custom-btn  but   ">Enviar invitación</a>
@@ -280,17 +290,17 @@
                                 </div>
                             </div>
 
-                            <div class="col-6 ma">
-                                <div id="finInvitado" class=" col-6 mt-3 mb-3 text-center ma"
-                                    *ngIf="invitados.length>1">
+
+                            <div id="finInvitado" class=" col-12 col-md-6 mt-3 mb-3 text-center ma"
+                                *ngIf="invitados.length>1">
 
 
-                                    <button class="btn but" type="button"
-                                        (click)="functionsService.scroolTo('btnInvitado')"><i
-                                            class="bi bi-arrow-up"></i></button>
+                                <button class="btn but" type="button"
+                                    (click)="functionsService.scroolTo('btnInvitado')"> Subir<i
+                                        class="bi bi-arrow-up"></i></button>
 
-                                </div>
                             </div>
+
 
 
                             <div class="row mt-5 text-center" *ngIf="role !== URS">
@@ -325,9 +335,69 @@
                     </div>
                 </div>
             </div>
+
+
+
+
         </div>
     </div>
+
+
 </section>
+<div class="container" *ngIf="mensajeOk">
+    <div class="row">
+        <div class="col-12 text-center animate__animated animate__fadeIn">
+
+
+            <h3>
+                Mensaje
+            </h3>
+            <p>
+                Agregar estas variables en el mensaje
+            </p>
+            <ul style="list-style: none;">
+                <li style="color: var(--cPrimary); font-weight: 800;">
+                    Nombre de Invitado
+                    <span style="color:var(--cSecond)">
+                        &#64;&#64;invitado&#64;&#64;
+                    </span>
+                </li>
+                <li style="color: var(--cPrimary); font-weight: 800;">
+                    Nombre de Evento
+                    <span style="color:var(--cSecond)">
+                        &#64;&#64;nombre_evento&#64;&#64;
+                    </span>
+                </li>
+                <li style="color: var(--cPrimary); font-weight: 800;">
+                    Liga del evento
+                    <span style="color:var(--cSecond)">
+                        &#64;&#64;liga_evento&#64;&#64;
+                    </span>
+                </li>
+                <li style="color: var(--cPrimary); font-weight: 800;">
+                    Liga del evento
+                    <span style="color:var(--cSecond)">
+                        &#64;&#64;cantidadInvitados&#64;&#64;
+                    </span>
+                </li>
+            </ul>
+
+            <div class="col-12 mt-3 text-center">
+                <textarea [ngModel]="mensaje" name="mensaje" class="mt-3" #mensajeWhats id="mensaje"
+                    style="width: 100%;"></textarea>
+            </div>
+            <div class="col-6 ma">
+
+                <label class="custom-btn  but mt-3" (click)="guardarMensaje(mensajeWhats.value)"> Guardar </label>
+            </div>
+            <div class="col-6 ma">
+
+                <label class="custom-btn  but2 mt-3" (click)="verMensaje()"> Salir </label>
+            </div>
+
+        </div>
+    </div>
+</div>
 
 
 <ng-template #content let-c="close" let-d="dismiss">

@@ -7,6 +7,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row">
+
                         <div class="col-lg-12 col-12 text-center">
                             <h2 class="mb-5" *ngIf="rol === ANF">Crear ubicación</h2>
                             <h2 class="mb-5" *ngIf="rol === SLN">Crear centro de eventos</h2>
@@ -51,7 +52,7 @@
                                     <div class="form-group">
                                         <label for="pais">País</label>
                                         <select name="" id="pais" formControlName="pais" class="form-control upper"
-                                            #pais class="form-control upper">
+                                            #pais class="form-control upper" (change)="checkPais()">
                                             <option value="">Selecciona un país</option>
                                             <option [value]="item.clave " *ngFor="let item of paises">{{item.nombre }}
                                             </option>
@@ -61,7 +62,7 @@
                                     <span *ngIf="submited && errorControl['pais'].errors " class="error">Es
                                         requerido</span>
                                 </div>
-                                <div class="col-6 col-md-4 mt-3">
+                                <div class="col-6 col-md-4 mt-3  animate__animated animate__fadeIn" *ngIf="isPais">
                                     <div class="form-group">
                                         <label for="cp">Código postal</label>
                                         <input type="text" class="form-control upper" id="cp" formControlName="cp"
@@ -70,7 +71,8 @@
                                     <span *ngIf="submited && errorControl['cp'].errors " class="error">Es
                                         requerido</span>
                                 </div>
-                                <div class="col-6 col-md-4 mt-3">
+                                <div class="col-6 col-md-4 mt-3  animate__animated animate__fadeIn"
+                                    *ngIf="isPais && form.value.cp.length ==5 ">
                                     <div class="form-group">
                                         <label for="estado">Estado</label>
                                         <input type="text" class="form-control upper" id="estado"
@@ -80,7 +82,8 @@
                                         requerido</span>
                                 </div>
 
-                                <div class="col-6 col-md-4 mt-3">
+                                <div class="col-6 col-md-4 mt-3  animate__animated animate__fadeIn"
+                                    *ngIf="isPais && form.value.cp.length ==5 && form.value.estado !==''">
                                     <div class="form-group">
                                         <label for="municipioDelegacion">Municipio o Delegación</label>
                                         <select name="" id="municipioDelegacion" formControlName="municipioDelegacion"
@@ -98,12 +101,13 @@
                                         class="error">Es
                                         requerido</span>
                                 </div>
-                                <div class="col-6 col-md-4 mt-3">
+                                <div class="col-6 col-md-4 mt-3  animate__animated animate__fadeIn"
+                                    *ngIf="isPais  && form.value.cp.length ==5  && form.value.estado !==''">
                                     <div class="form-group">
-                                        <label for="coloniaBarrio">Colonia o Barrio</label>
+                                        <label for="coloniaBarrio">Colonia</label>
                                         <select name="" id="coloniaBarrio" formControlName="coloniaBarrio"
                                             class="form-control upper" #coloniaBarrio class="form-control upper">
-                                            <option value="">Selecciona una Colonia o Barrio</option>
+                                            <option value="">Selecciona una Colonia</option>
                                             <option [value]="item " *ngFor="let item of colonias">{{item }}
                                             </option>
                                         </select>
@@ -112,8 +116,8 @@
                                         requerido</span>
                                 </div>
 
-                                <div class="col-12 col-md-4 mt-3">
-
+                                <div class="col-6 col-md-4 mt-3  animate__animated animate__fadeIn"
+                                    *ngIf="isPais  && form.value.cp.length ==5  && form.value.estado !==''">
                                     <div class="form-group">
                                         <label for="telefono">Teléfono</label>
                                         <input type="number" class="form-control upper" id="telefono"
@@ -122,8 +126,8 @@
                                     <span *ngIf="submited && errorControl['telefono'].errors " class="error">Es
                                         requerido</span>
                                 </div>
-                                <div class="col-12 col-md-3 mt-3">
-
+                                <div class="col-12 col-md-4 mt-3  animate__animated animate__fadeIn"
+                                    *ngIf="isPais  && form.value.cp.length ==5  && form.value.estado !==''">
 
                                     <div class="form-group">
                                         <label for="email">Correo electrónico</label>
@@ -141,7 +145,8 @@
                                         requerido</span>
                                 </div>
 
-                                <div class="col-12 col-md-3 mt-3">
+                                <div class="col-12 col-md-4 mt-3  animate__animated animate__fadeIn"
+                                    *ngIf="isPais  && form.value.cp.length ==5  && form.value.estado !==''">
 
 
                                     <div class="form-group">

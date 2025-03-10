@@ -51,6 +51,7 @@ export class CrearSalonComponent {
   colonias = []
   roles: Role[]
   tipoUbicaciones: TipoUbicacion[]
+  isPais = false
   constructor(
     private fb: FormBuilder,
     private functionsService: FunctionsService,
@@ -90,7 +91,7 @@ export class CrearSalonComponent {
       cp: ['', [Validators.required, Validators.pattern(".{5,5}")]],
       estado: ['', [Validators.required]],
       pais: ['', [Validators.required]],
-      comoLlegar: ['', [Validators.required]],
+      comoLlegar: [''],
       lat: [''],
       long: [''],
       telefono: ['', [Validators.required, Validators.pattern(".{10,10}")]],
@@ -104,6 +105,19 @@ export class CrearSalonComponent {
 
 
     })
+  }
+  checkPais() {
+
+
+    if (this.form.value.pais == '') {
+
+      this.isPais = false
+    } else {
+      this.isPais = true
+    }
+
+
+
   }
   onSubmit() {
 

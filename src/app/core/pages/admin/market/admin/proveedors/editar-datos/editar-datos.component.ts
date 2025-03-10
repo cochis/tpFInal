@@ -21,6 +21,7 @@ import { MapsService } from 'src/app/shared/services/maps.service';
 import { environment } from 'src/environments/environment';
 import { Red } from 'src/app/core/models/red.model';
 import { RedesService } from 'src/app/core/services/red.service';
+import { SafeUrl } from '@angular/platform-browser';
 @Component({
   selector: 'app-editar-datos',
   templateUrl: './editar-datos.component.html',
@@ -61,6 +62,7 @@ export class EditarDatosComponent {
   CS: string;
   salon: Salon
   redesAll: Red[]
+  public qrCodeDownloadLink: SafeUrl = "";
   constructor(
     private fb: FormBuilder,
     private functionsService: FunctionsService,
@@ -673,6 +675,9 @@ export class EditarDatosComponent {
 
     return color
 
+  }
+  onChangeURL(url: SafeUrl) {
+    this.qrCodeDownloadLink = url;
   }
 }
 

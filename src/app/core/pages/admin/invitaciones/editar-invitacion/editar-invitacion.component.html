@@ -13,6 +13,16 @@
                         </div>
                         <ng-container *ngIf="invitacion || (fiesta && form.valueId!='')   || form.value">
                             <ng-container>
+                                <div class="row mt-3 mb-3">
+
+                                    <div class="col-12  text-center ma">
+                                        <button class="btn btn-lg btn-block but" type="button" id="botonBajar"
+                                            (click)="functionsService.scroolTo('botonSubir')">
+                                            Bajar
+                                            <i class="bi bi-arrow-down"></i>
+                                        </button>
+                                    </div>
+                                </div>
                                 <div class="row text-center">
                                     <h5>Ver ejemplos</h5>
                                     <div class="col-12 col-md-4 ma">
@@ -30,7 +40,7 @@
                                     </div>
                                     <div class="col-12 col-md-4 ma">
                                         <button class="btn btn-lg btn-block but mt-3 mb-3" style="margin: auto;"
-                                            (click)="verExample(viewExample.value)">
+                                            id="verInvitacion" (click)="verExample(viewExample.value)">
                                             Ver invitación</button>
                                     </div>
                                     <div class="col-12 col-md-4 ma" *ngIf="functionsService.getLocal('invitacion')">
@@ -38,6 +48,7 @@
                                             (click)="copiarExample()">
                                             Pegar</button>
                                     </div>
+
 
                                 </div>
 
@@ -1951,6 +1962,13 @@
                                             <button class="btn btn-lg btn-block but " type="button"
                                                 (click)="VerTemplate(this.form)">Ver Template</button>
                                         </div>
+                                        <div class="col-12    mt-3  mb-3 text-center">
+                                            <button class="btn btn-lg btn-block but" type="button" id="botonSubir"
+                                                (click)="functionsService.scroolTo('botonBajar')">
+                                                Subir
+                                                <i class="bi bi-arrow-up"></i>
+                                            </button>
+                                        </div>
                                     </div>
                                 </form>
                             </ng-container>
@@ -3200,6 +3218,13 @@
                                                 (click)="VerTemplate(this.form)">Ver
                                                 Template</button>
                                         </div>
+                                    </div>
+                                    <div class="col-12    mt-3  mb-3 text-center">
+                                        <button class="btn btn-lg btn-block but" type="button" id="botonSubir"
+                                            (click)="functionsService.scroolTo('botonBajar')">
+                                            Subir
+                                            <i class="bi bi-arrow-up"></i>
+                                        </button>
                                     </div>
                                 </form>
                             </ng-container>

@@ -767,48 +767,46 @@ export class EditarItemComponent implements OnDestroy {
 
 
   cambiarImagen(file: any, type: string, idx: number) {
-
-
+    if (file.target.files[0].type.includes('image')) {
+      if (file.target.files[0].size > 1048576) {
+        this.functionsService.alert('Media', 'El tamaño maximo del archivo que tiene que ser la imagen  tiene que ser de 1 MB', 'warning')
+        return
+      }
+    } else if (file.target.files[0].type.includes('video')) {
+      if (file.target.files[0].size > 5242880) {
+        this.functionsService.alert('Media', 'El tamaño maximo del archivo que tiene que ser la imagen  tiene que ser de  5 MB', 'warning')
+        return
+      }
+    } else if (file.target.files[0].type.includes('audio')) {
+      if (file.target.files[0].size > 3621440) {
+        this.functionsService.alert('Media', 'El tamaño maximo del archivo que tiene que ser la imagen  tiene que ser de  3 MB', 'warning')
+        return
+      }
+    }
     this.imagenSubir = file.target.files[0]
     if (!file.target.files[0]) {
       this.imgTemp = null
-
     } else {
-
-
       const reader = new FileReader()
       const url64 = reader.readAsDataURL(file.target.files[0])
       reader.onloadend = () => {
         this.imgTemp = reader.result
-
       }
       this.subirImagen(type, idx)
-
     }
   }
   async subirImagen(type?, idx?) {
-
-
-
     this.loading = true
-
-
     if (this.item !== this.form.value) {
-
-
       this.fileService.actualizarFoto(this.imagenSubir, 'items', this.item.uid, idx).then(
         (img) => {
-
-
           this.photos.value[idx].img = img
           let data = {
             ...this.form.value,
             photos: this.photos.value,
             uid: this.item.uid
           }
-
           this.itemsService.actualizarItem(data).subscribe((res: any) => {
-
             this.setForm(res.itemActualizado)
             this.loading = false
             let index = 'photo' + (Number(this.photos.length) - 1)
@@ -818,489 +816,33 @@ export class EditarItemComponent implements OnDestroy {
           },
             (error) => {
               console.error('error::: ', error);
-
             })
-
-
-
         },
         (err) => {
           console.error('error::: ', err);
-
         },
       )
-    } else {
-
-
     }
-
-
-
-    /* this.imgItems = []
-    this.imgItemsService.existByItem(this.item.uid).subscribe((resp: any) => {
-
-      this.imgItems = resp.imgItems
-      
-      if (this.imgItems.length == 0) {
-        
-
-        var imgI
-        var ImgS = []
-        for (let index = 0; index < this.form.value.photos.length; index++) {
-          const element = this.form.value.photos[index];
-          imgI = undefined
-          if (idx === Number(index)) {
-            imgI = {
-              type: type,
-              idx: idx,
-              ...this.form.value.photos[idx],
-              item: this.item.uid
-            }
-            this.imgItemsService.crearImgItem(imgI).subscribe((res: CargarImgItem) => {
-              this.imgItem = res.imgItem
-              this.fileService.actualizarFoto(this.imagenSubir, 'imgItems', this.imgItem.uid).then(
-                (img) => {
-                  this.imgItem.img = img
-                  this.imgItemsService.actualizarImgItem(this.imgItem).subscribe(res => {
-                    var fotos: any = []
-                    for (let i = 0; i < this.photos.length; i++) {
-                      if (i === idx) {
-                        this.photos.value[idx].img = img
-                      }
-                      fotos.push(this.photos.value[idx])
-                    }
-                    this.form.patchValue({
-                      photos: fotos
-                    })
-                    this.item.photos = fotos
-                    this.itemsService.actualizarItem(this.item).subscribe((res: any) => {
-                      this.functionsService.alertUpdate('Imagen agregada')
-                      this.createForm()
-                      this.setForm(res.itemActualizado)
-                    })
-                    this.loading = true
-                    this.imgTemp = undefined
-                  })
-                },
-                (err) => {
-                  console.error('error::: ', err);
-
-                },
-              )
-              this.loading = false
-            })
-          }
-        }
-      } else {
-
-        let im = this.imgItems.filter((img) => {
-          return img.idx == idx
-        })
-       
-        if (im.length !== 0) {
-         
-
-          for (let index = 0; index < this.form.value.photos.length; index++) {
-            const element = this.form.value.photos[index];
-            imgI = undefined
-            if (idx === Number(index)) {
-              imgI = {
-                type: type,
-                idx: idx,
-                ...this.form.value.photos[idx],
-                item: this.item.uid,
-                uid: im[0].uid
-              }
-
-              this.fileService.actualizarFoto(this.imagenSubir, 'imgItems', im[0].uid)
-                .then(
-                  (img) => {
-                    
-                    var fotos: any = []
-                    for (let i = 0; i < this.photos.length; i++) {
-                      if (i === idx) {
-                        this.photos.value[idx].img = img
-                      }
-                      fotos.push(this.photos.value[idx])
-                    }
-                    this.form.patchValue({
-                      photos: fotos
-                    })
-                    this.item.photos = fotos
-
-                    let it = {
-                      ...this.form.value,
-                      uid: this.item.uid
-                    }
-                    this.itemsService.actualizarItem(it).subscribe((res: any) => {
-                      this.functionsService.alertUpdate('Imagen agregada')
-                      this.createForm()
-                      this.setForm(res.itemActualizado)
-                    })
-                    this.loading = true
-                    this.imgTemp = undefined
-
-                  })
-                .catch(error => {
-                  console.error('error::: ', error);
-
-                })
-
-
-
-
-
-            }
-          }
-
-
-
-
-        } else {
-       
-
-          var imgI
-          var ImgS = []
-          for (let index = 0; index < this.form.value.photos.length; index++) {
-            const element = this.form.value.photos[index];
-            imgI = undefined
-            if (idx === Number(index)) {
-              imgI = {
-                type: type,
-                idx: idx,
-                ...this.form.value.photos[idx],
-                item: this.item.uid
-              }
-              this.imgItemsService.crearImgItem(imgI).subscribe((res: CargarImgItem) => {
-                this.imgItem = res.imgItem
-                this.fileService.actualizarFoto(this.imagenSubir, 'imgItems', this.imgItem.uid).then(
-                  (img) => {
-                    this.imgItem.img = img
-                    this.imgItemsService.actualizarImgItem(this.imgItem).subscribe(res => {
-                      var fotos: any = []
-                      for (let i = 0; i < this.photos.length; i++) {
-                        if (i === idx) {
-                          this.photos.value[idx].img = img
-                        }
-                        fotos.push(this.photos.value[idx])
-                      }
-                      this.form.patchValue({
-                        photos: fotos
-                      })
-                      this.item.photos = fotos
-                      
-                      this.itemsService.actualizarItem(this.item).subscribe((res: any) => {
-                        this.functionsService.alertUpdate('Imagen agregada')
-                        this.createForm()
-                        this.setForm(res.itemActualizado)
-                      })
-                      this.loading = true
-                      this.imgTemp = undefined
-                    })
-                  },
-                  (err) => {
-                    console.error('error::: ', err);
-
-                  },
-                )
-                this.loading = false
-              })
-            }
-          }
-        }
-
-
-
-
-         this.imgItems.forEach(async img => {
-          if (img.idx == idx) {
-            for (let index = 0; index < this.form.value.photos.length; index++) {
-              const element = this.form.value.photos[index];
-              imgI = undefined
-              if (idx === Number(index)) {
-                imgI = {
-                  type: type,
-                  item: this.item.uid,
-                  idx: idx,
-                  ...this.form.value.photos[idx],
-                  img: '',
-                }
-              }
-            }
-            this.fileService.actualizarFoto(this.imagenSubir, 'imgItems', this.imgItem.uid)
-              .then(
-                (img) => {
-                 
-                  var fotos: any = []
-                  for (let i = 0; i < this.photos.length; i++) {
-                    if (i === idx) {
-                      this.photos.value[idx].img = img
-                    }
-                    fotos.push(this.photos.value[idx])
-                  }
-                  this.form.patchValue({
-                    photos: fotos
-                  })
-                  this.item.photos = fotos
-                  this.itemsService.actualizarItem(this.item).subscribe((res: any) => {
-                    this.functionsService.alertUpdate('Imagen agregada')
-                    this.createForm()
-                    this.setForm(res.itemActualizado)
-                  })
-                  this.loading = true
-                  this.imgTemp = undefined
- 
-                })
-              .catch(error => {
-                console.error('error::: ', error);
- 
-              })
- 
-          } else {
-            for (let index = 0; index < this.form.value.photos.length; index++) {
-              const element = this.form.value.photos[index];
-              imgI = undefined
-              if (idx === Number(index)) {
-                imgI = {
-                  type: type,
-                  idx: idx,
-                  ...this.form.value.photos[idx],
-                  item: this.item.uid
-                }
-          
- 
-                if (this.imgItems.length <= (idx - 1)) {
-                  var imgI
-                  var ImgS = []
-                  for (let index = 0; index < this.form.value.photos.length; index++) {
-                    const element = this.form.value.photos[index];
-                    imgI = undefined
-                    if (idx === Number(index)) {
-                      imgI = {
-                        type: type,
-                        idx: idx,
-                        ...this.form.value.photos[idx],
- 
-                      }
-                      this.imgItemsService.crearImgItem(imgI).subscribe((res: CargarImgItem) => {
-                        this.imgItem = res.imgItem
-                        this.fileService.actualizarFoto(this.imagenSubir, 'imgItems', this.imgItem.uid).then(
-                          (img) => {
-                            this.imgItem.img = img
-                            this.imgItemsService.actualizarImgItem(this.imgItem).subscribe(res => {
-                              var fotos: any = []
-                              for (let i = 0; i < this.photos.length; i++) {
-                                if (i === idx) {
-                                  this.photos.value[idx].img = img
-                                }
-                                fotos.push(this.photos.value[idx])
-                              }
-                              this.form.patchValue({
-                                photos: fotos
-                              })
-                              this.item.photos = fotos
-                              this.itemsService.actualizarItem(this.item).subscribe((res: any) => {
-                                this.functionsService.alertUpdate('Imagen agregada')
-                                this.createForm()
-                                this.setForm(res.itemActualizado)
-                              })
-                              this.loading = true
-                              this.imgTemp = undefined
-                            })
-                          },
-                          (err) => {
-                            console.error('error::: ', err);
- 
-                          },
-                        )
-                        this.loading = false
-                      })
-                    }
-                  }
-                } else {
-                  var imgI
-                  var ImgS = []
-                  for (let index = 0; index < this.form.value.photos.length; index++) {
-                    const element = this.form.value.photos[index];
-                    imgI = undefined
-                    if (idx === Number(index)) {
-                      imgI = {
-                        type: type,
-                        idx: idx,
-                        ...this.form.value.photos[idx],
-                        item: this.item.uid
-                      }
-                      this.imgItemsService.crearImgItem(imgI).subscribe((res: CargarImgItem) => {
-                        this.imgItem = res.imgItem
-                        this.fileService.actualizarFoto(this.imagenSubir, 'imgItems', this.imgItem.uid).then(
-                          (img) => {
-                            this.imgItem.img = img
-                            this.imgItemsService.actualizarImgItem(this.imgItem).subscribe(res => {
-                              var fotos: any = []
-                              for (let i = 0; i < this.photos.length; i++) {
-                                if (i === idx) {
-                                  this.photos.value[idx].img = img
-                                }
-                                fotos.push(this.photos.value[idx])
-                              }
-                              this.form.patchValue({
-                                photos: fotos
-                              })
-                              this.item.photos = fotos
-                              this.itemsService.actualizarItem(this.item).subscribe((res: any) => {
-                                this.functionsService.alertUpdate('Imagen agregada')
-                                this.createForm()
-                                this.setForm(res.itemActualizado)
-                              })
-                              this.loading = true
-                              this.imgTemp = undefined
-                            })
-                          },
-                          (err) => {
-                            console.error('error::: ', err);
- 
-                          },
-                        )
-                        this.loading = false
-                      })
-                    }
-                  }
-                }
- 
- 
-                this.imgItemsService.crearImgItem(imgI).subscribe((res: CargarImgItem) => {
-                  this.imgItem = res.imgItem
-                  this.fileService.actualizarFoto(this.imagenSubir, 'imgItems', this.imgItem.uid).then(
-                    (img) => {
-                      this.imgItem.img = img
-                      this.imgItemsService.actualizarImgItem(this.imgItem).subscribe(res => {
-                        var fotos: any = []
-                        for (let i = 0; i < this.photos.length; i++) {
-                          if (i === idx) {
-                            this.photos.value[idx].img = img
-                          }
-                          fotos.push(this.photos.value[idx])
-                        }
-                        this.form.patchValue({
-                          photos: fotos
-                        })
-                        this.item.photos = fotos
-                        this.itemsService.actualizarItem(this.item).subscribe((res: any) => {
-                          this.functionsService.alertUpdate('Imagen agregada')
-                          this.createForm()
-                          this.setForm(res.itemActualizado)
-                        })
-                        this.loading = true
-                        this.imgTemp = undefined
-                      })
-                    },
-                    (err) => {
-                      console.error('error::: ', err);
- 
-                    },
-                  )
-                  this.loading = false
-                })
-              }
-            }
-          }
-        });  
-
-
-
-
-
-
-      }
-
-
-    }) */
-    /* this.form.value.photos.forEach(form => {
-      this.itemTemp.photos.forEach((item => {
-      }))
-    });
-    var imgI
-    var ImgS = []
-    for (let index = 0; index < this.form.value.photos.length; index++) {
-      const element = this.form.value.photos[index];
-      imgI = undefined
-      if (idx === Number(index)) {
-        imgI = {
-          type: type,
-          idx: idx,
-          ...this.form.value.photos[idx],
-          item: this.item.uid
-        }
-      }
-    }
-   
-    this.imgItemsService.crearImgItem(imgI).subscribe((res: CargarImgItem) => {
-      this.imgItem = res.imgItem
-      this.fileService.actualizarFoto(this.imagenSubir, 'imgItems', this.imgItem.uid).then(
-        (img) => {
-          this.imgItem.img = img
-          this.imgItemsService.actualizarImgItem(this.imgItem).subscribe(res => {
-            var fotos: any = []
-            for (let i = 0; i < this.photos.length; i++) {
-              if (i === idx) {
-                this.photos.value[idx].img = img
-              }
-              fotos.push(this.photos.value[idx])
-            }
-            this.form.patchValue({
-              photos: fotos
-            })
-            this.item.photos = fotos
-            this.itemsService.actualizarItem(this.item).subscribe((res: any) => {
-              this.functionsService.alertUpdate('Imagen agregada')
-              this.createForm()
-              this.setForm(res.itemActualizado)
-            })
-            this.loading = true
-            this.imgTemp = undefined
-          })
-        },
-        (err) => {
-          console.error('error::: ', err);
-
-        },
-      )
-      this.loading = false
-    }) */
   }
-
-
-
   async crearItemImg(img: any) {
     this.imgItemsService.crearImgItem(img).subscribe(async (resp: any) => {
-
       return await resp
-
     },
       (error: any) => {
         console.error('error::: ', error);
-
       })
-
   }
   async editarItemImg(img: any) {
     this.imgItemsService.crearImgItem(img).subscribe(async (resp: any) => {
-
       return await resp
-
     },
       (error: any) => {
         console.error('error::: ', error);
-
       })
-
   }
   ngOnDestroy(): void {
     this.editores.forEach(ed => {
-
-
       ed.editor.destroy();
     });
   }
-
 }

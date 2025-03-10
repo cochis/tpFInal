@@ -689,6 +689,7 @@ export class MiCotizacionComponent {
         }
       }
     };
+
     const pdf = pdfMake.createPdf(docDefinition);
 
     this.loading = true

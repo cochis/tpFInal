@@ -86,6 +86,7 @@ export class BusquedasService {
           fie.mesaOk,
           fie.example,
           fie.croquis,
+          fie.mensaje,
           fie.usuarioCreated,
           fie.activated,
           fie.dateCreated,

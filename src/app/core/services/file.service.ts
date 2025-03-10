@@ -84,6 +84,7 @@ export class FileService {
   ) {
     const url = `${base_url}/upload/remove/${tipo}/${id}`
 
+
     return this.http.patch(url, this.headers)
   }
   deleteFile(

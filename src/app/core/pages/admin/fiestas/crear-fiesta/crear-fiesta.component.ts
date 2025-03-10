@@ -136,7 +136,7 @@ export class CrearFiestaComponent {
         })
       this.usuariosService.cargarUsuarioByCreador(this.uid).subscribe((resp: CargarUsuarios) => {
         this.usuarios = this.functionsService.getActivos(resp.usuarios)
-        this.usuarios = this.usuarios.filter((usuario) => usuario.uid != this.uid);
+        /*  this.usuarios = this.usuarios.filter((usuario) => usuario.uid != this.uid); */
       },
         (error: any) => {
           console.error('error::: ', error);

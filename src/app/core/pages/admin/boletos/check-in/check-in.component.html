@@ -9,31 +9,28 @@
             <div class="container">
                 <div class="row">
 
-                    <div class="col-lg-8 col-12 mx-auto">
-                        <h1 class="text-white text-center">Ticket Party</h1>
 
-                        <h6 class="text-center">Registra tu asistencia</h6>
-
-
-                    </div>
 
                 </div>
             </div>
         </section>
         <section class="featured-section" *ngIf="!editBoleto">
             <div class="container">
+                <br>
+                <br>
+                <br>
                 <div class="row justify-content-center">
 
                     <div class="col-lg-4 col-12 mb-4 mb-lg-0">
                         <div class="custom-block bg-white shadow-lg">
                             <div class="d-flex">
-                                <div class="justify-content-center text-center">
-                                    <h5 class=" mb-2">Escanea tu QR</h5>
+                                <div class="justify-content-center text-center ma">
+                                    <h5 class=" mb-2 ma text-center">Escanea tu QR</h5>
 
                                 </div>
 
                             </div>
-                            <a (click)="scan()">
+                            <a (click)="scan()" class="pointer">
 
                                 <img src="/assets/images/qr.jpeg" class="custom-block-image img-fluid img-scan"
                                     *ngIf="!scannerActive" alt="">
@@ -44,6 +41,12 @@
 
 
 
+
+                </div>
+                <div class="col-lg-8 col-12 mx-auto">
+                    <h1 class="text-white text-center">Ticket Party</h1>
+
+                    <h6 class="text-center">Registra tu asistencia</h6>
 
 
                 </div>

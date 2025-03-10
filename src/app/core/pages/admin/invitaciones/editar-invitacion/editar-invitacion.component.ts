@@ -315,6 +315,7 @@ export class EditarInvitacionComponent {
     this.fiestasService.cargarFiestaById(id).subscribe((resp: CargarFiesta) => {
       this.fiesta = resp.fiesta
 
+
       this.salonLocation = [this.fiesta.salon.long, this.fiesta.salon.lat]
       this.usuarioFiesta = this.fiesta.usuarioFiesta._id
       this.invitacionId = this.fiesta.invitacion
@@ -2012,7 +2013,7 @@ export class EditarInvitacionComponent {
 
     this.ejemplosServices.cargarEjemplosAll().subscribe(resp => {
 
-      var type = (this.invitacion.fiesta.invitacion.includes('default') ? 'default' : 'byFile')
+      var type = (this.fiesta.invitacion.includes('default') ? 'default' : 'byFile')
       let filtro = resp.ejemplos.filter(resp => {
         return resp.urlFiestaBoleto.includes(type)
       })

@@ -44,10 +44,12 @@
                                     (click)="newFiesta()">Nuevo
                                     evento</button> -->
 
-                                <button class="btn but   " *ngIf="cantidadFiestas>0 &&(rol == ANF || rol== SLN)"
+                                <button class="btn but   "
+                                    *ngIf="cantidadFiestas>0 &&(rol == ANF || rol== SLN || rol== PRV)"
                                     (click)="newFiesta()">Nuevo
                                     evento</button>
-                                <button class="btn but   " *ngIf="cantidadFiestas<=0 &&(rol == ANF || rol== SLN)"
+                                <button class="btn but   "
+                                    *ngIf="cantidadFiestas<=0 &&(rol == ANF || rol== SLN || rol== PRV)"
                                     routerLink="/core/compras/crear-compra/{{uid}}">Comprar
                                     paquete</button>
 

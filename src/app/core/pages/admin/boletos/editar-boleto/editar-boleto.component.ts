@@ -62,6 +62,9 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
   btnDisabled = false
   src1 = interval(5000);
   obs1: Subscription;
+  mensajeOk = false
+  mensajeTemp = 'Hola *@@invitado@@*  está invitado a *@@nombre_evento@@*  *@@liga_evento@@*   FAVOR DE CONFIRMAR ASISTENCIA'
+  mensaje = ''
   public qrCodeDownloadLink: SafeUrl = "";
 
   public form!: FormGroup
@@ -96,8 +99,9 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
       let restore = false
 
       this.boletosService.cargarBoletoByFiesta(this.id).subscribe((resp: CargarBoleto) => {
-        this.boletoTemp = resp.boleto
+        this.boletoTemp = this.functionsService.getActives(resp.boleto)
 
+        this.getFiesta(this.fiesta.uid)
       },
         (error: any) => {
           this.functionsService.alertError(error, 'Boletos')
@@ -113,7 +117,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
   getFiesta(id: string) {
     this.fiestasService.cargarFiestaById(id).subscribe((resp: any) => {
       this.fiesta = resp.fiesta
-
+      this.mensaje = (this.fiesta.mensaje == '') ? this.mensajeTemp : resp.fiesta.mensaje
       this.gruposService.cargarGruposAll().subscribe((resp: CargarGrupos) => {
         this.grupos = resp.grupos
       },
@@ -126,6 +130,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
   getId(id: string) {
     this.fiestasService.cargarFiestaById(id).subscribe((resp: any) => {
       this.fiesta = resp.fiesta
+      this.mensaje = resp.fiesta.mensaje
       this.numeroInvitados = this.fiesta.cantidad
       this.setForm(this.fiesta)
     })
@@ -156,6 +161,8 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
       this.boletosService.cargarBoletoByFiesta(this.id).subscribe((resp: CargarBoleto) => {
         this.boleto = resp.boleto
 
+        /* this.boleto = this.functionsService.getActivos(resp.boleto) */
+
         this.boleto.forEach((invitado: any) => {
           this.invitados.push(this.setInvitado(invitado))
         });
@@ -165,6 +172,18 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
           this.functionsService.alertError(error, 'Boletos')
         })
     }, 500);
+  }
+  verMensaje() {
+    this.mensajeOk = !this.mensajeOk
+  }
+  guardarMensaje(mensaje) {
+    this.fiesta.mensaje = mensaje
+    this.fiestasService.actualizarFiesta(this.fiesta).subscribe((res: any) => {
+      this.mensaje = res.fiestaActualizado.mensaje
+      this.mensajeOk = !this.mensajeOk
+      this.functionsService.alertUpdate('Mensaje WhatsApp')
+    })
+
   }
   getCatalogos() {
     this.loading = true
@@ -208,6 +227,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
     })
   }
   setInvitado(invitado: any): FormGroup {
+
     return this.fb.group({
       uid: [(invitado.uid !== '') ? invitado.uid : '', [Validators.required]],
       fiesta: [(invitado.fiesta !== '') ? invitado.fiesta : '', [Validators.required]],
@@ -423,14 +443,16 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
           let textoP = (cantP == 1) ? 'invitado' : 'invitados'
           let evento = this.fiesta.nombre
           let boletoP = (cantP == 1) ? 'boleto' : 'boletos'
-
           let bl = (cantP > 0) ? ` con  *${cantP}* ${boletoP} ` : ``
-          if (this.fiesta.invitacion.includes('default')) {
-            texto = `Hola ${nGrupo.toLocaleUpperCase()} ${cantT} ${textoP} a *${evento.toLocaleUpperCase()}*  ${this.urlT}core/templates/default/${this.fiesta.uid}/${this.idBoleto} ${bl}  *FAVOR DE CONFIRMAR ASISTENCIA*`
-          } else {
-            texto = `Hola ${nGrupo.toLocaleUpperCase()} ${cantT} ${textoP} a *${evento.toLocaleUpperCase()}*  ${this.urlT}core/templates/${this.fiesta.invitacion}/${this.fiesta.uid}/${this.idBoleto} ${bl}  *FAVOR DE CONFIRMAR ASISTENCIA*`
+
+          if (this.fiesta.mensaje == '') {
+            this.fiesta.mensaje = this.mensajeTemp
           }
-          let url = `https://api.whatsapp.com/send?phone=${tel}&text=${encodeURIComponent(texto)}`
+          this.fiesta.mensaje = this.fiesta.mensaje.replace('@@invitado@@', nGrupo.toLocaleUpperCase())
+          this.fiesta.mensaje = this.fiesta.mensaje.replace('@@cantidadInvitados@@', cantP)
+          this.fiesta.mensaje = this.fiesta.mensaje.replace('@@nombre_evento@@', evento)
+          this.fiesta.mensaje = this.fiesta.mensaje.replace('@@liga_evento@@', `${this.urlT}core/templates/${this.fiesta.invitacion}/${this.fiesta.uid}/${this.idBoleto}`)
+          let url = `https://api.whatsapp.com/send?phone=${tel}&text=${encodeURIComponent(this.fiesta.mensaje)}`
           Swal.fire({ title: "Enviado por whatsapp!", text: "", icon: "success", confirmButtonColor: "#13547a" });
           window.open(url, '_blank');
           this.form.value.invitados[i].invitacionEnviada = true
@@ -504,30 +526,15 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
     this.fiesta.invitacion
 
     var url = ''
-    //if (this.fiesta.invitacion.includes('default')) {
-    //  url = this.urlT + 'core/templates/' + this.fiesta.invitacion + '/' + fiesta + '/' + boleto
-    //} else {
-    //  
-    //  url = this.urlT + 'core/invitaciones/xv/xv2/' + fiesta + '/' + boleto
-    //}
     url = this.urlT + 'core/templates/' + this.fiesta.invitacion + '/' + fiesta + '/' + boleto
     var aux = document.createElement("input");
-
-
     aux.setAttribute("value", url);
-
     document.body.appendChild(aux);
-
     aux.select();
-
     document.execCommand("copy");
     document.body.removeChild(aux);
     this.functionsService.alert('Liga de fiesta', 'Copiada satisfactoriamente a portapapeles para compartir', 'success')
   }
-
-
-
-
   upload(event) {
     const selectedFile = event.target.files[0]
     const fileReader = new FileReader()
@@ -689,31 +696,16 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
           invitados.push(invitado)
         }
       });
-
-
-
-
     });
-
-
-
     return await invitados
-
-
   }
-
-
   async crearInvitacionesFile(data) {
     var invitados = []
     var invitado = null
     return await data.forEach(async invi => {
       this.boletosService.crearBoleto(invi).subscribe(async res => {
-
         await invitados.push(res)
       })
-
     });
-
-
   }
 }

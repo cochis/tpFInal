@@ -138,7 +138,7 @@ export class RegistarSalonComponent {
       cp: ['', [Validators.required, Validators.pattern(".{5,5}")]],
       estado: ['', [Validators.required]],
       pais: ['', [Validators.required]],
-      comoLlegar: ['', [Validators.required]],
+      comoLlegar: [''],
       lat: [''],
       long: [''],
       ubicacionGoogle: [''],

@@ -96,7 +96,7 @@ export class MisCotizacionesComponent {
           this.loading = false
           this.functionsService.alertError(error, 'Cotizaciones')
         });
-    } else if (this.rol === this.SLN || this.rol == this.ANF) {
+    } else if (this.rol === this.SLN || this.rol == this.ANF || this.rol == this.URS) {
       let usr = this.functionsService.getLocal('uid')
       this.cotizacionesService.cargarCotizacionesByEmail(usr).subscribe((resp: CargarCotizaciones) => {
 

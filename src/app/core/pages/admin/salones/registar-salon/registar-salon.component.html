@@ -1,5 +1,6 @@
 <app-header></app-header>
 <main>
+
     <app-loading class="animated1 fadeIn" *ngIf="loading"></app-loading>
     <app-message class="animated1 fadeIn" *ngIf="msnOk"></app-message>
     <section class="contact-section section-padding section-bg animated1 fadeIn " id="section_5" *ngIf="!loading">
@@ -12,7 +13,7 @@
                             <h2 class="mb-5" *ngIf="role == ANF">Registra ubicación de evento</h2>
                         </div>
                         <form [formGroup]="form" (ngSubmit)="onSubmit()">
-                            <div class="row">
+                            <div class="row  animate__animated animate__fadeIn">
                                 <div class="col-12 col-md-12 mt-3" *ngIf="role == SLN ">
                                     <div class="form-group">
                                         <label for="nombre">Nombre</label>
@@ -40,6 +41,7 @@
                                     <span *ngIf="submited && errorControl['nombre'].errors " class="error">Es
                                         requerido</span>
                                 </div>
+
                                 <div class="col-12 col-md-6 mt-3">
                                     <div class="form-group">
                                         <label for="calle">Calle</label>
@@ -79,7 +81,7 @@
                                     <span *ngIf="submited && errorControl['pais'].errors " class="error">Es
                                         requerido</span>
                                 </div>
-                                <div class="col-6 col-md-4 mt-3" *ngIf="isPais">
+                                <div class="col-6 col-md-4 mt-3  animate__animated animate__fadeIn" *ngIf="isPais">
                                     <div class="form-group">
                                         <label for="cp">Código postal</label>
                                         <input type="text" class="form-control upper" id="cp" formControlName="cp"
@@ -88,23 +90,24 @@
                                     <span *ngIf="submited && errorControl['cp'].errors " class="error">Es
                                         requerido</span>
                                 </div>
-                                <div class="col-6 col-md-4 mt-3" *ngIf="isPais && form.value.cp.length ==5 ">
+                                <div class="col-6 col-md-4 mt-3  animate__animated animate__fadeIn"
+                                    *ngIf="isPais && form.value.cp.length ==5 ">
                                     <div class="form-group">
                                         <label for="estado">Estado</label>
                                         <input type="text" class="form-control upper" id="estado"
-                                            formControlName="estado" placeholder="Estado">
+                                            formControlName="estado" placeholder="Estado" readonly>
                                     </div>
                                     <span *ngIf="submited && errorControl['estado'].errors " class="error">Es
                                         requerido</span>
                                 </div>
 
-                                <div class="col-6 col-md-4 mt-3"
+                                <div class="col-6 col-md-4 mt-3  animate__animated animate__fadeIn"
                                     *ngIf="isPais && form.value.cp.length ==5 && form.value.estado !==''">
                                     <div class="form-group">
-                                        <label for="municipioDelegacion">Municipio o Delegación</label>
+                                        <label for="municipioDelegacion">Municipio</label>
                                         <select name="" id="municipioDelegacion" formControlName="municipioDelegacion"
                                             class="form-control upper" #municipioDelegacion class="form-control upper">
-                                            <option value="">Selecciona un Municipio o Delegación</option>
+                                            <option value="">Selecciona un Municipio</option>
                                             <option [value]="item " *ngFor="let item of municipios">{{item }}
                                             </option>
                                         </select>
@@ -117,13 +120,13 @@
                                         class="error">Es
                                         requerido</span>
                                 </div>
-                                <div class="col-6 col-md-4 mt-3"
+                                <div class="col-6 col-md-4 mt-3  animate__animated animate__fadeIn"
                                     *ngIf="isPais  && form.value.cp.length ==5  && form.value.estado !==''">
                                     <div class="form-group">
-                                        <label for="coloniaBarrio">Colonia o Barrio</label>
+                                        <label for="coloniaBarrio">Colonia </label>
                                         <select name="" id="coloniaBarrio" formControlName="coloniaBarrio"
                                             class="form-control upper" #coloniaBarrio class="form-control upper">
-                                            <option value="">Selecciona una Colonia o Barrio</option>
+                                            <option value="">Selecciona una Colonia </option>
                                             <option [value]="item " *ngFor="let item of colonias">{{item }}
                                             </option>
                                         </select>
@@ -132,51 +135,54 @@
                                         requerido</span>
                                 </div>
 
-                                <div class="row">
 
-                                    <div class="col-6 col-md-3 mt-3">
 
-                                        <div class="form-group">
-                                            <label for="telefono">Teléfono</label>
-                                            <input type="number" class="form-control upper" id="telefono"
-                                                placeholder="Teléfono" formControlName="telefono">
-                                        </div>
-                                        <span *ngIf="submited && errorControl['telefono'].errors " class="error">Es
-                                            requerido</span>
+                                <div class="col-6 col-md-4 mt-3  animate__animated animate__fadeIn"
+                                    *ngIf="isPais  && form.value.cp.length ==5  && form.value.estado !==''">
+
+                                    <div class="form-group">
+                                        <label for="telefono">Teléfono</label>
+                                        <input type="number" class="form-control upper" id="telefono"
+                                            placeholder="Teléfono" formControlName="telefono">
                                     </div>
-                                    <div class="col-12 col-md-3 mt-3">
+                                    <span *ngIf="submited && errorControl['telefono'].errors " class="error">Es
+                                        requerido</span>
+                                </div>
+                                <div class="col-12 col-md-4 mt-3  animate__animated animate__fadeIn"
+                                    *ngIf="isPais  && form.value.cp.length ==5  && form.value.estado !==''">
 
-                                        <div class="form-group">
-                                            <label for="email">Correo electrónico</label>
-                                            <input type="email" class="form-control upper" id="telefono"
-                                                placeholder="Correo electrónico" formControlName="email" readonly>
-                                        </div>
+                                    <div class="form-group">
+                                        <label for="email">Correo electrónico</label>
+                                        <input type="email" class="form-control upper" id="telefono"
+                                            placeholder="Correo electrónico" formControlName="email" readonly>
                                     </div>
-                                    <div class="col-12 col-md-3 mt-3">
+                                </div>
+                                <div class="col-12 col-md-4 mt-3 animate__animated animate__fadeIn"
+                                    *ngIf="isPais  && form.value.cp.length ==5  && form.value.estado !==''">
 
 
-                                        <div class="form-group">
-                                            <label for="tipoUbicacion">Tipo ubicación</label>
+                                    <div class="form-group  animate__animated animate__fadeIn">
+                                        <label for="tipoUbicacion">Tipo ubicación</label>
 
-                                            <select name="" id="tipoUbicacion" formControlName="tipoUbicacion"
-                                                class="form-control upper" required>
-                                                <option value="" selected>Tipo de ubicación</option>
-                                                <ng-container *ngFor="let item of tipoUbicaciones">
-                                                    {{item.roles | json}}
-                                                    <option [value]="item.uid"
-                                                        *ngIf="item.roles.includes(getRolClave(role))">
-                                                        {{item.nombre}}
-                                                    </option>
-                                                </ng-container>
-                                            </select>
-                                        </div>
-                                        <span *ngIf="submited && errorControl['tipoUbicacion'].errors " class="error">Es
-                                            requerido</span>
+                                        <select name="" id="tipoUbicacion" formControlName="tipoUbicacion"
+                                            class="form-control upper" required>
+                                            <option value="" selected>Tipo de ubicación</option>
+                                            <ng-container *ngFor="let item of tipoUbicaciones">
+                                                {{item.roles | json}}
+                                                <option [value]="item.uid"
+                                                    *ngIf="item.roles.includes(getRolClave(role))">
+                                                    {{item.nombre}}
+                                                </option>
+                                            </ng-container>
+                                        </select>
                                     </div>
+                                    <span *ngIf="submited && errorControl['tipoUbicacion'].errors " class="error">Es
+                                        requerido</span>
                                 </div>
 
 
-                                <div class="col-12 col-md-12 mt-3" style="display: none;">
+
+                                <div class="col-12 col-md-12 mt-3   " style="display: none;">
                                     <div class="form-group">
                                         <label for="ubicacionGoogle">Ubicación Maps Google
                                             <app-info-ubicacion></app-info-ubicacion>
@@ -191,7 +197,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-12 mt-3" *ngIf="isPais">
+                                <div class="col-12 mt-3   " *ngIf="isPais">
 
 
 
@@ -209,7 +215,7 @@
                                         del entro de evento</span>
                                 </div>
 
-                                <div class="col-12 col-md-12 mt-3" *ngIf="isPais">
+                                <div class="col-12 col-md-12 mt-3  animate__animated animate__fadeIn" *ngIf="isPais">
                                     <span *ngIf="submited && errorControl['comoLlegar'].errors " class="error">Es
                                         requerido</span>
                                     <div class="form-group">

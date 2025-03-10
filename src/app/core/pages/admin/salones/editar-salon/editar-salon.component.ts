@@ -88,36 +88,23 @@ export class EditarSalonComponent {
     }, 1500);
   }
   getId(id: string) {
-
-
     this.salonesService.cargarSalonById(id).subscribe((resp: CargarSalon) => {
       this.loading = true
-
+      if (resp.salon.img === '') {
+        this.functionsService.alert('Salon', 'Favor de agregar imagen', 'warning')
+      }
       this.salon = resp.salon
-
-
-
-
       setTimeout(() => {
-
         this.setForm(this.salon)
       }, 500);
-
     },
       (error: any) => {
-
         this.functionsService.alertError(error, 'Ubicaciones')
         this.loading = false
-
       })
   }
-
-
-
   get errorControl() {
     return this.form.controls;
-
-
   }
   createForm() {
     this.form = this.fb.group({
@@ -130,7 +117,7 @@ export class EditarSalonComponent {
       cp: ['', [Validators.required, Validators.pattern(".{5,5}")]],
       estado: ['', [Validators.required]],
       pais: ['', [Validators.required]],
-      comoLlegar: ['', [Validators.required]],
+      comoLlegar: [''],
       lat: [''],
       long: [''],
       telefono: ['', [Validators.required, Validators.pattern(".{10,10}")]],
@@ -144,13 +131,10 @@ export class EditarSalonComponent {
     })
   }
   setForm(salon: Salon) {
-
     let lat: any = salon.lat
     let lng: any = salon.long
     if (lng !== 0 && lat !== 0) {
       this.sendCoords = [Number(salon.long), Number(salon.lat)]
-
-
     } else {
       this.mapService.getUserLocation().then(res => {
         this.sendCoords = res
@@ -167,7 +151,7 @@ export class EditarSalonComponent {
       estado: [salon.estado, [Validators.required]],
       pais: [(this.edit == 'true') ? salon.pais : this.getCatalog('pais', salon.pais), [Validators.required]],
       direccion: [salon.calle + ' ' + salon.numeroExt + ((salon.numeroInt == '') ? '' : ', Int.' + salon.numeroInt) + ', colonia o barrio, ' + salon.coloniaBarrio + ', municipio o delegación' + salon.municipioDelegacion + ', estado' + salon.estado + ', en' + salon.pais],
-      comoLlegar: [salon.comoLlegar, [Validators.required]],
+      comoLlegar: [salon.comoLlegar],
       lat: [salon.lat],
       long: [salon.long],
       telefono: [salon.telefono, [Validators.required, Validators.pattern(".{10,10}")]],

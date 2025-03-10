@@ -51,6 +51,7 @@ export class RegisterComponent {
   usrRole: Role
   anfRole: Role
   roles: Role[]
+  NA = environment.noAplica
   tipoCentros: TipoCentro[]
   submited = false
   respuesta: any = undefined
@@ -149,6 +150,7 @@ export class RegisterComponent {
   getCatalogos() {
     this.rolesService.cargarRolesInit().subscribe((resp: CargarRoles) => {
       this.roles = resp.roles
+        ;
     },
       (error) => {
         console.error('error::: ', error);
@@ -162,7 +164,11 @@ export class RegisterComponent {
         this.functionsService.alertError(error, 'Paquetes')
       })
     this.tipoCentrosService.cargarTipoCentrosAll().subscribe((resp: CargarTipoCentros) => {
-      this.tipoCentros = resp.tipoCentros
+      this.tipoCentros = resp.tipoCentros.filter(res => {
+
+        return res.clave != this.NA
+      })
+
 
     },
       (error) => {

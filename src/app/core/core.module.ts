@@ -149,6 +149,9 @@ import { NgxEditorModule } from 'ngx-editor';
 import { CrearRedComponent } from './pages/admin/redes/crear-red/crear-red.component';
 import { EditarRedComponent } from './pages/admin/redes/editar-red/editar-red.component';
 import { VistaRedesComponent } from './pages/admin/redes/vista-redes/vista-redes.component';
+import { VistaEmailTemplatesComponent } from './pages/admin/email-templates/vista-email-templates/vista-email-templates.component';
+import { CrearEmailTemplateComponent } from './pages/admin/email-templates/crear-email-template/crear-email-template.component';
+import { EditarEmailTemplateComponent } from './pages/admin/email-templates/editar-email-template/editar-email-template.component';
 
 
 
@@ -299,7 +302,10 @@ import { VistaRedesComponent } from './pages/admin/redes/vista-redes/vista-redes
     CrearPromoComponent,
     CrearRedComponent,
     EditarRedComponent,
-    VistaRedesComponent
+    VistaRedesComponent,
+    VistaEmailTemplatesComponent,
+    CrearEmailTemplateComponent,
+    EditarEmailTemplateComponent
 
   ],
   imports: [

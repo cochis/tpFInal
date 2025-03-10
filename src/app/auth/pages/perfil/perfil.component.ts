@@ -177,6 +177,20 @@ export class PerfilComponent {
     }
   }
   cambiarImagen(file: any) {
+
+    if (file.target.files[0].type.includes('image')) {
+      if (file.target.files[0].size > 1048576) {
+        this.functionsService.alert('Media', 'El tamaño maximo del archivo que tiene que ser la imagen  tiene que ser de 1 MB', 'warning')
+      }
+    } else if (file.target.files[0].type.includes('video')) {
+      if (file.target.files[0].size > 5242880) {
+        this.functionsService.alert('Media', 'El tamaño maximo del archivo que tiene que ser la imagen  tiene que ser de  5 MB', 'warning')
+      }
+    } else if (file.target.files[0].type.includes('audio')) {
+      if (file.target.files[0].size > 3621440) {
+        this.functionsService.alert('Media', 'El tamaño maximo del archivo que tiene que ser la imagen  tiene que ser de  3 MB', 'warning')
+      }
+    }
     this.loading = true
     this.imagenSubir = file.target.files[0]
     if (!file.target.files[0]) {

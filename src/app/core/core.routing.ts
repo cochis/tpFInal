@@ -127,6 +127,9 @@ import { CrearPromoComponent } from './pages/admin/promos/crear-promo/crear-prom
 import { EditarRedComponent } from './pages/admin/redes/editar-red/editar-red.component';
 import { CrearRedComponent } from './pages/admin/redes/crear-red/crear-red.component';
 import { VistaRedesComponent } from './pages/admin/redes/vista-redes/vista-redes.component';
+import { EditarEmailTemplateComponent } from './pages/admin/email-templates/editar-email-template/editar-email-template.component';
+import { CrearEmailTemplateComponent } from './pages/admin/email-templates/crear-email-template/crear-email-template.component';
+import { VistaEmailTemplatesComponent } from './pages/admin/email-templates/vista-email-templates/vista-email-templates.component';
 const routes: Routes = [
   {
     path: 'core',
@@ -395,7 +398,7 @@ const routes: Routes = [
         data: { titulo: 'Vista eventos' }
 
       },
-      //Eventos
+      //Redes
       {
         path: 'redes/editar-red/:edit/:id',
         component: EditarRedComponent,
@@ -435,6 +438,27 @@ const routes: Routes = [
         path: 'tipo-ubicaciones/vista-tipo-ubicaciones',
         component: VistaTipoUbicacionesComponent,
         data: { titulo: 'Vista tipo ubicaciones' }
+
+      },
+      //Email Templates
+      {
+        path: 'email-templates/editar-email-template/:edit/:id',
+        component: EditarEmailTemplateComponent,
+        data: { titulo: 'Editar email-template' },
+        canActivate: [authGuard]
+
+      },
+      {
+        path: 'email-templates/crear-email-template',
+        component: CrearEmailTemplateComponent,
+        data: { titulo: 'Crear email-template' },
+        canActivate: [authGuard]
+
+      },
+      {
+        path: 'email-templates/vista-email-templates',
+        component: VistaEmailTemplatesComponent,
+        data: { titulo: 'Vista email-templates' }
 
       },
       //Paises

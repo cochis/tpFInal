@@ -524,9 +524,9 @@ export class CarritoComponent implements OnInit {
       }
 
       this.export()
-      this.form.reset()
-      this.formCot.reset()
       setTimeout(() => {
+        this.form.reset()
+        this.formCot.reset()
         this.functionsService.removeItemLocal('carrito')
         this.functionsService.navigateTo('/core/mis-cotizaciones')
       }, 5500);
@@ -701,7 +701,7 @@ export class CarritoComponent implements OnInit {
 
 
 
-  getContactosPDF(typeV, type) {
+  async getContactosPDF(typeV, type) {
     var ctsT = []
     var cts = []
 
@@ -743,12 +743,13 @@ export class CarritoComponent implements OnInit {
 
       return cts
     } else {
+      console.log('Cliente');
 
       cts.push({ text: 'Anfitrión: ', bold: true, fontSize: 8, color: '#80d0c7', },)
       cts.push({ text: type.nombreAnf + ' ' + type.apellidoPatAnf + ' ' + type.apellidoMatAnf + '\n ', fontSize: 8, color: '#13547a', },)
-      if (!type.isAnfitironFestejado && (type.nombreFes !== '' || type.apellidoPatFes !== '' || type.apellidoMatFes !== '')) {
+      if (type.nombreFes !== '' || type.apellidoPatFes !== '') {
         cts.push({ text: 'Festejada(o): ', bold: true, fontSize: 8, color: '#80d0c7', },)
-        cts.push({ text: type.nombreFes + ' ' + type.apellidoPatFes + ' ' + type.apellidoMatFes + '\n ', fontSize: 8 },)
+        cts.push({ text: type.nombreFes + ' ' + type.apellidoPatFes + ' ' + type.apellidoMatFes + '\n ', fontSize: 8, color: '#13547a' },)
 
       }
       if (type.telfonoAnf !== '') {
@@ -772,7 +773,7 @@ export class CarritoComponent implements OnInit {
 
       }
 
-      return cts
+      return await cts
     }
 
   }
@@ -909,14 +910,14 @@ export class CarritoComponent implements OnInit {
                     width: 30
                   },
                   {
-                    text: this.getContactosPDF('Proveedor', prv),
+                    text: await this.getContactosPDF('Proveedor', prv),
                   }
                 ],
                 [
 
 
                   {
-                    text: this.getContactosPDF('Cliente', this.formCot.value)
+                    text: await this.getContactosPDF('Cliente', this.formCot.value)
 
 
                     ,

@@ -35,6 +35,7 @@ export class VistaFiestasComponent {
   ADM = environment.admin_role
   SLN = environment.salon_role
   ANF = environment.anf_role
+  PRV = environment.prv_role
   URS = environment.user_role
   example: boolean = false
   rol = this.functionsService.getLocal('role')
@@ -212,7 +213,7 @@ export class VistaFiestasComponent {
           this.loading = false
           this.functionsService.alertError(error, 'Eventos')
         });
-    } else if (this.rol === this.SLN || this.rol === this.ANF) {
+    } else if (this.rol === this.SLN || this.rol === this.ANF || this.rol === this.PRV) {
       let usr = this.functionsService.getLocal('uid')
 
 

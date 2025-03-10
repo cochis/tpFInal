@@ -431,6 +431,15 @@
                                     <br>
 
                                     <div class="qrcodeImage">
+                                        <div style="display: none;">
+                                            <qrcode [qrdata]="urlLink" [allowEmptyString]="true"
+                                                [ariaLabel]="'QR Code image with the following content...'"
+                                                [cssClass]="'center'" [colorDark]="form.value.colores[0].value"
+                                                [colorLight]="'#ffffffff'" [elementType]="'canvas'"
+                                                [errorCorrectionLevel]="'M'" [imageWidth]="150" [margin]="4" [scale]="1"
+                                                [title]="'A custom title attribute'" [width]="500"
+                                                (qrCodeURL)="onChangeURL($event)"></qrcode>
+                                        </div>
                                         <qrcode [qrdata]="urlLink" [allowEmptyString]="true"
                                             [ariaLabel]="'QR Code image with the following content...'"
                                             [cssClass]="'center'" [colorDark]="proveedor.colores[0].value"
@@ -443,7 +452,8 @@
                                         </qrcode>
                                     </div>
 
-
+                                    <a class="btn  btn-warning" type="button" [href]="qrCodeDownloadLink"
+                                        download="qrcode">Descargar QR</a>
 
 
                                     <app-print-qr [proveedor]="proveedor"></app-print-qr>

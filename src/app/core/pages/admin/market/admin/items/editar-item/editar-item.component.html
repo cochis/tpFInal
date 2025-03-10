@@ -916,6 +916,15 @@
                                                                         title="Click aquí para subir tu foto"
                                                                         class="img-avatar"
                                                                         *ngIf="form.value.photos[index].img !==''">
+                                                                    <br>
+                                                                    <span class="comprimir">Si tu imagen es mayor a 1MB
+                                                                        se requiere
+                                                                        comprimir</span>
+                                                                    <a class="btn but2 ma mt-3 "
+                                                                        href="https://www.freeconvert.com/es/compress-jpeg"
+                                                                        target="_blank" style="max-width: 165px;  ">
+                                                                        Comprimir imagen
+                                                                    </a>
                                                                 </ng-container>
                                                                 <ng-container
                                                                     *ngIf="functionsService.getValueCatalog(form.value.photos[index].tipoMedia,'clave',tipoMedias)=='audio/*'">
@@ -937,6 +946,15 @@
                                                                             *ngIf=" form.value.photos[index].img!==''">
                                                                             Cambiar
                                                                         </div>
+                                                                        <br>
+                                                                        <span class="comprimir">Si
+                                                                            tu audio es mayor a 3MB se requiere
+                                                                            comprimir</span>
+                                                                        <a class="btn but2 ma mt-3  "
+                                                                            href="https://www.freeconvert.com/es/mp3-compressor"
+                                                                            target="_blank" style="max-width: 165px;  ">
+                                                                            Comprimir audio
+                                                                        </a>
                                                                     </div>
 
 
@@ -963,6 +981,14 @@
                                                                             *ngIf=" form.value.photos[index].img!==''">
                                                                             Cambiar
                                                                         </div>
+                                                                        <br>
+                                                                        <span class="comprimir">Si tu video es mayor a
+                                                                            5MB </span>
+                                                                        <a class="btn but2 ma mt-3"
+                                                                            href="https://www.freeconvert.com/es/video-compressor"
+                                                                            target="_blank" style="max-width: 165px;  ">
+                                                                            Comprimir video
+                                                                        </a>
                                                                     </div>
 
                                                                 </ng-container>
