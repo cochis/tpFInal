@@ -22,6 +22,7 @@ import { environment } from 'src/environments/environment';
 import { Red } from 'src/app/core/models/red.model';
 import { RedesService } from 'src/app/core/services/red.service';
 import { SafeUrl } from '@angular/platform-browser';
+import { Editor, Toolbar } from 'ngx-editor';
 @Component({
   selector: 'app-editar-datos',
   templateUrl: './editar-datos.component.html',
@@ -62,6 +63,17 @@ export class EditarDatosComponent {
   CS: string;
   salon: Salon
   redesAll: Red[]
+  descripcion: Editor
+  toolbar: Toolbar = [
+    ['bold', 'italic'],
+    ['underline', 'strike'],
+    ['code', 'blockquote'],
+    ['ordered_list', 'bullet_list'],
+    [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
+    ['link', 'image'],
+    ['text_color', 'background_color'],
+    ['align_left', 'align_center', 'align_right', 'align_justify'],
+  ];
   public qrCodeDownloadLink: SafeUrl = "";
   constructor(
     private fb: FormBuilder,
@@ -77,6 +89,7 @@ export class EditarDatosComponent {
     private redesService: RedesService,
 
   ) {
+    this.descripcion = new Editor();
     this.loading = true
     this.CLPR.forEach(cl => {
       if (cl.clave == 'cPrincipalWP') {
@@ -674,6 +687,10 @@ export class EditarDatosComponent {
     }
 
     return color
+
+  }
+  ngOnDestroy() {
+    this.descripcion.destroy();
 
   }
   onChangeURL(url: SafeUrl) {
