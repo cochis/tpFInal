@@ -4,8 +4,10 @@ import { BusquedasService } from 'src/app/shared/services/busquedas.service';
 import { environment } from 'src/environments/environment';
 import { CpsService } from 'src/app/core/services/cp.service';
 import { Cp } from 'src/app/core/models/cp.model';
-import { CargarCps } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
+import { CargarCps, CargarPaises } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
 import * as XLSX from 'xlsx'
+import { Pais } from 'src/app/core/models/pais.model';
+import { PaisesService } from 'src/app/core/services/pais.service';
 
 @Component({
   selector: 'app-vista-cps',
@@ -25,14 +27,15 @@ export class VistaCpsComponent {
   rol = this.functionsService.getLocal('role')
   uid = this.functionsService.getLocal('uid')
   today: Number = this.functionsService.getToday()
-
+  paises: Pais[]
   constructor(
     private functionsService: FunctionsService,
 
     private busquedasService: BusquedasService,
-
+    private paisesService: PaisesService,
     private cpsService: CpsService
   ) {
+    this.getCatalogos()
     this.getCps()
 
   }
@@ -81,8 +84,12 @@ export class VistaCpsComponent {
   }
   getCps() {
     this.loading = true
+
+
+
+
     if (this.rol === this.ADM) {
-      this.cpsService.cargarCpsAll().subscribe((resp: CargarCps) => {
+      this.cpsService.cargarCpsByPaisEdo('MX', 'Aguascalientes').subscribe((resp: CargarCps) => {
 
 
         this.cps = resp.cps
@@ -139,7 +146,17 @@ export class VistaCpsComponent {
     }, 3000);
   }
 
+  cargarCps(pais, edo) {
+    if (pais !== '' && edo !== '') {
+      this.cps = []
+      this.cpsService.cargarCpsByPaisEdo(pais, edo).subscribe(resp => {
+        this.cps = resp.cps
+      })
+    } else {
+      this.functionsService.alertError([], 'LLena los campos completos')
+    }
 
+  }
   async cargaCps(ev) {
     this.loading = true
     let workBook = null;
@@ -245,6 +262,23 @@ export class VistaCpsComponent {
       })
 
     });
+
+
+  }
+  getCatalogos() {
+    this.loading = true
+
+    this.paisesService.cargarPaisesAll().subscribe((resp: CargarPaises) => {
+      this.paises = resp.paises
+
+      this.loading = false
+    },
+      (error: any) => {
+        console.error('Error', error)
+        this.functionsService.alertError(error, 'Centro de eventos (Países)')
+        this.loading = false
+      })
+
 
 
   }

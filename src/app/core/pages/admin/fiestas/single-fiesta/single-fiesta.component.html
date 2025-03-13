@@ -149,7 +149,7 @@
                         </td>
 
 
-                        <td class="text-center prima">{{item.nombreGrupo}}</td>
+                        <td class="text-center prima upper">{{item.nombreGrupo}}</td>
                         <td class="text-center prima">
                             {{item.cantidadInvitados}} <br>
                             <button type="submit" class="btn  but  " style="padding: 0" *ngIf="item.requeridos>0"
@@ -157,7 +157,7 @@
 
                         </td>
                         <td class="text-center seconf">{{item.requeridos}}</td>
-                 
+
                         <td class="text-center prima" *ngIf="item.confirmado">
                             <i class="icon-ok-circled prima"></i>
                         </td>
@@ -175,14 +175,14 @@
 
                 </tbody>
             </table>
-            
-           
+
+
         </div>
     </ng-container>
     <div class="mt-5 text-center">
 
-        <pagination-controls (pageChange)="p = $event" autoHide="true" previousLabel="Anterior"
-            nextLabel="Siguiente" responsive="true"></pagination-controls>
+        <pagination-controls (pageChange)="p = $event" autoHide="true" previousLabel="Anterior" nextLabel="Siguiente"
+            responsive="true"></pagination-controls>
     </div>
 </div>
 <div class="col-12 text-center mt-5 ma ">

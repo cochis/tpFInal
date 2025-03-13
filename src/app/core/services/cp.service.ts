@@ -65,6 +65,44 @@ export class CpsService {
       }),
     )
   }
+  cargarCpsByPaisEdo(pais, edo) {
+    const url = `${base_url}/cps/byEdo/${pais}/${edo}`
+    return this.http.get<CargarCps>(url, this.headers).pipe(
+      map((resp) => {
+        const cps = resp.cps.map(
+          (c) =>
+            new Cp(
+              c.d_codigo,
+              c.d_asenta,
+              c.d_tipo_asenta,
+              c.D_mnpio,
+              c.d_estado,
+              c.d_ciudad,
+              c.d_CP,
+              c.c_estado,
+              c.c_oficina,
+              c.c_CP,
+              c.c_tipo_asenta,
+              c.c_mnpio,
+              c.id_asenta_cpcons,
+              c.d_zona,
+              c.c_cve_ciudad,
+              c.pais_clv,
+              c.usuarioCreated,
+              c.activated,
+              c.dateCreated,
+              c.lastEdited,
+              c.uid,
+
+            ),
+        )
+        return {
+          total: cps.length,
+          cps,
+        }
+      }),
+    )
+  }
   deleteCPS() {
     const url = `${base_url}/cps/delete`
     return this.http.get(url, this.headers)

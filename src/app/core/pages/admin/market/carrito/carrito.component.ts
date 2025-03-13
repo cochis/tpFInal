@@ -743,8 +743,6 @@ export class CarritoComponent implements OnInit {
 
       return cts
     } else {
-      console.log('Cliente');
-
       cts.push({ text: 'Anfitrión: ', bold: true, fontSize: 8, color: '#80d0c7', },)
       cts.push({ text: type.nombreAnf + ' ' + type.apellidoPatAnf + ' ' + type.apellidoMatAnf + '\n ', fontSize: 8, color: '#13547a', },)
       if (type.nombreFes !== '' || type.apellidoPatFes !== '') {

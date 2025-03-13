@@ -13,6 +13,7 @@
                                 (keyup)="buscar(txtTermino.value)" #txtTermino>
                         </div>
 
+
                     </div>
                     <div class="row">
                         <div class="row mt-5 text-center">
@@ -33,9 +34,65 @@
                     <h2 class="mb-5">Códigos Postales</h2>
                 </div>
 
+                <div class="row mt-3 mb-3">
+                    <div class="col-12 col-md-6 ">
+                        <label for="pais">País</label>
+
+                        <select name="" id="pais" class="form-control upper" class="form-control upper"
+                            (change)="cargarCps(pais.value,estado.value)" #pais>
+                            <option value="">Selecciona un país</option>
+                            <option [value]="item.clave " *ngFor="let item of paises">{{item.nombre }}
+                            </option>
+                        </select>
+
+                    </div>
+                    <div class="col-12 col-md-6 ">
+                        <label for="estado">Estado</label>
+
+                        <select name="" id="estado" class="form-control upper" class="form-control upper"
+                            (change)="cargarCps(pais.value,estado.value)" #estado>
+                            <option value="">Selecciona un estado</option>
+                            <option value="Aguascalientes" selected>Aguascalientes</option>
+                            <option value="Baja California">Baja California</option>
+                            <option value="Baja California Sur">Baja California Sur</option>
+                            <option value="Campeche">Campeche</option>
+                            <option value="Coahuila de Zaragoza">Coahuila de Zaragoza</option>
+                            <option value="Colima">Colima</option>
+                            <option value="Chiapas">Chiapas</option>
+                            <option value="Chihuahua">Chihuahua</option>
+                            <option value="Ciudad de México">CDMX</option>
+                            <option value="Durango">Durango</option>
+                            <option value="Guanajuato">Guanajuato</option>
+                            <option value="Guerrero">Guerrero</option>
+                            <option value="Hidalgo">Hidalgo</option>
+                            <option value="México">México</option>
+                            <option value="Michoacán de Ocampo">Michoacán</option>
+                            <option value="Morelos">Morelos</option>
+                            <option value="Nayarit">Nayarit</option>
+                            <option value="Nuevo León">Nuevo León</option>
+                            <option value="Oaxaca">Oaxaca</option>
+                            <option value="Puebla">Puebla</option>
+                            <option value="Querétaro">Querétaro</option>
+                            <option value="Quintana Roo">Quintana Roo</option>
+                            <option value="San Luis Potosí">San Luis Potosí</option>
+                            <option value="Sinaloa">Sinaloa</option>
+                            <option value="Sonora">Sonora</option>
+                            <option value="Tabasco">Tabasco</option>
+                            <option value="Tamaulipas">Tamaulipas</option>
+                            <option value="Tlaxcala">Tlaxcala</option>
+                            <option value="Tlaxcala">Tlaxcala</option>
+                            <option value="Veracruz de Ignacio de la Llave">Veracruz de Ignacio de la Llave</option>
+                            <option value="Yucatán">Yucatán</option>
+                            <option value="Zacatecas">Zacatecas</option>
+
+
+                        </select>
+                    </div>
+                </div>
+
                 <div class="col-12 text-center">
-                    <h5 *ngIf="cps.length==0">Sin información</h5>
-                    <div class="table-over" *ngIf="cps.length>0">
+                    <h5 *ngIf="cps && cps.length==0">Sin información</h5>
+                    <div class="table-over" *ngIf="cps && cps.length>0">
 
 
 
