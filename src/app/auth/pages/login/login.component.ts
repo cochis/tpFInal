@@ -48,32 +48,34 @@ export class LoginComponent {
 
     this.loginForm.value.email = this.loginForm.value.email.toLowerCase().trim()
     this.loginForm.value.password = this.loginForm.value.password.trim()
+    setTimeout(() => {
 
-    this.authService.login(this.loginForm.value).subscribe((resp: any) => {
+      this.authService.login(this.loginForm.value).subscribe((resp: any) => {
 
-      setTimeout(() => {
+        setTimeout(() => {
 
-        this.functionsService.navigateTo('core/inicio')
-        this.loading = false
-      }, 2000);
-      //message
-    },
-      (error: any) => {
-        this.functionsService.alertError(error, 'Login')
-        if (error.error.msg === 'Usuario desactivado') {
+          this.functionsService.navigateTo('core/inicio')
           this.loading = false
-          this.functionsService.alert('Login', 'Se ha enviado correo para verificación ', 'info')
-          return
-        } else {
+        }, 2000);
+        //message
+      },
+        (error: any) => {
+          this.functionsService.alertError(error, 'Login')
+          if (error.error.msg === 'Usuario desactivado') {
+            this.loading = false
+            this.functionsService.alert('Login', 'Se ha enviado correo para verificación ', 'info')
+            return
+          } else {
 
-          this.loading = false
-          this.functionsService.alert('Login', 'Correo o contraseña invalidos', 'error')
-          return
-        }
+            this.loading = false
+            this.functionsService.alert('Login', 'Correo o contraseña invalidos', 'error')
+            return
+          }
 
 
 
-      })
+        })
+    }, 1500);
 
   }
 

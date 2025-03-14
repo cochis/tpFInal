@@ -206,6 +206,8 @@ export class DefaultComponent implements OnInit, AfterViewInit {
             imgWidth: this.invitacion.imgWidth,
             cWhite: this.invitacion.cWhite,
             img1: this.invitacion.img1,
+            efectoImg1: this.invitacion.efectoImg1,
+            repEfectoImg1: this.invitacion.repEfectoImg1,
             xImg1: this.invitacion.xImg1,
             yImg1: this.invitacion.yImg1,
             generalCheck: this.invitacion.generalCheck,
@@ -239,23 +241,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
 
           this.dataInvitacionCard = {
             vistaTemp: false,
-            inviEfecto: this.invitacion.inviEfecto,
-            inviEfectoRep: this.invitacion.inviEfectoRep,
-            generalCheck: resp.invitacion.data.generalCheck,
-            cPrincipal: this.invitacion.cPrincipal,
-            cWhite: this.invitacion.cWhite,
-            inviFont: this.invitacion.inviFont,
-            inviFont2: this.invitacion.inviFont2,
-            generalSize: this.invitacion.generalSize,
-            nombreGrupo: this.boleto.nombreGrupo,
-            cantidad: this.boleto.cantidadInvitados,
-            nombreFont: this.invitacion.nombreFont,
-            mesa: this.invitacion.mesa,
-            generalTexto: this.invitacion.generalTexto,
-            croquisOk: this.fiesta.croquisOk,
-            croquis: this.fiesta.croquis,
-            cSecond: this.invitacion.cSecond,
-            checking: this.fiesta.checking
+            ...this.invitacion
           }
           this.dataMensajeCard = {
             vistaTemp: false,
@@ -288,6 +274,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
     } else {
       this.restParty()
       this.state = this.route.snapshot.queryParams
+
       for (let key in this.state) {
         ++this.count;
       }
@@ -456,7 +443,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
         this.checking = (this.state.checking == 'true') ? true : false
         this.notaCheck = (this.state.notaCheck == 'true') ? true : false
         this.padresCheck = (this.state.padresCheck == 'true') ? true : false
-        this.isMusic = (this.state.isMusic == 'true') ? true : false
+
 
         this.musicRepit = (this.state.musicRepit == 'true') ? true : false
 
@@ -474,6 +461,8 @@ export class DefaultComponent implements OnInit, AfterViewInit {
           imgWidth: this.state.imgWidth,
           cWhite: this.state.cWhite,
           img1: this.state.img1,
+          efectoImg1: this.state.efectoImg1,
+          repEfectoImg1: this.state.repEfectoImg1,
           xImg1: this.state.xImg1,
           yImg1: this.state.yImg1,
           generalCheck: this.state.generalCheck,
@@ -506,6 +495,8 @@ export class DefaultComponent implements OnInit, AfterViewInit {
         this.dataInvitacionCard = {
           vistaTemp: true,
           inviEfecto: this.state.inviEfecto,
+          efectoInvi: this.state.efectoInvi,
+          repEfectoInvi: this.state.repEfectoInvi,
           inviEfectoRep: this.state.inviEfectoRep,
           generalCheck: this.state.generalCheck,
           cPrincipal: this.state.cPrincipal,

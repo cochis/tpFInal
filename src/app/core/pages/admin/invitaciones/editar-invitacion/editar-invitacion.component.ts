@@ -56,189 +56,8 @@ export class EditarInvitacionComponent {
   usuarioFiesta = ''
   viewInicial = false
   textUrl: any = environment.text_url
-  efectos: any = [
-    {
-      nombre: "Bounce",
-      clave: "animate__bounce"
-    },
-    {
-      nombre: "Flash",
-      clave: "animate__flash"
-    },
-    {
-      nombre: "Pulse",
-      clave: "animate__pulse"
-    },
-    {
-      nombre: "RubberBand",
-      clave: "animate__rubberBand"
-    },
-    {
-      nombre: "Shake X",
-      clave: "animate__shakeX"
-    },
-    {
-      nombre: "Shake Y",
-      clave: "animate__shakeY"
-    },
-    {
-      nombre: "HeadShake",
-      clave: "animate__shakeY"
-    },
-    {
-      nombre: "Swing",
-      clave: "animate__swing"
-    },
-    {
-      nombre: "Tada",
-      clave: "animate__tada"
-    },
-    {
-      nombre: "Wobble",
-      clave: "animate__wobble"
-    },
-    {
-      nombre: "Jello",
-      clave: "animate__jello"
-    },
-    {
-      nombre: "BackInDown",
-      clave: "animate__backInDown"
-    },
-    {
-      nombre: "BackInLeft",
-      clave: "animate__backInLeft"
-    },
-    {
-      nombre: "BackInRight",
-      clave: "animate__backInRight"
-    },
-    {
-      nombre: "BackInUp",
-      clave: "animate__backInUp"
-    },
-
-    {
-      nombre: "FadeIn",
-      clave: "animate__fadeIn"
-    },
-    {
-      nombre: "FadeInDown",
-      clave: "animate__fadeInDown"
-    },
-    {
-      nombre: "FadeInLeft",
-      clave: "animate__fadeInLeft"
-    },
-    {
-      nombre: "FadeInRight",
-      clave: "animate__fadeInRight"
-    },
-    {
-      nombre: "FadeInUp",
-      clave: "animate__fadeInUp"
-    },
-    {
-      nombre: "FadeInTopLeft",
-      clave: "animate__fadeInTopLeft"
-    },
-    {
-      nombre: "FadeInTopRight",
-      clave: "animate__fadeInTopRight"
-    },
-    {
-      nombre: "FadeInBottomLeft",
-      clave: "animate__fadeInBottomLeft"
-    },
-    {
-      nombre: "FadeInBottomRight",
-      clave: "animate__fadeInBottomRight"
-    },
-
-    {
-      nombre: "Fip",
-      clave: "animate__flip"
-    },
-    {
-      nombre: "FlipInX",
-      clave: "animate__flipInX"
-    },
-    {
-      nombre: "FlipInY",
-      clave: "animate__flipInY"
-    },
-    {
-      nombre: "LightSpeedInRight",
-      clave: "animate__lightSpeedInRight"
-    },
-    {
-      nombre: "LightSpeedInLeft",
-      clave: "animate__lightSpeedInLeft"
-    },
-    {
-      nombre: "RotateIn",
-      clave: "animate__rotateIn"
-    },
-    {
-      nombre: "JackInTheBox",
-      clave: "animate__jackInTheBox"
-    },
-    {
-      nombre: "RollIn",
-      clave: "animate__rollIn"
-    },
-    {
-      nombre: "ZoomIn",
-      clave: "animate__zoomIn"
-    },
-    {
-      nombre: "ZoomInDown",
-      clave: "animate__zoomInDown"
-    },
-    {
-      nombre: "ZoomInUp",
-      clave: "animate__zoomInUp"
-    },
-    {
-      nombre: "SlideInDown",
-      clave: "animate__slideInDown"
-    },
-    {
-      nombre: "SlideInLeft",
-      clave: "animate__slideInLeft"
-    },
-    {
-      nombre: "SlideInRight",
-      clave: "animate__slideInRight"
-    },
-    {
-      nombre: "SlideInUp",
-      clave: "animate__slideInUp"
-    },
-
-  ]
-  repEfec: any = [
-    {
-      nombre: '0',
-      clave: ''
-    },
-    {
-      nombre: '1',
-      clave: 'animate__repeat-1'
-    },
-    {
-      nombre: '2',
-      clave: 'animate__repeat-2'
-    },
-    {
-      nombre: '3',
-      clave: 'animate__repeat-3'
-    },
-    {
-      nombre: 'Infinito',
-      clave: 'animate__infinite'
-    },
-  ]
+  efectos = environment.efectos
+  repEfec = environment.repEfec
   userLocation: any = undefined
   salonLocation: any = undefined
   iglesiaLocation: any = undefined
@@ -273,34 +92,25 @@ export class EditarInvitacionComponent {
     }, 500);
     this.functionsService.alert('Crear invitación', 'Se recomienda realizar la invitación en una computadora para facilitar la edición.', 'info')
     this.functionsService.removeItemLocal('tipoInvitacion')
-
-
-
     this.id = this.route.snapshot.params['id']
     this.edit = this.route.snapshot.params['edit']
-
     if (this.edit == 'true') {
       this.edit = true
     } else {
       this.edit = false
     }
-
     this.getInvitacion(this.id)
     this.getFiesta(this.id)
     this.changeSize('sm')
-
   }
   get errorControl() {
     return this.form.controls;
   }
   async getUserLocation(): Promise<[number, number]> {
-
     return new Promise((resolve, reject) => {
       navigator.geolocation.getCurrentPosition(
         ({ coords }) => {
           this.userLocation = [coords.longitude, coords.latitude]
-
-
           resolve(this.userLocation)
         },
         (err) => {
@@ -314,8 +124,6 @@ export class EditarInvitacionComponent {
     this.loading = true
     this.fiestasService.cargarFiestaById(id).subscribe((resp: CargarFiesta) => {
       this.fiesta = resp.fiesta
-
-
       this.salonLocation = [this.fiesta.salon.long, this.fiesta.salon.lat]
       this.usuarioFiesta = this.fiesta.usuarioFiesta._id
       this.invitacionId = this.fiesta.invitacion
@@ -327,6 +135,7 @@ export class EditarInvitacionComponent {
         this.functionsService.alert('Fiesta', 'Por favor intente mas tarde', 'error')
       })
   }
+
   restaurarAltura() {
     this.form.patchValue({
       cPrincipal: '#ffc1cb',
@@ -352,6 +161,8 @@ export class EditarInvitacionComponent {
       cSecond: ['#c0354e'],
       cWhite: ['#ffffff'],
       img1: [''],
+      efectoImg1: [''],
+      repEfectoImg1: [''],
       imgWidth: [100],
       xImg1: [50],
       yImg1: [0],
@@ -378,6 +189,8 @@ export class EditarInvitacionComponent {
       mensajeFont: ['pacifico'],
       inicialTFont: ['pacifico'],
       inicialTSize: [10],
+      efectoInvi: [''],
+      repEfectoInvi: [''],
       finalTSize: [10],
       musicaInvitacion: [''],
       isMusic: [false],
@@ -545,6 +358,8 @@ export class EditarInvitacionComponent {
       checking: [invitacion.fiesta.checking],
       cWhite: [invitacion.data.cWhite],
       img1: [invitacion.data.img1],
+      efectoImg1: [invitacion.data.efectoImg1],
+      repEfectoImg1: [invitacion.data.repEfectoImg1],
       xImg1: [invitacion.data.xImg1],
       yImg1: [invitacion.data.yImg1],
       imgWidth: [invitacion.data.imgWidth],
@@ -682,6 +497,8 @@ export class EditarInvitacionComponent {
       inviEfecto: [invitacion.data.inviEfecto ? invitacion.data.inviEfecto : ''],
       inviEfectoRep: [invitacion.data.inviEfectoRep ? invitacion.data.inviEfectoRep : '1'],
       inicialTSize: [invitacion.data.inicialTSize],
+      efectoInvi: [invitacion.data.efectoInvi],
+      repEfectoInvi: [invitacion.data.repEfectoInvi],
       finalTSize: [invitacion.data.finalTSize],
       musicaInvitacion: [invitacion.data.musicaInvitacion],
 
@@ -796,6 +613,8 @@ export class EditarInvitacionComponent {
       cSecond: [temp.cSecond],
       cWhite: [temp.cWhite],
       img1: [temp.img1],
+      efectoImg1: [temp.efectoImg1],
+      repEfectoImg1: [temp.repEfectoImg1],
       xImg1: [temp.xImg1],
       yImg1: [temp.yImg1],
       imgWidth: [temp.imgWidth],
@@ -878,6 +697,8 @@ export class EditarInvitacionComponent {
       mensajeFont: [temp.mensajeFont],
       inicialTFont: [temp.inicialTFont],
       inicialTSize: [temp.inicialTSize],
+      efectoInvi: [temp.efectoInvi],
+      repEfectoInvi: [temp.repEfectoInvi],
       finalTSize: [temp.finalTSize],
       musicaInvitacion: [temp.musicaInvitacion],
       isMusic: [temp.isMusic],
@@ -926,12 +747,14 @@ export class EditarInvitacionComponent {
   }
   async VerTemplate(form) {
 
+
     if (!this.invitacion) {
       this.loading = true
       let data = {
         ...form.value,
         fiestaId: this.fiesta.uid,
       }
+
       let invitacion = {
         fiesta: this.fiesta.uid,
 
@@ -1050,6 +873,15 @@ export class EditarInvitacionComponent {
 
       if (this.form.value.img1 == '' && this.invitacion.data.img1 !== '') {
         this.form.value.img1 = this.invitacion.data.img1
+      }
+
+
+
+      if (this.form.value.efectoImg1 == '' && this.invitacion.data.efectoImg1 !== '') {
+        this.form.value.efectoImg1 = this.invitacion.data.efectoImg1
+      }
+      if (this.form.value.repEfectoImg1 == '' && this.invitacion.data.repEfectoImg1 !== '') {
+        this.form.value.repEfectoImg1 = this.invitacion.data.repEfectoImg1
       }
       if (this.form.value.mensajeImg == '' && this.invitacion.data.mensajeImg !== '') {
         this.form.value.mensajeImg = this.invitacion.data.mensajeImg
@@ -1194,6 +1026,8 @@ export class EditarInvitacionComponent {
             cSecond: '#c0354e',
             cWhite: '#ffffff',
             img1: '',
+            efectoImg1: 'animate__fadeIn',
+            repEfectoImg1: 'animate__repeat-1',
             xImg1: 50,
             yImg1: 10,
             imgWidth: 100,
@@ -1301,6 +1135,8 @@ export class EditarInvitacionComponent {
             mensajeFont: "pacifico",
             inicialTFont: 'pacifico',
             inicialTSize: 10,
+            efectoInvi: '',
+            repEfectoInvi: '',
             finalTSize: 10,
             musicaInvitacion: '',
             isMusic: '',

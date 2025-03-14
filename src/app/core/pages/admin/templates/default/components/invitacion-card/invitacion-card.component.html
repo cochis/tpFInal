@@ -1,9 +1,9 @@
 <ng-container *ngIf="data && !loading">
     <!-- Vista Final -->
 
-    <div class="animate__animated  {{data.inviEfecto}} {{data.inviEfectoRep}}" *ngIf="!data.vistaTemp">
+    <div class="animate__animated  {{data.efectoInvi}}  {{data.repEfectoInvi}}" *ngIf="!data.vistaTemp">
 
-        <div class="  animate__animated   animate__fadeInDown">
+        <div class="  animate__animated   animate__backInLeft">
 
 
             <div class="card text-center  "
@@ -51,7 +51,8 @@
         </div>
     </div>
     <!-- Vista Temp -->
-    <div class="animate__animated  {{data.inviEfecto}} {{data.inviEfectoRep}}" *ngIf="data.vistaTemp">
+
+    <div class="animate__animated    {{data.efectoInvi}}  {{data.repEfectoInvi}}" *ngIf="data.vistaTemp">
 
 
 

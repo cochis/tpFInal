@@ -76,6 +76,9 @@ export class ByFileComponent {
   padrinosCheck: boolean
   vistaTemp: boolean
   pushOk: boolean = false
+  isMusic: boolean
+  musicaInvitacion = ''
+  musicRepit = ''
   constructor(
     private functionsService: FunctionsService,
     private fiestasService: FiestasService,
@@ -140,6 +143,7 @@ export class ByFileComponent {
 
 
           this.restParty()
+          console.log('this.invitacion ::: ', this.invitacion);
           this.invitacion = await this.dateToNumber(this.invitacion)
           this.invitacion.mesa = this.boleto.mesa
           this.date = this.fiesta.fecha
@@ -166,6 +170,9 @@ export class ByFileComponent {
           this.menuCheck = this.invitacion.menuCheck
           this.musica = this.invitacion.musica
           this.musicaCheck = this.invitacion.musicaCheck
+          this.isMusic = this.invitacion.isMusic
+          this.musicaInvitacion = this.invitacion.musicaInvitacion
+          this.musicRepit = this.invitacion.musicRepit
         }, (error) => {
           console.error('Error', error)
           this.functionsService.alertError(error, 'Fiestas')
@@ -179,6 +186,7 @@ export class ByFileComponent {
     } else {
       this.restParty()
       this.state = this.route.snapshot.queryParams
+      console.log('  this.state::: ', this.state);
 
 
       for (let key in this.state) {
@@ -303,7 +311,11 @@ export class ByFileComponent {
         this.date = this.invitacion.fiestaDate
         this.btnBack = true
         this.checking = (this.state.checking == 'true') ? true : false
-
+        this.isMusic = (this.state.isMusic == 'true') ? true : false
+        this.musicaInvitacion = this.state.musicaInvitacion
+        this.musicRepit = this.state.musicRepit
+        console.log('this.musicaInvitacion ::: ', this.musicaInvitacion);
+        console.log('this.isMusic ::: ', this.isMusic);
 
 
         setTimeout(() => {
@@ -629,5 +641,26 @@ export class ByFileComponent {
       this.functionsService.removeItemLocal('viewTemplate')
     }
 
+  }
+  playStop() {
+    var v = document.getElementsByTagName("audio")[0];
+    var sound = false;
+    var boton = document.getElementById("boton");
+    boton.addEventListener("click", function () {
+      if (v.paused) {
+        v.play();
+        v.play();
+        v.play();
+        v.play();
+        this.innerHTML = ' <span  ><i class="bi bi-stop"></i></span>';
+      } else {
+        v.pause();
+        v.pause();
+        v.pause();
+        v.pause();
+        v.pause();
+        this.innerHTML = ' <span  ><i class="bi bi-play"></i></span>';
+      }
+    });
   }
 }

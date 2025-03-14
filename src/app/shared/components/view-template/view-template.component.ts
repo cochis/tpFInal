@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
   templateUrl: './view-template.component.html',
   styleUrls: ['./view-template.component.css']
 })
-export class ViewTemplateComponent {
+export class ViewTemplateComponent implements AfterViewInit {
   @Input() data: any;
   today = this.functionsService.getToday()
   dias = 0
@@ -21,6 +21,10 @@ export class ViewTemplateComponent {
     setTimeout(() => {
       this.loading = false
     }, 500);
+  }
+  ngAfterViewInit(): void {
+
+
   }
 
 

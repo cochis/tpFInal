@@ -2,7 +2,7 @@
 
     <!-- Final -->
 
-    <div class="box principal animate__animated animate__fadeInDown"
+    <div class="box principal animate__animated {{data.efectoImg1}} {{data.repEfectoImg1}}"
         [style]="{'background-image':'url('+url+'/upload/invitaciones/'+data.img1+')' ,  'background-position': data.xImg1+'%'+ data.yImg1+'%','background-size':data.imgWidth,}"
         *ngIf="!vistaTemp  ">
 
@@ -54,7 +54,7 @@
 
 
     <!-- Temp -->
-    <div class="box principal animate__animated animate__fadeInDown"
+    <div class="box principal animate__animated {{data.efectoImg1}} {{data.repEfectoImg1}}"
         [style]="{'background-image':'url('+url+'/upload/invitaciones/'+data.img1+')' ,  'background-position': data.xImg1+'%'+ data.yImg1+'%','background-size':data.imgWidth,}"
         *ngIf="vistaTemp">
 
