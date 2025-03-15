@@ -41,7 +41,7 @@
                                     <div class="col-12 col-md-4 ma">
                                         <button class="btn btn-lg btn-block but mt-3 mb-3" style="margin: auto;"
                                             id="verInvitacion" (click)="verExample(viewExample.value)">
-                                            Ver invitación</button>
+                                            Ver invitación de ejemplo</button>
                                     </div>
                                     <div class="col-12 col-md-4 ma" *ngIf="functionsService.getLocal('invitacion')">
                                         <button class="btn btn-lg btn-block but mt-3 mb-3" style="margin: auto;"
@@ -100,74 +100,6 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="text-center mb-3">
-                                        <h5>Música de invitación</h5>
-                                        <div class="col-12 col-md-6 col-md-3 mt-3 ma ">
-
-                                            <button class="btn but2" type="button" data-bs-toggle="collapse"
-                                                data-bs-target="#collapseMusica" aria-expanded="false"
-                                                aria-controls="collapseMusica">
-                                                Música
-                                            </button>
-
-                                        </div>
-                                        <div class="collapse " id="collapseMusica">
-                                            <div class="row text-center mt-3">
-                                                <div class="col-12">
-                                                    <label for="isMusic">¿Quieres agregar musica?</label>
-                                                    <div class="form-group     ">
-                                                        <input class="form-check-input" type="checkbox" id="isMusic"
-                                                            #isMusic formControlName="isMusic">
-
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <div class="row text-center mt-3" *ngIf="form.value.isMusic">
-
-                                                <div class="form-group    image-upload ">
-                                                    <label for="musicaInvitacion">Seleciona tu musica
-                                                        <br>
-
-                                                        <img src="/assets/images/musica.png" alt="" class="pointer"
-                                                            style="width: 150px;">
-
-                                                        <!-- invitacion.data.musicaInvitacion!='' -->
-
-                                                    </label>
-                                                    <input type="file" id="musicaInvitacion" #musicaInvitacion
-                                                        accept="audio/*" (change)="cargarMusica($event )">
-                                                </div>
-                                            </div>
-
-
-                                            <div *ngIf="form.value.isMusic">
-
-                                                <audio tabindex="0" id="beep-one" controls preload="auto"
-                                                    *ngIf="invitacion && invitacion.data.musicaInvitacion && invitacion.data.musicaInvitacion!='' ">
-                                                    <source
-                                                        [src]="url+'/upload/sound/'+invitacion.data.musicaInvitacion">
-
-                                                </audio>
-
-                                            </div>
-                                            <div class="row text-center mt-3" *ngIf="form.value.isMusic">
-                                                <div class="col-12">
-                                                    <label for="musicRepit">¿Quieres que se repita?</label>
-                                                    <div class="form-group     ">
-                                                        <input class="form-check-input" type="checkbox" id="musicRepit"
-                                                            #musicRepit formControlName="musicRepit">
-
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-
-                                        </div>
-                                    </div>
-
-                                    <hr>
 
                                     <!--  Inicia Sección principal -->
 
@@ -180,14 +112,16 @@
                                             <select name="edicionType" id="edicionType" class="form-control upper"
                                                 #edicionType (change)="changeEdit(edicionType.value, 'principal')">
 
-                                                <option value="" class="upper" selected>Seleciona que quieres editar
+                                                <option value="" class="upper" selected>Selecciona que quieres editar
                                                 </option>
+                                                <option value="cabeceras" class="upper">Cabeceras</option>
+                                                <option value="musica" class="upper">música</option>
                                                 <option value="colores" class="upper">colores</option>
                                                 <option value="imagen" class="upper">imagen</option>
                                                 <option value="titulo" class="upper">titulo</option>
                                                 <option value="subtitulo" class="upper">subtitulo</option>
                                                 <option value="fecha" class="upper">fecha</option>
-                                                <option value="invitacion" class="upper">invitacion</option>
+                                                <option value="invitacion" class="upper">invitación</option>
                                                 <option value="entrada general" class="upper">entrada general
                                                 </option>
 
@@ -610,7 +544,7 @@
                                                     </div>
 
 
-
+                                                    <!-- 
                                                     <div class="col-12      mt-3 ma">
                                                         <div class="form-group ma">
                                                             <label for="inviFont ">Fuente remitente</label>
@@ -637,7 +571,7 @@
 
                                                             </select>
                                                         </div>
-                                                    </div>
+                                                    </div> -->
 
                                                     <div class="col-12      mt-3 ma">
                                                         <div class="form-group ">
@@ -735,6 +669,108 @@
                                                     </div>
                                                 </div>
                                             </ng-container>
+                                            <ng-container *ngIf="cab">
+                                                <div class="row text-center mt-3 animate__animated animate__fadeInDown">
+                                                    <div class="col-12     mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="cabeceraFont ">Fuente de cabecera</label>
+                                                            <select name="cabeceraFont" id="cabeceraFont"
+                                                                formControlName="cabeceraFont"
+                                                                class="form-control upper {{cabeceraFont}}"
+                                                                #cabeceraFont>
+                                                                <option value="">Seleccione el tipo de fuente</option>
+                                                                <option value="name" class="name" selected>Name</option>
+                                                                <option value="pacific" class="pacific">Pacific</option>
+                                                                <option value="dancing" class="dancing">Dancing</option>
+                                                                <option value="anton-sc-regular"
+                                                                    class="anton-sc-regular">
+                                                                    Anton-sc-regular</option>
+                                                                <option value="creepster-regular"
+                                                                    class="creepster-regular">
+                                                                    Creepster-regular</option>
+                                                                <option value="roboto-bold" class="roboto-bold">
+                                                                    Roboto-bold
+                                                                </option>
+                                                                <option value="roboto-black-italic"
+                                                                    class="roboto-black-italic">
+                                                                    Roboto-black-italic</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12  mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="cabeceraSize ">Tamaño título
+                                                            </label>
+                                                            <a class="range" (click)="changeRange('cabeceraSize','-')">
+                                                                <b class="range-icon">-</b> </a>
+                                                            <input type="range" id="cabeceraSize" #cabeceraSize
+                                                                formControlName="cabeceraSize" min="-0" max="80">
+                                                            <a class="range" (click)="changeRange('cabeceraSize','+')">
+                                                                <b class="range-icon">+</b> </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </ng-container>
+                                            <ng-container *ngIf="mus">
+                                                <div class="row text-center mt-3 animate__animated animate__fadeInDown">
+                                                    <div class="row text-center mt-3">
+                                                        <div class="col-12">
+                                                            <label for="isMusic">¿Quieres agregar musica?</label>
+                                                            <div class="form-group     ">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    id="isMusic" #isMusic formControlName="isMusic">
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="row text-center mt-3" *ngIf="form.value.isMusic">
+
+                                                        <div class="form-group    image-upload ">
+                                                            <label for="musicaInvitacion">Seleciona tu musica
+                                                                <br>
+
+                                                                <img src="/assets/images/musica.png" alt=""
+                                                                    class="pointer" style="width: 150px;">
+
+                                                                <!-- invitacion.data.musicaInvitacion!='' -->
+
+                                                            </label>
+                                                            <input type="file" id="musicaInvitacion" #musicaInvitacion
+                                                                accept="audio/*" (change)="cargarMusica($event )">
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div *ngIf="form.value.isMusic">
+
+                                                        <audio tabindex="0" id="beep-one" controls preload="auto"
+                                                            *ngIf="invitacion && invitacion.data.musicaInvitacion && invitacion.data.musicaInvitacion!='' ">
+                                                            <source
+                                                                [src]="url+'/upload/sound/'+invitacion.data.musicaInvitacion">
+
+                                                        </audio>
+
+                                                    </div>
+                                                    <div class="row text-center mt-3" *ngIf="form.value.isMusic">
+                                                        <div class="col-12">
+                                                            <label for="musicRepit">¿Quieres que se repita?</label>
+                                                            <div class="form-group     ">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    id="musicRepit" #musicRepit
+                                                                    formControlName="musicRepit">
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </ng-container>
+
+
+
+
+
                                         </div>
 
 
@@ -791,7 +827,7 @@
                                                             (change)="cambiarImagen($event,'mensajeImg' )">
                                                     </div>
                                                 </div>
-                                                <div class="col-12 col-md-6  col-md-4  mt-3">
+                                                <div class="col-12 col-md-6  col-md-4  mt-3" style="display: none;">
                                                     <div class="form-group ">
                                                         <label for="mensajeImgWidth ">Tamaño de la imagen del
                                                             mensaje
@@ -809,7 +845,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="col-12 col-md-6  col-md-4  mt-3">
+                                                <div class="col-12 col-md-6  col-md-4  mt-3" style="display: none;">
                                                     <div class="form-group ">
                                                         <label for="bxMensajeImg ">Horizontal imagen mensaje
                                                         </label>
@@ -823,7 +859,7 @@
 
                                                     </div>
                                                 </div>
-                                                <div class="col-12 col-md-6  col-md-4  mt-3">
+                                                <div class="col-12 col-md-6  col-md-4  mt-3" style="display: none;">
                                                     <div class="form-group ">
                                                         <label for="bxMensajeImg ">Vertical imagen mensaje </label>
                                                         <a class="range" (click)="changeRange('byMensajeImg','-')">
@@ -2033,7 +2069,7 @@
                                         </div>
                                         <div class="col-12 col-md-4  mt-3 text-center">
                                             <button class="btn btn-lg btn-block but " type="button"
-                                                (click)="VerTemplate(this.form)">Ver Template</button>
+                                                (click)="VerTemplate(this.form)">Ver Invitación</button>
                                         </div>
                                         <div class="col-12    mt-3  mb-3 text-center">
                                             <button class="btn btn-lg btn-block but" type="button" id="botonSubir"
@@ -2051,299 +2087,507 @@
                                 <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
 
+                                    <div class="row">
+                                        <div class="col-12 col-md-6">
+                                            <select name="edicionType" id="edicionType" class="form-control upper"
+                                                #edicionType (change)="changeEdit(edicionType.value, 'principal')">
 
+                                                <option value="" class="upper" selected>Selecciona que quieres editar
+                                                </option>
+                                                <option value="cabeceras" class="upper">Cabeceras</option>
+                                                <option value="musica" class="upper">música</option>
+                                                <option value="colores" class="upper">colores</option>
+                                                <option value="imagen" class="upper">Video o Imagen</option>
+                                                <!-- <option value="titulo" class="upper">titulo</option>
+                                                <option value="subtitulo" class="upper">subtitulo</option> -->
+                                                <option value="fecha" class="upper">fecha</option>
+                                                <option value="invitacion" class="upper">invitación</option>
+                                                <option value="entrada general" class="upper">entrada general
+                                                </option>
 
-
-                                    <div class="row text-center">
-
-                                        <div class="text-center mb-3">
-                                            <h5>Música de invitación</h5>
-                                            <div class="col-12 col-md-6 col-md-3 mt-3 ma ">
-
-                                                <button class="btn but2" type="button" data-bs-toggle="collapse"
-                                                    data-bs-target="#collapseMusica" aria-expanded="false"
-                                                    aria-controls="collapseMusica">
-                                                    Música
-                                                </button>
-
-                                            </div>
-                                            <div class="collapse " id="collapseMusica">
-                                                <div class="row text-center mt-3">
-                                                    <div class="col-12">
-                                                        <label for="isMusic">¿Quieres agregar musica?</label>
-                                                        <div class="form-group     ">
-                                                            <input class="form-check-input" type="checkbox" id="isMusic"
-                                                                #isMusic formControlName="isMusic">
-
+                                            </select>
+                                            <ng-container *ngIf="col">
+                                                <div class="row text-center mt-3 animate__animated animate__fadeInDown">
+                                                    <div class="col-12 col-md-6  mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="byFileColorBG ">Color de fondo
+                                                            </label>
+                                                            <input type="color" class="form-control upper"
+                                                                id="byFileColorBG" formControlName="byFileColorBG"
+                                                                required placeholder="Color de fondo"
+                                                                [readonly]="edit==='false'">
+                                                        </div>
+                                                        <span *ngIf="submited && errorControl['byFileColorBG'].errors "
+                                                            class="error">Es requerido
+                                                        </span>
+                                                    </div>
+                                                    <div class="col-12 col-md-6  mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="byFileColorFr ">Color de marco </label>
+                                                            <input type="color" class="form-control upper"
+                                                                id="byFileColorFr" formControlName="byFileColorFr"
+                                                                required placeholder="Color de marco"
+                                                                [readonly]="edit==='false'">
                                                         </div>
                                                     </div>
-
-                                                </div>
-                                                <div class="row text-center mt-3" *ngIf="form.value.isMusic">
-
-                                                    <div class="form-group    image-upload ">
-                                                        <label for="musicaInvitacion">Seleciona tu musica
-                                                            <br>
-
-                                                            <img src="/assets/images/musica.png" alt="" class="pointer"
-                                                                style="width: 150px;">
-
-                                                            <!-- invitacion.data.musicaInvitacion!='' -->
-
-                                                        </label>
-                                                        <input type="file" id="musicaInvitacion" #musicaInvitacion
-                                                            accept="audio/*" (change)="cargarMusica($event )">
+                                                    <div class="col-12 col-md-6  mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="byFileColorTx ">Color de texto </label>
+                                                            <input type="color" class="form-control upper"
+                                                                id="byFileColorTx" formControlName="byFileColorTx"
+                                                                required placeholder="Color de texto"
+                                                                [readonly]="edit==='false'">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6  mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="byFileColorQr ">Color de QR </label>
+                                                            <input type="color" class="form-control upper"
+                                                                id="byFileColorQr" formControlName="byFileColorQr"
+                                                                required placeholder="Color de QR"
+                                                                [readonly]="edit==='false'">
+                                                        </div>
                                                     </div>
                                                 </div>
 
+                                            </ng-container>
+                                            <ng-container *ngIf="ima">
+                                                <div class="row text-center mt-3 animate__animated animate__fadeInDown">
 
-                                                <div *ngIf="form.value.isMusic">
+                                                    <div class="col-12     mt-3 ma">
+                                                        <div class="form-group ">
+                                                            <label for="efectoImg1 ">Efecto de entrada de la
+                                                                imagen</label>
+                                                            <select name="efectoImg1" id="efectoImg1"
+                                                                formControlName="efectoImg1"
+                                                                class="form-control upper {{efectoImg1}}" #efectoImg1>
+                                                                <option value="" selected>Seleccione el tipo de efecto
+                                                                </option>
+                                                                <option [class]="item.clave" [value]="item.clave"
+                                                                    class="name" *ngFor="let item of efectos">
+                                                                    {{item.nombre}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12   mt-3 ma">
+                                                        <div class="form-group ">
+                                                            <label for="repEfectoImg1 ">Repetir Efecto</label>
+                                                            <select name="repEfectoImg1" id="repEfectoImg1"
+                                                                formControlName="repEfectoImg1"
+                                                                class="form-control upper {{repEfectoImg1}}"
+                                                                #repEfectoImg1>
+                                                                <option value="" selected>Seleccione el tipo de efecto
+                                                                </option>
+                                                                <option [class]="item.clave" [value]="item.clave"
+                                                                    class="name" *ngFor="let item of repEfec">
+                                                                    {{item.nombre}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6 mt-3 ma">
+                                                        <div class="form-group">
+                                                            <label for="typeFile">Invitación</label>
+                                                            <select name="" id="typeFile" formControlName="typeFile"
+                                                                #typeFile class="form-control upper"
+                                                                (change)="selectType(typeFile.value)">
+                                                                <option value="">Seleccione el tipo de invitacion
+                                                                </option>
+                                                                <option value="img">Imagen</option>
+                                                                <option value="video">Video</option>
+                                                                <!-- <option value="url">url</option>-->
 
-                                                    <audio tabindex="0" id="beep-one" controls preload="auto"
-                                                        *ngIf="invitacion && invitacion.data.musicaInvitacion && invitacion.data.musicaInvitacion!='' ">
-                                                        <source
-                                                            [src]="url+'/upload/sound/'+invitacion.data.musicaInvitacion">
+                                                                <!-- <option [value]="item.uid" *ngFor="let item of salones">{{item.nombre }} <b
+                                                                                                                                                    *ngIf="rol ===ADM && usuarios">{{item.usuarioCreated.email}}</b>
+                                                                                                                                            </option> -->
+                                                            </select>
+                                                        </div>
+                                                        <span *ngIf="submited && errorControl['typeFile'].errors "
+                                                            class="error">Es
+                                                            requerido
+                                                        </span>
 
-                                                    </audio>
+                                                    </div>
+                                                    <div class="col-12 col-md-6 mt-3 ma"
+                                                        *ngIf="form.value.typeFile=='video'">
+                                                        <div class="form-group">
+                                                            <label for="typeFile">Repetir Video</label>
 
-                                                </div>
-                                                <div class="row text-center mt-3" *ngIf="form.value.isMusic">
-                                                    <div class="col-12">
-                                                        <label for="musicRepit">¿Quieres que se repita?</label>
-                                                        <div class="form-group     ">
                                                             <input class="form-check-input" type="checkbox"
-                                                                id="musicRepit" #musicRepit
-                                                                formControlName="musicRepit">
+                                                                id="repitVideo" #repitVideo
+                                                                formControlName="repitVideo">
+                                                        </div>
+                                                        <span *ngIf="submited && errorControl['typeFile'].errors "
+                                                            class="error">Es
+                                                            requerido
+                                                        </span>
+
+                                                    </div>
+
+                                                    <div class="col-12      mt-3 ma text-center">
+                                                        <div class="form-group ">
+                                                            <label for="byFileInvitacion" *ngIf="!viewVideo  ">
+                                                                Selecciona el
+                                                                archivo
+                                                                de tu invitación
+                                                                <br>
+                                                                <img src="/assets/images/tp.png" alt="" class="pointer"
+                                                                    style="width: 150px;"
+                                                                    *ngIf="invitacion==undefined || invitacion.data.byFileInvitacion ==''">
+                                                                <br>
+
+
+                                                                <ng-container
+                                                                    *ngIf=" invitacion.data.byFileInvitacion && 
+                                                                                                            invitacion.data.typeFile =='video' &&
+                                                                                                            invitacion.data.byFileInvitacion.split('.')[1].includes('mp4')">
+                                                                    <br> <video style="width: 80%; max-width: 400px;"
+                                                                        controls>
+                                                                        <source
+                                                                            [src]="url+'/upload/invitaciones/'+invitacion.data.byFileInvitacion"
+                                                                            type="video/mp4">
+
+                                                                    </video>
+                                                                </ng-container>
+
+                                                                <ng-container *ngIf="form.value.typeFile =='img'">
+                                                                    <img [src]="url+'/upload/invitaciones/'+invitacion.data.byFileInvitacion"
+                                                                        alt="" class=" pointer" style="width: 150px;">
+                                                                </ng-container>
+
+
+
+                                                            </label>
+
+                                                            <input type="file" id="byFileInvitacion" #byFileInvitacion
+                                                                (change)="cambiarImagen($event,'byFileInvitacion' )"
+                                                                accept="video/*" *ngIf="form.value.typeFile=='video'">
+                                                            <input type="file" id="byFileInvitacion" #byFileInvitacion
+                                                                (change)="cambiarImagen($event,'byFileInvitacion' )"
+                                                                accept="image/*" *ngIf="form.value.typeFile=='img'">
+                                                            <br>
+                                                            <input type="text" id="byFileUrl" #byFileUrl
+                                                                (change)="cambiarImagen($event,'byFileInvitacion' )"
+                                                                formControlName="byFileUrl"
+                                                                *ngIf="form.value.typeFile=='url'" class="form-control">
+                                                            <br>
+                                                            <ng-container
+                                                                *ngIf="viewVideo && form.value.byFileUrl !==''">
+                                                                <video [src]="form.value.byFileUrl" autoplay
+                                                                    poster="posterimage.jpg"
+                                                                    style="width: 80%; max-width: 450px;margin-top: 20px;">
+                                                                    Tu navegador no admite el elemento
+                                                                    <code>video</code>.
+                                                                </video>
+                                                            </ng-container>
 
                                                         </div>
                                                     </div>
 
+
+
+
+
+
+
                                                 </div>
+                                            </ng-container>
+
+                                            <ng-container *ngIf="fec">
+                                                <div class="row text-center mt-3 animate__animated animate__fadeInDown">
 
 
-                                            </div>
-                                        </div>
+                                                    <div class="col-12     mt-3 ma">
+                                                        <div class="form-group ">
+                                                            <label for="efectoFecha">Efecto de entrada de la
+                                                                fecha</label>
+                                                            <select name="efectoFecha" id="efectoFecha"
+                                                                formControlName="efectoFecha"
+                                                                class="form-control upper {{efectoFecha}}" #efectoFecha>
+                                                                <option value="" selected>Seleccione el tipo de efecto
+                                                                </option>
+                                                                <option [class]="item.clave" [value]="item.clave"
+                                                                    class="name" *ngFor="let item of efectos">
+                                                                    {{item.nombre}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12   mt-3 ma">
+                                                        <div class="form-group ">
+                                                            <label for="repfectoFecha ">Repetir Efecto</label>
+                                                            <select name="repfectoFecha" id="repfectoFecha"
+                                                                formControlName="repfectoFecha"
+                                                                class="form-control upper {{repfectoFecha}}"
+                                                                #repfectoFecha>
+                                                                <option value="" selected>Seleccione el tipo de efecto
+                                                                </option>
+                                                                <option [class]="item.clave" [value]="item.clave"
+                                                                    class="name" *ngFor="let item of repEfec">
+                                                                    {{item.nombre}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
 
-                                        <hr>
+                                                    <div class="col-12     mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="inicialTFont">Fuente inicial de la fecha
+                                                            </label>
+                                                            <select name="inicialTFont" id="inicialTFont"
+                                                                formControlName="inicialTFont"
+                                                                class="form-control upper {{inicialTFont.value}}"
+                                                                #inicialTFont>
+                                                                <option value="">Seleccione el tipo de fuente</option>
+                                                                <option value="name" class="name">Name</option>
+                                                                <option value="pacific" class="pacific">Pacific</option>
+                                                                <option value="dancing" class="dancing">Dancing</option>
+                                                                <option value="anton-sc-regular"
+                                                                    class="anton-sc-regular">
+                                                                    Anton-sc-regular</option>
+                                                                <option value="creepster-regular"
+                                                                    class="creepster-regular">
+                                                                    Creepster-regular</option>
+                                                                <option value="roboto-bold" class="roboto-bold">
+                                                                    Roboto-bold</option>
+                                                                <option value="roboto-black-italic"
+                                                                    class="roboto-black-italic">
+                                                                    Roboto-black-italic</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12     mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="inicialTSize ">Tamaño inicial de la fecha
+                                                            </label>
+                                                            <input type="range" id="inicialTSize" #inicialTSize
+                                                                formControlName="inicialTSize" min="10" max="50">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12     mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="finalTFont">Fuente final de la fecha </label>
+                                                            <select name="finalTFont" id="finalTFont"
+                                                                formControlName="finalTFont"
+                                                                class="form-control upper {{finalTFont.value}}"
+                                                                #finalTFont>
+                                                                <option value="">Seleccione el tipo de fuente</option>
+                                                                <option value="name" class="name" selected>Name</option>
+                                                                <option value="pacific" class="pacific">Pacific</option>
+                                                                <option value="dancing" class="dancing">Dancing</option>
+                                                                <option value="anton-sc-regular"
+                                                                    class="anton-sc-regular">
+                                                                    Anton-sc-regular</option>
+                                                                <option value="creepster-regular"
+                                                                    class="creepster-regular">
+                                                                    Creepster-regular</option>
+                                                                <option value="roboto-bold" class="roboto-bold">
+                                                                    Roboto-bold</option>
+                                                                <option value="roboto-black-italic"
+                                                                    class="roboto-black-italic">
+                                                                    Roboto-black-italic</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12     mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="finalTSize ">Tamaño final de fecha
+                                                            </label>
+                                                            <input type="range" id="finalTSize" #finalTSize
+                                                                formControlName="finalTSize" min="10" max="50">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </ng-container>
+                                            <ng-container *ngIf="inv">
+                                                <div
+                                                    class="row text-center mt-3 ma animate__animated animate__fadeInDown">
+                                                    <div class="col-12     mt-3 ma">
+                                                        <div class="form-group ">
+                                                            <label for="efectoInvitacion">Efecto de entrada de la
+                                                                fecha</label>
+                                                            <select name="efectoInvitacion" id="efectoInvitacion"
+                                                                formControlName="efectoInvitacion"
+                                                                class="form-control upper {{efectoInvitacion}}"
+                                                                #efectoInvitacion>
+                                                                <option value="" selected>Seleccione el tipo de efecto
+                                                                </option>
+                                                                <option [class]="item.clave" [value]="item.clave"
+                                                                    class="name" *ngFor="let item of efectos">
+                                                                    {{item.nombre}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12   mt-3 ma">
+                                                        <div class="form-group ">
+                                                            <label for="repfectoInvitacion ">Repetir Efecto</label>
+                                                            <select name="repfectoInvitacion" id="repfectoInvitacion"
+                                                                formControlName="repfectoInvitacion"
+                                                                class="form-control upper {{repfectoInvitacion}}"
+                                                                #repfectoInvitacion>
+                                                                <option value="" selected>Seleccione el tipo de efecto
+                                                                </option>
+                                                                <option [class]="item.clave" [value]="item.clave"
+                                                                    class="name" *ngFor="let item of repEfec">
+                                                                    {{item.nombre}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </ng-container>
+                                            <ng-container *ngIf="ent">
+                                                <div class="row text-center mt-3 animate__animated animate__fadeInDown">
+                                                    <div class="col-12       mt-3 ma ">
+                                                        <label class="form-check-label" for="generalCheck">
+                                                            Entrada general
+                                                        </label>
+                                                        <input class="form-check-input" type="checkbox"
+                                                            id="generalCheck" #generalCheck
+                                                            formControlName="generalCheck">
 
-                                        <h5>Colores</h5>
-                                        <div class=" col-12 col-md-3    mt-3">
-                                            <div class="form-group ">
-                                                <label for="byFileColorBG ">Color de fondo</label>
-                                                <input type="color" class="form-control upper" id="byFileColorBG"
-                                                    formControlName="byFileColorBG" required
-                                                    placeholder="Color de fondo" [readonly]="edit==='false'">
-                                            </div>
-                                            <span *ngIf="submited && errorControl['byFileColorBG'].errors "
-                                                class="error">Es requerido
-                                            </span>
-                                        </div>
-                                        <div class=" col-12 col-md-3    mt-3">
-                                            <div class="form-group ">
-                                                <label for="byFileColorFr ">Color de marco</label>
-                                                <input type="color" class="form-control upper" id="byFileColorFr"
-                                                    formControlName="byFileColorFr" required
-                                                    placeholder="Color de marco" [readonly]="edit==='false'">
-                                            </div>
-                                        </div>
-                                        <div class=" col-12 col-md-3    mt-3">
-                                            <div class="form-group ">
-                                                <label for="byFileColorTx ">Color de texto</label>
-                                                <input type="color" class="form-control upper" id="byFileColorTx"
-                                                    formControlName="byFileColorTx" required
-                                                    placeholder="Color de marco" [readonly]="edit==='false'">
-                                            </div>
-                                        </div>
-                                        <div class=" col-12 col-md-3    mt-3">
-                                            <div class="form-group ">
-                                                <label for="byFileColorQr ">Color de QR</label>
-                                                <input type="color" class="form-control upper" id="byFileColorQr"
-                                                    formControlName="byFileColorQr" required placeholder="Color de QR"
-                                                    [readonly]="edit==='false'">
-                                            </div>
-                                        </div>
+
+                                                    </div>
+                                                    <div class="col-12    ma  mt-3" *ngIf="form.value.generalCheck">
+                                                        <div class="form-group ">
+                                                            <label for="generalTexto ">Texto como invitación General
+                                                            </label>
+
+                                                            <input type="text" id="generalTexto" #generalTexto
+                                                                formControlName="generalTexto"
+                                                                placeholder="A toda la comunidad" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12   ma  mt-3" *ngIf="form.value.generalCheck">
+                                                        <div class="form-group ">
+                                                            <label for="generalSize">Texto como invitación General
+                                                            </label>
+                                                            <a class="range" (click)="changeRange('generalSize','-')">
+                                                                <b class="range-icon">-</b> </a>
+                                                            <input type="range" id="generalSize" #generalSize
+                                                                formControlName="generalSize" value="15" min="10"
+                                                                max="50">
+                                                            <a class="range" (click)="changeRange('generalSize','+')">
+                                                                <b class="range-icon">+</b> </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </ng-container>
+                                            <ng-container *ngIf="cab">
+                                                <div class="row text-center mt-3 animate__animated animate__fadeInDown">
+                                                    <div class="col-12     mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="cabeceraFont ">Fuente de cabecera</label>
+                                                            <select name="cabeceraFont" id="cabeceraFont"
+                                                                formControlName="cabeceraFont"
+                                                                class="form-control upper {{cabeceraFont}}"
+                                                                #cabeceraFont>
+                                                                <option value="">Seleccione el tipo de fuente</option>
+                                                                <option value="name" class="name" selected>Name</option>
+                                                                <option value="pacific" class="pacific">Pacific</option>
+                                                                <option value="dancing" class="dancing">Dancing</option>
+                                                                <option value="anton-sc-regular"
+                                                                    class="anton-sc-regular">
+                                                                    Anton-sc-regular</option>
+                                                                <option value="creepster-regular"
+                                                                    class="creepster-regular">
+                                                                    Creepster-regular</option>
+                                                                <option value="roboto-bold" class="roboto-bold">
+                                                                    Roboto-bold
+                                                                </option>
+                                                                <option value="roboto-black-italic"
+                                                                    class="roboto-black-italic">
+                                                                    Roboto-black-italic</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12  mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="cabeceraSize ">Tamaño título
+                                                            </label>
+                                                            <a class="range" (click)="changeRange('cabeceraSize','-')">
+                                                                <b class="range-icon">-</b> </a>
+                                                            <input type="range" id="cabeceraSize" #cabeceraSize
+                                                                formControlName="cabeceraSize" min="-0" max="80">
+                                                            <a class="range" (click)="changeRange('cabeceraSize','+')">
+                                                                <b class="range-icon">+</b> </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </ng-container>
+                                            <ng-container *ngIf="mus">
+                                                <div class="row text-center mt-3 animate__animated animate__fadeInDown">
+                                                    <div class="row text-center mt-3">
+                                                        <div class="col-12">
+                                                            <label for="isMusic">¿Quieres agregar musica?</label>
+                                                            <div class="form-group     ">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    id="isMusic" #isMusic formControlName="isMusic">
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="row text-center mt-3" *ngIf="form.value.isMusic">
+
+                                                        <div class="form-group    image-upload ">
+                                                            <label for="musicaInvitacion">Seleciona tu musica
+                                                                <br>
+
+                                                                <img src="/assets/images/musica.png" alt=""
+                                                                    class="pointer" style="width: 150px;">
+
+                                                                <!-- invitacion.data.musicaInvitacion!='' -->
+
+                                                            </label>
+                                                            <input type="file" id="musicaInvitacion" #musicaInvitacion
+                                                                accept="audio/*" (change)="cargarMusica($event )">
+                                                        </div>
+                                                    </div>
 
 
+                                                    <div *ngIf="form.value.isMusic">
 
-                                    </div>
-
-
-                                    <div class="row text-center mt-3">
-                                        <h5>Seccion inicial</h5>
-
-
-                                        <div class="col-12 col-md-6 mt-3 ma">
-                                            <div class="form-group">
-                                                <label for="typeFile">Invitación</label>
-                                                <select name="" id="typeFile" formControlName="typeFile" #typeFile
-                                                    class="form-control upper" (change)="selectType(typeFile.value)">
-                                                    <option value="">Seleccione el tipo de invitacion</option>
-                                                    <option value="img">Imagen</option>
-                                                    <option value="video">Video</option>
-                                                    <!-- <option value="url">url</option>-->
-
-                                                    <!-- <option [value]="item.uid" *ngFor="let item of salones">{{item.nombre }} <b
-                                                                                                *ngIf="rol ===ADM && usuarios">{{item.usuarioCreated.email}}</b>
-                                                                                        </option> -->
-                                                </select>
-                                            </div>
-                                            <span *ngIf="submited && errorControl['typeFile'].errors " class="error">Es
-                                                requerido
-                                            </span>
-
-                                        </div>
-                                        <div class="col-12 col-md-6 mt-3 ma" *ngIf="form.value.typeFile=='video'">
-                                            <div class="form-group">
-                                                <label for="typeFile">Repetir Video</label>
-
-                                                <input class="form-check-input" type="checkbox" id="repitVideo"
-                                                    #repitVideo formControlName="repitVideo">
-                                            </div>
-                                            <span *ngIf="submited && errorControl['typeFile'].errors " class="error">Es
-                                                requerido
-                                            </span>
-
-                                        </div>
-
-                                        <div class="col-12      mt-3 ma text-center">
-                                            <div class="form-group ">
-                                                <label for="byFileInvitacion" *ngIf="!viewVideo  "> Selecciona el
-                                                    archivo
-                                                    de tu invitación
-                                                    <br>
-                                                    <img src="/assets/images/tp.png" alt="" class="pointer"
-                                                        style="width: 150px;"
-                                                        *ngIf="invitacion==undefined || invitacion.data.byFileInvitacion ==''">
-                                                    <br>
-
-
-                                                    <ng-container
-                                                        *ngIf=" invitacion.data.byFileInvitacion && 
-                                                        invitacion.data.typeFile =='video' &&
-                                                        invitacion.data.byFileInvitacion.split('.')[1].includes('mp4')">
-                                                        <br> <video style="width: 80%; max-width: 400px;" controls>
+                                                        <audio tabindex="0" id="beep-one" controls preload="auto"
+                                                            *ngIf="invitacion && invitacion.data.musicaInvitacion && invitacion.data.musicaInvitacion!='' ">
                                                             <source
-                                                                [src]="url+'/upload/invitaciones/'+invitacion.data.byFileInvitacion"
-                                                                type="video/mp4">
+                                                                [src]="url+'/upload/sound/'+invitacion.data.musicaInvitacion">
 
-                                                        </video>
-                                                    </ng-container>
+                                                        </audio>
 
-                                                    <ng-container *ngIf="form.value.typeFile =='img'">
-                                                        <img [src]="url+'/upload/invitaciones/'+invitacion.data.byFileInvitacion"
-                                                            alt="" class=" pointer" style="width: 150px;">
-                                                    </ng-container>
+                                                    </div>
+                                                    <div class="row text-center mt-3" *ngIf="form.value.isMusic">
+                                                        <div class="col-12">
+                                                            <label for="musicRepit">¿Quieres que se repita?</label>
+                                                            <div class="form-group     ">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    id="musicRepit" #musicRepit
+                                                                    formControlName="musicRepit">
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </ng-container>
 
 
 
-                                                </label>
 
-                                                <input type="file" id="byFileInvitacion" #byFileInvitacion
-                                                    (change)="cambiarImagen($event,'byFileInvitacion' )"
-                                                    accept="video/*" *ngIf="form.value.typeFile=='video'">
-                                                <input type="file" id="byFileInvitacion" #byFileInvitacion
-                                                    (change)="cambiarImagen($event,'byFileInvitacion' )"
-                                                    accept="image/*" *ngIf="form.value.typeFile=='img'">
-                                                <br>
-                                                <input type="text" id="byFileUrl" #byFileUrl
-                                                    (change)="cambiarImagen($event,'byFileInvitacion' )"
-                                                    formControlName="byFileUrl" *ngIf="form.value.typeFile=='url'"
-                                                    class="form-control">
-                                                <br>
-                                                <ng-container *ngIf="viewVideo && form.value.byFileUrl !==''">
-                                                    <video [src]="form.value.byFileUrl" autoplay
-                                                        poster="posterimage.jpg"
-                                                        style="width: 80%; max-width: 450px;margin-top: 20px;">
-                                                        Tu navegador no admite el elemento <code>video</code>.
-                                                    </video>
-                                                </ng-container>
 
-                                            </div>
                                         </div>
 
 
-
-                                        <div class="col-12  col-sm-6 col-md-3   mt-3">
-                                            <div class="form-group ">
-                                                <label for="inicialTFont">Fuente inicial de la fecha </label>
-                                                <select name="inicialTFont" id="inicialTFont"
-                                                    formControlName="inicialTFont"
-                                                    class="form-control upper {{inicialTFont.value}}" #inicialTFont>
-                                                    <option value="">Seleccione el tipo de fuente</option>
-                                                    <option value="name" class="name">Name</option>
-                                                    <option value="pacific" class="pacific">Pacific</option>
-                                                    <option value="dancing" class="dancing">Dancing</option>
-                                                    <option value="anton-sc-regular" class="anton-sc-regular">
-                                                        Anton-sc-regular</option>
-                                                    <option value="creepster-regular" class="creepster-regular">
-                                                        Creepster-regular</option>
-                                                    <option value="roboto-bold" class="roboto-bold">Roboto-bold</option>
-                                                    <option value="roboto-black-italic" class="roboto-black-italic">
-                                                        Roboto-black-italic</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-12  col-sm-6 col-md-3   mt-3">
-                                            <div class="form-group ">
-                                                <label for="inicialTSize ">Tamaño inicial de la fecha
-                                                </label>
-                                                <input type="range" id="inicialTSize" #inicialTSize
-                                                    formControlName="inicialTSize" min="10" max="50">
-                                            </div>
-                                        </div>
-
-
-                                        <div class="col-12  col-sm-6 col-md-3   mt-3">
-                                            <div class="form-group ">
-                                                <label for="finalTFont">Fuente final de la fecha </label>
-                                                <select name="finalTFont" id="finalTFont" formControlName="finalTFont"
-                                                    class="form-control upper {{finalTFont.value}}" #finalTFont>
-                                                    <option value="">Seleccione el tipo de fuente</option>
-                                                    <option value="name" class="name" selected>Name</option>
-                                                    <option value="pacific" class="pacific">Pacific</option>
-                                                    <option value="dancing" class="dancing">Dancing</option>
-                                                    <option value="anton-sc-regular" class="anton-sc-regular">
-                                                        Anton-sc-regular</option>
-                                                    <option value="creepster-regular" class="creepster-regular">
-                                                        Creepster-regular</option>
-                                                    <option value="roboto-bold" class="roboto-bold">Roboto-bold</option>
-                                                    <option value="roboto-black-italic" class="roboto-black-italic">
-                                                        Roboto-black-italic</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-12  col-sm-6 col-md-3   mt-3">
-                                            <div class="form-group ">
-                                                <label for="finalTSize ">Tamaño final de fecha
-                                                </label>
-                                                <input type="range" id="finalTSize" #finalTSize
-                                                    formControlName="finalTSize" min="10" max="50">
-                                            </div>
-                                        </div>
-
-
-
-                                        <div class="row">
-                                            <app-view-template [data]="{
-                                                type:'byFileSeccionFecha',
-                                                size:viewSizeM,
-                                                byFileColorBG:form.value.byFileColorBG,
-                                                byFileColorFr:form.value.byFileColorFr,
-                                                byFileColorTx:form.value.byFileColorTx,
-                                                byFileColorQr:form.value.byFileColorQr,
-                                                inicialTFont:form.value.inicialTFont,
-                                                inicialTSize:form.value.inicialTSize,
-                                                finalTFont:form.value.finalTFont,
-                                                finalTSize:form.value.finalTSize,
-                                                inviFont:form.value.inviFont,
-                                                inviFont2:form.value.inviFont2,
-
-                                            }" style="max-width: 100%;"></app-view-template>
+                                        <div class="col-12 col-md-5">
+                                            <app-view-template-file class="mt-3"
+                                                [data]="data()"></app-view-template-file>
                                         </div>
 
                                     </div>
+
+
+
+
+
+
+
+
                                     <hr class="mt-3 mb-3">
                                     <ng-container class="text-center  ma">
 
@@ -3365,7 +3609,7 @@
                                         <div class="col-12 col-md-4  mt-3 text-center">
                                             <button class="btn btn-lg btn-block but " type="button"
                                                 (click)="VerTemplate(this.form)">Ver
-                                                Template</button>
+                                                Invitación</button>
                                         </div>
                                     </div>
                                     <div class="col-12    mt-3  mb-3 text-center">

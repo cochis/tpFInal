@@ -124,8 +124,6 @@ export class ByFileComponent {
 
         this.invitacionsService.cargarInvitacionByFiesta(this.fiestaId).subscribe(async (resp: any) => {
           this.invitacion = resp.invitacion.data
-
-
           let t: string = `My Ticket Party | ${this.fiesta.nombre}  -  ${this.functionsService.numberToDate(Number(this.fiesta.fecha))} `;
           this.title.setTitle(t.toUpperCase());
           let data = {
@@ -143,10 +141,12 @@ export class ByFileComponent {
 
 
           this.restParty()
-          console.log('this.invitacion ::: ', this.invitacion);
+
           this.invitacion = await this.dateToNumber(this.invitacion)
           this.invitacion.mesa = this.boleto.mesa
-          this.date = this.fiesta.fecha
+          this.date = this.vistaTemp ? this.today + 15000 : this.fiesta.fecha
+
+
           this.invitacion.cantidad = this.boleto.cantidadInvitados
           this.invitacion.invitado = this.boleto.nombreGrupo
           this.repitVideo = this.invitacion.repitVideo
@@ -186,7 +186,7 @@ export class ByFileComponent {
     } else {
       this.restParty()
       this.state = this.route.snapshot.queryParams
-      console.log('  this.state::: ', this.state);
+
 
 
       for (let key in this.state) {
@@ -281,7 +281,7 @@ export class ByFileComponent {
         this.itinerarios = this.invitacion.itinerarios
         this.notas = this.invitacion.notas
       } else {
-
+        this.restParty()
 
         this.vistaTemp = false
         this.itinerarios = JSON.parse(this.state.itinerarios)
@@ -309,13 +309,16 @@ export class ByFileComponent {
         this.musicaCheck = (this.state.musicaCheck == 'true') ? true : false
         this.hospedajeCheck = (this.state.hospedajeCheck == 'true') ? true : false
         this.date = this.invitacion.fiestaDate
+
+        this.date = this.vistaTemp ? this.today + 15000 : this.invitacion.fiestaDate
+
+
         this.btnBack = true
         this.checking = (this.state.checking == 'true') ? true : false
         this.isMusic = (this.state.isMusic == 'true') ? true : false
         this.musicaInvitacion = this.state.musicaInvitacion
         this.musicRepit = this.state.musicRepit
-        console.log('this.musicaInvitacion ::: ', this.musicaInvitacion);
-        console.log('this.isMusic ::: ', this.isMusic);
+
 
 
         setTimeout(() => {

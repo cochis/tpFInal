@@ -32,15 +32,6 @@ a:hover {
 
 }
 
-.flexbox {
-    align-items: center;
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    min-height: 650px;
-
-}
-
 .wc {
     width: 90px;
 }
@@ -266,10 +257,6 @@ h5 {
     min-width: 170px;
 }
 
-.fondoImg {
-    background-size: 100%;
-}
-
 @media screen and (max-width: 480px) {
     .img-card {
         width: 80%;
@@ -280,19 +267,11 @@ h5 {
     .img-card {
         width: 50%;
     }
-
-    .fondoImg {
-        background-size: 80% !important;
-    }
 }
 
 @media screen and (min-width: 1024px) {
     .img-card {
         width: 50%;
-    }
-
-    .fondoImg {
-        background-size: 50% !important;
     }
 }
 
@@ -301,9 +280,19 @@ h5 {
     margin: auto;
 }
 
-.card-img-top {
-    max-width: 50%;
-    margin-top: 15px;
+.shadowFin {
+    -webkit-box-shadow: 4px 6px 20px -5px rgba(0, 0, 0, 0.75) !important;
+    -moz-box-shadow: 4px 6px 20px -5px rgba(0, 0, 0, 0.75) !important;
+    box-shadow: 4px 6px 20px -5px rgba(0, 0, 0, 0.75) !important;
+}
+
+img {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 20px;
+    -webkit-box-shadow: 4px 6px 20px -5px rgba(0, 0, 0, 0.75) !important;
+    -moz-box-shadow: 4px 6px 20px -5px rgba(0, 0, 0, 0.75) !important;
+    box-shadow: 4px 6px 20px -5px rgba(0, 0, 0, 0.75) !important;
 }
 
 .botonF1 {

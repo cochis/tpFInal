@@ -234,14 +234,37 @@ export class DefaultComponent implements OnInit, AfterViewInit {
             inviEfectoRep: this.invitacion.inviEfectoRep,
             inicialTSize: this.invitacion.inicialTSize,
             finalTSize: this.invitacion.finalTSize,
+            cabeceraFont: this.invitacion.cabeceraFont,
+            cabeceraSize: this.invitacion.cabeceraSize,
             date: this.date
           }
 
 
 
           this.dataInvitacionCard = {
+            ...this.invitacion,
+            inviEfecto: this.invitacion.inviEfecto,
+            inviEfectoRep: this.invitacion.inviEfectoRep,
+            generalCheck: resp.invitacion.data.generalCheck,
+            cPrincipal: this.invitacion.cPrincipal,
+            cWhite: this.invitacion.cWhite,
+            inviFont: this.invitacion.inviFont,
+            inviFont2: this.invitacion.inviFont2,
+            generalSize: this.invitacion.generalSize,
+            nombreGrupo: this.boleto.nombreGrupo,
+            cantidad: this.boleto.cantidadInvitados,
+            nombreFont: this.invitacion.nombreFont,
+            mesa: this.invitacion.mesa,
+            generalTexto: this.invitacion.generalTexto,
+            croquisOk: this.fiesta.croquisOk,
+            croquis: this.fiesta.croquis,
+            cSecond: this.invitacion.cSecond,
+            checking: this.fiesta.checking,
+            cabeceraFont: this.invitacion.cabeceraFont,
+            cabeceraSize: this.invitacion.cabeceraSize,
             vistaTemp: false,
-            ...this.invitacion
+
+
           }
           this.dataMensajeCard = {
             vistaTemp: false,
@@ -489,6 +512,8 @@ export class DefaultComponent implements OnInit, AfterViewInit {
           inviEfectoRep: this.state.inviEfectoRep,
           inicialTSize: this.state.inicialTSize,
           finalTSize: this.state.finalTSize,
+          cabeceraFont: this.state.cabeceraFont,
+          cabeceraSize: this.state.cabeceraSize,
         }
 
 
@@ -509,6 +534,8 @@ export class DefaultComponent implements OnInit, AfterViewInit {
           nombreFont: this.state.nombreFont,
           mesa: '1',
           generalTexto: this.state.generalTexto,
+          cabeceraFont: this.state.cabeceraFont,
+          cabeceraSize: this.state.cabeceraSize,
           croquisOk: this.state.croquisOk,
           croquis: this.state.croquis,
           cSecond: this.state.cSecond,
@@ -516,6 +543,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
         }
 
         this.dataMensajeCard = {
+
           vistaTemp: true,
           ...this.state
         }

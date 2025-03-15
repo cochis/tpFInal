@@ -38,6 +38,7 @@ import { SearchResultsComponent } from './components/search-results/search-resul
 import { NgxCurrencyDirective } from 'ngx-currency';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { ViewTemplateFileComponent } from './components/view-template-file/view-template-file.component';
 
 
 
@@ -76,6 +77,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     SearchbarComponent,
     SearchResultsComponent,
     CalendarComponent,
+    ViewTemplateFileComponent,
 
 
   ],
@@ -98,7 +100,8 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     IsLoginComponent,
     QrComponent,
     MapscreenComponent,
-    CalendarComponent
+    CalendarComponent,
+    ViewTemplateFileComponent
 
   ],
   imports: [

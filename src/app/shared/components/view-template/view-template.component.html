@@ -70,8 +70,8 @@
                 <div class="card text-center  "
                     [style]="{'width': '100%', 'margin': 'auto', 'border': 'none' ,'background-color':data.cPrincipal}">
                     <div class="card-body  " [style]="{'color': data.cWhite}">
-                        <h1 class="card-title mt-3 {{data.inviFont}} " style="font-size: 30px;"
-                            *ngIf="!data.generalCheck">
+                        <h1 class="card-title mt-3 {{data.cabeceraFont}} "
+                            [style]="{'font-size':  data.cabeceraSize+'px'}" *ngIf="!data.generalCheck">
                             Invitación válida para:
                         </h1>
 

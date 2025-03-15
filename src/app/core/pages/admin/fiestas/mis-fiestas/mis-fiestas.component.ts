@@ -116,6 +116,7 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
         })
 
         this.fiestasTemp = this.fiestas
+
         this.fiestas.forEach((fst, i) => {
           this.blt = {
             fiesta: fst,
@@ -404,6 +405,7 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
   viewEjemplos(example) {
 
     this.example = example
+
     this.getFiestas()
   }
 }

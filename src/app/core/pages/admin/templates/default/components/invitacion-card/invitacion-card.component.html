@@ -9,7 +9,8 @@
             <div class="card text-center  "
                 [style]="{'width': '100%', 'margin': 'auto', 'border': 'none' ,'background-color':data.cPrincipal}">
                 <div class="card-body  " [style]="{'color': data.cWhite}">
-                    <h1 class="card-title mt-3 {{data.inviFont}} " style="font-size: 35px;" *ngIf="!data.generalCheck">
+                    <h1 class="card-title mt-3 {{data.cabeceraFont}} " [style]="{'font-size':  data.cabeceraSize+'px'}"
+                        *ngIf="!data.generalCheck">
                         Invitación válida para:
                     </h1>
 
@@ -38,7 +39,8 @@
                 *ngIf="data &&  data.croquisOk  &&   !vistaCroquis ">
 
                 <div class="col-12 mt-3  ma" (click)="verCroquis()">
-                    <h2 [style]="{'color': data.cPrincipal, 'cursor':'pointer'}">
+                    <h2 class="{{data.cabeceraFont}}"
+                        [style]="{'font-size':data.cabeceraSize +'px !important','color': data.cPrincipal, 'cursor':'pointer'  }">
                         Ver croquis
                         <i class="bi bi-eye-fill" [style]=" {'color':data.cSecond}"></i>
                     </h2>
@@ -59,7 +61,8 @@
         <div class="card text-center  "
             [style]="{'width': '100%', 'margin': 'auto', 'border': 'none' ,'background-color':data.cPrincipal}">
             <div class="card-body  " [style]="{'color': data.cWhite}">
-                <h1 class="card-title mt-3 {{data.inviFont}} " style="font-size: 35px;" *ngIf="!data.generalCheck">
+                <h1 class="card-title mt-3 {{data.cabeceraFont}} " [style]="{'font-size':  data.cabeceraSize+'px'}"
+                    *ngIf="!data.generalCheck">
                     Invitación válida para:
                 </h1>
 
@@ -88,7 +91,8 @@
             *ngIf="data &&  data.croquisOk  &&   !vistaCroquis   ">
 
             <div class="col-12 mt-3  ma" (click)="verCroquis()">
-                <h2 [style]="{'color': data.cPrincipal, 'cursor':'pointer'}">
+                <h2 class="{{data.cabeceraFont}}"
+                    [style]="{'font-size':data.cabeceraSize +'px !important','color': data.cPrincipal, 'cursor':'pointer'  }">
                     Ver croquis
                     <i class="bi bi-eye-fill" [style]=" {'color':data.cSecond}"></i>
                 </h2>

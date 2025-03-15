@@ -1,0 +1,114 @@
+<ng-container *ngIf="!loading">
+    <div class="row" [style]=" {'background-color':data.byFileColorBG}">
+        <div class="col-12 text-center ma animate__animated {{data.efectoImg1}} {{data.repEfectoImg1}}"
+            [style]="{'color':data.byFileColorFr}">
+
+
+            <ng-container *ngIf="data.byFileInvitacion">
+
+                <ng-container *ngIf="data.byFileInvitacion.includes('.mov') ||
+                                            data.byFileInvitacion.includes('.mp4') ||
+                                            data.byFileInvitacion.includes('.avi') ||
+                                            data.byFileInvitacion.includes('.wmv') 
+                                            ">
+
+                    <video
+                        [style]="{'margin-top': 50+'px','width':80+'%','max-width':400+'px','margin-bottom':50+'px','border':10+'px solid' + data.byFileColorFr}"
+                        controls autoplay [loop]="repitVideo">
+                        <source [src]="url+'/upload/invitaciones/'+data.byFileInvitacion" type="video/mp4">
+
+                    </video>
+                </ng-container>
+
+
+                <ng-container *ngIf="data.byFileInvitacion.includes('.png') ||
+                                            data.byFileInvitacion.includes('.bmp') ||
+                                            data.byFileInvitacion.includes('.gif') ||
+                                            data.byFileInvitacion.includes('.jpeg') ||
+                                            data.byFileInvitacion.includes('.jpg') ||
+                                            data.byFileInvitacion.includes('.webp') ||
+                                            data.byFileInvitacion.includes('.tiff') 
+                                            ">
+
+                    <img [src]="url+'/upload/invitaciones/'+data.byFileInvitacion" alt="" class=" pointer" *ngIf="data"
+                        [style]="{'margin-top': 50+'px','width': 80+'%','max-width': 600+'px','margin-bottom':50+'px','border':10+'px solid' +data.byFileColorFr}">
+
+
+                </ng-container>
+
+            </ng-container>
+
+
+
+
+        </div>
+
+
+        <div class="col-12 text-center ma  animate__animated {{data.efectoFecha}} {{data.repEfectoFecha}}  "
+            [style]="{'background-color': data.cWhite}">
+
+            <div class="fecha pacifico tc  " [style]="{'top':data.topDate+'%'}">
+                {{date}}{{functionsService.numberToDate(date)}}
+                <table class="tc" *ngIf="date>functionsService.getToday()">
+                    <tr [style]="{'color':data.byFileColorFr}">
+                        <th class=" {{data.finalTFont}}" [style]="{'font-size':data.finalTSize+'px'}"><b
+                                [style]="{'color':data.byFileColorTx,'font-size':data.inicialTSize+'px'}"
+                                class=" {{data.inicialTFont}}">D</b>ias</th>
+                        <th class=" {{data.finalTFont}}" [style]="{'font-size':data.finalTSize+'px'}"><b
+                                [style]="{'color':data.byFileColorTx,'font-size':data.inicialTSize+'px'}"
+                                class=" {{data.inicialTFont}}">H</b>oras</th>
+                        <th class=" {{data.finalTFont}}" [style]="{'font-size':data.finalTSize+'px'}"><b
+                                [style]="{'color':data.byFileColorTx,'font-size':data.inicialTSize+'px'}"
+                                class=" {{data.inicialTFont}}">M</b>inutos</th>
+                        <th class=" {{data.finalTFont}}" [style]="{'font-size':data.finalTSize+'px'}"><b
+                                [style]="{'color':data.byFileColorTx,'font-size':data.inicialTSize+'px'}"
+                                class=" {{data.inicialTFont}}">S</b>egundos
+                        </th>
+                    </tr>
+                    <tr class="  ts" [style]="{'font-size':45+'px','color':data.cWhite}">
+                        <td>{{dias}}</td>
+                        <td>{{horas}}</td>
+                        <td>{{minutos}}</td>
+                        <td class="animated infinite pulse">{{segundos}}</td>
+
+                    </tr>
+
+                </table>
+
+                <h2 class="pacifico tc mt-3 mb-3" [style]="{'color':data.byFileColorTx}"
+                    *ngIf="date<functionsService.getToday()"><b [style]="{'color':data.byFileColorTx}">E</b>mpezamos
+                </h2>
+                <br>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+
+
+    <div class="col-12 mt-3 animate__animated {{data.efectoInvitacion}} {{data.repEfectoInvitacion}} "
+        [style]="{'background-color':data.byFileColorBG}">
+        <div class="card text-center"
+            [style]="{'width':100+'%','margin':'auto','border':'none','background-color':data.byFileColorBG}">
+            <div class="card-body  " [style]="{'color':data.byFileColorTx}">
+                <h1 class="card-title mt-3 {{data.cabeceraFont}}" [style]="{'font-size':data.cabeceraSize+'px'}">
+                    Invitación válida para:</h1>
+                <h1 class="card-text   lato-bold upper" [style]="{'color':data.cWhite}">
+                    {{(boleto && boleto.nombreGrupo)?boleto.nombreGrupo:'Ti'}}
+                </h1>
+                <h2 class="  lato-regular-italic" *ngIf="data.cantidad >0"> <b
+                        [style]="{'color':data.cWhite}">{{data.cantidad}}</b> pases</h2>
+                <h1 class="card-text   lato-bold upper" *ngIf="data.mesa">Mesa <b>{{data.mesa}}</b>
+                </h1>
+                <h3 class="  lato-regular-italic">{{data.textdataValida}}</h3>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</ng-container>

@@ -70,6 +70,8 @@ export class EditarInvitacionComponent {
   fec: boolean = false
   inv: boolean = false
   ent: boolean = false
+  mus: boolean = false
+  cab: boolean = false
   salon: Salon
   ejemplos: Ejemplo[]
 
@@ -163,11 +165,17 @@ export class EditarInvitacionComponent {
       img1: [''],
       efectoImg1: [''],
       repEfectoImg1: [''],
+      efectoFecha: [''],
+      repEfectoFecha: [''],
+      efectoInvitacion: [''],
+      repEfectoInvitacion: [''],
       imgWidth: [100],
       xImg1: [50],
       yImg1: [0],
       topTitle: [40],
       nombreSize: [20],
+      cabeceraFont: ['pacifico'],
+      cabeceraSize: [20],
       titleSize: [20],
       cantidad: [this.fiesta.cantidad],
       tipoFiesta: [''],
@@ -360,6 +368,12 @@ export class EditarInvitacionComponent {
       img1: [invitacion.data.img1],
       efectoImg1: [invitacion.data.efectoImg1],
       repEfectoImg1: [invitacion.data.repEfectoImg1],
+      efectoFecha: [invitacion.data.efectoFecha],
+      repEfectoFecha: [invitacion.data.repEfectoFecha],
+      efectoInvitacion: [invitacion.data.efectoInvitacion],
+      repEfectoInvitacion: [invitacion.data.repEfectoInvitacion],
+
+
       xImg1: [invitacion.data.xImg1],
       yImg1: [invitacion.data.yImg1],
       imgWidth: [invitacion.data.imgWidth],
@@ -374,6 +388,8 @@ export class EditarInvitacionComponent {
       fiestaDate: [invitacion.fiesta.fecha],
       nombreFiesta: [invitacion.fiesta.nombre],
       nombreSize: [invitacion.data.nombreSize],
+      cabeceraFont: [invitacion.data.cabeceraFont],
+      cabeceraSize: [invitacion.data.cabeceraSize],
       titleSize: [invitacion.data.titleSize],
       textInvitacionValida: [invitacion.data.textInvitacionValida],
       mensajeImg: [invitacion.data.mensajeImg],
@@ -576,6 +592,7 @@ export class EditarInvitacionComponent {
       ...this.form.value
     }
 
+
     return res
 
   }
@@ -615,6 +632,10 @@ export class EditarInvitacionComponent {
       img1: [temp.img1],
       efectoImg1: [temp.efectoImg1],
       repEfectoImg1: [temp.repEfectoImg1],
+      efectoFecha: [temp.efectoFecha],
+      repEfectoFecha: [temp.repEfectoFecha],
+      efectoInvitacion: [temp.efectoInvitacion],
+      repEfectoInvitacion: [temp.repEfectoInvitacion],
       xImg1: [temp.xImg1],
       yImg1: [temp.yImg1],
       imgWidth: [temp.imgWidth],
@@ -629,6 +650,8 @@ export class EditarInvitacionComponent {
       fiestaDate: [temp.fiestaDate],
       nombreFiesta: [temp.nombreFiesta],
       nombreSize: [temp.nombreSize],
+      cabeceraFont: [temp.cabeceraFont],
+      cabeceraSize: [temp.cabeceraSize],
       titleSize: [temp.titleSize],
       textInvitacionValida: [temp.textInvitacionValida],
       mensajeImg: [temp.mensajeImg],
@@ -883,6 +906,18 @@ export class EditarInvitacionComponent {
       if (this.form.value.repEfectoImg1 == '' && this.invitacion.data.repEfectoImg1 !== '') {
         this.form.value.repEfectoImg1 = this.invitacion.data.repEfectoImg1
       }
+      if (this.form.value.efectoFecha == '' && this.invitacion.data.efectoFecha !== '') {
+        this.form.value.efectoFecha = this.invitacion.data.efectoFecha
+      }
+      if (this.form.value.repEfectoFecha == '' && this.invitacion.data.repEfectoFecha !== '') {
+        this.form.value.repEfectoFecha = this.invitacion.data.repEfectoFecha
+      }
+      if (this.form.value.efectoInvitacion == '' && this.invitacion.data.efectoInvitacion !== '') {
+        this.form.value.efectoInvitacion = this.invitacion.data.efectoInvitacion
+      }
+      if (this.form.value.repEfectoInvitacion == '' && this.invitacion.data.repEfectoInvitacion !== '') {
+        this.form.value.repEfectoInvitacion = this.invitacion.data.repEfectoInvitacion
+      }
       if (this.form.value.mensajeImg == '' && this.invitacion.data.mensajeImg !== '') {
         this.form.value.mensajeImg = this.invitacion.data.mensajeImg
       }
@@ -1028,6 +1063,10 @@ export class EditarInvitacionComponent {
             img1: '',
             efectoImg1: 'animate__fadeIn',
             repEfectoImg1: 'animate__repeat-1',
+            efectoFecha: 'animate__fadeIn',
+            repEfectoFecha: 'animate__repeat-1',
+            efectoInvitacion: 'animate__fadeIn',
+            repEfectoInvitacion: 'animate__repeat-1',
             xImg1: 50,
             yImg1: 10,
             imgWidth: 100,
@@ -1038,6 +1077,9 @@ export class EditarInvitacionComponent {
             tipoEfecto: '',
             tipoEfectoRep: 1,
             nombreSize: 20,
+
+            cabeceraSize: 20,
+            cabeceraFont: 'pacifico',
             titleSize: 20,
             topDate: 50,
             checking: this.fiesta.checking,
@@ -1863,6 +1905,28 @@ export class EditarInvitacionComponent {
     if (mod == 'principal') {
 
       switch (type) {
+        case 'cabeceras':
+          this.col = false
+          this.fec = false
+          this.ima = false
+          this.tit = false
+          this.sub = false
+          this.inv = false
+          this.ent = false
+          this.mus = false
+          this.cab = true
+          break;
+        case 'musica':
+          this.col = false
+          this.fec = false
+          this.ima = false
+          this.tit = false
+          this.sub = false
+          this.inv = false
+          this.ent = false
+          this.mus = true
+          this.cab = false
+          break;
         case 'colores':
           this.col = true
           this.fec = false
@@ -1871,6 +1935,8 @@ export class EditarInvitacionComponent {
           this.sub = false
           this.inv = false
           this.ent = false
+          this.mus = false
+          this.cab = false
           break;
         case 'imagen':
           this.col = false
@@ -1880,6 +1946,8 @@ export class EditarInvitacionComponent {
           this.sub = false
           this.inv = false
           this.ent = false
+          this.mus = false
+          this.cab = false
           break;
         case 'titulo':
           this.col = false
@@ -1889,6 +1957,8 @@ export class EditarInvitacionComponent {
           this.sub = false
           this.inv = false
           this.ent = false
+          this.mus = false
+          this.cab = false
           break;
         case 'subtitulo':
           this.fec = false
@@ -1898,6 +1968,8 @@ export class EditarInvitacionComponent {
           this.sub = true
           this.inv = false
           this.ent = false
+          this.mus = false
+          this.cab = false
           break;
         case 'invitacion':
           this.col = false
@@ -1907,6 +1979,8 @@ export class EditarInvitacionComponent {
           this.sub = false
           this.inv = true
           this.ent = false
+          this.mus = false
+          this.cab = false
           break;
         case 'fecha':
           this.col = false
@@ -1916,6 +1990,8 @@ export class EditarInvitacionComponent {
           this.inv = false
           this.fec = true
           this.ent = false
+          this.mus = false
+          this.cab = false
           break;
         case 'entrada general':
           this.col = false
@@ -1925,7 +2001,10 @@ export class EditarInvitacionComponent {
           this.sub = false
           this.inv = false
           this.ent = true
+          this.mus = false
+          this.cab = false
           break;
+        default:
           this.col = false
           this.fec = false
           this.ima = false
@@ -1933,7 +2012,8 @@ export class EditarInvitacionComponent {
           this.sub = false
           this.inv = false
           this.ent = false
-        default:
+          this.mus = false
+          this.cab = false
           break;
       }
     }

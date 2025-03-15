@@ -16,7 +16,7 @@ export class AppComponent {
     private update: SwUpdate,
     private functionsService: FunctionsService) {
 
-    console.info('this.ver::: ', this.ver);
+    console.info('Version ', this.ver);
     this.updateClient()
 
 

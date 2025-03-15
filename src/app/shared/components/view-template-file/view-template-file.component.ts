@@ -1,13 +1,13 @@
-import { AfterViewInit, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { AfterViewInit, Component, Input } from '@angular/core';
 import { FunctionsService } from '../../services/functions.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-view-template',
-  templateUrl: './view-template.component.html',
-  styleUrls: ['./view-template.component.css']
+  selector: 'app-view-template-file',
+  templateUrl: './view-template-file.component.html',
+  styleUrls: ['./view-template-file.component.css']
 })
-export class ViewTemplateComponent implements AfterViewInit {
+export class ViewTemplateFileComponent implements AfterViewInit {
   @Input() data: any;
   today = this.functionsService.getToday()
   dias = 0
@@ -17,19 +17,15 @@ export class ViewTemplateComponent implements AfterViewInit {
   date: number = this.today + 199456789
   url = environment.base_url
   loading = true
+
   constructor(private functionsService: FunctionsService) {
     setTimeout(() => {
       this.loading = false
     }, 500);
   }
-  ngAfterViewInit(): void {
-
-
+  ngAfterViewInit() {
 
   }
-
-
-
   restParty() {
 
 

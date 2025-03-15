@@ -26,6 +26,7 @@ export class InvitacionCardComponent implements AfterViewInit {
 
   }
   ngAfterViewInit(): void {
+
     this.data.generalCheck = (typeof (this.data.generalCheck) == 'boolean' ? this.data.generalCheck : (this.data.generalCheck == 'true') ? true : false)
     this.data.croquisOk = (typeof (this.data.croquisOk) == 'boolean' ? this.data.croquisOk : (this.data.croquisOk == 'true') ? true : false)
 
