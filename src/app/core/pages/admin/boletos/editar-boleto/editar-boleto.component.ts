@@ -101,6 +101,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
       this.boletosService.cargarBoletoByFiesta(this.id).subscribe((resp: CargarBoleto) => {
         this.boletoTemp = this.functionsService.getActives(resp.boleto)
 
+
         this.getFiesta(this.fiesta.uid)
       },
         (error: any) => {
@@ -118,13 +119,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
     this.fiestasService.cargarFiestaById(id).subscribe((resp: any) => {
       this.fiesta = resp.fiesta
       this.mensaje = (this.fiesta.mensaje == '') ? this.mensajeTemp : resp.fiesta.mensaje
-      this.gruposService.cargarGruposAll().subscribe((resp: CargarGrupos) => {
-        this.grupos = resp.grupos
-      },
-        (error: any) => {
-          this.functionsService.alertError(error, 'Boletos')
-          this.loading = false
-        })
+
     })
   }
   getId(id: string) {
@@ -228,10 +223,11 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
   }
   setInvitado(invitado: any): FormGroup {
 
+
     return this.fb.group({
       uid: [(invitado.uid !== '') ? invitado.uid : '', [Validators.required]],
       fiesta: [(invitado.fiesta !== '') ? invitado.fiesta : '', [Validators.required]],
-      grupo: [(invitado.grupo !== '') ? invitado.grupo : '', [Validators.required]],
+      grupo: [invitado.grupo, [Validators.required]],
       salon: [(invitado.salon !== '') ? invitado.salon : '', [Validators.required]],
       nombreGrupo: [(invitado.nombreGrupo !== '') ? invitado.nombreGrupo : '', [Validators.required]],
       whatsapp: [(invitado.whatsapp !== undefined) ? invitado.whatsapp : '', [Validators.minLength(10)]],
