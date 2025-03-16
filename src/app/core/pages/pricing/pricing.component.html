@@ -1,6 +1,7 @@
 <app-header></app-header>
+<app-loading *ngIf="loading"></app-loading>
 
-<body id="top" class="animate__animated animate__fadeIn">
+<body id="top" class="animate__animated animate__fadeIn" *ngIf="!loading">
 
     <main>
 
@@ -59,6 +60,9 @@
                 </div>
 
             </ng-template>
+
+
+            <!--   
             <div class="container">
                 <div class="row">
 
@@ -151,7 +155,90 @@
 
                     </div>
                 </div>
+            </div> -->
+
+
+            <div class="container">
+
+                <div class="row">
+
+                    <div class=" col-12 col-md-6  mt-5 m-auto text-center"
+                        *ngFor="let paquete of paquetes ; let i =index">
+                        <div class="accordion" id="accordionPricing">
+                            <div class="accordion-item">
+                                <div class="accordion-header ">
+                                    <button class="accordion-button collapsed text-center" type="button"
+                                        data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse'+i"
+                                        aria-expanded="false" aria-controls="collapse{{i}}">
+                                        <div class="row text-center">
+                                            <div class="col-12">
+
+                                                <h5 class="mb-2 text-center">{{paquete.nombre}}</h5>
+                                            </div>
+                                            <div class="col-12">
+                                                <img [src]="url+'/upload/paquetes/'+paquete.img"
+                                                    alt="{{paquete.nombre}}" title="{{paquete.nombre}}"
+                                                    class="custom-block-image img-fluid ma mb-3"
+                                                    style="max-width: 150px;">
+
+                                            </div>
+
+                                        </div>
+
+                                    </button>
+                                </div>
+
+                                <div id="collapse{{i}}" class="accordion-collapse collapse"
+                                    data-bs-parent="#accordionPricing">
+                                    <div class="accordion-body text-center">
+                                        <div class="custom-block bg-white shadow-lg" style="width: 100%;">
+                                            <div class="d-flex ">
+                                                <div class="ma text-center">
+                                                    <strong>{{paquete.costo | currency}}</strong> -
+                                                    <small class="primary">Pago {{paquete.tipoCosto}} <b
+                                                            class="second">IVA
+                                                            Incluido</b></small>
+                                                    <div class="accordion-body">
+
+                                                        <strong
+                                                            *ngIf="paquete.tipo =='eventos'">{{((paquete.value>=0)?(paquete.value
+                                                            + ' eventos'):'Eventos ilimitados')}}</strong>
+                                                        <strong
+                                                            *ngIf="paquete.tipo =='galerias'">{{((paquete.value>=0)?(paquete.value
+                                                            + ' fotos'):'Fotos ilimitadas')}}</strong>
+                                                        <ul class="lsn" style="padding: 0; ">
+                                                            <li *ngFor="let desc of paquete.descripciones">
+                                                                <div
+                                                                    [innerHTML]="functionsService.convertDes(desc.info)">
+                                                                </div>
+
+                                                            </li>
+
+                                                        </ul>
+                                                    </div>
+
+
+
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
             </div>
+
+
+
+
+
+
+
         </section>
 
 

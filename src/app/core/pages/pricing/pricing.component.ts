@@ -14,6 +14,7 @@ import { Title } from '@angular/platform-browser';
 export class PricingComponent {
   paquetes: Paquete[]
   url = environment.base_url
+  loading = true
   constructor(private metaService: MetaService,
     private title: Title,
     private functionsService: FunctionsService,
@@ -38,7 +39,9 @@ export class PricingComponent {
   getPaquetes() {
     this.paquetesService.cargarPaquetesAll().subscribe(resp => {
       this.paquetes = resp.paquetes
-
+      setTimeout(() => {
+        this.loading = false
+      }, 500);
     },
       (error) => {
         console.error('Error', error)

@@ -1,265 +1,61 @@
 <app-header></app-header>
 
 <body id="top" class="animate__animated animate__fadeIn">
-
     <main>
-
-
-
-
         <section class="hero-section d-flex justify-content-center align-items-center" id="section_1">
             <div class="container">
                 <div class="row">
-
                     <div class=" col-12 mx-auto">
                         <h1 class="text-white text-center">Ejemplos</h1>
-
                         <h6 class="text-center">Invitaciones, Galerías, Envíos y Logística </h6>
-
-
                     </div>
-
                 </div>
             </div>
         </section>
-
-
         <app-loading *ngIf="!ejemplos  "></app-loading>
         <div class="container">
             <div class="row">
-                <ng-container *ngIf="ejemplos && ejemplos.length>0">
-                    <div class=" col-12 col-md-6 m-auto mt-3" *ngFor="let item of ejemplos;let i = index">
-                        <div class="accordion" id="accordionEjemplos">
-
-
-                            <div class="accordion-item">
-                                <h2 class="accordion-header " id="actualizacion">
-                                    <button class="accordion-button collapsed text-center" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#collapseActualizacion{{i}}"
-                                        aria-expanded="false" aria-controls="collapseActualizacion{{i}}">
-
-                                        {{item.fiesta.nombre}}
-
-                                    </button>
-                                </h2>
-
-                                <div id="collapseActualizacion{{i}}" class="accordion-collapse collapse show"
-                                    aria-labelledby="actualizacion" data-bs-parent="#accordionEjemplos">
-                                    <div class="accordion-body text-center">
-
-                                        <div class="ejemploImgDiv">
-                                            <a [href]="item.urlFiestaBoleto" target="_blank">
-                                                <img [src]="(item.fiesta.img!=='')?url+'/upload/fiestas/'+item.fiesta.img:url+'/upload/fiestas/default.jpg'"
-                                                    class="custom-block-image img-fluid ma pulseAnimation" alt=""
-                                                    class="ejemploImg"></a>
+                <div class=" col-12 col-md-6  mt-5 m-auto text-center" *ngFor="let ejemplo of ejemplos ; let i =index">
+                    <div class="accordion" id="accordionPricing">
+                        <div class="accordion-item">
+                            <div class="accordion-header ">
+                                <button class="accordion-button collapsed text-center" type="button"
+                                    data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse'+i"
+                                    aria-expanded="false" aria-controls="collapse{{i}}">
+                                    <div class="row text-center">
+                                        <div class="col-12 ma text-center">
+                                            <h5 class="mb-2 text-center">{{ejemplo.nombre}}</h5>
                                         </div>
-                                        <div [innerHTML]="convertDes(item.recomendacion)" style="margin-top: 10px;">
+                                        <div class="col-12  ma text-center">
+                                            <img [src]="url+'/upload/fiestas/'+ejemplo.fiesta.img"
+                                                alt="{{ejemplo.fiesta.nombre}}" title="{{ejemplo.nombre}}"
+                                                class="  ma mb-3 shadowFin"
+                                                style="width: 150px; height: 150px; border-radius: 100%;">
                                         </div>
-                                        <div class="row">
-                                            <div class="col-12 col-6 ma">
+                                    </div>
+                                </button>
+                            </div>
+                            <div id="collapse{{i}}" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionPricing">
+                                <div class="accordion-body text-center">
+                                    <div class="custom-block bg-white shadow-lg" style="width: 100%;">
+                                        <div class="d-flex ">
+                                            <div class="accordion-body">
+                                                <div [innerHTML]="convertDes(ejemplo.recomendacion)"
+                                                    style="margin-top: 10px; text-align: left !important;"></div>
                                                 <a class="btb but2 " style="color:white !important; padding: 10px;"
-                                                    [href]="item.urlFiestaBoleto" target="_blank"> Ver
+                                                    [href]="ejemplo.urlFiestaBoleto" target="_blank"> Ver
                                                     invitación</a>
-
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
-                </ng-container>
-            </div>
-        </div>
-
-
-
-
-
-
-
-
-
-
-        <!-- 
-        <div class="container" *ngIf="ejemplos  ">
-
-            <div class="row mt-5">
-                <div class="col-12 text-center">
-                    <h2 class="mb-4">Para todo tipos de eventos</h2>
-                    <small> Tu escoges y editas lo que deseas</small>
-                </div>
-
-                <ng-container *ngIf="ejemplos && ejemplos.length>0">
-                    <ng-container *ngFor="let item of ejemplos">
-                        <div class="col-12 text-center ma mt-3">
-
-
-                            <a [href]="item.urlFiestaBoleto" target="_blank">
-                                <div class="ejemploImgDiv">
-
-
-                                    <img [src]="(item.fiesta.img!=='')?url+'/upload/fiestas/'+item.fiesta.img:url+'/upload/fiestas/default.jpg'"
-                                        class="custom-block-image img-fluid ma pulseAnimation" alt=""
-                                        class="ejemploImg">
-                                </div>
-
-
-
-
-
-
-                                <h2 class=" mt-3" style="line-height: 40px;">
-                                    {{item.fiesta.nombre}}
-                                </h2>
-
-                            </a>
-                        </div>
-                        <div class="col-12 text-center ma">
-                            {{item.recomendacion}}
-                           
-                        </div>
-
-                    </ng-container>
-
- 
-                </ng-container>
-            </div>
-            <div class="row mt-5" *ngIf="sanitizedUrl">
-                <div class="col-12 text-center">
-                    <h2 class="mb-4">Invitaciones dinámicas</h2>
-                </div>
-
-                <ul>
-                    <li>
-                        Elige si tu evento tendrá división por mesas o no
-                    </li>
-                    <li>
-                        Elige si tu evento contabilizara la cantidad de invitados
-                    </li>
-                    <li>
-                        Edita imágenes
-                    </li>
-                    <li>
-                        Edita textos
-                    </li>
-                    <li>
-                        Edita colores
-                    </li>
-                    <li>
-                        Escoge si existe evento civil, evento social, Hotel, Itinerarios o Notas
-                    </li>
-                    <li>
-                        Escoge si existe evento social
-                    </li>
-                    <li>
-                        Escoge si existe Hotel
-                    </li>
-                    <li>
-                        Escoge si existe Itinerarios o Notas
-                    </li>
-
-
-
-                </ul>
-
-                <div class=" col-md-6 col-12 mb-4 mb-lg-0 ma text-center" style="margin-top: 25px;">
-                    <iframe [src]="sanitizedUrl" class="ma"
-                        style="width: 100%; max-width: 450px; height: 600px;"></iframe>
-                </div>
-            </div>
-
-            <div class="row" *ngIf="sanitizedUrlFile">
-                <div class="col-12 text-center">
-                    <h2 class="mb-4">Invitaciones por archivo</h2>
-                </div>
-                <ul>
-                    <li>
-                        No importa si es imagen o video tu sube la invitación que se mostrara a tus invitados
-                    </li>
-                    <li>
-                        Edita textos
-                    </li>
-                    <li>
-                        Edita imágenes
-                    </li>
-                    <li>
-                        Edita colores
-                    </li>
-                    <li>
-                        Escoge si existe evento civil, evento social, Hotel, Itinerarios o Notas
-                    </li>
-                    <li>
-                        Escoge si existe evento social
-                    </li>
-                    <li>
-                        Escoge si existe Hotel
-                    </li>
-                    <li>
-                        Escoge si existe Itinerarios o Notas
-                    </li>
-
-                </ul>
-                <div class=" col-md-6 col-12 mb-4  mt-4 mb-lg-0 ma text-center" style="margin-top: 25px;"
-                    *ngIf="sanitizedUrlFile">
-                    <iframe [src]="sanitizedUrlFile" class="ma"
-                        style="width: 100%; max-width: 450px; height: 600px;"></iframe>
-                </div>
-            </div>
-            <div class="row mt-4">
-                <div class="col-12 text-justify">
-                    <h2 class="mb-4">Verifica invitaciones creadas , cantidad de invitados actuales , cuantos lugares
-                        tienes disponibles , cuantos invitados confirmados y cuantos personas ingresaron a tu evento en
-                        tiempo real</h2>
-                </div>
-                <div class=" col-md-6 col-12 mb-4 mt-4 mb-lg-0 ma text-center" style="margin-top: 25px;">
-                    <img src="/assets/examples/logistica.png" alt="" style="margin: auto;max-width: 100%;">
-                </div>
-            </div>
-            <div class="row mt-4">
-                <div class="col-12 text-center">
-                    <h2 class="mb-4">Galerías</h2>
-                </div>
-                <div class=" col-md-6 col-12 mb-4 mt-4 mb-lg-0 ma text-center" style="margin-top: 25px;">
-                    <img src="/assets/examples/galeria.png" alt="" style="margin: auto;max-width: 100%;">
-                </div>
-            </div>
-            <div class="row mt-4">
-                <div class="col-12 text-center">
-                    <h2 class="mb-4">Envío por Whatsapp</h2>
-                </div>
-                <div class=" col-md-6 col-12 mb-4 mt-4 mb-lg-0 ma text-center" style="margin-top: 25px;">
-                    <img src="/assets/examples/envio_whatsapp.png" alt="" style="margin: auto;max-width: 100%;">
-                </div>
-            </div>
-            <div class="row mt-4">
-                <div class="col-12 text-center">
-                    <h2 class="mb-4">Envió por correo electrónico</h2>
-                </div>
-                <div class=" col-md-6 col-12 mb-4 mt-4 mb-lg-0 ma text-center" style="margin-top: 25px;">
-                    <img src="/assets/examples/envio_mail.png" alt="" style="margin: auto;max-width: 100%;">
-                </div>
-            </div>
-            <div class="row mt-4">
-                <div class="col-12 text-center">
-                    <h2 class="mb-4">Recordatorios Push Notifications</h2>
-                </div>
-                <div class=" col-md-6 col-12 mb-4 mt-4 mb-lg-0 ma text-center" style="margin-top: 25px;">
-                    <img src="/assets/examples/envio_push.jpeg" alt="" style="margin: auto;max-width: 100%;">
                 </div>
             </div>
         </div>
- -->
-
-
-
-
-
-
-
-
     </main>
-
     <app-footer></app-footer>
 </body>

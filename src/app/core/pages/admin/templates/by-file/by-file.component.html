@@ -122,9 +122,11 @@
                     <h1 class="card-text   lato-bold upper" [style]="{'color':invitacion.cWhite}">
                         {{(boleto && boleto.nombreGrupo)?boleto.nombreGrupo:'Ti'}}
                     </h1>
+
+
                     <h2 class="  lato-regular-italic" *ngIf="invitacion.cantidad >0"> <b
                             [style]="{'color':invitacion.cWhite}">{{invitacion.cantidad}}</b> pases</h2>
-                    <h1 class="card-text   lato-bold upper" *ngIf="invitacion.mesa">Mesa <b>{{invitacion.mesa}}</b>
+                    <h1 class="card-text   lato-bold upper" *ngIf="fiesta.mesaOk">Mesa <b>{{invitacion.mesa}}</b>
                     </h1>
                     <h3 class="  lato-regular-italic">{{invitacion.textInvitacionValida}}</h3>
                 </div>

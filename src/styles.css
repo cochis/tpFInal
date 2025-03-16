@@ -738,8 +738,8 @@ a {
 .btn:hover,
 .redesLI:hover {
 
-    background-color: var(--cSecond) !important;
-    color: var(--cPrimary) !important
+    /* background-color: var(--cSecond) !important;
+    color: var(--cPrimary) !important */
 }
 
 .welcome {
