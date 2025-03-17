@@ -28,35 +28,9 @@
                     </div>
 
                 </div>
-                <div class="fecha {{data.nombreFont}} tc  " [style]="{'top':data.topDate+'%'}">
-                    <table class="tc" *ngIf="date>functionsService.getToday()">
-                        <tr [style]="{'color':data.cWhite}">
-                            <th class=" {{data.finalTFont}}" [style]="{'font-size':data.finalTSize+'px'}"><b
-                                    [style]="{'color': data.cPrincipal, 'font-size':data.inicialTSize+'px'}"
-                                    class=" {{data.inicialTFont}}">D</b>ias</th>
-                            <th class=" {{data.finalTFont}}" [style]="{'font-size':data.finalTSize+'px'}"><b
-                                    [style]="{'color': data.cPrincipal, 'font-size':data.inicialTSize+'px'}"
-                                    class=" {{data.inicialTFont}}">H</b>oras</th>
-                            <th class=" {{data.finalTFont}}" [style]="{'font-size':data.finalTSize+'px'}"><b
-                                    [style]="{'color': data.cPrincipal, 'font-size':data.inicialTSize+'px'}"
-                                    class=" {{data.inicialTFont}}">M</b>inutos</th>
-                            <th class=" {{data.finalTFont}}" [style]="{'font-size':data.finalTSize+'px'}"><b
-                                    [style]="{'color': data.cPrincipal, 'font-size':data.inicialTSize+'px'}"
-                                    class=" {{data.inicialTFont}}">S</b>egundos
-                            </th>
-                        </tr>
-                        <tr class="  ts" [style]="{'font-size': '45px','color':data.cWhite}">
-                            <td>{{dias}}</td>
-                            <td>{{horas}}</td>
-                            <td>{{minutos}}</td>
-                            <td class="animated infinite pulse">{{segundos}}</td>
 
-                        </tr>
+                <app-clock [data]="data"></app-clock>
 
-                    </table>
-                    <h2 class=" {{data.nombreFont}} tc" *ngIf="date<functionsService.getToday()"><b
-                            [style]="{'color': data.byFileColorTx}">E</b>mpezamos</h2>
-                </div>
 
 
             </div>

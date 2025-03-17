@@ -68,7 +68,7 @@
             </div>
 
 
-            <div class="col-12 text-center ma animate__animated {{invitacion.efectoFecha}} {{invitacion.repEfectoFecha}}"
+            <!--  <div class="col-12 text-center ma animate__animated {{invitacion.efectoFecha}} {{invitacion.repEfectoFecha}}"
                 [style]="{'background-color': invitacion.cWhite}">
 
                 <div class="fecha pacifico tc  " [style]="{'top':invitacion.topDate+'%'}">
@@ -103,10 +103,9 @@
                             [style]="{'color':invitacion.byFileColorTx}">E</b>mpezamos</h2>
                     <br>
                 </div>
-            </div>
+            </div> -->
 
-
-
+            <app-clock [data]="invitacion" class="mt-5 mb-5"></app-clock>
         </div>
 
 
@@ -123,10 +122,9 @@
                         {{(boleto && boleto.nombreGrupo)?boleto.nombreGrupo:'Ti'}}
                     </h1>
 
-
                     <h2 class="  lato-regular-italic" *ngIf="invitacion.cantidad >0"> <b
                             [style]="{'color':invitacion.cWhite}">{{invitacion.cantidad}}</b> pases</h2>
-                    <h1 class="card-text   lato-bold upper" *ngIf="fiesta.mesaOk">Mesa <b>{{invitacion.mesa}}</b>
+                    <h1 class="card-text   lato-bold upper" *ngIf="invitacion.mesaOk">Mesa <b>{{invitacion.mesa}}</b>
                     </h1>
                     <h3 class="  lato-regular-italic">{{invitacion.textInvitacionValida}}</h3>
                 </div>
@@ -1250,7 +1248,9 @@
             </audio>
 
         </div>
-        <button class="botonF1" [style]="{'background-color': invitacion.cPrincipal, 'color':invitacion.cWhite}"
+
+        <button class="botonF1"
+            [style]="{'background-color': invitacion.byFileColorBG, 'color':invitacion.byFileColorTx}"
             (click)="playStop()" id="boton">
 
             <span><i class="bi bi-stop"></i></span>

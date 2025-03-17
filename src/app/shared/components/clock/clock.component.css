@@ -1,0 +1,60 @@
+@import url('https://fonts.cdnfonts.com/css/digital-numbers');
+
+.ma {
+    margin: auto !important;
+}
+
+.countdown {
+    width: 90%;
+    padding: 5px;
+    border: solid 10px rgb(50, 50, 50);
+    border-radius: 35px;
+    font-family: 'Digital Numbers', sans-serif;
+    font-size: 40px;
+    color: rgb(255, 125, 125);
+    text-shadow: 0 0 10px red;
+    background-color: rgb(0, 0, 0);
+    box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 5);
+    -webkit-border-radius: 35px;
+    -moz-border-radius: 35px;
+    -ms-border-radius: 35px;
+    -o-border-radius: 35px;
+}
+
+.countdown span {
+    text-align: center;
+    position: relative;
+    display: inline-block;
+    min-width: 60px;
+    height: 70px;
+    padding-bottom: 5px;
+}
+
+
+.countdown #dayElement::before {
+    content: 'DIAS';
+}
+
+.countdown #hourElement::before {
+    content: 'HRS';
+}
+
+.countdown #minElement::before {
+    content: 'MINS';
+}
+
+.countdown #secElement::before {
+    content: 'SECS';
+}
+
+.countdown span::before {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: darkgray;
+    text-shadow: none;
+}

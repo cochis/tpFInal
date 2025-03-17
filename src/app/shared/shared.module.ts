@@ -39,6 +39,7 @@ import { NgxCurrencyDirective } from 'ngx-currency';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { ViewTemplateFileComponent } from './components/view-template-file/view-template-file.component';
+import { ClockComponent } from './components/clock/clock.component';
 
 
 
@@ -78,6 +79,7 @@ import { ViewTemplateFileComponent } from './components/view-template-file/view-
     SearchResultsComponent,
     CalendarComponent,
     ViewTemplateFileComponent,
+    ClockComponent,
 
 
   ],
@@ -101,7 +103,8 @@ import { ViewTemplateFileComponent } from './components/view-template-file/view-
     QrComponent,
     MapscreenComponent,
     CalendarComponent,
-    ViewTemplateFileComponent
+    ViewTemplateFileComponent,
+    ClockComponent,
 
   ],
   imports: [

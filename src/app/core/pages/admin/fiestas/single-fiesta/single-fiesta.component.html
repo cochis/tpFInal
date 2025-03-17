@@ -114,12 +114,12 @@
                     <tr>
                         <th scope="col" class="text-center">#</th>
                         <th scope="col" class="text-center">Mesa</th>
-                        <th scope="col" class="text-center">Vista</th>
                         <th scope="col" class="text-center">Enviada</th>
+                        <th scope="col" class="text-center">Vista</th>
+                        <th scope="col" class="text-center">Confirmado</th>
                         <th scope="col" class="text-center">Nombre</th>
                         <th scope="col" class="text-center" style="min-width: 100px;">Boletos</th>
                         <th scope="col" class="text-center">Boletos requeridos</th>
-                        <th scope="col" class="text-center">Confirmado</th>
                         <th scope="col" class="text-center">Fecha confirmado</th>
                         <th scope="col" class="text-center">En evento</th>
                     </tr>
@@ -128,6 +128,16 @@
                     <tr *ngFor="let item of boletos | paginate: { itemsPerPage: 10, currentPage: p } ; let i=index">
                         <th scope="row">{{i+1}}</th>
                         <td class="text-center prima ">{{item.mesa}}</td>
+
+                        <td *ngIf="item.invitacionEnviada" class="text-center">
+
+                            <i class="bi bi-send prima  "></i>
+
+                        </td>
+                        <td *ngIf="!item.invitacionEnviada" class="text-center">
+                            <i class="icon-cancel-circled second"></i>
+
+                        </td>
                         <td *ngIf="item.vista" class="text-center">
 
                             <i class="icon-eye prima  "></i>
@@ -138,26 +148,6 @@
                             <i class="icon-cancel-circled second"></i>
 
                         </td>
-                        <td *ngIf="item.invitacionEnviada" class="text-center">
-
-                            <i class="bi bi-send prima  "></i>
-
-                        </td>
-                        <td *ngIf="!item.invitacionEnviada" class="text-center">
-                            <i class="icon-cancel-circled second"></i>
-
-                        </td>
-
-
-                        <td class="text-center prima upper">{{item.nombreGrupo}}</td>
-                        <td class="text-center prima">
-                            {{item.cantidadInvitados}} <br>
-                            <button type="submit" class="btn  but  " style="padding: 0" *ngIf="item.requeridos>0"
-                                (click)="ajuste(item)">Ajuste</button>
-
-                        </td>
-                        <td class="text-center seconf">{{item.requeridos}}</td>
-
                         <td class="text-center prima" *ngIf="item.confirmado">
                             <i class="icon-ok-circled prima"></i>
                         </td>
@@ -165,6 +155,18 @@
                             <i class="icon-cancel-circled second"></i>
 
                         </td>
+
+                        <td class="text-center prima upper">{{item.nombreGrupo}}</td>
+                        <td class="text-center prima">
+                            {{item.cantidadInvitados}} <br>
+                            <button type="submit" class="btn  but  " style="padding: 0"
+                                *ngIf="item.requeridos >0 && item.requeridos != item.cantidadInvitados"
+                                (click)="ajuste(item)">Ajuste</button>
+
+                        </td>
+                        <td class="text-center seconf">{{item.requeridos}}</td>
+
+
                         <td class="text-center prima" *ngIf="item.confirmado">{{item.fechaConfirmacion | date:'short'}}
                         </td>
                         <td class="text-center prima" *ngIf="!item.confirmado"> </td>

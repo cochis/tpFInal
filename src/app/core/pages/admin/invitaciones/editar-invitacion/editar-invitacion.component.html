@@ -63,31 +63,7 @@
                                 <button (click)="restaurarAltura()" class="btn btn-lg btn-block but mt-3 mb-3"
                                     style="margin: auto;"> Restaurar</button>
 
-
-
-
-
                                 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-
-                                    <!-- <div class="row text-center" >
-                                        <div class="col-12 col-md-3">
-
-                                            <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
-                                                data-bs-target="#collapseExample" aria-expanded="false"
-                                                aria-controls="collapseExample">
-                                                Colores
-                                            </button>
-                                        </div>
-
-
-                                        <div class="collapse" id="collapseExample">
-                                            <div class="card card-body">
-                                                Some placeholder content for the collapse component. This panel is
-                                                hidden by default but revealed when the user
-                                                activates the relevant trigger.
-                                            </div>
-                                        </div>
-                                    </div> -->
                                     <div class="row text-center mb-5" style="display: none;">
                                         <h5>Tipo de Vista </h5>
                                         <div class="col-12 col-md-6 ma">
@@ -100,18 +76,12 @@
                                             </select>
                                         </div>
                                     </div>
-
                                     <!--  Inicia Sección principal -->
-
-
-
-
                                     <div class="row mt-3 mb-3">
                                         <h5>Sección principal</h5>
                                         <div class="col-12 col-md-6">
                                             <select name="edicionType" id="edicionType" class="form-control upper"
                                                 #edicionType (change)="changeEdit(edicionType.value, 'principal')">
-
                                                 <option value="" class="upper" selected>Selecciona que quieres editar
                                                 </option>
                                                 <option value="cabeceras" class="upper">Cabeceras</option>
@@ -120,7 +90,7 @@
                                                 <option value="imagen" class="upper">imagen</option>
                                                 <option value="titulo" class="upper">titulo</option>
                                                 <option value="subtitulo" class="upper">subtitulo</option>
-                                                <option value="fecha" class="upper">fecha</option>
+                                                <option value="fecha" class="upper">Conteo regresivo</option>
                                                 <option value="invitacion" class="upper">invitación</option>
                                                 <option value="entrada general" class="upper">entrada general
                                                 </option>
@@ -391,29 +361,43 @@
                                             </ng-container>
                                             <ng-container *ngIf="fec">
                                                 <div class="row text-center mt-3 animate__animated animate__fadeInDown">
-
-
-
-
-
-
-
-
-
                                                     <div class="  col-12    mt-3 ma">
+
+                                                        <div class="  col-12   mt-3 ma">
+                                                            <div class="form-group ">
+                                                                <label for="typeCount">Tipo de conteo regresivo
+                                                                </label>
+                                                                <select name="typeCount" id="typeCount"
+                                                                    formControlName="typeCount"
+                                                                    class="form-control upper {{typeCount}}" #typeCount>
+                                                                    <option value="">Seleccione el tipo de conteo
+                                                                        regresivo
+                                                                    </option>
+                                                                    <option value="1">En linea
+                                                                    </option>
+                                                                    <option value="2">Robotizado
+                                                                    </option>
+
+
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+
                                                         <div class="form-group ">
-                                                            <label for="topDate ">Altura fecha </label>
+                                                            <label for="topDate ">Altura conteo regresivo </label>
                                                             <a class="range" (click)="changeRange('topDate','-')"> <b
                                                                     class="range-icon">-</b> </a>
                                                             <input type="range" id="topDate" #topDate
-                                                                formControlName="topDate" min=" 0" max="200">
+                                                                formControlName="topDate" min=" 0" max="400">
                                                             <a class="range" (click)="changeRange('topDate','+')"> <b
                                                                     class="range-icon">+</b> </a>
                                                         </div>
                                                     </div>
-                                                    <div class="  col-12    mt-3 ma">
+                                                    <div class="  col-12    mt-3 ma" *ngIf="typeCount.value =='1'">
                                                         <div class="form-group ">
-                                                            <label for="inicialTSize ">Tamaño inicial de la fecha
+                                                            <label for="inicialTSize ">Tamaño inicial del conteo
+                                                                regresivo
                                                             </label>
                                                             <a class="range" (click)="changeRange('inicialTSize','-')">
                                                                 <b class="range-icon">-</b> </a>
@@ -424,9 +408,9 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="  col-12  mt-3 ma">
+                                                    <div class="  col-12  mt-3 ma" *ngIf="typeCount.value =='1'">
                                                         <div class="form-group ">
-                                                            <label for="finalTSize ">Tamaño final de fecha
+                                                            <label for="finalTSize ">Tamaño final del conteo regresivo
                                                             </label>
                                                             <a class="range" (click)="changeRange('finalTSize','-')"> <b
                                                                     class="range-icon">-</b> </a>
@@ -437,9 +421,10 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="  col-12   mt-3 ma">
+                                                    <div class="  col-12   mt-3 ma" *ngIf="typeCount.value =='1'">
                                                         <div class="form-group ">
-                                                            <label for="inicialTFont">Fuente inicial de la fecha
+                                                            <label for="inicialTFont">Fuente inicial del conteo
+                                                                regresivo
                                                             </label>
                                                             <select name="inicialTFont" id="inicialTFont"
                                                                 formControlName="inicialTFont"
@@ -471,9 +456,10 @@
 
 
 
-                                                    <div class="  col-12  mt-3 ma">
+                                                    <div class="  col-12  mt-3 ma" *ngIf="typeCount.value =='1'">
                                                         <div class="form-group ">
-                                                            <label for="finalTFont">Fuente final de la fecha </label>
+                                                            <label for="finalTFont">Fuente final del conteo regresivo
+                                                            </label>
                                                             <select name="finalTFont" id="finalTFont"
                                                                 formControlName="finalTFont"
                                                                 class="form-control upper {{finalTFont}}" #finalTFont>
@@ -500,8 +486,51 @@
                                                             </select>
                                                         </div>
                                                     </div>
+                                                    <div class="  col-12  mt-3 ma" *ngIf="typeCount.value =='2'">
+                                                        <div class="form-group ">
+                                                            <label for="finalTSize ">Tamaño de fuente del conteo
+                                                                regresivo
+                                                            </label>
+                                                            <a class="range" (click)="changeRange('finalTSize','-')"> <b
+                                                                    class="range-icon">-</b> </a>
+                                                            <input type="range" id="finalTSize" #finalTSize
+                                                                formControlName="finalTSize" min="10" max="50">
+                                                            <a class="range" (click)="changeRange('finalTSize','+')"> <b
+                                                                    class="range-icon">+</b> </a>
+                                                        </div>
+                                                    </div>
 
 
+                                                    <div class="col-12     mt-3 ma">
+                                                        <div class="form-group ">
+                                                            <label for="efectoCount ">Efecto de entrada de la
+                                                                invitación</label>
+                                                            <select name="efectoCount" id="efectoCount"
+                                                                formControlName="efectoCount"
+                                                                class="form-control upper {{efectoCount}}" #efectoCount>
+                                                                <option value="" selected>Seleccione el tipo de efecto
+                                                                </option>
+                                                                <option [class]="item.clave" [value]="item.clave"
+                                                                    class="name" *ngFor="let item of efectos">
+                                                                    {{item.nombre}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12   mt-3 ma">
+                                                        <div class="form-group ">
+                                                            <label for="efectoRepCount ">Repetir Efecto</label>
+                                                            <select name="efectoRepCount" id="efectoRepCount"
+                                                                formControlName="efectoRepCount"
+                                                                class="form-control upper {{efectoRepCount}}"
+                                                                #efectoRepCount>
+                                                                <option value="" selected>Seleccione el tipo de efecto
+                                                                </option>
+                                                                <option [class]="item.clave" [value]="item.clave"
+                                                                    class="name" *ngFor="let item of repEfec">
+                                                                    {{item.nombre}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
 
 
                                                 </div>
@@ -2100,7 +2129,7 @@
                                                 <option value="imagen" class="upper">Video o Imagen</option>
                                                 <!-- <option value="titulo" class="upper">titulo</option>
                                                 <option value="subtitulo" class="upper">subtitulo</option> -->
-                                                <option value="fecha" class="upper">fecha</option>
+                                                <option value="fecha" class="upper">Conteo regresivo</option>
                                                 <option value="invitacion" class="upper">invitación</option>
                                                 <option value="entrada general" class="upper">entrada general
                                                 </option>
@@ -2294,15 +2323,176 @@
 
                                             <ng-container *ngIf="fec">
                                                 <div class="row text-center mt-3 animate__animated animate__fadeInDown">
+                                                    <div class="  col-12    mt-3 ma">
+
+                                                        <div class="  col-12   mt-3 ma">
+                                                            <div class="form-group ">
+                                                                <label for="typeCount">Tipo de conteo regresivo
+                                                                </label>
+                                                                <select name="typeCount" id="typeCount"
+                                                                    formControlName="typeCount"
+                                                                    class="form-control upper {{typeCount}}" #typeCount>
+                                                                    <option value="">Seleccione el tipo de conteo
+                                                                        regresivo
+                                                                    </option>
+                                                                    <option value="1">En linea
+                                                                    </option>
+                                                                    <option value="2">Robotizado
+                                                                    </option>
+
+
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-12       mt-3 ma ">
+                                                            <label class="form-check-label" for="noBgColor">
+                                                                Color de fondo
+                                                            </label>
+                                                            <input class="form-check-input" type="checkbox"
+                                                                id="noBgColor" #noBgColor formControlName="noBgColor"
+                                                                (click)="noBgC(noBgColor.checked)">
+
+
+                                                        </div>
+
+                                                        <div class="  col-12    mt-3 ma" *ngIf="noBgColor.checked">
+                                                            <div class="form-group ">
+                                                                <label for="bgCount "> Color de fondo
+                                                                </label>
+                                                                <input type="color" class="form-control upper"
+                                                                    id="bgCount" formControlName="bgCount"
+                                                                    placeholder="Color de fondo">
+
+
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="form-group ">
+                                                            <label for="topDate ">Altura conteo regresivo </label>
+                                                            <a class="range" (click)="changeRange('topDate','-')"> <b
+                                                                    class="range-icon">-</b> </a>
+                                                            <input type="range" id="topDate" #topDate
+                                                                formControlName="topDate" min=" 0" max="400">
+                                                            <a class="range" (click)="changeRange('topDate','+')"> <b
+                                                                    class="range-icon">+</b> </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="  col-12    mt-3 ma" *ngIf="typeCount.value =='1'">
+                                                        <div class="form-group ">
+                                                            <label for="inicialTSize ">Tamaño inicial del conteo
+                                                                regresivo
+                                                            </label>
+                                                            <a class="range" (click)="changeRange('inicialTSize','-')">
+                                                                <b class="range-icon">-</b> </a>
+                                                            <input type="range" id="inicialTSize" #inicialTSize
+                                                                formControlName="inicialTSize" min="10" max="50">
+                                                            <a class="range" (click)="changeRange('inicialTSize','+')">
+                                                                <b class="range-icon">+</b> </a>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="  col-12  mt-3 ma" *ngIf="typeCount.value =='1'">
+                                                        <div class="form-group ">
+                                                            <label for="finalTSize ">Tamaño final del conteo regresivo
+                                                            </label>
+                                                            <a class="range" (click)="changeRange('finalTSize','-')"> <b
+                                                                    class="range-icon">-</b> </a>
+                                                            <input type="range" id="finalTSize" #finalTSize
+                                                                formControlName="finalTSize" min="10" max="50">
+                                                            <a class="range" (click)="changeRange('finalTSize','+')"> <b
+                                                                    class="range-icon">+</b> </a>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="  col-12   mt-3 ma" *ngIf="typeCount.value =='1'">
+                                                        <div class="form-group ">
+                                                            <label for="inicialTFont">Fuente inicial del conteo
+                                                                regresivo
+                                                            </label>
+                                                            <select name="inicialTFont" id="inicialTFont"
+                                                                formControlName="inicialTFont"
+                                                                class="form-control upper {{inicialTFont}}"
+                                                                #inicialTFont>
+                                                                <option value="">Seleccione el tipo de fuente
+                                                                </option>
+                                                                <option value="name" class="name" selected>Name
+                                                                </option>
+                                                                <option value="pacific" class="pacific">Pacific
+                                                                </option>
+                                                                <option value="dancing" class="dancing">Dancing
+                                                                </option>
+                                                                <option value="anton-sc-regular"
+                                                                    class="anton-sc-regular">
+                                                                    Anton-sc-regular</option>
+                                                                <option value="creepster-regular"
+                                                                    class="creepster-regular">
+                                                                    Creepster-regular</option>
+                                                                <option value="roboto-bold" class="roboto-bold">
+                                                                    Roboto-bold
+                                                                </option>
+                                                                <option value="roboto-black-italic"
+                                                                    class="roboto-black-italic">
+                                                                    Roboto-black-italic</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+
+
+                                                    <div class="  col-12  mt-3 ma" *ngIf="typeCount.value =='1'">
+                                                        <div class="form-group ">
+                                                            <label for="finalTFont">Fuente final del conteo regresivo
+                                                            </label>
+                                                            <select name="finalTFont" id="finalTFont"
+                                                                formControlName="finalTFont"
+                                                                class="form-control upper {{finalTFont}}" #finalTFont>
+                                                                <option value="">Seleccione el tipo de fuente
+                                                                </option>
+                                                                <option value="name" class="name" selected>Name
+                                                                </option>
+                                                                <option value="pacific" class="pacific">Pacific
+                                                                </option>
+                                                                <option value="dancing" class="dancing">Dancing
+                                                                </option>
+                                                                <option value="anton-sc-regular"
+                                                                    class="anton-sc-regular">
+                                                                    Anton-sc-regular</option>
+                                                                <option value="creepster-regular"
+                                                                    class="creepster-regular">
+                                                                    Creepster-regular</option>
+                                                                <option value="roboto-bold" class="roboto-bold">
+                                                                    Roboto-bold
+                                                                </option>
+                                                                <option value="roboto-black-italic"
+                                                                    class="roboto-black-italic">
+                                                                    Roboto-black-italic</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="  col-12  mt-3 ma" *ngIf="typeCount.value =='2'">
+                                                        <div class="form-group ">
+                                                            <label for="finalTSize ">Tamaño de fuente del conteo
+                                                                regresivo
+                                                            </label>
+                                                            <a class="range" (click)="changeRange('finalTSize','-')"> <b
+                                                                    class="range-icon">-</b> </a>
+                                                            <input type="range" id="finalTSize" #finalTSize
+                                                                formControlName="finalTSize" min="10" max="50">
+                                                            <a class="range" (click)="changeRange('finalTSize','+')"> <b
+                                                                    class="range-icon">+</b> </a>
+                                                        </div>
+                                                    </div>
 
 
                                                     <div class="col-12     mt-3 ma">
                                                         <div class="form-group ">
-                                                            <label for="efectoFecha">Efecto de entrada de la
-                                                                fecha</label>
-                                                            <select name="efectoFecha" id="efectoFecha"
-                                                                formControlName="efectoFecha"
-                                                                class="form-control upper {{efectoFecha}}" #efectoFecha>
+                                                            <label for="efectoCount ">Efecto de entrada de la
+                                                                invitación</label>
+                                                            <select name="efectoCount" id="efectoCount"
+                                                                formControlName="efectoCount"
+                                                                class="form-control upper {{efectoCount}}" #efectoCount>
                                                                 <option value="" selected>Seleccione el tipo de efecto
                                                                 </option>
                                                                 <option [class]="item.clave" [value]="item.clave"
@@ -2313,11 +2503,11 @@
                                                     </div>
                                                     <div class="col-12   mt-3 ma">
                                                         <div class="form-group ">
-                                                            <label for="repfectoFecha ">Repetir Efecto</label>
-                                                            <select name="repfectoFecha" id="repfectoFecha"
-                                                                formControlName="repfectoFecha"
-                                                                class="form-control upper {{repfectoFecha}}"
-                                                                #repfectoFecha>
+                                                            <label for="efectoRepCount ">Repetir Efecto</label>
+                                                            <select name="efectoRepCount" id="efectoRepCount"
+                                                                formControlName="efectoRepCount"
+                                                                class="form-control upper {{efectoRepCount}}"
+                                                                #efectoRepCount>
                                                                 <option value="" selected>Seleccione el tipo de efecto
                                                                 </option>
                                                                 <option [class]="item.clave" [value]="item.clave"
@@ -2327,82 +2517,17 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-12     mt-3">
-                                                        <div class="form-group ">
-                                                            <label for="inicialTFont">Fuente inicial de la fecha
-                                                            </label>
-                                                            <select name="inicialTFont" id="inicialTFont"
-                                                                formControlName="inicialTFont"
-                                                                class="form-control upper {{inicialTFont.value}}"
-                                                                #inicialTFont>
-                                                                <option value="">Seleccione el tipo de fuente</option>
-                                                                <option value="name" class="name">Name</option>
-                                                                <option value="pacific" class="pacific">Pacific</option>
-                                                                <option value="dancing" class="dancing">Dancing</option>
-                                                                <option value="anton-sc-regular"
-                                                                    class="anton-sc-regular">
-                                                                    Anton-sc-regular</option>
-                                                                <option value="creepster-regular"
-                                                                    class="creepster-regular">
-                                                                    Creepster-regular</option>
-                                                                <option value="roboto-bold" class="roboto-bold">
-                                                                    Roboto-bold</option>
-                                                                <option value="roboto-black-italic"
-                                                                    class="roboto-black-italic">
-                                                                    Roboto-black-italic</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12     mt-3">
-                                                        <div class="form-group ">
-                                                            <label for="inicialTSize ">Tamaño inicial de la fecha
-                                                            </label>
-                                                            <input type="range" id="inicialTSize" #inicialTSize
-                                                                formControlName="inicialTSize" min="10" max="50">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12     mt-3">
-                                                        <div class="form-group ">
-                                                            <label for="finalTFont">Fuente final de la fecha </label>
-                                                            <select name="finalTFont" id="finalTFont"
-                                                                formControlName="finalTFont"
-                                                                class="form-control upper {{finalTFont.value}}"
-                                                                #finalTFont>
-                                                                <option value="">Seleccione el tipo de fuente</option>
-                                                                <option value="name" class="name" selected>Name</option>
-                                                                <option value="pacific" class="pacific">Pacific</option>
-                                                                <option value="dancing" class="dancing">Dancing</option>
-                                                                <option value="anton-sc-regular"
-                                                                    class="anton-sc-regular">
-                                                                    Anton-sc-regular</option>
-                                                                <option value="creepster-regular"
-                                                                    class="creepster-regular">
-                                                                    Creepster-regular</option>
-                                                                <option value="roboto-bold" class="roboto-bold">
-                                                                    Roboto-bold</option>
-                                                                <option value="roboto-black-italic"
-                                                                    class="roboto-black-italic">
-                                                                    Roboto-black-italic</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12     mt-3">
-                                                        <div class="form-group ">
-                                                            <label for="finalTSize ">Tamaño final de fecha
-                                                            </label>
-                                                            <input type="range" id="finalTSize" #finalTSize
-                                                                formControlName="finalTSize" min="10" max="50">
-                                                        </div>
-                                                    </div>
+
                                                 </div>
+
                                             </ng-container>
                                             <ng-container *ngIf="inv">
                                                 <div
                                                     class="row text-center mt-3 ma animate__animated animate__fadeInDown">
                                                     <div class="col-12     mt-3 ma">
                                                         <div class="form-group ">
-                                                            <label for="efectoInvitacion">Efecto de entrada de la
-                                                                fecha</label>
+                                                            <label for="efectoInvitacion">Efecto de entradal
+                                                                conteo</label>
                                                             <select name="efectoInvitacion" id="efectoInvitacion"
                                                                 formControlName="efectoInvitacion"
                                                                 class="form-control upper {{efectoInvitacion}}"

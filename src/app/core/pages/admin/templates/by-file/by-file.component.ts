@@ -79,6 +79,7 @@ export class ByFileComponent {
   isMusic: boolean
   musicaInvitacion = ''
   musicRepit = ''
+  mesaOk = true
   constructor(
     private functionsService: FunctionsService,
     private fiestasService: FiestasService,
@@ -119,13 +120,9 @@ export class ByFileComponent {
       // Se carga la fiesta por ID  
       this.fiestasService.cargarFiestaById(this.fiestaId).subscribe((resp: any) => {
         this.fiesta = resp.fiesta
-
-
         this.checking = this.fiesta.checking
-
         this.invitacionsService.cargarInvitacionByFiesta(this.fiestaId).subscribe(async (resp: any) => {
-          this.invitacion = resp.invitacion.data
-
+          this.invitacion = { ...resp.invitacion.data, byFile: true }
           let t: string = `My Ticket Party | ${this.fiesta.nombre}  -  ${this.functionsService.numberToDate(Number(this.fiesta.fecha))} `;
           this.title.setTitle(t.toUpperCase());
           let data = {
@@ -140,7 +137,7 @@ export class ByFileComponent {
 
           }
           this.metaService.generateTags(data)
-
+          this.invitacion.byFile = true
 
           this.restParty()
 
@@ -175,6 +172,7 @@ export class ByFileComponent {
           this.isMusic = this.invitacion.isMusic
           this.musicaInvitacion = this.invitacion.musicaInvitacion
           this.musicRepit = this.invitacion.musicRepit
+
         }, (error) => {
           console.error('Error', error)
           this.functionsService.alertError(error, 'Fiestas')
@@ -188,8 +186,6 @@ export class ByFileComponent {
     } else {
       this.restParty()
       this.state = this.route.snapshot.queryParams
-
-
 
       for (let key in this.state) {
         ++this.count;
@@ -279,12 +275,12 @@ export class ByFileComponent {
           ],
           colorQr: '#ffffff',
           colorBGQr: '#f82525',
+          mesaOk: true
         }
         this.itinerarios = this.invitacion.itinerarios
         this.notas = this.invitacion.notas
       } else {
         this.restParty()
-
         this.vistaTemp = false
         this.itinerarios = JSON.parse(this.state.itinerarios)
         this.notas = JSON.parse(this.state.notas)
@@ -303,6 +299,7 @@ export class ByFileComponent {
         this.hospedajeCheck = (this.state.hospedajeCheck == 'true') ? true : false
         this.invitacion = this.state
 
+
         this.codigoVestimentaCheck = (this.state.codigoVestimentaCheck == 'true') ? true : false
         this.chambelanesCheck = (this.state.chambelanesCheck == 'true') ? true : false
         this.padresCheck = (this.state.padresCheck == 'true') ? true : false
@@ -320,9 +317,7 @@ export class ByFileComponent {
         this.isMusic = (this.state.isMusic == 'true') ? true : false
         this.musicaInvitacion = this.state.musicaInvitacion
         this.musicRepit = this.state.musicRepit
-
-
-
+        this.mesaOk = this.state.mesaOk
         setTimeout(() => {
 
           let t: string = `My Ticket Party | ${this.state.nombreFiesta}  -  ${this.functionsService.numberToDate(Number(this.state.fiestaDate))}  `;
@@ -343,7 +338,10 @@ export class ByFileComponent {
         }, 500);
 
       }
+
     }
+
+
   }
   ngOnInit() {
 

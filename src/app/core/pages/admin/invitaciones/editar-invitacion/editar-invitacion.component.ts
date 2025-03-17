@@ -148,7 +148,12 @@ export class EditarInvitacionComponent {
       bxMensajeImg: 50,
       byMensajeImg: 0,
       topTitle: 40,
+      typeCount: '',
+      noBgColor: false,
+      bgCount: '',
       topDate: 50,
+      efectoCount: '',
+      efectoRepCount: '',
       colorQr: '#c0354e',
       colorBgQr: '#ffffff',
     })
@@ -183,7 +188,12 @@ export class EditarInvitacionComponent {
       tipoSize: [90],
       tipoEfecto: [''],
       tipoEfectoRep: [1],
+      typeCount: '',
+      noBgColor: false,
+      bgCount: '',
       topDate: [50],
+      efectoCount: [''],
+      efectoRepCount: [''],
       checking: [this.fiesta.checking],
       fiestaDate: [Number(this.fiesta.fecha)],
       nombreFiesta: [this.fiesta.nombre],
@@ -385,6 +395,12 @@ export class EditarInvitacionComponent {
       tipoEfecto: [invitacion.data.tipoEfecto],
       tipoEfectoRep: [invitacion.data.tipoEfectoRep],
       topDate: [invitacion.data.topDate],
+
+      efectoCount: [invitacion.data.efectoCount],
+      efectoRepCount: [invitacion.data.efectoRepCount],
+      typeCount: [invitacion.data.typeCount],
+      bgCount: [invitacion.data.bgCount],
+      noBgColor: [invitacion.data.noBgColor],
       fiestaDate: [invitacion.fiesta.fecha],
       nombreFiesta: [invitacion.fiesta.nombre],
       nombreSize: [invitacion.data.nombreSize],
@@ -589,6 +605,7 @@ export class EditarInvitacionComponent {
     let res = {
       type: 'seccionInicial',
       size: 'sm',
+      byFile: (this.fiesta.invitacion == 'byFile') ? true : false,
       ...this.form.value
     }
 
@@ -647,6 +664,12 @@ export class EditarInvitacionComponent {
       tipoEfecto: [temp.tipoEfecto],
       tipoEfectoRep: [temp.tipoEfectoRep],
       topDate: [temp.topDate],
+
+      efectoCount: [temp.efectoCount],
+      efectoRepCount: [temp.efectoRepCount],
+      typeCount: [temp.typeCount],
+      bgCount: [temp.bgCount],
+      noBgColor: [temp.noBgColor],
       fiestaDate: [temp.fiestaDate],
       nombreFiesta: [temp.nombreFiesta],
       nombreSize: [temp.nombreSize],
@@ -769,18 +792,16 @@ export class EditarInvitacionComponent {
     })
   }
   async VerTemplate(form) {
-
-
+    // Cuando no existe registro invitacion  se tiene que crear la invitacion
     if (!this.invitacion) {
       this.loading = true
       let data = {
         ...form.value,
+        mesaOk: this.fiesta.mesaOk,
         fiestaId: this.fiesta.uid,
       }
-
       let invitacion = {
         fiesta: this.fiesta.uid,
-
         data: data,
         tipoTemplate: this.fiesta.invitacion,
         templateActivated: true,
@@ -790,6 +811,7 @@ export class EditarInvitacionComponent {
         dateCreated: this.today
       }
       this.invitacion.data.donde3Img = this.fiesta.salon.img
+      this.invitacion.data.byFile = (this.fiesta.invitacion == 'byFile') ? true : false
       this.crearInvitacion((invitacion)).subscribe((resp: any) => {
         this.invitacion = resp.invitacion
         this.invitacion.data.fiestaId = this.fiesta.uid
@@ -800,10 +822,6 @@ export class EditarInvitacionComponent {
         let padrinos = JSON.stringify(form.value.padrinos)
         let musica = JSON.stringify(form.value.musica)
         let menu = JSON.stringify(form.value.menu)
-
-
-
-
         this.invitacion.data = {
           ...  this.invitacion.data,
           itinerarios: iti,
@@ -820,10 +838,12 @@ export class EditarInvitacionComponent {
       this.form.value.donde3Img = this.fiesta.salon.img
       this.invitacion.data = {
         ...this.invitacion.data,
+        byFile: (this.fiesta.invitacion == 'byFile') ? true : false,
         ...form.value
       }
       this.invitacion = {
         ...this.invitacion,
+        mesaOk: this.fiesta.mesaOk,
         fiestaId: this.fiesta.uid,
         usuarioCreated: this.usuarioFiesta,
         lastEdited: this.today
@@ -869,6 +889,7 @@ export class EditarInvitacionComponent {
     this.invitacion.data.croquisOk = this.fiesta.croquisOk
     this.invitacion.data.croquis = this.fiesta.croquis
     this.invitacion.data.fiestaId = this.fiesta.uid
+    this.invitacion.data.byFile = (this.fiesta.invitacion == 'byFile') ? true : false
     if (this.invitacion.data.generalCheck) {
       this.invitacion.data.cantidad = 0
     } else {
@@ -961,7 +982,7 @@ export class EditarInvitacionComponent {
 
 
       let dataT = await this.dateToNumber(this.form.value)
-
+      dataT.mesaOK = this.fiesta.mesaOk
 
       var invitado = {
         tipoTemplate: this.fiesta.invitacion,
@@ -1082,6 +1103,11 @@ export class EditarInvitacionComponent {
             cabeceraFont: 'pacifico',
             titleSize: 20,
             topDate: 50,
+            efectoCount: '',
+            efectoRepCount: '',
+            typeCount: '',
+            bgCount: '',
+            noBgColor: '',
             checking: this.fiesta.checking,
             fiestaDate: Number(this.fiesta.fecha),
             nombreFiesta: this.fiesta.nombre,
@@ -1241,6 +1267,9 @@ export class EditarInvitacionComponent {
       } else {
         this.invitacion.data = await this.numberToData(this.invitacion.data)
         this.usuarioCreated = this.usuarioFiesta
+
+
+
         this.setFormWithData(this.invitacion)
         this.getExamples()
         setTimeout(() => {
@@ -2039,6 +2068,15 @@ export class EditarInvitacionComponent {
   getIdMap(event) {
 
 
+
+  }
+  noBgC(bgOk) {
+
+    if (!bgOk) {
+      this.form.patchValue({
+        bgCount: ''
+      })
+    }
 
   }
 }

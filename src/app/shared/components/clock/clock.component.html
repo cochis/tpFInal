@@ -1,0 +1,49 @@
+<ng-container *ngIf="data">
+
+    <div class="animate__animated  {{data.efectoCount}} {{data.efectoRepCount}}"
+        [style]="{'margin-top':data.topDate+'px','background-color':data.bgCount?data.bgCount:''}"
+        *ngIf="date>functionsService.getToday()">
+
+        <div class="fecha {{data.nombreFont}} tc text-center ma" *ngIf="data.typeCount=='' || data.typeCount =='1'">
+
+            <table class="tc ma" *ngIf="date>functionsService.getToday()">
+                <tr [style]="{'color':(!data.byFile)?data.cWhite:data.byFileColorFr}">
+                    <th class=" {{data.finalTFont}}" [style]="{'font-size':data.finalTSize+'px'}"><b
+                            [style]="{'color': (!data.byFile)?data.cPrincipal:data.byFileColorTx, 'font-size':data.inicialTSize+'px'}"
+                            class=" {{data.inicialTFont}}">D</b>ias</th>
+                    <th class=" {{data.finalTFont}}" [style]="{'font-size':data.finalTSize+'px'}"><b
+                            [style]="{'color': (!data.byFile)?data.cPrincipal:data.byFileColorTx, 'font-size':data.inicialTSize+'px'}"
+                            class=" {{data.inicialTFont}}">H</b>oras</th>
+                    <th class=" {{data.finalTFont}}" [style]="{'font-size':data.finalTSize+'px'}"><b
+                            [style]="{'color': (!data.byFile)?data.cPrincipal:data.byFileColorTx, 'font-size':data.inicialTSize+'px'}"
+                            class=" {{data.inicialTFont}}">M</b>inutos</th>
+                    <th class=" {{data.finalTFont}}" [style]="{'font-size':data.finalTSize+'px'}"><b
+                            [style]="{'color': (!data.byFile)?data.cPrincipal:data.byFileColorTx, 'font-size':data.inicialTSize+'px'}"
+                            class=" {{data.inicialTFont}}">S</b>egundos
+                    </th>
+                </tr>
+                <tr class="  ts" [style]="{'font-size': '45px','color':data.cWhite}">
+                    <td>{{dias}}</td>
+                    <td>{{horas}}</td>
+                    <td>{{minutos}}</td>
+                    <td class="animated infinite pulse">{{segundos}}</td>
+
+                </tr>
+
+            </table>
+            <h2 class=" {{data.nombreFont}} tc" *ngIf="date<functionsService.getToday()"><b
+                    [style]="{'color': data.byFileColorTx}">E</b>mpezamos</h2>
+        </div>
+        <div *ngIf=" data.typeCount =='2'">
+            <div style="max-width: 380px; margin:auto ; text-align: center !important;">
+
+                <p class="countdown ma" [style]="{'margin-top':data.topDate+'%','font-size':data.finalTSize+'px'}">
+                    <span id="dayElement">{{dias}}</span>
+                    <span id="hourElement">{{horas}}</span>
+                    <span id="minElement">{{minutos}}</span>
+                    <span id="secElement">{{segundos}}</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</ng-container>

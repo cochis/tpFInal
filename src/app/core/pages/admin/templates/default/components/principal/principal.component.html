@@ -19,7 +19,10 @@
             </div>
 
         </div>
-        <div class="fecha {{data.nombreFont}} tc  " [style]="{'top':data.topDate+'%'}">
+
+
+        <app-clock [data]="data"></app-clock>
+        <!--  <div class="fecha {{data.nombreFont}} tc  " [style]="{'top':data.topDate+'%'}">
             <table class="tc" *ngIf="date>functionsService.getToday()">
                 <tr [style]="{'color':data.cWhite}">
                     <th class=" {{data.finalTFont}}" [style]="{'font-size':data.finalTSize+'px'}"><b
@@ -48,7 +51,7 @@
             <h2 class=" {{data.nombreFont}} tc" *ngIf="date<functionsService.getToday()"><b
                     [style]="{'color': data.byFileColorTx}">E</b>mpezamos</h2>
         </div>
-
+ -->
 
     </div>
 

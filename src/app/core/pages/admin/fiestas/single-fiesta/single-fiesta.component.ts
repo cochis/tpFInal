@@ -101,6 +101,7 @@ export class SingleFiestaComponent implements OnInit, OnDestroy {
         this.boletos = this.functionsService.getActivos(res.boleto)
 
 
+
       })
     },
       (error: any) => {
@@ -184,13 +185,15 @@ export class SingleFiestaComponent implements OnInit, OnDestroy {
     if ((this.gettotal(this.boletos, 'ocupados') + boleto.requeridos) > this.fiesta.cantidad) {
       this.functionsService.alert('Boletos', 'La cantidad de boletos en el ajuste sobrepasa su cupo', 'error')
     } else {
+      let blt = {
+        ...boleto,
+        cantidadInvitados: boleto.requeridos,
+        requeridos: 0
+      }
 
-      boleto.cantidadInvitados = boleto.requeridos
-      boleto.vista = true
-      boleto.invitacionEnviada = true
-      boleto.requeridos = 0
-      this.boletosService.actualizarBoleto(boleto).subscribe(res => {
+      this.boletosService.actualizarBoleto(blt).subscribe(res => {
         this.functionsService.alertUpdate('Boleto ajustado')
+        this.getId(this.id)
       })
     }
 

@@ -197,6 +197,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
           this.musicaCheck = this.invitacion.musicaCheck
           this.musicaInvitacion = this.invitacion.musicaInvitacion
 
+
           this.dataPrincipal = {
             vistaTemp: false,
             type: 'seccionInicial',
@@ -225,6 +226,9 @@ export class DefaultComponent implements OnInit, AfterViewInit {
             tipoEfecto: this.invitacion.tipoEfecto,
             tipoEfectoRep: this.invitacion.tipoEfectoRep,
             topDate: this.invitacion.topDate,
+
+            efectoCount: this.invitacion.efectoCount,
+            efectoRepCount: this.invitacion.efectoRepCount,
             mensajeFont: this.invitacion.mensajeFont,
             inicialTFont: this.invitacion.inicialTFont,
             finalTFont: this.invitacion.finalTFont,
@@ -236,9 +240,9 @@ export class DefaultComponent implements OnInit, AfterViewInit {
             finalTSize: this.invitacion.finalTSize,
             cabeceraFont: this.invitacion.cabeceraFont,
             cabeceraSize: this.invitacion.cabeceraSize,
-            date: this.date
+            date: this.date,
+            typeCount: this.invitacion.typeCount
           }
-
 
 
           this.dataInvitacionCard = {
@@ -317,6 +321,9 @@ export class DefaultComponent implements OnInit, AfterViewInit {
           tipoFiesta: 'Mis XV',
           tipoSize: 85,
           topDate: 50,
+
+          efectoCount: '',
+          efectoRepCount: '',
           nombreFiesta: 'Mariana',
           nombreSize: 87,
           textInvitacionValida: '¡Los esperamos!',
@@ -503,6 +510,8 @@ export class DefaultComponent implements OnInit, AfterViewInit {
           tipoEfecto: this.state.tipoEfecto,
           tipoEfectoRep: this.state.tipoEfectoRep,
           topDate: this.state.topDate,
+          efectoCount: this.state.efectoCount,
+          efectoRepCount: this.state.efectoRepCount,
           mensajeFont: this.state.mensajeFont,
           inicialTFont: this.state.inicialTFont,
           finalTFont: this.state.finalTFont,
@@ -514,6 +523,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
           finalTSize: this.state.finalTSize,
           cabeceraFont: this.state.cabeceraFont,
           cabeceraSize: this.state.cabeceraSize,
+          typeCount: this.state.typeCount
         }
 
 
