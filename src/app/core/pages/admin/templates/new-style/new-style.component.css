@@ -1,0 +1,24 @@
+.picturePrincipal {
+    border-radius: 100%;
+    background-color: rgba(255, 255, 255, .6);
+    position: absolute;
+    width: 242px;
+    top: 35%;
+    right: 0;
+
+    left: 0;
+    margin: 0 auto;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    -ms-border-radius: 100%;
+    -o-border-radius: 100%;
+}
+
+.divisor {
+    background-color: #f078c4 !important;
+    width: 50%;
+    height: 3px;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

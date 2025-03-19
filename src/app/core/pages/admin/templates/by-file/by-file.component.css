@@ -315,6 +315,10 @@ img {
 
 }
 
+tr {
+    line-height: 25px !important;
+}
+
 span {
     transition: .5s;
 }

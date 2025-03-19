@@ -171,6 +171,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
           this.invitacion.mesa = this.boleto.mesa
           this.date = !this.fiesta.example ? this.fiesta.fecha : this.today + 30000
 
+
           this.invitacion.cantidad = this.boleto.cantidadInvitados
           this.invitacion.invitado = this.boleto.nombreGrupo
           this.donde1Check = this.invitacion.donde1Check
@@ -240,8 +241,9 @@ export class DefaultComponent implements OnInit, AfterViewInit {
             finalTSize: this.invitacion.finalTSize,
             cabeceraFont: this.invitacion.cabeceraFont,
             cabeceraSize: this.invitacion.cabeceraSize,
-            date: this.date,
-            typeCount: this.invitacion.typeCount
+            date: this.fiesta.fecha,
+            typeCount: this.invitacion.typeCount,
+
           }
 
 
@@ -482,6 +484,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
 
 
 
+
         this.dataPrincipal = {
           vistaTemp: true,
           type: 'seccionInicial',
@@ -523,8 +526,12 @@ export class DefaultComponent implements OnInit, AfterViewInit {
           finalTSize: this.state.finalTSize,
           cabeceraFont: this.state.cabeceraFont,
           cabeceraSize: this.state.cabeceraSize,
-          typeCount: this.state.typeCount
+          typeCount: this.state.typeCount,
+          date: JSON.parse(this.state.fiesta).fecha,
+          example: JSON.parse(this.state.fiesta).example
         }
+
+
 
 
         this.dataInvitacionCard = {

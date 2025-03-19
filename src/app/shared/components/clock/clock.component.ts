@@ -23,10 +23,19 @@ export class ClockComponent implements AfterViewInit {
     public functionsService: FunctionsService
   ) {
 
-    this.restParty()
+
   }
   ngAfterViewInit() {
 
+
+    if (!this.data.example) {
+
+      this.date = this.data.fiestaDate ? this.data.fiestaDate : this.data.date
+    } else {
+      this.date = this.today + 1234523
+    }
+
+    this.restParty()
   }
 
   restParty() {

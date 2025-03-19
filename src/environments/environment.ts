@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   user_ID: '64ff4f79da409a7d91056a5b',
   secret: '1f2d1e2e67df',
-  version: "1.1.1.14",
+  version: "1.1.1.15",
   publicKey: "BJqZ8KY_kguwLf27SsteILLRHlWY2pJOvrKlyZNeFlEg4O15ut0t7oYMgXHcLPSh2WYCRPwTS3WEPnhXCMZO4Wg",
   privateKey: "v04F9j6-aAZRvYl25BtZu1cezaWT-m4P0sHtE0JbE7g",
   stripeKeyD: 'pk_test_51PipskAbE4XYrXNxNi1oiwylWr7B9mNMfUfQ070Cy09dDPj5HBFYObSajMGjNzlAynX23dT8thcx8sdJxpnP7Vov00wzIocDLR',
@@ -232,91 +232,104 @@ export const environment = {
   apiKey_mapBox: 'pk.eyJ1IjoiY29jaGlzIiwiYSI6ImNsb2c0M3NxNDByazEya3Jydmc2amtrNTcifQ.j0MCmbfTjEUQMtby7r42Cw',
   cPrimary: '#13547a',
   cSecond: '#80d0c7',
+
+
+  fonts: [
+    { name: 'Fuente 1', value: 'name' },
+    { name: 'Fuente 2', value: 'pacific' },
+    { name: 'Fuente 3', value: 'dancing' },
+    { name: 'Fuente 4', value: 'anton-sc-regular' },
+    { name: 'Fuente 5', value: 'creepster-regular' },
+    { name: 'Fuente 6', value: 'roboto-bold' },
+    { name: 'Fuente 7', value: 'roboto-black-italic' },
+    { name: 'Fuente 8', value: 'font1' },
+  ],
+
   //Variables DEV
 
-  /* base_url: "http://localhost:3008/api",
-  text_url: "http://localhost:4200/",
-  cProvedores: [
-    {
-      value: "679a73e437dec3f0672e2ec1",
-      clave: "cPrincipalWP"
-    },
-    {
-      value: "679a744737dec3f0672e2ece",
-      clave: "cSecondWP"
-    },
-  ],
-  tiProducto: '679ba1e689b67b7d7fb5a902',
-  tiServicio: '679ba20189b67b7d7fb5a909',
-  noAplica: 'NOATPC',
-  contactosProveedor: [
-    {
-      value: "679a6850217a76f8b6b650d8",
-      clave: "TELÉFONO"
-    }
-    ,
-    {
-      value: "679a6a7b9fb2c32e86079b8d",
-      clave: "MAIL"
-    },
-
-    {
-      value: "679a6b3a9fb2c32e86079ba3",
-      clave: "DIRECCIÓN"
-    },
-    {
-      value: "679a6d03d7603c6c58018354",
-      clave: "PAGINA WEB"
-    },
-    {
-      value: "67b95a049b1aac6f7ff9c0c9",
-      clave: "WHATSAPP"
-    },
-  ] */
+  /*  base_url: "http://localhost:3008/api",
+   text_url: "http://localhost:4200/",
+   cProvedores: [
+     {
+       value: "679a73e437dec3f0672e2ec1",
+       clave: "cPrincipalWP"
+     },
+     {
+       value: "679a744737dec3f0672e2ece",
+       clave: "cSecondWP"
+     },
+   ],
+   tiProducto: '679ba1e689b67b7d7fb5a902',
+   tiServicio: '679ba20189b67b7d7fb5a909',
+   noAplica: 'NOATPC',
+   contactosProveedor: [
+     {
+       value: "679a6850217a76f8b6b650d8",
+       clave: "TELÉFONO"
+     }
+     ,
+     {
+       value: "679a6a7b9fb2c32e86079b8d",
+       clave: "MAIL"
+     },
+ 
+     {
+       value: "679a6b3a9fb2c32e86079ba3",
+       clave: "DIRECCIÓN"
+     },
+     {
+       value: "679a6d03d7603c6c58018354",
+       clave: "PAGINA WEB"
+     },
+     {
+       value: "67b95a049b1aac6f7ff9c0c9",
+       clave: "WHATSAPP"
+     },
+   ] */
 
 
 
   //Variables QA
 
-  base_url: "https://tickets.cochisweb.com/api",
-  text_url: "https://tickets.cochisweb.com/",
-  cProvedores: [
-    {
-      value: "67bb92939279f84e078263a9",
-      clave: "cPrincipalWP"
-    },
-    {
-      value: "67bb92ad9279f84e078263b0",
-      clave: "cSecondWP"
-    },
-  ],
-  tiProducto: '67bb934a9279f84e078263ec',
-  tiServicio: '67bb93559279f84e078263f3',
-  noAplica: 'NOATPC',
-  contactosProveedor: [
-    {
-      value: "67bb93149279f84e078263dc",
-      clave: "TELÉFONO"
-    }
-    ,
-    {
-      value: "67bb92e89279f84e078263ce",
-      clave: "MAIL"
-    },
-
-    {
-      value: "67bb92d09279f84e078263c7",
-      clave: "DIRECCIÓN"
-    },
-    {
-      value: "67bb92fc9279f84e078263d5",
-      clave: "PAGINA WEB"
-    },
-    {
-      value: "67bb93279279f84e078263e3",
-      clave: "WHATSAPP"
-    },
-  ]
+  /*  base_url: "https://tickets.cochisweb.com/api",
+   text_url: "https://tickets.cochisweb.com/",
+   cProvedores: [
+     {
+       value: "67bb92939279f84e078263a9",
+       clave: "cPrincipalWP"
+     },
+     {
+       value: "67bb92ad9279f84e078263b0",
+       clave: "cSecondWP"
+     },
+   ],
+   tiProducto: '67bb934a9279f84e078263ec',
+   tiServicio: '67bb93559279f84e078263f3',
+   noAplica: 'NOATPC',
+   contactosProveedor: [
+     {
+       value: "67bb93149279f84e078263dc",
+       clave: "TELÉFONO"
+     }
+     ,
+     {
+       value: "67bb92e89279f84e078263ce",
+       clave: "MAIL"
+     },
+ 
+     {
+       value: "67bb92d09279f84e078263c7",
+       clave: "DIRECCIÓN"
+     },
+     {
+       value: "67bb92fc9279f84e078263d5",
+       clave: "PAGINA WEB"
+     },
+     {
+       value: "67bb93279279f84e078263e3",
+       clave: "WHATSAPP"
+     },
+   ] */
 
 
 
@@ -324,7 +337,7 @@ export const environment = {
 
   //Variables PROD
 
-  /* base_url: "https://www.myticketparty.com/api",
+  base_url: "https://www.myticketparty.com/api",
   text_url: "https://www.myticketparty.com/",
   cProvedores: [
     {
@@ -362,6 +375,6 @@ export const environment = {
       value: "67bb9a22c539cb99eb40fe5c",
       clave: "WHATSAPP"
     },
-  ] */
+  ]
 
 }; 

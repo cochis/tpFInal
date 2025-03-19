@@ -130,6 +130,7 @@ import { VistaRedesComponent } from './pages/admin/redes/vista-redes/vista-redes
 import { EditarEmailTemplateComponent } from './pages/admin/email-templates/editar-email-template/editar-email-template.component';
 import { CrearEmailTemplateComponent } from './pages/admin/email-templates/crear-email-template/crear-email-template.component';
 import { VistaEmailTemplatesComponent } from './pages/admin/email-templates/vista-email-templates/vista-email-templates.component';
+import { NewStyleComponent } from './pages/admin/templates/new-style/new-style.component';
 const routes: Routes = [
   {
     path: 'core',
@@ -839,6 +840,12 @@ const routes: Routes = [
         component: EditarCompraComponent,
         data: { titulo: 'Editar compra' },
         canActivate: [authGuard]
+
+      },
+      {
+        path: 'templates/desing',
+        component: NewStyleComponent,
+        data: { titulo: 'Desing' }
 
       },
       {

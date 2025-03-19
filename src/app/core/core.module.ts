@@ -152,6 +152,9 @@ import { VistaRedesComponent } from './pages/admin/redes/vista-redes/vista-redes
 import { VistaEmailTemplatesComponent } from './pages/admin/email-templates/vista-email-templates/vista-email-templates.component';
 import { CrearEmailTemplateComponent } from './pages/admin/email-templates/crear-email-template/crear-email-template.component';
 import { EditarEmailTemplateComponent } from './pages/admin/email-templates/editar-email-template/editar-email-template.component';
+import { NewStyleComponent } from './pages/admin/templates/new-style/new-style.component';
+import { PresentacionComponent } from './pages/admin/templates/new-style/components/presentacion/presentacion.component';
+import { PrincipalTemplateDesingComponent } from './pages/admin/templates/new-style/components/principal-template-desing/principal-template-desing.component';
 
 
 
@@ -305,7 +308,10 @@ import { EditarEmailTemplateComponent } from './pages/admin/email-templates/edit
     VistaRedesComponent,
     VistaEmailTemplatesComponent,
     CrearEmailTemplateComponent,
-    EditarEmailTemplateComponent
+    EditarEmailTemplateComponent,
+    NewStyleComponent,
+    PresentacionComponent,
+    PrincipalTemplateDesingComponent
 
   ],
   imports: [

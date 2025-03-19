@@ -273,8 +273,8 @@
 
                 <h1 class=" {{invitacion.cabeceraFont}}   "
                     [style]="{'padding-top':25+'px','color':invitacion.byFileColorTx,'font-size':invitacion.cabeceraSize+'px'}">
-                    Donde y
-                    cuando
+                    Dónde y
+                    cuándo
                 </h1>
                 <div class="row">
 
@@ -629,13 +629,14 @@
             </div>
             <div class="  mt-3 "
                 *ngIf="(typeOf(invitacion.itinerarioCheck)=='boolean')? invitacion.itinerarioCheck!==false:invitacion.itinerarioCheck!=='false'"
-                [style]="{'width':100+'%','text-align':'center','margin':'auto','background-color':invitacion.byFileColorFr,'padding-bottom':20+'px'}">
+                [style]="{'width':100+'%','text-align':'center','margin':'auto','background-color':invitacion.itinerarioBG,'padding-bottom':20+'px'}">
                 <div class="row ">
 
                     <div class="col-12">
 
                         <h2 class="mt-3 {{invitacion.cabeceraFont}}  "
-                            [style]="{'color':invitacion.cWhite ,'font-size':invitacion.cabeceraSize+'px'}">Itinerario
+                            [style]="{'color':invitacion.cWhite ,'font-size':invitacion.cabeceraSize+'px'}">
+                            {{invitacion.itinerarioTitle}}
                         </h2>
                     </div>
                 </div>
@@ -646,12 +647,16 @@
 
                         <table *ngIf="itinerarios.length >0">
                             <tr [style]="{'border-top':2+'px solid '+invitacion.byFileColorFr,'height':60+'px','line-height':60+'px'}"
-                                *ngFor="let iti of itinerarios">
-                                <th class="text-start ps-3 ">
+                                *ngFor="let iti of itinerarios" class="text-center">
+                                <th class="text-start ps-3 ma" *ngIf="iti.hr.trim() !==''">
                                     <span class="  lato-regular-italic mt-2"
                                         [style]="{'color':invitacion.byFileColorFr}">{{iti.name}}</span>
                                 </th>
-                                <th>
+                                <th class="text-start ps-3 ma" *ngIf="iti.hr.trim() ==''">
+                                    <span class="  lato-regular-italic mt-2 w-100"
+                                        [style]="{'color':invitacion.byFileColorFr}">{{iti.name}}</span>
+                                </th>
+                                <th class="ma" *ngIf="iti.hr !==''">
                                     <span [style]="{'color':invitacion.byFileColorBG}">{{iti.hr}}</span>
                                 </th>
                             </tr>
@@ -764,14 +769,15 @@
 
                 <br>
             </div>
-            <div [style]="{'width':100+'%','text-align':'center','margin':'auto','background-color':invitacion.byFileColorFr,'border':5+'px solid '+invitacion.byFileColorBG}"
+            <div [style]="{'width':100+'%','text-align':'center','margin':'auto','background-color':invitacion.notaBG,'border':5+'px solid '+invitacion.byFileColorBG}"
                 *ngIf="typeOf(invitacion.notaCheck)=='boolean'? invitacion.notaCheck!==false:invitacion.notaCheck!=='false'">
                 <div class="row">
 
                     <div class="col-12 mt-3">
 
                         <h2 class="mt-3 {{invitacion.cabeceraFont}}"
-                            [style]="{'color':invitacion.cWhite,'font-size':invitacion.cabeceraSize+'px'}"> Notas</h2>
+                            [style]="{'color':invitacion.cWhite,'font-size':invitacion.cabeceraSize+'px'}">
+                            {{invitacion.notaTitle}}</h2>
                     </div>
                 </div>
                 <ul [style]="{'color':invitacion.cWhite,'list-style':'none'}">
@@ -1134,7 +1140,8 @@
                     <div class="col-12">
 
                         <h2 class="mt-3 {{invitacion.cabeceraFont}}  "
-                            [style]="{'color':invitacion.cWhite,'font-size':invitacion.cabeceraSize+'px'}">Itinerario
+                            [style]="{'color':invitacion.cWhite,'font-size':invitacion.cabeceraSize+'px'}">
+                            {{invitacion.itinerarioTitle}}
                         </h2>
                     </div>
                 </div>
@@ -1149,11 +1156,11 @@
                         <table *ngIf="itinerarios.length >0">
                             <tr [style]="{'border-top':2+'px solid '+invitacion.byFileColorFr,'height':60+'px','line-height':60+'px'}"
                                 *ngFor="let iti of itinerarios">
-                                <th class="text-start ps-3 ">
+                                <th class="text-start ps-3 ma">
                                     <span class="  lato-regular-italic mt-2"
                                         [style]="{'color':invitacion.byFileColorFr}">{{iti.name}}</span>
                                 </th>
-                                <th>
+                                <th class="ma" *ngIf="iti.hr.trim() !==''">
                                     <span [style]="{'color':invitacion.byFileColorBG}">{{iti.hr}}</span>
                                 </th>
                             </tr>
@@ -1207,14 +1214,16 @@
 
 
             </div>
-            <div [style]="{'width':100+'%','text-align':'center','margin':'auto','background-color':invitacion.byFileColorFr,'border':5+'px solid '+invitacion.byFileColorBG}"
+            <div [style]="{'width':100+'%','text-align':'center','margin':'auto','background-color':invitacion.notaBG,'border':5+'px solid '+invitacion.byFileColorBG}"
                 *ngIf="typeOf(invitacion.notaCheck)=='boolean'? invitacion.notaCheck!==false:invitacion.notaCheck!=='false'">
                 <div class="row" style="width: 100%;margin: auto;">
 
                     <div class="col-12 mt-3">
 
                         <h2 class="mt-3 {{invitacion.cabeceraFont}}"
-                            [style]="{'color':invitacion.cWhite,'font-size':invitacion.cabeceraSize+'px'}"> Notas</h2>
+                            [style]="{'color':invitacion.cWhite,'font-size':invitacion.cabeceraSize+'px'}">
+                            {{invitacion.notaTitle}}
+                        </h2>
                     </div>
                 </div>
                 <ul [style]="{'color':invitacion.cWhite,'list-style':'none'}">

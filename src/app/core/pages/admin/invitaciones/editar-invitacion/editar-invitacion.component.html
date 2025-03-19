@@ -207,21 +207,12 @@
                                                                 formControlName="nombreFont"
                                                                 class="form-control upper {{nombreFont}}" #nombreFont>
                                                                 <option value="">Seleccione el tipo de fuente</option>
-                                                                <option value="name" class="name" selected>Name</option>
-                                                                <option value="pacific" class="pacific">Pacific</option>
-                                                                <option value="dancing" class="dancing">Dancing</option>
-                                                                <option value="anton-sc-regular"
-                                                                    class="anton-sc-regular">
-                                                                    Anton-sc-regular</option>
-                                                                <option value="creepster-regular"
-                                                                    class="creepster-regular">
-                                                                    Creepster-regular</option>
-                                                                <option value="roboto-bold" class="roboto-bold">
-                                                                    Roboto-bold
-                                                                </option>
-                                                                <option value="roboto-black-italic"
-                                                                    class="roboto-black-italic">
-                                                                    Roboto-black-italic</option>
+                                                                <ng-container *ngFor="let font of fonts">
+
+                                                                    <option [value]="font.value" [class]="font.value">
+                                                                        {{font.name}}</option>
+                                                                </ng-container>
+
                                                             </select>
                                                         </div>
                                                     </div>
@@ -296,21 +287,11 @@
                                                                 formControlName="tipoFont"
                                                                 class="form-control upper {{tipoFont}}" #tipoFont>
                                                                 <option value="">Seleccione el tipo de fuente</option>
-                                                                <option value="name" class="name" selected>Name</option>
-                                                                <option value="pacific" class="pacific">Pacific</option>
-                                                                <option value="dancing" class="dancing">Dancing</option>
-                                                                <option value="anton-sc-regular"
-                                                                    class="anton-sc-regular">
-                                                                    Anton-sc-regular</option>
-                                                                <option value="creepster-regular"
-                                                                    class="creepster-regular">
-                                                                    Creepster-regular</option>
-                                                                <option value="roboto-bold" class="roboto-bold">
-                                                                    Roboto-bold
-                                                                </option>
-                                                                <option value="roboto-black-italic"
-                                                                    class="roboto-black-italic">
-                                                                    Roboto-black-italic</option>
+                                                                <ng-container *ngFor="let font of fonts">
+
+                                                                    <option [value]="font.value" [class]="font.value">
+                                                                        {{font.name}}</option>
+                                                                </ng-container>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -430,26 +411,12 @@
                                                                 formControlName="inicialTFont"
                                                                 class="form-control upper {{inicialTFont}}"
                                                                 #inicialTFont>
-                                                                <option value="">Seleccione el tipo de fuente
-                                                                </option>
-                                                                <option value="name" class="name" selected>Name
-                                                                </option>
-                                                                <option value="pacific" class="pacific">Pacific
-                                                                </option>
-                                                                <option value="dancing" class="dancing">Dancing
-                                                                </option>
-                                                                <option value="anton-sc-regular"
-                                                                    class="anton-sc-regular">
-                                                                    Anton-sc-regular</option>
-                                                                <option value="creepster-regular"
-                                                                    class="creepster-regular">
-                                                                    Creepster-regular</option>
-                                                                <option value="roboto-bold" class="roboto-bold">
-                                                                    Roboto-bold
-                                                                </option>
-                                                                <option value="roboto-black-italic"
-                                                                    class="roboto-black-italic">
-                                                                    Roboto-black-italic</option>
+                                                                <option value="">Seleccione el tipo de fuente</option>
+                                                                <ng-container *ngFor="let font of fonts">
+
+                                                                    <option [value]="font.value" [class]="font.value">
+                                                                        {{font.name}}</option>
+                                                                </ng-container>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -463,26 +430,12 @@
                                                             <select name="finalTFont" id="finalTFont"
                                                                 formControlName="finalTFont"
                                                                 class="form-control upper {{finalTFont}}" #finalTFont>
-                                                                <option value="">Seleccione el tipo de fuente
-                                                                </option>
-                                                                <option value="name" class="name" selected>Name
-                                                                </option>
-                                                                <option value="pacific" class="pacific">Pacific
-                                                                </option>
-                                                                <option value="dancing" class="dancing">Dancing
-                                                                </option>
-                                                                <option value="anton-sc-regular"
-                                                                    class="anton-sc-regular">
-                                                                    Anton-sc-regular</option>
-                                                                <option value="creepster-regular"
-                                                                    class="creepster-regular">
-                                                                    Creepster-regular</option>
-                                                                <option value="roboto-bold" class="roboto-bold">
-                                                                    Roboto-bold
-                                                                </option>
-                                                                <option value="roboto-black-italic"
-                                                                    class="roboto-black-italic">
-                                                                    Roboto-black-italic</option>
+                                                                <option value="">Seleccione el tipo de fuente</option>
+                                                                <ng-container *ngFor="let font of fonts">
+
+                                                                    <option [value]="font.value" [class]="font.value">
+                                                                        {{font.name}}</option>
+                                                                </ng-container>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -573,34 +526,7 @@
                                                     </div>
 
 
-                                                    <!-- 
-                                                    <div class="col-12      mt-3 ma">
-                                                        <div class="form-group ma">
-                                                            <label for="inviFont ">Fuente remitente</label>
-                                                            <select name="inviFont" id="inviFont"
-                                                                formControlName="inviFont"
-                                                                class="form-control upper {{inviFont}}" #inviFont>
-                                                                <option value="">Seleccione el tipo de fuente</option>
-                                                                <option value="name" class="name" selected>Name</option>
-                                                                <option value="pacific" class="pacific">Pacific</option>
-                                                                <option value="dancing" class="dancing">Dancing</option>
-                                                                <option value="anton-sc-regular"
-                                                                    class="anton-sc-regular">
-                                                                    Anton-sc-regular</option>
-                                                                <option value="creepster-regular"
-                                                                    class="creepster-regular">
-                                                                    Creepster-regular</option>
-                                                                <option value="roboto-bold" class="roboto-bold">
-                                                                    Roboto-bold
-                                                                </option>
-                                                                <option value="roboto-black-italic"
-                                                                    class="roboto-black-italic">
-                                                                    Roboto-black-italic</option>
 
-
-                                                            </select>
-                                                        </div>
-                                                    </div> -->
 
                                                     <div class="col-12      mt-3 ma">
                                                         <div class="form-group ">
@@ -609,21 +535,11 @@
                                                                 formControlName="inviFont2"
                                                                 class="form-control upper {{inviFont2}}" #inviFont2>
                                                                 <option value="">Seleccione el tipo de fuente</option>
-                                                                <option value="name" class="name" selected>Name</option>
-                                                                <option value="pacific" class="pacific">Pacific</option>
-                                                                <option value="dancing" class="dancing">Dancing</option>
-                                                                <option value="anton-sc-regular"
-                                                                    class="anton-sc-regular">
-                                                                    Anton-sc-regular</option>
-                                                                <option value="creepster-regular"
-                                                                    class="creepster-regular">
-                                                                    Creepster-regular</option>
-                                                                <option value="roboto-bold" class="roboto-bold">
-                                                                    Roboto-bold
-                                                                </option>
-                                                                <option value="roboto-black-italic"
-                                                                    class="roboto-black-italic">
-                                                                    Roboto-black-italic</option>
+                                                                <ng-container *ngFor="let font of fonts">
+
+                                                                    <option [value]="font.value" [class]="font.value">
+                                                                        {{font.name}}</option>
+                                                                </ng-container>
 
 
                                                             </select>
@@ -708,21 +624,11 @@
                                                                 class="form-control upper {{cabeceraFont}}"
                                                                 #cabeceraFont>
                                                                 <option value="">Seleccione el tipo de fuente</option>
-                                                                <option value="name" class="name" selected>Name</option>
-                                                                <option value="pacific" class="pacific">Pacific</option>
-                                                                <option value="dancing" class="dancing">Dancing</option>
-                                                                <option value="anton-sc-regular"
-                                                                    class="anton-sc-regular">
-                                                                    Anton-sc-regular</option>
-                                                                <option value="creepster-regular"
-                                                                    class="creepster-regular">
-                                                                    Creepster-regular</option>
-                                                                <option value="roboto-bold" class="roboto-bold">
-                                                                    Roboto-bold
-                                                                </option>
-                                                                <option value="roboto-black-italic"
-                                                                    class="roboto-black-italic">
-                                                                    Roboto-black-italic</option>
+                                                                <ng-container *ngFor="let font of fonts">
+
+                                                                    <option [value]="font.value" [class]="font.value">
+                                                                        {{font.name}}</option>
+                                                                </ng-container>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -944,19 +850,11 @@
                                                             formControlName="mensajeFont"
                                                             class="form-control upper {{mensajeFont}}" #mensajeFont>
                                                             <option value="">Seleccione el tipo de fuente</option>
-                                                            <option value="name" class="name" selected>Name</option>
-                                                            <option value="pacific" class="pacific">Pacific</option>
-                                                            <option value="dancing" class="dancing">Dancing</option>
-                                                            <option value="anton-sc-regular" class="anton-sc-regular">
-                                                                Anton-sc-regular</option>
-                                                            <option value="creepster-regular" class="creepster-regular">
-                                                                Creepster-regular</option>
-                                                            <option value="roboto-bold" class="roboto-bold">
-                                                                Roboto-bold
-                                                            </option>
-                                                            <option value="roboto-black-italic"
-                                                                class="roboto-black-italic">
-                                                                Roboto-black-italic</option>
+                                                            <ng-container *ngFor="let font of fonts">
+
+                                                                <option [value]="font.value" [class]="font.value">
+                                                                    {{font.name}}</option>
+                                                            </ng-container>
 
 
                                                         </select>
@@ -1077,7 +975,7 @@
                                     <ng-container class="text-center  ma">
 
                                         <div class="row text-center mt-3 ma">
-                                            <h5>Seccion Donde y Cuando</h5>
+                                            <h5>Seccion Dónde y Cuándo</h5>
                                             <hr class="mt-3 mb-3">
                                             <div class="col-12 col-md-6     mt-3">
 
@@ -2415,26 +2313,12 @@
                                                                 formControlName="inicialTFont"
                                                                 class="form-control upper {{inicialTFont}}"
                                                                 #inicialTFont>
-                                                                <option value="">Seleccione el tipo de fuente
-                                                                </option>
-                                                                <option value="name" class="name" selected>Name
-                                                                </option>
-                                                                <option value="pacific" class="pacific">Pacific
-                                                                </option>
-                                                                <option value="dancing" class="dancing">Dancing
-                                                                </option>
-                                                                <option value="anton-sc-regular"
-                                                                    class="anton-sc-regular">
-                                                                    Anton-sc-regular</option>
-                                                                <option value="creepster-regular"
-                                                                    class="creepster-regular">
-                                                                    Creepster-regular</option>
-                                                                <option value="roboto-bold" class="roboto-bold">
-                                                                    Roboto-bold
-                                                                </option>
-                                                                <option value="roboto-black-italic"
-                                                                    class="roboto-black-italic">
-                                                                    Roboto-black-italic</option>
+                                                                <option value="">Seleccione el tipo de fuente</option>
+                                                                <ng-container *ngFor="let font of fonts">
+
+                                                                    <option [value]="font.value" [class]="font.value">
+                                                                        {{font.name}}</option>
+                                                                </ng-container>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -2448,26 +2332,12 @@
                                                             <select name="finalTFont" id="finalTFont"
                                                                 formControlName="finalTFont"
                                                                 class="form-control upper {{finalTFont}}" #finalTFont>
-                                                                <option value="">Seleccione el tipo de fuente
-                                                                </option>
-                                                                <option value="name" class="name" selected>Name
-                                                                </option>
-                                                                <option value="pacific" class="pacific">Pacific
-                                                                </option>
-                                                                <option value="dancing" class="dancing">Dancing
-                                                                </option>
-                                                                <option value="anton-sc-regular"
-                                                                    class="anton-sc-regular">
-                                                                    Anton-sc-regular</option>
-                                                                <option value="creepster-regular"
-                                                                    class="creepster-regular">
-                                                                    Creepster-regular</option>
-                                                                <option value="roboto-bold" class="roboto-bold">
-                                                                    Roboto-bold
-                                                                </option>
-                                                                <option value="roboto-black-italic"
-                                                                    class="roboto-black-italic">
-                                                                    Roboto-black-italic</option>
+                                                                <option value="">Seleccione el tipo de fuente</option>
+                                                                <ng-container *ngFor="let font of fonts">
+
+                                                                    <option [value]="font.value" [class]="font.value">
+                                                                        {{font.name}}</option>
+                                                                </ng-container>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -2604,21 +2474,11 @@
                                                                 class="form-control upper {{cabeceraFont}}"
                                                                 #cabeceraFont>
                                                                 <option value="">Seleccione el tipo de fuente</option>
-                                                                <option value="name" class="name" selected>Name</option>
-                                                                <option value="pacific" class="pacific">Pacific</option>
-                                                                <option value="dancing" class="dancing">Dancing</option>
-                                                                <option value="anton-sc-regular"
-                                                                    class="anton-sc-regular">
-                                                                    Anton-sc-regular</option>
-                                                                <option value="creepster-regular"
-                                                                    class="creepster-regular">
-                                                                    Creepster-regular</option>
-                                                                <option value="roboto-bold" class="roboto-bold">
-                                                                    Roboto-bold
-                                                                </option>
-                                                                <option value="roboto-black-italic"
-                                                                    class="roboto-black-italic">
-                                                                    Roboto-black-italic</option>
+                                                                <ng-container *ngFor="let font of fonts">
+
+                                                                    <option [value]="font.value" [class]="font.value">
+                                                                        {{font.name}}</option>
+                                                                </ng-container>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -2717,7 +2577,7 @@
                                     <ng-container class="text-center  ma">
 
                                         <div class="row text-center mt-3 ma">
-                                            <h5>Seccion Donde y Cuando</h5>
+                                            <h5>Seccion Dónde y Cuándo</h5>
                                             <hr class="mt-3 mb-3">
                                             <div class="col-12 col-md-6     mt-3">
 
@@ -3594,7 +3454,18 @@
                                                 </div>
                                                 <div class="col-12  text-center" style="margin:auto"
                                                     *ngIf="notaCheck.checked">
-
+                                                    <div class="col-12 col-md-6 ma mt-3 mb-3">
+                                                        <label for="notaBG">Color de fondo para notas o
+                                                            avisos</label>
+                                                        <input class="form-control" type="color" id="notaBG" #notaBG
+                                                            formControlName="notaBG">
+                                                    </div>
+                                                    <div class="col-12 col-md-6 ma mt-3 mb-3">
+                                                        <label for="notaTitle">Titulo nota</label>
+                                                        <input class="form-control" type="text" id="notaTitle"
+                                                            #notaTitle formControlName="notaTitle"
+                                                            placeholder="Notas Avisos Recomendaciones">
+                                                    </div>
                                                     <button type="button" class="btn btn-lg btn-block but "
                                                         (click)="addNotas('f')" id="btnNotaFile">Agregar nota</button>
                                                 </div>
@@ -3651,6 +3522,18 @@
                                         </div>
 
                                         <div class="row" *ngIf="itinerarioCheck.checked">
+                                            <div class="col-12 col-md-6 ma mt-3 mb-3">
+                                                <label for="itinerarioBG">Color de fondo para itinerario o
+                                                    programa</label>
+                                                <input class="form-control" type="color" id="itinerarioBG" #itinerarioBG
+                                                    formControlName="itinerarioBG">
+                                            </div>
+                                            <div class="col-12 col-md-6 ma mt-3 mb-3">
+                                                <label for="itinerarioTitle">Titulo itinerario</label>
+                                                <input class="form-control" type="text" id="itinerarioTitle"
+                                                    #itinerarioTitle formControlName="itinerarioTitle"
+                                                    placeholder="Intinerario o Programa">
+                                            </div>
 
                                             <div class="col-12   text-center" style="margin:auto">
 

@@ -6,6 +6,15 @@
     --error: #c83434;
 }
 
+@font-face {
+    font-family: "font1";
+    src:
+        local("font1"),
+        url("/assets/fonts/antiga.otf") format("opentype") tech(color-COLRv1);
+}
+
+
+
 textarea,
 .textDesc {
     height: 250px;
@@ -283,7 +292,14 @@ input[type="file"] {
 }
 
 /* fonts */
-.pacifico {
+
+.font1 {
+    font-family: 'font1';
+    font-weight: 400;
+    font-style: normal;
+}
+
+.pacific {
     font-family: "Pacifico", cursive;
     font-weight: 400;
     font-style: normal;
@@ -761,4 +777,10 @@ a {
 .comprimir {
     font-size: 12px;
     font-weight: 900;
+}
+
+
+.clear {
+    float: none;
+    clear: both;
 }

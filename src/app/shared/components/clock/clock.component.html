@@ -1,5 +1,4 @@
 <ng-container *ngIf="data">
-
     <div class="animate__animated  {{data.efectoCount}} {{data.efectoRepCount}}"
         [style]="{'margin-top':data.topDate+'px','background-color':data.bgCount?data.bgCount:''}"
         *ngIf="date>functionsService.getToday()">
@@ -10,7 +9,7 @@
                 <tr [style]="{'color':(!data.byFile)?data.cWhite:data.byFileColorFr}">
                     <th class=" {{data.finalTFont}}" [style]="{'font-size':data.finalTSize+'px'}"><b
                             [style]="{'color': (!data.byFile)?data.cPrincipal:data.byFileColorTx, 'font-size':data.inicialTSize+'px'}"
-                            class=" {{data.inicialTFont}}">D</b>ias</th>
+                            class=" {{data.inicialTFont}}">D</b>ías</th>
                     <th class=" {{data.finalTFont}}" [style]="{'font-size':data.finalTSize+'px'}"><b
                             [style]="{'color': (!data.byFile)?data.cPrincipal:data.byFileColorTx, 'font-size':data.inicialTSize+'px'}"
                             class=" {{data.inicialTFont}}">H</b>oras</th>

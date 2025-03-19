@@ -146,6 +146,7 @@ export class ByFileComponent {
           this.date = this.vistaTemp ? this.today + 15000 : this.fiesta.fecha
 
 
+
           this.invitacion.cantidad = this.boleto.cantidadInvitados
           this.invitacion.invitado = this.boleto.nombreGrupo
           this.repitVideo = this.invitacion.repitVideo
@@ -194,6 +195,7 @@ export class ByFileComponent {
       if (this.count == 0) {
         this.vistaTemp = true
         this.invitacion = {
+          example: true,
           checking: true,
           cPrincipal: 'pink',
           cSecond: '#c51132',

@@ -1,0 +1,14 @@
+<app-loading *ngIf="loading"></app-loading>
+<div id="presentacion" class="animate__animated">
+
+    <app-presentacion (view)="closePresentacion($event)" *ngIf="!loading && presentacionView"></app-presentacion>
+</div>
+
+<div id="invitacion" *ngIf="invitacionView" class="animate__animated">
+
+    <app-principal-template-desing class="dn "></app-principal-template-desing>
+
+
+
+
+</div>

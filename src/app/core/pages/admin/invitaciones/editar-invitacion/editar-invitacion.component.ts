@@ -27,6 +27,7 @@ export class EditarInvitacionComponent {
   URS = environment.user_role
   MAPURL = environment.mapsGoogleUrl
   MAPZOOM = environment.mapsGoogleZoom
+  fonts = environment.fonts
   examples: any = []
   fiestas: any = []
   loading = false
@@ -88,6 +89,7 @@ export class EditarInvitacionComponent {
     private salonsService: SalonsService
 
   ) {
+
 
     setTimeout(() => {
       this.viewInicial = true
@@ -278,10 +280,14 @@ export class EditarInvitacionComponent {
       mesaRegalosUrl: [''],
       mesaRegalosImg: [''],
       itinerarioCheck: [true],
+      itinerarioBG: ['#fff'],
+      itinerarioTitle: ['itinerario'],
       itinerarioName: [this.fiesta.nombre],
       itinerarios: this.fb.array([]),
       invitacionTemplate: [false],
       notaCheck: [true],
+      notaBG: ['#fff'],
+      notaTitle: ['Notas'],
       notas: this.fb.array([]),
       chambelanesCheck: [true],
       chambelanes: this.fb.array([]),
@@ -463,10 +469,14 @@ export class EditarInvitacionComponent {
       mesaRegalosUrl: [invitacion.data.mesaRegalosUrl],
       mesaRegalosImg: [invitacion.data.mesaRegalosImg],
       itinerarioCheck: [invitacion.data.itinerarioCheck],
+      itinerarioBG: [invitacion.data.itinerarioBG],
+      itinerarioTitle: [invitacion.data.itinerarioTitle],
       itinerarioName: [invitacion.fiesta.nombre],
       itinerarios: this.fb.array([]),
 
       notaCheck: [invitacion.data.notaCheck],
+      notaBG: [invitacion.data.notaBG],
+      notaTitle: [invitacion.data.notaTitle],
       invitacionTemplate: [invitacion.data.invitacionTemplate],
       notas: this.fb.array([]),
 
@@ -606,6 +616,7 @@ export class EditarInvitacionComponent {
       type: 'seccionInicial',
       size: 'sm',
       byFile: (this.fiesta.invitacion == 'byFile') ? true : false,
+      example: this.fiesta.example,
       ...this.form.value
     }
 
@@ -758,9 +769,13 @@ export class EditarInvitacionComponent {
 
 
       itinerarioCheck: [temp.itinerarioCheck],
+      itinerarioBG: [temp.itinerarioBG],
+      itinerarioTitle: [temp.itinerarioTitle],
       itinerarioName: [temp.itinerarioName],
       itinerarios: this.fb.array([]),
       notaCheck: [temp.notaCheck],
+      notaBG: [temp.notaBG],
+      notaTitle: [temp.notaTitle],
       colorQr: [temp.colorQr],
       colorBgQr: [temp.colorBgQr],
       invitacionTemplate: [temp.invitacionTemplate],
@@ -1173,9 +1188,13 @@ export class EditarInvitacionComponent {
             mesaRegalosUrl: '',
             mesaRegalosImg: '',
             itinerarioCheck: true,
+            itinerarioBG: '#fff',
+            itinerarioTitle: 'Itinerario',
             itinerarioName: this.fiesta.nombre,
             itinerarios: [],
             notaCheck: true,
+            notaBG: '#fff',
+            notaTitle: 'Notas',
             invitacionTemplate: false,
             notas: [],
             chambelanesCheck: true,
@@ -1847,9 +1866,13 @@ export class EditarInvitacionComponent {
       this.invitacion.data.musica = []
       //Itinerarios
       this.invitacion.data.itinerarioCheck = false
+      this.invitacion.data.itinerarioBG = '#fff'
+      this.invitacion.data.itinerarioTitle = 'Itinerario'
       this.invitacion.data.itinerarios = []
       //Notas
       this.invitacion.data.notaCheck = false
+      this.invitacion.data.notaBG = '#fff'
+      this.invitacion.data.notaTitle = 'Notas'
       this.invitacion.data.notas = []
       //Mesa de regalos
       this.invitacion.data.mesaRegalosCheck = false

@@ -26,10 +26,9 @@ export class PrincipalComponent implements AfterViewInit {
   }
   ngAfterViewInit(): void {
 
-
     if (this.data.date) {
 
-      this.date = this.data.date
+      this.date = !this.data ? this.data.date : this.today + 123456
     }
 
     setTimeout(() => {

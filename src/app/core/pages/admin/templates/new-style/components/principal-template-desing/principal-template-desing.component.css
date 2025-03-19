@@ -1,0 +1,118 @@
+ .presentacion {
+
+     position: relative;
+
+     /* Se usa para que no se salga la imagen de la caja, ya que la imagen tiene position absolute */
+     width: 100%;
+     height: 100vh;
+
+
+     height: 100vh;
+     /* background-image: url('/assets/invitaciones/background/water.png'); */
+     background-image: url('/assets/invitaciones/background/bg.jpg');
+     background-repeat: no-repeat;
+     background-size: 100% 100vh;
+     background-position: center top;
+     background-attachment: fixed;
+
+
+
+
+ }
+
+ .nlink {
+     text-decoration: none;
+ }
+
+ .db {
+     display: block;
+ }
+
+ .dn {
+     display: none;
+ }
+
+ .name {
+     background-color: rgba(255, 255, 255, .6);
+     position: absolute;
+     top: 30%;
+     right: 0;
+     right: 0;
+     right: 0;
+     width: 180px;
+     height: 180px;
+     left: 0;
+     margin: 0 auto;
+     -webkit-border-radius: 100%;
+ }
+
+ .frame {
+     position: absolute;
+     width: 350px;
+     top: 20%;
+     right: 0;
+     left: 0;
+     margin: 0 auto;
+
+ }
+
+ .iniImg {
+     width: 253% !important;
+     margin-top: -33%;
+     margin-left: -92%;
+ }
+
+ .textInit {
+     width: 100%;
+     position: absolute;
+     top: 52%;
+     left: 0;
+     margin: auto;
+     text-align: center;
+     font-size: 85px;
+     letter-spacing: 5px;
+
+     text-shadow: 4px 4px white;
+ }
+
+ .mensaje {
+     width: 100%;
+     text-align: center !important;
+ }
+
+ .pPrincipal {
+     position: absolute;
+     width: 100%;
+     top: 63%;
+     left: 0;
+ }
+
+ .parrafo {
+     font-size: 25px;
+     font-weight: 700;
+     text-align: justify;
+     letter-spacing: 3px;
+ }
+
+ .divisor {
+     background-color: #f078c4 !important;
+     width: 50%;
+     height: 3px;
+     margin: auto;
+     margin-top: 20px;
+     margin-bottom: 20px;
+ }
+
+ .imagenFiesta {
+     background-color: rgba(255, 255, 255, .6);
+     position: absolute;
+     top: 30%;
+     right: 0;
+     right: 0;
+     right: 0;
+     width: 180px;
+     height: 180px;
+     left: 0;
+     margin: 0 auto;
+     -webkit-border-radius: 100%;
+ }
