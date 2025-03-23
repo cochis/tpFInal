@@ -167,8 +167,11 @@ export class NewStyleComponent {
           }, 500);
           this.restParty()
           this.invitacion = await this.dateToNumber(this.invitacion)
+
           this.invitacion.mesa = this.boleto.mesa
+
           this.date = !this.fiesta.example ? this.fiesta.fecha : this.today + 30000
+
 
 
 
@@ -614,6 +617,7 @@ export class NewStyleComponent {
 
   closePresentacion(close) {
 
+
     document.getElementById('presentacion').classList.add('animate__bounceOutUp');
 
 
@@ -622,11 +626,15 @@ export class NewStyleComponent {
       this.invitacionView = true
 
       setTimeout(() => {
-        document.getElementById('invitacion').classList.remove('dn');
 
         document.getElementById('invitacion').classList.add(this.invitacion.invitacionEfecto);
-
       }, 10);
+
+      setTimeout(() => {
+        document.getElementById('invitacion').classList.remove('dn');
+
+
+      }, 4000);
     }, 2500);
 
 

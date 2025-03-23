@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { AfterViewInit, Component, Input } from '@angular/core';
 import { BoletosService } from 'src/app/core/services/boleto.service';
 import { FunctionsService } from 'src/app/shared/services/functions.service';
 import Swal from 'sweetalert2';
@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
   templateUrl: './confirmacion-desing.component.html',
   styleUrls: ['./confirmacion-desing.component.css']
 })
-export class ConfirmacionDesingComponent {
+export class ConfirmacionDesingComponent implements AfterViewInit {
   @Input() data: any
   @Input() boleto: any
   @Input() fiesta: any
@@ -18,6 +18,10 @@ export class ConfirmacionDesingComponent {
   constructor(
     private functionsService: FunctionsService,
     private boletosService: BoletosService) {
+
+  }
+  ngAfterViewInit(): void {
+    this.data
 
   }
 

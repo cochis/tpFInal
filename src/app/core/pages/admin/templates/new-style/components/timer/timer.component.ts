@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { AfterViewInit, Component, Input } from '@angular/core';
 import { FunctionsService } from 'src/app/shared/services/functions.service';
 
 @Component({
@@ -6,10 +6,11 @@ import { FunctionsService } from 'src/app/shared/services/functions.service';
   templateUrl: './timer.component.html',
   styleUrls: ['./timer.component.css']
 })
-export class TimerComponent {
+export class TimerComponent implements AfterViewInit {
   @Input() data: any
+  @Input() date: any = this.functionsService.getToday() + 100012345
   /* date = this.functionsService.getToday() + 123456123 */
-  date = this.functionsService.getToday() + 100012345
+
   today = 0
   dias = 0
   horas = 0
@@ -19,6 +20,10 @@ export class TimerComponent {
   constructor(private functionsService: FunctionsService) {
     this.today = this.functionsService.getToday()
     this.restParty()
+  }
+  ngAfterViewInit(): void {
+
+
   }
   restParty() {
     let i = 0

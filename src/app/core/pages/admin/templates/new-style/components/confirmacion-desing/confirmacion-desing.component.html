@@ -21,13 +21,15 @@
                     </qrcode> -->
 
 
-                    <button class="btn  upper  mb-3" [style]="{'background-color':data.cSecond,'color' :data.cTexto}"
+                    <button class="btn  upper  mb-3"
+                        [style]="{'background-color':data.cSecond,'color' :data.cTexto,'border': '3px solid'+ data.cTexto}"
                         type="button"
-                        *ngIf=" (data.confirmacionCheck =='true' || data.confirmacionCheck ==true) && !boleto.confirmado"
+                        *ngIf=" (data.confirmacionCheck =='true' || data.confirmacionCheck ==true) &&( !boleto.confirmado)"
                         (click)="confirmar(getQr(boleto))">
                         Confirmación
                     </button>
-                    <button class="btn  upper  mb-3" [style]="{'background-color':data.cSecond,'color' :data.cTexto}"
+                    <button class="btn  upper  mb-3"
+                        [style]="{'background-color':data.cSecond,'color' :data.cTexto,'border': '3px solid'+ data.cTexto}"
                         type="button"
                         *ngIf=" (data.confirmacionCheck =='true' || data.confirmacionCheck ==true) && boleto.confirmado"
                         (click)="confirmar(getQr(boleto))">
@@ -36,6 +38,15 @@
 
 
 
+                </div>
+
+                <div class="qrcodeImage text-center  ma  mt-3" *ngIf="!boleto">
+
+                    <button class="btn  upper  mb-3"
+                        [style]="{'background-color':data.cSecond,'color' :data.cTexto, 'border': '3px solid'+ data.cTexto,}"
+                        type="button">
+                        Confirmación
+                    </button>
                 </div>
 
             </div>
