@@ -1468,7 +1468,7 @@
 
 
 
-                                            <hr class="mt-3 mb-3">
+                                            <!--    <hr class="mt-3 mb-3">
 
 
                                             <div class="col-12 mt-3 ma">
@@ -1480,7 +1480,7 @@
                                                     formControlName="codigoVestimentaCheck">
 
 
-                                            </div>
+                                            </div> -->
                                             <ng-container *ngIf="form.value.codigoVestimentaCheck">
                                                 <div class="col-12  col-md-6  mt-3 text-center ma"
                                                     *ngIf="form.value.codigoVestimentaCheck">
@@ -5065,7 +5065,7 @@
                                             </div>
 
 
-                                            <!--      <hr class="mt-3 mb-3">
+                                            <hr class="mt-3 mb-3">
                                             <div class="row text-center mt-3 ma">
                                                 <h5>Menu</h5>
                                                 <div class="row text-center ma">
@@ -5180,7 +5180,7 @@
                                             </div>
 
 
-
+                                            <!-- 
                                             <hr class="mt-3 mb-3">
                                             <div class="row text-center mt-3 ma">
                                                 <h5>Música</h5>
@@ -5581,7 +5581,7 @@
 
 
                                             </div>
-                                            <div class="col-12  col-md-6  mt-3 text-center "
+                                            <!-- <div class="col-12  col-md-6  mt-3 text-center "
                                                 *ngIf="form.value.mesaRegalosCheck">
                                                 <div class="form-group    image-upload ">
                                                     <label for="mesaRegalosImg">Imagen de mesa de regalos
@@ -5594,13 +5594,13 @@
                                                         <img [src]="url+'/upload/invitaciones/'+invitacion.data.mesaRegalosImg"
                                                             alt="" class=" pointer" *ngIf="invitacion"
                                                             style="width: 150px;">
-                                                        <!-- invitacion.data.mensajeImg!='' -->
+                                                      
 
                                                     </label>
                                                     <input type="file" id="mesaRegalosImg" #mesaRegalosImg
                                                         (change)="cambiarImagen($event,'mesaRegalosImg' )">
                                                 </div>
-                                            </div>
+                                            </div> -->
 
                                             <div class="col-12 col-md-6  mt-3 ma" *ngIf="form.value.mesaRegalosCheck">
                                                 <div class="form-group ">
@@ -5612,7 +5612,7 @@
 
 
 
-                                            <div class="col-12   mt-3" *ngIf="form.value.mesaRegalosCheck">
+                                            <div class="col-12 col-md-6   mt-3" *ngIf="form.value.mesaRegalosCheck">
                                                 <div class="form-group ">
                                                     <label for="mesaRegalosUrl ">Liga de mesa de regalos </label>
                                                     <input type="text" id="mesaRegalosUrl" #mesaRegalosUrl
