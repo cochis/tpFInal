@@ -11,8 +11,17 @@
                         <div class="col-12 animate__animated {{data.efectoImg1}} {{data.repEfectoImg1}}">
                             <!--    <img class="frame" src="/assets/invitaciones/frames/frame5.png"> -->
                             <!-- <img class="shadow imagenFiesta" src="/assets/images/example/fiesta.webp"> -->
-                            <img class="frame" src="/assets/invitaciones/frames/{{data.marcoFoto}}"
-                                [style]="{'width':data.marcoFotoWidth+'px','margin-top':data.marcoFotoTop+'px'}">
+
+
+                            <ng-container *ngIf="data.marcoFoto==''">
+                                <div [style]="{'margin-top':data.marcoFotoTop+'px'}"></div>
+                            </ng-container>
+                            <ng-container *ngIf="data.marcoFoto!=''">
+
+                                <img class="frame" src="/assets/invitaciones/frames/{{data.marcoFoto}}"
+                                    [style]="{'width':data.marcoFotoWidth+'px','margin-top':data.marcoFotoTop+'px'}">
+                            </ng-container>
+
                             <img class="shadow imagenFiesta" [src]="url+'/upload/invitaciones/'+data.img1"
                                 [style]="{'width':+data.img1Size+'px','height':+data.img1Size+'px', 'margin-top':+data.img1Top+'px'}">
                         </div>

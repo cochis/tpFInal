@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, Input } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-principal-template-desing',
@@ -9,6 +10,7 @@ export class PrincipalTemplateDesingComponent implements AfterViewInit {
   @Input() data: any
   @Input() fiesta: any
   padres = undefined
+  url = environment.base_url
   constructor() {
     document.body.scrollTop = 0;
 

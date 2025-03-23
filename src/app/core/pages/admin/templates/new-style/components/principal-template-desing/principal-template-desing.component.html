@@ -1,55 +1,88 @@
-<div class="principal" [style]="{'background-image': 'url(/assets/invitaciones/background/'+data.fondoInvitacion+')'}">
-    <app-img-principal [data]="data"></app-img-principal>
-    <div class="col-12 text-center animate__animated animate__fadeIn">
-        <h2 class=" textInit {{data.nombreFont}}   animate__animated {{data.nombreEfecto}} {{data.nombreEfectoRep}}"
-            [style]="{'font-size': data.nombreSize+'px','top':data.topTitle+'px','color':data.cTexto}">
-            {{data.nombreFiesta}}
-        </h2>
-        <h3 class="{{data.tipoFont}} textInit    animate__animated {{data.tipoEfecto}} {{data.tipoEfectoRep}}"
-            [style]="{'font-size': data.tipoSize+'px','top':data.tipoTop+'px','color':data.cTexto}">
-            {{data.tipoFiesta}}
-        </h3>
-    </div>
-    <div class="row  ">
-        <div class="col-10 text-center ma">
-            <div class="ma divisor" [style]="{'background-color':data.cSecond}"> </div>
-            <p class="{{data.textoInvFont}}  parrafo mb-2  animate__animated {{data.mensajeEfecto}} {{data.mensajeEfectoRep}}"
-                [style]="{'font-size': data.textoInvSize+'px','color':data.cTexto,'text-align':data.mensajeAlign}">
-                {{(data.mensaje1!='')?data.mensaje1:'Mensaje de la invitación'}}
-            </p>
-        </div>
-        <ng-container *ngIf="padres">
+<div class="animate__animated {{data.invitacionEfecto}}">
 
-            <div class="col-12 col-md-6 text-center ma   animate__animated animate__fadeIn" *ngIf="padres.length>0">
-                <div class="ma divisor" [style]="{'background-color':data.cSecond}"> </div>
+    <div class="principal "
+        [style]="{'background-image': 'url(/assets/invitaciones/background/'+data.fondoInvitacion+')'}">
+        <div class="presentacion text-center" id="presentacion">
+
+            <div class="row">
+                <div class="col-12 animate__animated {{data.efectoImg1}} {{data.repEfectoImg1}}">
+                    <!--    <img class="frame" src="/assets/invitaciones/frames/frame5.png"> -->
+                    <!-- <img class="shadow imagenFiesta" src="/assets/images/example/fiesta.webp"> -->
 
 
-                <h3 class=" animate__animated {{data.cabeceraFont}} {{data.cabeceraEfecto}} {{data.cabeceraEfectoRep}}"
-                    [style]="{'font-size': data.cabeceraSize +'px','color':data.cTexto}">
-                    {{data.titlePadres}}
-                </h3>
-                <table class="table">
-                    <thead class="{{data.textoInvFont}}">
+                    <ng-container *ngIf="data.marcoFoto==''">
+                        <div [style]="{'margin-top':data.marcoFotoTop+'px'}"></div>
+                    </ng-container>
+                    <ng-container *ngIf="data.marcoFoto!=''">
+
+                        <img class="frame" src="/assets/invitaciones/frames/{{data.marcoFoto}}"
+                            [style]="{'width':data.marcoFotoWidth+'px','margin-top':data.marcoFotoTop+'px'}">
+                    </ng-container>
+
+                    <img class="shadow imagenFiesta" [src]="url+'/upload/invitaciones/'+data.img1"
+                        [style]="{'width':+data.img1Size+'px','height':+data.img1Size+'px', 'margin-top':+data.img1Top+'px'}">
+                </div>
 
 
-                        <ng-container *ngFor="let pd of padres">
-
-                            <tr>
-                                <th [style]="{'font-size': data.textoInvSize+'px','color':data.cTexto}"> {{pd.name}}
-                                </th>
-
-                            </tr>
-                        </ng-container>
-
-
-
-                    </thead>
-
-                </table>
 
             </div>
-        </ng-container>
+
+            <div class="col-12 text-center animate__animated animate__fadeIn">
+                <h2 class=" textInit {{data.nombreFont}}   animate__animated {{data.nombreEfecto}} {{data.nombreEfectoRep}}"
+                    [style]="{'font-size': data.nombreSize+'px','top':data.topTitle+'px','color':data.cTexto}">
+                    {{data.nombreFiesta}}
+                </h2>
+                <h3 class="{{data.tipoFont}} textInit    animate__animated {{data.tipoEfecto}} {{data.tipoEfectoRep}}"
+                    [style]="{'font-size': data.tipoSize+'px','top':data.tipoTop+'px','color':data.cTexto}">
+                    {{data.tipoFiesta}}
+                </h3>
+            </div>
+            <div class="row  ">
+                <div class="col-10 text-center ma">
+                    <div class="ma divisor" [style]="{'background-color':data.cSecond}"> </div>
+                    <p class="{{data.textoInvFont}}  parrafo mb-2  animate__animated {{data.mensajeEfecto}} {{data.mensajeEfectoRep}}"
+                        [style]="{'font-size': data.textoInvSize+'px','color':data.cTexto,'text-align':data.mensajeAlign}">
+                        {{(data.mensaje1!='')?data.mensaje1:'Mensaje de la invitación'}}
+                    </p>
+                </div>
+                <div class="col-12 col-md-6 text-center ma   animate__animated animate__fadeIn">
+                    <div class="ma divisor" [style]="{'background-color':data.cSecond}"> </div>
+
+
+
+                    <h3 class=" animate__animated {{data.cabeceraFont}} {{data.cabeceraEfecto}} {{data.cabeceraEfectoRep}}"
+                        [style]="{'font-size': data.cabeceraSize +'px','color':data.cTexto}">
+                        Mis Padres
+                    </h3>
+                    <table class="table">
+                        <thead class="{{data.textoInvFont}}"
+                            [style]="{'font-size': data.textoInvSize+'px','color':data.cTexto}">
+                            <tr>
+                                <th [style]="{'font-size': data.textoInvSize+'px','color':data.cTexto}">Maria
+                                    Mendoza</th>
+
+                            </tr>
+                            <tr>
+
+                                <th [style]="{'font-size': data.textoInvSize+'px','color':data.cTexto}">&</th>
+                            </tr>
+                            <tr>
+
+                                <th [style]="{'font-size': data.textoInvSize+'px','color':data.cTexto}">Jacob
+                                    pedro
+                                    de la Cruz</th>
+
+                            </tr>
+                        </thead>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
 
     </div>
-
 </div>

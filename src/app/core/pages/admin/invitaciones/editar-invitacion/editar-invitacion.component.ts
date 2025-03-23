@@ -223,7 +223,7 @@ export class EditarInvitacionComponent {
       imgIntroRight: ['bg6.png'],
       invitacionEfecto: ['animate__fadeIn'],
       fondoInvitacion: ['bg1.avif'],
-      marcoFoto: ['frame1.png'],
+      marcoFoto: [''],
       marcoFotoWidth: [150],
       marcoFotoTop: [150],
       nombreFont: ['pacific'],
@@ -590,7 +590,7 @@ export class EditarInvitacionComponent {
 
       invitacionEfecto: [invitacion.data.invitacionEfecto ? invitacion.data.invitacionEfecto : 'animate__fadeIn'],
       fondoInvitacion: [invitacion.data.fondoInvitacion ? invitacion.data.fondoInvitacion : 'bg1.avif'],
-      marcoFoto: [invitacion.data.marcoFoto ? invitacion.data.marcoFoto : 'frame1.png'],
+      marcoFoto: [invitacion.data.marcoFoto ? invitacion.data.marcoFoto : ''],
       marcoFotoWidth: [invitacion.data.marcoFotoWidth ? invitacion.data.marcoFotoWidth : 150],
       marcoFotoTop: [invitacion.data.marcoFotoTop ? invitacion.data.marcoFotoTop : 150],
       nombreFont: [invitacion.data.nombreFont ? invitacion.data.nombreFont : 'pacific'],
@@ -1367,7 +1367,7 @@ export class EditarInvitacionComponent {
 
             invitacionEfecto: 'animate__fadeIn',
             fondoInvitacion: 'bg1.avif',
-            marcoFoto: "frame1.png",
+            marcoFoto: "",
 
             marcoFotoWidth: 150,
             marcoFotoTop: 150,

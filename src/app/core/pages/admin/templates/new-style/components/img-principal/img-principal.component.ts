@@ -12,5 +12,6 @@ export class ImgPrincipalComponent implements AfterViewInit {
   ngAfterViewInit() {
 
 
+
   }
 }
