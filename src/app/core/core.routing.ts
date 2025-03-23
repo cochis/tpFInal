@@ -842,12 +842,7 @@ const routes: Routes = [
         canActivate: [authGuard]
 
       },
-      {
-        path: 'templates/desing',
-        component: NewStyleComponent,
-        data: { titulo: 'Desing' }
 
-      },
       {
         path: 'templates/default/:fiesta',
         component: DefaultComponent,
@@ -872,6 +867,9 @@ const routes: Routes = [
         data: { titulo: 'Template default' }
 
       },
+
+
+      //BYFILE
       {
         path: 'templates/byFile',
         component: ByFileComponent,
@@ -890,6 +888,32 @@ const routes: Routes = [
         data: { titulo: 'Template ByFile' }
 
       },
+
+      //BYFancy
+      {
+        path: 'templates/fancy',
+        component: NewStyleComponent,
+        data: { titulo: 'Template Fancy' }
+
+      },
+      {
+        path: 'templates/fancy/:fiesta/:boleto',
+        component: NewStyleComponent,
+        data: { titulo: 'Template Fancy' }
+
+      },
+      {
+        path: 'templates/fancy/:fiesta/:boleto/:copy',
+        component: NewStyleComponent,
+        data: { titulo: 'Template Fancy' }
+
+      },
+
+
+
+
+
+
       {
         path: 'congrats',
         component: CongratsComponent,

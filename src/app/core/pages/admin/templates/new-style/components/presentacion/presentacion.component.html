@@ -2,14 +2,17 @@
 
     <div class="backPresentacion">
         <div class="row">
-            <div class="col-6 animate__animated animate__bounceInLeft" style=" height: 100vh; background-image: url('/assets/invitaciones/background/rosa2.png');
+
+
+
+            <div class="col-6 animate__animated {{data.efectoImgLeft}} {{data.repImgLeft}}" style=" height: 100vh; background-image: url('/assets/invitaciones/background/{{data.imgIntroLeft}}');
       background-repeat: no-repeat;
         background-size: 100% 100vh;
         background-position: center top;
         background-attachment: fixed;">
 
             </div>
-            <div class="col-6 animate__animated animate__bounceInRight" style=" height: 100vh; background-image: url('/assets/invitaciones/background/azul1.png');
+            <div class="col-6 animate__animated {{data.efectoImgRight}} {{data.repImgRight}}" style=" height: 100vh; background-image: url('/assets/invitaciones/background/{{data.imgIntroRight}}');
       background-repeat: no-repeat;
         background-size: 100% 100vh;
         background-position: center top;
@@ -22,9 +25,9 @@
     <div id="imgPresentacion" class="presentacion dn ">
 
 
-        <h3 class="subTitleInv"> Mis XV años</h3>
-        <h2 class="  titleInv">
-            Mariana López
+        <h3 class="subTitleInv {{data.nombreFont}}" [style]="{'color':data.cTexto}">{{data.tipoFiesta}}</h3>
+        <h2 class="  titleInv {{data.nombreFont}}" [style]="{'color':data.cTexto}">
+            {{data.nombreFiesta}}
         </h2>
         <!-- <img class="frame" src="/assets/invitaciones/frames/frame5.png">
         <img class="pic"
@@ -35,6 +38,8 @@
 
 
 
-        <a class="botonVer nlink inviVer" (click)="closePresentacion()">VE tu invitacion</a>
+        <a class="botonVer nlink inviVer {{data.textoInvFont}} pointer" [style]="{'color':data.cSecond}"
+            (click)="closePresentacion()">Ve tu
+            invitacion</a>
     </div>
 </div>

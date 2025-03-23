@@ -1,0 +1,182 @@
+<div class="btp" [style]="{'border-color':data.cSecond,'width':'100%','text-align':'center','margin':'auto'}">
+    <ng-container *ngIf="data">
+
+        <div class="viewMobile" *ngFor="let lugar of lugares ;let i = index">
+
+            <ng-container
+                *ngIf="lugar.dondeTitle.includes('Lugar del evento')  && (lugar.dondeCheck =='true' || lugar.dondeCheck ==true)  ">
+
+                <div class="transform" [style]="{'background-image': 'url('+url+'/upload/salones/'+lugar.dondeImg+')','background-repeat': 'no-repeat','background-size': '100% 100%',
+                    'background-position': 'center top'
+                    }">
+
+                    <div class="transform__content" [style]="{'color':data.cTexto}">
+
+                    </div>
+                </div>
+            </ng-container>
+            <ng-container
+                *ngIf="lugar.dondeTitle.includes('Iglesia') || lugar.dondeTitle.includes('Civil')  && (lugar.dondeCheck =='true' || lugar.dondeCheck ==true)  ">
+
+                <div class="transform" [style]="{'background-image': 'url('+url+'/upload/invitaciones/'+lugar.dondeImg+')','background-repeat': 'no-repeat','background-size': '100% 100%',
+                    'background-position': 'center top'
+                    }">
+
+                    <div class="transform__content" [style]="{'color':data.cTexto}">
+
+                    </div>
+                </div>
+            </ng-container>
+            <div class="transform transformFix" *ngIf=" (lugar.dondeCheck =='true' || lugar.dondeCheck ==true)"
+                [style]="{'background-image':'url(/assets/invitaciones/background/'+data.fondoInvitacion+')'}">
+                <div class="transform__content noOpc" [style]="{'color':data.cTexto}">
+                    <h1 class="{{data.cabeceraFont}} mt-1 upper">{{lugar.dondeTitle}}</h1>
+                    <div class="divisor" [style]="{'background-color':data.cSecond}"></div>
+                    <div>
+                        <h5
+                            class="{{data.cabeceraFont}} mt-2 text-center _animate__fadeInDown animate__slow animate__animated animate__fadeInDown ">
+                            {{lugar.dondeText}}</h5>
+                        <h5
+                            class=" {{data.textoInvFont}}  text-center _animate__fadeInDown animate__slow my-3 animate__animated animate__fadeInDown ">
+                            {{lugar.dondeAddress}}</h5>
+                        <h4
+                            class="{{data.cabeceraFont}}  {{data.textoInvFont}}  mt-2 text-center _animate__fadeInDown animate__slow animate__animated animate__fadeInDown ">
+                            {{lugar.dondeDate | date : 'shortDate'}} {{lugar.dondeDate |
+                            date : 'shortTime'}}</h4>
+                        <br>
+                        <div class="clear"></div>
+                        <a class="btn btn-outline-dark  {{data.textoInvFont}}  d-flex m-auto _animate__fadeInDown animate__slow animate__animated animate__fadeInDown "
+                            data-toggle="modal" data-target="#evento" [style]="{'border-radius': '8px', 'visibility': 'visible', 'border-color':data.cSecond,
+                'text-align':'center','margin':'auto', 'color': data.cTexto}" href="{{lugar.dondeAddressUbicacion}}"
+                            target="_blank">Ver
+                            mapa</a>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </ng-container>
+    <ng-container *ngIf=" data && lugares ">
+
+
+        <div class="viewPC" *ngFor="let lugar of lugares ;let i = index">
+            <ng-container *ngIf="i%2==0">
+
+
+
+                <ng-container
+                    *ngIf="(lugar.dondeTitle.includes('Iglesia') || lugar.dondeTitle.includes('Civil')) &&  (lugar.dondeCheck =='true' || lugar.dondeCheck ==true) ">
+
+                    <div class="transform" [style]="{'background-image': 'url('+url+'/upload/invitaciones/'+lugar.dondeImg+')','background-repeat': 'no-repeat','background-size': '100% 100%',
+                'background-position': 'center top'
+                }">
+
+                        <div class="transform__content" [style]="{'color':data.cTexto}">
+
+                        </div>
+                    </div>
+                </ng-container>
+
+                <ng-container
+                    *ngIf="lugar.dondeTitle.includes('Lugar del evento')  &&  (lugar.dondeCheck =='true' || lugar.dondeCheck ==true)  ">
+
+                    <div class="transform" [style]="{'background-image': 'url('+url+'/upload/salones/'+lugar.dondeImg+')','background-repeat': 'no-repeat','background-size': '100% 100%',
+                'background-position': 'center top'
+                }">
+
+                        <div class="transform__content" [style]="{'color':data.cTexto}">
+
+                        </div>
+                    </div>
+                </ng-container>
+                <div class="transform transformFix" *ngIf=" (lugar.dondeCheck =='true' || lugar.dondeCheck ==true)"
+                    [style]="{'background-image':'url(/assets/invitaciones/background/'+data.fondoInvitacion+')'}">
+                    <div class="transform__content noOpc" [style]="{'color':data.cTexto}">
+                        <h1 class="{{data.cabeceraFont}}  mt-1 upper">{{lugar.dondeTitle}}</h1>
+                        <div class="divisor" [style]="{'background-color':data.cSecond}"></div>
+                        <div>
+                            <h5
+                                class="{{data.cabeceraFont}} mt-2 text-center _animate__fadeInDown animate__slow animate__animated animate__fadeInDown ">
+                                {{lugar.dondeText}}</h5>
+                            <h5
+                                class=" {{data.textoInvFont}}  text-center _animate__fadeInDown animate__slow my-3 animate__animated animate__fadeInDown ">
+                                {{lugar.dondeAddress}}</h5>
+                            <h4
+                                class="{{data.cabeceraFont}}  {{data.textoInvFont}}  mt-2 text-center _animate__fadeInDown animate__slow animate__animated animate__fadeInDown ">
+                                {{lugar.dondeDate | date : 'shortDate'}} {{lugar.dondeDate
+                                | date : 'shortTime'}}</h4>
+                            <br>
+                            <a class="btn btn-outline-dark  {{data.textoInvFont}}  d-flex m-auto _animate__fadeInDown animate__slow animate__animated animate__fadeInDown "
+                                data-toggle="modal" data-target="#evento" [style]="{'border-radius': '8px', 'visibility': 'visible', 'border-color':data.cSecond,
+                'text-align':'center','margin':'auto', 'color': data.cTexto}" href="{{lugar.dondeAddressUbicacion}}"
+                                target="_blank">Ver
+                                mapa</a>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="i%2!=0">
+
+                <div class="transform transformFix" *ngIf=" (lugar.dondeCheck =='true' || lugar.dondeCheck ==true)"
+                    [style]="{'background-image':'url(/assets/invitaciones/background/'+data.fondoInvitacion+')'}">
+                    <div class="transform__content noOpc" [style]="{'color':data.cTexto}">
+                        <h1 class="{{data.cabeceraFont}}  mt-1 upper">{{lugar.dondeTitle}}</h1>
+                        <div class="divisor" [style]="{'background-color':data.cSecond}"></div>
+                        <div>
+                            <h5
+                                class="{{data.cabeceraFont}} mt-2 text-center _animate__fadeInDown animate__slow animate__animated animate__fadeInDown">
+                                {{lugar.dondeText}}</h5>
+                            <h5
+                                class=" {{data.textoInvFont}}  text-center _animate__fadeInDown animate__slow my-3 animate__animated animate__fadeInDown ">
+                                {{lugar.dondeAddress}}</h5>
+                            <h4
+                                class="{{data.cabeceraFont}}  {{data.textoInvFont}}  mt-2 text-center _animate__fadeInDown animate__slow animate__animated animate__fadeInDown ">
+                                {{lugar.dondeDate | date : 'shortDate'}} {{lugar.dondeDate
+                                | date : 'shortTime'}}</h4>
+                            <br>
+                            <a class="btn btn-outline-dark  {{data.textoInvFont}}  d-flex m-auto _animate__fadeInDown animate__slow animate__animated animate__fadeInDown "
+                                data-toggle="modal" data-target="#evento" [style]="{'border-radius': '8px', 'visibility': 'visible', 'border-color':data.cSecond,
+                'text-align':'center','margin':'auto', 'color': data.cTexto}" href="{{lugar.dondeAddressUbicacion}}"
+                                target="_blank">Ver
+                                mapa</a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <ng-container
+                    *ngIf="lugar.dondeTitle.includes('Iglesia') || lugar.dondeTitle.includes('Civil') &&  (lugar.dondeCheck =='true' || lugar.dondeCheck ==true)">
+
+                    <div class="transform" [style]="{'background-image': 'url('+url+'/upload/invitaciones/'+lugar.dondeImg+')','background-repeat': 'no-repeat','background-size': '100% 100%',
+                                'background-position': 'center top'
+                                }">
+
+                        <div class="transform__content" [style]="{'color':data.cTexto}">
+
+                        </div>
+                    </div>
+                </ng-container>
+
+                <ng-container
+                    *ngIf="lugar.dondeTitle.includes('Lugar del evento')   &&  (lugar.dondeCheck =='true' || lugar.dondeCheck ==true) ">
+
+                    <div class="transform" [style]="{'background-image': 'url('+url+'/upload/salones/'+lugar.dondeImg+')','background-repeat': 'no-repeat','background-size': '100% 100%',
+                                'background-position': 'center top'
+                                }">
+
+                        <div class="transform__content" [style]="{'color':data.cTexto}">
+
+                        </div>
+                    </div>
+                </ng-container>
+            </ng-container>
+
+
+
+        </div>
+    </ng-container>
+
+
+</div>

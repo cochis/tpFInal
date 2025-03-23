@@ -1,14 +1,116 @@
 <app-loading *ngIf="loading"></app-loading>
-<div id="presentacion" class="animate__animated">
 
-    <app-presentacion (view)="closePresentacion($event)" *ngIf="!loading && presentacionView"></app-presentacion>
+
+<div class="row text-center fixed-top" *ngIf="btnBack">
+
+    <div class="col-6 text-center" style="margin:auto">
+        <button class="btn btn-lg btn-block btn-warning mt-3"
+            routerLink="/core/invitaciones/editar-invitacion/true/{{invitacion.fiestaId}}">
+            Seguir editando
+        </button>
+    </div>
+</div>
+<div class="row text-center fixed-top" *ngIf="rol   && count==0 && copyId ">
+
+    <div class="col-12 col-md-6 text-center" style="margin:auto">
+        <button class="btn btn-lg btn-block btn-warning mt-3" (click)="regresar()">
+            Regresar
+        </button>
+    </div>
+    <div class="col-12 col-md-6 text-center" style="margin:auto">
+        <button class="btn btn-lg btn-block btn-warning mt-3" (click)="copiarInvitacion(invitacion)">
+            Copiar invitación
+        </button>
+    </div>
 </div>
 
-<div id="invitacion" *ngIf="invitacionView" class="animate__animated">
-
-    <app-principal-template-desing class="dn "></app-principal-template-desing>
 
 
+<div id="newStyle w-100" style="width: 100%;">
+
+    <div id="presentacion" class="animate__animated">
+        <app-presentacion (view)="closePresentacion($event)" *ngIf="!loading && presentacionView"
+            [data]="invitacion"></app-presentacion>
+    </div>
+
+    <div id="invitacion" *ngIf="invitacionView" class="animate__animated invitacion">
+        <div>
+
+            <app-music-desing [data]="invitacion"></app-music-desing>
+        </div>
+        <app-principal-template-desing [data]="invitacion" [fiesta]="fiesta"></app-principal-template-desing>
+
+        <div id="timer">
+            <app-timer [data]="invitacion"></app-timer>
+        </div>
+        <div id="dondeCuando" class="ma">
+            <app-donde-cuando [data]="invitacion"></app-donde-cuando>
+        </div>
+
+        <div id="galeria" class="ma  ">
+            <app-galeria-desing [data]="invitacion"></app-galeria-desing>
+        </div>
+        <div id="padrinos" class="ma  ">
+            <app-padrinos-desing [data]="invitacion"> </app-padrinos-desing>
+        </div>
+        <div id="chambelanes" class="ma  ">
+            <app-chambelanes-desing [data]="invitacion"></app-chambelanes-desing>
+        </div>
+        <div id="vestimenta" class="ma  ">
+            <app-vestimenta-desing [data]="invitacion"></app-vestimenta-desing>
+        </div>
+        <div id="programa" class="ma  ">
+            <app-programa-desing [data]="invitacion"></app-programa-desing>
+        </div>
+        <div id="menu" class="ma  ">
+            <app-menu-desing [data]="invitacion"></app-menu-desing>
+        </div>
+        <div id="mesa-regalos" class="ma  ">
+            <app-mesa-regalos-desing [data]="invitacion"></app-mesa-regalos-desing>
+        </div>
+        <div id="hospedaje" class="ma  ">
+            <app-hospedaje-desing [data]="invitacion"></app-hospedaje-desing>
+        </div>
+
+        <div id="qr" class="ma  ">
+            <ng-container *ngIf="boleto">
+                <app-qr-desing [data]="invitacion" [boleto]="boleto" [fiesta]="fiesta"></app-qr-desing>
+
+            </ng-container>
+            <ng-container *ngIf="!boleto">
+                <app-qr-desing [data]="invitacion"></app-qr-desing>
+
+            </ng-container>
+
+
+        </div>
+        <div id="confirmacion" class="ma  ">
+            <app-confirmacion-desing [data]="invitacion" [boleto]="boleto" [fiesta]="fiesta"></app-confirmacion-desing>
+        </div>
+
+
+        <ng-container *ngIf="fiesta && invitacion">
+
+            <div class="row" *ngIf="fiesta.galeria">
+                <div class="col-6  ma text-center">
+                    <button _ngcontent-ng-c3567673567="" type="button" class="btn mt-3 mb-3" tabindex="0"
+                        [style]="{'background-color': invitacion.cSecond, 'border': '3px solid'+ invitacion.cTexto, 'color': invitacion.cTexto}"
+                        routerLink="/core/galeria/fst/{{fiesta.uid}}/blt/{{boleto.uid}}">
+                        Comparte tus fotos <i _ngcontent-ng-c3567673567="" class="bi bi-images"
+                            [style]="{'color': invitacion.cTexto,'font-size': '30px','margin-left':'10px'}"></i></button>
+                </div>
+            </div>
+        </ng-container>
+
+
+        <div class="mt-3 text-center"
+            [style]="{'background-color': invitacion.cSecond, 'height': '100px','line-height':'100px','margin':'auto','text-align':'center','width': '100%'}">
+            <b style="color: rgb(226, 215, 210);"><a routerLink="/core"
+                    style="color: rgb(226, 215, 210); cursor: pointer; text-decoration: none;"><img
+                        src="../../../../../../../../favicon.ico" alt=""
+                        style="width: 35px; padding: 3px; background-color: white;"> Tickets party </a></b>
+        </div>
+    </div>
 
 
 </div>

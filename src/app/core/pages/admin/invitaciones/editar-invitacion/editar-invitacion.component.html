@@ -897,7 +897,7 @@
 
 
 
-                                    <div [style]="{'height': '600px', 'background-color':form.value.cPrincipal}">
+                                    <!--   <div [style]="{'height': '600px', 'background-color':form.value.cPrincipal}">
                                         <app-view-template [data]="{
                                             type:'seccionMensaje',
                                             size:viewSizeM,
@@ -911,13 +911,13 @@
                                             mensajeEfecto: form.value.mensajeEfecto,
                                             mensajeEfectoRep: form.value.mensajeEfectoRep,
                                             bxMensajeImg: form.value.bxMensajeImg,
-                                            byMensajeImg: form.value.byMensajeImg,
+                                            byMensajeImg: form.value.byMensaje/*  */Img,
                                             mensajeFont: form.value.mensajeFont,
                                             mensajeImgWidth: mensajeImgWidth.value,
                                             alturaMensaje: alturaMensaje .value,
                                         }"></app-view-template>
 
-                                    </div>
+                                    </div> -->
 
 
 
@@ -1064,6 +1064,9 @@
                                                 </div>
 
                                                 <ng-container *ngIf="padresCheck.checked">
+
+
+
 
                                                     <div class="col-12  text-center" style="margin:auto">
 
@@ -2932,6 +2935,7 @@
                                             </div>
                                             <ng-container formArrayName="padres" *ngIf="padresCheck.checked">
 
+
                                                 <ng-container *ngFor="let padre of padres.controls; let i=index">
                                                     <ng-container [formGroupName]="i">
                                                         <div class="col-12 col-md-4  mt-3" id="padreFile{{i}}">
@@ -3050,6 +3054,7 @@
                                                                     class="error">Es requerido
                                                                 </span>
                                                             </div>
+
 
 
                                                             <div class="col-12 col-md-4 mt-3">
@@ -3629,6 +3634,2197 @@
                                     </div>
                                 </form>
                             </ng-container>
+
+
+                            <!-- Inicia Facncy -->
+
+                            <ng-container *ngIf="fiesta && fiesta.invitacion == 'fancy'">
+                                <button (click)="restaurarAltura()" class="btn btn-lg btn-block but mt-3 mb-3"
+                                    style="margin: auto;">
+                                    Restaurar</button>
+
+                                <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                                    <div class="row text-center mb-5" style="display: none;">
+                                        <h5>Tipo de Vista </h5>
+                                        <div class="col-12 col-md-6 ma">
+                                            <select name="viewSize" id="viewSize" #viewSize class="form-select"
+                                                (change)="changeSize(viewSize.value)">
+                                                <option value="">Selecciona el tamaño de vista</option>
+                                                <option value="sm" selected>Celular</option>
+                                                <option value="md">Tablet</option>
+                                                <option value="lg">Computadora</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!--  Inicia Sección principal -->
+                                    <div class="row mt-3 mb-3">
+                                        <h5>Sección principal</h5>
+                                        <div class="col-12 col-md-6">
+                                            <select name="edicionType" id="edicionType" class="form-control upper"
+                                                #edicionType (change)="changeEdit(edicionType.value, 'principal')">
+                                                <option value="" class="upper" selected>Selecciona que quieres editar
+                                                </option>
+                                                <option value="imgIntro" class="upper">Imagenes de intro</option>
+                                                <option value="fondos" class="upper">Fondos</option>
+                                                <option value="cabeceras" class="upper">Cabeceras</option>
+                                                <option value="textoInvitacion" class="upper">Texto</option>
+                                                <option value="musica" class="upper">música</option>
+                                                <option value="colores" class="upper">colores</option>
+                                                <option value="imagen" class="upper">imagen</option>
+                                                <option value="titulo" class="upper">titulo</option>
+                                                <option value="subtitulo" class="upper">subtitulo</option>
+                                                <option value="fecha" class="upper">Conteo regresivo</option>
+                                                <!--   <option value="invitacion" class="upper">invitación</option> -->
+                                                <!--   <option value="entrada general" class="upper">entrada general
+                                                </option> -->
+
+                                            </select>
+                                            <ng-container *ngIf="col">
+                                                <div class="row text-center mt-3 animate__animated animate__fadeInDown">
+                                                    <!--  <div class="col-12 col-md-4  mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="cPrincipal ">Principal
+                                                            </label>
+                                                            <input type="color" class="form-control upper"
+                                                                id="cPrincipal" formControlName="cPrincipal" required
+                                                                placeholder="Color principal"
+                                                                [readonly]="edit==='false'">
+                                                        </div>
+                                                        <span *ngIf="submited && errorControl['cPrincipal'].errors "
+                                                            class="error">Es requerido
+                                                        </span>
+                                                    </div> -->
+                                                    <div class="col-12 col-md-6  mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="byFileColorFr ">Inicial </label>
+                                                            <input type="color" class="form-control upper" id="cSecond"
+                                                                formControlName="cSecond" required
+                                                                placeholder="Color secundario"
+                                                                [readonly]="edit==='false'">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6  mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="cTexto ">Texto </label>
+                                                            <input type="color" class="form-control upper" id="cTexto"
+                                                                formControlName="cTexto" required
+                                                                placeholder="Color de fondo"
+                                                                [readonly]="edit==='false'">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </ng-container>
+
+                                            <ng-container *ngIf="ima">
+                                                <div class="row text-center mt-3 animate__animated animate__fadeInDown">
+
+                                                    <div class="col-12 col-md-6 col-md-12    mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="img1">Imagen de fondo
+                                                                <img src="/assets/images/tp.png" alt="" class="pointer"
+                                                                    style="width: 150px;"
+                                                                    *ngIf="invitacion==undefined || invitacion.data.img1 ==''">
+
+                                                                <img [src]="url+'/upload/invitaciones/'+invitacion.data.img1"
+                                                                    alt="" class=" pointer" *ngIf="invitacion"
+                                                                    style="width: 150px;">
+
+                                                            </label>
+
+                                                            <input type="file" id="img1" #img1
+                                                                (change)="cambiarImagen($event,'img1' )">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6   mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="img1Size ">Tamaño del imagen </label>
+                                                            <a class="range" (click)="changeRange('img1Size','-')"> <b
+                                                                    class="range-icon">-</b> </a>
+                                                            <input type="range" id="img1Size" #img1Size
+                                                                formControlName="img1Size" min="-500" max="500">
+                                                            <a class="range" (click)="changeRange('img1Size','+')"> <b
+                                                                    class="range-icon">+</b> </a>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-12 col-md-6   mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="img1Top ">Altura de la imagen </label>
+                                                            <a class="range" (click)="changeRange('img1Top','-')">
+                                                                <b class="range-icon">-</b> </a>
+                                                            <input type="range" id="img1Top" #img1Top
+                                                                formControlName="img1Top" min="-500" max="500">
+                                                            <a class="range" (click)="changeRange('img1Top','+')">
+                                                                <b class="range-icon">+</b> </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12     mt-3 ma">
+                                                        <div class="form-group ">
+                                                            <label for="efectoImg1 ">Efecto de entrada de la
+                                                                imagen</label>
+                                                            <select name="efectoImg1" id="efectoImg1"
+                                                                formControlName="efectoImg1"
+                                                                class="form-control upper {{efectoImg1}}" #efectoImg1>
+                                                                <option value="" selected>Seleccione el tipo de efecto
+                                                                </option>
+                                                                <option [class]="item.clave" [value]="item.clave"
+                                                                    class="name" *ngFor="let item of efectos">
+                                                                    {{item.nombre}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12   mt-3 ma">
+                                                        <div class="form-group ">
+                                                            <label for="repEfectoImg1 ">Repetir Efecto</label>
+                                                            <select name="repEfectoImg1" id="repEfectoImg1"
+                                                                formControlName="repEfectoImg1"
+                                                                class="form-control upper {{repEfectoImg1}}"
+                                                                #repEfectoImg1>
+                                                                <option value="" selected>Seleccione el tipo de efecto
+                                                                </option>
+                                                                <option [class]="item.clave" [value]="item.clave"
+                                                                    class="name" *ngFor="let item of repEfec">
+                                                                    {{item.nombre}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+
+                                                </div>
+                                            </ng-container>
+
+                                            <ng-container *ngIf="tit">
+                                                <div class="row text-center mt-3 animate__animated animate__fadeInDown">
+                                                    <div class="col-12   mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="nombreFiesta ">Título invitación</label>
+                                                            <input type="text" id="nombreFiesta" #nombreFiesta
+                                                                class="form-control" formControlName="nombreFiesta">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-12   mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="nombreFont ">Fuente de título</label>
+                                                            <select name="nombreFont" id="nombreFont"
+                                                                formControlName="nombreFont"
+                                                                class="form-control upper {{nombreFont}}" #nombreFont>
+                                                                <option value="">Seleccione el tipo de fuente</option>
+                                                                <ng-container *ngFor="let font of fonts">
+
+                                                                    <option [value]="font.value" [class]="font.value">
+                                                                        {{font.name}}</option>
+                                                                </ng-container>
+
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6   mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="nombreSize ">Tamaño título
+                                                            </label>
+                                                            <a class="range" (click)="changeRange('nombreSize','-')"> <b
+                                                                    class="range-icon">-</b>
+                                                            </a>
+                                                            <input type="range" id="nombreSize" #nombreSize
+                                                                formControlName="nombreSize" min="-500" max="500">
+                                                            <a class="range" (click)="changeRange('nombreSize','+')"> <b
+                                                                    class="range-icon">+</b>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6   mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="topTitle ">Altura del título </label>
+                                                            <a class="range" (click)="changeRange('topTitle','-')"> <b
+                                                                    class="range-icon">-</b> </a>
+                                                            <input type="range" id="topTitle" #topTitle
+                                                                formControlName="topTitle" min="-500" max="500">
+                                                            <a class="range" (click)="changeRange('topTitle','+')"> <b
+                                                                    class="range-icon">+</b> </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12     mt-3 ma">
+                                                        <div class="form-group ">
+                                                            <label for="nombreEfecto ">Efecto del titulo</label>
+                                                            <select name="nombreEfecto" id="nombreEfecto"
+                                                                formControlName="nombreEfecto"
+                                                                class="form-control upper {{nombreEfecto}}"
+                                                                #nombreEfecto>
+                                                                <option value="" selected>Seleccione el tipo de efecto
+                                                                </option>
+                                                                <option [class]="item.clave" [value]="item.clave"
+                                                                    class="name" *ngFor="let item of efectos">
+                                                                    {{item.nombre}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12   mt-3 ma">
+                                                        <div class="form-group ">
+                                                            <label for="nombreEfectoRep ">Repetir Efecto</label>
+                                                            <select name="nombreEfectoRep" id="nombreEfectoRep"
+                                                                formControlName="nombreEfectoRep"
+                                                                class="form-control upper {{nombreEfectoRep}}"
+                                                                #nombreEfectoRep>
+                                                                <option value="" selected>Seleccione el tipo de efecto
+                                                                </option>
+                                                                <option [class]="item.clave" [value]="item.clave"
+                                                                    class="name" *ngFor="let item of repEfec">
+                                                                    {{item.nombre}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </ng-container>
+
+                                            <ng-container *ngIf="sub">
+                                                <div class="row text-center mt-3 animate__animated animate__fadeInDown">
+                                                    <div class="col-12  mt-3 ma">
+                                                        <div class="form-group ">
+                                                            <label for="tipoFiesta ">Subtítulo invitación </label>
+                                                            <input type="text" id="tipoFiesta" #tipoFiesta
+                                                                formControlName="tipoFiesta" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12  mt-3 ma">
+                                                        <div class="form-group ">
+                                                            <label for="tipoFont">Fuente de subtítulo</label>
+                                                            <select name="tipoFont" id="tipoFont"
+                                                                formControlName="tipoFont"
+                                                                class="form-control upper {{tipoFont}}" #tipoFont>
+                                                                <option value="">Seleccione el tipo de fuente</option>
+                                                                <ng-container *ngFor="let font of fonts">
+
+                                                                    <option [value]="font.value" [class]="font.value">
+                                                                        {{font.name}}</option>
+                                                                </ng-container>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6  mt-3 ma">
+                                                        <div class="form-group ">
+                                                            <label for="tipoSize ">Tamaño de subtítulo </label>
+                                                            <a class="range" (click)="changeRange('tipoSize','-')"> <b
+                                                                    class="range-icon">-</b> </a>
+                                                            <input type="range" id="tipoSize" #tipoSize
+                                                                formControlName="tipoSize" min="-1500" max="1500">
+                                                            <a class="range" (click)="changeRange('tipoSize','+')"> <b
+                                                                    class="range-icon">+</b> </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6  mt-3 ma">
+                                                        <div class="form-group ">
+                                                            <label for="tipoTop ">Altura de subtítulo </label>
+                                                            <a class="range" (click)="changeRange('tipoTop','-')"> <b
+                                                                    class="range-icon">-</b> </a>
+                                                            <input type="range" id="tipoTop" #tipoTop
+                                                                formControlName="tipoTop" min="-1500" max="1500">
+                                                            <a class="range" (click)="changeRange('tipoTop','+')"> <b
+                                                                    class="range-icon">+</b> </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12    mt-3 ma">
+                                                        <div class="form-group ">
+                                                            <label for="tipoEfecto ">Efecto del subtitulo</label>
+                                                            <select name="tipoEfecto" id="tipoEfecto"
+                                                                formControlName="tipoEfecto"
+                                                                class="form-control upper {{tipoEfecto}}" #tipoEfecto>
+                                                                <option value="" selected>Seleccione el tipo de efecto
+                                                                </option>
+                                                                <option [class]="item.clave" [value]="item.clave"
+                                                                    class="name" *ngFor="let item of efectos">
+                                                                    {{item.nombre}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12   mt-3 ma">
+                                                        <div class="form-group ">
+                                                            <label for="tipoEfectoRep ">Repetir Efecto</label>
+                                                            <select name="tipoEfectoRep" id="tipoEfectoRep"
+                                                                formControlName="tipoEfectoRep"
+                                                                class="form-control upper {{tipoEfectoRep}}"
+                                                                #tipoEfectoRep>
+                                                                <option value="" selected>Seleccione el tipo de efecto
+                                                                </option>
+                                                                <option [class]="item.clave" [value]="item.clave"
+                                                                    class="name" *ngFor="let item of repEfec">
+                                                                    {{item.nombre}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+
+                                            </ng-container>
+
+                                            <ng-container *ngIf="fec">
+                                                <div class="row text-center mt-3 animate__animated animate__fadeInDown">
+
+
+
+                                                </div>
+
+                                            </ng-container>
+
+                                            <ng-container *ngIf="inv">
+                                                <div
+                                                    class="row text-center mt-3 ma animate__animated animate__fadeInDown">
+
+
+                                                    <div class="col-12     mt-3 ma">
+                                                        <div class="form-group ">
+                                                            <label for="efectoInvi ">Efecto de entrada de la
+                                                                invitación</label>
+                                                            <select name="efectoInvi" id="efectoInvi"
+                                                                formControlName="efectoInvi"
+                                                                class="form-control upper {{efectoInvi}}" #efectoInvi>
+                                                                <option value="" selected>Seleccione el tipo de efecto
+                                                                </option>
+                                                                <option [class]="item.clave" [value]="item.clave"
+                                                                    class="name" *ngFor="let item of efectos">
+                                                                    {{item.nombre}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12   mt-3 ma">
+                                                        <div class="form-group ">
+                                                            <label for="repEfectoInvi ">Repetir Efecto</label>
+                                                            <select name="repEfectoInvi" id="repEfectoInvi"
+                                                                formControlName="repEfectoInvi"
+                                                                class="form-control upper {{repEfectoInvi}}"
+                                                                #repEfectoInvi>
+                                                                <option value="" selected>Seleccione el tipo de efecto
+                                                                </option>
+                                                                <option [class]="item.clave" [value]="item.clave"
+                                                                    class="name" *ngFor="let item of repEfec">
+                                                                    {{item.nombre}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+
+
+
+                                                    <div class="col-12      mt-3 ma">
+                                                        <div class="form-group ">
+                                                            <label for="inviFont2 ">Fuente invitado</label>
+                                                            <select name="inviFont2" id="inviFont2"
+                                                                formControlName="inviFont2"
+                                                                class="form-control upper {{inviFont2}}" #inviFont2>
+                                                                <option value="">Seleccione el tipo de fuente</option>
+                                                                <ng-container *ngFor="let font of fonts">
+
+                                                                    <option [value]="font.value" [class]="font.value">
+                                                                        {{font.name}}</option>
+                                                                </ng-container>
+
+
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12      mt-3 ma">
+                                                        <div class="form-group ">
+                                                            <label for="inviEfecto ">Efecto invitado</label>
+                                                            <select name="inviEfecto" id="inviEfecto"
+                                                                formControlName="inviEfecto"
+                                                                class="form-control upper {{inviEfecto}}" #inviEfecto>
+                                                                <option value="" selected>Seleccione el tipo de efecto
+                                                                </option>
+                                                                <option [class]="item.clave" [value]="item.clave"
+                                                                    class="name" *ngFor="let item of efectos">
+                                                                    {{item.nombre}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12      mt-3 ma">
+                                                        <div class="form-group ">
+                                                            <label for="inviEfectoRep ">Repetir efecto </label>
+                                                            <select name="inviEfectoRep" id="inviEfectoRep"
+                                                                formControlName="inviEfectoRep"
+                                                                class="form-control upper {{inviEfectoRep}}"
+                                                                #inviEfectoRep>
+                                                                <option value="" selected>Seleccione el tipo de efecto
+                                                                </option>
+                                                                <option [class]="item.clave" [value]="item.clave"
+                                                                    class="name" *ngFor="let item of repEfec">
+                                                                    {{item.nombre}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </ng-container>
+
+                                            <ng-container *ngIf="ent">
+                                                <div class="row text-center mt-3 animate__animated animate__fadeInDown">
+                                                    <div class="col-12       mt-3 ma ">
+                                                        <label class="form-check-label" for="generalCheck">
+                                                            Entrada general
+                                                        </label>
+                                                        <input class="form-check-input" type="checkbox"
+                                                            id="generalCheck" #generalCheck
+                                                            formControlName="generalCheck">
+
+
+                                                    </div>
+                                                    <div class="col-12    ma  mt-3" *ngIf="form.value.generalCheck">
+                                                        <div class="form-group ">
+                                                            <label for="generalTexto ">Texto como invitación General
+                                                            </label>
+
+                                                            <input type="text" id="generalTexto" #generalTexto
+                                                                formControlName="generalTexto"
+                                                                placeholder="A toda la comunidad" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12   ma  mt-3" *ngIf="form.value.generalCheck">
+                                                        <div class="form-group ">
+                                                            <label for="generalSize">Texto como invitación General
+                                                            </label>
+                                                            <a class="range" (click)="changeRange('generalSize','-')">
+                                                                <b class="range-icon">-</b> </a>
+                                                            <input type="range" id="generalSize" #generalSize
+                                                                formControlName="generalSize" value="15" min="10"
+                                                                max="50">
+                                                            <a class="range" (click)="changeRange('generalSize','+')">
+                                                                <b class="range-icon">+</b> </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </ng-container>
+
+                                            <ng-container *ngIf="cab">
+                                                <div class="row text-center mt-3 animate__animated animate__fadeInDown">
+                                                    <div class="col-12     mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="cabeceraFont ">Fuente de cabecera</label>
+                                                            <select name="cabeceraFont" id="cabeceraFont"
+                                                                formControlName="cabeceraFont"
+                                                                class="form-control upper {{cabeceraFont}}"
+                                                                #cabeceraFont>
+                                                                <option value="">Seleccione el tipo de fuente</option>
+                                                                <ng-container *ngFor="let font of fonts">
+
+                                                                    <option [value]="font.value" [class]="font.value">
+                                                                        {{font.name}}</option>
+                                                                </ng-container>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12  mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="cabeceraSize ">Tamaño título
+                                                            </label>
+                                                            <a class="range" (click)="changeRange('cabeceraSize','-')">
+                                                                <b class="range-icon">-</b> </a>
+                                                            <input type="range" id="cabeceraSize" #cabeceraSize
+                                                                formControlName="cabeceraSize" min="-0" max="80">
+                                                            <a class="range" (click)="changeRange('cabeceraSize','+')">
+                                                                <b class="range-icon">+</b> </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12     mt-3 ma">
+                                                        <div class="form-group ">
+                                                            <label for="cabeceraEfecto ">Efecto de cabecera</label>
+                                                            <select name="cabeceraEfecto" id="cabeceraEfecto"
+                                                                formControlName="cabeceraEfecto"
+                                                                class="form-control upper {{cabeceraEfecto}}"
+                                                                #cabeceraEfecto>
+                                                                <option value="" selected>Seleccione el tipo de efecto
+                                                                </option>
+                                                                <option [class]="item.clave" [value]="item.clave"
+                                                                    class="name" *ngFor="let item of efectos">
+                                                                    {{item.nombre}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12   mt-3 ma">
+                                                        <div class="form-group ">
+                                                            <label for="cabeceraEfectoRep ">Repetir Efecto</label>
+                                                            <select name="cabeceraEfectoRep" id="cabeceraEfectoRep"
+                                                                formControlName="cabeceraEfectoRep"
+                                                                class="form-control upper {{cabeceraEfectoRep}}"
+                                                                #cabeceraEfectoRep>
+                                                                <option value="" selected>Seleccione el tipo de efecto
+                                                                </option>
+                                                                <option [class]="item.clave" [value]="item.clave"
+                                                                    class="name" *ngFor="let item of repEfec">
+                                                                    {{item.nombre}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </ng-container>
+
+                                            <ng-container *ngIf="mus">
+                                                <div class="row text-center mt-3 animate__animated animate__fadeInDown">
+                                                    <div class="row text-center mt-3">
+                                                        <div class="col-12">
+                                                            <label for="isMusic">¿Quieres agregar musica?</label>
+                                                            <div class="form-group     ">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    id="isMusic" #isMusic formControlName="isMusic">
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="row text-center mt-3" *ngIf="form.value.isMusic">
+
+                                                        <div class="form-group    image-upload ">
+                                                            <label for="musicaInvitacion">Seleciona tu musica
+                                                                <br>
+
+                                                                <img src="/assets/images/musica.png" alt=""
+                                                                    class="pointer" style="width: 150px;">
+
+                                                                <!-- invitacion.data.musicaInvitacion!='' -->
+
+                                                            </label>
+                                                            <input type="file" id="musicaInvitacion" #musicaInvitacion
+                                                                accept="audio/*" (change)="cargarMusica($event )">
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div *ngIf="form.value.isMusic">
+
+                                                        <audio tabindex="0" id="beep-one" controls preload="auto"
+                                                            *ngIf="invitacion && invitacion.data.musicaInvitacion && invitacion.data.musicaInvitacion!='' ">
+                                                            <source
+                                                                [src]="url+'/upload/sound/'+invitacion.data.musicaInvitacion">
+
+                                                        </audio>
+
+                                                    </div>
+                                                    <div class="row text-center mt-3" *ngIf="form.value.isMusic">
+                                                        <div class="col-12">
+                                                            <label for="musicRepit">¿Quieres que se repita?</label>
+                                                            <div class="form-group     ">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    id="musicRepit" #musicRepit
+                                                                    formControlName="musicRepit">
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </ng-container>
+
+                                            <ng-container *ngIf="imgIntro">
+                                                <div class="row text-center mt-3 animate__animated animate__fadeInDown">
+
+
+
+
+
+                                                    <div class="col-12 col-md-4  mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="imgIntroLeft ">Entrada Izquierda</label>
+                                                            <select name="imgIntroLeft" id="imgIntroLeft"
+                                                                formControlName="imgIntroLeft"
+                                                                class="form-control upper " #imgIntroLeft>
+                                                                <option value="">Seleccione un marco</option>
+                                                                <option value="bg1.avif">Fondo 1</option>
+                                                                <option value="bg2.jpeg">Fondo 2</option>
+                                                                <option value="bg3.jpeg">Fondo 3</option>
+                                                                <option value="bg4.png">Fondo 4</option>
+                                                                <option value="bg5.jpg">Fondo 5</option>
+                                                                <option value="bg6.png">Fondo 6</option>
+                                                                <option value="bg7.png">Fondo 7</option>
+                                                                <option value="bg8.png">Fondo 8</option>
+                                                                <option value="bg9.png">Fondo 9</option>
+
+
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12   col-md-4   mt-3 ma">
+                                                        <div class="form-group ">
+                                                            <label for="efectoImgLeft ">Efecto izquierda</label>
+                                                            <select name="efectoImgLeft" id="efectoImgLeft"
+                                                                formControlName="efectoImgLeft"
+                                                                class="form-control upper {{efectoImgLeft}}"
+                                                                #efectoImgLeft>
+                                                                <option value="" selected>Seleccione el tipo de efecto
+                                                                </option>
+                                                                <option [class]="item.clave" [value]="item.clave"
+                                                                    class="name" *ngFor="let item of efectos">
+                                                                    {{item.nombre}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-12    col-md-4  mt-3 ma">
+                                                        <div class="form-group ">
+                                                            <label for="repImgLeft ">Repetir efecto </label>
+                                                            <select name="repImgLeft" id="repImgLeft"
+                                                                formControlName="repImgLeft"
+                                                                class="form-control upper {{repImgLeft}}" #repImgLeft>
+                                                                <option value="" selected>Seleccione el tipo de efecto
+                                                                </option>
+                                                                <option [class]="item.clave" [value]="item.clave"
+                                                                    class="name" *ngFor="let item of repEfec">
+                                                                    {{item.nombre}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+
+
+
+                                                    <div class="col-12 col-md-4  mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="imgIntroRight ">Entrada derecha</label>
+                                                            <select name="imgIntroRight" id="imgIntroRight"
+                                                                formControlName="imgIntroRight"
+                                                                class="form-control upper " #imgIntroRight>
+                                                                <option value="">Seleccione un marco</option>
+                                                                <option value="bg1.avif">Fondo 1</option>
+                                                                <option value="bg2.jpeg">Fondo 2</option>
+                                                                <option value="bg3.jpeg">Fondo 3</option>
+                                                                <option value="bg4.png">Fondo 4</option>
+                                                                <option value="bg5.jpg">Fondo 5</option>
+                                                                <option value="bg6.png">Fondo 6</option>
+                                                                <option value="bg7.png">Fondo 7</option>
+                                                                <option value="bg8.png">Fondo 8</option>
+                                                                <option value="bg9.png">Fondo 9</option>
+
+
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12  col-md-4   mt-3 ma">
+                                                        <div class="form-group ">
+                                                            <label for="efectoImgRight ">Efecto derecha</label>
+                                                            <select name="efectoImgRight" id="efectoImgRight"
+                                                                formControlName="efectoImgRight"
+                                                                class="form-control upper {{efectoImgRight}}"
+                                                                #efectoImgRight>
+                                                                <option value="" selected>Seleccione el tipo de efecto
+                                                                </option>
+                                                                <option [class]="item.clave" [value]="item.clave"
+                                                                    class="name" *ngFor="let item of efectos">
+                                                                    {{item.nombre}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12    col-md-4  mt-3 ma">
+                                                        <div class="form-group ">
+                                                            <label for="repImgRight ">Repetir efecto </label>
+                                                            <select name="repImgRight" id="repImgRight"
+                                                                formControlName="repImgRight"
+                                                                class="form-control upper {{repImgRight}}" #repImgRight>
+                                                                <option value="" selected>Seleccione el tipo de efecto
+                                                                </option>
+                                                                <option [class]="item.clave" [value]="item.clave"
+                                                                    class="name" *ngFor="let item of repEfec">
+                                                                    {{item.nombre}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            </ng-container>
+
+                                            <ng-container *ngIf="textoInvitacion">
+                                                <div class="row text-center mt-3 animate__animated animate__fadeInDown">
+
+
+                                                    <div class="col-12   mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="textoInvFont ">Fuente de título</label>
+                                                            <select name="textoInvFont" id="textoInvFont"
+                                                                formControlName="textoInvFont"
+                                                                class="form-control upper {{textoInvFont}}"
+                                                                #textoInvFont>
+                                                                <option value="">Seleccione el tipo de fuente</option>
+                                                                <ng-container *ngFor="let font of fonts">
+
+                                                                    <option [value]="font.value" [class]="font.value">
+                                                                        {{font.name}}</option>
+                                                                </ng-container>
+
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12   mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="textoInvSize ">Tamaño texto
+                                                            </label>
+                                                            <a class="range" (click)="changeRange('textoInvSize','-')">
+                                                                <b class="range-icon">-</b>
+                                                            </a>
+                                                            <input type="range" id="textoInvSize" #textoInvSize
+                                                                formControlName="textoInvSize" min="-10" max="200">
+                                                            <a class="range" (click)="changeRange('textoInvSize','+')">
+                                                                <b class="range-icon">+</b>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+
+
+
+
+                                                </div>
+                                            </ng-container>
+
+                                            <ng-container *ngIf="fondos">
+                                                <div class="row text-center mt-3 animate__animated animate__fadeInDown">
+                                                    <div class="col-12    mt-3 ma">
+                                                        <div class="form-group ">
+                                                            <label for="invitacionEfecto ">Efecto invitacion</label>
+                                                            <select name="invitacionEfecto" id="invitacionEfecto"
+                                                                formControlName="invitacionEfecto"
+                                                                class="form-control upper {{invitacionEfecto}}"
+                                                                #invitacionEfecto>
+                                                                <option value="" selected>Seleccione el tipo de efecto
+                                                                </option>
+                                                                <option [class]="item.clave" [value]="item.clave"
+                                                                    class="name" *ngFor="let item of efectos">
+                                                                    {{item.nombre}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12   mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="fondoInvitacion ">Fondo Invitación</label>
+                                                            <select name="fondoInvitacion" id="fondoInvitacion"
+                                                                formControlName="fondoInvitacion"
+                                                                class="form-control upper " #fondoInvitacion>
+                                                                <option value="">Seleccione un marco</option>
+                                                                <option value="bg1.avif">Fondo 1</option>
+                                                                <option value="bg2.jpeg">Fondo 2</option>
+                                                                <option value="bg3.jpeg">Fondo 3</option>
+                                                                <option value="bg4.png">Fondo 4</option>
+                                                                <option value="bg5.jpg">Fondo 5</option>
+                                                                <option value="bg6.png">Fondo 6</option>
+                                                                <option value="bg7.png">Fondo 7</option>
+                                                                <option value="bg8.png">Fondo 8</option>
+                                                                <option value="bg9.png">Fondo 8</option>
+
+
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12   mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="marcoFoto ">Marco de fondo</label>
+                                                            <select name="marcoFoto" id="marcoFoto"
+                                                                formControlName="marcoFoto" class="form-control upper "
+                                                                #marcoFoto>
+                                                                <option value="">Seleccione un marco</option>
+                                                                <option value="frame1.png">Marco 1</option>
+                                                                <option value="frame2.png">Marco 2</option>
+                                                                <option value="frame3.png">Marco 3</option>
+                                                                <option value="frame4.png">Marco 4</option>
+                                                                <option value="frame5.png">Marco 5</option>
+
+
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-12 col-md-6   mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="marcoFotoWidth ">Tamaño del marco </label>
+                                                            <a class="range"
+                                                                (click)="changeRange('marcoFotoWidth','-')"> <b
+                                                                    class="range-icon">-</b> </a>
+                                                            <input type="range" id="marcoFotoWidth" #marcoFotoWidth
+                                                                formControlName="marcoFotoWidth" min="-500" max="500">
+                                                            <a class="range"
+                                                                (click)="changeRange('marcoFotoWidth','+')"> <b
+                                                                    class="range-icon">+</b> </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6   mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="marcoFotoTop ">Altura del marco </label>
+                                                            <a class="range" (click)="changeRange('marcoFotoTop','-')">
+                                                                <b class="range-icon">-</b> </a>
+                                                            <input type="range" id="marcoFotoTop" #marcoFotoTop
+                                                                formControlName="marcoFotoTop" min="-500" max="500">
+                                                            <a class="range" (click)="changeRange('marcoFotoTop','+')">
+                                                                <b class="range-icon">+</b> </a>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            </ng-container>
+
+
+
+                                        </div>
+
+
+                                        <div class="col-12 col-md-6">
+                                            <app-view-fancy class="mt-3" [data]="data()"></app-view-fancy>
+                                        </div>
+
+                                    </div>
+                                    <!--  Finaliza Sección principal -->
+
+
+
+
+
+
+
+                                    <hr class="mt-3 mb-3">
+                                    <div class="row text-center mb-3">
+                                        <h5>Seccion Mensaje</h5>
+                                        <div class="row text-center mt-3">
+                                            <div class="col-12  mt-3">
+                                                <div class="form-group ">
+                                                    <label for="mensaje1 ">Mensaje </label>
+                                                    <textarea type="text" id="mensaje1" #mensaje1
+                                                        formControlName="mensaje1" class="form-control"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6 mt-3 ma">
+                                                <div class="form-group ">
+                                                    <label for="mensajeAlign ">alineación de título</label>
+                                                    <select name="mensajeAlign" id="mensajeAlign"
+                                                        formControlName="mensajeAlign"
+                                                        class="form-control upper {{mensajeAlign}}" #mensajeAlign>
+                                                        <option value="">Seleccione el tipo de alineación
+                                                        </option>
+                                                        <option value="left">Izquierda</option>
+                                                        <option value="right">Derecha</option>
+                                                        <option value="center">Centro</option>
+                                                        <option value="justify">justificado</option>
+
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6 mt-3 ma" style="display:none">
+                                                <div class="form-group ">
+                                                    <label for="alturaMensaje ">Altura mensaje</label>
+                                                    <a class="range" (click)="changeRange('alturaMensaje','-')">
+                                                        <b class="range-icon">-</b> </a>
+                                                    <input type="range" id="alturaMensaje" #alturaMensaje
+                                                        formControlName="alturaMensaje" min="0" max="50   ">
+                                                    <a class="range" (click)="changeRange('alturaMensaje','+')">
+                                                        <b class="range-icon">+</b> </a>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12  col-sm-6  col-md-3   mt-3 ma">
+                                                <div class="form-group ">
+                                                    <label for="mensajeEfecto ">Efecto mensaje</label>
+                                                    <select name="mensajeEfecto" id="mensajeEfecto"
+                                                        formControlName="mensajeEfecto"
+                                                        class="form-control upper {{mensajeEfecto}}" #mensajeEfecto>
+                                                        <option value="" selected>Seleccione el tipo de efecto
+                                                        </option>
+                                                        <option [class]="item.clave" [value]="item.clave" class="name"
+                                                            *ngFor="let item of efectos">
+                                                            {{item.nombre}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-12  col-sm-6  col-md-3   mt-3 ma">
+                                                <div class="form-group ">
+                                                    <label for="mensajeEfectoRep ">Repetir efecto </label>
+                                                    <select name="mensajeEfectoRep" id="mensajeEfectoRep"
+                                                        formControlName="mensajeEfectoRep"
+                                                        class="form-control upper {{mensajeEfectoRep}}"
+                                                        #mensajeEfectoRep>
+                                                        <option value="" selected>Seleccione el tipo de efecto
+                                                        </option>
+                                                        <option [class]="item.clave" [value]="item.clave" class="name"
+                                                            *ngFor="let item of repEfec">
+                                                            {{item.nombre}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr class="mt-3 mb-3">
+                                    <div class="row text-center mb-3">
+                                        <h5>Seccion Galeria</h5>
+                                        <div class="row text-center mt-3">
+                                            <div class="form-group    image-upload ">
+                                                <label for="galeria1">Galeria 1
+                                                    <b>Se recomienda foto horizontal</b>
+                                                    <br>
+
+                                                    <img src="/assets/images/tp.png" alt="" class="pointer"
+                                                        *ngIf="invitacion==undefined || invitacion.data.galeria1=='' "
+                                                        style="width: 150px;">
+
+                                                    <img [src]="url+'/upload/invitaciones/'+invitacion.data.galeria1"
+                                                        alt="" class=" pointer" *ngIf="invitacion"
+                                                        style="width: 150px;">
+                                                    <!-- invitacion.data.mensajeImg!='' -->
+
+                                                </label>
+                                                <input type="file" id="galeria1" #galeria1
+                                                    (change)="cambiarImagen($event,'galeria1' )">
+                                            </div>
+                                            <div class="form-group    image-upload ">
+                                                <label for="galeria2">Galeria 2
+                                                    <b>Se recomienda foto vertical</b>
+                                                    <br>
+
+                                                    <img src="/assets/images/tp.png" alt="" class="pointer"
+                                                        *ngIf="invitacion==undefined || invitacion.data.galeria2=='' "
+                                                        style="width: 150px;">
+
+                                                    <img [src]="url+'/upload/invitaciones/'+invitacion.data.galeria2"
+                                                        alt="" class=" pointer" *ngIf="invitacion"
+                                                        style="width: 150px;">
+                                                    <!-- invitacion.data.mensajeImg!='' -->
+
+                                                </label>
+                                                <input type="file" id="galeria2" #galeria2
+                                                    (change)="cambiarImagen($event,'galeria2' )">
+                                            </div>
+                                            <div class="form-group    image-upload ">
+                                                <label for="galeria3">Galeria 3
+                                                    <b>Se recomienda foto vertical</b>
+                                                    <br>
+
+                                                    <img src="/assets/images/tp.png" alt="" class="pointer"
+                                                        *ngIf="invitacion==undefined || invitacion.data.galeria3=='' "
+                                                        style="width: 150px;">
+
+                                                    <img [src]="url+'/upload/invitaciones/'+invitacion.data.galeria3"
+                                                        alt="" class=" pointer" *ngIf="invitacion"
+                                                        style="width: 150px;">
+                                                    <!-- invitacion.data.mensajeImg!='' -->
+
+                                                </label>
+                                                <input type="file" id="galeria3" #galeria3
+                                                    (change)="cambiarImagen($event,'galeria3' )">
+                                            </div>
+                                            <div class="form-group    image-upload ">
+                                                <label for="galeria4">Galeria 4
+                                                    <b>Se recomienda foto horizontal</b>
+                                                    <br>
+
+                                                    <img src="/assets/images/tp.png" alt="" class="pointer"
+                                                        *ngIf="invitacion==undefined || invitacion.data.galeria4=='' "
+                                                        style="width: 150px;">
+
+                                                    <img [src]="url+'/upload/invitaciones/'+invitacion.data.galeria4"
+                                                        alt="" class=" pointer" *ngIf="invitacion"
+                                                        style="width: 150px;">
+                                                    <!-- invitacion.data.mensajeImg!='' -->
+
+                                                </label>
+                                                <input type="file" id="galeria4" #galeria4
+                                                    (change)="cambiarImagen($event,'galeria4' )">
+                                            </div>
+                                            <div class="form-group    image-upload ">
+                                                <label for="galeria5">Galeria 5
+                                                    <b>Se recomienda foto horizontal</b>
+                                                    <br>
+
+                                                    <img src="/assets/images/tp.png" alt="" class="pointer"
+                                                        *ngIf="invitacion==undefined || invitacion.data.galeria5=='' "
+                                                        style="width: 150px;">
+
+                                                    <img [src]="url+'/upload/invitaciones/'+invitacion.data.galeria5"
+                                                        alt="" class=" pointer" *ngIf="invitacion"
+                                                        style="width: 150px;">
+                                                    <!-- invitacion.data.mensajeImg!='' -->
+
+                                                </label>
+                                                <input type="file" id="galeria5" #galeria5
+                                                    (change)="cambiarImagen($event,'galeria5' )">
+                                            </div>
+                                            <div class="form-group    image-upload ">
+                                                <label for="galeria6">Galeria 6
+                                                    <b>Se recomienda foto Vertical</b>
+                                                    <br>
+
+                                                    <img src="/assets/images/tp.png" alt="" class="pointer"
+                                                        *ngIf="invitacion==undefined || invitacion.data.galeria6=='' "
+                                                        style="width: 150px;">
+
+                                                    <img [src]="url+'/upload/invitaciones/'+invitacion.data.galeria6"
+                                                        alt="" class=" pointer" *ngIf="invitacion"
+                                                        style="width: 150px;">
+                                                    <!-- invitacion.data.mensajeImg!='' -->
+
+                                                </label>
+                                                <input type="file" id="galeria6" #galeria6
+                                                    (change)="cambiarImagen($event,'galeria6' )">
+                                            </div>
+
+
+
+
+
+                                        </div>
+                                    </div>
+                                    <div class="row text-center mt-3" *ngIf="fiesta.checking">
+                                        <h5>Seccion QR</h5>
+                                        <hr class="mt-3 mb-3">
+
+
+
+
+                                        <b>Si tu invitación tiene check in este es tu QR </b>
+
+                                        <div class="col-12 col-md-6 ma mt-3">
+                                            <qrcode [qrdata]="getQr()" [allowEmptyString]="true"
+                                                [ariaLabel]="'Saludos...'" [cssClass]="'center'"
+                                                [colorDark]="form.value.cSecond" [colorLight]="'#fff'"
+                                                [elementType]="'canvas'" [errorCorrectionLevel]="'M'" [imageHeight]="50"
+                                                [imageWidth]="50" [margin]="4" [scale]="1" [width]="200"
+                                                class="ma mt-3">
+                                            </qrcode>
+                                        </div>
+
+
+
+
+
+                                    </div>
+                                    <div class="row   text-center mt-3">
+                                        <h5>Seccion Entrada general</h5>
+                                        <hr class="mt-3 mb-3">
+                                        <div class="col-12       mt-3 ma  text-center">
+                                            <label class="form-check-label" for="generalCheck">
+                                                Entrada general
+                                            </label>
+                                            <input class="form-check-input" type="checkbox" id="generalCheck"
+                                                #generalCheck formControlName="generalCheck">
+
+
+                                        </div>
+                                        <div class="col-12 col-md-6  ma  mt-3 text-center"
+                                            *ngIf="form.value.generalCheck">
+                                            <div class="form-group ">
+                                                <label for="generalTexto ">Texto como invitación General </label>
+                                                <input type="text" id="generalTexto" #generalTexto
+                                                    formControlName="generalTexto" placeholder="A toda la comunidad"
+                                                    class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <ng-container class="text-center  ma">
+
+                                        <div class="row text-center mt-3 ma">
+                                            <h5>Seccion Dónde y Cuándo</h5>
+                                            <hr class="mt-3 mb-3">
+                                            <div class="col-12 col-md-6     mt-3">
+
+
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    Fiesta
+                                                </label>
+
+
+                                            </div>
+                                            <div class="col-12  col-md-6  mt-3 text-center ">
+                                                <div class="form-group    image-upload ">
+                                                    <label for="donde3Img">Imagen de fiesta
+                                                        <br>
+
+
+                                                        <img [src]="url+'/upload/salones/'+fiesta.salon.img" alt=""
+                                                            *ngIf="invitacion" style="width: 150px;">
+                                                        <!-- invitacion.data.mensajeImg!='' -->
+
+                                                    </label>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12 col-md-6   mt-3">
+                                                <div class="form-group ">
+                                                    <label for="donde3Text ">Nombre </label>
+                                                    <input type="text" id="donde3Text" #donde3Text
+                                                        formControlName="donde3Text" class="form-control" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6   mt-3">
+                                                <div class="form-group ">
+                                                    <label for="donde3Date ">Fecha </label>
+                                                    <input type="datetime-local" id="donde3Date" #donde3Date
+                                                        formControlName="donde3Date" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-12   mt-3">
+                                                <div class="form-group ">
+                                                    <label for="donde3Address ">Dirección </label>
+                                                    <input type="text" id="donde3Address" #donde3Address
+                                                        formControlName="donde3Address" class="form-control" readonly
+                                                        style="width: 100%;">
+                                                </div>
+                                            </div>
+                                            <div class="col-12   mt-3">
+                                                <div class="form-group ">
+
+                                                    <label for="donde3AddressUbicacion ">Ubicación </label>
+                                                    <app-mapscreen [showBar]="false"
+                                                        (coordenadas)="showCoordenadas($event)"
+                                                        [sendCoords]="salonLocation" [isEditV]="false"
+                                                        [type]="'donde3AddressUbicacion'"
+                                                        (idMapSend)="getIdMap( $event)"></app-mapscreen>
+                                                    <!--  <input type="text" id="donde3AddressUbicacion"
+                                                        #donde3AddressUbicacion formControlName="donde3AddressUbicacion"
+                                                        class="form-control" readonly style="width: 100% !important;"> -->
+                                                </div>
+                                            </div>
+
+
+
+                                            <hr class="mt-3 mb-3">
+                                            <div class="col-12       mt-3 ma ">
+                                                <label class="form-check-label" for="confirmacionCheck">
+                                                    Botón de confirmación
+                                                </label>
+                                                <input class="form-check-input" type="checkbox" id="confirmacionCheck"
+                                                    #confirmacionCheck formControlName="confirmacionCheck">
+
+
+                                            </div>
+
+
+                                            <hr class="mt-3 mb-3">
+                                            <div class="row text-center mt-3 ma">
+                                                <h5>Padres</h5>
+                                                <div class="row text-center ma">
+                                                    <div class="col-12 col-md-6 ma">
+
+                                                        <input class="form-check-input" type="checkbox" id="padresCheck"
+                                                            #padresCheck formControlName="padresCheck">
+                                                    </div>
+                                                </div>
+
+                                                <ng-container *ngIf="padresCheck.checked">
+                                                    <div class="col-12  mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="titlePadres ">Titulo para padres </label>
+                                                            <input type="text" id="titlePadres" #titlePadres
+                                                                formControlName="titlePadres" class="form-control"
+                                                                placeholder="Mis Padres o Nuestros Padres">
+                                                        </div>
+                                                    </div>
+                                                </ng-container>
+                                                <ng-container *ngIf="padresCheck.checked">
+
+                                                    <div class="col-12 mt-3 text-center" style="margin:auto">
+
+                                                        <button type="button" class="btn btn-lg btn-block but "
+                                                            id="btnPadreDefault" (click)="addPadres('d')">Agregar
+                                                            padre</button>
+                                                    </div>
+                                                </ng-container>
+
+
+
+                                                <ng-container formArrayName="padres" *ngIf="padresCheck.checked">
+
+
+
+                                                    <ng-container *ngFor="let padre of padres.controls; let i=index">
+                                                        <ng-container [formGroupName]="i">
+                                                            <div class="col-12 col-md-6   mt-3" id="padreDefault{{i}}">
+                                                                <div class="form-group ">
+                                                                    <label for="name ">Nombre</label>
+                                                                    <input type="text" class="form-control upper"
+                                                                        id="name" formControlName="name" required
+                                                                        placeholder="Oscar Ramirez"
+                                                                        [readonly]="edit==='false'"
+                                                                        class="form-control">
+                                                                </div>
+                                                                <span *ngIf="submited && errorControl['name'].errors "
+                                                                    class="error">Es requerido
+                                                                </span>
+                                                            </div>
+
+
+                                                            <div class="col-12 col-md-6 mt-3">
+                                                                <button class="btn btn-lg btn-block btn-warning mt-3"
+                                                                    (click)="removePadre(i)"><i
+                                                                        class="icon-trash"></i></button>
+                                                            </div>
+
+
+
+                                                        </ng-container>
+                                                    </ng-container>
+
+
+                                                    <div id="finPadreDefault" cclass="col-6 mt-3 mb-3 text-center ma"
+                                                        *ngIf="padres.length>1">
+
+
+                                                        <button class="btn but mt-3" type="button"
+                                                            (click)="functionsService.scroolTo('btnPadreDefault')"><i
+                                                                class="bi bi-arrow-up"></i></button>
+
+                                                    </div>
+
+                                                </ng-container>
+                                            </div>
+
+
+
+
+                                            <hr class="mt-3 mb-3">
+                                            <div class="row text-center mt-3 ma">
+                                                <div class="row text-center ma">
+                                                    <div class="col-12 col-md-6 ma">
+
+                                                        <input class="form-check-input" type="checkbox"
+                                                            id="padrinosCheck" #padrinosCheck
+                                                            formControlName="padrinosCheck">
+                                                    </div>
+                                                </div>
+                                                <ng-container *ngIf="padrinosCheck.checked">
+                                                    <div class="col-12   text-center" style="margin:auto">
+
+                                                        <button type="button" class="btn btn-lg btn-block but "
+                                                            id="btnPadrinoDefault" (click)="addPadrinos('d')">Agregar
+                                                            padrino</button>
+                                                    </div>
+                                                </ng-container>
+
+                                                <ng-container formArrayName="padrinos" *ngIf="padrinosCheck.checked">
+
+                                                    <ng-container
+                                                        *ngFor="let padrino of padrinos.controls; let i=index">
+                                                        <ng-container [formGroupName]="i">
+                                                            <div class="col-12 col-md-4  mt-3" id="padrinoDefault{{i}}">
+                                                                <div class="form-group ">
+                                                                    <label for="icon">Nombre</label>
+                                                                    <select name="icon" id="icon" formControlName="icon"
+                                                                        #icon class="form-select">
+                                                                        <option value="">Iconos
+                                                                        </option>
+                                                                        <ng-container
+                                                                            *ngFor="let item of icons; let i=index">
+
+                                                                            <option [value]="item.value">
+                                                                                {{item.name}}
+                                                                            </option>
+                                                                        </ng-container>
+
+
+                                                                    </select>
+                                                                </div>
+                                                                <span *ngIf="submited && errorControl['name'].errors "
+                                                                    class="error">Es requerido
+                                                                </span>
+                                                            </div>
+                                                            <div class="col-12 col-md-4  mt-3" id="padrinoDefault{{i}}">
+                                                                <div class="form-group ">
+                                                                    <label for="name ">Tipo</label>
+                                                                    <input type="text" class="form-control upper"
+                                                                        id="tipo" formControlName="tipo" required
+                                                                        placeholder="Padrino de pastel"
+                                                                        [readonly]="edit==='false'"
+                                                                        class="form-control">
+                                                                </div>
+                                                                <span *ngIf="submited && errorControl['name'].errors "
+                                                                    class="error">Es requerido
+                                                                </span>
+                                                            </div>
+                                                            <div class="col-12 col-md-4  mt-3" id="padrinoDefault{{i}}">
+                                                                <div class="form-group ">
+                                                                    <label for="name ">Nombre</label>
+                                                                    <input type="text" class="form-control upper"
+                                                                        id="name" formControlName="name" required
+                                                                        placeholder="Oscar Ramirez"
+                                                                        [readonly]="edit==='false'"
+                                                                        class="form-control">
+                                                                </div>
+                                                                <span *ngIf="submited && errorControl['name'].errors "
+                                                                    class="error">Es requerido
+                                                                </span>
+                                                            </div>
+
+
+
+
+                                                            <div class="col-12 mt-5" *ngIf="icon.value !==''">
+                                                                <img style="max-width:80px"
+                                                                    src="/assets/icons/{{icon.value}}.png"
+                                                                    alt="{{icon.name}}">
+                                                            </div>
+
+
+                                                            <div class="row">
+
+                                                                <div class="col-12 col-md-4 mt-3 ma text-center">
+                                                                    <button
+                                                                        class="btn btn-lg btn-block btn-warning mt-3 ma text-center"
+                                                                        (click)="removePadrino(i)"><i
+                                                                            class="icon-trash"></i></button>
+                                                                </div>
+                                                            </div>
+
+
+
+
+                                                        </ng-container>
+                                                    </ng-container>
+                                                    <div id="finPadrinoDefault" cclass="col-6 mt-3 mb-3 text-center ma"
+                                                        *ngIf="padrinos.length>1">
+
+
+                                                        <button class="btn but mt-3" type="button"
+                                                            (click)="functionsService.scroolTo('btnPadrinoDefault')"><i
+                                                                class="bi bi-arrow-up"></i></button>
+
+                                                    </div>
+                                                </ng-container>
+
+
+
+                                            </div>
+
+
+
+
+
+                                            <hr class="mt-3 mb-3">
+                                            <div class="row text-center mt-3 ma">
+                                                <h5>Chambelanes</h5>
+                                                <div class="row text-center ma">
+                                                    <div class="col-12 col-md-6 ma">
+
+                                                        <input class="form-check-input" type="checkbox"
+                                                            id="chambelanesCheck" #chambelanesCheck
+                                                            formControlName="chambelanesCheck">
+                                                    </div>
+                                                </div>
+
+                                                <ng-container *ngIf="chambelanesCheck.checked">
+                                                    <div class="col-12   text-center" style="margin:auto">
+
+                                                        <button type="button" class="btn btn-lg btn-block but "
+                                                            id="btnChambelanDefault" (click)="addChambelan('d')">Agregar
+                                                            chambelan</button>
+                                                    </div>
+                                                </ng-container>
+
+
+
+                                                <ng-container formArrayName="chambelanes"
+                                                    *ngIf="chambelanesCheck.checked">
+
+                                                    <ng-container
+                                                        *ngFor="let chambelan of chambelanes.controls; let i=index">
+                                                        <ng-container [formGroupName]="i">
+                                                            <div class="col-12 col-md-8  mt-3"
+                                                                id="chambelanDefault{{i}}">
+                                                                <div class="form-group ">
+                                                                    <label for="name ">Nombre</label>
+                                                                    <input type="text" class="form-control upper"
+                                                                        id="name" formControlName="name" required
+                                                                        placeholder="Oscar Ramirez"
+                                                                        [readonly]="edit==='false'"
+                                                                        class="form-control">
+                                                                </div>
+                                                                <span *ngIf="submited && errorControl['name'].errors "
+                                                                    class="error">Es requerido
+                                                                </span>
+                                                            </div>
+
+
+                                                            <div class="col-12 col-md-4 mt-4">
+                                                                <button class="btn btn-lg btn-block btn-warning mt-3"
+                                                                    (click)="removeChambelan(i)"><i
+                                                                        class="icon-trash"></i></button>
+                                                            </div>
+
+
+
+                                                        </ng-container>
+                                                    </ng-container>
+                                                    <div id="finChambelarDefault"
+                                                        cclass="col-6 mt-3 mb-3 text-center ma"
+                                                        *ngIf="chambelanes.length>1">
+
+
+                                                        <button class="btn but mt-3" type="button"
+                                                            (click)="functionsService.scroolTo('btnChambelanDefault')"><i
+                                                                class="bi bi-arrow-up"></i></button>
+
+                                                    </div>
+
+                                                </ng-container>
+                                            </div>
+
+
+                                            <!--      <hr class="mt-3 mb-3">
+                                            <div class="row text-center mt-3 ma">
+                                                <h5>Menu</h5>
+                                                <div class="row text-center ma">
+                                                    <div class="col-12 col-md-6 ma">
+
+                                                        <input class="form-check-input" type="checkbox" id="menuCheck"
+                                                            #menuCheck formControlName="menuCheck">
+                                                    </div>
+                                                </div>
+
+                                                <ng-container *ngIf="menuCheck.checked">
+
+                                                    <div class="col-12  text-center" style="margin:auto">
+
+                                                        <button type="button" id="btnMenuDefault"
+                                                            class="btn btn-lg btn-block but "
+                                                            (click)="addMenus('d')">Agregar
+                                                            Menu</button>
+                                                    </div>
+                                                </ng-container>
+
+                                                <div class="col-12"></div>
+                                                <ng-container formArrayName="menu" *ngIf="menuCheck.checked">
+
+                                                    <ng-container *ngFor="let men of menu.controls; let i=index">
+                                                        <ng-container [formGroupName]="i">
+
+
+                                                            <div class="col-12 col-md-4  mt-3" id="menuDefault{{i}}">
+                                                                <div class="form-group ">
+                                                                    <label for="icon">Nombre</label>
+                                                                    <select name="icon" id="icon" formControlName="icon"
+                                                                        #icon class="form-select">
+                                                                        <option value="">Iconos
+                                                                        </option>
+                                                                        <ng-container
+                                                                            *ngFor="let item of icons; let i=index">
+
+                                                                            <option [value]="item.value">
+                                                                                {{item.name}}
+                                                                            </option>
+                                                                        </ng-container>
+
+
+                                                                    </select>
+                                                                </div>
+                                                                <span *ngIf="submited && errorControl['name'].errors "
+                                                                    class="error">Es requerido
+                                                                </span>
+                                                            </div>
+
+
+                                                            <div class="col-12 col-md-4  mt-3" id="menuDefault{{i}}">
+                                                                <div class="form-group ">
+                                                                    <label for="tipo ">Tipo</label>
+                                                                    <input type="text" class="form-control upper"
+                                                                        id="tipo" formControlName="tipo" required
+                                                                        placeholder="Primer tiempo"
+                                                                        [readonly]="edit==='false'"
+                                                                        class="form-control">
+                                                                </div>
+                                                                <span *ngIf="submited && errorControl['tipo'].errors "
+                                                                    class="error">Es requerido
+                                                                </span>
+                                                            </div>
+                                                            <div class="col-12 col-md-4 mt-3">
+                                                                <div class="form-group ">
+                                                                    <label for="name ">Platillo</label>
+                                                                    <input type="text" class="form-control upper"
+                                                                        id="name" formControlName="name" required
+                                                                        placeholder="Pechugas a la Cordon Blue"
+                                                                        [readonly]="edit==='false'"
+                                                                        class="form-control">
+                                                                </div>
+                                                                <span *ngIf="submited && errorControl['name'].errors "
+                                                                    class="error">Es requerido
+                                                                </span>
+                                                            </div>
+
+
+
+
+                                                            <div class="row">
+                                                                <div class="col-12 mt-5" *ngIf="icon.value !==''">
+                                                                    <img style="max-width:80px"
+                                                                        src="/assets/icons/{{icon.value}}.png"
+                                                                        alt="{{icon.name}}">
+                                                                </div>
+                                                                <div class="col-12 col-md-4 ma mt-3">
+                                                                    <button
+                                                                        class="btn btn-lg btn-block btn-warning mt-3"
+                                                                        (click)="removeMenu(i)"><i
+                                                                            class="icon-trash"></i></button>
+                                                                </div>
+                                                            </div>
+
+
+
+                                                        </ng-container>
+                                                    </ng-container>
+                                                    <div id="finMenuDefault" cclass="col-6  mt-3 mb-3 text-center ma"
+                                                        *ngIf="menu.length>1">
+
+
+                                                        <button class="btn but mt-3" type="button"
+                                                            (click)="functionsService.scroolTo('btnMenuDefault')"><i
+                                                                class="bi bi-arrow-up"></i></button>
+
+                                                    </div>
+                                                </ng-container>
+
+                                            </div>
+
+
+
+                                            <hr class="mt-3 mb-3">
+                                            <div class="row text-center mt-3 ma">
+                                                <h5>Música</h5>
+                                                <div class="row text-center ma">
+                                                    <div class="col-12 col-md-6 ma">
+
+                                                        <input class="form-check-input" type="checkbox" id="musicaCheck"
+                                                            #musicaCheck formControlName="musicaCheck">
+                                                    </div>
+                                                </div>
+
+                                                <ng-container *ngIf="musicaCheck.checked">
+                                                    <div class="col-12  text-center" style="margin:auto">
+
+                                                        <button type="button" class="btn btn-lg btn-block but "
+                                                            (click)="addMusica('d')" id="btnMusicaDefault">Agregar
+                                                            Música</button>
+                                                    </div>
+                                                </ng-container>
+
+
+
+
+                                                <ng-container formArrayName="musica" *ngIf="musicaCheck.checked">
+
+                                                    <ng-container *ngFor="let mus of musica.controls; let i=index">
+                                                        <ng-container [formGroupName]="i">
+
+                                                            <div class="col-12 col-md-8 mt-3" id="musicaDefault{{i}}">
+                                                                <div class="form-group ">
+                                                                    <label for="name ">Tipo de música</label>
+                                                                    <input type="text" class="form-control upper"
+                                                                        id="name" formControlName="name" required
+                                                                        placeholder="Banda MS, Conjunto primavera, Bumburi o  Música de cabina"
+                                                                        [readonly]="edit==='false'"
+                                                                        class="form-control">
+                                                                </div>
+                                                                <span *ngIf="submited && errorControl['name'].errors "
+                                                                    class="error">Es requerido
+                                                                </span>
+                                                            </div>
+
+
+                                                            <div class="col-12 col-md-4 mt-3">
+                                                                <button class="btn btn-lg btn-block btn-warning mt-3"
+                                                                    (click)="removeMusica(i)"><i
+                                                                        class="icon-trash"></i></button>
+                                                            </div>
+
+
+
+                                                        </ng-container>
+                                                    </ng-container>
+                                                    <div id="finMusicaDefault" cclass="col-6 mt-3 mb-3 text-center ma"
+                                                        *ngIf="musica.length>1">
+
+
+                                                        <button class="btn but mt-3" type="button"
+                                                            (click)="functionsService.scroolTo('btnMusicaDefault')"><i
+                                                                class="bi bi-arrow-up"></i></button>
+
+                                                    </div>
+                                                </ng-container>
+                                            </div> -->
+
+
+
+
+
+                                            <hr class="mt-3 mb-3">
+
+
+                                            <div class="col-12 mt-3 ma">
+                                                <label class="form-check-label" for="codigoVestimentaCheck">
+                                                    Codigo de vestimenta
+                                                </label>
+                                                <input class="form-check-input" type="checkbox"
+                                                    id="codigoVestimentaCheck" #codigoVestimentaCheck
+                                                    formControlName="codigoVestimentaCheck">
+
+
+                                            </div>
+                                            <ng-container *ngIf="form.value.codigoVestimentaCheck">
+                                                <div class="col-12  col-md-6  mt-3 text-center ma"
+                                                    *ngIf="form.value.codigoVestimentaCheck">
+                                                    <div class="form-group    image-upload ">
+                                                        <label for="codigoVestimentaMujerImg">Código de vestimenta
+                                                            mujer
+                                                            <br>
+
+                                                            <img src="/assets/images/tp.png" alt="" class="pointer"
+                                                                *ngIf="invitacion==undefined || invitacion.data.codigoVestimentaMujerImg=='' "
+                                                                style="width: 150px;">
+
+                                                            <img [src]="url+'/upload/invitaciones/'+invitacion.data.codigoVestimentaMujerImg"
+                                                                alt="" class=" pointer" *ngIf="invitacion"
+                                                                style="width: 150px;">
+                                                            <!-- invitacion.data.mensajeImg!='' -->
+
+                                                        </label>
+                                                        <input type="file" id="codigoVestimentaMujerImg"
+                                                            #codigoVestimentaMujerImg
+                                                            (change)="cambiarImagen($event,'codigoVestimentaMujerImg' )"
+                                                            class="form-control">
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="col-12 col-md-6  ma  mt-3">
+                                                    <div class="form-group ">
+                                                        <label for="codigoVestimentaMujer ">Código de vestimenta de
+                                                            Mujer </label>
+                                                        <input type="text" id="codigoVestimentaMujer"
+                                                            #codigoVestimentaMujer
+                                                            formControlName="codigoVestimentaMujer"
+                                                            placeholder="Etiqueta rigurosa" class="form-control">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12  col-md-6  mt-3 text-center ma"
+                                                    *ngIf="form.value.codigoVestimentaCheck">
+                                                    <div class="form-group    image-upload ">
+                                                        <label for="codigoVestimentaHombreImg">Código de vestimenta
+                                                            mujer
+                                                            <br>
+
+                                                            <img src="/assets/images/tp.png" alt="" class="pointer"
+                                                                *ngIf="invitacion==undefined || invitacion.data.codigoVestimentaHombreImg=='' "
+                                                                style="width: 150px;">
+
+                                                            <img [src]="url+'/upload/invitaciones/'+invitacion.data.codigoVestimentaHombreImg"
+                                                                alt="" class=" pointer" *ngIf="invitacion"
+                                                                style="width: 150px;">
+                                                            <!-- invitacion.data.mensajeImg!='' -->
+
+                                                        </label>
+                                                        <input type="file" id="codigoVestimentaHombreImg"
+                                                            #codigoVestimentaHombreImg
+                                                            (change)="cambiarImagen($event,'codigoVestimentaHombreImg' )"
+                                                            class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-6  ma  mt-3">
+                                                    <div class="form-group ">
+                                                        <label for="codigoVestimentaHombre ">Código de vestimenta de
+                                                            Hombre </label>
+                                                        <input type="text" id="codigoVestimentaHombre"
+                                                            #codigoVestimentaHombre
+                                                            formControlName="codigoVestimentaHombre"
+                                                            placeholder="Etiqueta rigurosa" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </ng-container>
+
+
+
+
+
+
+                                            <hr class="mt-3 mb-3">
+                                            <div class="col-12 col-md-6     mt-3 ma ">
+                                                <label class="form-check-label" for="donde1Check">
+                                                    Iglesia
+                                                </label>
+                                                <input class="form-check-input" type="checkbox" id="donde1Check"
+                                                    #donde1Check formControlName="donde1Check">
+
+
+                                            </div>
+
+                                            <div class="col-12  col-md-6  mt-3 text-center  animated1 fadeIn"
+                                                *ngIf="form.value.donde1Check">
+                                                <div class="form-group    image-upload ">
+                                                    <label for="donde1Img">Imagen de iglesia
+                                                        <br>
+
+                                                        <img src="/assets/images/tp.png" alt="" class="pointer"
+                                                            *ngIf="invitacion==undefined || invitacion.data.donde1Img=='' "
+                                                            style="width: 150px;">
+
+                                                        <img [src]="url+'/upload/invitaciones/'+invitacion.data.donde1Img"
+                                                            alt="" class=" pointer" *ngIf="invitacion"
+                                                            style="width: 150px;">
+                                                        <!-- invitacion.data.mensajeImg!='' -->
+
+                                                    </label>
+                                                    <input type="file" id="donde1Img" #donde1Img
+                                                        (change)="cambiarImagen($event,'donde1Img' )">
+                                                </div>
+                                            </div>
+                                            <!-- <div class="col-12 col-md-6   mt-3">
+                                                <div class="form-group ">
+                                                    <label for="donde1Title ">Nombre de la Iglesia </label>
+                                                    <input type="text" id="donde1Title" #donde1Title
+                                                        formControlName="donde1Title">
+                                                </div>
+                                            </div> -->
+                                            <div class="col-12 col-md-6   mt-3 animated1 fadeIn"
+                                                *ngIf="form.value.donde1Check">
+                                                <div class="form-group ">
+                                                    <label for="donde1Text ">Nombre de la iglesia </label>
+                                                    <input type="text" id="donde1Text" #donde1Text
+                                                        formControlName="donde1Text" class="form-control">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12 col-md-6   mt-3" *ngIf="form.value.donde1Check">
+                                                <div class="form-group ">
+                                                    <label for="donde1Date ">Fecha </label>
+                                                    <input type="datetime-local" id="donde1Date" #donde1Date
+                                                        formControlName="donde1Date" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-12  mt-3" *ngIf="form.value.donde1Check">
+                                                <div class="form-group ">
+                                                    <label for="donde1Address ">Dirección </label>
+                                                    <input type="text" id="donde1Address" #donde1Address
+                                                        formControlName="donde1Address" style="width: 100%;"
+                                                        class="form-control">
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-12   mt-3"
+                                                *ngIf="form.value.donde1Check && iglesiaLocation">
+                                                <label for="donde1AddressUbicacion ">Ubicación </label>
+                                                <app-mapscreen [showBar]="true"
+                                                    (coordenadasSelect)="showCoordenadas($event)"
+                                                    (coordenadas)="showCoordenadas($event)"
+                                                    [sendCoords]="iglesiaLocation" [isEditV]="true"
+                                                    type="donde1AddressUbicacion"
+                                                    (idMapSend)="getIdMap( $event)"></app-mapscreen>
+
+                                            </div>
+
+                                            <hr class="mt-3 mb-3">
+                                            <div class="col-12  col-md-6     mt-3 ma">
+
+
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    Registro civil
+                                                </label>
+                                                <input class="form-check-input" type="checkbox" id="donde2Check"
+                                                    #donde2Check formControlName="donde2Check">
+
+
+                                            </div>
+
+                                            <div class="col-12  col-md-6  mt-3 text-center ma"
+                                                *ngIf="form.value.donde2Check">
+                                                <div class="form-group    image-upload ">
+                                                    <label for="donde2Img">Imagen de registro civil
+                                                        <br>
+
+                                                        <img src="/assets/images/tp.png" alt="" class="pointer"
+                                                            *ngIf="invitacion==undefined || invitacion.data.donde2Img=='' "
+                                                            style="width: 150px;">
+
+                                                        <img [src]="url+'/upload/invitaciones/'+invitacion.data.donde2Img"
+                                                            alt="" class=" pointer" *ngIf="invitacion"
+                                                            style="width: 150px;">
+                                                        <!-- invitacion.data.mensajeImg!='' -->
+
+                                                    </label>
+                                                    <input type="file" id="donde2Img" #donde2Img
+                                                        (change)="cambiarImagen($event,'donde2Img' )"
+                                                        class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6   mt-3" *ngIf="form.value.donde2Check">
+                                                <div class="form-group ">
+                                                    <label for="donde2Text ">Nombre del registro </label>
+                                                    <input type="text" id="donde2Text" #donde2Text
+                                                        formControlName="donde2Text" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6   mt-3" *ngIf="form.value.donde2Check">
+                                                <div class="form-group ">
+                                                    <label for="donde2Date ">Fecha </label>
+                                                    <input type="datetime-local" id="donde2Date" #donde2Date
+                                                        formControlName="donde2Date" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-12   mt-3" *ngIf="form.value.donde2Check">
+                                                <div class="form-group ">
+                                                    <label for="donde2Address ">Dirección </label>
+                                                    <input type="text" id="donde2Address" #donde2Address
+                                                        formControlName="donde2Address" style="width: 100%;"
+                                                        class="form-control">
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="col-12   mt-3"
+                                                *ngIf="form.value.donde2Check && registroLocation">
+                                                <label for="donde2AddressUbicacion ">Ubicación </label>
+                                                <app-mapscreen [showBar]="true"
+                                                    (coordenadasSelect)="showCoordenadas($event)"
+                                                    (coordenadas)="showCoordenadas($event)"
+                                                    [sendCoords]="registroLocation" [isEditV]="true"
+                                                    type="donde2AddressUbicacion"
+                                                    (idMapSend)="getIdMap( $event)"></app-mapscreen>
+
+                                            </div>
+
+
+
+
+                                        </div>
+                                        <hr class="mt-3 mb-3">
+                                        <div class="row text-center mt-3">
+                                            <h5>Hospedaje</h5>
+
+
+                                            <div class="col-12 col-md-6  col-md-4     mt-3 ma ">
+
+
+                                                <label class="form-check-label" for="hospedajeCheck">
+                                                    Hospedaje
+                                                </label>
+                                                <input class="form-check-input" type="checkbox" id="hospedajeCheck"
+                                                    #hospedajeCheck formControlName="hospedajeCheck">
+
+
+                                            </div>
+                                            <div class="col-12  col-md-6  mt-3 text-center "
+                                                *ngIf="form.value.hospedajeCheck">
+                                                <div class="form-group    image-upload ">
+                                                    <label for="hospedajeImg">Imagen de hospedaje
+                                                        <br>
+
+                                                        <img src="/assets/images/tp.png" alt="" class="pointer"
+                                                            *ngIf="invitacion==undefined || invitacion.data.hospedajeImg=='' "
+                                                            style="width: 150px;">
+
+                                                        <img [src]="url+'/upload/invitaciones/'+invitacion.data.hospedajeImg"
+                                                            alt="" class=" pointer" *ngIf="invitacion"
+                                                            style="width: 150px;">
+                                                        <!-- invitacion.data.mensajeImg!='' -->
+
+                                                    </label>
+                                                    <input type="file" id="hospedajeImg" #hospedajeImg
+                                                        (change)="cambiarImagen($event,'hospedajeImg' )">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12 col-md-6 mt-3" *ngIf="form.value.hospedajeCheck">
+                                                <div class="form-group ">
+                                                    <label for="hospedajeName ">Nombre de hotel </label>
+                                                    <input type="text" id="hospedajeName" #hospedajeName
+                                                        formControlName="hospedajeName" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6  col-md-4   mt-3"
+                                                *ngIf="form.value.hospedajeCheck">
+                                                <div class="form-group ">
+                                                    <label for="hospedajePhone ">Teléfono </label>
+                                                    <input type="text" id="hospedajePhone" #hospedajePhone
+                                                        formControlName="hospedajePhone" class="form-control">
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-12   mt-3" *ngIf="form.value.hospedajeCheck">
+                                                <div class="form-group ">
+                                                    <label for="hospedajeAddress ">Dirección </label>
+                                                    <input type="text" id="hospedajeAddress" #hospedajeAddress
+                                                        formControlName="hospedajeAddress" style="width: 100%;"
+                                                        class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-12   mt-3"
+                                                *ngIf="form.value.hospedajeCheck && hospedajeLocation">
+                                                <label for="hospedajeUbicacion ">Ubicación </label>
+                                                <app-mapscreen [showBar]="true"
+                                                    (coordenadasSelect)="showCoordenadas($event)"
+                                                    (coordenadas)="showCoordenadas($event)"
+                                                    [sendCoords]="hospedajeLocation" [isEditV]="true"
+                                                    type="hospedajeUbicacion"
+                                                    (idMapSend)="getIdMap( $event)"></app-mapscreen>
+                                            </div>
+
+                                        </div>
+                                        <hr class="mt-3 mb-3">
+                                        <div class="row text-center mt-3">
+                                            <h5>Mesa de regalos</h5>
+
+
+                                            <div class="col-12 col-md-6  col-md-4     mt-3 ma ">
+
+
+                                                <label class="form-check-label" for="mesaRegalosCheck">
+                                                    Mesa de regalos
+                                                </label>
+                                                <input class="form-check-input" type="checkbox" id="mesaRegalosCheck"
+                                                    #mesaRegalosCheck formControlName="mesaRegalosCheck">
+
+
+                                            </div>
+                                            <div class="col-12  col-md-6  mt-3 text-center "
+                                                *ngIf="form.value.mesaRegalosCheck">
+                                                <div class="form-group    image-upload ">
+                                                    <label for="mesaRegalosImg">Imagen de mesa de regalos
+                                                        <br>
+
+                                                        <img src="/assets/images/tp.png" alt="" class="pointer"
+                                                            *ngIf="invitacion==undefined || invitacion.data.mesaRegalosImg=='' "
+                                                            style="width: 150px;">
+
+                                                        <img [src]="url+'/upload/invitaciones/'+invitacion.data.mesaRegalosImg"
+                                                            alt="" class=" pointer" *ngIf="invitacion"
+                                                            style="width: 150px;">
+                                                        <!-- invitacion.data.mensajeImg!='' -->
+
+                                                    </label>
+                                                    <input type="file" id="mesaRegalosImg" #mesaRegalosImg
+                                                        (change)="cambiarImagen($event,'mesaRegalosImg' )">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12 col-md-6  mt-3 ma" *ngIf="form.value.mesaRegalosCheck">
+                                                <div class="form-group ">
+                                                    <label for="mesaRegalosLugar ">Tienda</label>
+                                                    <input type="text" id="mesaRegalosLugar" #mesaRegalosLugar
+                                                        formControlName="mesaRegalosLugar" class="form-control">
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="col-12   mt-3" *ngIf="form.value.mesaRegalosCheck">
+                                                <div class="form-group ">
+                                                    <label for="mesaRegalosUrl ">Liga de mesa de regalos </label>
+                                                    <input type="text" id="mesaRegalosUrl" #mesaRegalosUrl
+                                                        formControlName="mesaRegalosUrl" style="width: 100%;"
+                                                        class="form-control">
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+                                        <hr class="mt-3 mb-3">
+
+                                        <div class="row text-center mt-3">
+                                            <h5>Itinerarios</h5>
+                                            <div class="row">
+                                                <div class="col-12 col-md-6 ma">
+
+                                                    <input class="form-check-input" type="checkbox" id="itinerarioCheck"
+                                                        #itinerarioCheck formControlName="itinerarioCheck">
+                                                </div>
+                                            </div>
+
+                                            <ng-container *ngIf="itinerarioCheck.checked">
+                                                <div class="col-12  text-center" style="margin:auto">
+
+                                                    <button type="button" class="btn btn-lg btn-block but "
+                                                        id="btnItinerarioDeafult" (click)="addItinerarios('d')">Agregar
+                                                        itinerario</button>
+                                                </div>
+                                            </ng-container>
+
+                                            <ng-container formArrayName="itinerarios" *ngIf="itinerarioCheck.checked">
+
+                                                <ng-container
+                                                    *ngFor="let itinerario of itinerarios.controls; let i=index">
+                                                    <ng-container [formGroupName]="i">
+
+
+                                                        <div class="col-12 col-md-4  mt-3" id="itinerarioDefault{{i}}">
+                                                            <div class="form-group ">
+                                                                <label for="icon">Nombre</label>
+                                                                <select name="icon" id="icon" formControlName="icon"
+                                                                    #icon class="form-select">
+                                                                    <option value="">Iconos
+                                                                    </option>
+                                                                    <ng-container
+                                                                        *ngFor="let item of icons; let i=index">
+
+                                                                        <option [value]="item.value">
+                                                                            {{item.name}}
+                                                                        </option>
+                                                                    </ng-container>
+
+
+                                                                </select>
+                                                            </div>
+                                                            <span *ngIf="submited && errorControl['name'].errors "
+                                                                class="error">Es requerido
+                                                            </span>
+                                                        </div>
+
+
+
+
+
+
+
+
+
+
+
+                                                        <div class="col-12 col-md-4  mt-3" id="itinerarioDefault{{i}}">
+                                                            <div class="form-group ">
+                                                                <label for="name ">Evento</label>
+                                                                <input type="text" class="form-control upper" id="name"
+                                                                    formControlName="name" required
+                                                                    placeholder="Iglesia" [readonly]="edit==='false'"
+                                                                    class="form-control">
+                                                            </div>
+                                                            <span *ngIf="submited && errorControl['name'].errors "
+                                                                class="error">Es requerido
+                                                            </span>
+                                                        </div>
+                                                        <div class="col-12 col-md-4  mt-3">
+                                                            <div class="form-group ">
+                                                                <label for="hr ">Hora</label>
+                                                                <input type="text" class="form-control upper" id="hr"
+                                                                    formControlName="hr" required
+                                                                    placeholder="18:00 o 6:00 PM "
+                                                                    [readonly]="edit==='false'" class="form-control">
+                                                            </div>
+                                                            <span *ngIf="submited && errorControl['hr'].errors "
+                                                                class="error">Es requerido
+                                                            </span>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-12 mt-5" *ngIf="icon.value !==''">
+                                                                <img style="max-width:80px"
+                                                                    src="/assets/icons/{{icon.value}}.png"
+                                                                    alt="{{icon.name}}">
+                                                            </div>
+
+                                                            <div class="col-12 col-md-4 mt-3 ma">
+                                                                <button class="btn btn-lg btn-block btn-warning mt-3"
+                                                                    (click)="removeItinerario(i)"><i
+                                                                        class="icon-trash"></i></button>
+                                                            </div>
+                                                        </div>
+
+
+
+                                                    </ng-container>
+                                                </ng-container>
+
+                                                <div id="finItinerarioDefault" cclass="col-6  mt-3 mb-3 text-center ma"
+                                                    *ngIf="itinerarios.length>1">
+
+
+                                                    <button class="btn but mt-3" type="button"
+                                                        (click)="functionsService.scroolTo('btnItinerarioDeafult')"><i
+                                                            class="bi bi-arrow-up"></i></button>
+
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                        <!-- <hr class="mt-3 mb-3">
+                                        <div class="row text-center mt-3">
+                                            <h5>Notas</h5>
+
+                                            <div class="col-12 col-md-6 ma">
+
+                                                <input class="form-check-input" type="checkbox" id="notaCheck"
+                                                    #notaCheck formControlName="notaCheck">
+                                            </div>
+                                            <div class="row">
+                                            </div>
+                                            <div class="col-12 text-center" style="margin:auto"
+                                                *ngIf="notaCheck.checked">
+
+                                                <button type="button" id="btnNotaDefault"
+                                                    class="btn btn-lg btn-block but " (click)="addNotas('d')">Agregar
+                                                    nota</button>
+                                            </div>
+
+                                            <ng-container formArrayName="notas" *ngIf="notaCheck.checked">
+
+                                                <ng-container *ngFor="let nota of notas.controls; let i=index">
+                                                    <ng-container [formGroupName]="i">
+                                                        <div class="col-12 col-md-6 mt-3" id="notaDefault{{i}}">
+                                                            <div class="form-group ">
+                                                                <label for="texto ">Texto</label>
+                                                                <input type="text" class="form-control upper" id="texto"
+                                                                    formControlName="texto" required placeholder="Nota"
+                                                                    [readonly]="edit==='false'" class="form-control">
+                                                            </div>
+                                                            <span *ngIf="submited && errorControl['texto'].errors "
+                                                                class="error">Es requerido
+                                                            </span>
+                                                        </div>
+
+
+                                                        <div class="col-12 col-md-6 mt-3">
+                                                            <button class="btn btn-lg btn-block btn-warning mt-3"
+                                                                (click)="removeNota(i)"><i
+                                                                    class="icon-trash"></i></button>
+                                                        </div>
+
+
+
+                                                    </ng-container>
+
+
+                                                </ng-container>
+                                                <div id="finNotaDefault" cclass="col-6 mt-3 mb-3 text-center ma"
+                                                    *ngIf="notas.length>1">
+
+
+                                                    <button class="btn but mt-3" type="button"
+                                                        (click)="functionsService.scroolTo('btnNotaDefault')"><i
+                                                            class="bi bi-arrow-up"></i></button>
+
+                                                </div>
+                                            </ng-container>
+                                        </div> -->
+                                    </ng-container>
+
+                                    <div class="row mt-5 text-center">
+                                        <div class="col-12 col-md-4  mt-3 text-center " *ngIf="edit ">
+                                            <button type="submit" class="btn btn-lg btn-block but  ">Guardar</button>
+                                        </div>
+                                        <div class="col-12 col-md-4  mt-3 text-center">
+                                            <button class="btn btn-lg btn-block btn-warning"
+                                                (click)="back()">Regresar</button>
+                                        </div>
+                                        <div class="col-12 col-md-4  mt-3 text-center">
+                                            <button class="btn btn-lg btn-block but " type="button"
+                                                (click)="VerTemplate(this.form)">Ver
+                                                Invitación</button>
+                                        </div>
+                                        <div class="col-12    mt-3  mb-3 text-center">
+                                            <button class="btn btn-lg btn-block but" type="button" id="botonSubir"
+                                                (click)="functionsService.scroolTo('botonBajar')">
+                                                Subir
+                                                <i class="bi bi-arrow-up"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </ng-container>
+
                         </ng-container>
 
 

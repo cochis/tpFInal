@@ -632,7 +632,7 @@ input[type="file"] {
 
     .principal {
         width: 100% !important;
-        height: 750px !important;
+        height: auto;
         background-size: 250% !important;
     }
 }
@@ -640,7 +640,7 @@ input[type="file"] {
 @media screen and (min-width:768px) and (max-width: 1024px) {
     .principal {
         width: 100% !important;
-        height: 750px !important;
+        height: auto;
         background-size: 180% !important;
     }
 
@@ -659,7 +659,7 @@ input[type="file"] {
 @media screen and (min-width:1024px) {
     .principal {
         width: 100% !important;
-        height: 750px !important;
+        height: auto;
         background-size: 135% !important;
         background-position-x: center;
         background-position-y: center;
@@ -783,4 +783,146 @@ a {
 .clear {
     float: none;
     clear: both;
+}
+
+.invitacion {
+    width: 100%;
+    height: auto;
+    background-image: url('/assets/invitaciones/background/bg.jpg');
+
+    background-size: 100% auto;
+    background-position: center top;
+    background-attachment: fixed;
+}
+
+.divisor {
+    background-color: #f078c4;
+    width: 50%;
+    height: 3px;
+    margin: auto;
+
+    margin-bottom: 20px;
+}
+
+.presentacion {
+    position: relative;
+
+}
+
+.btp {
+    border-top: 3px solid #f078c4;
+}
+
+.principal {
+    width: 100%;
+    height: auto;
+    background-image: url('/assets/invitaciones/background/bg.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center top;
+    background-attachment: fixed;
+}
+
+.timer {
+
+    width: 100%;
+    height: auto;
+    background-image: url('/assets/invitaciones/background/splashcolor3.jpeg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center top;
+
+}
+
+.frame {
+    width: 380px;
+    margin-top: 25px;
+    margin-bottom: 35px;
+}
+
+.textInit {
+    width: 100%;
+    position: absolute;
+    top: 360px;
+    left: 0;
+    margin: auto;
+    text-align: center;
+    font-size: 59px;
+    letter-spacing: 5px;
+    text-shadow: 4px 4px white;
+}
+
+.mensaje {
+    width: 100%;
+    text-align: center !important;
+}
+
+.pPrincipal {
+    position: absolute;
+    width: 100%;
+    top: 63%;
+    left: 0;
+}
+
+.parrafo {
+    font-size: 25px;
+    font-weight: 700;
+    text-align: justify;
+    letter-spacing: 3px;
+}
+
+
+
+
+.table>:not(caption)>*>* {
+    background-color: none !important;
+    background: none !important;
+    border: none !important;
+}
+
+
+
+
+
+.mensaje {
+    width: 100%;
+    text-align: center !important;
+}
+
+.pPrincipal {
+    position: absolute;
+    width: 100%;
+    top: 63%;
+    left: 0;
+}
+
+.parrafo {
+    font-size: 25px;
+    font-weight: 700;
+    text-align: justify;
+    letter-spacing: 3px;
+}
+
+
+
+.imagenFiesta {
+    background-color: rgba(255, 255, 255, .6);
+    position: absolute;
+    top: 140px;
+    right: 0;
+    right: 0;
+    right: 0;
+    width: 180px;
+    height: 180px;
+    left: 0;
+    margin: 0 auto;
+    -webkit-border-radius: 100%;
+}
+
+.espejo {
+    transform: scaleX(-1) !important;
+    -webkit-transform: scaleX(-1) !important;
+    -moz-transform: scaleX(-1) !important;
+    -ms-transform: scaleX(-1) !important;
+    -o-transform: scaleX(-1) !important;
 }

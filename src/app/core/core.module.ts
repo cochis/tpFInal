@@ -155,7 +155,21 @@ import { EditarEmailTemplateComponent } from './pages/admin/email-templates/edit
 import { NewStyleComponent } from './pages/admin/templates/new-style/new-style.component';
 import { PresentacionComponent } from './pages/admin/templates/new-style/components/presentacion/presentacion.component';
 import { PrincipalTemplateDesingComponent } from './pages/admin/templates/new-style/components/principal-template-desing/principal-template-desing.component';
-
+import { TimerComponent } from './pages/admin/templates/new-style/components/timer/timer.component';
+import { ImgPrincipalComponent } from './pages/admin/templates/new-style/components/img-principal/img-principal.component';
+import { DondeCuandoComponent } from './pages/admin/templates/new-style/components/donde-cuando/donde-cuando.component';
+import { GaleriaDesingComponent } from './pages/admin/templates/new-style/components/galeria-desing/galeria-desing.component';
+import { ChambelanesDesingComponent } from './pages/admin/templates/new-style/components/chambelanes-desing/chambelanes-desing.component';
+import { PadrinosDesingComponent } from './pages/admin/templates/new-style/components/padrinos-desing/padrinos-desing.component';
+import { ProgramaDesingComponent } from './pages/admin/templates/new-style/components/programa-desing/programa-desing.component';
+import { MenuDesingComponent } from './pages/admin/templates/new-style/components/menu-desing/menu-desing.component';
+import { MesaRegalosDesingComponent } from './pages/admin/templates/new-style/components/mesa-regalos-desing/mesa-regalos-desing.component';
+import { HospedajeDesingComponent } from './pages/admin/templates/new-style/components/hospedaje-desing/hospedaje-desing.component';
+import { MensajeDesingComponent } from './pages/admin/templates/new-style/components/mensaje-desing/mensaje-desing.component';
+import { ConfirmacionDesingComponent } from './pages/admin/templates/new-style/components/confirmacion-desing/confirmacion-desing.component';
+import { MusicDesingComponent } from './pages/admin/templates/new-style/components/music-desing/music-desing.component';
+import { QrDesingComponent } from './pages/admin/templates/new-style/components/qr-desing/qr-desing.component';
+import { VestimentaDesingComponent } from './pages/admin/templates/new-style/components/vestimenta-desing/vestimenta-desing.component';
 
 
 
@@ -311,7 +325,22 @@ import { PrincipalTemplateDesingComponent } from './pages/admin/templates/new-st
     EditarEmailTemplateComponent,
     NewStyleComponent,
     PresentacionComponent,
-    PrincipalTemplateDesingComponent
+    PrincipalTemplateDesingComponent,
+    TimerComponent,
+    ImgPrincipalComponent,
+    DondeCuandoComponent,
+    GaleriaDesingComponent,
+    ChambelanesDesingComponent,
+    PadrinosDesingComponent,
+    ProgramaDesingComponent,
+    MenuDesingComponent,
+    MesaRegalosDesingComponent,
+    HospedajeDesingComponent,
+    MensajeDesingComponent,
+    ConfirmacionDesingComponent,
+    MusicDesingComponent,
+    QrDesingComponent,
+    VestimentaDesingComponent
 
   ],
   imports: [

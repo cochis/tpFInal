@@ -1,0 +1,20 @@
+<ng-container *ngIf="isMusic">
+
+    <div class="w-100   mt-5">
+        <div id="musica" class="   sticky   mt-5" [style]="{'background-color': data.cSecond,
+        'padding': '10px 10px','color':data.cTexto, 'width': '50px','height': '50px' ,
+        'border-top-right-radius':'25px',
+        'border-bottom-right-radius':'25px',
+        
+        }">
+            <i class="{{icon}}" style="font-size: 25px; margin: auto;" (click)="playStop()"></i>
+
+        </div>
+
+
+
+        <audio preload="auto" autoplay [src]="url+'/upload/sound/'+data.musicaInvitacion" class="ma" id="myAudio"
+            [loop]="isMusicRep" *ngIf="play">
+        </audio>
+    </div>
+</ng-container>

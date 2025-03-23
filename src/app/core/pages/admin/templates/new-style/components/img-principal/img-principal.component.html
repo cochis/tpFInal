@@ -1,0 +1,28 @@
+<div class="presentacion text-center" id="presentacion">
+
+    <div class="row">
+        <div class="row">
+            <div class="col-12 animate__animated {{data.efectoImg1}} {{data.repEfectoImg1}}">
+                <!--    <img class="frame" src="/assets/invitaciones/frames/frame5.png"> -->
+                <!-- <img class="shadow imagenFiesta" src="/assets/images/example/fiesta.webp"> -->
+                <img class="frame" src="/assets/invitaciones/frames/{{data.marcoFoto}}"
+                    [style]="{'width':data.marcoFotoWidth+'px','margin-top':data.marcoFotoTop+'px'}">
+                <img class="shadow imagenFiesta" [src]="url+'/upload/invitaciones/'+data.img1"
+                    [style]="{'width':+data.img1Size+'px','height':+data.img1Size+'px', 'margin-top':+data.img1Top+'px'}">
+            </div>
+
+
+
+        </div>
+
+
+
+    </div>
+
+
+
+
+
+
+
+</div>

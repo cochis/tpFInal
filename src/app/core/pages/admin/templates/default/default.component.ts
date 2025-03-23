@@ -352,7 +352,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
           donde2AddressUbicacion: 'https://www.google.com/maps/place/la+Bas%C3%ADlica+de+Guadalupe,+Villa+Gustavo+A.+Madero,+07050+Ciudad+de+M%C3%A9xico,+CDMX/@19.4846491,-99.1199821,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1f99dd5163e39:0x73360cc13e70980f!8m2!3d19.4846441!4d-99.1174072!16s%2Fg%2F11s0sv5b2v?entry=ttu',
           donde3Check: true,
           donde3Img: '/assets/images/xv/xv3.jpeg',
-          donde3Title: 'Fiesta',
+          donde3Title: 'Lugar del evento',
           donde3Text: 'Registro',
           donde3Date: 789456123,
           donde3Icon: 'mt-2 mb-2 text-center bi bi-map pointer',
@@ -868,21 +868,17 @@ export class DefaultComponent implements OnInit, AfterViewInit {
   }
   playStop() {
     var v = document.getElementsByTagName("audio")[0];
+
     var sound = false;
     var boton = document.getElementById("boton");
     boton.addEventListener("click", function () {
       if (v.paused) {
         v.play();
-        v.play();
-        v.play();
-        v.play();
+
         this.innerHTML = ' <span  ><i class="bi bi-stop"></i></span>';
       } else {
         v.pause();
-        v.pause();
-        v.pause();
-        v.pause();
-        v.pause();
+
         this.innerHTML = ' <span  ><i class="bi bi-play"></i></span>';
       }
     });

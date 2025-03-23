@@ -90,7 +90,7 @@ export class SharedDefaultTemplateComponent implements AfterViewInit {
       donde2Address: ['Progreso, Yuc., México'],
       donde3Check: [true],
       donde3Img: [this.fiesta.img],
-      donde3Title: [this.fiesta.nombre],
+      donde3Title: ['Lugar del evento'],
       donde3Text: [this.fiesta.nombre],
       donde3Date: [this.fiesta.fecha],
       donde3Icon: ['mt-2 mb-2 text-center bi bi-map pointer'],

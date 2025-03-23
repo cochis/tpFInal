@@ -1,86 +1,55 @@
-<div class="presentacion text-center">
-
-    <div class="row">
-        <div class="col-12">
-            <img class="frame" src="/assets/invitaciones/frames/frame5.png">
-            <img class="shadow imagenFiesta" src="/assets/images/example/fiesta.webp">
-        </div>
-        <hr>
-        <div class="col-12">
-            <h1 class=" textInit font1     ">
-                Mariana López
-            </h1>
-        </div>
-
+<div class="principal" [style]="{'background-image': 'url(/assets/invitaciones/background/'+data.fondoInvitacion+')'}">
+    <app-img-principal [data]="data"></app-img-principal>
+    <div class="col-12 text-center animate__animated animate__fadeIn">
+        <h2 class=" textInit {{data.nombreFont}}   animate__animated {{data.nombreEfecto}} {{data.nombreEfectoRep}}"
+            [style]="{'font-size': data.nombreSize+'px','top':data.topTitle+'px','color':data.cTexto}">
+            {{data.nombreFiesta}}
+        </h2>
+        <h3 class="{{data.tipoFont}} textInit    animate__animated {{data.tipoEfecto}} {{data.tipoEfectoRep}}"
+            [style]="{'font-size': data.tipoSize+'px','top':data.tipoTop+'px','color':data.cTexto}">
+            {{data.tipoFiesta}}
+        </h3>
     </div>
-    <div class="ma divisor"> </div>
-    <div class="clear"></div>
-    <div class="row text-center w-100" style="margin-top: 650px;">
+    <div class="row  ">
         <div class="col-10 text-center ma">
-            <div class="ma"> </div>
-            <p class="font1  parrafo mb-2 _animate__zoomIn animate__animated animate__zoomIn">
-                Mis 15 años marcan el comienzo de una nueva etapa de mi vida. Una etapa maravillosa donde el amor y
-                la alegría están conmigo. Por eso quiero compartir este día tan especial con todas las personas a
-                las que amo y me aman, y tú tienes que ser parte de esta fiesta
+            <div class="ma divisor" [style]="{'background-color':data.cSecond}"> </div>
+            <p class="{{data.textoInvFont}}  parrafo mb-2  animate__animated {{data.mensajeEfecto}} {{data.mensajeEfectoRep}}"
+                [style]="{'font-size': data.textoInvSize+'px','color':data.cTexto,'text-align':data.mensajeAlign}">
+                {{(data.mensaje1!='')?data.mensaje1:'Mensaje de la invitación'}}
             </p>
         </div>
+        <ng-container *ngIf="padres">
+
+            <div class="col-12 col-md-6 text-center ma   animate__animated animate__fadeIn" *ngIf="padres.length>0">
+                <div class="ma divisor" [style]="{'background-color':data.cSecond}"> </div>
+
+
+                <h3 class=" animate__animated {{data.cabeceraFont}} {{data.cabeceraEfecto}} {{data.cabeceraEfectoRep}}"
+                    [style]="{'font-size': data.cabeceraSize +'px','color':data.cTexto}">
+                    {{data.titlePadres}}
+                </h3>
+                <table class="table">
+                    <thead class="{{data.textoInvFont}}">
+
+
+                        <ng-container *ngFor="let pd of padres">
+
+                            <tr>
+                                <th [style]="{'font-size': data.textoInvSize+'px','color':data.cTexto}"> {{pd.name}}
+                                </th>
+
+                            </tr>
+                        </ng-container>
+
+
+
+                    </thead>
+
+                </table>
+
+            </div>
+        </ng-container>
+
     </div>
 
-
-
-
-
-    <div class="row text-center w-100">
-        <div class="col-12 col-md-6 text-center ma">
-
-
-            <div class="ma divisor"> </div>
-            <h3>
-                Mis Padres
-            </h3>
-            <ul>
-                <li>
-                    Madre del festejado
-                </li>
-                <li>
-                    Padre del festejado
-                </li>
-            </ul>
-
-        </div>
-        <div class="col-12 col-md-6 text-center ma">
-
-
-            <div class="ma divisor"> </div>
-            <h3>
-                Mis Padrinos
-            </h3>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-
-                    </tr>
-                </tbody>
-            </table>
-
-
-        </div>
-    </div>
 </div>

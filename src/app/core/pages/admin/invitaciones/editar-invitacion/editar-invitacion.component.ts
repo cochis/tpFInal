@@ -31,6 +31,7 @@ export class EditarInvitacionComponent {
   examples: any = []
   fiestas: any = []
   loading = false
+  typeView = 'seccionInicial'
   public imagenSubir!: File
   public soundSubir!: File
   public imgTemp: any = undefined
@@ -59,6 +60,7 @@ export class EditarInvitacionComponent {
   textUrl: any = environment.text_url
   efectos = environment.efectos
   repEfec = environment.repEfec
+  icons = environment.icons
   userLocation: any = undefined
   salonLocation: any = undefined
   iglesiaLocation: any = undefined
@@ -73,6 +75,9 @@ export class EditarInvitacionComponent {
   ent: boolean = false
   mus: boolean = false
   cab: boolean = false
+  imgIntro: boolean = false
+  textoInvitacion: boolean = false
+  fondos: boolean = false
   salon: Salon
   ejemplos: Ejemplo[]
 
@@ -145,6 +150,7 @@ export class EditarInvitacionComponent {
       cPrincipal: '#ffc1cb',
       cSecond: '#c0354e',
       cWhite: '#ffffff',
+      cTexto: '#000',
       xImg1: 50,
       yImg1: 0,
       bxMensajeImg: 50,
@@ -169,7 +175,11 @@ export class EditarInvitacionComponent {
       cPrincipal: ['#ffc0cb'],
       cSecond: ['#c0354e'],
       cWhite: ['#ffffff'],
+      cTexto: ['#000'],
       img1: [''],
+      img1Size: [''],
+      img1Height: [''],
+      img1Top: [''],
       efectoImg1: [''],
       repEfectoImg1: [''],
       efectoFecha: [''],
@@ -181,13 +191,19 @@ export class EditarInvitacionComponent {
       yImg1: [0],
       topTitle: [40],
       nombreSize: [20],
-      cabeceraFont: ['pacifico'],
+      cabeceraFont: ['pacific'],
+      textoInvFont: ['pacific'],
+      mensajeAlign: ['center'],
+      textoInvSize: [20],
       cabeceraSize: [20],
+      cabeceraEfecto: [''],
+      cabeceraEfectoRep: [''],
       titleSize: [20],
       cantidad: [this.fiesta.cantidad],
       tipoFiesta: [''],
       tipoFont: [''],
       tipoSize: [90],
+      tipoTop: [90],
       tipoEfecto: [''],
       tipoEfectoRep: [1],
       typeCount: '',
@@ -199,15 +215,26 @@ export class EditarInvitacionComponent {
       checking: [this.fiesta.checking],
       fiestaDate: [Number(this.fiesta.fecha)],
       nombreFiesta: [this.fiesta.nombre],
-      nombreFont: ['pacifico'],
+      repImgLeft: [''],
+      repImgRight: [''],
+      efectoImgRight: [''],
+      efectoImgleft: [''],
+      imgIntroLeft: ['bg7.png'],
+      imgIntroRight: ['bg6.png'],
+      invitacionEfecto: ['animate__fadeIn'],
+      fondoInvitacion: ['bg1.avif'],
+      marcoFoto: ['frame1.png'],
+      marcoFotoWidth: [150],
+      marcoFotoTop: [150],
+      nombreFont: ['pacific'],
       nombreEfecto: [''],
       nombreEfectoRep: [1],
       nombresSize: [187],
       textInvitacionValida: ['¡Los esperamos!'],
       mensajeCheck: [true],
       mensajeImg: [''],
-      mensajeFont: ['pacifico'],
-      inicialTFont: ['pacifico'],
+      mensajeFont: ['pacific'],
+      inicialTFont: ['pacific'],
       inicialTSize: [10],
       efectoInvi: [''],
       repEfectoInvi: [''],
@@ -215,9 +242,9 @@ export class EditarInvitacionComponent {
       musicaInvitacion: [''],
       isMusic: [false],
       musicRepit: [false],
-      finalTFont: ['pacifico'],
-      inviFont: ['pacifico'],
-      inviFont2: ['pacifico'],
+      finalTFont: ['pacific'],
+      inviFont: ['pacific'],
+      inviFont2: ['pacific'],
       inviEfecto: [''],
       inviEfectoRep: [1],
       mensajeImgWidth: [100],
@@ -250,7 +277,7 @@ export class EditarInvitacionComponent {
       donde2Address: [''],
       donde3Check: [true],
       donde3Img: [this.fiesta.salon.img],
-      donde3Title: [this.fiesta.salon.nombre],
+      donde3Title: ['Lugar del evento'],
       donde3Text: [this.fiesta.salon.nombre],
       donde3Date: [(typeof (this.fiesta.fecha) == "number") ? this.functionsService.numberDateTimeLocal(this.fiesta.fecha) : this.fiesta.fecha],
       donde3Icon: ['mt-2 mb-2 text-center bi bi-map pointer'],
@@ -263,6 +290,12 @@ export class EditarInvitacionComponent {
         this.fiesta.salon.cp + ' ' + this.fiesta.salon.cp + ' ' + this.fiesta.salon.estado + ' ' + this.fiesta.salon.pais
       ],
       hospedajeCheck: [true],
+      galeria1: [''],
+      galeria2: [''],
+      galeria3: [''],
+      galeria4: [''],
+      galeria5: [''],
+      galeria6: [''],
       hospedajeImg: [''],
       hospedajeName: [''],
       hospedajeIcon: ['mt-2 mb-2 text-center  bi-info-circle pointer'],
@@ -288,8 +321,10 @@ export class EditarInvitacionComponent {
       notaCheck: [true],
       notaBG: ['#fff'],
       notaTitle: ['Notas'],
+      titlePadres: ['Mis Padres'],
       notas: this.fb.array([]),
       chambelanesCheck: [true],
+      chambelanesImgCheck: [true],
       chambelanes: this.fb.array([]),
       padresCheck: [true],
       padres: this.fb.array([]),
@@ -374,6 +409,7 @@ export class EditarInvitacionComponent {
     }
   }
   async setFormWithData(invitacion: any) {
+
     this.getCoords(invitacion.data)
     invitacion.data = await this.numberToData(invitacion.data)
     this.form = this.fb.group({
@@ -381,7 +417,11 @@ export class EditarInvitacionComponent {
       cSecond: [invitacion.data.cSecond],
       checking: [invitacion.fiesta.checking],
       cWhite: [invitacion.data.cWhite],
+      cTexto: [invitacion.data.cTexto],
       img1: [invitacion.data.img1],
+      img1Size: [invitacion.data.img1Size],
+      img1Height: [invitacion.data.img1Height],
+      img1Top: [invitacion.data.imTopg1],
       efectoImg1: [invitacion.data.efectoImg1],
       repEfectoImg1: [invitacion.data.repEfectoImg1],
       efectoFecha: [invitacion.data.efectoFecha],
@@ -398,6 +438,7 @@ export class EditarInvitacionComponent {
       cantidad: [invitacion.fiesta.cantidad],
       tipoFiesta: [invitacion.data.tipoFiesta],
       tipoSize: [invitacion.data.tipoSize],
+      tipoTop: [invitacion.data.tipoTop],
       tipoEfecto: [invitacion.data.tipoEfecto],
       tipoEfectoRep: [invitacion.data.tipoEfectoRep],
       topDate: [invitacion.data.topDate],
@@ -411,7 +452,12 @@ export class EditarInvitacionComponent {
       nombreFiesta: [invitacion.fiesta.nombre],
       nombreSize: [invitacion.data.nombreSize],
       cabeceraFont: [invitacion.data.cabeceraFont],
+      textoInvFont: [invitacion.data.textoInvFont],
+      mensajeAlign: [invitacion.data.mensajeAlign],
+      textoInvSize: [invitacion.data.textoInvSize],
       cabeceraSize: [invitacion.data.cabeceraSize],
+      cabeceraEfecto: [invitacion.data.cabeceraEfecto],
+      cabeceraEfectoRep: [invitacion.data.cabeceraEfectoRep],
       titleSize: [invitacion.data.titleSize],
       textInvitacionValida: [invitacion.data.textInvitacionValida],
       mensajeImg: [invitacion.data.mensajeImg],
@@ -453,6 +499,12 @@ export class EditarInvitacionComponent {
       donde3Address: [invitacion.data.donde3Address],
       hospedajeCheck: [invitacion.data.hospedajeCheck],
       hospedajeImg: [invitacion.data.hospedajeImg],
+      galeria1: [invitacion.data.galeria1],
+      galeria2: [invitacion.data.galeria2],
+      galeria3: [invitacion.data.galeria3],
+      galeria4: [invitacion.data.galeria4],
+      galeria5: [invitacion.data.galeria5],
+      galeria6: [invitacion.data.galeria6],
       hospedajeName: [invitacion.data.hospedajeName],
       hospedajeIcon: [invitacion.data.hospedajeIcon],
       hospedajeAddress: [invitacion.data.hospedajeAddress],
@@ -477,6 +529,7 @@ export class EditarInvitacionComponent {
       notaCheck: [invitacion.data.notaCheck],
       notaBG: [invitacion.data.notaBG],
       notaTitle: [invitacion.data.notaTitle],
+      titlePadres: [invitacion.data.titlePadres],
       invitacionTemplate: [invitacion.data.invitacionTemplate],
       notas: this.fb.array([]),
 
@@ -486,7 +539,9 @@ export class EditarInvitacionComponent {
       musica: this.fb.array([]),
       menu: this.fb.array([]),
       chambelanesCheck: [invitacion.data.chambelanesCheck],
+      chambelanesImgCheck: [invitacion.data.chambelanesImgCheck],
       padresCheck: [invitacion.data.padresCheck],
+
       padrinosCheck: [invitacion.data.padrinosCheck],
       menuCheck: [invitacion.data.menuCheck],
       musicaCheck: [invitacion.data.musicaCheck],
@@ -525,17 +580,30 @@ export class EditarInvitacionComponent {
       //font width  IMG
 
 
-      nombreFont: [invitacion.data.nombreFont ? invitacion.data.nombreFont : 'pacifico'],
+
+      repImgRight: [invitacion.data.repImgRight ? invitacion.data.repImgRight : ''],
+      repImgLeft: [invitacion.data.repImgLeft ? invitacion.data.repImgLeft : ''],
+      efectoImgRight: [invitacion.data.efectoImgRight ? invitacion.data.efectoImgRight : ''],
+      efectoImgLeft: [invitacion.data.efectoImgLeft ? invitacion.data.efectoImgLeft : ''],
+      imgIntroLeft: [invitacion.data.imgIntroLeft ? invitacion.data.imgIntroLeft : 'bg7.png'],
+      imgIntroRight: [invitacion.data.imgIntroRight ? invitacion.data.imgIntroRight : 'bg6.png'],
+
+      invitacionEfecto: [invitacion.data.invitacionEfecto ? invitacion.data.invitacionEfecto : 'animate__fadeIn'],
+      fondoInvitacion: [invitacion.data.fondoInvitacion ? invitacion.data.fondoInvitacion : 'bg1.avif'],
+      marcoFoto: [invitacion.data.marcoFoto ? invitacion.data.marcoFoto : 'frame1.png'],
+      marcoFotoWidth: [invitacion.data.marcoFotoWidth ? invitacion.data.marcoFotoWidth : 150],
+      marcoFotoTop: [invitacion.data.marcoFotoTop ? invitacion.data.marcoFotoTop : 150],
+      nombreFont: [invitacion.data.nombreFont ? invitacion.data.nombreFont : 'pacific'],
       nombreEfecto: [invitacion.data.nombreEfecto ? invitacion.data.nombreEfecto : ''],
       nombreEfectoRep: [invitacion.data.nombreEfectoRep ? invitacion.data.nombreEfectoRep : 1],
-      tipoFont: [invitacion.data.tipoFont ? invitacion.data.tipoFont : 'pacifico'],
+      tipoFont: [invitacion.data.tipoFont ? invitacion.data.tipoFont : 'pacific'],
       mensajeImgWidth: [invitacion.data.mensajeImgWidth],
       alturaMensaje: [invitacion.data.alturaMensaje],
-      mensajeFont: [invitacion.data.mensajeFont ? invitacion.data.mensajeFont : 'pacifico'],
-      inicialTFont: [invitacion.data.inicialTFont ? invitacion.data.inicialTFont : 'pacifico'],
-      finalTFont: [invitacion.data.finalTFont ? invitacion.data.finalTFont : 'pacifico'],
-      inviFont: [invitacion.data.inviFont ? invitacion.data.inviFont : 'pacifico'],
-      inviFont2: [invitacion.data.inviFont2 ? invitacion.data.inviFont2 : 'pacifico'],
+      mensajeFont: [invitacion.data.mensajeFont ? invitacion.data.mensajeFont : 'pacific'],
+      inicialTFont: [invitacion.data.inicialTFont ? invitacion.data.inicialTFont : 'pacific'],
+      finalTFont: [invitacion.data.finalTFont ? invitacion.data.finalTFont : 'pacific'],
+      inviFont: [invitacion.data.inviFont ? invitacion.data.inviFont : 'pacific'],
+      inviFont2: [invitacion.data.inviFont2 ? invitacion.data.inviFont2 : 'pacific'],
       inviEfecto: [invitacion.data.inviEfecto ? invitacion.data.inviEfecto : ''],
       inviEfectoRep: [invitacion.data.inviEfectoRep ? invitacion.data.inviEfectoRep : '1'],
       inicialTSize: [invitacion.data.inicialTSize],
@@ -613,7 +681,7 @@ export class EditarInvitacionComponent {
 
 
     let res = {
-      type: 'seccionInicial',
+      type: this.typeView,
       size: 'sm',
       byFile: (this.fiesta.invitacion == 'byFile') ? true : false,
       example: this.fiesta.example,
@@ -657,7 +725,11 @@ export class EditarInvitacionComponent {
       cPrincipal: [temp.cPrincipal],
       cSecond: [temp.cSecond],
       cWhite: [temp.cWhite],
+      cTexto: [temp.cTexto],
       img1: [temp.img1],
+      img1Size: [temp.img1Size],
+      img1Height: [temp.img1Height],
+      img1Top: [temp.img1Top],
       efectoImg1: [temp.efectoImg1],
       repEfectoImg1: [temp.repEfectoImg1],
       efectoFecha: [temp.efectoFecha],
@@ -672,6 +744,7 @@ export class EditarInvitacionComponent {
       cantidad: [temp.cantidad],
       tipoFiesta: [temp.tipoFiesta],
       tipoSize: [temp.tipoSize],
+      tipoTop: [temp.tipoTop],
       tipoEfecto: [temp.tipoEfecto],
       tipoEfectoRep: [temp.tipoEfectoRep],
       topDate: [temp.topDate],
@@ -685,7 +758,14 @@ export class EditarInvitacionComponent {
       nombreFiesta: [temp.nombreFiesta],
       nombreSize: [temp.nombreSize],
       cabeceraFont: [temp.cabeceraFont],
+      textoInvFont: [temp.textoInvFont],
+      mensajeAlign: [temp.mensajeAlign],
+      textoInvSize: [temp.textoInvSize],
       cabeceraSize: [temp.cabeceraSize],
+
+      cabeceraEfecto: [temp.cabeceraEfecto],
+      cabeceraEfectoRep: [temp.cabeceraEfectoRep],
+
       titleSize: [temp.titleSize],
       textInvitacionValida: [temp.textInvitacionValida],
       mensajeImg: [temp.mensajeImg],
@@ -727,6 +807,12 @@ export class EditarInvitacionComponent {
       donde3Address: [temp.donde3Address],
       hospedajeCheck: [temp.hospedajeCheck],
       hospedajeImg: [temp.hospedajeImg],
+      galeria1: [temp.galeria1],
+      galeria2: [temp.galeria2],
+      galeria3: [temp.galeria3],
+      galeria4: [temp.galeria4],
+      galeria5: [temp.galeria5],
+      galeria6: [temp.galeria6],
       hospedajeName: [temp.hospedajeName],
       hospedajeIcon: [temp.hospedajeIcon],
       hospedajeAddress: [temp.hospedajeAddress],
@@ -745,6 +831,18 @@ export class EditarInvitacionComponent {
 
 
 
+      efectoImgRight: [temp.efectoImgRight],
+      efectoImgLeft: [temp.efectoImgLeft],
+      repImgLeft: [temp.repImgLeft],
+      repImgRight: [temp.repImgRight],
+      imgIntroLeft: [temp.imgIntroLeft],
+      imgIntroRight: [temp.imgIntroRight],
+
+      invitacionEfecto: [temp.invitacionEfecto],
+      fondoInvitacion: [temp.fondoInvitacion],
+      marcoFoto: [temp.marcoFoto],
+      marcoFotoWidth: [temp.marcoFotoWidth],
+      marcoFotoTop: [temp.marcoFotoTop],
       nombreFont: [temp.nombreFont],
       nombreEfecto: [temp.nombreEfecto],
       nombreEfectoRep: [temp.nombreEfectoRep],
@@ -776,6 +874,7 @@ export class EditarInvitacionComponent {
       notaCheck: [temp.notaCheck],
       notaBG: [temp.notaBG],
       notaTitle: [temp.notaTitle],
+      titlePadres: [temp.titlePadres],
       colorQr: [temp.colorQr],
       colorBgQr: [temp.colorBgQr],
       invitacionTemplate: [temp.invitacionTemplate],
@@ -785,7 +884,9 @@ export class EditarInvitacionComponent {
       musica: this.fb.array([]),
       menu: this.fb.array([]),
       chambelanesCheck: [temp.data.chambelanesCheck],
+      chambelanesImgCheck: [temp.data.chambelanesImgCheck],
       padresCheck: [temp.data.padresCheck],
+
       padrinosCheck: [temp.data.padrinosCheck],
       menuCheck: [temp.data.menuCheck],
       musicaCheck: [temp.data.musicaCheck],
@@ -924,6 +1025,9 @@ export class EditarInvitacionComponent {
   }
   async onSubmit() {
 
+
+
+
     this.loading = true
 
 
@@ -969,6 +1073,24 @@ export class EditarInvitacionComponent {
       if (this.form.value.hospedajeImg == '' && this.invitacion.data.hospedajeImg !== '') {
         this.form.value.hospedajeImg = this.invitacion.data.hospedajeImg
       }
+      if (this.form.value.galeria1 == '' && this.invitacion.data.galeria1 !== '') {
+        this.form.value.galeria1 = this.invitacion.data.galeria1
+      }
+      if (this.form.value.galeria2 == '' && this.invitacion.data.galeria2 !== '') {
+        this.form.value.galeria2 = this.invitacion.data.galeria2
+      }
+      if (this.form.value.galeria3 == '' && this.invitacion.data.galeria1 !== '') {
+        this.form.value.galeria3 = this.invitacion.data.galeria1
+      }
+      if (this.form.value.galeria4 == '' && this.invitacion.data.galeria1 !== '') {
+        this.form.value.galeria4 = this.invitacion.data.galeria1
+      }
+      if (this.form.value.galeria5 == '' && this.invitacion.data.galeria1 !== '') {
+        this.form.value.galeria5 = this.invitacion.data.galeria1
+      }
+      if (this.form.value.galeria6 == '' && this.invitacion.data.galeria1 !== '') {
+        this.form.value.galeria6 = this.invitacion.data.galeria1
+      }
       if (this.form.value.byFileInvitacion == '' && this.invitacion.data.byFileInvitacion !== '') {
         this.form.value.byFileInvitacion = this.invitacion.data.byFileInvitacion
       }
@@ -978,6 +1100,7 @@ export class EditarInvitacionComponent {
       let data = await this.numberToData(this.form.value)
 
       this.invitacion.data = (data)
+
 
       this.invitacion.usuarioFiesta = (this.fiesta.usuarioFiesta._id) ? this.fiesta.usuarioFiesta._id : this.fiesta.usuarioFiesta.uid
       this.invitacion.usuarioCreated = this.usuarioFiesta
@@ -1061,8 +1184,10 @@ export class EditarInvitacionComponent {
     data.donde3Check = (data.donde3Check == 'true' || data.donde3Check == true) ? true : false
     data.notaCheck = (data.notaCheck == 'true' || data.notaCheck == true) ? true : false
     data.itinerarioCheck = (data.itinerarioCheck == 'true' || data.itinerarioCheck == true) ? true : false
+    data.chambelanesImgCheck = (data.chambelanesImgCheck == 'true' || data.chambelanesImgCheck == true) ? true : false
     data.chambelanesCheck = (data.chambelanesCheck == 'true' || data.chambelanesCheck == true) ? true : false
     data.padresCheck = (data.padresCheck == 'true' || data.padresCheck == true) ? true : false
+
     data.padrinosCheck = (data.padrinosCheck == 'true' || data.padrinosCheck == true) ? true : false
     data.menuCheck = (data.menuCheck == 'true' || data.menuCheck == true) ? true : false
     data.musicaCheck = (data.musicaCheck == 'true' || data.musicaCheck == true) ? true : false
@@ -1096,7 +1221,11 @@ export class EditarInvitacionComponent {
             cPrincipal: '#ffc0cb',
             cSecond: '#c0354e',
             cWhite: '#ffffff',
+            cTexto: '#000',
             img1: '',
+            img1Size: '',
+            img1Height: '',
+            img1Top: '',
             efectoImg1: 'animate__fadeIn',
             repEfectoImg1: 'animate__repeat-1',
             efectoFecha: 'animate__fadeIn',
@@ -1110,12 +1239,18 @@ export class EditarInvitacionComponent {
             cantidad: this.fiesta.cantidad,
             tipoFiesta: '',
             tipoSize: 90,
+            tipoTop: 90,
             tipoEfecto: '',
             tipoEfectoRep: 1,
             nombreSize: 20,
 
             cabeceraSize: 20,
-            cabeceraFont: 'pacifico',
+            cabeceraEfecto: '',
+            cabeceraEfectoRep: '',
+            cabeceraFont: 'pacific',
+            textoInvFont: 'pacific',
+            textoInvSize: 20,
+            mensajeAlign: 'center',
             titleSize: 20,
             topDate: 50,
             efectoCount: '',
@@ -1158,7 +1293,7 @@ export class EditarInvitacionComponent {
             donde2Address: '',
             donde3Check: true,
             donde3Img: this.fiesta.salon.img,
-            donde3Title: this.fiesta.salon.nombre,
+            donde3Title: 'Lugar del evento',
             donde3Text: this.fiesta.salon.nombre,
             donde3Date: (typeof (this.fiesta.fecha) == "number") ? this.functionsService.dateToNumber(this.fiesta.fecha) : this.fiesta.fecha,
             donde3Icon: 'mt-2 mb-2 text-center bi bi-map pointer',
@@ -1171,6 +1306,12 @@ export class EditarInvitacionComponent {
               this.fiesta.salon.cp + ' ' + this.fiesta.salon.cp + ' ' + this.fiesta.salon.estado + ' ' + this.fiesta.salon.pais
             ,
             hospedajeCheck: true,
+            galeria1: '',
+            galeria2: '',
+            galeria3: '',
+            galeria4: '',
+            galeria5: '',
+            galeria6: '',
             hospedajeImg: '',
             hospedajeName: '',
             hospedajeIcon: 'mt-2 mb-2 text-center  bi-info-circle pointer',
@@ -1195,10 +1336,13 @@ export class EditarInvitacionComponent {
             notaCheck: true,
             notaBG: '#fff',
             notaTitle: 'Notas',
+            titlePadres: 'Mis Padres',
             invitacionTemplate: false,
             notas: [],
             chambelanesCheck: true,
+            chambelanesImgCheck: true,
             padresCheck: true,
+
             padrinosCheck: true,
             menuCheck: true,
             musicaCheck: true,
@@ -1213,14 +1357,28 @@ export class EditarInvitacionComponent {
             activated: true,
             dateCreated: this.today,
             lastEdited: this.today,
-            nombreFont: "pacifico",
+            repImgLeft: '',
+            repImgRight: '',
+
+            efectoImgRight: '',
+            efectoImgLeft: '',
+            imgIntroLeft: 'bg7.png',
+            imgIntroRight: 'bg6.png',
+
+            invitacionEfecto: 'animate__fadeIn',
+            fondoInvitacion: 'bg1.avif',
+            marcoFoto: "frame1.png",
+
+            marcoFotoWidth: 150,
+            marcoFotoTop: 150,
+            nombreFont: "pacific",
             nombreEfecto: "",
             nombreEfectoRep: 1,
-            tipoFont: "pacifico",
+            tipoFont: "pacific",
             mensajeImgWidth: 100,
             alturaMensaje: 25,
-            mensajeFont: "pacifico",
-            inicialTFont: 'pacifico',
+            mensajeFont: "pacific",
+            inicialTFont: 'pacific',
             inicialTSize: 10,
             efectoInvi: '',
             repEfectoInvi: '',
@@ -1228,9 +1386,9 @@ export class EditarInvitacionComponent {
             musicaInvitacion: '',
             isMusic: '',
             musicRepit: '',
-            finalTFont: 'pacifico',
-            inviFont: 'pacifico',
-            inviFont2: 'pacifico',
+            finalTFont: 'pacific',
+            inviFont: 'pacific',
+            inviFont2: 'pacific',
             inviEfecto: '',
             inviEfectoRep: '1',
             typeFile: '',
@@ -1314,6 +1472,7 @@ export class EditarInvitacionComponent {
           }
           if (this.invitacion.data.padrinos && this.invitacion.data.padrinos.length > 0) {
             this.invitacion.data.padrinos.forEach(padri => {
+
               this.padrinos.push(this.newPadrino(padri));
             });
           }
@@ -1342,6 +1501,7 @@ export class EditarInvitacionComponent {
       return this.fb.group({
         name: itinerario.name,
         hr: itinerario.hr,
+        icon: itinerario.icon
       })
     } else {
       return this.fb.group({
@@ -1379,11 +1539,15 @@ export class EditarInvitacionComponent {
   newPadrino(padrino?): FormGroup {
     if (padrino) {
       return this.fb.group({
-        name: padrino.name
+        name: padrino.name,
+        icon: padrino.icon,
+        tipo: padrino.tipo
       })
     } else {
       return this.fb.group({
-        name: ''
+        name: '',
+        icon: '',
+        tipo: ''
       })
     }
   }
@@ -1392,11 +1556,13 @@ export class EditarInvitacionComponent {
       return this.fb.group({
         tipo: menu.tipo,
         name: menu.name,
+        icon: menu.icon,
       })
     } else {
       return this.fb.group({
         tipo: '',
         name: '',
+        icon: '',
       })
     }
   }
@@ -1664,6 +1830,24 @@ export class EditarInvitacionComponent {
               case 'donde3Img':
                 this.invitacion.data.donde3Img = img
                 break;
+              case 'galeria1':
+                this.invitacion.data.galeria1 = img
+                break;
+              case 'galeria2':
+                this.invitacion.data.galeria2 = img
+                break;
+              case 'galeria3':
+                this.invitacion.data.galeria3 = img
+                break;
+              case 'galeria4':
+                this.invitacion.data.galeria4 = img
+                break;
+              case 'galeria5':
+                this.invitacion.data.galeria5 = img
+                break;
+              case 'galeria6':
+                this.invitacion.data.galeria6 = img
+                break;
               case 'hospedajeImg':
                 this.invitacion.data.hospedajeImg = img
                 break;
@@ -1679,6 +1863,25 @@ export class EditarInvitacionComponent {
               case 'codigoVestimentaHombreImg':
                 this.invitacion.data.codigoVestimentaHombreImg = img
                 break;
+              case 'galeria1':
+                this.invitacion.data.galeria1 = img
+                break;
+              case 'galeria2':
+                this.invitacion.data.galeria2 = img
+                break;
+              case 'galeria3':
+                this.invitacion.data.galeria3 = img
+                break;
+              case 'galeria4':
+                this.invitacion.data.galeria4 = img
+                break;
+              case 'galeria5':
+                this.invitacion.data.galeria5 = img
+                break;
+              case 'galeria6':
+                this.invitacion.data.galeria6 = img
+                break;
+
             }
             this.invitacion.fiesta = this.fiesta.uid
             this.invitacion.usuarioCreated = this.usuarioFiesta
@@ -1805,6 +2008,9 @@ export class EditarInvitacionComponent {
       this.invitacion.data = await this.numberToData(invitacion)
       //Seccion Principal
       this.invitacion.data.img1 = ''
+      this.invitacion.data.img1Size = ''
+      this.invitacion.data.img1Height = ''
+      this.invitacion.data.img1Top = ''
       this.invitacion.data.nombreFiesta = this.fiesta.nombre
       this.invitacion.data.tipoFiesta = ''
       //Seccion Mensaje
@@ -1839,6 +2045,12 @@ export class EditarInvitacionComponent {
       this.invitacion.data.donde2AddressUbicacionLng = ''
       //Donde y cuando Hospedaje
       this.invitacion.data.hospedajeCheck = false
+      this.invitacion.data.galeria1 = ''
+      this.invitacion.data.galeria2 = ''
+      this.invitacion.data.galeria3 = ''
+      this.invitacion.data.galeria4 = ''
+      this.invitacion.data.galeria5 = ''
+      this.invitacion.data.galeria6 = ''
       this.invitacion.data.hospedajeImg = ''
       this.invitacion.data.hospedajeName = ''
       this.invitacion.data.hospedajePhone = ''
@@ -1846,6 +2058,15 @@ export class EditarInvitacionComponent {
       this.invitacion.data.hospedajeUbicacion = ''
       this.invitacion.data.hospedajeUbicacionLng = ''
       this.invitacion.data.hospedajeUbicacionLat = ''
+
+
+      //Galeria
+      this.invitacion.data.galeria1 = ''
+      this.invitacion.data.galeria2 = ''
+      this.invitacion.data.galeria3 = ''
+      this.invitacion.data.galeria4 = ''
+      this.invitacion.data.galeria5 = ''
+      this.invitacion.data.galeria6 = ''
 
       //Boton confirmacion
       this.invitacion.data.confirmacionCheck = false
@@ -1857,6 +2078,7 @@ export class EditarInvitacionComponent {
       this.invitacion.data.padrinos = []
       //chambelanes
       this.invitacion.data.chambelanesCheck = false
+      this.invitacion.data.chambelanesImgCheck = false
       this.invitacion.data.chambelanes = []
       //menu
       this.invitacion.data.menuCheck = false
@@ -1873,6 +2095,7 @@ export class EditarInvitacionComponent {
       this.invitacion.data.notaCheck = false
       this.invitacion.data.notaBG = '#fff'
       this.invitacion.data.notaTitle = 'Notas'
+      this.invitacion.data.titlePadres = 'Mis Padres'
       this.invitacion.data.notas = []
       //Mesa de regalos
       this.invitacion.data.mesaRegalosCheck = false
@@ -1967,6 +2190,10 @@ export class EditarInvitacionComponent {
           this.ent = false
           this.mus = false
           this.cab = true
+          this.imgIntro = false
+          this.textoInvitacion = false
+          this.fondos = false
+          this.typeView = 'cabeceras'
           break;
         case 'musica':
           this.col = false
@@ -1978,6 +2205,10 @@ export class EditarInvitacionComponent {
           this.ent = false
           this.mus = true
           this.cab = false
+          this.imgIntro = false
+          this.textoInvitacion = false
+          this.fondos = false
+          this.typeView = 'seccionInicial'
           break;
         case 'colores':
           this.col = true
@@ -1989,6 +2220,9 @@ export class EditarInvitacionComponent {
           this.ent = false
           this.mus = false
           this.cab = false
+          this.imgIntro = false
+          this.textoInvitacion = false
+          this.typeView = 'seccionInicial'
           break;
         case 'imagen':
           this.col = false
@@ -2000,6 +2234,9 @@ export class EditarInvitacionComponent {
           this.ent = false
           this.mus = false
           this.cab = false
+          this.imgIntro = false
+          this.fondos = false
+          this.typeView = 'seccionInicial'
           break;
         case 'titulo':
           this.col = false
@@ -2011,6 +2248,10 @@ export class EditarInvitacionComponent {
           this.ent = false
           this.mus = false
           this.cab = false
+          this.imgIntro = false
+          this.textoInvitacion = false
+          this.fondos = false
+          this.typeView = 'seccionInicial'
           break;
         case 'subtitulo':
           this.fec = false
@@ -2022,6 +2263,10 @@ export class EditarInvitacionComponent {
           this.ent = false
           this.mus = false
           this.cab = false
+          this.imgIntro = false
+          this.textoInvitacion = false
+          this.fondos = false
+          this.typeView = 'seccionInicial'
           break;
         case 'invitacion':
           this.col = false
@@ -2033,6 +2278,10 @@ export class EditarInvitacionComponent {
           this.ent = false
           this.mus = false
           this.cab = false
+          this.imgIntro = false
+          this.textoInvitacion = false
+          this.fondos = false
+          this.typeView = 'seccionInicial'
           break;
         case 'fecha':
           this.col = false
@@ -2044,6 +2293,10 @@ export class EditarInvitacionComponent {
           this.ent = false
           this.mus = false
           this.cab = false
+          this.imgIntro = false
+          this.textoInvitacion = false
+          this.fondos = false
+          this.typeView = 'timer'
           break;
         case 'entrada general':
           this.col = false
@@ -2055,7 +2308,57 @@ export class EditarInvitacionComponent {
           this.ent = true
           this.mus = false
           this.cab = false
+          this.imgIntro = false
+          this.textoInvitacion = false
+          this.fondos = false
+          this.typeView = 'seccionInicial'
           break;
+        case 'imgIntro':
+          this.col = false
+          this.fec = false
+          this.ima = false
+          this.tit = false
+          this.sub = false
+          this.inv = false
+          this.ent = false
+          this.mus = false
+          this.cab = false
+          this.imgIntro = true
+          this.textoInvitacion = false
+          this.fondos = false
+          this.typeView = 'imgIntro'
+          break;
+        case 'textoInvitacion':
+          this.col = false
+          this.fec = false
+          this.ima = false
+          this.tit = false
+          this.sub = false
+          this.inv = false
+          this.ent = false
+          this.mus = false
+          this.cab = false
+          this.imgIntro = false
+          this.textoInvitacion = true
+          this.fondos = false
+          this.typeView = 'seccionInicial'
+          break;
+        case 'fondos':
+          this.col = false
+          this.fec = false
+          this.ima = false
+          this.tit = false
+          this.sub = false
+          this.inv = false
+          this.ent = false
+          this.mus = false
+          this.cab = false
+          this.imgIntro = false
+          this.textoInvitacion = false
+          this.fondos = true
+          this.typeView = 'seccionInicial'
+          break;
+
         default:
           this.col = false
           this.fec = false
@@ -2066,6 +2369,9 @@ export class EditarInvitacionComponent {
           this.ent = false
           this.mus = false
           this.cab = false
+          this.textoInvitacion = false
+          this.imgIntro = false
+          this.typeView = 'seccionInicial'
           break;
       }
     }

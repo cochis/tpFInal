@@ -40,6 +40,7 @@ import { CalendarComponent } from './components/calendar/calendar.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { ViewTemplateFileComponent } from './components/view-template-file/view-template-file.component';
 import { ClockComponent } from './components/clock/clock.component';
+import { ViewFancyComponent } from './components/view-fancy/view-fancy.component';
 
 
 
@@ -80,6 +81,7 @@ import { ClockComponent } from './components/clock/clock.component';
     CalendarComponent,
     ViewTemplateFileComponent,
     ClockComponent,
+    ViewFancyComponent,
 
 
   ],
@@ -104,6 +106,7 @@ import { ClockComponent } from './components/clock/clock.component';
     MapscreenComponent,
     CalendarComponent,
     ViewTemplateFileComponent,
+    ViewFancyComponent,
     ClockComponent,
 
   ],

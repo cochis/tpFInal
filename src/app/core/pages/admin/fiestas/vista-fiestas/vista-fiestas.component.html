@@ -131,13 +131,9 @@
                                     </td>
                                     <td class="upper">{{fiesta.nombre}}</td>
                                     <td class="upper pointer"
-                                        routerLink="/core/invitaciones/editar-invitacion/true/{{fiesta.uid}}"
-                                        *ngIf="fiesta.invitacion.includes('default')"><i
-                                            class="bi bi-file-earmark-fill second "></i></td>
-                                    <td class="upper pointer"
-                                        routerLink="/core/invitaciones/editar-invitacion/true/{{fiesta.uid}}"
-                                        *ngIf="fiesta.invitacion.includes('byFile')"><i
-                                            class="bi bi-file-earmark-fill second "></i></td>
+                                        routerLink="/core/invitaciones/editar-invitacion/true/{{fiesta.uid}}">
+                                        <i class="bi bi-file-earmark-fill second "></i>
+                                    </td>
 
                                     <td class="upper">{{fiesta.evento.nombre}}</td>
                                     <td class="upper second" *ngIf="!fiesta.usuarioFiesta">

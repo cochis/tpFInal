@@ -1,0 +1,77 @@
+<div class="container-fluid timer btp" [style]="{'border-color':data.cSecond}">
+    <div class="countdown">
+        <div class="col-12 text-center font1">
+            <h3 class=" animate__animated {{data.cabeceraFont}} {{data.cabeceraEfecto}} {{data.cabeceraEfectoRep}}"
+                [style]="{'font-size': data.cabeceraSize +'px','color':data.cTexto}">
+                {{text}}
+            </h3>
+        </div>
+        <div class="countdown-block  _animate__zoomIn animate__animated animate__zoomIn" style="visibility: visible;">
+            <span class="days time-elem">
+                <span class="top {{data.cabeceraFont}}"
+                    [style]="{'background-color':data.cSecond,'transform': 'perspective(300px)' ,'color': '#ffffff'} ">{{dias}}</span>
+                <span class="top-back">
+                    <span>{{dias}}</span>
+                </span>
+                <span class="bottom {{data.cabeceraFont}}"
+                    [style]="{'background-color':data.cSecond,'transform': 'perspective(300px)','color': '#ffffff'}">{{dias}}</span>
+                <span class="bottom-back">
+                    <span>{{dias}}</span>
+                </span>
+            </span>
+            <span class="title-timer font-weight-bold {{data.textoInvFont}}"
+                [style]="{'color':data.cTexto , 'font-size':data.textoInvSize}">Dias</span>
+        </div>
+
+        <div class="countdown-block  _animate__zoomIn animate__animated animate__zoomIn" style="visibility: visible;">
+            <span class="hours time-elem">
+                <span class="top {{data.cabeceraFont}}"
+                    [style]="{'background-color':data.cSecond,'transform': 'perspective(300px)','color': '#ffffff'}">{{horas}}</span>
+                <span class="top-back">
+                    <span>{{horas}}</span>
+                </span>
+                <span class="bottom {{data.cabeceraFont}}"
+                    [style]="{'background-color':data.cSecond,'transform': 'perspective(300px)','color': '#ffffff'}">{{horas}}</span>
+                <span class="bottom-back">
+                    <span>{{horas}}</span>
+                </span>
+            </span>
+            <span class="title-timer font-weight-bold {{data.textoInvFont}}"
+                [style]="{'color':data.cTexto , 'font-size':data.textoInvSize}">Horas</span>
+        </div>
+
+        <div class="countdown-block  _animate__zoomIn animate__animated animate__zoomIn" style="visibility: visible;">
+            <span class="minutes time-elem">
+                <span class="top {{data.cabeceraFont}}"
+                    [style]="{'background-color':data.cSecond,'transform': 'perspective(300px)','color': '#ffffff'}">{{minutos}}</span>
+                <span class="top-back">
+                    <span>{{minutos}}</span>
+                </span>
+                <span class="bottom {{data.cabeceraFont}}"
+                    [style]="{'background-color':data.cSecond,'transform': 'perspective(300px)','color': '#ffffff'}">{{minutos}}</span>
+                <span class="bottom-back">
+                    <span>{{minutos}}</span>
+                </span>
+            </span>
+            <span class="title-timer font-weight-bold {{data.textoInvFont}}"
+                [style]="{'color':data.cTexto , 'font-size':data.textoInvSize}">Minutos</span>
+        </div>
+
+        <div class="countdown-block  _animate__zoomIn animate__animated animate__zoomIn" style="visibility: visible;">
+            <span class="seconds time-elem">
+                <span class="top {{data.cabeceraFont}}"
+                    [style]="{'background-color':data.cSecond,'transform': 'perspective(300px)','color': '#ffffff'}">{{segundos}}</span>
+                <span class="top-back">
+                    <span>{{segundos}}</span>
+                </span>
+                <span class="bottom {{data.cabeceraFont}}"
+                    [style]="{'background-color':data.cSecond,'transform': 'perspective(300px)','color': '#ffffff'}">{{segundos}}</span>
+                <span class="bottom-back">
+                    <span>{{segundos}}</span>
+                </span>
+            </span>
+            <span class="title-timer font-weight-bold {{data.textoInvFont}}"
+                [style]="{'color':data.cTexto , 'font-size':data.textoInvSize}">Segundos</span>
+        </div>
+    </div>
+</div>

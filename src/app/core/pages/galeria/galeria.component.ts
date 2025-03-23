@@ -130,8 +130,11 @@ export class GaleriaComponent implements OnInit, OnDestroy {
         if (this.fiestaDB.invitacion.includes('default')) {
 
           this.functionsService.navigateTo(`/core/templates/default/${this.fiestaId}/${this.boletoId}`)
-        } else {
+        } else if (this.fiestaDB.invitacion.includes('byFile')) {
           this.functionsService.navigateTo(`/core/templates/byFile/${this.fiestaId}/${this.boletoId}`)
+
+        } else if (this.fiestaDB.invitacion.includes('fancy')) {
+          this.functionsService.navigateTo(`/core/templates/fancy/${this.fiestaId}/${this.boletoId}`)
 
         }
       }

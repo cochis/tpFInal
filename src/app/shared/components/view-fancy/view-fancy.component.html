@@ -1,0 +1,268 @@
+<div *ngIf="data && !loading">
+    <div *ngIf="data.type =='seccionInicial'" class="" style="overflow: hidden;">
+
+        <div class="animate__animated {{data.invitacionEfecto}}">
+
+            <div class="principal "
+                [style]="{'background-image': 'url(/assets/invitaciones/background/'+data.fondoInvitacion+')'}">
+                <div class="presentacion text-center" id="presentacion">
+
+                    <div class="row">
+                        <div class="col-12 animate__animated {{data.efectoImg1}} {{data.repEfectoImg1}}">
+                            <!--    <img class="frame" src="/assets/invitaciones/frames/frame5.png"> -->
+                            <!-- <img class="shadow imagenFiesta" src="/assets/images/example/fiesta.webp"> -->
+                            <img class="frame" src="/assets/invitaciones/frames/{{data.marcoFoto}}"
+                                [style]="{'width':data.marcoFotoWidth+'px','margin-top':data.marcoFotoTop+'px'}">
+                            <img class="shadow imagenFiesta" [src]="url+'/upload/invitaciones/'+data.img1"
+                                [style]="{'width':+data.img1Size+'px','height':+data.img1Size+'px', 'margin-top':+data.img1Top+'px'}">
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="col-12 text-center animate__animated animate__fadeIn">
+                        <h2 class=" textInit {{data.nombreFont}}   animate__animated {{data.nombreEfecto}} {{data.nombreEfectoRep}}"
+                            [style]="{'font-size': data.nombreSize+'px','top':data.topTitle+'px','color':data.cTexto}">
+                            {{data.nombreFiesta}}
+                        </h2>
+                        <h3 class="{{data.tipoFont}} textInit    animate__animated {{data.tipoEfecto}} {{data.tipoEfectoRep}}"
+                            [style]="{'font-size': data.tipoSize+'px','top':data.tipoTop+'px','color':data.cTexto}">
+                            {{data.tipoFiesta}}
+                        </h3>
+                    </div>
+                    <div class="row  ">
+                        <div class="col-10 text-center ma">
+                            <div class="ma divisor" [style]="{'background-color':data.cSecond}"> </div>
+                            <p class="{{data.textoInvFont}}  parrafo mb-2  animate__animated {{data.mensajeEfecto}} {{data.mensajeEfectoRep}}"
+                                [style]="{'font-size': data.textoInvSize+'px','color':data.cTexto,'text-align':data.mensajeAlign}">
+                                {{(data.mensaje1!='')?data.mensaje1:'Mensaje de la invitación'}}
+                            </p>
+                        </div>
+                        <div class="col-12 col-md-6 text-center ma   animate__animated animate__fadeIn">
+                            <div class="ma divisor" [style]="{'background-color':data.cSecond}"> </div>
+
+
+
+                            <h3 class=" animate__animated {{data.cabeceraFont}} {{data.cabeceraEfecto}} {{data.cabeceraEfectoRep}}"
+                                [style]="{'font-size': data.cabeceraSize +'px','color':data.cTexto}">
+                                Mis Padres
+                            </h3>
+                            <table class="table">
+                                <thead class="{{data.textoInvFont}}"
+                                    [style]="{'font-size': data.textoInvSize+'px','color':data.cTexto}">
+                                    <tr>
+                                        <th [style]="{'font-size': data.textoInvSize+'px','color':data.cTexto}">Maria
+                                            Mendoza</th>
+
+                                    </tr>
+                                    <tr>
+
+                                        <th [style]="{'font-size': data.textoInvSize+'px','color':data.cTexto}">&</th>
+                                    </tr>
+                                    <tr>
+
+                                        <th [style]="{'font-size': data.textoInvSize+'px','color':data.cTexto}">Jacob
+                                            pedro
+                                            de la Cruz</th>
+
+                                    </tr>
+                                </thead>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <div *ngIf="data.type == 'presentacion'" class="animate__animated animate__fadeIn">
+        <div id="intro">
+
+            <div class="backPresentacion">
+                <div class="row">
+                    <div class="col-6 animate__animated animate__bounceInLeft" style=" height: 100vh; background-image: url('/assets/invitaciones/background/rosa2.png');
+              background-repeat: no-repeat;
+                background-size: 100% 100vh;
+                background-position: center top;
+                background-attachment: fixed;">
+
+                    </div>
+                    <div class="col-6 animate__animated animate__bounceInRight" style=" height: 100vh; background-image: url('/assets/invitaciones/background/azul1.png');
+              background-repeat: no-repeat;
+                background-size: 100% 100vh;
+                background-position: center top;
+                background-attachment: fixed;">
+
+                    </div>
+                </div>
+            </div>
+
+            <div id="imgPresentacion" class="presentacion dn ">
+
+
+                <h3 class="subTitleInv"> {{data.tipoFiesta}}</h3>
+                <h2 class="  titleInv">
+                    {{data.nombreFiesta}}
+                </h2>
+                <!-- <img class="frame" src="/assets/invitaciones/frames/frame5.png">
+                <img class="pic"
+                    src="https://images.vexels.com/media/users/3/194431/isolated/preview/c4cf153f679fd56bfcb727098db09e0c-mis-quince-anos-letras-estrelladas.png?width=360"
+                    alt="">
+        
+         -->
+
+
+
+                <a class="botonVer nlink inviVer pointer" (click)="closePresentacion()">VE tu invitacion</a>
+            </div>
+        </div>
+
+    </div>
+
+    <div *ngIf="data.type == 'cabeceras'"
+        class=" text-center animate__animated {{data.cabeceraEfecto}} {{data.cabeceraEfectoRep}}">
+
+        <h3 class="{{data.cabeceraFont}} ma" [style]="{'font-size': data.cabeceraSize +'px','color':data.cTexto}">
+            Mis Padres
+        </h3>
+
+    </div>
+
+
+    <div *ngIf="data.type == 'imgIntro'">
+
+        <div class="row" style="overflow: hidden; width: 100% !important; max-height: 400px; padding: 20px;">
+            <div class="col-6 animate__animated {{data.efectoImgLeft}} {{data.repImgLeft}}" style=" height: 100vh; background-image: url('/assets/invitaciones/background/{{data.imgIntroLeft}}');
+              background-repeat: no-repeat;
+                background-size: 100% 100%;
+                background-position: center top;
+                background-attachment: fixed;">
+
+            </div>
+            <div class="col-6 animate__animated {{data.efectoImgRight}} {{data.repImgRight}}" style=" height: 100vh; background-image: url('/assets/invitaciones/background/{{data.imgIntroRight}}');
+              background-repeat: no-repeat;
+                background-size: 100% 100%;
+                background-position: center top;
+                background-attachment: fixed;">
+
+            </div>
+        </div>
+
+
+        <div id="imgPresentacion" class="presentacion dn ">
+
+
+            <h3 class="subTitleInv {{data.nombreFont}}">{{data.tipoFiesta}}</h3>
+            <h2 class="  titleInv {{data.nombreFont}}">
+                {{data.nombreFiesta}}
+            </h2>
+            <!-- <img class="frame" src="/assets/invitaciones/frames/frame5.png">
+                <img class="pic"
+                    src="https://images.vexels.com/media/users/3/194431/isolated/preview/c4cf153f679fd56bfcb727098db09e0c-mis-quince-anos-letras-estrelladas.png?width=360"
+                    alt="">
+        
+         -->
+
+
+
+            <a class="botonVer nlink inviVer {{data.textoInvFont}} pointer" (click)="closePresentacion()">Ve tu
+                invitacion</a>
+        </div>
+
+    </div>
+
+
+
+
+
+    <div *ngIf="data.type == 'timer'">
+        <div class="container-fluid timer btp" [style]="{'border-color':data.cSecond}">
+            <div class="countdown">
+                <div class="col-12 text-center font1" style="font-size: 50px;">
+                    {{text}}
+                </div>
+                <div class="countdown-block  _animate__zoomIn animate__animated animate__zoomIn"
+                    style="visibility: visible;">
+                    <span class="days time-elem">
+                        <span class="top"
+                            [style]="{'background-color':data.cSecond,'transform': 'perspective(300px)' ,'color': '#ffffff'} ">{{dias}}</span>
+                        <span class="top-back">
+                            <span>{{dias}}</span>
+                        </span>
+                        <span class="bottom"
+                            [style]="{'background-color':data.cSecond,'transform': 'perspective(300px)','color': '#ffffff'}">{{dias}}</span>
+                        <span class="bottom-back">
+                            <span>{{dias}}</span>
+                        </span>
+                    </span>
+                    <span class="title-timer font-weight-bold" [style]="{'color':data.cTexto}">Dias</span>
+                </div>
+
+                <div class="countdown-block  _animate__zoomIn animate__animated animate__zoomIn"
+                    style="visibility: visible;">
+                    <span class="hours time-elem">
+                        <span class="top"
+                            [style]="{'background-color':data.cSecond,'transform': 'perspective(300px)','color': '#ffffff'}">{{horas}}</span>
+                        <span class="top-back">
+                            <span>{{horas}}</span>
+                        </span>
+                        <span class="bottom"
+                            [style]="{'background-color':data.cSecond,'transform': 'perspective(300px)','color': '#ffffff'}">{{horas}}</span>
+                        <span class="bottom-back">
+                            <span>{{horas}}</span>
+                        </span>
+                    </span>
+                    <span class="title-timer font-weight-bold" [style]="{'color':data.cTexto}">Horas</span>
+                </div>
+
+                <div class="countdown-block  _animate__zoomIn animate__animated animate__zoomIn"
+                    style="visibility: visible;">
+                    <span class="minutes time-elem">
+                        <span class="top"
+                            [style]="{'background-color':data.cSecond,'transform': 'perspective(300px)','color': '#ffffff'}">{{minutos}}</span>
+                        <span class="top-back">
+                            <span>{{minutos}}</span>
+                        </span>
+                        <span class="bottom"
+                            [style]="{'background-color':data.cSecond,'transform': 'perspective(300px)','color': '#ffffff'}">{{minutos}}</span>
+                        <span class="bottom-back">
+                            <span>{{minutos}}</span>
+                        </span>
+                    </span>
+                    <span class="title-timer font-weight-bold" [style]="{'color':data.cTexto}">Minutos</span>
+                </div>
+
+                <div class="countdown-block  _animate__zoomIn animate__animated animate__zoomIn"
+                    style="visibility: visible;">
+                    <span class="seconds time-elem">
+                        <span class="top"
+                            [style]="{'background-color':data.cSecond,'transform': 'perspective(300px)','color': '#ffffff'}">{{segundos}}</span>
+                        <span class="top-back">
+                            <span>{{segundos}}</span>
+                        </span>
+                        <span class="bottom"
+                            [style]="{'background-color':data.cSecond,'transform': 'perspective(300px)','color': '#ffffff'}">{{segundos}}</span>
+                        <span class="bottom-back">
+                            <span>{{segundos}}</span>
+                        </span>
+                    </span>
+                    <span class="title-timer font-weight-bold" [style]="{'color':data.cTexto}">Segundos</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>

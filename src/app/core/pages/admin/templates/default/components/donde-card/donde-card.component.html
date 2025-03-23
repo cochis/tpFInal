@@ -2,9 +2,9 @@
     *ngIf=" (data.donde1Check ||  data.donde2Check || data.donde3Check)  &&  data.vistaTemp &&  !loading && type =='donde'">
 
     <div class="row text-center" style="margin: auto;">
-        <h1 class="mt-3 {{data.cabeceraFont}}"
+        <h3 class="mt-3 {{data.cabeceraFont}}"
             [style]="{'color':data.cWhite, 'font-size': data.cabeceraSize + 'px !important' }">
-            Dónde y Cuándo</h1>
+            Dónde y Cuándo</h3>
         <div class="col-12 col-md-4 mt-3" style="text-align: center; margin: auto;" *ngIf="data.donde1Check">
             <div class="card text-center bd  mb-3 ">
                 <h5 class="card-title mt-2 dancing" [style]="{'margin': 'auto', 'color':data.cPrincipal}">

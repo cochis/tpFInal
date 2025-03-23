@@ -220,7 +220,7 @@ export class EditarSalonComponent {
                         donde3Address: this.salon.direccion,
                         donde3Img: this.salon.img,
                         donde3Text: this.salon.nombre,
-                        donde3Title: this.salon.nombre,
+                        donde3Title: 'Lugar del evento',
                       },
                       fiesta: (typeof (r.invitacion.fiesta) == 'object') ? r.invitacion.fiesta._id : r.invitacion.fiesta,
                       usuarioCreated: (typeof (r.invitacion.usuarioCreated) == 'object') ? r.invitacion.usuarioCreated._id : r.invitacion.usuarioCreated

@@ -1,0 +1,44 @@
+<ng-container *ngIf="data.confirmacionCheck =='true' || data.confirmacionCheck ==true">
+    <div class="  text-center  mt-3 btp "
+        [style]="{'background-color': 'white','width':'100%','text-align':'center','border-color':data.cSecond }">
+        <div class="row">
+            <h3 class=" animate__animated {{data.cabeceraFont}} {{data.cabeceraEfecto}} {{data.cabeceraEfectoRep}} ma text-center"
+                [style]=" {'font-size': data.cabeceraSize +'px','color':data.cTexto}">
+                Confirmación
+            </h3>
+            <div class="ma divisor" [style]="{'background-color':data.cSecond}"> </div>
+        </div>
+        <div class="row text-center  " style="margin-top: 15px;">
+
+            <div class="col-6 ma text-center">
+
+                <div class="qrcodeImage text-center  ma  mt-3" *ngIf="boleto">
+                    <!-- <qrcode [qrdata]="'Hola'" [allowEmptyString]="true"
+                        [ariaLabel]="'QR Code image with the following content...'" [cssClass]="'center'"
+                        [elementType]="'canvas'" [errorCorrectionLevel]="'M'" [imageHeight]="250" [imageWidth]="250"
+                        [margin]="4" [scale]="1" [colorDark]="data.cSecond" [colorLight]="'#ffffff'" [title]="'Hola'"
+                        [width]="200">
+                    </qrcode> -->
+
+
+                    <button class="btn  upper  mb-3" [style]="{'background-color':data.cSecond,'color' :data.cTexto}"
+                        type="button"
+                        *ngIf=" (data.confirmacionCheck =='true' || data.confirmacionCheck ==true) && !boleto.confirmado"
+                        (click)="confirmar(getQr(boleto))">
+                        Confirmación
+                    </button>
+                    <button class="btn  upper  mb-3" [style]="{'background-color':data.cSecond,'color' :data.cTexto}"
+                        type="button"
+                        *ngIf=" (data.confirmacionCheck =='true' || data.confirmacionCheck ==true) && boleto.confirmado"
+                        (click)="confirmar(getQr(boleto))">
+                        Quitar confirmación
+                    </button>
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</ng-container>

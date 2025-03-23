@@ -1,0 +1,105 @@
+<ng-container *ngIf="data.itinerarioCheck =='true' || data.itinerarioCheck ==true">
+
+    <div class="w-100 bg-1-img py-4 border-color btp"
+        [style]="{'background-color':'white','border-color':data.cSecond,
+'background-image':'url(/assets/invitaciones/background/'+data.fondoInvitacion+')' , 'background-attachment': 'fixed', 'background-size': '100% 100%', 'background-repeat': 'no-repeat', 'background-position': 'center top','border-color':data.cSecond}">
+        <div class="row centrar">
+            <div class="container  text-center ">
+
+                <h3 class=" animate__animated {{data.cabeceraFont}} {{data.cabeceraEfecto}} {{data.cabeceraEfectoRep}}"
+                    [style]="{'font-size': data.cabeceraSize +'px','color':data.cTexto}">
+                    Tu boleto
+                </h3>
+                <div class="row p-0 m-0">
+                    <ng-container *ngIf="data">
+
+                        <ng-container *ngIf="!boleto && data && !loading">
+
+                            <div class="col-12">
+                                <div class="qrcodeImage text-center  mg ma pt-3"
+                                    *ngIf=" (data.checking=='true' || data.checking)">
+                                    <qrcode (qrCodeURL)="onChangeURL($event)"
+                                        [qrdata]="'Bienvenido a  https://www.myticketparty.com/core'"
+                                        [allowEmptyString]="true"
+                                        [ariaLabel]="'QR Code image with the following content...'"
+                                        [cssClass]="'center'" [colorDark]="data.cSecond" [colorLight]="'#ffffffff'"
+                                        [elementType]="'canvas'" [errorCorrectionLevel]="'M'"
+                                        [imageSrc]="'/assets/images/logo.png'" [imageHeight]="75" [imageWidth]="75"
+                                        [margin]="4" [scale]="1"
+                                        [title]="'Bienvenido a  https://www.myticketparty.com/core'" [width]="300">
+                                    </qrcode>
+
+
+                                </div>
+
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <p class="text-center {{data.textoInvFont}}"
+                                    [style]="{'color':data.cTexto+' !important'}"
+                                    *ngIf="(data.generalCheck =='false' || !data.generalCheck)">
+                                    Familia López Benitez
+                                </p>
+
+                                <p class="text-center {{data.textoInvFont}}"
+                                    [style]="{'font-size':data.textoInvSize,'color':data.cTexto}"
+                                    *ngIf="(data.generalCheck =='false' || !data.generalCheck)">
+                                    <b>4 Boletos</b>
+
+                                </p>
+                            </div>
+
+
+
+                        </ng-container>
+                        <ng-container *ngIf="boleto && data && !loading">
+
+                            <div class="col-12">
+
+                                <div class="qrcodeImage text-center  mg ma pt-3"
+                                    *ngIf="boleto && (data.checking=='true' || data.checking)">
+                                    <qrcode (qrCodeURL)="onChangeURL($event)" [qrdata]="getQr(boleto)"
+                                        [allowEmptyString]="true"
+                                        [ariaLabel]="'QR Code image with the following content...'"
+                                        [cssClass]="'center'" [colorDark]="data.cSecond" [colorLight]="'#ffffffff'"
+                                        [elementType]="'canvas'" [errorCorrectionLevel]="'M'"
+                                        [imageSrc]="(fiesta.img!=='')?url+'/upload/fiestas/'+fiesta.img:url+'/upload/fiestas/default.jpg'"
+                                        [imageHeight]="75" [imageWidth]="75" [margin]="4" [scale]="1"
+                                        [title]="fiesta.nombre" [width]="300">
+                                    </qrcode>
+
+
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <p class="text-center {{data.textoInvFont}}"
+                                    [style]="{'color':data.cTexto+ ' !important'} " *ngIf="!data.generalCheck">
+                                    {{boleto.nombreGrupo}}
+                                </p>
+                                <p class="text-center {{data.textoInvFont}}"
+                                    [style]="{'color':data.cTexto+ ' !important'} " *ngIf="data.generalCheck">
+                                    {{data.generalTexto}}
+                                </p>
+                                <p class="text-center {{data.textoInvFont}}"
+                                    [style]="{'font-size':data.textoInvSize,'color':data.cTexto}"
+                                    *ngIf="!data.generalCheck">
+
+
+                                    <b *ngIf="boleto.cantidadInvitados==1">
+                                        {{boleto.cantidadInvitados}} Boleto
+
+                                    </b>
+                                    <b *ngIf="boleto.cantidadInvitados>1">
+                                        {{boleto.cantidadInvitados}} Boletos
+
+                                    </b>
+                                </p>
+                            </div>
+                        </ng-container>
+                    </ng-container>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>

@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   user_ID: '64ff4f79da409a7d91056a5b',
   secret: '1f2d1e2e67df',
-  version: "1.1.1.15",
+  version: "1.1.2.0",
   publicKey: "BJqZ8KY_kguwLf27SsteILLRHlWY2pJOvrKlyZNeFlEg4O15ut0t7oYMgXHcLPSh2WYCRPwTS3WEPnhXCMZO4Wg",
   privateKey: "v04F9j6-aAZRvYl25BtZu1cezaWT-m4P0sHtE0JbE7g",
   stripeKeyD: 'pk_test_51PipskAbE4XYrXNxNi1oiwylWr7B9mNMfUfQ070Cy09dDPj5HBFYObSajMGjNzlAynX23dT8thcx8sdJxpnP7Vov00wzIocDLR',
@@ -232,7 +232,140 @@ export const environment = {
   apiKey_mapBox: 'pk.eyJ1IjoiY29jaGlzIiwiYSI6ImNsb2c0M3NxNDByazEya3Jydmc2amtrNTcifQ.j0MCmbfTjEUQMtby7r42Cw',
   cPrimary: '#13547a',
   cSecond: '#80d0c7',
-
+  icons: [
+    {
+      name: 'Banco',
+      value: 'bank'
+    },
+    {
+      name: 'Oso',
+      value: 'bear'
+    },
+    {
+      name: 'Brindis',
+      value: 'brindis'
+    },
+    {
+      name: 'Pastel',
+      value: 'cake'
+    },
+    {
+      name: 'Cámara',
+      value: 'camera'
+    },
+    {
+      name: 'Iglesia',
+      value: 'church'
+    },
+    {
+      name: 'Vestido',
+      value: 'dress'
+    },
+    {
+      name: 'Bebida 1',
+      value: 'drink1'
+    },
+    {
+      name: 'Bebida 2',
+      value: 'drink2'
+    },
+    {
+      name: 'Bebida 3',
+      value: 'drink3'
+    },
+    {
+      name: 'Bebida 4',
+      value: 'drink4'
+    },
+    {
+      name: 'Bebida 5',
+      value: 'drink5'
+    },
+    {
+      name: 'Final',
+      value: 'end'
+    },
+    {
+      name: 'Comida 1',
+      value: 'food1'
+    },
+    {
+      name: 'Comida 2',
+      value: 'food2'
+    },
+    {
+      name: 'Comida 3',
+      value: 'food3'
+    },
+    {
+      name: 'Comida 4',
+      value: 'food4'
+    },
+    {
+      name: 'Comida 5',
+      value: 'food5'
+    },
+    {
+      name: 'Comida 6',
+      value: 'food6'
+    },
+    {
+      name: 'Comida 7',
+      value: 'food7'
+    },
+    {
+      name: 'Comida 8',
+      value: 'food8'
+    },
+    {
+      name: 'Comida 9',
+      value: 'food9'
+    },
+    {
+      name: 'Regalo',
+      value: 'gift'
+    },
+    {
+      name: 'Invitación',
+      value: 'invitation'
+    },
+    {
+      name: 'Dinero',
+      value: 'money'
+    },
+    {
+      name: 'Fiesta',
+      value: 'party'
+    },
+    {
+      name: 'Princesa 1',
+      value: 'princess1'
+    },
+    {
+      name: 'Princesa 2',
+      value: 'princess2'
+    },
+    {
+      name: 'Recepción',
+      value: 'reception'
+    },
+    {
+      name: 'Tesoro',
+      value: 'treasure'
+    },
+    {
+      name: 'Vals 1',
+      value: 'vals1'
+    },
+    {
+      name: 'Vals 2',
+      value: 'vals2'
+    },
+    {
+      name: 'Video',
+      value: 'video'
+    },
+  ],
 
   fonts: [
     { name: 'Fuente 1', value: 'name' },
@@ -375,6 +508,8 @@ export const environment = {
       value: "67bb9a22c539cb99eb40fe5c",
       clave: "WHATSAPP"
     },
-  ]
+  ],
+
+
 
 }; 

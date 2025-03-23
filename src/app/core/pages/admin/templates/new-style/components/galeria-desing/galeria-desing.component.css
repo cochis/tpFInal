@@ -1,0 +1,29 @@
+.h340 {
+    height: 340px;
+}
+
+.h600 {
+    height: 600px;
+}
+
+
+@media screen and (max-width: 576px) {
+    .h340 {
+        height: 150px;
+    }
+
+    .h600 {
+        height: 225px;
+    }
+}
+
+@media screen and (min-width:576px) and (max-width: 768px) {
+
+    .h340 {
+        height: 175px;
+    }
+
+    .h600 {
+        height: 400px;
+    }
+}
