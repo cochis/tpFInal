@@ -12,10 +12,14 @@ export class QrDesingComponent implements AfterViewInit {
   @Input() boleto: any = undefined
   @Input() fiesta: any = undefined
   loading = true
+  viewCroquis = false
   url = environment.base_url
   public qrCodeDownloadLink: SafeUrl = "";
   ngAfterViewInit() {
-
+    this.data
+    console.log('this.data::: ', this.data);
+    console.log('this.fiesta::: ', this.fiesta);
+    console.log('this.boleto::: ', this.boleto);
 
     setTimeout(() => {
       this.loading = false
@@ -41,6 +45,23 @@ export class QrDesingComponent implements AfterViewInit {
 
 
     return qr
+
+  }
+
+  verCroquis() {
+
+    this.viewCroquis = !this.viewCroquis
+
+    if (this.viewCroquis) {
+      document.getElementById('croquis').classList.remove('animate__fadeIn');
+    } else {
+
+      document.getElementById('croquis').classList.remove('animate__fadeOut');
+    }
+
+
+
+
 
   }
 }

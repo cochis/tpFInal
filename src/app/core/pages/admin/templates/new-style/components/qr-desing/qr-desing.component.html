@@ -46,6 +46,30 @@
                                     <b>4 Boletos</b>
 
                                 </p>
+
+                                <p class="text-center {{data.textoInvFont}}"
+                                    [style]="{'color':data.cTexto+' !important'}"
+                                    *ngIf="(data.generalCheck =='false' || !data.generalCheck)">
+                                    Familia López Benitez
+                                </p>
+
+                                <p class="text-center {{data.textoInvFont}}"
+                                    [style]="{'color':data.cTexto+ ' !important'} ">
+                                    <b>
+
+                                        Mesa 1
+                                    </b>
+                                </p>
+
+                                <p class="text-center pointer {{data.textoInvFont}}"
+                                    [style]="{'color':data.cTexto+ ' !important'} " (click)="verCroquis()">
+                                    <i class="bi bi-eye-fill" [style]="{'color': data.cSecond}"></i> Croquis de mesas
+                                </p>
+
+                                <p *ngIf="viewCroquis" id="croquis" class="animate__animated  animate__fadeIn">
+                                    <img src="/assets/images/croquis.jpg" alt="">
+                                </p>
+
                             </div>
 
 
@@ -93,6 +117,25 @@
 
                                     </b>
                                 </p>
+                                <p class="text-center {{data.textoInvFont}}"
+                                    [style]="{'color':data.cTexto+ ' !important'} " *ngIf="fiesta.mesaOk">
+                                    <b>
+
+                                        Mesa {{boleto.mesa}}
+                                    </b>
+                                </p>
+
+                                <p class="text-center {{data.textoInvFont}} pointer"
+                                    [style]="{'color':data.cTexto+ ' !important'} " *ngIf="fiesta.croquisOk"
+                                    (click)="verCroquis()">
+                                    <i class="bi bi-eye-fill" [style]="{'color': data.cSecond}"></i> Croquis de mesas
+
+                                </p>
+
+                                <p *ngIf="viewCroquis" id="croquis" class="animate__animated  animate__fadeIn">
+                                    <img [src]="url+'/upload/fiestas/'+fiesta.croquis" alt="">
+                                </p>
+
                             </div>
                         </ng-container>
                     </ng-container>
