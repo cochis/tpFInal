@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -8,6 +9,12 @@ import { environment } from 'src/environments/environment';
 })
 export class GaleriaDesingComponent {
   @Input() data: any
+
+  constructor(
+    private functionsService: FunctionsService
+  ) {
+
+  }
   url = environment.base_url
 
   imgSelect = ''
@@ -16,6 +23,8 @@ export class GaleriaDesingComponent {
   selectImg(img) {
     this.imgSelect = img
     this.viewImg = true
+
+    this.functionsService.scroolTo('vistaImgModal')
   }
 
 
