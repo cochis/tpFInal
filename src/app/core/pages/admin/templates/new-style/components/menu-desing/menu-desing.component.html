@@ -14,7 +14,7 @@
                     <ng-container *ngFor="let men of menus">
 
                         <div class="col-6 col-md-4 col-lg-3 ma {{data.textoInvFont}}">
-                            <img src="/assets/icons/{{men.icon}}.png" alt="">
+                            <img src="/assets/icons/{{men.icon}}.png" alt="" [style]="{'width':data.iconSize+'px','height':data.iconSize+'px'}">
                             <h4 class="{{data.cabeceraFont}}" [style]="{'color':data.cTexto, 'font-weight': 'bold'}">
                                 {{men.tipo}}</h4>
                             <p class="{{data.textoInvFont}}" [style]="{'color':data.cTexto}">

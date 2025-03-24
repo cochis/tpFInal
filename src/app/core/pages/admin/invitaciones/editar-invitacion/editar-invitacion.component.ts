@@ -75,6 +75,8 @@ export class EditarInvitacionComponent {
   ent: boolean = false
   mus: boolean = false
   cab: boolean = false
+  icon: boolean = false
+
   imgIntro: boolean = false
   textoInvitacion: boolean = false
   fondos: boolean = false
@@ -178,6 +180,7 @@ export class EditarInvitacionComponent {
       cTexto: ['#000'],
       img1: [''],
       img1Size: [''],
+      iconSize: [],
       img1Height: [''],
       img1Top: [''],
       efectoImg1: [''],
@@ -420,6 +423,7 @@ export class EditarInvitacionComponent {
       cTexto: [invitacion.data.cTexto],
       img1: [invitacion.data.img1],
       img1Size: [invitacion.data.img1Size],
+      iconSize: [invitacion.data.iconSize],
       img1Height: [invitacion.data.img1Height],
       img1Top: [invitacion.data.imTopg1],
       efectoImg1: [invitacion.data.efectoImg1],
@@ -727,6 +731,7 @@ export class EditarInvitacionComponent {
       cWhite: [temp.cWhite],
       cTexto: [temp.cTexto],
       img1: [temp.img1],
+      iconSize: [temp.iconSize],
       img1Size: [temp.img1Size],
       img1Height: [temp.img1Height],
       img1Top: [temp.img1Top],
@@ -908,6 +913,7 @@ export class EditarInvitacionComponent {
     })
   }
   async VerTemplate(form) {
+    console.log('form::: ', form);
     // Cuando no existe registro invitacion  se tiene que crear la invitacion
     if (!this.invitacion) {
       this.loading = true
@@ -967,6 +973,8 @@ export class EditarInvitacionComponent {
       this.invitacion.data.donde3Img = this.fiesta.salon.img
 
 
+
+      console.log('this.invitacion::: ', this.invitacion);
       this.actualizarInvitacion(this.invitacion).subscribe((resp: any) => {
         this.invitacion = resp.invitacionActualizado
 
@@ -1027,6 +1035,7 @@ export class EditarInvitacionComponent {
 
 
 
+    console.log('this.form.value::: ', this.form.value);
 
     this.loading = true
 
@@ -1224,6 +1233,7 @@ export class EditarInvitacionComponent {
             cTexto: '#000',
             img1: '',
             img1Size: '',
+            iconSize: 50,
             img1Height: '',
             img1Top: '',
             efectoImg1: 'animate__fadeIn',
@@ -2009,6 +2019,7 @@ export class EditarInvitacionComponent {
       //Seccion Principal
       this.invitacion.data.img1 = ''
       this.invitacion.data.img1Size = ''
+      this.invitacion.data.iconSize = 0
       this.invitacion.data.img1Height = ''
       this.invitacion.data.img1Top = ''
       this.invitacion.data.nombreFiesta = this.fiesta.nombre
@@ -2194,6 +2205,7 @@ export class EditarInvitacionComponent {
           this.textoInvitacion = false
           this.fondos = false
           this.typeView = 'cabeceras'
+          this.icon = false
           break;
         case 'musica':
           this.col = false
@@ -2208,6 +2220,7 @@ export class EditarInvitacionComponent {
           this.imgIntro = false
           this.textoInvitacion = false
           this.fondos = false
+          this.icon = false
           this.typeView = 'seccionInicial'
           break;
         case 'colores':
@@ -2222,6 +2235,7 @@ export class EditarInvitacionComponent {
           this.cab = false
           this.imgIntro = false
           this.textoInvitacion = false
+          this.icon = false
           this.typeView = 'seccionInicial'
           break;
         case 'imagen':
@@ -2236,6 +2250,7 @@ export class EditarInvitacionComponent {
           this.cab = false
           this.imgIntro = false
           this.fondos = false
+          this.icon = false
           this.typeView = 'seccionInicial'
           break;
         case 'titulo':
@@ -2251,6 +2266,7 @@ export class EditarInvitacionComponent {
           this.imgIntro = false
           this.textoInvitacion = false
           this.fondos = false
+          this.icon = false
           this.typeView = 'seccionInicial'
           break;
         case 'subtitulo':
@@ -2266,6 +2282,7 @@ export class EditarInvitacionComponent {
           this.imgIntro = false
           this.textoInvitacion = false
           this.fondos = false
+          this.icon = false
           this.typeView = 'seccionInicial'
           break;
         case 'invitacion':
@@ -2281,6 +2298,7 @@ export class EditarInvitacionComponent {
           this.imgIntro = false
           this.textoInvitacion = false
           this.fondos = false
+          this.icon = false
           this.typeView = 'seccionInicial'
           break;
         case 'fecha':
@@ -2296,6 +2314,7 @@ export class EditarInvitacionComponent {
           this.imgIntro = false
           this.textoInvitacion = false
           this.fondos = false
+          this.icon = false
           this.typeView = 'timer'
           break;
         case 'entrada general':
@@ -2311,6 +2330,7 @@ export class EditarInvitacionComponent {
           this.imgIntro = false
           this.textoInvitacion = false
           this.fondos = false
+          this.icon = false
           this.typeView = 'seccionInicial'
           break;
         case 'imgIntro':
@@ -2326,6 +2346,7 @@ export class EditarInvitacionComponent {
           this.imgIntro = true
           this.textoInvitacion = false
           this.fondos = false
+          this.icon = false
           this.typeView = 'imgIntro'
           break;
         case 'textoInvitacion':
@@ -2341,6 +2362,7 @@ export class EditarInvitacionComponent {
           this.imgIntro = false
           this.textoInvitacion = true
           this.fondos = false
+          this.icon = false
           this.typeView = 'seccionInicial'
           break;
         case 'fondos':
@@ -2356,7 +2378,24 @@ export class EditarInvitacionComponent {
           this.imgIntro = false
           this.textoInvitacion = false
           this.fondos = true
+          this.icon = false
           this.typeView = 'seccionInicial'
+          break;
+        case 'iconos':
+          this.col = false
+          this.fec = false
+          this.ima = false
+          this.tit = false
+          this.sub = false
+          this.inv = false
+          this.ent = false
+          this.mus = false
+          this.cab = false
+          this.imgIntro = false
+          this.textoInvitacion = false
+          this.fondos = false
+          this.icon = true
+          this.typeView = 'iconos'
           break;
 
         default:
@@ -2371,6 +2410,7 @@ export class EditarInvitacionComponent {
           this.cab = false
           this.textoInvitacion = false
           this.imgIntro = false
+          this.icon = false
           this.typeView = 'seccionInicial'
           break;
       }

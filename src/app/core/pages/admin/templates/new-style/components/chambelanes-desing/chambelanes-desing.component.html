@@ -14,7 +14,8 @@
                     <ng-container *ngFor="let cham of chambelanes">
 
                         <div class="col-6 col-md-4  col-lg-3 ma  ">
-                            <img src="/assets/icons/vals2.png" class="circle" alt="{{cham.name}}">
+                            <img src="/assets/icons/vals2.png" class="circle" alt="{{cham.name}}"
+                                [style]="{'width':data.iconSize+'px','height':data.iconSize+'px'}">
 
                             <h3 class="{{data.textoInvFont}}" [style]="{'color':data.cTexto}">{{cham.name}}</h3>
 

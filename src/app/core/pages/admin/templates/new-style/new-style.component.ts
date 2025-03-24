@@ -1,5 +1,5 @@
 
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { SafeUrl, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { SwPush } from '@angular/service-worker';
@@ -20,7 +20,7 @@ import { environment } from 'src/environments/environment';
   templateUrl: './new-style.component.html',
   styleUrls: ['./new-style.component.css']
 })
-export class NewStyleComponent {
+export class NewStyleComponent implements OnInit {
   loading = false
   presentacionView = true
   invitacionView = false
@@ -93,6 +93,23 @@ export class NewStyleComponent {
   dataListasCard: any
   dataDondeCard: any
   public qrCodeDownloadLink: SafeUrl = "";
+  allItems: number[] = [];  // Lista completa de elementos
+  visibleItems: number[] = []; // Lista de elementos visibles
+  itemsPerLoad = 10; // Cantidad de elementos a mostrar por scroll
+  items = [
+    'timer',
+    'dondeCuando',
+    'galery',
+    'padrinos',
+    'chambelanes',
+    'programa',
+    'menu',
+    'mesa-regalos',
+    'hospedaje',
+    'qr',
+    'confirmacion',
+    'galeriaFiesta'
+  ]
   constructor(
     private functionsService: FunctionsService,
     private fiestasService: FiestasService,
@@ -612,7 +629,30 @@ export class NewStyleComponent {
   }
 
 
+  ngOnInit() {
+    this.items
 
+  }
+
+  onScroll(event: any) {
+    const element = event.target;
+
+    this.items.forEach(item => {
+      const element = document.getElementById(`${item}`);
+      let visibleItem = '';
+
+      if (element) {
+        const rect = element.getBoundingClientRect();
+
+        if (rect.top >= 0 && rect.bottom <= window.innerHeight + 350) {
+
+          visibleItem = `Item ${item}`;
+          element.classList.add('animate__fadeIn');
+          ;
+        }
+      }
+    });
+  }
 
 
   closePresentacion(close) {

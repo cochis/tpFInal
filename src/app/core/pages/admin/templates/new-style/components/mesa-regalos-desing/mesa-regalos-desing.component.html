@@ -17,7 +17,8 @@
                     <div class="col-11 col-md-4 ma">
                         <a [href]="data.mesaRegalosUrl" class="{{data.textoInvFont }}" target="_blank"
                             rel="noopener noreferrer" [style]="{'text-decoration':'none', 'color':data.cTexto}">
-                            <img src="/assets/icons/gift.png" alt="">
+                            <img src="/assets/icons/gift.png" alt=""
+                                [style]="{'width':data.iconSize+'px','height':data.iconSize+'px'}">
 
                             <h3 class="{{data.textoInvFont }} mt-2">{{data.mesaRegalosLugar}}</h3>
                         </a>

@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   user_ID: '64ff4f79da409a7d91056a5b',
   secret: '1f2d1e2e67df',
-  version: "1.1.2.4",
+  version: "1.1.2.8",
   publicKey: "BJqZ8KY_kguwLf27SsteILLRHlWY2pJOvrKlyZNeFlEg4O15ut0t7oYMgXHcLPSh2WYCRPwTS3WEPnhXCMZO4Wg",
   privateKey: "v04F9j6-aAZRvYl25BtZu1cezaWT-m4P0sHtE0JbE7g",
   stripeKeyD: 'pk_test_51PipskAbE4XYrXNxNi1oiwylWr7B9mNMfUfQ070Cy09dDPj5HBFYObSajMGjNzlAynX23dT8thcx8sdJxpnP7Vov00wzIocDLR',
@@ -334,8 +334,40 @@ export const environment = {
       value: 'money'
     },
     {
-      name: 'Fiesta',
+      name: 'Fiesta 1',
       value: 'party'
+    },
+    {
+      name: 'Fiesta 2',
+      value: 'party2'
+    },
+    {
+      name: 'Fiesta 3',
+      value: 'party3'
+    },
+    {
+      name: 'Misa 1',
+      value: 'misa'
+    },
+    {
+      name: 'Misa 2',
+      value: 'misa2'
+    },
+    {
+      name: 'Baile 1',
+      value: 'baile'
+    },
+    {
+      name: 'Baile 2',
+      value: 'baile2'
+    },
+    {
+      name: 'Piñata 1',
+      value: 'pinata'
+    },
+    {
+      name: 'Piñata 2',
+      value: 'pinata2'
     },
     {
       name: 'Princesa 1',
@@ -362,9 +394,26 @@ export const environment = {
       value: 'vals2'
     },
     {
+      name: 'Vals 3',
+      value: 'vals3'
+    },
+    {
       name: 'Video',
       value: 'video'
     },
+    {
+      name: 'Graduación',
+      value: 'graduacion'
+    },
+    {
+      name: 'Check In',
+      value: 'checkin2'
+    },
+    {
+      name: 'DJ',
+      value: 'dj'
+    },
+
   ],
 
   fonts: [
@@ -424,46 +473,46 @@ export const environment = {
 
   //Variables QA
 
-  /*  base_url: "https://tickets.cochisweb.com/api",
-   text_url: "https://tickets.cochisweb.com/",
-   cProvedores: [
-     {
-       value: "67bb92939279f84e078263a9",
-       clave: "cPrincipalWP"
-     },
-     {
-       value: "67bb92ad9279f84e078263b0",
-       clave: "cSecondWP"
-     },
-   ],
-   tiProducto: '67bb934a9279f84e078263ec',
-   tiServicio: '67bb93559279f84e078263f3',
-   noAplica: 'NOATPC',
-   contactosProveedor: [
-     {
-       value: "67bb93149279f84e078263dc",
-       clave: "TELÉFONO"
-     }
-     ,
-     {
-       value: "67bb92e89279f84e078263ce",
-       clave: "MAIL"
-     },
- 
-     {
-       value: "67bb92d09279f84e078263c7",
-       clave: "DIRECCIÓN"
-     },
-     {
-       value: "67bb92fc9279f84e078263d5",
-       clave: "PAGINA WEB"
-     },
-     {
-       value: "67bb93279279f84e078263e3",
-       clave: "WHATSAPP"
-     },
-   ] */
+  /* base_url: "https://tickets.cochisweb.com/api",
+  text_url: "https://tickets.cochisweb.com/",
+  cProvedores: [
+    {
+      value: "67bb92939279f84e078263a9",
+      clave: "cPrincipalWP"
+    },
+    {
+      value: "67bb92ad9279f84e078263b0",
+      clave: "cSecondWP"
+    },
+  ],
+  tiProducto: '67bb934a9279f84e078263ec',
+  tiServicio: '67bb93559279f84e078263f3',
+  noAplica: 'NOATPC',
+  contactosProveedor: [
+    {
+      value: "67bb93149279f84e078263dc",
+      clave: "TELÉFONO"
+    }
+    ,
+    {
+      value: "67bb92e89279f84e078263ce",
+      clave: "MAIL"
+    },
 
+    {
+      value: "67bb92d09279f84e078263c7",
+      clave: "DIRECCIÓN"
+    },
+    {
+      value: "67bb92fc9279f84e078263d5",
+      clave: "PAGINA WEB"
+    },
+    {
+      value: "67bb93279279f84e078263e3",
+      clave: "WHATSAPP"
+    },
+  ]
+ */
 
 
 

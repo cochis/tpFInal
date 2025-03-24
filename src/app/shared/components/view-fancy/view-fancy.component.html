@@ -150,25 +150,6 @@
 
 
     <div *ngIf="data.type == 'imgIntro'">
-
-        <div class="row" style="overflow: hidden; width: 100% !important; max-height: 400px; padding: 20px;">
-            <div class="col-6 animate__animated {{data.efectoImgLeft}} {{data.repImgLeft}}" style=" height: 100vh; background-image: url('/assets/invitaciones/background/{{data.imgIntroLeft}}');
-              background-repeat: no-repeat;
-                background-size: 100% 100%;
-                background-position: center top;
-                background-attachment: fixed;">
-
-            </div>
-            <div class="col-6 animate__animated {{data.efectoImgRight}} {{data.repImgRight}}" style=" height: 100vh; background-image: url('/assets/invitaciones/background/{{data.imgIntroRight}}');
-              background-repeat: no-repeat;
-                background-size: 100% 100%;
-                background-position: center top;
-                background-attachment: fixed;">
-
-            </div>
-        </div>
-
-
         <div id="imgPresentacion" class="presentacion dn ">
 
 
@@ -188,7 +169,36 @@
             <a class="botonVer nlink inviVer {{data.textoInvFont}} pointer" (click)="closePresentacion()">Ve tu
                 invitacion</a>
         </div>
+        <div class="row" style="overflow: hidden; width: 100% !important; max-height: 400px; padding: 20px;">
+            <div class="col-6 animate__animated {{data.efectoImgLeft}} {{data.repImgLeft}}" style=" height: 100vh; background-image: url('/assets/invitaciones/background/{{data.imgIntroLeft}}');
+              background-repeat: no-repeat;
+                background-size: 100% 100%;
+                background-position: center top;
+                background-attachment: fixed;">
 
+            </div>
+            <div class="col-6 animate__animated {{data.efectoImgRight}} {{data.repImgRight}}" style=" height: 100vh; background-image: url('/assets/invitaciones/background/{{data.imgIntroRight}}');
+              background-repeat: no-repeat;
+                background-size: 100% 100%;
+                background-position: center top;
+                background-attachment: fixed;">
+
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <div *ngIf="data.type == 'iconos'">
+
+        <div class="row">
+            <div class="col-12 text-center ma">
+
+                <img src="/assets/icons/bear.png" class="ma"
+                    [style]="{'width':data.iconSize+'px','height':data.iconSize+'px'}">
+            </div>
+        </div>
     </div>
 
 

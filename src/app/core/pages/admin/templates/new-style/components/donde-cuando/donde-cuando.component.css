@@ -8,7 +8,7 @@
 
 .transform {
     float: left;
-    height: 400px;
+    height: 450px;
     width: 50%;
     position: relative;
     background-image: url('/assets/invitaciones/background/bg.jpg');
@@ -16,7 +16,7 @@
     background-size: 100% 100%;
     background-position: center top;
 
-    height: 400px;
+
     color: #333;
 }
 

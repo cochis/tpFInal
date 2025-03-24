@@ -16,7 +16,9 @@
                     <ng-container *ngFor="let item of padrinos">
 
                         <div class="col-6 col-md-4 ma">
-                            <img src="/assets/icons/{{item.icon}}.png" alt="">
+
+                            <img src="/assets/icons/{{item.icon}}.png" alt=""
+                                [style]="{'width':data.iconSize+'px','height':data.iconSize+'px'}">
                             <h5 class="{{data.textoInvFont}}" [style]="{'font-weight': 'bold', 'color':data.cTexto}">
                                 {{item.tipo}}</h5>
                             <h3 class="{{data.textoInvFont}}" [style]="{'color':data.cTexto}">{{item.name}}</h3>
