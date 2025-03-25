@@ -30,6 +30,7 @@ export class VistaUsuariosComponent {
   uid = this.functionsService.getLocal('uid')
   ADM = environment.admin_role
   SLN = environment.salon_role
+  ANF = environment.anf_role
   URS = environment.user_role
   rol = this.functionsService.getLocal('role')
   data!: any
@@ -87,6 +88,7 @@ export class VistaUsuariosComponent {
   getCatalogos() {
     this.loading = true
     this.salonesService.cargarSalonsAll().subscribe((resp: CargarSalons) => {
+      console.log('resp::: ', resp);
       this.salones = resp.salons
     },
       (error: any) => {
@@ -94,6 +96,7 @@ export class VistaUsuariosComponent {
         this.loading = false
       })
     this.paquetesService.cargarPaquetesAll().subscribe((resp: CargarPaquetes) => {
+      console.log('resp::: ', resp);
       this.paquetes = resp.paquetes
     },
       (error: any) => {
@@ -101,6 +104,7 @@ export class VistaUsuariosComponent {
         this.loading = false
       })
     this.rolesService.cargarRolesAll().subscribe((resp: CargarRoles) => {
+      console.log('resp::: ', resp);
       this.roles = resp.roles
     },
       (error: any) => {
@@ -134,6 +138,18 @@ export class VistaUsuariosComponent {
         this.loading = false
       });
     } else if (this.rol === this.SLN) {
+      let usr = this.functionsService.getLocal('uid')
+      this.usuariosService.cargarUsuarioByCreador(usr).subscribe((resp: CargarUsuarios) => {
+        setTimeout(() => {
+          this.usuariosShow = resp.usuarios.filter(usuario => usuario.uid !== this.uid)
+          this.usuarios = resp.usuarios
+
+          this.usuariosTemp = resp.usuarios
+
+          this.loading = false
+        }, 1500);
+      });
+    } else if (this.rol === this.ANF) {
       let usr = this.functionsService.getLocal('uid')
       this.usuariosService.cargarUsuarioByCreador(usr).subscribe((resp: CargarUsuarios) => {
         setTimeout(() => {

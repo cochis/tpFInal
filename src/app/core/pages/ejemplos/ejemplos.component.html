@@ -15,7 +15,22 @@
         <app-loading *ngIf="!ejemplos  "></app-loading>
         <div class="container">
             <div class="row">
-                <div class=" col-12 col-md-6  mt-5 m-auto text-center" *ngFor="let ejemplo of ejemplos ; let i =index">
+                <div class=" col-12 col-md-4  col-lg-3 mt-5 m-auto text-center"
+                    *ngFor="let ejemplo of ejemplos ; let i =index">
+                    <div class="col-12  ma text-center">
+                        <img [src]="url+'/upload/fiestas/'+ejemplo.fiesta.img" alt="{{ejemplo.fiesta.nombre}}"
+                            title="{{ejemplo.nombre}}" class="  ma mb-3 shadowFin"
+                            style="width: 150px; height: 150px; border-radius: 100%;">
+                    </div>
+                    <div class="col-12 ma text-center" style="min-height: 50px;">
+                        <h5 class="mb-2 text-center">{{ejemplo.nombre}}</h5>
+                    </div>
+                    <div class="col-12 ma text-center" style="min-height: 50px;">
+                        <span class="mb-2 text-center" style="color:var(--cSecond); font-weight:500">
+                            <b style="color:var(--cPrimary); font-weight:bold">Tipo de Invitación</b>
+                            {{ejemplo.tipo}}
+                        </span>
+                    </div>
                     <div class="accordion" id="accordionPricing">
                         <div class="accordion-item">
                             <div class="accordion-header ">
@@ -23,15 +38,7 @@
                                     data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse'+i"
                                     aria-expanded="false" aria-controls="collapse{{i}}">
                                     <div class="row text-center">
-                                        <div class="col-12 ma text-center">
-                                            <h5 class="mb-2 text-center">{{ejemplo.nombre}}</h5>
-                                        </div>
-                                        <div class="col-12  ma text-center">
-                                            <img [src]="url+'/upload/fiestas/'+ejemplo.fiesta.img"
-                                                alt="{{ejemplo.fiesta.nombre}}" title="{{ejemplo.nombre}}"
-                                                class="  ma mb-3 shadowFin"
-                                                style="width: 150px; height: 150px; border-radius: 100%;">
-                                        </div>
+                                        <h5 class="ma">Información</h5>
                                     </div>
                                 </button>
                             </div>
@@ -39,15 +46,15 @@
                                 data-bs-parent="#accordionPricing">
                                 <div class="accordion-body text-center">
                                     <div class="custom-block bg-white shadow-lg" style="width: 100%;">
-                                        <div class="d-flex ">
-                                            <div class="accordion-body">
-                                                <div [innerHTML]="convertDes(ejemplo.recomendacion)"
-                                                    style="margin-top: 10px; text-align: left !important;"></div>
-                                                <a class="btb but2 " style="color:white !important; padding: 10px;"
-                                                    [href]="ejemplo.urlFiestaBoleto" target="_blank"> Ver
-                                                    invitación</a>
-                                            </div>
+
+                                        <div class="accordion-body ma">
+                                            <div [innerHTML]="convertDes(ejemplo.recomendacion)"
+                                                style="margin-top: 10px; text-align: left !important;"></div>
+                                            <a class="btb but2 " style="color:white !important; padding: 10px;"
+                                                [href]="ejemplo.urlFiestaBoleto" target="_blank"> Ver
+                                                invitación</a>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>

@@ -96,34 +96,11 @@
                 <app-confirmacion-desing [data]="invitacion" [boleto]="boleto"
                     [fiesta]="fiesta"></app-confirmacion-desing>
             </div>
-
-
-            <div *ngIf="fiesta && invitacion" id="galeriaFiesta">
-
-                <div class="row" *ngIf="fiesta.galeria">
-                    <div class="col-6  ma text-center">
-                        <button type="button" class="btn mt-3 mb-3" tabindex="0"
-                            [style]="{'background-color': invitacion.cSecond, 'border': '3px solid'+ invitacion.cTexto, 'color': invitacion.cTexto,'width':'100% !important'}"
-                            routerLink="/core/galeria/fst/{{fiesta.uid}}/blt/{{boleto.uid}}">
-                            Comparte tus fotos <i class="bi bi-images"
-                                [style]="{'color': invitacion.cTexto,'font-size': '30px','margin-left':'10px'}"></i></button>
-                    </div>
-                </div>
+            <div id="confirmacion" class="ma   animate__animated">
+                <app-compartir-galeria [data]="invitacion" [boleto]="boleto" [fiesta]="fiesta"></app-compartir-galeria>
             </div>
 
 
-            <div *ngIf="!fiesta" id="galeriaFiesta">
-
-                <div class="col-6 ma text-center">
-
-
-                    <button type="button" class="btn mt-3 mb-3" tabindex="0"
-                        [style]="{'background-color': invitacion.cSecond, 'border': '3px solid'+ invitacion.cTexto, 'color': invitacion.cTexto,'width':'100% !important'}">
-                        Comparte tus fotos <i class="bi bi-images"
-                            [style]="{'color': invitacion.cTexto,'font-size': '30px','margin-left':'10px'}"></i></button>
-                </div>
-
-            </div>
 
 
             <div class="mt-3 text-center"

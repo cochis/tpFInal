@@ -750,22 +750,26 @@ export class NewStyleComponent implements OnInit {
     data.croquisOk = (data.croquisOk == 'true' || data.croquisOk == true) ? true : false
     return await data
   }
-  getQr(boleto) {
+  getQr(boleto?) {
+    if (boleto) {
 
-    var qr: any = {
+      var qr: any = {
 
-      uid: boleto.uid,
-      fiesta: boleto.fiesta,
-      grupo: boleto.grupo,
-      salon: boleto.salon,
+        uid: boleto.uid,
+        fiesta: boleto.fiesta,
+        grupo: boleto.grupo,
+        salon: boleto.salon,
 
-      activated: boleto.activated
+        activated: boleto.activated
+      }
+      qr = JSON.stringify(qr)
+
+
+
+      return qr
+    } else {
+      return { url: 'https://myticketparty.com' }
     }
-    qr = JSON.stringify(qr)
-
-
-
-    return qr
 
   }
   onChangeURL(url: SafeUrl) {

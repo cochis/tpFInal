@@ -35,6 +35,7 @@ export class EditarUsuarioComponent {
   edit!: string
   url = environment.base_url
   ADM = environment.admin_role
+  ANF = environment.anf_role
   SLN = environment.salon_role
   URS = environment.user_role
   rol = this.functionsService.getLocal('role')
@@ -104,15 +105,20 @@ export class EditarUsuarioComponent {
 
     } else {
       this.rolesService.cargarRolesSalon().subscribe((resp: CargarRoles) => {
-        this.roles = resp.roles
+        if (this.rol == this.ANF) {
+          this.roles = this.functionsService.getActivos(resp.roles).filter(rol => { return rol.nombre != 'USUARIO' })
+        } else {
+
+          this.roles = this.functionsService.getActivos(resp.roles)
+        }
       },
         (error: any) => {
           console.error('Error', error)
           this.functionsService.alertError(error, 'Usuarios')
           this.loading = false
         })
-      let mail = this.functionsService.getLocal('email')
-      this.salonesService.cargarSalonByMail(mail).subscribe((resp: CargarSalons) => {
+      let mail = this.functionsService.getLocal('uid')
+      this.salonesService.cargarSalonByCreador(mail).subscribe((resp: CargarSalons) => {
         this.salones = resp.salons
       },
         (error: any) => {

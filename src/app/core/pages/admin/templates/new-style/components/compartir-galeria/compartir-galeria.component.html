@@ -1,0 +1,101 @@
+<ng-container *ngIf="fiesta && fiesta.galeria">
+    <div class="_animate__zoomIn animate__animated animate__zoomIn btp"
+        [style]="{'background-color':'white','border-color':data.cSecond,
+'background-image':'url(/assets/invitaciones/background/'+data.fondoInvitacion+')' , 'background-attachment': 'fixed', 'background-size': '100% 100%', 'background-repeat': 'no-repeat', 'background-position': 'center top','border-color':data.cSecond}">
+        <div class="row">
+            <h3 class=" animate__animated {{data.cabeceraFont}} {{data.cabeceraEfecto}} {{data.cabeceraEfectoRep}} ma text-center"
+                [style]=" {'font-size': data.cabeceraSize +'px','color':data.cTexto}">
+                Compartir a galería
+            </h3>
+            <div class="ma divisor" [style]="{'background-color':data.cSecond}"> </div>
+        </div>
+        <div class="row text-center  " style="margin-top: 15px;">
+
+            <div *ngIf="fiesta && data" id="galeriaFiesta">
+
+                <div class="row" *ngIf="fiesta.galeria">
+                    <div class="col-6  ma text-center">
+                        <button type="button" class="btn mt-3 mb-3" tabindex="0"
+                            [style]="{'background-color': data.cSecond, 'border': '3px solid'+ data.cTexto, 'color': data.cTexto,'width':'100% !important'}"
+                            routerLink="/core/galeria/fst/{{fiesta.uid}}/blt/{{boleto.uid}}">
+                            Comparte tus fotos <i class="bi bi-images"
+                                [style]="{'color': data.cTexto,'font-size': '30px','margin-left':'10px'}"></i></button>
+                    </div>
+
+                    <div class="col-12 text-center {{data.textoInvFont}}">
+                        <h5 class="{{data.textoInvFont}}"
+                            [style]="{' font-size':data.textoInvSize ,'color':data.cTexto}">
+                            O Ingresa por QR
+                        </h5>
+                    </div>
+                    <div class="col-6 text-center ma">
+
+
+                        <qrcode [qrdata]="urlT+'/core/galeria/fst/'+fiesta.uid+'/blt/'+boleto.uid"
+                            [allowEmptyString]="true" [ariaLabel]="data.nombreFiesta" [cssClass]="'center'"
+                            [elementType]="'canvas'" [errorCorrectionLevel]="'M'"
+                            [imageSrc]="(fiesta.img!=='')?url+'/upload/fiestas/'+fiesta.img:url+'/upload/fiestas/default.jpg'"
+                            [imageHeight]="75" [imageWidth]="75" [margin]="4" [scale]="1" [colorDark]="data.cTexto"
+                            [colorLight]="'#FFFFFF'" [title]="data.nombreFiesta" [width]=" 300">
+                        </qrcode>
+
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</ng-container>
+<ng-container *ngIf="!fiesta">
+    <div class="  text-center  mt-3 btp "
+        [style]="{'background-color':'white','border-color':data.cSecond,
+'background-image':'url(/assets/invitaciones/background/'+data.fondoInvitacion+')' , 'background-attachment': 'fixed', 'background-size': '100% 100%', 'background-repeat': 'no-repeat', 'background-position': 'center top','border-color':data.cSecond}">
+        <div class="row">
+            <h3 class=" animate__animated {{data.cabeceraFont}} {{data.cabeceraEfecto}} {{data.cabeceraEfectoRep}} ma text-center"
+                [style]=" {'font-size': data.cabeceraSize +'px','color':data.cTexto}">
+                Compartir a galería
+            </h3>
+            <div class="ma divisor" [style]="{'background-color':data.cSecond}"> </div>
+        </div>
+        <div class="row text-center  " style="margin-top: 15px;">
+
+
+
+
+            <div *ngIf="!fiesta" id="galeriaFiesta">
+
+
+                <div class="col-6 ma text-center">
+
+
+                    <button type="button" class="btn mt-3 mb-3" tabindex="0"
+                        [style]="{'background-color': data.cSecond, 'border': '3px solid'+ data.cTexto, 'color': data.cTexto,'width':'100% !important'}">
+                        Comparte tus fotos <i class="bi bi-images"
+                            [style]="{'color': data.cTexto,'font-size': '30px','margin-left':'10px'}"></i></button>
+                </div>
+                <div class="col-12 text-center {{data.textoInvFont}}">
+                    <h5 class="{{data.textoInvFont}}" [style]="{'font-size':data.textoInvSize ,'color':data.cTexto}">
+                        O Ingresa por QR
+                    </h5>
+                </div>
+                <div class="col-6 text-center ma">
+                    <qrcode [qrdata]="'https://www.myticketparty.com/core'" [allowEmptyString]="true"
+                        [ariaLabel]="data.nombreFiesta" [cssClass]="'center'" [elementType]="'canvas'"
+                        [errorCorrectionLevel]="'M'" [imageSrc]="url+'/upload/fiestas/default.jpg'"
+                        [colorDark]="data.cTexto" [colorLight]="'#FFFFFF'" [title]="data.nombreFiesta" [width]=" 300">
+                    </qrcode>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</ng-container>

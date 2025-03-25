@@ -49,8 +49,14 @@
                                 <div class="col-12 col-md-6 mt-3">
                                     <div class="form-group">
                                         <label for="tipo">Tipo</label>
-                                        <input type="text" class="form-control upper" id="tipo" formControlName="tipo"
-                                            required placeholder="Tipo" [readonly]="edit==='false'">
+                                        <select name="" id="tipo" formControlName="tipo" class="form-control upper">
+                                            <option value="">Selecciona una fiesta</option>
+                                            <option [disabled]="edit=='false'" value="Por archivo">Por archivo</option>
+                                            <option [disabled]="edit=='false'" value="Dinamica">Dinamica</option>
+                                            <option [disabled]="edit=='false'" value="Fancy">Fancy</option>
+
+                                        </select>
+
                                     </div>
                                     <span *ngIf="submited && errorControl['tipo'].errors " class="error">Es requerido
                                     </span>

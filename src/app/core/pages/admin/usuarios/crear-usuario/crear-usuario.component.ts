@@ -104,6 +104,7 @@ export class CrearUsuarioComponent {
         })
     } else {
       this.tipoCentrosServices.cargarTipoCentrosAll().subscribe((resp: CargarTipoCentros) => {
+
         this.tipoCentros = this.functionsService.getActivos(resp.tipoCentros)
 
 
@@ -117,7 +118,16 @@ export class CrearUsuarioComponent {
 
         })
       this.rolesService.cargarRolesSalon().subscribe((resp: CargarRoles) => {
-        this.roles = this.functionsService.getActivos(resp.roles)
+        console.log('resp::: ', resp);
+
+
+
+        if (this.rol == this.ANF) {
+          this.roles = this.functionsService.getActivos(resp.roles).filter(rol => { return rol.nombre != 'USUARIO' })
+        } else {
+
+          this.roles = this.functionsService.getActivos(resp.roles)
+        }
 
       },
         (error: any) => {
@@ -127,8 +137,10 @@ export class CrearUsuarioComponent {
 
 
         })
-      let mail = this.functionsService.getLocal('email')
-      this.salonesService.cargarSalonByMail(mail).subscribe((resp: CargarSalons) => {
+      let mail = this.functionsService.getLocal('uid')
+      console.log('mail::: ', mail);
+      this.salonesService.cargarSalonByCreador(mail).subscribe((resp: CargarSalons) => {
+        console.log('resp::: ', resp);
         this.salones = this.functionsService.getActivos(resp.salons)
 
 

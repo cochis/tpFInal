@@ -49,8 +49,13 @@
 
                                     <div class="form-group">
                                         <label for="tipo">Tipo</label>
-                                        <input type="text" class="form-control upper" id="tipo" formControlName="tipo"
-                                            placeholder="Tipo">
+                                        <select name="" id="tipo" formControlName="tipo" class="form-control upper">
+                                            <option value="">Selecciona una fiesta</option>
+                                            <option value="Por archivo">Por archivo</option>
+                                            <option value="Dinamica">Dinamica</option>
+                                            <option value="Fancy">Fancy</option>
+
+                                        </select>
                                     </div>
                                     <span *ngIf="submited && errorControl['tipo'].errors " class="error">Es requerido
                                     </span>

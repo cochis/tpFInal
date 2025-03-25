@@ -812,6 +812,12 @@ const routes: Routes = [
 
       },
       {
+        path: 'galeria/fst/:fiesta',
+        component: GaleriaComponent,
+        data: { titulo: 'Sube tu foto' }
+
+      },
+      {
         path: 'galeria/fst/:fiesta/anf/:anfitrion',
         component: GaleriaComponent,
         data: { titulo: 'Sube tu foto' }

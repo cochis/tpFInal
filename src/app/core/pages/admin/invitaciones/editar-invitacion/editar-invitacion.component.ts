@@ -157,6 +157,7 @@ export class EditarInvitacionComponent {
       cWhite: '#ffffff',
       cTexto: '#000',
       xImg1: 50,
+
       yImg1: 0,
       bxMensajeImg: 50,
       byMensajeImg: 0,
@@ -419,6 +420,7 @@ export class EditarInvitacionComponent {
     }
   }
   async setFormWithData(invitacion: any) {
+    console.log('invitacion::: ', invitacion);
 
     this.getCoords(invitacion.data)
     invitacion.data = await this.numberToData(invitacion.data)
@@ -435,7 +437,7 @@ export class EditarInvitacionComponent {
       img1Height: [invitacion.data.img1Height],
       img1Rotate: [invitacion.data.img1Rotate],
       img1Traslate: [invitacion.data.img1Traslate],
-      img1Top: [invitacion.data.imTopg1],
+      img1Top: [invitacion.data.img1Top],
       efectoImg1: [invitacion.data.efectoImg1],
       repEfectoImg1: [invitacion.data.repEfectoImg1],
       efectoFecha: [invitacion.data.efectoFecha],
@@ -727,6 +729,13 @@ export class EditarInvitacionComponent {
 
     return JSON.stringify(qr)
   }
+
+
+
+
+
+
+
   setTemp(temp) {
 
     temp.dateCreated = (typeof (temp.dateCreated) == 'number') ? this.functionsService.numberToDate(temp.dateCreated) : temp.dateCreated
@@ -1251,7 +1260,7 @@ export class EditarInvitacionComponent {
             img1Height: '',
             img1Rotate: '',
             img1Traslate: '',
-            img1Top: '',
+            img1Top: 50,
             efectoImg1: 'animate__fadeIn',
             repEfectoImg1: 'animate__repeat-1',
             efectoFecha: 'animate__fadeIn',
@@ -2196,8 +2205,23 @@ export class EditarInvitacionComponent {
 
 
     this.ejemplosServices.cargarEjemplosAll().subscribe(resp => {
+      var type = ''
+      switch (this.fiesta.invitacion) {
+        case 'default':
+          type = 'default'
+          break;
+        case 'byFile':
+          type = 'default'
+          break;
+        case 'fancy':
+          type = 'fancy'
+          break;
 
-      var type = (this.fiesta.invitacion.includes('default') ? 'default' : 'byFile')
+        default:
+          type = ''
+          break;
+      }
+
       let filtro = resp.ejemplos.filter(resp => {
         return resp.urlFiestaBoleto.includes(type)
       })

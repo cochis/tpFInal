@@ -170,6 +170,7 @@ import { ConfirmacionDesingComponent } from './pages/admin/templates/new-style/c
 import { MusicDesingComponent } from './pages/admin/templates/new-style/components/music-desing/music-desing.component';
 import { QrDesingComponent } from './pages/admin/templates/new-style/components/qr-desing/qr-desing.component';
 import { VestimentaDesingComponent } from './pages/admin/templates/new-style/components/vestimenta-desing/vestimenta-desing.component';
+import { CompartirGaleriaComponent } from './pages/admin/templates/new-style/components/compartir-galeria/compartir-galeria.component';
 
 
 
@@ -340,7 +341,8 @@ import { VestimentaDesingComponent } from './pages/admin/templates/new-style/com
     ConfirmacionDesingComponent,
     MusicDesingComponent,
     QrDesingComponent,
-    VestimentaDesingComponent
+    VestimentaDesingComponent,
+    CompartirGaleriaComponent
 
   ],
   imports: [
