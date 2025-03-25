@@ -17,6 +17,7 @@ export class QrDesingComponent implements AfterViewInit {
   public qrCodeDownloadLink: SafeUrl = "";
   ngAfterViewInit() {
     this.data
+    console.log(' this.data::: ', this.data);
 
 
     setTimeout(() => {

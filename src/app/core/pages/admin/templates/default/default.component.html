@@ -31,72 +31,77 @@
 
     <ng-container [style]="{ 'background-color':invitacion.cWhite} ">
 
+        <div class="scroll-container" (scroll)="onScroll($event)">
+            <div style="width: 100%;" id="principal" class="  animate__animated">
+                <app-principal [data]="dataPrincipal"></app-principal>
+            </div>
 
-        <div style="width: 100%;">
-            <app-principal [data]="dataPrincipal"></app-principal>
+
+            <div style="width: 100%;" id="invitacion" class="noVisible animate__animated">
+
+                <app-invitacion-card [data]="dataInvitacionCard"></app-invitacion-card>
+
+            </div>
+
+            <div style="width: 100%;" id="mensaje" class="noVisible animate__animated">
+
+
+                <app-mensaje-card [data]="dataMensajeCard"></app-mensaje-card>
+
+
+
+
+            </div>
+            <div class="row">
+
+
+                <app-listas-card [data]="dataListasCard" class="noVisible animate__animated" type="padres"
+                    id="padres"></app-listas-card>
+                <app-listas-card [data]="dataListasCard" class="noVisible animate__animated" type="padrinos"
+                    id="padrinos"></app-listas-card>
+                <app-listas-card [data]="dataListasCard" class="noVisible animate__animated" type="chambelanes"
+                    id="chambelanes"></app-listas-card>
+
+
+
+
+            </div>
+
+            <div class="row mt-3" id="donde" class="noVisible animate__animated">
+
+                <app-donde-card [data]="dataDondeCard" [fiesta]="fiesta" type="donde"></app-donde-card>
+            </div>
+
+            <div class="row mt-3" id="hospedaje" class="noVisible animate__animated">
+
+                <app-donde-card [data]="dataDondeCard" [fiesta]="fiesta" type="hospedaje"></app-donde-card>
+            </div>
+
+
+            <div class="row mt-3" id="menu" class="noVisible animate__animated">
+                <app-listas-card [data]="dataListasCard" type="menu"></app-listas-card>
+            </div>
+            <div class="row mt-3" id="musica" class="noVisible animate__animated">
+                <app-listas-card [data]="dataListasCard" type="musica"></app-listas-card>
+            </div>
+            <div class="row mt-3" id="codigoVestimenta" class="noVisible animate__animated">
+                <app-listas-card [data]="dataListasCard" type="codigoVestimenta"></app-listas-card>
+            </div>
+            <div class="row mt-3" id="mesaRegalos" class="noVisible animate__animated">
+                <app-listas-card [data]="dataListasCard" type="mesaRegalos"></app-listas-card>
+            </div>
+            <div class="row mt-3" id="itinerario" class="noVisible animate__animated">
+                <app-listas-card [data]="dataListasCard" type="itinerario"></app-listas-card>
+            </div>
+            <div class="row mt-3" id="listas" class="noVisible animate__animated">
+                <app-qr-card [data]="dataListasCard" [fiesta]="fiesta" [boleto]="boleto"></app-qr-card>
+            </div>
+            <div class="row  " id="notas" class="noVisible animate__animated">
+                <app-listas-card [data]="dataListasCard" type="notas"></app-listas-card>
+            </div>
         </div>
 
-
-        <div style="width: 100%;">
-
-            <app-invitacion-card [data]="dataInvitacionCard"></app-invitacion-card>
-
-        </div>
-
-        <div style="width: 100%;">
-
-
-            <app-mensaje-card [data]="dataMensajeCard"></app-mensaje-card>
-
-
-
-
-        </div>
-        <div class="row  ">
-
-
-            <app-listas-card [data]="dataListasCard" type="padres"></app-listas-card>
-            <app-listas-card [data]="dataListasCard" type="padrinos"></app-listas-card>
-            <app-listas-card [data]="dataListasCard" type="chambelanes"></app-listas-card>
-
-
-
-
-        </div>
-
-        <div class="row mt-3">
-
-            <app-donde-card [data]="dataDondeCard" [fiesta]="fiesta" type="donde"></app-donde-card>
-        </div>
-
-        <div class="row mt-3">
-
-            <app-donde-card [data]="dataDondeCard" [fiesta]="fiesta" type="hospedaje"></app-donde-card>
-        </div>
-
-
-        <div class="row mt-3">
-            <app-listas-card [data]="dataListasCard" type="menu"></app-listas-card>
-        </div>
-        <div class="row mt-3">
-            <app-listas-card [data]="dataListasCard" type="musica"></app-listas-card>
-        </div>
-        <div class="row mt-3">
-            <app-listas-card [data]="dataListasCard" type="codigoVestimenta"></app-listas-card>
-        </div>
-        <div class="row mt-3">
-            <app-listas-card [data]="dataListasCard" type="mesaRegalos"></app-listas-card>
-        </div>
-        <div class="row mt-3">
-            <app-listas-card [data]="dataListasCard" type="itinerario"></app-listas-card>
-        </div>
-        <div class="row mt-3">
-            <app-qr-card [data]="dataListasCard" [fiesta]="fiesta" [boleto]="boleto"></app-qr-card>
-        </div>
-        <div class="row  ">
-            <app-listas-card [data]="dataListasCard" type="notas"></app-listas-card>
-        </div>
-        <div>
+        <div class="row ">
             <app-listas-card [data]="dataListasCard" type="footer"></app-listas-card>
         </div>
 
@@ -108,14 +113,14 @@
         <ng-container class=" sticky-bottom " *ngIf="isMusic">
             <div class="col-12 ma" style="text-align: center;">
                 <audio preload="auto" autoplay [src]="url+'/upload/sound/'+musicaInvitacion" class="ma" id="myAudio"
-                    [loop]="musicRepit">
+                    [loop]="musicRepit" *ngIf="playMusic">
                 </audio>
 
             </div>
             <button class="botonF1" [style]="{'background-color': invitacion.cPrincipal, 'color':invitacion.cWhite}"
                 (click)="playStop()" id="boton">
 
-                <span><i class="bi bi-stop"></i></span>
+                <span><i class="{{icon}}"></i></span>
             </button>
         </ng-container>
 

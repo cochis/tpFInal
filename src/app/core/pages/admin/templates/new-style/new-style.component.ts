@@ -630,7 +630,7 @@ export class NewStyleComponent implements OnInit {
 
 
   ngOnInit() {
-    this.items
+
 
   }
 
@@ -644,11 +644,18 @@ export class NewStyleComponent implements OnInit {
       if (element) {
         const rect = element.getBoundingClientRect();
 
-        if (rect.top >= 0 && rect.bottom <= window.innerHeight + 350) {
+
+        if ((rect.top + 350) <= window.innerHeight) {
 
           visibleItem = `Item ${item}`;
+
+          element.classList.remove('noVisible');
           element.classList.add('animate__fadeIn');
           ;
+        } else {
+          element.classList.add('noVisible');
+          element.classList.remove('animate__fadeIn');
+
         }
       }
     });

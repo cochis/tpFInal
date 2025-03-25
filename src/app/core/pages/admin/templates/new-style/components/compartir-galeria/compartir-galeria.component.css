@@ -1,0 +1,7 @@
+.qrcodeImage {
+
+    height: 100%;
+    width: 100%;
+    max-width: 350px;
+    min-width: 170px;
+}

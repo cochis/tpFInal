@@ -15,8 +15,7 @@
         <app-loading *ngIf="!ejemplos  "></app-loading>
         <div class="container">
             <div class="row">
-                <div class=" col-12 col-md-4  col-lg-3 mt-5 m-auto text-center"
-                    *ngFor="let ejemplo of ejemplos ; let i =index">
+                <div class=" col-12 col-md-6 mt-5 text-start" *ngFor="let ejemplo of ejemplos ; let i =index">
                     <div class="col-12  ma text-center">
                         <img [src]="url+'/upload/fiestas/'+ejemplo.fiesta.img" alt="{{ejemplo.fiesta.nombre}}"
                             title="{{ejemplo.nombre}}" class="  ma mb-3 shadowFin"

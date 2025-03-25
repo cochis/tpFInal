@@ -20,7 +20,7 @@
                     </ng-container>
 
                     <img class="shadow imagenFiesta" [src]="url+'/upload/invitaciones/'+data.img1"
-                        [style]="{'width':+data.img1Size+'px','height':+data.img1Height+'px', 'margin-top':+data.img1Top+'px','border-radius': data.img1Forma+'% !important','left':data.img1Traslate+'px', 'transform': 'rotate('+data.img1Rotate+'deg)', }">
+                        [style]="{'z-index': data.marcoIndex, 'width':+data.img1Size+'px','height':+data.img1Height+'px', 'margin-top':+data.img1Top+'px','border-radius': data.img1Forma+'% !important','left':data.img1Traslate+'px', 'transform': 'rotate('+data.img1Rotate+'deg)', }">
                 </div>
 
 

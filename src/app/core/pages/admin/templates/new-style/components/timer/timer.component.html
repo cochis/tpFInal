@@ -1,5 +1,5 @@
 <div class="container-fluid timer btp" [style]="{'border-color':data.cSecond}">
-    <div class="countdown">
+    <div class="countdown mt-5">
         <div class="col-12 text-center font1">
             <h3 class=" animate__animated {{data.cabeceraFont}} {{data.cabeceraEfecto}} {{data.cabeceraEfectoRep}}"
                 [style]="{'font-size': data.cabeceraSize +'px','color':data.cTexto}">
@@ -10,7 +10,7 @@
 
         <ng-container *ngIf="text !== 'Comenzamos'">
 
-            <div class="countdown-block  _animate__zoomIn animate__animated animate__zoomIn"
+            <div class="countdown-block  _animate__zoomIn animate__animated animate__zoomIn mt-5"
                 style="visibility: visible;">
                 <span class="days time-elem">
                     <span class="top {{data.cabeceraFont}}"

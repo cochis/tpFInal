@@ -27,9 +27,7 @@ export class CompartirGaleriaComponent implements AfterViewInit {
   }
   ngAfterViewInit(): void {
     this.data
-    console.log('   this.data::: ', this.data);
-    console.log('   this.fiesta::: ', this.fiesta);
-    console.log('   this.boleto::: ', this.boleto);
+
 
   }
 

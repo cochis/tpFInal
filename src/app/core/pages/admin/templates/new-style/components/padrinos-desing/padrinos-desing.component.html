@@ -1,11 +1,11 @@
 <ng-container *ngIf="data.padrinosCheck =='true' || data.padrinosCheck ==true">
 
     <div class="clear"></div>
-    <div class="_animate__zoomIn animate__animated animate__zoomIn btp"
+    <div class="_animate__zoomIn animate__animated animate__zoomIn btp "
         [style]="{'background-color':'white','border-color':data.cSecond,
 'background-image':'url(/assets/invitaciones/background/'+data.fondoInvitacion+')' , 'background-attachment': 'fixed', 'background-size': '100% 100%', 'background-repeat': 'no-repeat', 'background-position': 'center top'}"
         *ngIf="data  && padrinos.length>0">
-        <div class="text-center">
+        <div class="text-center mt-5">
             <h3 class="text-center ma animate__animated {{data.cabeceraFont}} {{data.cabeceraEfecto}} {{data.cabeceraEfectoRep}}"
                 [style]="{'font-size': data.cabeceraSize +'px','color':data.cTexto}">
                 Padrinos

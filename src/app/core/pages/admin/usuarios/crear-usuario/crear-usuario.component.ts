@@ -118,7 +118,7 @@ export class CrearUsuarioComponent {
 
         })
       this.rolesService.cargarRolesSalon().subscribe((resp: CargarRoles) => {
-        console.log('resp::: ', resp);
+
 
 
 
@@ -138,9 +138,9 @@ export class CrearUsuarioComponent {
 
         })
       let mail = this.functionsService.getLocal('uid')
-      console.log('mail::: ', mail);
+
       this.salonesService.cargarSalonByCreador(mail).subscribe((resp: CargarSalons) => {
-        console.log('resp::: ', resp);
+
         this.salones = this.functionsService.getActivos(resp.salons)
 
 

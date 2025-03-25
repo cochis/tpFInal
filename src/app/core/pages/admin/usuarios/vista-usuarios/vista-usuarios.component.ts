@@ -88,7 +88,7 @@ export class VistaUsuariosComponent {
   getCatalogos() {
     this.loading = true
     this.salonesService.cargarSalonsAll().subscribe((resp: CargarSalons) => {
-      console.log('resp::: ', resp);
+
       this.salones = resp.salons
     },
       (error: any) => {
@@ -96,7 +96,7 @@ export class VistaUsuariosComponent {
         this.loading = false
       })
     this.paquetesService.cargarPaquetesAll().subscribe((resp: CargarPaquetes) => {
-      console.log('resp::: ', resp);
+
       this.paquetes = resp.paquetes
     },
       (error: any) => {
@@ -104,7 +104,7 @@ export class VistaUsuariosComponent {
         this.loading = false
       })
     this.rolesService.cargarRolesAll().subscribe((resp: CargarRoles) => {
-      console.log('resp::: ', resp);
+
       this.roles = resp.roles
     },
       (error: any) => {

@@ -224,7 +224,7 @@ export class EditarInvitacionComponent {
       efectoRepCount: [''],
       checking: [this.fiesta.checking],
       fiestaDate: [Number(this.fiesta.fecha)],
-      nombreFiesta: [this.fiesta.nombre],
+      nombreFiesta: [''],
       repImgLeft: [''],
       repImgRight: [''],
       efectoImgRight: [''],
@@ -420,7 +420,7 @@ export class EditarInvitacionComponent {
     }
   }
   async setFormWithData(invitacion: any) {
-    console.log('invitacion::: ', invitacion);
+
 
     this.getCoords(invitacion.data)
     invitacion.data = await this.numberToData(invitacion.data)
@@ -465,7 +465,7 @@ export class EditarInvitacionComponent {
       bgCount: [invitacion.data.bgCount],
       noBgColor: [invitacion.data.noBgColor],
       fiestaDate: [invitacion.fiesta.fecha],
-      nombreFiesta: [invitacion.fiesta.nombre],
+      nombreFiesta: [invitacion.data.nombreFiesta],
       nombreSize: [invitacion.data.nombreSize],
       cabeceraFont: [invitacion.data.cabeceraFont],
       textoInvFont: [invitacion.data.textoInvFont],
@@ -1295,7 +1295,7 @@ export class EditarInvitacionComponent {
             noBgColor: '',
             checking: this.fiesta.checking,
             fiestaDate: Number(this.fiesta.fecha),
-            nombreFiesta: this.fiesta.nombre,
+            nombreFiesta: '',
             nombresSize: 18,
             textInvitacionValida: '¡Los esperamos!',
             mensajeCheck: true,
@@ -2051,7 +2051,7 @@ export class EditarInvitacionComponent {
       this.invitacion.data.img1Rotate = ''
       this.invitacion.data.img1Traslate = ''
       this.invitacion.data.img1Top = ''
-      this.invitacion.data.nombreFiesta = this.fiesta.nombre
+      this.invitacion.data.nombreFiesta = ''
       this.invitacion.data.tipoFiesta = ''
       //Seccion Mensaje
       this.invitacion.data.mensaje1 = ''

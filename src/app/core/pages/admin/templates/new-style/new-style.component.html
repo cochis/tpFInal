@@ -26,7 +26,7 @@
 
 
 
-    <div id="newStyle " style="width: 95%; margin:auto; overflow: hidden;">
+    <div id="newStyle " style="text-align:center !important;width: 98%; margin:auto !important; overflow: hidden;">
 
         <div id="presentacion" class="animate__animated">
             <app-presentacion (view)="closePresentacion($event)" *ngIf="!loading && presentacionView"
@@ -55,7 +55,7 @@
                 <app-donde-cuando [data]="invitacion"></app-donde-cuando>
             </div>
 
-            <div id="galery" class="ma   animate__animated">
+            <div id="galery" class="ma  noVisible animate__animated">
                 <app-galeria-desing [data]="invitacion"></app-galeria-desing>
             </div>
             <div id="padrinos" class="ma noVisible animate__animated">
@@ -67,7 +67,7 @@
             <!--      <div id="vestimenta" class="ma  ">
             <app-vestimenta-desing [data]="invitacion"></app-vestimenta-desing>
         </div> -->
-            <div id="programa" class="ma  animate__animated">
+            <div id="programa" class="ma  noVisible animate__animated">
                 <app-programa-desing [data]="invitacion"></app-programa-desing>
             </div>
             <div id="menu" class="ma noVisible animate__animated">
@@ -92,11 +92,11 @@
 
 
             </div>
-            <div id="confirmacion" class="ma   animate__animated">
+            <div id="confirmacion" class="ma   noVisible animate__animated">
                 <app-confirmacion-desing [data]="invitacion" [boleto]="boleto"
                     [fiesta]="fiesta"></app-confirmacion-desing>
             </div>
-            <div id="confirmacion" class="ma   animate__animated">
+            <div id="galeriaFiesta" class="ma  noVisible animate__animated">
                 <app-compartir-galeria [data]="invitacion" [boleto]="boleto" [fiesta]="fiesta"></app-compartir-galeria>
             </div>
 

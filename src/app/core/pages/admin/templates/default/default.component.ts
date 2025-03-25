@@ -91,6 +91,26 @@ export class DefaultComponent implements OnInit, AfterViewInit {
   dataMensajeCard: any
   dataListasCard: any
   dataDondeCard: any
+
+  items = [
+    'principal',
+    'invitacion',
+    'mensaje',
+    'padres',
+    'padrinos',
+    'chambelanes',
+    'donde',
+    'hospedaje',
+    'menu',
+    'musica',
+    'codigoVestimenta',
+    'mesaRegalos',
+    'itinerario',
+    'listas',
+    'notas'
+  ]
+  icon = 'bi bi-volume-mute-fill'
+  playMusic = true
   constructor(
     private functionsService: FunctionsService,
     private fiestasService: FiestasService,
@@ -617,6 +637,37 @@ export class DefaultComponent implements OnInit, AfterViewInit {
 
 
   }
+
+
+
+  onScroll(event: any) {
+    const element = event.target;
+
+
+    this.items.forEach(item => {
+      const element = document.getElementById(`${item}`);
+      let visibleItem = '';
+
+      if (element) {
+        const rect = element.getBoundingClientRect();
+
+
+        if ((rect.top + 350) <= window.innerHeight) {
+
+          visibleItem = `Item ${item}`;
+
+          element.classList.remove('noVisible');
+          element.classList.add('animate__fadeIn');
+          ;
+        } else {
+          element.classList.add('noVisible');
+          element.classList.remove('animate__fadeIn');
+
+        }
+      }
+    });
+  }
+
   ngOnInit() { }
   async dateToNumber(data) {
     data.dateCreated = (typeof (data.dateCreated) == 'string') ? this.functionsService.dateToNumber(data.dateCreated) : data.dateCreated
@@ -868,19 +919,13 @@ export class DefaultComponent implements OnInit, AfterViewInit {
   }
   playStop() {
     var v = document.getElementsByTagName("audio")[0];
+    this.playMusic = !this.playMusic;
 
-    var sound = false;
-    var boton = document.getElementById("boton");
-    boton.addEventListener("click", function () {
-      if (v.paused) {
-        v.play();
+    if (this.playMusic) {
+      this.icon = 'bi bi-volume-mute-fill'
+    } else {
+      this.icon = 'bi bi-play'
+    }
 
-        this.innerHTML = ' <span  ><i class="bi bi-stop"></i></span>';
-      } else {
-        v.pause();
-
-        this.innerHTML = ' <span  ><i class="bi bi-play"></i></span>';
-      }
-    });
   }
 }

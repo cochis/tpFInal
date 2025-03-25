@@ -633,7 +633,7 @@ input[type="file"] {
     .principal {
         width: 100% !important;
         height: auto;
-        background-size: 250% !important;
+        background-size: 250% 100% !important;
     }
 }
 
@@ -641,7 +641,7 @@ input[type="file"] {
     .principal {
         width: 100% !important;
         height: auto;
-        background-size: 180% !important;
+        background-size: 180% 100% !important;
     }
 
     .ejemploImgDiv {
@@ -1162,4 +1162,26 @@ a {
         line-height: 110px;
         margin-bottom: 17px;
     }
+}
+
+.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.noVisible {
+    opacity: 0;
+}
+
+.scroll-container {
+    height: 1200px;
+    overflow-y: auto;
+
+}
+
+.item {
+    background: #f4f4f4;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
 }

@@ -32,5 +32,9 @@ export class GaleriaDesingComponent {
   close() {
     this.viewImg = false
     this.imgSelect = ''
+    setTimeout(() => {
+
+      this.functionsService.scroolTo('vistaImgModal')
+    }, 100);
   }
 }

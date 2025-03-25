@@ -7,7 +7,7 @@ s
 
 <app-loading *ngIf="loading"></app-loading>
 <div *ngIf="!loading">
-    <div class="contenedor">
+    <div class="contenedor scroll-container" (scroll)="onScroll($event)">
         <div style="height: 100vh;
         background-image: url('/assets/invitaciones/xv/xv1.jpeg');
         display: flex;
