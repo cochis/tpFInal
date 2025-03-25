@@ -10,7 +10,7 @@ export class PadrinosDesingComponent implements AfterViewInit {
   padrinos = []
   ngAfterViewInit() {
 
-    console.log('this.data::: ', this.data);
+
     this.padrinos = (typeof (this.data.padrinos) == 'string') ? JSON.parse(this.data.padrinos) : this.data.padrinos
 
 

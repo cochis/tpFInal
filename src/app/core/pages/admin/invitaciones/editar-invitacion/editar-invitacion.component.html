@@ -3740,12 +3740,52 @@
                                                     </div>
                                                     <div class="col-12 col-md-6   mt-3">
                                                         <div class="form-group ">
-                                                            <label for="img1Size ">Tamaño del imagen </label>
+                                                            <label for="img1Forma ">Forma de imagen </label>
+                                                            <select name="img1Forma" id="img1Forma"
+                                                                formControlName="img1Forma"
+                                                                class="form-control upper {{img1Forma}}" #img1Forma>
+                                                                <option value="" selected>Seleccione el tipo de efecto
+                                                                </option>
+                                                                <option value="0" selected>Cuadrada
+                                                                </option>
+                                                                <option value="25" selected>Bordes redondos
+                                                                </option>
+                                                                <option value="100" selected>Redonda
+                                                                </option>
+
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6   mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="img1Rotate ">Rodar del imagen </label>
+                                                            <a class="range" (click)="changeRange('img1Rotate','-')"> <b
+                                                                    class="range-icon">-</b> </a>
+                                                            <input type="range" id="img1Rotate" #img1Rotate
+                                                                formControlName="img1Rotate" min="0" max="360">
+                                                            <a class="range" (click)="changeRange('img1Rotate','+')"> <b
+                                                                    class="range-icon">+</b> </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6   mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="img1Size ">Ancho del imagen </label>
                                                             <a class="range" (click)="changeRange('img1Size','-')"> <b
                                                                     class="range-icon">-</b> </a>
                                                             <input type="range" id="img1Size" #img1Size
                                                                 formControlName="img1Size" min="-500" max="500">
                                                             <a class="range" (click)="changeRange('img1Size','+')"> <b
+                                                                    class="range-icon">+</b> </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6   mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="img1Height ">Alto del imagen </label>
+                                                            <a class="range" (click)="changeRange('img1Height','-')"> <b
+                                                                    class="range-icon">-</b> </a>
+                                                            <input type="range" id="img1Height" #img1Height
+                                                                formControlName="img1Height" min="-500" max="500">
+                                                            <a class="range" (click)="changeRange('img1Height','+')"> <b
                                                                     class="range-icon">+</b> </a>
                                                         </div>
                                                     </div>
@@ -3758,6 +3798,17 @@
                                                             <input type="range" id="img1Top" #img1Top
                                                                 formControlName="img1Top" min="-500" max="500">
                                                             <a class="range" (click)="changeRange('img1Top','+')">
+                                                                <b class="range-icon">+</b> </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6   mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="img1Traslate ">Trasladar de la imagen </label>
+                                                            <a class="range" (click)="changeRange('img1Traslate','-')">
+                                                                <b class="range-icon">-</b> </a>
+                                                            <input type="range" id="img1Traslate" #img1Traslate
+                                                                formControlName="img1Traslate" min="-500" max="500">
+                                                            <a class="range" (click)="changeRange('img1Traslate','+')">
                                                                 <b class="range-icon">+</b> </a>
                                                         </div>
                                                     </div>
@@ -4258,15 +4309,12 @@
                                                                 formControlName="imgIntroLeft"
                                                                 class="form-control upper " #imgIntroLeft>
                                                                 <option value="">Seleccione un marco</option>
-                                                                <option value="bg1.avif">Fondo 1</option>
-                                                                <option value="bg2.jpeg">Fondo 2</option>
-                                                                <option value="bg3.jpeg">Fondo 3</option>
-                                                                <option value="bg4.png">Fondo 4</option>
-                                                                <option value="bg5.jpg">Fondo 5</option>
-                                                                <option value="bg6.png">Fondo 6</option>
-                                                                <option value="bg7.png">Fondo 7</option>
-                                                                <option value="bg8.png">Fondo 8</option>
-                                                                <option value="bg9.png">Fondo 9</option>
+
+                                                                <ng-container *ngFor="let bg of bgs">
+
+                                                                    <option [value]="bg.value">{{bg.name}}</option>
+                                                                </ng-container>
+
 
 
                                                             </select>
@@ -4313,15 +4361,12 @@
                                                                 formControlName="imgIntroRight"
                                                                 class="form-control upper " #imgIntroRight>
                                                                 <option value="">Seleccione un marco</option>
-                                                                <option value="bg1.avif">Fondo 1</option>
-                                                                <option value="bg2.jpeg">Fondo 2</option>
-                                                                <option value="bg3.jpeg">Fondo 3</option>
-                                                                <option value="bg4.png">Fondo 4</option>
-                                                                <option value="bg5.jpg">Fondo 5</option>
-                                                                <option value="bg6.png">Fondo 6</option>
-                                                                <option value="bg7.png">Fondo 7</option>
-                                                                <option value="bg8.png">Fondo 8</option>
-                                                                <option value="bg9.png">Fondo 9</option>
+
+
+                                                                <ng-container *ngFor="let bg of bgs">
+
+                                                                    <option [value]="bg.value">{{bg.name}}</option>
+                                                                </ng-container>
 
 
                                                             </select>
@@ -4427,32 +4472,44 @@
                                                                 formControlName="fondoInvitacion"
                                                                 class="form-control upper " #fondoInvitacion>
                                                                 <option value="">Seleccione un marco</option>
-                                                                <option value="bg1.avif">Fondo 1</option>
-                                                                <option value="bg2.jpeg">Fondo 2</option>
-                                                                <option value="bg3.jpeg">Fondo 3</option>
-                                                                <option value="bg4.png">Fondo 4</option>
-                                                                <option value="bg5.jpg">Fondo 5</option>
-                                                                <option value="bg6.png">Fondo 6</option>
-                                                                <option value="bg7.png">Fondo 7</option>
-                                                                <option value="bg8.png">Fondo 8</option>
-                                                                <option value="bg9.png">Fondo 9</option>
+
+
+                                                                <ng-container *ngFor="let bg of bgs">
+
+                                                                    <option [value]="bg.value">{{bg.name}}</option>
+                                                                </ng-container>
 
 
                                                             </select>
                                                         </div>
                                                     </div>
-                                                    <div class="col-12   mt-3">
+                                                    <div class="col-6  mt-3">
                                                         <div class="form-group ">
                                                             <label for="marcoFoto ">Marco de fondo</label>
                                                             <select name="marcoFoto" id="marcoFoto"
                                                                 formControlName="marcoFoto" class="form-control upper "
                                                                 #marcoFoto>
                                                                 <option value="">Seleccione un marco</option>
-                                                                <option value="frame1.png">Marco 1</option>
-                                                                <option value="frame2.png">Marco 2</option>
-                                                                <option value="frame3.png">Marco 3</option>
-                                                                <option value="frame4.png">Marco 4</option>
-                                                                <option value="frame5.png">Marco 5</option>
+
+
+                                                                <ng-container *ngFor="let fr of frames">
+
+                                                                    <option [value]="fr.value">{{fr.name}}</option>
+                                                                </ng-container>
+
+
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6  mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="marcoIndex ">Posición del marco</label>
+                                                            <select name="marcoIndex" id="marcoIndex"
+                                                                formControlName="marcoIndex" class="form-control upper "
+                                                                #marcoIndex>
+                                                                <option value="">Seleccione un marco</option>
+                                                                <option value="-1">Enfrente</option>
+                                                                <option value="1">Atras</option>
 
 
                                                             </select>
@@ -4466,7 +4523,7 @@
                                                                 (click)="changeRange('marcoFotoWidth','-')"> <b
                                                                     class="range-icon">-</b> </a>
                                                             <input type="range" id="marcoFotoWidth" #marcoFotoWidth
-                                                                formControlName="marcoFotoWidth" min="-500" max="500">
+                                                                formControlName="marcoFotoWidth" min="-500" max="800">
                                                             <a class="range"
                                                                 (click)="changeRange('marcoFotoWidth','+')"> <b
                                                                     class="range-icon">+</b> </a>

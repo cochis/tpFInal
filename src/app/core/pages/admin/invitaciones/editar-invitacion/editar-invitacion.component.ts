@@ -28,6 +28,8 @@ export class EditarInvitacionComponent {
   MAPURL = environment.mapsGoogleUrl
   MAPZOOM = environment.mapsGoogleZoom
   fonts = environment.fonts
+  bgs = environment.bgs
+  frames = environment.frames
   examples: any = []
   fiestas: any = []
   loading = false
@@ -96,6 +98,7 @@ export class EditarInvitacionComponent {
     private salonsService: SalonsService
 
   ) {
+
 
 
     setTimeout(() => {
@@ -180,8 +183,11 @@ export class EditarInvitacionComponent {
       cTexto: ['#000'],
       img1: [''],
       img1Size: [''],
+      img1Forma: [''],
       iconSize: [],
       img1Height: [''],
+      img1Rotate: [''],
+      img1Traslate: [''],
       img1Top: [''],
       efectoImg1: [''],
       repEfectoImg1: [''],
@@ -227,6 +233,7 @@ export class EditarInvitacionComponent {
       invitacionEfecto: ['animate__fadeIn'],
       fondoInvitacion: ['bg1.avif'],
       marcoFoto: [''],
+      marcoIndex: [''],
       marcoFotoWidth: [150],
       marcoFotoTop: [150],
       nombreFont: ['pacific'],
@@ -423,8 +430,11 @@ export class EditarInvitacionComponent {
       cTexto: [invitacion.data.cTexto],
       img1: [invitacion.data.img1],
       img1Size: [invitacion.data.img1Size],
+      img1Forma: [invitacion.data.img1Forma],
       iconSize: [invitacion.data.iconSize],
       img1Height: [invitacion.data.img1Height],
+      img1Rotate: [invitacion.data.img1Rotate],
+      img1Traslate: [invitacion.data.img1Traslate],
       img1Top: [invitacion.data.imTopg1],
       efectoImg1: [invitacion.data.efectoImg1],
       repEfectoImg1: [invitacion.data.repEfectoImg1],
@@ -595,6 +605,7 @@ export class EditarInvitacionComponent {
       invitacionEfecto: [invitacion.data.invitacionEfecto ? invitacion.data.invitacionEfecto : 'animate__fadeIn'],
       fondoInvitacion: [invitacion.data.fondoInvitacion ? invitacion.data.fondoInvitacion : 'bg1.avif'],
       marcoFoto: [invitacion.data.marcoFoto ? invitacion.data.marcoFoto : ''],
+      marcoIndex: [invitacion.data.marcoIndex ? invitacion.data.marcoIndex : ''],
       marcoFotoWidth: [invitacion.data.marcoFotoWidth ? invitacion.data.marcoFotoWidth : 150],
       marcoFotoTop: [invitacion.data.marcoFotoTop ? invitacion.data.marcoFotoTop : 150],
       nombreFont: [invitacion.data.nombreFont ? invitacion.data.nombreFont : 'pacific'],
@@ -733,7 +744,10 @@ export class EditarInvitacionComponent {
       img1: [temp.img1],
       iconSize: [temp.iconSize],
       img1Size: [temp.img1Size],
+      img1Forma: [temp.img1Forma],
       img1Height: [temp.img1Height],
+      img1Rotate: [temp.img1Rotate],
+      img1Traslate: [temp.img1Traslate],
       img1Top: [temp.img1Top],
       efectoImg1: [temp.efectoImg1],
       repEfectoImg1: [temp.repEfectoImg1],
@@ -846,6 +860,7 @@ export class EditarInvitacionComponent {
       invitacionEfecto: [temp.invitacionEfecto],
       fondoInvitacion: [temp.fondoInvitacion],
       marcoFoto: [temp.marcoFoto],
+      marcoIndex: [temp.marcoIndex],
       marcoFotoWidth: [temp.marcoFotoWidth],
       marcoFotoTop: [temp.marcoFotoTop],
       nombreFont: [temp.nombreFont],
@@ -913,7 +928,7 @@ export class EditarInvitacionComponent {
     })
   }
   async VerTemplate(form) {
-    console.log('form::: ', form);
+
     // Cuando no existe registro invitacion  se tiene que crear la invitacion
     if (!this.invitacion) {
       this.loading = true
@@ -974,7 +989,6 @@ export class EditarInvitacionComponent {
 
 
 
-      console.log('this.invitacion::: ', this.invitacion);
       this.actualizarInvitacion(this.invitacion).subscribe((resp: any) => {
         this.invitacion = resp.invitacionActualizado
 
@@ -1035,7 +1049,6 @@ export class EditarInvitacionComponent {
 
 
 
-    console.log('this.form.value::: ', this.form.value);
 
     this.loading = true
 
@@ -1233,8 +1246,11 @@ export class EditarInvitacionComponent {
             cTexto: '#000',
             img1: '',
             img1Size: '',
+            img1Forma: '',
             iconSize: 50,
             img1Height: '',
+            img1Rotate: '',
+            img1Traslate: '',
             img1Top: '',
             efectoImg1: 'animate__fadeIn',
             repEfectoImg1: 'animate__repeat-1',
@@ -1378,6 +1394,7 @@ export class EditarInvitacionComponent {
             invitacionEfecto: 'animate__fadeIn',
             fondoInvitacion: 'bg1.avif',
             marcoFoto: "",
+            marcoIndex: "",
 
             marcoFotoWidth: 150,
             marcoFotoTop: 150,
@@ -2019,8 +2036,11 @@ export class EditarInvitacionComponent {
       //Seccion Principal
       this.invitacion.data.img1 = ''
       this.invitacion.data.img1Size = ''
+      this.invitacion.data.img1Forma = ''
       this.invitacion.data.iconSize = 0
       this.invitacion.data.img1Height = ''
+      this.invitacion.data.img1Rotate = ''
+      this.invitacion.data.img1Traslate = ''
       this.invitacion.data.img1Top = ''
       this.invitacion.data.nombreFiesta = this.fiesta.nombre
       this.invitacion.data.tipoFiesta = ''

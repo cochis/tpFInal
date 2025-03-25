@@ -15,7 +15,7 @@
                 </ng-container>
 
                 <img class="shadowFin imagenFiesta" [src]="url+'/upload/invitaciones/'+data.img1"
-                    [style]="{'width':+data.img1Size+'px','height':+data.img1Size+'px', 'margin-top':+data.img1Top+'px'}">
+                    [style]="{'width':+data.img1Size+'px','height':+data.img1Height+'px', 'margin-top':+data.img1Top+'px','border-radius': data.img1Forma+'% !important', 'transform': 'rotate('+data.img1Rotate+'deg)', 'left':data.img1Traslate+'px'}">
             </div>
 
 

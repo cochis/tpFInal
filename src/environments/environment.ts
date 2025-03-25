@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   user_ID: '64ff4f79da409a7d91056a5b',
   secret: '1f2d1e2e67df',
-  version: "1.1.2.8",
+  version: "1.1.2.10",
   publicKey: "BJqZ8KY_kguwLf27SsteILLRHlWY2pJOvrKlyZNeFlEg4O15ut0t7oYMgXHcLPSh2WYCRPwTS3WEPnhXCMZO4Wg",
   privateKey: "v04F9j6-aAZRvYl25BtZu1cezaWT-m4P0sHtE0JbE7g",
   stripeKeyD: 'pk_test_51PipskAbE4XYrXNxNi1oiwylWr7B9mNMfUfQ070Cy09dDPj5HBFYObSajMGjNzlAynX23dT8thcx8sdJxpnP7Vov00wzIocDLR',
@@ -426,6 +426,158 @@ export const environment = {
     { name: 'Fuente 7', value: 'roboto-black-italic' },
     { name: 'Fuente 8', value: 'font1' },
   ],
+
+  bgs: [
+    {
+      name: 'Fondo 1',
+      value: 'bg1.png'
+    },
+    {
+      name: 'Fondo 2',
+      value: 'bg2.png'
+    },
+    {
+      name: 'Fondo 3',
+      value: 'bg3.png'
+    },
+    {
+      name: 'Fondo 4',
+      value: 'bg4.png'
+    },
+    {
+      name: 'Fondo 5',
+      value: 'bg5.png'
+    },
+    {
+      name: 'Fondo 6',
+      value: 'bg6.png'
+    },
+    {
+      name: 'Fondo 7',
+      value: 'bg7.png'
+    },
+    {
+      name: 'Fondo 8',
+      value: 'bg8.png'
+    },
+    {
+      name: 'Fondo 9',
+      value: 'bg9.png'
+    },
+    {
+      name: 'Fondo 10',
+      value: 'bg10.png'
+    },
+    {
+      name: 'Fondo 11',
+      value: 'bg11.png'
+    },
+    {
+      name: 'Fondo 12',
+      value: 'bg12.png'
+    },
+    {
+      name: 'Fondo 13',
+      value: 'bg13.png'
+    },
+    {
+      name: 'Fondo 14',
+      value: 'bg14.png'
+    },
+    {
+      name: 'Fondo 15',
+      value: 'bg15.png'
+    },
+    {
+      name: 'Fondo 16',
+      value: 'bg16.avif'
+    },
+    {
+      name: 'Fondo 17',
+      value: 'bg17.png'
+    },
+    {
+      name: 'Fondo 18',
+      value: 'bg18.png'
+    },
+    {
+      name: 'Fondo 19',
+      value: 'bg19.png'
+    },
+    {
+      name: 'Fondo 20',
+      value: 'bg20.jpg'
+    },
+    {
+      name: 'Fondo 21',
+      value: 'bg21.png'
+    },
+    {
+      name: 'Fondo 22',
+      value: 'bg22.png'
+    },
+    {
+      name: 'Fondo 23',
+      value: 'bg23.jpg'
+    },
+    {
+      name: 'Fondo 24',
+      value: 'bg24.png'
+    },
+    {
+      name: 'Fondo 25',
+      value: 'bg25.png'
+    },
+    {
+      name: 'Fondo 26',
+      value: 'bg26.png'
+    },
+    {
+      name: 'Fondo 27',
+      value: 'bg27.png'
+    },
+    {
+      name: 'Fondo 28',
+      value: 'bg28.png'
+    },
+
+  ],
+  frames: [
+    {
+      name: 'Marco 1',
+      value: 'frame1.png'
+    },
+    {
+      name: 'Marco 2',
+      value: 'frame2.png'
+    },
+    {
+      name: 'Marco 3',
+      value: 'frame3.png'
+    },
+    {
+      name: 'Marco 4',
+      value: 'frame4.png'
+    },
+    {
+      name: 'Marco 5',
+      value: 'frame5.png'
+    },
+    {
+      name: 'Marco 6',
+      value: 'frame6.png'
+    },
+    {
+      name: 'Marco 7',
+      value: 'frame7.png'
+    },
+    {
+      name: 'Marco 8',
+      value: 'frame8.png'
+    },
+
+  ],
+
 
   //Variables DEV
 
