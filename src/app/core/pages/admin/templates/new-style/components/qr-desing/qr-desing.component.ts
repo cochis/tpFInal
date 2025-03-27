@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class QrDesingComponent implements AfterViewInit {
   @Input() data: any
+  @Input() bgsframes: any
   @Input() boleto: any = undefined
   @Input() fiesta: any = undefined
   loading = true
@@ -16,8 +17,9 @@ export class QrDesingComponent implements AfterViewInit {
   url = environment.base_url
   public qrCodeDownloadLink: SafeUrl = "";
   ngAfterViewInit() {
-    this.data
-    console.log(' this.data::: ', this.data);
+    this.bgsframes
+
+
 
 
     setTimeout(() => {
@@ -61,6 +63,12 @@ export class QrDesingComponent implements AfterViewInit {
 
 
 
+
+  }
+  getImg(img) {
+
+    let imgR = this.bgsframes.filter(bgf => { return bgf.value == img })
+    return imgR[0].img
 
   }
 }

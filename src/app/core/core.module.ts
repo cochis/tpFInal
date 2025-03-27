@@ -171,6 +171,10 @@ import { MusicDesingComponent } from './pages/admin/templates/new-style/componen
 import { QrDesingComponent } from './pages/admin/templates/new-style/components/qr-desing/qr-desing.component';
 import { VestimentaDesingComponent } from './pages/admin/templates/new-style/components/vestimenta-desing/vestimenta-desing.component';
 import { CompartirGaleriaComponent } from './pages/admin/templates/new-style/components/compartir-galeria/compartir-galeria.component';
+import { VistaFondosComponent } from './pages/admin/fondos/vista-fondos/vista-fondos.component';
+import { CrearFondoComponent } from './pages/admin/fondos/crear-fondo/crear-fondo.component';
+import { EditarFondoComponent } from './pages/admin/fondos/editar-fondo/editar-fondo.component';
+
 
 
 
@@ -342,7 +346,11 @@ import { CompartirGaleriaComponent } from './pages/admin/templates/new-style/com
     MusicDesingComponent,
     QrDesingComponent,
     VestimentaDesingComponent,
-    CompartirGaleriaComponent
+    CompartirGaleriaComponent,
+    VistaFondosComponent,
+    CrearFondoComponent,
+    EditarFondoComponent,
+
 
   ],
   imports: [

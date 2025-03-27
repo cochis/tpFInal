@@ -23,7 +23,7 @@ export class FileService {
   }
   async actualizarFoto(
     archivo: File,
-    tipo: 'usuarios' | 'fiestas' | 'salones' | 'galerias' | 'invitaciones' | 'paquetes' | 'proveedor' | 'imgItems' | 'items',
+    tipo: 'usuarios' | 'fiestas' | 'salones' | 'galerias' | 'invitaciones' | 'paquetes' | 'proveedor' | 'imgItems' | 'items' | 'fondos',
     id: string,
     type?: string
   ) {

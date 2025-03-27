@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
 })
 export class CompartirGaleriaComponent implements AfterViewInit {
   @Input() data: any
+  @Input() bgsframes: any
   @Input() boleto: any
   @Input() fiesta: any
   today = this.functionsService.getToday()
@@ -150,5 +151,10 @@ export class CompartirGaleriaComponent implements AfterViewInit {
       }
     }
     return JSON.stringify(qr)
+  }
+  getImg(img) {
+    let imgR = this.bgsframes.filter(bgf => { return bgf.value == img })
+    return imgR[0].img
+
   }
 }

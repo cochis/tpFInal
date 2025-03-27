@@ -1,10 +1,57 @@
-<ng-container *ngIf="data.mesaRegalosCheck =='true' || data.mesaRegalosCheck ==true">
+<ng-container
+    *ngIf="(data.mesaRegalosCheck =='true' || data.mesaRegalosCheck ==true) && (data.fondoInvitacionCheck=='false' || data.fondoInvitacionCheck==false) ">
 
 
     <div class="clear"></div>
     <div class="_animate__zoomIn animate__animated animate__zoomIn btp"
         [style]="{'background-color':'white','border-color':data.cSecond,
-'background-image':'url(/assets/invitaciones/background/'+data.fondoInvitacion+')' , 'background-attachment': 'fixed', 'background-size': '100% 100%', 'background-repeat': 'no-repeat', 'background-position': 'center top','border-color':data.cSecond}">
+'background-image':'url('+url+'/upload/fondos/'+getImg(data.fondoInvitacion)+')' , 'background-attachment': 'fixed', 'background-size': '100% 100%', 'background-repeat': 'no-repeat', 'background-position': 'center top','border-color':data.cSecond}">
+        <div class="text-center">
+            <h3 class="mt-5 animate__animated {{data.cabeceraFont}} {{data.cabeceraEfecto}} {{data.cabeceraEfectoRep}} ma text-center"
+                [style]=" {'font-size': data.cabeceraSize +'px','color':data.cTexto}">
+                Mesa de regalos
+            </h3>
+
+            <div class="ma divisor" [style]="{'background-color':data.cSecond}"> </div>
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-11 col-md-4 ma">
+                        <a [href]="data.mesaRegalosUrl" class="{{data.textoInvFont }}" target="_blank"
+                            rel="noopener noreferrer" [style]="{'text-decoration':'none', 'color':data.cTexto}">
+                            <img src="/assets/icons/gift.png" alt=""
+                                [style]="{'width':data.iconSize+'px','height':data.iconSize+'px'}">
+
+                            <h3 class="{{data.textoInvFont }} mt-2">{{data.mesaRegalosLugar}}</h3>
+                        </a>
+
+                    </div>
+
+
+
+                </div>
+
+            </div>
+
+
+
+
+        </div>
+
+
+
+    </div>
+</ng-container>
+
+
+
+<ng-container
+    *ngIf="(data.mesaRegalosCheck =='true' || data.mesaRegalosCheck ==true) && (data.fondoInvitacionCheck=='true' || data.fondoInvitacionCheck==true) ">
+
+
+    <div class="clear"></div>
+    <div class="_animate__zoomIn animate__animated animate__zoomIn btp"
+        [style]="{'background-color':'white','border-color':data.cSecond,
+'background-image':'url('+url+'/upload/invitaciones/'+ data.fondoInvitacionUp+')' , 'background-attachment': 'fixed', 'background-size': '100% 100%', 'background-repeat': 'no-repeat', 'background-position': 'center top','border-color':data.cSecond}">
         <div class="text-center">
             <h3 class="mt-5 animate__animated {{data.cabeceraFont}} {{data.cabeceraEfecto}} {{data.cabeceraEfectoRep}} ma text-center"
                 [style]=" {'font-size': data.cabeceraSize +'px','color':data.cTexto}">

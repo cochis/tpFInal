@@ -8,10 +8,10 @@ import { environment } from 'src/environments/environment';
 })
 export class DondeCuandoComponent implements AfterViewInit {
   @Input() data: any
+  @Input() bgsframes: any
   url = environment.base_url
   lugares: any = []
   ngAfterViewInit() {
-
 
 
 
@@ -66,6 +66,12 @@ export class DondeCuandoComponent implements AfterViewInit {
 
 
 
+
+  }
+
+  getImg(img) {
+    let imgR = this.bgsframes.filter(bgf => { return bgf.value == img })
+    return imgR[0].img
 
   }
 }

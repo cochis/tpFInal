@@ -5,14 +5,40 @@
 
 
 
-            <div class="col-6 animate__animated {{data.efectoImgLeft}} {{data.repImgLeft}}" style=" height: 100vh; background-image: url('/assets/invitaciones/background/{{data.imgIntroLeft}}');
+            <div class="col-6 animate__animated {{data.efectoImgLeft}} {{data.repImgLeft}}"
+                *ngIf="!data.imgIntroLeftCheck" style=" height: 100vh;
+             background-image: url('{{url}}/upload/fondos/{{getImg(data.imgIntroLeft)}}');
+      background-repeat: no-repeat;
+        background-size: 100% 100vh;
+        background-position: center top;
+        background-attachment: fixed;">
+            </div>
+            <div class="col-6 animate__animated {{data.efectoImgLeft}} {{data.repImgLeft}}"
+                *ngIf="data.imgIntroLeftCheck" style=" height: 100vh;
+             background-image: url('{{url}}/upload/invitaciones/{{data.imgIntroLeftUp}}');
+      background-repeat: no-repeat;
+        background-size: 100% 100vh;
+        background-position: center top;
+        background-attachment: fixed;">
+            </div>
+
+
+
+
+
+
+            <div class="col-6 animate__animated {{data.efectoImgRight}} {{data.repImgRight}}"
+                *ngIf="!data.imgIntroRightCheck" style=" height: 100vh; 
+            background-image: url('{{url}}/upload/fondos/{{getImg(data.imgIntroRight)}}');
       background-repeat: no-repeat;
         background-size: 100% 100vh;
         background-position: center top;
         background-attachment: fixed;">
 
             </div>
-            <div class="col-6 animate__animated {{data.efectoImgRight}} {{data.repImgRight}}" style=" height: 100vh; background-image: url('/assets/invitaciones/background/{{data.imgIntroRight}}');
+            <div class="col-6 animate__animated {{data.efectoImgRight}} {{data.repImgRight}}"
+                *ngIf="data.imgIntroRightCheck" style=" height: 100vh; 
+            background-image: url('{{url}}/upload/invitaciones/{{data.imgIntroRightUp}}');
       background-repeat: no-repeat;
         background-size: 100% 100vh;
         background-position: center top;

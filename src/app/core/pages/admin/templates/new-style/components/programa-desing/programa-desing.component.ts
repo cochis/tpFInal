@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, Input } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-programa-desing',
@@ -7,14 +8,21 @@ import { AfterViewInit, Component, Input } from '@angular/core';
 })
 export class ProgramaDesingComponent implements AfterViewInit {
   @Input() data: any
-
+  url = environment.base_url
   programas = []
+  @Input() bgsframes: any
+
   ngAfterViewInit() {
 
-
-    console.log('this.data::: ', this.data);
     this.programas = (typeof (this.data.itinerarios) == 'string') ? JSON.parse(this.data.itinerarios) : this.data.itinerarios
     this.programas = JSON.parse(this.data.itinerarios)
+
+
+  }
+  getImg(img) {
+
+    let imgR = this.bgsframes.filter(bgf => { return bgf.value == img })
+    return imgR[0].img
 
   }
 }

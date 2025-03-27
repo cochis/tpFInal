@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   user_ID: '64ff4f79da409a7d91056a5b',
   secret: '1f2d1e2e67df',
-  version: "1.1.2.14",
+  version: "1.1.2.3",
   publicKey: "BJqZ8KY_kguwLf27SsteILLRHlWY2pJOvrKlyZNeFlEg4O15ut0t7oYMgXHcLPSh2WYCRPwTS3WEPnhXCMZO4Wg",
   privateKey: "v04F9j6-aAZRvYl25BtZu1cezaWT-m4P0sHtE0JbE7g",
   stripeKeyD: 'pk_test_51PipskAbE4XYrXNxNi1oiwylWr7B9mNMfUfQ070Cy09dDPj5HBFYObSajMGjNzlAynX23dT8thcx8sdJxpnP7Vov00wzIocDLR',
@@ -425,213 +425,216 @@ export const environment = {
     { name: 'Fuente 6', value: 'roboto-bold' },
     { name: 'Fuente 7', value: 'roboto-black-italic' },
     { name: 'Fuente 8', value: 'font1' },
+    { name: 'Fuente 9', value: 'font2' },
+    { name: 'Fuente 10', value: 'font3' },
+    { name: 'Fuente 11', value: 'font4' },
   ],
 
-  bgs: [
-    {
-      name: 'Fondo 1',
-      value: 'bg1.png'
-    },
-    {
-      name: 'Fondo 2',
-      value: 'bg2.png'
-    },
-    {
-      name: 'Fondo 3',
-      value: 'bg3.png'
-    },
-    {
-      name: 'Fondo 4',
-      value: 'bg4.png'
-    },
-    {
-      name: 'Fondo 5',
-      value: 'bg5.png'
-    },
-    {
-      name: 'Fondo 6',
-      value: 'bg6.png'
-    },
-    {
-      name: 'Fondo 7',
-      value: 'bg7.png'
-    },
-    {
-      name: 'Fondo 8',
-      value: 'bg8.png'
-    },
-    {
-      name: 'Fondo 9',
-      value: 'bg9.png'
-    },
-    {
-      name: 'Fondo 10',
-      value: 'bg10.png'
-    },
-    {
-      name: 'Fondo 11',
-      value: 'bg11.png'
-    },
-    {
-      name: 'Fondo 12',
-      value: 'bg12.png'
-    },
-    {
-      name: 'Fondo 13',
-      value: 'bg13.png'
-    },
-    {
-      name: 'Fondo 14',
-      value: 'bg14.png'
-    },
-    {
-      name: 'Fondo 15',
-      value: 'bg15.png'
-    },
-    {
-      name: 'Fondo 16',
-      value: 'bg16.avif'
-    },
-    {
-      name: 'Fondo 17',
-      value: 'bg17.png'
-    },
-    {
-      name: 'Fondo 18',
-      value: 'bg18.png'
-    },
-    {
-      name: 'Fondo 19',
-      value: 'bg19.png'
-    },
-    {
-      name: 'Fondo 20',
-      value: 'bg20.jpg'
-    },
-    {
-      name: 'Fondo 21',
-      value: 'bg21.png'
-    },
-    {
-      name: 'Fondo 22',
-      value: 'bg22.png'
-    },
-    {
-      name: 'Fondo 23',
-      value: 'bg23.jpg'
-    },
-    {
-      name: 'Fondo 24',
-      value: 'bg24.png'
-    },
-    {
-      name: 'Fondo 25',
-      value: 'bg25.png'
-    },
-    {
-      name: 'Fondo 26',
-      value: 'bg26.png'
-    },
-    {
-      name: 'Fondo 27',
-      value: 'bg27.png'
-    },
-    {
-      name: 'Fondo 28',
-      value: 'bg28.png'
-    },
-
-  ],
-  frames: [
-    {
-      name: 'Marco 1',
-      value: 'frame1.png'
-    },
-    {
-      name: 'Marco 2',
-      value: 'frame2.png'
-    },
-    {
-      name: 'Marco 3',
-      value: 'frame3.png'
-    },
-    {
-      name: 'Marco 4',
-      value: 'frame4.png'
-    },
-    {
-      name: 'Marco 5',
-      value: 'frame5.png'
-    },
-    {
-      name: 'Marco 6',
-      value: 'frame6.png'
-    },
-    {
-      name: 'Marco 7',
-      value: 'frame7.png'
-    },
-    {
-      name: 'Marco 8',
-      value: 'frame8.png'
-    },
-    {
-      name: 'Marco 9',
-      value: 'frame9.png'
-    },
-    {
-      name: 'Marco 10',
-      value: 'frame10.png'
-    },
-    {
-      name: 'Marco 11',
-      value: 'frame11.png'
-    },
-
-  ],
+  /*  bgs: [
+     {
+       name: 'Fondo 1',
+       value: 'bg1.png'
+     },
+     {
+       name: 'Fondo 2',
+       value: 'bg2.png'
+     },
+     {
+       name: 'Fondo 3',
+       value: 'bg3.png'
+     },
+     {
+       name: 'Fondo 4',
+       value: 'bg4.png'
+     },
+     {
+       name: 'Fondo 5',
+       value: 'bg5.png'
+     },
+     {
+       name: 'Fondo 6',
+       value: 'bg6.png'
+     },
+     {
+       name: 'Fondo 7',
+       value: 'bg7.png'
+     },
+     {
+       name: 'Fondo 8',
+       value: 'bg8.png'
+     },
+     {
+       name: 'Fondo 9',
+       value: 'bg9.png'
+     },
+     {
+       name: 'Fondo 10',
+       value: 'bg10.png'
+     },
+     {
+       name: 'Fondo 11',
+       value: 'bg11.png'
+     },
+     {
+       name: 'Fondo 12',
+       value: 'bg12.png'
+     },
+     {
+       name: 'Fondo 13',
+       value: 'bg13.png'
+     },
+     {
+       name: 'Fondo 14',
+       value: 'bg14.png'
+     },
+     {
+       name: 'Fondo 15',
+       value: 'bg15.png'
+     },
+     {
+       name: 'Fondo 16',
+       value: 'bg16.avif'
+     },
+     {
+       name: 'Fondo 17',
+       value: 'bg17.png'
+     },
+     {
+       name: 'Fondo 18',
+       value: 'bg18.png'
+     },
+     {
+       name: 'Fondo 19',
+       value: 'bg19.png'
+     },
+     {
+       name: 'Fondo 20',
+       value: 'bg20.jpg'
+     },
+     {
+       name: 'Fondo 21',
+       value: 'bg21.png'
+     },
+     {
+       name: 'Fondo 22',
+       value: 'bg22.png'
+     },
+     {
+       name: 'Fondo 23',
+       value: 'bg23.jpg'
+     },
+     {
+       name: 'Fondo 24',
+       value: 'bg24.png'
+     },
+     {
+       name: 'Fondo 25',
+       value: 'bg25.png'
+     },
+     {
+       name: 'Fondo 26',
+       value: 'bg26.png'
+     },
+     {
+       name: 'Fondo 27',
+       value: 'bg27.png'
+     },
+     {
+       name: 'Fondo 28',
+       value: 'bg28.png'
+     },
+ 
+   ],
+   frames: [
+     {
+       name: 'Marco 1',
+       value: 'frame1.png'
+     },
+     {
+       name: 'Marco 2',
+       value: 'frame2.png'
+     },
+     {
+       name: 'Marco 3',
+       value: 'frame3.png'
+     },
+     {
+       name: 'Marco 4',
+       value: 'frame4.png'
+     },
+     {
+       name: 'Marco 5',
+       value: 'frame5.png'
+     },
+     {
+       name: 'Marco 6',
+       value: 'frame6.png'
+     },
+     {
+       name: 'Marco 7',
+       value: 'frame7.png'
+     },
+     {
+       name: 'Marco 8',
+       value: 'frame8.png'
+     },
+     {
+       name: 'Marco 9',
+       value: 'frame9.png'
+     },
+     {
+       name: 'Marco 10',
+       value: 'frame10.png'
+     },
+     {
+       name: 'Marco 11',
+       value: 'frame11.png'
+     },
+ 
+   ], */
 
 
   //Variables DEV
 
-  /*  base_url: "http://localhost:3008/api",
-   text_url: "http://localhost:4200/",
-   cProvedores: [
-     {
-       value: "679a73e437dec3f0672e2ec1",
-       clave: "cPrincipalWP"
-     },
-     {
-       value: "679a744737dec3f0672e2ece",
-       clave: "cSecondWP"
-     },
-   ],
-   tiProducto: '679ba1e689b67b7d7fb5a902',
-   tiServicio: '679ba20189b67b7d7fb5a909',
-   noAplica: 'NOATPC',
-   contactosProveedor: [
-     {
-       value: "679a6850217a76f8b6b650d8",
-       clave: "TELÉFONO"
-     }
-     ,
-     {
-       value: "679a6a7b9fb2c32e86079b8d",
-       clave: "MAIL"
-     },
- 
-     {
-       value: "679a6b3a9fb2c32e86079ba3",
-       clave: "DIRECCIÓN"
-     },
-     {
-       value: "679a6d03d7603c6c58018354",
-       clave: "PAGINA WEB"
-     },
-     {
-       value: "67b95a049b1aac6f7ff9c0c9",
-       clave: "WHATSAPP"
-     },
-   ] */
+  /* base_url: "http://localhost:3008/api",
+  text_url: "http://localhost:4200/",
+  cProvedores: [
+    {
+      value: "679a73e437dec3f0672e2ec1",
+      clave: "cPrincipalWP"
+    },
+    {
+      value: "679a744737dec3f0672e2ece",
+      clave: "cSecondWP"
+    },
+  ],
+  tiProducto: '679ba1e689b67b7d7fb5a902',
+  tiServicio: '679ba20189b67b7d7fb5a909',
+  noAplica: 'NOATPC',
+  contactosProveedor: [
+    {
+      value: "679a6850217a76f8b6b650d8",
+      clave: "TELÉFONO"
+    }
+    ,
+    {
+      value: "679a6a7b9fb2c32e86079b8d",
+      clave: "MAIL"
+    },
+
+    {
+      value: "679a6b3a9fb2c32e86079ba3",
+      clave: "DIRECCIÓN"
+    },
+    {
+      value: "679a6d03d7603c6c58018354",
+      clave: "PAGINA WEB"
+    },
+    {
+      value: "67b95a049b1aac6f7ff9c0c9",
+      clave: "WHATSAPP"
+    },
+  ] */
 
 
 
@@ -675,8 +678,8 @@ export const environment = {
       value: "67bb93279279f84e078263e3",
       clave: "WHATSAPP"
     },
-  ]
- */
+  ] */
+
 
 
 

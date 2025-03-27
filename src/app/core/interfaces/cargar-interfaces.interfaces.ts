@@ -40,6 +40,7 @@ import { Calificacion } from "../models/calificacion.model"
 import { TipoUbicacion } from "../models/tipoUbicacion.model"
 import { Red } from "../models/red.model"
 import { MailTemplate } from "../models/mailTemplate.model"
+import { Fondo } from "../models/fondo.model"
 
 
 
@@ -125,6 +126,13 @@ export interface CargarEvento {
 export interface CargarEventos {
     total: number
     eventos: Evento[]
+}
+export interface CargarFondo {
+    fondo: Fondo
+}
+export interface CargarFondos {
+    total: number
+    fondos: Fondo[]
 }
 export interface CargarMailTemplate {
     mailTemplate: MailTemplate

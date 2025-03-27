@@ -7,9 +7,11 @@ import { ModalService } from '@developer-partners/ngx-modal-dialog';
 import * as $ from 'jquery';
 import { Boleto } from 'src/app/core/models/boleto.model';
 import { Fiesta } from 'src/app/core/models/fiesta.model';
+import { Fondo } from 'src/app/core/models/fondo.model';
 import { Salon } from 'src/app/core/models/salon.model';
 import { BoletosService } from 'src/app/core/services/boleto.service';
 import { FiestasService } from 'src/app/core/services/fiestas.service';
+import { FondosService } from 'src/app/core/services/fondo.service';
 import { InvitacionsService } from 'src/app/core/services/invitaciones.service';
 import { MetaService } from 'src/app/core/services/meta.service';
 import { PushsService } from 'src/app/core/services/push.service';
@@ -96,6 +98,8 @@ export class NewStyleComponent implements OnInit {
   allItems: number[] = [];  // Lista completa de elementos
   visibleItems: number[] = []; // Lista de elementos visibles
   itemsPerLoad = 10; // Cantidad de elementos a mostrar por scroll
+  bgs: any = []
+  frames: any = []
   items = [
     'timer',
     'dondeCuando',
@@ -110,6 +114,7 @@ export class NewStyleComponent implements OnInit {
     'confirmacion',
     'galeriaFiesta'
   ]
+  bgsframes: Fondo[]
   constructor(
     private functionsService: FunctionsService,
     private fiestasService: FiestasService,
@@ -121,10 +126,20 @@ export class NewStyleComponent implements OnInit {
     private readonly _modalService: ModalService,
     private metaService: MetaService,
     private title: Title,
-
+    private fondosService: FondosService
   ) {
 
     this.loading = true
+    this.fondosService.cargarFondosAll().subscribe(resp => {
+      this.bgsframes = this.functionsService.getActives(resp.fondos)
+
+
+      this.frames = this.bgsframes.filter(bgf => { return bgf.tipo == 'FRAME' })
+
+
+      this.bgs = this.bgsframes.filter(bgf => { return bgf.tipo == 'BG' })
+
+    })
     this.fiestaId = this.route.snapshot.params['fiesta']
     this.copyId = this.route.snapshot.params['copy']
     this.boletoId = this.route.snapshot.params['boleto']

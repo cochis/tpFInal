@@ -30,7 +30,7 @@
 
         <div id="presentacion" class="animate__animated">
             <app-presentacion (view)="closePresentacion($event)" *ngIf="!loading && presentacionView"
-                [data]="invitacion"></app-presentacion>
+                [data]="invitacion" [bgsframes]="bgsframes"></app-presentacion>
         </div>
 
         <div id="invitacion" *ngIf="invitacionView" class="animate__animated invitacion scroll-container "
@@ -46,20 +46,21 @@
 
                 <app-music-desing [data]="invitacion"></app-music-desing>
             </div>
-            <app-principal-template-desing [data]="invitacion" [fiesta]="fiesta"></app-principal-template-desing>
+            <app-principal-template-desing [data]="invitacion" [fiesta]="fiesta"
+                [bgsframes]="bgsframes"></app-principal-template-desing>
 
             <div id="timer" class="ma noVisible animate__animated">
                 <app-timer [data]="invitacion" [date]="date"></app-timer>
             </div>
             <div id="dondeCuando" class="ma noVisible animate__animated">
-                <app-donde-cuando [data]="invitacion"></app-donde-cuando>
+                <app-donde-cuando [data]="invitacion" [bgsframes]="bgsframes"></app-donde-cuando>
             </div>
 
             <div id="galery" class="ma  noVisible animate__animated">
                 <app-galeria-desing [data]="invitacion"></app-galeria-desing>
             </div>
             <div id="padrinos" class="ma noVisible animate__animated">
-                <app-padrinos-desing [data]="invitacion"> </app-padrinos-desing>
+                <app-padrinos-desing [data]="invitacion" [bgsframes]="bgsframes"> </app-padrinos-desing>
             </div>
             <div id="chambelanes" class="ma noVisible animate__animated">
                 <app-chambelanes-desing [data]="invitacion"></app-chambelanes-desing>
@@ -68,13 +69,13 @@
             <app-vestimenta-desing [data]="invitacion"></app-vestimenta-desing>
         </div> -->
             <div id="programa" class="ma  noVisible animate__animated">
-                <app-programa-desing [data]="invitacion"></app-programa-desing>
+                <app-programa-desing [data]="invitacion" [bgsframes]="bgsframes"></app-programa-desing>
             </div>
             <div id="menu" class="ma noVisible animate__animated">
-                <app-menu-desing [data]="invitacion"></app-menu-desing>
+                <app-menu-desing [data]="invitacion" [bgsframes]="bgsframes"></app-menu-desing>
             </div>
             <div id="mesa-regalos" class="ma noVisible animate__animated">
-                <app-mesa-regalos-desing [data]="invitacion"></app-mesa-regalos-desing>
+                <app-mesa-regalos-desing [data]="invitacion" [bgsframes]="bgsframes"></app-mesa-regalos-desing>
             </div>
             <div id="hospedaje" class="ma noVisible animate__animated">
                 <app-hospedaje-desing [data]="invitacion"></app-hospedaje-desing>
@@ -82,11 +83,12 @@
 
             <div id="qr" class="ma noVisible animate__animated">
                 <ng-container *ngIf="boleto">
-                    <app-qr-desing [data]="invitacion" [boleto]="boleto" [fiesta]="fiesta"></app-qr-desing>
+                    <app-qr-desing [bgsframes]="bgsframes" [data]="invitacion" [boleto]="boleto"
+                        [fiesta]="fiesta"></app-qr-desing>
 
                 </ng-container>
                 <ng-container *ngIf="!boleto">
-                    <app-qr-desing [data]="invitacion"></app-qr-desing>
+                    <app-qr-desing [bgsframes]="bgsframes" [data]="invitacion"></app-qr-desing>
 
                 </ng-container>
 
@@ -97,7 +99,8 @@
                     [fiesta]="fiesta"></app-confirmacion-desing>
             </div>
             <div id="galeriaFiesta" class="ma  noVisible animate__animated">
-                <app-compartir-galeria [data]="invitacion" [boleto]="boleto" [fiesta]="fiesta"></app-compartir-galeria>
+                <app-compartir-galeria [data]="invitacion" [boleto]="boleto" [fiesta]="fiesta"
+                    [bgsframes]="bgsframes"></app-compartir-galeria>
             </div>
 
 

@@ -4,7 +4,8 @@
         <div class="animate__animated {{data.invitacionEfecto}}">
 
             <div class="principal "
-                [style]="{'background-image': 'url(/assets/invitaciones/background/'+data.fondoInvitacion+')'}">
+                [style]="{'background-image': 'url('+url+'/upload/fondos/'+getImg(data.fondoInvitacion)+')'}"
+                *ngIf="!data.fondoInvitacionCheck">
                 <div class="presentacion text-center" id="presentacion">
 
                     <div class="row">
@@ -13,12 +14,21 @@
                             <!-- <img class="shadow imagenFiesta" src="/assets/images/example/fiesta.webp"> -->
 
 
-                            <ng-container *ngIf="data.marcoFoto==''">
+                            <ng-container *ngIf="data.marcoFoto=='' && !data.marcoFotoCheck">
                                 <div [style]="{'margin-top':data.marcoFotoTop+'px'}"></div>
                             </ng-container>
-                            <ng-container *ngIf="data.marcoFoto!=''">
+                            <ng-container *ngIf="data.marcoFoto!='' && !data.marcoFotoCheck">
 
-                                <img class="frame" src="/assets/invitaciones/frames/{{data.marcoFoto}}"
+                                <img class="frame" [src]="url+'/upload/fondos/'+getImg(data.marcoFoto)"
+                                    [style]="{'width':data.marcoFotoWidth+'px','margin-top':data.marcoFotoTop+'px'}">
+                            </ng-container>
+
+                            <ng-container *ngIf="data.marcoFoto=='' && data.marcoFotoCheck">
+                                <div [style]="{'margin-top':data.marcoFotoTop+'px'}"></div>
+                            </ng-container>
+                            <ng-container *ngIf="data.marcoFoto!='' && data.marcoFotoCheck">
+
+                                <img class="frame" [src]="url+'/upload/invitaciones/'+data.marcoFotoUp"
                                     [style]="{'width':data.marcoFotoWidth+'px','margin-top':data.marcoFotoTop+'px'}">
                             </ng-container>
 
@@ -88,6 +98,111 @@
 
 
             </div>
+
+
+
+
+            <div class="principal "
+                [style]="{'background-image': 'url('+url+'/upload/invitaciones/'+data.fondoInvitacionUp}"
+                *ngIf="data.fondoInvitacionCheck">
+                <div class="presentacion text-center" id="presentacion">
+
+                    <div class="row">
+                        <div class="col-12 animate__animated {{data.efectoImg1}} {{data.repEfectoImg1}}">
+                            <!--    <img class="frame" src="/assets/invitaciones/frames/frame5.png"> -->
+                            <!-- <img class="shadow imagenFiesta" src="/assets/images/example/fiesta.webp"> -->
+
+
+                            <ng-container *ngIf="data.marcoFoto=='' && !data.marcoFotoCheck">
+                                <div [style]="{'margin-top':data.marcoFotoTop+'px'}"></div>
+                            </ng-container>
+                            <ng-container *ngIf="data.marcoFoto!='' && !data.marcoFotoCheck">
+
+                                <img class="frame" [src]="url+'/upload/fondos/'+getImg(data.marcoFoto)"
+                                    [style]="{'width':data.marcoFotoWidth+'px','margin-top':data.marcoFotoTop+'px'}">
+                            </ng-container>
+                            <ng-container *ngIf="data.marcoFoto=='' && data.marcoFotoCheck">
+                                <div [style]="{'margin-top':data.marcoFotoTop+'px'}"></div>
+                            </ng-container>
+                            <ng-container *ngIf="data.marcoFoto!='' && data.marcoFotoCheck">
+
+                                <img class="frame" [src]="url+'/upload/invitaciones/'+data.marcoFotoUp"
+                                    [style]="{'width':data.marcoFotoWidth+'px','margin-top':data.marcoFotoTop+'px'}">
+                            </ng-container>
+
+                            <img class="shadow imagenFiesta" [src]="url+'/upload/invitaciones/'+data.img1"
+                                [style]="{'width':+data.img1Size+'px','height':+data.img1Height+'px', 'margin-top':+data.img1Top+'px','z-index': data.marcoIndex,'border-radius': data.img1Forma+'% !important', 'transform': 'rotate('+data.img1Rotate+'deg)', 'left':data.img1Traslate+'px'} ">
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="col-12 text-center animate__animated animate__fadeIn">
+                        <h2 class=" textInit {{data.nombreFont}}   animate__animated {{data.nombreEfecto}} {{data.nombreEfectoRep}}"
+                            [style]="{'font-size': data.nombreSize+'px','top':data.topTitle+'px','color':data.cTexto}">
+                            {{data.nombreFiesta}}
+                        </h2>
+                        <h3 class="{{data.tipoFont}} textInit    animate__animated {{data.tipoEfecto}} {{data.tipoEfectoRep}}"
+                            [style]="{'font-size': data.tipoSize+'px','top':data.tipoTop+'px','color':data.cTexto}">
+                            {{data.tipoFiesta}}
+                        </h3>
+                    </div>
+                    <div class="row  ">
+                        <div class="col-10 text-center ma">
+                            <div class="ma divisor" [style]="{'background-color':data.cSecond}"> </div>
+                            <p class="{{data.textoInvFont}}  parrafo mb-2  animate__animated {{data.mensajeEfecto}} {{data.mensajeEfectoRep}}"
+                                [style]="{'font-size': data.textoInvSize+'px','color':data.cTexto,'text-align':data.mensajeAlign}">
+                                {{(data.mensaje1!='')?data.mensaje1:'Mensaje de la invitación'}}
+                            </p>
+                        </div>
+                        <div class="col-12 col-md-6 text-center ma   animate__animated animate__fadeIn">
+                            <div class="ma divisor" [style]="{'background-color':data.cSecond}"> </div>
+
+
+
+                            <h3 class=" animate__animated {{data.cabeceraFont}} {{data.cabeceraEfecto}} {{data.cabeceraEfectoRep}}"
+                                [style]="{'font-size': data.cabeceraSize +'px','color':data.cTexto}">
+                                Mis Padres
+                            </h3>
+                            <table class="table">
+                                <thead class="{{data.textoInvFont}}"
+                                    [style]="{'font-size': data.textoInvSize+'px','color':data.cTexto}">
+                                    <tr>
+                                        <th [style]="{'font-size': data.textoInvSize+'px','color':data.cTexto}">Maria
+                                            Mendoza</th>
+
+                                    </tr>
+                                    <tr>
+
+                                        <th [style]="{'font-size': data.textoInvSize+'px','color':data.cTexto}">&</th>
+                                    </tr>
+                                    <tr>
+
+                                        <th [style]="{'font-size': data.textoInvSize+'px','color':data.cTexto}">Jacob
+                                            pedro
+                                            de la Cruz</th>
+
+                                    </tr>
+                                </thead>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+
+
+
+
         </div>
     </div>
 
@@ -100,6 +215,7 @@
 
             <div class="backPresentacion">
                 <div class="row">
+
                     <div class="col-6 animate__animated animate__bounceInLeft" style=" height: 100vh; background-image: url('/assets/invitaciones/background/rosa2.png');
               background-repeat: no-repeat;
                 background-size: 100% 100vh;
@@ -124,12 +240,7 @@
                 <h2 class="  titleInv">
                     {{data.nombreFiesta}}
                 </h2>
-                <!-- <img class="frame" src="/assets/invitaciones/frames/frame5.png">
-                <img class="pic"
-                    src="https://images.vexels.com/media/users/3/194431/isolated/preview/c4cf153f679fd56bfcb727098db09e0c-mis-quince-anos-letras-estrelladas.png?width=360"
-                    alt="">
-        
-         -->
+
 
 
 
@@ -170,14 +281,34 @@
                 invitacion</a>
         </div>
         <div class="row" style="overflow: hidden; width: 100% !important; max-height: 400px; padding: 20px;">
-            <div class="col-6 animate__animated {{data.efectoImgLeft}} {{data.repImgLeft}}" style=" height: 100vh; background-image: url('/assets/invitaciones/background/{{data.imgIntroLeft}}');
+
+            <div class="col-6 animate__animated {{data.efectoImgLeft}} {{data.repImgLeft}}"
+                *ngIf="!data.imgIntroLeftCheck" style=" height: 100vh; background-image: url('{{url}}/upload/fondos/{{getImg(data.imgIntroLeft)}}');
               background-repeat: no-repeat;
                 background-size: 100% 100%;
                 background-position: center top;
                 background-attachment: fixed;">
 
             </div>
-            <div class="col-6 animate__animated {{data.efectoImgRight}} {{data.repImgRight}}" style=" height: 100vh; background-image: url('/assets/invitaciones/background/{{data.imgIntroRight}}');
+
+            <div class="col-6 animate__animated {{data.efectoImgLeft}} {{data.repImgLeft}}"
+                *ngIf="data.imgIntroLeftCheck" style=" height: 100vh; background-image: url('{{url}}/upload/invitaciones/{{data.imgIntroLeftUp}}');
+              background-repeat: no-repeat;
+                background-size: 100% 100%;
+                background-position: center top;
+                background-attachment: fixed;">
+
+            </div>
+            <div class="col-6 animate__animated {{data.efectoImgRight}} {{data.repImgRight}}"
+                *ngIf="!data.imgIntroRightCheck" style=" height: 100vh; background-image: url('{{url}}/upload/fondos/{{getImg(data.imgIntroRight)}}');
+              background-repeat: no-repeat;
+                background-size: 100% 100%;
+                background-position: center top;
+                background-attachment: fixed;">
+
+            </div>
+            <div class="col-6 animate__animated {{data.efectoImgRight}} {{data.repImgRight}}"
+                *ngIf="data.imgIntroRightCheck" style=" height: 100vh; background-image: url('{{url}}/upload/invitaciones/{{data.imgIntroRightUp}}');
               background-repeat: no-repeat;
                 background-size: 100% 100%;
                 background-position: center top;

@@ -15,6 +15,8 @@ import { SalonsService } from '../../../../services/salon.service';
 import { Salon } from 'src/app/core/models/salon.model';
 import { EjemplosService } from 'src/app/core/services/ejemplo.service';
 import { Ejemplo } from 'src/app/core/models/ejemplo.model';
+import { FondosService } from 'src/app/core/services/fondo.service';
+import { Fondo } from 'src/app/core/models/fondo.model';
 @Component({
   selector: 'app-editar-invitacion',
   templateUrl: './editar-invitacion.component.html',
@@ -28,8 +30,8 @@ export class EditarInvitacionComponent {
   MAPURL = environment.mapsGoogleUrl
   MAPZOOM = environment.mapsGoogleZoom
   fonts = environment.fonts
-  bgs = environment.bgs
-  frames = environment.frames
+  bgs: any = []
+  frames: any = []
   examples: any = []
   fiestas: any = []
   loading = false
@@ -62,7 +64,7 @@ export class EditarInvitacionComponent {
   textUrl: any = environment.text_url
   efectos = environment.efectos
   repEfec = environment.repEfec
-  icons = environment.icons
+  icons = []
   userLocation: any = undefined
   salonLocation: any = undefined
   iglesiaLocation: any = undefined
@@ -84,6 +86,7 @@ export class EditarInvitacionComponent {
   fondos: boolean = false
   salon: Salon
   ejemplos: Ejemplo[]
+  bgsframes: Fondo[]
 
   constructor(
     private fb: FormBuilder,
@@ -95,10 +98,20 @@ export class EditarInvitacionComponent {
     private router: Router,
     private fileService: FileService,
     private mapService: MapsService,
-    private salonsService: SalonsService
+    private salonsService: SalonsService,
+    private fondosService: FondosService
 
   ) {
+    this.fondosService.cargarFondosAll().subscribe(resp => {
+      this.bgsframes = this.functionsService.getActives(resp.fondos)
 
+
+      this.frames = this.bgsframes.filter(bgf => { return bgf.tipo == 'FRAME' })
+
+      this.bgs = this.bgsframes.filter(bgf => { return bgf.tipo == 'BG' })
+      this.icons = this.bgsframes.filter(bgf => { return bgf.tipo == 'ICON' })
+
+    })
 
 
     setTimeout(() => {
@@ -229,6 +242,14 @@ export class EditarInvitacionComponent {
       repImgRight: [''],
       efectoImgRight: [''],
       efectoImgleft: [''],
+      imgIntroLeftCheck: [''],
+      fondoInvitacionCheck: [false],
+      marcoFotoCheck: [''],
+      fondoInvitacionUp: [''],
+      marcoFotoUp: [''],
+      imgIntroLeftUp: [''],
+      imgIntroRightCheck: [''],
+      imgIntroRightUp: [''],
       imgIntroLeft: ['bg7.png'],
       imgIntroRight: ['bg6.png'],
       invitacionEfecto: ['animate__fadeIn'],
@@ -521,6 +542,11 @@ export class EditarInvitacionComponent {
       galeria4: [invitacion.data.galeria4],
       galeria5: [invitacion.data.galeria5],
       galeria6: [invitacion.data.galeria6],
+
+
+
+
+
       hospedajeName: [invitacion.data.hospedajeName],
       hospedajeIcon: [invitacion.data.hospedajeIcon],
       hospedajeAddress: [invitacion.data.hospedajeAddress],
@@ -601,6 +627,18 @@ export class EditarInvitacionComponent {
       repImgLeft: [invitacion.data.repImgLeft ? invitacion.data.repImgLeft : ''],
       efectoImgRight: [invitacion.data.efectoImgRight ? invitacion.data.efectoImgRight : ''],
       efectoImgLeft: [invitacion.data.efectoImgLeft ? invitacion.data.efectoImgLeft : ''],
+
+      fondoInvitacionCheck: [invitacion.data.fondoInvitacionCheck ? invitacion.data.fondoInvitacionCheck : false],
+      marcoFotoCheck: [invitacion.data.marcoFotoCheck ? invitacion.data.marcoFotoCheck : ''],
+      fondoInvitacionUp: [invitacion.data.fondoInvitacionUp ? invitacion.data.fondoInvitacionUp : ''],
+      marcoFotoUp: [invitacion.data.marcoFotoUp ? invitacion.data.marcoFotoUp : ''],
+
+
+      imgIntroLeftCheck: [invitacion.data.imgIntroLeftCheck ? invitacion.data.imgIntroLeftCheck : ''],
+      imgIntroLeftUp: [invitacion.data.imgIntroLeftUp ? invitacion.data.imgIntroLeftUp : ''],
+      imgIntroRightCheck: [invitacion.data.imgIntroRightCheck ? invitacion.data.imgIntroRightCheck : ''],
+      imgIntroRightUp: [invitacion.data.imgIntroRightUp ? invitacion.data.imgIntroRightUp : ''],
+
       imgIntroLeft: [invitacion.data.imgIntroLeft ? invitacion.data.imgIntroLeft : 'bg7.png'],
       imgIntroRight: [invitacion.data.imgIntroRight ? invitacion.data.imgIntroRight : 'bg6.png'],
 
@@ -863,6 +901,22 @@ export class EditarInvitacionComponent {
       efectoImgLeft: [temp.efectoImgLeft],
       repImgLeft: [temp.repImgLeft],
       repImgRight: [temp.repImgRight],
+
+
+      imgIntroLeftCheck: [temp.imgIntroLeftCheck],
+      fondoInvitacionCheck: [temp.fondoInvitacionCheck],
+      fondoInvitacionUp: [temp.fondoInvitacionUp],
+      marcoFotoUp: [temp.marcoFotoUp],
+
+
+      marcoFotoCheck: [temp.marcoFotoCheck],
+      imgIntroLeftUp: [temp.imgIntroLeftUp],
+      imgIntroRightCheck: [temp.imgIntroRightCheck],
+      imgIntroRightUp: [temp.imgIntroRightUp],
+
+
+
+
       imgIntroLeft: [temp.imgIntroLeft],
       imgIntroRight: [temp.imgIntroRight],
 
@@ -978,6 +1032,7 @@ export class EditarInvitacionComponent {
           musica: musica,
           menu: menu,
         }
+
 
       })
     } else {
@@ -1110,20 +1165,32 @@ export class EditarInvitacionComponent {
       if (this.form.value.galeria2 == '' && this.invitacion.data.galeria2 !== '') {
         this.form.value.galeria2 = this.invitacion.data.galeria2
       }
-      if (this.form.value.galeria3 == '' && this.invitacion.data.galeria1 !== '') {
-        this.form.value.galeria3 = this.invitacion.data.galeria1
+      if (this.form.value.galeria3 == '' && this.invitacion.data.galeria3 !== '') {
+        this.form.value.galeria3 = this.invitacion.data.galeria3
       }
-      if (this.form.value.galeria4 == '' && this.invitacion.data.galeria1 !== '') {
-        this.form.value.galeria4 = this.invitacion.data.galeria1
+      if (this.form.value.galeria4 == '' && this.invitacion.data.galeria4 !== '') {
+        this.form.value.galeria4 = this.invitacion.data.galeria4
       }
-      if (this.form.value.galeria5 == '' && this.invitacion.data.galeria1 !== '') {
-        this.form.value.galeria5 = this.invitacion.data.galeria1
+      if (this.form.value.galeria5 == '' && this.invitacion.data.galeria5 !== '') {
+        this.form.value.galeria5 = this.invitacion.data.galeria5
       }
-      if (this.form.value.galeria6 == '' && this.invitacion.data.galeria1 !== '') {
-        this.form.value.galeria6 = this.invitacion.data.galeria1
+      if (this.form.value.galeria6 == '' && this.invitacion.data.galeria6 !== '') {
+        this.form.value.galeria6 = this.invitacion.data.galeria6
       }
       if (this.form.value.byFileInvitacion == '' && this.invitacion.data.byFileInvitacion !== '') {
         this.form.value.byFileInvitacion = this.invitacion.data.byFileInvitacion
+      }
+      if (this.form.value.imgIntroLeftUp == '' && this.invitacion.data.imgIntroLeftUp !== '') {
+        this.form.value.imgIntroLeftUp = this.invitacion.data.imgIntroLeftUp
+      }
+      if (this.form.value.imgIntroRightUp == '' && this.invitacion.data.imgIntroRightUp !== '') {
+        this.form.value.imgIntroRightUp = this.invitacion.data.imgIntroRightUp
+      }
+      if (this.form.value.fondoInvitacionUp == '' && this.invitacion.data.fondoInvitacionUp !== '') {
+        this.form.value.fondoInvitacionUp = this.invitacion.data.fondoInvitacionUp
+      }
+      if (this.form.value.marcoFotoUp == '' && this.invitacion.data.marcoFotoUp !== '') {
+        this.form.value.marcoFotoUp = this.invitacion.data.marcoFotoUp
       }
 
 
@@ -1139,6 +1206,7 @@ export class EditarInvitacionComponent {
 
         this.actualizarInvitacion(this.invitacion).subscribe((res: any) => {
           this.invitacion = res.invitacionActualizado
+
           this.functionsService.alertUpdate('Invitación')
           if (this.rol != this.URS) {
             this.functionsService.navigateTo('core/fiestas/vista-fiestas')
@@ -1170,6 +1238,7 @@ export class EditarInvitacionComponent {
 
         this.crearInvitacion(invitado).subscribe((res: CargarInvitacion) => {
           this.invitacion = res.invitacion
+
           this.functionsService.alertUpdate('Invitación')
           this.functionsService.navigateTo('core/fiestas/vista-fiestas')
         })
@@ -1246,6 +1315,7 @@ export class EditarInvitacionComponent {
 
 
       this.invitacion = resp.invitacion
+
       if (!this.invitacion) {
         setTimeout(() => {
           let data = {
@@ -1397,6 +1467,16 @@ export class EditarInvitacionComponent {
 
             efectoImgRight: '',
             efectoImgLeft: '',
+
+            imgIntroLeftCheck: '',
+            fondoInvitacionCheck: false,
+            marcoFotoCheck: '',
+            imgIntroLeftUp: '',
+            imgIntroRightCheck: '',
+            imgIntroRightUp: '',
+            fondoInvitacionUp: '',
+            marcoFotoUp: '',
+
             imgIntroLeft: 'bg7.png',
             imgIntroRight: 'bg6.png',
 
@@ -1773,6 +1853,7 @@ export class EditarInvitacionComponent {
         const url64 = reader.readAsDataURL(file.target.files[0])
         reader.onloadend = () => {
           this.imgTemp = reader.result
+
         }
         this.subirImagen(type)
       }
@@ -1781,6 +1862,7 @@ export class EditarInvitacionComponent {
     }
   }
   cargarMusica(file: any) {
+
     if (file.target.files) {
       this.soundSubir = file.target.files[0]
       if (!file.target.files[0]) {
@@ -1845,6 +1927,7 @@ export class EditarInvitacionComponent {
       this.fileService.actualizarFotoTemplate(this.imagenSubir, 'invitaciones', this.fiesta.uid, type)
         .then(
           (img) => {
+
             let dt = this.form.value
             this.invitacion = {
               ...this.invitacion,
@@ -1899,23 +1982,17 @@ export class EditarInvitacionComponent {
               case 'codigoVestimentaHombreImg':
                 this.invitacion.data.codigoVestimentaHombreImg = img
                 break;
-              case 'galeria1':
-                this.invitacion.data.galeria1 = img
+              case 'imgIntroLeftUp':
+                this.invitacion.data.imgIntroLeftUp = img
                 break;
-              case 'galeria2':
-                this.invitacion.data.galeria2 = img
+              case 'imgIntroRightUp':
+                this.invitacion.data.imgIntroRightUp = img
                 break;
-              case 'galeria3':
-                this.invitacion.data.galeria3 = img
+              case 'fondoInvitacionUp':
+                this.invitacion.data.fondoInvitacionUp = img
                 break;
-              case 'galeria4':
-                this.invitacion.data.galeria4 = img
-                break;
-              case 'galeria5':
-                this.invitacion.data.galeria5 = img
-                break;
-              case 'galeria6':
-                this.invitacion.data.galeria6 = img
+              case 'marcoFotoUp':
+                this.invitacion.data.marcoFotoUp = img
                 break;
 
             }
@@ -2099,6 +2176,17 @@ export class EditarInvitacionComponent {
       this.invitacion.data.hospedajeUbicacionLng = ''
       this.invitacion.data.hospedajeUbicacionLat = ''
 
+
+      //imagenes intro
+      this.invitacion.data.imgIntroLeftCheck = ''
+      this.invitacion.data.imgIntroLeftUp = ''
+      this.invitacion.data.imgIntroRightCheck = ''
+      this.invitacion.data.imgIntroRightUp = ''
+      //imagen fonfo y marco
+      this.invitacion.data.fondoInvitacionCheck = ''
+      this.invitacion.data.marcoFotoCheck = ''
+      this.invitacion.data.fondoInvitacionUp = ''
+      this.invitacion.data.marcoFotoUp = ''
 
       //Galeria
       this.invitacion.data.galeria1 = ''
@@ -2490,6 +2578,11 @@ export class EditarInvitacionComponent {
         bgCount: ''
       })
     }
+
+  }
+  getImg(img) {
+    let imgR = this.bgsframes.filter(bgf => { return bgf.value == img })
+    return imgR[0].img
 
   }
 }

@@ -4297,12 +4297,34 @@
 
                                             <ng-container *ngIf="imgIntro">
                                                 <div class="row text-center mt-3 animate__animated animate__fadeInDown">
+                                                    <div class="col-12       mt-3 ma  text-center">
+                                                        <label class="form-check-label" for="imgIntroLeftCheck">
+                                                            Subir Imagen Izquierda
+                                                        </label>
+                                                        <input class="form-check-input" type="checkbox"
+                                                            id="imgIntroLeftCheck" #imgIntroLeftCheck
+                                                            formControlName="imgIntroLeftCheck">
+                                                    </div>
+                                                    <div class="col-12 col-md-6 col-md-12    mt-3"
+                                                        *ngIf="imgIntroLeftCheck.checked">
+                                                        <div class="form-group ">
+                                                            <label for="imgIntroLeftUp">Imagen de fondo
+                                                                <img src="/assets/images/tp.png" alt="" class="pointer"
+                                                                    style="width: 150px;"
+                                                                    *ngIf="invitacion==undefined || invitacion.data.imgIntroLeftUp ==''">
+                                                                <img [src]="url+'/upload/invitaciones/'+invitacion.data.imgIntroLeftUp"
+                                                                    alt="" class=" pointer" *ngIf="invitacion"
+                                                                    style="width: 150px;">
+                                                            </label>
+                                                            <input type="file" id="imgIntroLeftUp" #imgIntroLeftUp
+                                                                (change)="cambiarImagen($event,'imgIntroLeftUp' )">
+                                                        </div>
 
 
+                                                    </div>
 
-
-
-                                                    <div class="col-12 col-md-4  mt-3">
+                                                    <div class="col-12 col-md-4  mt-3"
+                                                        *ngIf="!imgIntroLeftCheck.checked">
                                                         <div class="form-group ">
                                                             <label for="imgIntroLeft ">Entrada Izquierda</label>
                                                             <select name="imgIntroLeft" id="imgIntroLeft"
@@ -4312,7 +4334,7 @@
 
                                                                 <ng-container *ngFor="let bg of bgs">
 
-                                                                    <option [value]="bg.value">{{bg.name}}</option>
+                                                                    <option [value]="bg.value">{{bg.nombre}}</option>
                                                                 </ng-container>
 
 
@@ -4352,9 +4374,36 @@
                                                     </div>
 
 
+                                                    <div class="col-12       mt-3 ma  text-center">
+                                                        <label class="form-check-label" for="imgIntroRightCheck">
+                                                            Subir Imagen Derecha
+                                                        </label>
+                                                        <input class="form-check-input" type="checkbox"
+                                                            id="imgIntroRightCheck" #imgIntroRightCheck
+                                                            formControlName="imgIntroRightCheck">
 
 
-                                                    <div class="col-12 col-md-4  mt-3">
+                                                    </div>
+                                                    <div class="col-12 col-md-6 col-md-12    mt-3"
+                                                        *ngIf="imgIntroRightCheck.checked">
+                                                        <div class="form-group ">
+                                                            <label for="imgIntroRightUp">Imagen de fondo
+                                                                <img src="/assets/images/tp.png" alt="" class="pointer"
+                                                                    style="width: 150px;"
+                                                                    *ngIf="invitacion==undefined || invitacion.data.imgIntroRightUp ==''">
+
+                                                                <img [src]="url+'/upload/invitaciones/'+invitacion.data.imgIntroRightUp"
+                                                                    alt="" class=" pointer" *ngIf="invitacion"
+                                                                    style="width: 150px;">
+
+                                                            </label>
+
+                                                            <input type="file" id="imgIntroRightUp" #imgIntroRightUp
+                                                                (change)="cambiarImagen($event,'imgIntroRightUp' )">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-4  mt-3"
+                                                        *ngIf="!imgIntroRightCheck.checked">
                                                         <div class="form-group ">
                                                             <label for="imgIntroRight ">Entrada derecha</label>
                                                             <select name="imgIntroRight" id="imgIntroRight"
@@ -4365,7 +4414,7 @@
 
                                                                 <ng-container *ngFor="let bg of bgs">
 
-                                                                    <option [value]="bg.value">{{bg.name}}</option>
+                                                                    <option [value]="bg.value">{{bg.nombre}}</option>
                                                                 </ng-container>
 
 
@@ -4465,7 +4514,16 @@
                                                             </select>
                                                         </div>
                                                     </div>
-                                                    <div class="col-12   mt-3">
+
+                                                    <div class="col-12       mt-3 ma  text-center">
+                                                        <label class="form-check-label" for="fondoInvitacion">
+                                                            Subir Imagen fondo
+                                                        </label>
+                                                        <input class="form-check-input" type="checkbox"
+                                                            id="fondoInvitacionCheck" #fondoInvitacionCheck
+                                                            formControlName="fondoInvitacionCheck">
+                                                    </div>
+                                                    <div class="col-12   mt-3" *ngIf="!fondoInvitacionCheck.checked">
                                                         <div class="form-group ">
                                                             <label for="fondoInvitacion ">Fondo Invitación</label>
                                                             <select name="fondoInvitacion" id="fondoInvitacion"
@@ -4476,29 +4534,64 @@
 
                                                                 <ng-container *ngFor="let bg of bgs">
 
-                                                                    <option [value]="bg.value">{{bg.name}}</option>
+                                                                    <option [value]="bg.value">{{bg.nombre}}</option>
                                                                 </ng-container>
 
 
                                                             </select>
                                                         </div>
                                                     </div>
-                                                    <div class="col-6  mt-3">
+
+                                                    <div class="col-12 col-md-6 col-md-12    mt-3"
+                                                        *ngIf="fondoInvitacionCheck.checked">
+                                                        <div class="form-group ">
+                                                            <label for="fondoInvitacionUp">Imagen de fondo
+                                                                <img src="/assets/images/tp.png" alt="" class="pointer"
+                                                                    style="width: 150px;"
+                                                                    *ngIf="invitacion==undefined || invitacion.data.fondoInvitacionUp ==''">
+                                                                <img [src]="url+'/upload/invitaciones/'+invitacion.data.fondoInvitacionUp"
+                                                                    alt="" class=" pointer" *ngIf="invitacion"
+                                                                    style="width: 150px;">
+                                                            </label>
+                                                            <input type="file" id="fondoInvitacionUp" #fondoInvitacionUp
+                                                                (change)="cambiarImagen($event,'fondoInvitacionUp' )">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-12       mt-3 ma  text-center">
+                                                        <label class="form-check-label" for="marcoFotoCheck">
+                                                            Subir Imagen marco
+                                                        </label>
+                                                        <input class="form-check-input" type="checkbox"
+                                                            id="marcoFotoCheck" #marcoFotoCheck
+                                                            formControlName="marcoFotoCheck">
+                                                    </div>
+                                                    <div class="col-6  mt-3" *ngIf="!marcoFotoCheck.checked">
                                                         <div class="form-group ">
                                                             <label for="marcoFoto ">Marco de fondo</label>
                                                             <select name="marcoFoto" id="marcoFoto"
                                                                 formControlName="marcoFoto" class="form-control upper "
                                                                 #marcoFoto>
                                                                 <option value="">Seleccione un marco</option>
-
-
                                                                 <ng-container *ngFor="let fr of frames">
-
-                                                                    <option [value]="fr.value">{{fr.name}}</option>
+                                                                    <option [value]="fr.value">{{fr.nombre}}</option>
                                                                 </ng-container>
-
-
                                                             </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6 col-md-12    mt-3"
+                                                        *ngIf="marcoFotoCheck.checked">
+                                                        <div class="form-group ">
+                                                            <label for="marcoFotoUp">Imagen de fondo
+                                                                <img src="/assets/images/tp.png" alt="" class="pointer"
+                                                                    style="width: 150px;"
+                                                                    *ngIf="invitacion==undefined || invitacion.data.marcoFotoUp ==''">
+                                                                <img [src]="url+'/upload/invitaciones/'+invitacion.data.marcoFotoUp"
+                                                                    alt="" class=" pointer" *ngIf="invitacion"
+                                                                    style="width: 150px;">
+                                                            </label>
+                                                            <input type="file" id="marcoFotoUp" #marcoFotoUp
+                                                                (change)="cambiarImagen($event,'marcoFotoUp' )">
                                                         </div>
                                                     </div>
                                                     <div class="col-6  mt-3">
@@ -4997,7 +5090,7 @@
                                                                             *ngFor="let item of icons; let i=index">
 
                                                                             <option [value]="item.value">
-                                                                                {{item.name}}
+                                                                                {{item.nombre}}
                                                                             </option>
                                                                         </ng-container>
 
@@ -5040,8 +5133,8 @@
 
                                                             <div class="col-12 mt-5" *ngIf="icon.value !==''">
                                                                 <img style="max-width:80px"
-                                                                    src="/assets/icons/{{icon.value}}.png"
-                                                                    alt="{{icon.name}}">
+                                                                    [src]="url+'/upload/fondos/'+getImg(icon.value)"
+                                                                    alt="{{icon.nombre}}">
                                                             </div>
 
 
@@ -5189,7 +5282,7 @@
                                                                             *ngFor="let item of icons; let i=index">
 
                                                                             <option [value]="item.value">
-                                                                                {{item.name}}
+                                                                                {{item.nombre}}
                                                                             </option>
                                                                         </ng-container>
 
@@ -5235,8 +5328,8 @@
                                                             <div class="row">
                                                                 <div class="col-12 mt-5" *ngIf="icon.value !==''">
                                                                     <img style="max-width:80px"
-                                                                        src="/assets/icons/{{icon.value}}.png"
-                                                                        alt="{{icon.name}}">
+                                                                        [src]="url+'/upload/fondos/'+getImg(icon.value)"
+                                                                        alt="{{icon.nombre}}">
                                                                 </div>
                                                                 <div class="col-12 col-md-4 ma mt-3">
                                                                     <button
@@ -5334,7 +5427,7 @@
 
 
 
-                                            <hr class="mt-3 mb-3">
+                                            <!--       <hr class="mt-3 mb-3">
 
 
                                             <div class="col-12 mt-3 ma">
@@ -5362,7 +5455,7 @@
                                                             <img [src]="url+'/upload/invitaciones/'+invitacion.data.codigoVestimentaMujerImg"
                                                                 alt="" class=" pointer" *ngIf="invitacion"
                                                                 style="width: 150px;">
-                                                            <!-- invitacion.data.mensajeImg!='' -->
+                                                          
 
                                                         </label>
                                                         <input type="file" id="codigoVestimentaMujerImg"
@@ -5398,7 +5491,7 @@
                                                             <img [src]="url+'/upload/invitaciones/'+invitacion.data.codigoVestimentaHombreImg"
                                                                 alt="" class=" pointer" *ngIf="invitacion"
                                                                 style="width: 150px;">
-                                                            <!-- invitacion.data.mensajeImg!='' -->
+                                                       
 
                                                         </label>
                                                         <input type="file" id="codigoVestimentaHombreImg"
@@ -5417,7 +5510,7 @@
                                                             placeholder="Etiqueta rigurosa" class="form-control">
                                                     </div>
                                                 </div>
-                                            </ng-container>
+                                            </ng-container> -->
 
 
 
@@ -5747,7 +5840,7 @@
                                                                         *ngFor="let item of icons; let i=index">
 
                                                                         <option [value]="item.value">
-                                                                            {{item.name}}
+                                                                            {{item.nombre}}
                                                                         </option>
                                                                     </ng-container>
 
@@ -5797,8 +5890,8 @@
                                                         <div class="row">
                                                             <div class="col-12 mt-5" *ngIf="icon.value !==''">
                                                                 <img style="max-width:80px"
-                                                                    src="/assets/icons/{{icon.value}}.png"
-                                                                    alt="{{icon.name}}">
+                                                                    [src]="url+'/upload/fondos/'+getImg(icon.value)"
+                                                                    alt="{{icon.nombre}}">
                                                             </div>
 
                                                             <div class="col-12 col-md-4 mt-3 ma">

@@ -1,8 +1,160 @@
-<ng-container *ngIf="data.checking =='true' || data.checking ==true">
+<ng-container
+    *ngIf="(data.checking =='true' || data.checking ==true) && (data.fondoInvitacionCheck=='false' || data.fondoInvitacionCheck==false) ">
 
     <div class="w-100 bg-1-img py-4 border-color btp"
         [style]="{'background-color':'white','border-color':data.cSecond,
-'background-image':'url(/assets/invitaciones/background/'+data.fondoInvitacion+')' , 'background-attachment': 'fixed', 'background-size': '100% 100%', 'background-repeat': 'no-repeat', 'background-position': 'center top','border-color':data.cSecond}">
+'background-image':'url('+url+'/upload/fondos/'+getImg(data.fondoInvitacion)+')' , 'background-attachment': 'fixed', 'background-size': '100% 100%', 'background-repeat': 'no-repeat', 'background-position': 'center top','border-color':data.cSecond}">
+        <div class="row centrar">
+            <div class="container  text-center ">
+
+                <h3 class=" mt-5 animate__animated {{data.cabeceraFont}} {{data.cabeceraEfecto}} {{data.cabeceraEfectoRep}}"
+                    [style]="{'font-size': data.cabeceraSize +'px','color':data.cTexto}">
+                    Tu boleto
+                </h3>
+                <div class="row p-0 m-0">
+                    <ng-container *ngIf="data">
+
+                        <ng-container *ngIf="!boleto && data && !loading">
+
+                            <div class="col-12">
+                                <div class="qrcodeImage text-center  mg ma pt-3"
+                                    *ngIf=" (data.checking=='true' || data.checking)">
+                                    <qrcode (qrCodeURL)="onChangeURL($event)"
+                                        [qrdata]="'Bienvenido a  https://www.myticketparty.com/core'"
+                                        [allowEmptyString]="true"
+                                        [ariaLabel]="'QR Code image with the following content...'"
+                                        [cssClass]="'center'" [colorDark]="data.cSecond" [colorLight]="'#ffffffff'"
+                                        [elementType]="'canvas'" [errorCorrectionLevel]="'M'"
+                                        [imageSrc]="'/assets/images/logo.png'" [imageHeight]="75" [imageWidth]="75"
+                                        [margin]="4" [scale]="1"
+                                        [title]="'Bienvenido a  https://www.myticketparty.com/core'" [width]="300">
+                                    </qrcode>
+
+
+                                </div>
+
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <p class="text-center {{data.textoInvFont}}"
+                                    [style]="{'color':data.cTexto+' !important'}"
+                                    *ngIf="(data.generalCheck =='false' || !data.generalCheck)">
+                                    Familia López Benitez
+                                </p>
+
+                                <p class="text-center {{data.textoInvFont}}"
+                                    [style]="{'font-size':data.textoInvSize,'color':data.cTexto}"
+                                    *ngIf="(data.generalCheck =='false' || !data.generalCheck)">
+                                    <b>4 Boletos</b>
+
+                                </p>
+
+                                <p class="text-center {{data.textoInvFont}}"
+                                    [style]="{'color':data.cTexto+' !important'}"
+                                    *ngIf="(data.generalCheck =='false' || !data.generalCheck)">
+                                    Familia López Benitez
+                                </p>
+
+                                <p class="text-center {{data.textoInvFont}}"
+                                    [style]="{'color':data.cTexto+ ' !important'} ">
+                                    <b>
+
+                                        Mesa 1
+                                    </b>
+                                </p>
+
+                                <p class="text-center pointer {{data.textoInvFont}}"
+                                    [style]="{'color':data.cTexto+ ' !important'} " (click)="verCroquis()">
+                                    <i class="bi bi-eye-fill" [style]="{'color': data.cSecond}"></i> Croquis de mesas
+                                </p>
+
+                                <p *ngIf="viewCroquis" id="croquis" class="animate__animated  animate__fadeIn">
+                                    <img src="/assets/images/croquis.jpg" alt=" croquisMesa"
+                                        style="width: 90%; max-width: 600px; margin: auto;">
+                                </p>
+
+                            </div>
+
+
+
+                        </ng-container>
+                        <ng-container *ngIf="boleto && data && !loading">
+
+                            <div class="col-12">
+
+                                <div class="qrcodeImage text-center  mg ma pt-3"
+                                    *ngIf="boleto && (data.checking=='true' || data.checking)">
+                                    <qrcode (qrCodeURL)="onChangeURL($event)" [qrdata]="getQr(boleto)"
+                                        [allowEmptyString]="true"
+                                        [ariaLabel]="'QR Code image with the following content...'"
+                                        [cssClass]="'center'" [colorDark]="data.cSecond" [colorLight]="'#ffffffff'"
+                                        [elementType]="'canvas'" [errorCorrectionLevel]="'M'"
+                                        [imageSrc]="(fiesta.img!=='')?url+'/upload/fiestas/'+fiesta.img:url+'/upload/fiestas/default.jpg'"
+                                        [imageHeight]="75" [imageWidth]="75" [margin]="4" [scale]="1"
+                                        [title]="fiesta.nombre" [width]="300">
+                                    </qrcode>
+
+
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <p class="text-center {{data.textoInvFont}}"
+                                    [style]="{'color':data.cTexto+ ' !important'} " *ngIf="!data.generalCheck">
+                                    {{boleto.nombreGrupo}}
+                                </p>
+                                <p class="text-center {{data.textoInvFont}}"
+                                    [style]="{'color':data.cTexto+ ' !important'} " *ngIf="data.generalCheck">
+                                    {{data.generalTexto}}
+                                </p>
+                                <p class="text-center {{data.textoInvFont}}"
+                                    [style]="{'font-size':data.textoInvSize,'color':data.cTexto}"
+                                    *ngIf="!data.generalCheck">
+
+
+                                    <b *ngIf="boleto.cantidadInvitados==1">
+                                        {{boleto.cantidadInvitados}} Boleto
+
+                                    </b>
+                                    <b *ngIf="boleto.cantidadInvitados>1">
+                                        {{boleto.cantidadInvitados}} Boletos
+
+                                    </b>
+                                </p>
+                                <p class="text-center {{data.textoInvFont}}"
+                                    [style]="{'color':data.cTexto+ ' !important'} " *ngIf="fiesta.mesaOk">
+                                    <b>
+
+                                        Mesa {{boleto.mesa}}
+                                    </b>
+                                </p>
+
+                                <p class="text-center {{data.textoInvFont}} pointer"
+                                    [style]="{'color':data.cTexto+ ' !important'} " *ngIf="fiesta.croquisOk"
+                                    (click)="verCroquis()">
+                                    <i class="bi bi-eye-fill" [style]="{'color': data.cSecond}"></i> Croquis de mesas
+
+                                </p>
+
+                                <p *ngIf="viewCroquis" id="croquis" class="animate__animated  animate__fadeIn">
+                                    <img [src]="url+'/upload/fiestas/'+fiesta.croquis" alt="Croquis de mesas "
+                                        style="width: 90%; max-width: 600px; margin: auto;">
+                                </p>
+
+                            </div>
+                        </ng-container>
+                    </ng-container>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>
+<ng-container
+    *ngIf="(data.checking =='true' || data.checking ==true) && (data.fondoInvitacionCheck=='true' || data.fondoInvitacionCheck==true) ">
+
+    <div class="w-100 bg-1-img py-4 border-color btp"
+        [style]="{'background-color':'white','border-color':data.cSecond,
+'background-image':'url('+url+'/upload/invitaciones/'+ data.fondoInvitacionUp+')' , 'background-attachment': 'fixed', 'background-size': '100% 100%', 'background-repeat': 'no-repeat', 'background-position': 'center top','border-color':data.cSecond}">
         <div class="row centrar">
             <div class="container  text-center ">
 

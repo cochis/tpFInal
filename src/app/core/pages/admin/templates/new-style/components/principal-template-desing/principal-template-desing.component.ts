@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
 })
 export class PrincipalTemplateDesingComponent implements AfterViewInit {
   @Input() data: any
+  @Input() bgsframes: any
   @Input() fiesta: any
   padres = undefined
   url = environment.base_url
@@ -20,6 +21,16 @@ export class PrincipalTemplateDesingComponent implements AfterViewInit {
   ngAfterViewInit() {
     this.padres = (typeof (this.data.padres) == 'string') ? JSON.parse(this.data.padres) : this.data.padres
 
+
+
+
+  }
+  getImg(img) {
+    img = img.toLowerCase().trim()
+
+    let imgR = this.bgsframes.filter(bgf => { return bgf.value.toLowerCase().trim() == img })
+
+    return imgR[0].img
 
   }
 }

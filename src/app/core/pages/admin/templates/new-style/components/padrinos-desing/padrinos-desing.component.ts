@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, Input } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-padrinos-desing',
@@ -8,6 +9,8 @@ import { AfterViewInit, Component, Input } from '@angular/core';
 export class PadrinosDesingComponent implements AfterViewInit {
   @Input() data: any
   padrinos = []
+  @Input() bgsframes: any
+  url = environment.base_url
   ngAfterViewInit() {
 
 
@@ -15,5 +18,9 @@ export class PadrinosDesingComponent implements AfterViewInit {
 
 
   }
+  getImg(img) {
+    let imgR = this.bgsframes.filter(bgf => { return bgf.value == img })
+    return imgR[0].img
 
+  }
 }

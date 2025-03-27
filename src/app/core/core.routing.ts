@@ -131,6 +131,9 @@ import { EditarEmailTemplateComponent } from './pages/admin/email-templates/edit
 import { CrearEmailTemplateComponent } from './pages/admin/email-templates/crear-email-template/crear-email-template.component';
 import { VistaEmailTemplatesComponent } from './pages/admin/email-templates/vista-email-templates/vista-email-templates.component';
 import { NewStyleComponent } from './pages/admin/templates/new-style/new-style.component';
+import { EditarFondoComponent } from './pages/admin/fondos/editar-fondo/editar-fondo.component';
+import { CrearFondoComponent } from './pages/admin/fondos/crear-fondo/crear-fondo.component';
+import { VistaFondosComponent } from './pages/admin/fondos/vista-fondos/vista-fondos.component';
 const routes: Routes = [
   {
     path: 'core',
@@ -397,6 +400,27 @@ const routes: Routes = [
         path: 'eventos/vista-eventos',
         component: VistaEventosComponent,
         data: { titulo: 'Vista eventos' }
+
+      },
+      //Fondos
+      {
+        path: 'fondos/editar-fondo/:edit/:id',
+        component: EditarFondoComponent,
+        data: { titulo: 'Editar fondo' },
+        canActivate: [authGuard]
+
+      },
+      {
+        path: 'fondos/crear-fondo',
+        component: CrearFondoComponent,
+        data: { titulo: 'Crear fondo' },
+        canActivate: [authGuard]
+
+      },
+      {
+        path: 'fondos/vista-fondos',
+        component: VistaFondosComponent,
+        data: { titulo: 'Vista fondos' }
 
       },
       //Redes

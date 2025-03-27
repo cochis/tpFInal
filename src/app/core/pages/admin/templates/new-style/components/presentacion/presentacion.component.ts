@@ -1,20 +1,26 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, Output } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-presentacion',
   templateUrl: './presentacion.component.html',
   styleUrls: ['./presentacion.component.css']
 })
-export class PresentacionComponent {
+export class PresentacionComponent implements AfterViewInit {
   @Input() data: any
+  @Input() bgsframes: any
   @Output() view!: EventEmitter<boolean>;
-
+  url = environment.base_url
 
   constructor() {
     this.view = new EventEmitter()
     setTimeout(() => {
       this.setClass()
     }, 1500);
+  }
+  ngAfterViewInit() {
+
+
   }
 
 
@@ -30,5 +36,10 @@ export class PresentacionComponent {
 
   closePresentacion() {
     this.view.emit(true)
+  }
+  getImg(img) {
+    let imgR = this.bgsframes.filter(bgf => { return bgf.value == img })
+    return imgR[0].img
+
   }
 }

@@ -8,11 +8,11 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-lg-12 col-12 text-center">
-                            <h2 class="mb-5">Crear evento</h2>
+                            <h2 class="mb-5">Crear fondo</h2>
                         </div>
                         <form [formGroup]="form" (ngSubmit)="onSubmit()">
                             <div class="row">
-                                <div class="col-12 col-md-6 mt-3">
+                                <div class="col-12 col-md-4 mt-3">
                                     <div class="form-group">
                                         <label for="nombre">Nombre</label>
                                         <input type="text" class="form-control upper" id="nombre"
@@ -21,17 +21,31 @@
                                     <span *ngIf="submited && errorControl['nombre'].errors " class="error">Es requerido
                                     </span>
                                 </div>
-                                <div class="col-12 col-md-6 mt-3">
+                                <div class="col-12 col-md-4 mt-3">
 
                                     <div class="form-group">
-                                        <label for="clave">Clave</label>
-                                        <input type="text" class="form-control upper" id="clave" formControlName="clave"
-                                            placeholder="Clave">
+                                        <label for="tipo">Tipo</label>
+                                        <select name="" id="tipo" formControlName="tipo" class="form-control upper">
+                                            <option value="">Selecciona un tipo</option>
+                                            <option value="frame">Marco</option>
+                                            <option value="bg">Background</option>
+                                            <option value="icon">Icono</option>
+
+                                        </select>
+
                                     </div>
-                                    <span *ngIf="submited && errorControl['clave'].errors " class="error">Es requerido
+                                    <span *ngIf="submited && errorControl['tipo'].errors " class="error">Es requerido
                                     </span>
                                 </div>
-
+                                <div class="col-12 col-md-4 mt-3">
+                                    <div class="form-group">
+                                        <label for="value">Valor</label>
+                                        <input type="text" class="form-control upper" id="value" formControlName="value"
+                                            required placeholder="Valor">
+                                    </div>
+                                    <span *ngIf="submited && errorControl['value'].errors " class="error">Es requerido
+                                    </span>
+                                </div>
 
 
                             </div>
