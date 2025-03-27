@@ -51,9 +51,11 @@
     <div id="imgPresentacion" class="presentacion dn ">
 
 
-        <h3 class="subTitleInv {{data.nombreFont}}" [style]="{'color':data.cTexto}">{{data.tipoFiesta}} </h3>
+        <h3 class="subTitleInv {{data.nombreFont}}" [style]="{'color':data.cTexto,'font-size':data.nombreSize+'px'}">
+            {{data.tipoFiesta}} </h3>
 
-        <h2 class="  titleInv {{data.nombreFont}}" [style]="{'color':data.cTexto}">
+
+        <h2 class=" mt-5 titleInv {{data.nombreFont}}" [style]="{'color':data.cTexto,'font-size':data.tipoSize+'px'}">
             {{data.nombreFiesta}}
         </h2>
         <!-- <img class="frame" src="/assets/invitaciones/frames/frame5.png">

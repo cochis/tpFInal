@@ -58,34 +58,27 @@
                                 {{(data.mensaje1!='')?data.mensaje1:'Mensaje de la invitación'}}
                             </p>
                         </div>
-                        <div class="col-12 col-md-6 text-center ma   animate__animated animate__fadeIn">
+                        <div class="col-12 col-md-6 text-center ma   animate__animated animate__fadeIn"
+                            *ngIf="padres.length>0">
                             <div class="ma divisor" [style]="{'background-color':data.cSecond}"> </div>
 
 
 
                             <h3 class=" animate__animated {{data.cabeceraFont}} {{data.cabeceraEfecto}} {{data.cabeceraEfectoRep}}"
                                 [style]="{'font-size': data.cabeceraSize +'px','color':data.cTexto}">
-                                Mis Padres
+                                {{data.titlePadres}}
                             </h3>
                             <table class="table">
                                 <thead class="{{data.textoInvFont}}"
-                                    [style]="{'font-size': data.textoInvSize+'px','color':data.cTexto}">
-                                    <tr>
-                                        <th [style]="{'font-size': data.textoInvSize+'px','color':data.cTexto}">Maria
-                                            Mendoza</th>
+                                    [style]="{'font-size': data.textoInvSize+'px','color':data.cTexto}"
+                                    *ngIf="padres.length >0">
+                                    <tr *ngFor="let padre of padres">
+                                        <th [style]="{'font-size': data.textoInvSize+'px','color':data.cTexto}">
+                                            {{padre.name}}
+                                        </th>
 
                                     </tr>
-                                    <tr>
 
-                                        <th [style]="{'font-size': data.textoInvSize+'px','color':data.cTexto}">&</th>
-                                    </tr>
-                                    <tr>
-
-                                        <th [style]="{'font-size': data.textoInvSize+'px','color':data.cTexto}">Jacob
-                                            pedro
-                                            de la Cruz</th>
-
-                                    </tr>
                                 </thead>
 
                             </table>
@@ -156,32 +149,24 @@
                                 {{(data.mensaje1!='')?data.mensaje1:'Mensaje de la invitación'}}
                             </p>
                         </div>
-                        <div class="col-12 col-md-6 text-center ma   animate__animated animate__fadeIn">
+                        <div class="col-12 col-md-6 text-center ma   animate__animated animate__fadeIn"
+                            *ngIf="padres.length>0">
                             <div class="ma divisor" [style]="{'background-color':data.cSecond}"> </div>
 
 
 
                             <h3 class=" animate__animated {{data.cabeceraFont}} {{data.cabeceraEfecto}} {{data.cabeceraEfectoRep}}"
-                                [style]="{'font-size': data.cabeceraSize +'px','color':data.cTexto}">
-                                Mis Padres
+                                [style]="{'font-size': data.cabeceraSize +'px','color':data.cTexto}"
+                                *ngIf="padres.length>0">
+                                {{data.titlePadres}}
                             </h3>
                             <table class="table">
                                 <thead class="{{data.textoInvFont}}"
                                     [style]="{'font-size': data.textoInvSize+'px','color':data.cTexto}">
-                                    <tr>
-                                        <th [style]="{'font-size': data.textoInvSize+'px','color':data.cTexto}">Maria
-                                            Mendoza</th>
-
-                                    </tr>
-                                    <tr>
-
-                                        <th [style]="{'font-size': data.textoInvSize+'px','color':data.cTexto}">&</th>
-                                    </tr>
-                                    <tr>
-
-                                        <th [style]="{'font-size': data.textoInvSize+'px','color':data.cTexto}">Jacob
-                                            pedro
-                                            de la Cruz</th>
+                                    <tr *ngFor="let padre of padres">
+                                        <th [style]="{'font-size': data.textoInvSize+'px','color':data.cTexto}">
+                                            {{padre.name}}
+                                        </th>
 
                                     </tr>
                                 </thead>

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { AfterViewInit, Component, Input } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { FunctionsService } from '../../services/functions.service';
 import { FondosService } from 'src/app/core/services/fondo.service';
@@ -9,7 +9,7 @@ import { Fondo } from 'src/app/core/models/fondo.model';
   templateUrl: './view-fancy.component.html',
   styleUrls: ['./view-fancy.component.css']
 })
-export class ViewFancyComponent {
+export class ViewFancyComponent implements AfterViewInit {
   @Input() data: any;
   today = this.functionsService.getToday()
   dias = 0
@@ -22,10 +22,12 @@ export class ViewFancyComponent {
   bgsframes: Fondo[]
   frames: Fondo[]
   bgs: Fondo[]
+  padres = []
   constructor(private functionsService: FunctionsService,
     private fondosService: FondosService
 
   ) {
+
     this.fondosService.cargarFondosAll().subscribe(resp => {
       this.bgsframes = this.functionsService.getActives(resp.fondos)
 
@@ -40,6 +42,11 @@ export class ViewFancyComponent {
       this.data
 
     }, 500);
+  }
+  ngAfterViewInit() {
+
+    this.padres = this.data.padres
+
   }
 
   getImg(img) {
