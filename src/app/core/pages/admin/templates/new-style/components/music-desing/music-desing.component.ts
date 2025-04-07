@@ -28,7 +28,7 @@ export class MusicDesingComponent implements AfterViewInit {
     if (this.play) {
       this.icon = 'bi bi-volume-mute-fill'
     } else {
-      this.icon = 'bi bi-play'
+      this.icon = 'bi bi-play-fill'
     }
 
   }

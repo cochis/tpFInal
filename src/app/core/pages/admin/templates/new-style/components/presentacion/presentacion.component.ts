@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, EventEmitter, Input, Output } from '@angular/core';
+import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -12,14 +13,16 @@ export class PresentacionComponent implements AfterViewInit {
   @Output() view!: EventEmitter<boolean>;
   url = environment.base_url
 
-  constructor() {
+  constructor(private functionsService: FunctionsService) {
     this.view = new EventEmitter()
     setTimeout(() => {
       this.setClass()
     }, 1500);
   }
   ngAfterViewInit() {
-
+    setTimeout(() => {
+      this.functionsService.scroolTo('end')
+    }, 1800)
 
   }
 

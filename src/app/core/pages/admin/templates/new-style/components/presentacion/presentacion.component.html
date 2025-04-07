@@ -51,11 +51,13 @@
     <div id="imgPresentacion" class="presentacion dn ">
 
 
-        <h3 class="subTitleInv {{data.nombreFont}}" [style]="{'color':data.cTexto,'font-size':data.nombreSize+'px'}">
+        <h3 class="subTitleInv {{data.nombreFont}}"
+            [style]="{'color':data.cTexto,'font-size':data.nombreSize+'px','text-shadow':data.nShTit+'px '+data.nShTit+'px ' +data.nShTit +'px' + data.cShTit}">
             {{data.tipoFiesta}} </h3>
 
 
-        <h2 class=" mt-5 titleInv {{data.nombreFont}}" [style]="{'color':data.cTexto,'font-size':data.tipoSize+'px'}">
+        <h2 class=" mt-5 titleInv {{data.nombreFont}}"
+            [style]="{'color':data.cTexto,'font-size':data.tipoSize+'px','text-shadow':data.nShSubTit+'px '+data.nShSubTit+'px ' +data.nShSubTit +'px' + data.cShSubTit}">
             {{data.nombreFiesta}}
         </h2>
         <!-- <img class="frame" src="/assets/invitaciones/frames/frame5.png">
@@ -67,7 +69,9 @@
 
 
 
-        <a class="botonVer nlink inviVer {{data.textoInvFont}} pointer" [style]="{'color':data.cSecond}"
+        <a class="botonVer nlink inviVer {{data.textoInvFont}} pointer"
+            [style]="{'color':data.cSecond,'text-shadow':data.nShTit+'px '+data.nShTit+'px ' +data.nShTit +'px' + data.cShTit}"
             (click)="closePresentacion()">Ve tu invitación</a>
     </div>
 </div>
+<div id="end"></div>

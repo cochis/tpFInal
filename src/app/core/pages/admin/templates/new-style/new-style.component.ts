@@ -652,22 +652,21 @@ export class NewStyleComponent implements OnInit {
   onScroll(event: any) {
     const element = event.target;
 
-    this.items.forEach(item => {
+    this.items.forEach((item, i) => {
       const element = document.getElementById(`${item}`);
       let visibleItem = '';
 
       if (element) {
         const rect = element.getBoundingClientRect();
-
-
-        if ((rect.top + 350) <= window.innerHeight) {
+        if (((rect.top) <= window.innerHeight) || i == this.items.length) {
 
           visibleItem = `Item ${item}`;
 
           element.classList.remove('noVisible');
           element.classList.add('animate__fadeIn');
           ;
-        } else {
+        }
+        else {
           element.classList.add('noVisible');
           element.classList.remove('animate__fadeIn');
 
@@ -797,4 +796,18 @@ export class NewStyleComponent implements OnInit {
   onChangeURL(url: SafeUrl) {
     this.qrCodeDownloadLink = url;
   }
+  copiarInvitacion(data) {
+    if (this.functionsService.getLocal('tipoInvitacion') && this.functionsService.getLocal('tipoInvitacion') == 'default') {
+      this.functionsService.setLocal('invitacion', data)
+      let back = this.functionsService.getLocal('viewTemplate')
+      this.functionsService.navigateTo('/core/invitaciones/editar-invitacion/true/' + back)
+      this.functionsService.removeItemLocal('viewTemplate')
+    } else {
+      this.functionsService.alert('Alerta', 'El tipo de invitacion no es la dinámica', 'warning')
+      let back = this.functionsService.getLocal('viewTemplate')
+      this.functionsService.navigateTo('/core/invitaciones/editar-invitacion/true/' + back)
+      this.functionsService.removeItemLocal('viewTemplate')
+    }
+  }
 }
+

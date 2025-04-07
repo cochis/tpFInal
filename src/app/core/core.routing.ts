@@ -134,6 +134,7 @@ import { NewStyleComponent } from './pages/admin/templates/new-style/new-style.c
 import { EditarFondoComponent } from './pages/admin/fondos/editar-fondo/editar-fondo.component';
 import { CrearFondoComponent } from './pages/admin/fondos/crear-fondo/crear-fondo.component';
 import { VistaFondosComponent } from './pages/admin/fondos/vista-fondos/vista-fondos.component';
+import { ParralaxComponent } from './pages/admin/templates/parralax/parralax.component';
 const routes: Routes = [
   {
     path: 'core',
@@ -938,7 +939,26 @@ const routes: Routes = [
         data: { titulo: 'Template Fancy' }
 
       },
-
+      //BYFancy
+      /*  {
+         path: 'templates/parralax',
+         component: ParralaxComponent,
+         data: { titulo: 'Template parralax' }
+ 
+       },
+       {
+         path: 'templates/parralax/:fiesta/:boleto',
+         component: ParralaxComponent,
+         data: { titulo: 'Template parralax' }
+ 
+       },
+       {
+         path: 'templates/parralax/:fiesta/:boleto/:copy',
+         component: ParralaxComponent,
+         data: { titulo: 'Template parralax' }
+ 
+       },
+  */
 
 
 

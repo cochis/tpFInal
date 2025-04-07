@@ -80,6 +80,23 @@ export class ByFileComponent {
   musicaInvitacion = ''
   musicRepit = ''
   mesaOk = true
+  items = [
+    'invitacion',
+    'padres',
+    'padrinos',
+    'chambelanes',
+    'donde',
+    'hospedaje',
+    'menu',
+    'musica',
+    'codigo',
+    'mesa',
+    'itinerarios',
+    'boleto',
+    'notas',
+  ]
+  icon = 'bi bi-volume-mute-fill'
+  playMusic = true
   constructor(
     private functionsService: FunctionsService,
     private fiestasService: FiestasService,
@@ -347,6 +364,32 @@ export class ByFileComponent {
   }
   ngOnInit() {
 
+  }
+
+  onScroll(event: any) {
+    const element = event.target;
+
+    this.items.forEach((item, i) => {
+      const element = document.getElementById(`${item}`);
+      let visibleItem = '';
+
+      if (element) {
+        const rect = element.getBoundingClientRect();
+        if (((rect.top) <= window.innerHeight) || i == this.items.length) {
+
+          visibleItem = `Item ${item}`;
+
+          element.classList.remove('noVisible');
+          element.classList.add('animate__fadeIn');
+          ;
+        }
+        else {
+          element.classList.add('noVisible');
+          element.classList.remove('animate__fadeIn');
+
+        }
+      }
+    });
   }
 
   async dateToNumber(data) {
@@ -649,23 +692,13 @@ export class ByFileComponent {
   }
   playStop() {
     var v = document.getElementsByTagName("audio")[0];
-    var sound = false;
-    var boton = document.getElementById("boton");
-    boton.addEventListener("click", function () {
-      if (v.paused) {
-        v.play();
-        v.play();
-        v.play();
-        v.play();
-        this.innerHTML = ' <span  ><i class="bi bi-stop"></i></span>';
-      } else {
-        v.pause();
-        v.pause();
-        v.pause();
-        v.pause();
-        v.pause();
-        this.innerHTML = ' <span  ><i class="bi bi-play"></i></span>';
-      }
-    });
+    this.playMusic = !this.playMusic;
+
+    if (this.playMusic) {
+      this.icon = 'bi bi-volume-mute-fill'
+    } else {
+      this.icon = 'bi bi-play-fill'
+    }
+
   }
 }

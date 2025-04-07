@@ -93,7 +93,6 @@ export class DefaultComponent implements OnInit, AfterViewInit {
   dataDondeCard: any
 
   items = [
-    'principal',
     'invitacion',
     'mensaje',
     'padres',
@@ -643,23 +642,21 @@ export class DefaultComponent implements OnInit, AfterViewInit {
   onScroll(event: any) {
     const element = event.target;
 
-
-    this.items.forEach(item => {
+    this.items.forEach((item, i) => {
       const element = document.getElementById(`${item}`);
       let visibleItem = '';
 
       if (element) {
         const rect = element.getBoundingClientRect();
-
-
-        if ((rect.top + 350) <= window.innerHeight) {
+        if (((rect.top) <= window.innerHeight) || i == this.items.length) {
 
           visibleItem = `Item ${item}`;
 
           element.classList.remove('noVisible');
           element.classList.add('animate__fadeIn');
           ;
-        } else {
+        }
+        else {
           element.classList.add('noVisible');
           element.classList.remove('animate__fadeIn');
 
@@ -924,7 +921,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
     if (this.playMusic) {
       this.icon = 'bi bi-volume-mute-fill'
     } else {
-      this.icon = 'bi bi-play'
+      this.icon = 'bi bi-play-fill'
     }
 
   }

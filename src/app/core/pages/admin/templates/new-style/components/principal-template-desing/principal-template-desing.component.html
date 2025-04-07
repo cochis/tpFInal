@@ -10,7 +10,7 @@
         <div class="presentacion text-center" id="presentacion">
 
             <div class="row">
-                <div class="col-12 animate__animated {{data.efectoImg1}} {{data.repEfectoImg1}}">
+                <div class="col-12 animate__animated {{data.efectoImg1}} {{data.repEfectoImg1}}" style="z-index: 2;">
                     <!--    <img class="frame" src="/assets/invitaciones/frames/frame5.png"> -->
                     <!-- <img class="shadow imagenFiesta" src="/assets/images/example/fiesta.webp"> -->
 
@@ -42,11 +42,11 @@
 
             <div class="col-12 text-center animate__animated animate__fadeIn">
                 <h2 class=" textInit {{data.nombreFont}}   animate__animated {{data.nombreEfecto}} {{data.nombreEfectoRep}}"
-                    [style]="{'font-size': data.nombreSize+'px','top':data.topTitle+'px','color':data.cTexto}">
+                    [style]="{'font-size': data.nombreSize+'px','top':data.topTitle+'px','color':data.cTexto,'text-shadow':data.nShTit+'px '+data.nShTit+'px ' +data.nShTit +'px' + data.cShTit }">
                     {{data.nombreFiesta}}
                 </h2>
                 <h3 class="{{data.tipoFont}} textInit    animate__animated {{data.tipoEfecto}} {{data.tipoEfectoRep}}"
-                    [style]="{'font-size': data.tipoSize+'px','top':data.tipoTop+'px','color':data.cTexto}">
+                    [style]="{'font-size': data.tipoSize+'px','top':data.tipoTop+'px','color':data.cTexto,'text-shadow':data.nShSubTit+'px '+data.nShSubTit+'px ' +data.nShSubTit +'px' + data.cShSubTit}">
                     {{data.tipoFiesta}}
                 </h3>
             </div>
@@ -54,7 +54,7 @@
                 <div class="col-10 text-center ma">
                     <div class="ma divisor" [style]="{'background-color':data.cSecond}"> </div>
                     <p class="{{data.textoInvFont}}  parrafo mb-2  animate__animated {{data.mensajeEfecto}} {{data.mensajeEfectoRep}}"
-                        [style]="{'font-size': data.textoInvSize+'px','color':data.cTexto,'text-align':data.mensajeAlign}">
+                        [style]="{'font-size': data.textoInvSize+'px','color':data.cTexto,'text-align':data.mensajeAlign,'text-shadow':data.nShTexto+'px '+data.nShTexto+'px ' +data.nShTexto +'px' + data.cShTexto}">
                         {{(data.mensaje1!='')?data.mensaje1:'Mensaje de la invitación'}}
                     </p>
                 </div>
@@ -67,14 +67,15 @@
 
 
                         <h3 class=" animate__animated {{data.cabeceraFont}} {{data.cabeceraEfecto}} {{data.cabeceraEfectoRep}}"
-                            [style]="{'font-size': data.cabeceraSize +'px','color':data.cTexto}">
+                            [style]="{'font-size': data.cabeceraSize +'px','color':data.cTexto,'text-shadow':data.nShSubTit+'px '+data.nShSubTit+'px ' +data.nShSubTit +'px' + data.cShCab}">
                             {{data.titlePadres}}
                         </h3>
                         <table class="table">
                             <thead class="{{data.textoInvFont}}"
                                 [style]="{'font-size': data.textoInvSize+'px','color':data.cTexto}">
                                 <tr *ngFor="let padre of padres">
-                                    <th [style]="{'font-size': data.textoInvSize+'px','color':data.cTexto}">
+                                    <th
+                                        [style]="{'font-size': data.textoInvSize+'px','color':data.cTexto,'text-shadow':data.nShTexto+'px '+data.nShTexto+'px ' +data.nShTexto +'px' + data.cShTexto}">
                                         {{padre.name}}
                                     </th>
 
@@ -101,7 +102,7 @@
         <div class="presentacion text-center" id="presentacion">
 
             <div class="row">
-                <div class="col-12 animate__animated {{data.efectoImg1}} {{data.repEfectoImg1}}">
+                <div class="col-12 animate__animated {{data.efectoImg1}} {{data.repEfectoImg1}}" style="z-index: 2;">
                     <!--    <img class="frame" src="/assets/invitaciones/frames/frame5.png"> -->
                     <!-- <img class="shadow imagenFiesta" src="/assets/images/example/fiesta.webp"> -->
 
@@ -133,11 +134,11 @@
 
             <div class="col-12 text-center animate__animated animate__fadeIn">
                 <h2 class=" textInit {{data.nombreFont}}   animate__animated {{data.nombreEfecto}} {{data.nombreEfectoRep}}"
-                    [style]="{'font-size': data.nombreSize+'px','top':data.topTitle+'px','color':data.cTexto}">
+                    [style]="{'font-size': data.nombreSize+'px','top':data.topTitle+'px','color':data.cTexto,'text-shadow':data.nShTit+'px '+data.nShTit+'px ' +data.nShTit +'px' + data.cShTit }">
                     {{data.nombreFiesta}}
                 </h2>
                 <h3 class="{{data.tipoFont}} textInit    animate__animated {{data.tipoEfecto}} {{data.tipoEfectoRep}}"
-                    [style]="{'font-size': data.tipoSize+'px','top':data.tipoTop+'px','color':data.cTexto}">
+                    [style]="{'font-size': data.tipoSize+'px','top':data.tipoTop+'px','color':data.cTexto,'text-shadow':data.nShSubTit+'px '+data.nShSubTit+'px ' +data.nShSubTit +'px' + data.cShSubTit}">
                     {{data.tipoFiesta}}
                 </h3>
             </div>
@@ -145,7 +146,7 @@
                 <div class="col-10 text-center ma">
                     <div class="ma divisor" [style]="{'background-color':data.cSecond}"> </div>
                     <p class="{{data.textoInvFont}}  parrafo mb-2  animate__animated {{data.mensajeEfecto}} {{data.mensajeEfectoRep}}"
-                        [style]="{'font-size': data.textoInvSize+'px','color':data.cTexto,'text-align':data.mensajeAlign}">
+                        [style]="{'font-size': data.textoInvSize+'px','color':data.cTexto,'text-align':data.mensajeAlign,'text-shadow':data.nShTexto+'px '+data.nShTexto+'px ' +data.nShTexto +'px' + data.cShTexto}">
                         {{(data.mensaje1!='')?data.mensaje1:'Mensaje de la invitación'}}
                     </p>
                 </div>
@@ -158,14 +159,15 @@
 
 
                         <h3 class=" animate__animated {{data.cabeceraFont}} {{data.cabeceraEfecto}} {{data.cabeceraEfectoRep}}"
-                            [style]="{'font-size': data.cabeceraSize +'px','color':data.cTexto}">
+                            [style]="{'font-size': data.cabeceraSize +'px','color':data.cTexto,'text-shadow':data.nShSubTit+'px '+data.nShSubTit+'px ' +data.nShSubTit +'px' + data.cShCab}">
                             {{data.titlePadres}}
                         </h3>
                         <table class="table">
                             <thead class="{{data.textoInvFont}}"
                                 [style]="{'font-size': data.textoInvSize+'px','color':data.cTexto}">
                                 <tr *ngFor="let padre of padres">
-                                    <th [style]="{'font-size': data.textoInvSize+'px','color':data.cTexto}">
+                                    <th
+                                        [style]="{'font-size': data.textoInvSize+'px','color':data.cTexto,'text-shadow':data.nShTexto+'px '+data.nShTexto+'px ' +data.nShTexto +'px' + data.cShTexto}">
                                         {{padre.name}}
                                     </th>
 
