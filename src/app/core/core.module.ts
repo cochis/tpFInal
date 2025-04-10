@@ -175,6 +175,8 @@ import { VistaFondosComponent } from './pages/admin/fondos/vista-fondos/vista-fo
 import { CrearFondoComponent } from './pages/admin/fondos/crear-fondo/crear-fondo.component';
 import { EditarFondoComponent } from './pages/admin/fondos/editar-fondo/editar-fondo.component';
 import { ParralaxComponent } from './pages/admin/templates/parralax/parralax.component';
+import { NotasDesingComponent } from './pages/admin/templates/new-style/components/notas-desing/notas-desing.component';
+import { CodigoDesingComponent } from './pages/admin/templates/new-style/components/codigo-desing/codigo-desing.component';
 
 
 
@@ -352,6 +354,8 @@ import { ParralaxComponent } from './pages/admin/templates/parralax/parralax.com
     CrearFondoComponent,
     EditarFondoComponent,
     ParralaxComponent,
+    NotasDesingComponent,
+    CodigoDesingComponent,
 
 
   ],

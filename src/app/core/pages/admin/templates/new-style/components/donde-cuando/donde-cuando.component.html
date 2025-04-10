@@ -1,5 +1,5 @@
 <div class="btp" [style]="{'border-color':data.cSecond,'width':'100%','text-align':'center','margin':'auto'}">
-    <!--  <ng-container *ngIf="data">
+    <ng-container *ngIf="data">
 
         <div class="col-12 mt-5 text-center ">
             <h3 class=" animate__animated {{data.cabeceraFont}} {{data.cabeceraEfecto}} {{data.cabeceraEfectoRep}}"
@@ -33,7 +33,8 @@
                     </div>
                 </div>
             </ng-container>
-            <div class="transform transformFix" *ngIf=" (lugar.dondeCheck =='true' || lugar.dondeCheck ==true)"
+            <div class="transform transformFix"
+                *ngIf=" (lugar.dondeCheck =='true' || lugar.dondeCheck ==true)   && (lugar.dondeCheck =='false' || lugar.dondeCheck ==false) "
                 [style]="{'background-image':'url(/assets/invitaciones/background/'+data.fondoInvitacion+')'}">
                 <div class="transform__content noOpc" [style]="{'color':data.cTexto}">
                     <h1 class="{{data.cabeceraFont}} mt-1 upper">{{lugar.dondeTitle}}</h1>
@@ -59,10 +60,37 @@
                     </div>
                 </div>
             </div>
+            <div class="transform transformFix"
+                *ngIf=" (lugar.dondeCheck =='true' || lugar.dondeCheck ==true)  && (lugar.dondeCheck =='true' || lugar.dondeCheck ==true)"
+                [style]="{'background-image':'url('+url+'/upload/invitaciones/'+ data.fondoInvitacionUp+')'}">
+                <div class="transform__content noOpc" [style]="{'color':data.cTexto}">
+                    <h1 class="{{data.cabeceraFont}} mt-1 upper">{{lugar.dondeTitle}}</h1>
+                    <div class="divisor" [style]="{'background-color':data.cSecond}"></div>
+                    <div>
+                        <h5
+                            class="{{data.cabeceraFont}} mt-2 text-center _animate__fadeInDown animate__slow animate__animated animate__fadeInDown ">
+                            {{lugar.dondeText}}</h5>
+                        <h5
+                            class=" {{data.textoInvFont}}  text-center _animate__fadeInDown animate__slow my-3 animate__animated animate__fadeInDown ">
+                            {{lugar.dondeAddress}}</h5>
+                        <h4
+                            class="{{data.cabeceraFont}}  {{data.textoInvFont}}  mt-2 text-center _animate__fadeInDown animate__slow animate__animated animate__fadeInDown ">
+                            {{lugar.dondeDate | date : 'shortDate'}} {{lugar.dondeDate |
+                            date : 'shortTime'}}</h4>
+                        <br>
+                        <div class="clear"></div>
+                        <a class="btn btn-outline-dark  {{data.textoInvFont}}  d-flex m-auto _animate__fadeInDown animate__slow animate__animated animate__fadeInDown "
+                            data-toggle="modal" data-target="#evento" [style]="{'border-radius': '8px', 'visibility': 'visible', 'border-color':data.cSecond,
+                            'text-align':'center','margin':'auto', 'color': data.cTexto}"
+                            href="{{lugar.dondeAddressUbicacion}}" target="_blank">Ver
+                            mapa</a>
+                    </div>
+                </div>
+            </div>
 
 
         </div>
-    </ng-container> -->
+    </ng-container>
     <ng-container *ngIf=" data && lugares ">
 
 

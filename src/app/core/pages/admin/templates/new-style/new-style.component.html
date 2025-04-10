@@ -46,42 +46,59 @@
 
                 <app-music-desing [data]="invitacion"></app-music-desing>
             </div>
+            <div class="clear"></div>
             <app-principal-template-desing [data]="invitacion" [fiesta]="fiesta"
                 [bgsframes]="bgsframes"></app-principal-template-desing>
 
-            <div id="timer" class="ma noVisible animate__animated">
+            <div id="timer" class="ma noVisible animate__animated animate__fadeIn">
                 <app-timer [data]="invitacion" [date]="date"></app-timer>
             </div>
-            <div id="dondeCuando" class="ma noVisible animate__animated">
+            <div class="clear"></div>
+            <div id="dondeCuando" class="ma noVisible animate__animated animate__fadeIn">
                 <app-donde-cuando [data]="invitacion" [bgsframes]="bgsframes"></app-donde-cuando>
             </div>
-
-            <div id="galery" class="ma  noVisible animate__animated">
+            <div class="clear"></div>
+            <div id="galery" class="ma  noVisible animate__animated animate__fadeIn">
                 <app-galeria-desing [data]="invitacion"></app-galeria-desing>
             </div>
-            <div id="padrinos" class="ma noVisible animate__animated">
+            <div class="clear"></div>
+            <div id="padrinos" class="ma noVisible animate__animated animate__fadeIn">
                 <app-padrinos-desing [data]="invitacion" [bgsframes]="bgsframes"> </app-padrinos-desing>
             </div>
-            <div id="chambelanes" class="ma noVisible animate__animated">
+            <div class="clear"></div>
+            <div id="chambelanes" class="ma noVisible animate__animated animate__fadeIn">
                 <app-chambelanes-desing [data]="invitacion"></app-chambelanes-desing>
             </div>
+            <div class="clear"></div>
             <!--      <div id="vestimenta" class="ma  ">
             <app-vestimenta-desing [data]="invitacion"></app-vestimenta-desing>
         </div> -->
-            <div id="programa" class="ma  noVisible animate__animated">
+            <div id="programa" class="ma  noVisible animate__animated animate__fadeIn">
                 <app-programa-desing [data]="invitacion" [bgsframes]="bgsframes"></app-programa-desing>
             </div>
-            <div id="menu" class="ma noVisible animate__animated">
+            <div class="clear"></div>
+            <div id="menu" class="ma noVisible animate__animated animate__fadeIn">
                 <app-menu-desing [data]="invitacion" [bgsframes]="bgsframes"></app-menu-desing>
             </div>
-            <div id="mesa-regalos" class="ma noVisible animate__animated">
+            <div class="clear"></div>
+            <div id="mesa-regalos" class="ma noVisible animate__animated animate__fadeIn">
                 <app-mesa-regalos-desing [data]="invitacion" [bgsframes]="bgsframes"></app-mesa-regalos-desing>
             </div>
-            <div id="hospedaje" class="ma noVisible animate__animated">
+            <div class="clear"></div>
+            <div id="hospedaje" class="ma noVisible animate__animated animate__fadeIn">
                 <app-hospedaje-desing [data]="invitacion"></app-hospedaje-desing>
             </div>
+            <div class="clear"></div>
+            <div id="notas" class="ma noVisible animate__animated animate__fadeIn">
+                <app-notas-desing [bgsframes]="bgsframes" [data]="invitacion"></app-notas-desing>
+            </div>
 
-            <div id="qr" class="ma noVisible animate__animated">
+            <div class="clear"></div>
+            <div id="codigo" class="ma   noVisible animate__animated animate__fadeIn">
+                <app-codigo-desing [data]="invitacion"></app-codigo-desing>
+            </div>
+            <div class="clear"></div>
+            <div id="qr" class="ma noVisible animate__animated animate__fadeIn">
                 <ng-container *ngIf="boleto">
                     <app-qr-desing [bgsframes]="bgsframes" [data]="invitacion" [boleto]="boleto"
                         [fiesta]="fiesta"></app-qr-desing>
@@ -94,11 +111,11 @@
 
 
             </div>
-            <div id="confirmacion" class="ma   noVisible animate__animated">
+            <div id="confirmacion" class="ma   noVisible animate__animated animate__fadeIn">
                 <app-confirmacion-desing [data]="invitacion" [boleto]="boleto"
                     [fiesta]="fiesta"></app-confirmacion-desing>
             </div>
-            <div id="galeriaFiesta" class="ma  noVisible animate__animated">
+            <div id="galeriaFiesta" class="ma  noVisible animate__animated animate__fadeIn">
                 <app-compartir-galeria [data]="invitacion" [boleto]="boleto" [fiesta]="fiesta"
                     [bgsframes]="bgsframes"></app-compartir-galeria>
             </div>

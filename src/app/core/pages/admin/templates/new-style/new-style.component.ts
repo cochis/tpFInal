@@ -112,7 +112,9 @@ export class NewStyleComponent implements OnInit {
     'hospedaje',
     'qr',
     'confirmacion',
-    'galeriaFiesta'
+    'galeriaFiesta',
+    'notas',
+    'codigoVestimenta'
   ]
   bgsframes: Fondo[]
   constructor(
