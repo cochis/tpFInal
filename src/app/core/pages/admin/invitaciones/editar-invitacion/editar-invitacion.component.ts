@@ -351,7 +351,9 @@ export class EditarInvitacionComponent {
       generalSize: [15],
       generalTexto: [''],
       mesaRegalosLugar: [''],
+      mesaRegalosLugar2: [''],
       mesaRegalosUrl: [''],
+      mesaRegalosUrl2: [''],
       mesaRegalosImg: [''],
       itinerarioCheck: [true],
       itinerarioBG: ['#fff'],
@@ -363,6 +365,7 @@ export class EditarInvitacionComponent {
       notaBG: ['#fff'],
       notaTitle: ['Notas'],
       titlePadres: ['Mis Padres'],
+      titlePadrinos: ['Mis Padrinos'],
       notas: this.fb.array([]),
       chambelanesCheck: [true],
       chambelanesImgCheck: [true],
@@ -373,6 +376,14 @@ export class EditarInvitacionComponent {
       padrinos: this.fb.array([]),
       menuCheck: [true],
       menu: this.fb.array([]),
+      sobresCheck: [true],
+      sobresTitle: ['Sumar Kilómetros a mi Viaje'],
+      sobresCuenta: ['000 000 000'],
+      sobresBanco: ['Bancomer'],
+      sobresClabe: ['000 000 000'],
+      sobresFestejadaTitle: ['Mariana'],
+      sobresFestejadaNombre: ['Mariana Lopez'],
+      sobresFestejadaMensaje: ['O con la tradicional lluvia de sobres. Es la tradición de regalar dinero en efectivo a la Quinceañera en un sobre el día del evento.'],
       musicaCheck: [true],
       musica: this.fb.array([]),
       codigoVestimentaCheck: [true],
@@ -569,7 +580,9 @@ export class EditarInvitacionComponent {
       generalSize: [invitacion.data.generalSize],
       generalTexto: [invitacion.data.generalTexto],
       mesaRegalosLugar: [invitacion.data.mesaRegalosLugar],
+      mesaRegalosLugar2: [invitacion.data.mesaRegalosLugar2],
       mesaRegalosUrl: [invitacion.data.mesaRegalosUrl],
+      mesaRegalosUrl2: [invitacion.data.mesaRegalosUrl2],
       mesaRegalosImg: [invitacion.data.mesaRegalosImg],
       itinerarioCheck: [invitacion.data.itinerarioCheck],
       itinerarioBG: [invitacion.data.itinerarioBG],
@@ -581,6 +594,7 @@ export class EditarInvitacionComponent {
       notaBG: [invitacion.data.notaBG],
       notaTitle: [invitacion.data.notaTitle],
       titlePadres: [invitacion.data.titlePadres],
+      titlePadrinos: [invitacion.data.titlePadrinos],
       invitacionTemplate: [invitacion.data.invitacionTemplate],
       notas: this.fb.array([]),
 
@@ -596,6 +610,14 @@ export class EditarInvitacionComponent {
       padrinosCheck: [invitacion.data.padrinosCheck],
       menuCheck: [invitacion.data.menuCheck],
       musicaCheck: [invitacion.data.musicaCheck],
+      sobresCheck: [invitacion.data.sobresCheck],
+      sobresTitle: [invitacion.data.sobresTitle],
+      sobresCuenta: [invitacion.data.sobresCuenta],
+      sobresBanco: [invitacion.data.sobresBanco],
+      sobresClabe: [invitacion.data.sobresClabe],
+      sobresFestejadaTitle: [invitacion.data.sobresFestejadaTitle],
+      sobresFestejadaNombre: [invitacion.data.sobresFestejadaNombre],
+      sobresFestejadaMensaje: [invitacion.data.sobresFestejadaMensaje],
       codigoVestimentaCheck: [invitacion.data.codigoVestimentaCheck],
       codigoVestimentaHombre: [invitacion.data.codigoVestimentaHombre],
       codigoVestimentaHombreImg: [invitacion.data.codigoVestimentaHombreImg],
@@ -912,7 +934,9 @@ export class EditarInvitacionComponent {
       generalSize: [temp.generalSize],
       generalTexto: [temp.generalTexto],
       mesaRegalosLugar: [temp.mesaRegalosLugar],
+      mesaRegalosLugar2: [temp.mesaRegalosLugar2],
       mesaRegalosUrl: [temp.mesaRegalosUrl],
+      mesaRegalosUrl2: [temp.mesaRegalosUrl2],
       mesaRegalosImg: [temp.mesaRegalosImg],
 
 
@@ -986,6 +1010,7 @@ export class EditarInvitacionComponent {
       notaBG: [temp.notaBG],
       notaTitle: [temp.notaTitle],
       titlePadres: [temp.titlePadres],
+      titlePadrinos: [temp.titlePadrinos],
       colorQr: [temp.colorQr],
       colorBgQr: [temp.colorBgQr],
       invitacionTemplate: [temp.invitacionTemplate],
@@ -1001,6 +1026,14 @@ export class EditarInvitacionComponent {
       padrinosCheck: [temp.data.padrinosCheck],
       menuCheck: [temp.data.menuCheck],
       musicaCheck: [temp.data.musicaCheck],
+      sobresCheck: [temp.data.sobresCheck],
+      sobresTitle: [temp.data.sobresTitle],
+      sobresBanco: [temp.data.sobresBanco],
+      sobresCuenta: [temp.data.sobresCuenta],
+      sobresClabe: [temp.data.sobresClabe],
+      sobresFestejadaTitle: [temp.data.sobresFestejadaTitle],
+      sobresFestejadaNombre: [temp.data.sobresFestejadaNombre],
+      sobresFestejadaMensaje: [temp.data.sobresFestejadaMensaje],
       codigoVestimentaCheck: [temp.data.codigoVestimentaCheck],
       codigoVestimentaHombre: [temp.data.codigoVestimentaHombre],
       codigoVestimentaHombreImg: [temp.data.codigoVestimentaHombreImg],
@@ -1319,6 +1352,7 @@ export class EditarInvitacionComponent {
     data.padrinosCheck = (data.padrinosCheck == 'true' || data.padrinosCheck == true) ? true : false
     data.menuCheck = (data.menuCheck == 'true' || data.menuCheck == true) ? true : false
     data.musicaCheck = (data.musicaCheck == 'true' || data.musicaCheck == true) ? true : false
+    data.sobresCheck = (data.sobresCheck == 'true' || data.sobresCheck == true) ? true : false
     data.fiestaDate = (typeof (data.donde3Date) == 'string') ? this.functionsService.dateToNumber(data.donde3Date) : data.donde3Date
     return await data
 
@@ -1343,6 +1377,7 @@ export class EditarInvitacionComponent {
 
 
       this.invitacion = resp.invitacion
+
 
       if (!this.invitacion) {
         setTimeout(() => {
@@ -1459,7 +1494,9 @@ export class EditarInvitacionComponent {
             generalSize: 15,
             generalTexto: '',
             mesaRegalosLugar: '',
+            mesaRegalosLugar2: '',
             mesaRegalosUrl: '',
+            mesaRegalosUrl2: '',
             mesaRegalosImg: '',
             itinerarioCheck: true,
             itinerarioBG: '#fff',
@@ -1470,6 +1507,7 @@ export class EditarInvitacionComponent {
             notaBG: '#fff',
             notaTitle: 'Notas',
             titlePadres: 'Mis Padres',
+            titlePadrinos: 'Mis Padrinos',
             invitacionTemplate: false,
             notas: [],
             chambelanesCheck: true,
@@ -1479,6 +1517,14 @@ export class EditarInvitacionComponent {
             padrinosCheck: true,
             menuCheck: true,
             musicaCheck: true,
+            sobresCheck: true,
+            sobresTitle: 'Sumar Kilómetros a mi Viaje',
+            sobresBanco: 'Bancomer',
+            sobresCuenta: '000 000 000',
+            sobresClabe: '000 000 000',
+            sobresFestejadaTitle: 'Datos de cuenta para Viaje Mariana',
+            sobresFestejadaNombre: 'Mariana Lopez',
+            sobresFestejadaMensaje: 'O con la tradicional lluvia de sobres. Es la tradición de regalar dinero en efectivo a la Quinceañera en un sobre el día del evento.',
             chambelanes: [],
             padres: [],
             padrinos: [],
@@ -1667,11 +1713,13 @@ export class EditarInvitacionComponent {
       return this.fb.group({
         name: chambelan.name,
         hr: chambelan.hr,
+        img: chambelan.img,
       })
     } else {
       return this.fb.group({
         name: '',
         hr: '',
+        img: '',
       })
     }
   }
@@ -1876,7 +1924,16 @@ export class EditarInvitacionComponent {
       this.viewVideo = false
     }
   }
-  cambiarImagen(file: any, type: string) {
+  cambiarImagen(file: any, type: string, id?) {
+
+
+
+    if (id) {
+      id = id.replace('chambelanImg', '')
+      id = Number(id)
+
+
+    }
     this.viewVideo = false
     if (file.target.files) {
       this.imagenSubir = file.target.files[0]
@@ -1891,7 +1948,7 @@ export class EditarInvitacionComponent {
           this.imgTemp = reader.result
 
         }
-        this.subirImagen(type)
+        this.subirImagen(type, id)
       }
     } else {
       this.viewVideo = true
@@ -1917,7 +1974,8 @@ export class EditarInvitacionComponent {
       this.viewVideo = true
     }
   }
-  async subirImagen(type) {
+  async subirImagen(type, id?) {
+
     if (!this.invitacion) {
       let data = await this.dateToNumber(this.form.value)
       data[type] = ''
@@ -2029,6 +2087,9 @@ export class EditarInvitacionComponent {
                 break;
               case 'marcoFotoUp':
                 this.invitacion.data.marcoFotoUp = img
+                break;
+              case 'img':
+                this.invitacion.data.chambelanes[id].img = img
                 break;
 
             }
@@ -2250,6 +2311,18 @@ export class EditarInvitacionComponent {
       //musica
       this.invitacion.data.musicaCheck = false
       this.invitacion.data.musica = []
+      //sobres 
+      this.invitacion.data.sobresCheck = false
+      this.invitacion.data.sobresTitle = 'Sumar Kilómetros a mi Viaje'
+      this.invitacion.data.sobresBanco = 'Bancomer'
+      this.invitacion.data.sobresCuenta = '000 000 000'
+      this.invitacion.data.sobresClabe = '000 000 000'
+      this.invitacion.data.sobresFestejadaTitle = 'Datos de cuenta para Viaje Mariana'
+      this.invitacion.data.sobresFestejadaNombre = 'Mariana Lopez'
+      this.invitacion.data.sobresFestejadaMensaje = 'O con la tradicional lluvia de sobres. Es la tradición de regalar dinero en efectivo a la Quinceañera en un sobre el día del evento'
+
+
+
       //Itinerarios
       this.invitacion.data.itinerarioCheck = false
       this.invitacion.data.itinerarioBG = '#fff'
@@ -2260,6 +2333,7 @@ export class EditarInvitacionComponent {
       this.invitacion.data.notaBG = '#fff'
       this.invitacion.data.notaTitle = 'Notas'
       this.invitacion.data.titlePadres = 'Mis Padres'
+      this.invitacion.data.titlePadrinos = 'Mis Padrinos'
       this.invitacion.data.notas = []
       //Mesa de regalos
       this.invitacion.data.mesaRegalosCheck = false
@@ -2281,7 +2355,9 @@ export class EditarInvitacionComponent {
       this.invitacion.data.mensajeEfectoRep = ''
 
       this.invitacion.data.mesaRegalosLugar = ''
+      this.invitacion.data.mesaRegalosLugar2 = ''
       this.invitacion.data.mesaRegalosUrl = ''
+      this.invitacion.data.mesaRegalosUrl2 = ''
 
 
       //Invitacion By flie

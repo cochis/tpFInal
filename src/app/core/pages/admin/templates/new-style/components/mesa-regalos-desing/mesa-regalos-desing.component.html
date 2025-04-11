@@ -15,13 +15,23 @@
             <div class="ma divisor" [style]="{'background-color':data.cSecond}"> </div>
             <div class="container">
                 <div class="row text-center">
-                    <div class="col-11 col-md-4 ma">
+                    <div class="col-12 col-md-4 ma">
                         <a [href]="data.mesaRegalosUrl" class="{{data.textoInvFont }}" target="_blank"
                             rel="noopener noreferrer" [style]="{'text-decoration':'none', 'color':data.cTexto}">
                             <img src="/assets/icons/gift.png" alt=""
                                 [style]="{'width':data.iconSize+'px','height':data.iconSize+'px'}">
 
                             <h3 class="{{data.textoInvFont }} mt-2">{{data.mesaRegalosLugar}}</h3>
+                        </a>
+
+                    </div>
+                    <div class="col-12 col-md-4 ma" *ngIf="data.mesaRegalosUrl!='' && data.mesaRegalosLugar2!=='' ">
+                        <a [href]="data.mesaRegalosUrl2" class="{{data.textoInvFont }}" target="_blank"
+                            rel="noopener noreferrer" [style]="{'text-decoration':'none', 'color':data.cTexto}">
+                            <img src="/assets/icons/gift.png" alt=""
+                                [style]="{'width':data.iconSize+'px','height':data.iconSize+'px'}">
+
+                            <h3 class="{{data.textoInvFont }} mt-2">{{data.mesaRegalosLugar2}}</h3>
                         </a>
 
                     </div>
@@ -61,13 +71,23 @@
             <div class="ma divisor" [style]="{'background-color':data.cSecond}"> </div>
             <div class="container">
                 <div class="row text-center">
-                    <div class="col-11 col-md-4 ma">
+                    <div class="col-sm-12 col-md-4 ma">
                         <a [href]="data.mesaRegalosUrl" class="{{data.textoInvFont }}" target="_blank"
                             rel="noopener noreferrer" [style]="{'text-decoration':'none', 'color':data.cTexto}">
                             <img src="/assets/icons/gift.png" alt=""
                                 [style]="{'width':data.iconSize+'px','height':data.iconSize+'px'}">
 
                             <h3 class="{{data.textoInvFont }} mt-2">{{data.mesaRegalosLugar}}</h3>
+                        </a>
+
+                    </div>
+                    <div class="col-sm-12 col-md-4 ma" *ngIf="data.mesaRegalosLugar2 !='' &&  data.mesaRegalosUrl2!=''">
+                        <a [href]="data.mesaRegalosUrl2" class="{{data.textoInvFont }}" target="_blank"
+                            rel="noopener noreferrer" [style]="{'text-decoration':'none', 'color':data.cTexto}">
+                            <img src="/assets/icons/gift.png" alt=""
+                                [style]="{'width':data.iconSize+'px','height':data.iconSize+'px'}">
+
+                            <h3 class="{{data.textoInvFont }} mt-2">{{data.mesaRegalosLugar2}}</h3>
                         </a>
 
                     </div>

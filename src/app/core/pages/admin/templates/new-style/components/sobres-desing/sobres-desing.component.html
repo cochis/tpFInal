@@ -1,0 +1,72 @@
+<ng-container *ngIf="data.sobresCheck =='true' || data.sobresCheck ==true">
+    <div class="  text-center  mt-3 btp "
+        [style]="{'background-color': 'white','width':'100%','text-align':'center','border-color':data.cSecond }">
+        <div class="row">
+            <h3 class=" mt-5 animate__animated {{data.cabeceraFont}} {{data.cabeceraEfecto}} {{data.cabeceraEfectoRep}} ma text-center"
+                [style]=" {'font-size': data.cabeceraSize +'px','color':data.cTexto}">
+                {{data.sobresTitle}}
+            </h3>
+            <div class="ma divisor" [style]="{'background-color':data.cSecond}"> </div>
+        </div>
+        <div class="row text-center  " style="margin-top: 15px;">
+
+            <div class="col-12 col-md-8 ma text-center">
+                <img src="/assets/icons/tarjeta.svg" alt="" style="width: 100px;">
+
+                <a class="btn btn-outline-dark justify-content-center {{data.textoInvFont}}  d-flex m-auto _animate__fadeInDown animate__slow animate__animated animate__fadeInDown "
+                    data-toggle="modal" data-target="#evento" [style]="{'border-radius': '8px', 'visibility': 'visible', 'border-color':data.cSecond,
+                                'text-align':'center','margin':'auto', 'color': data.cTexto}" target="_blank"
+                    (click)="verDatos()">Ver datos
+                    bancarios</a>
+
+
+                <div class="col-12 animate__animated animate__fadeIn" *ngIf="viewDatosOk">
+
+                    <div class="card {{data.textoInvFont }}">
+
+                        <div class="card-body">
+                            <h5 class="card-title  {{data.textoInvFont }}" [style]=" { 'color':data.cTexto}">
+                                {{data.sobresFestejadaTitle}}
+                            </h5>
+                            <ng-container class="card-text text-center {{data.textoInvFont }} ">
+                                <h3 class="{{data.textoInvFont }}"
+                                    [style]=" {'font-size': data.generalSize +'px','color':data.cPrincipal}">
+                                    Banco: <b
+                                        [style]=" {'font-size': data.generalSize +'px','color':data.cTexto}">{{data.sobresBanco}}</b>
+                                </h3>
+                                <h3 class="{{data.textoInvFont }}"
+                                    [style]=" {'font-size': data.generalSize +'px','color':data.cPrincipal}">
+                                    Cuenta: <b
+                                        [style]=" {'font-size': data.generalSize +'px','color':data.cTexto}">{{data.sobresCuenta}}</b>
+                                </h3>
+
+                                <h3 class="{{data.textoInvFont }}"
+                                    [style]=" {'font-size': data.generalSize +'px','color':data.cPrincipal}">
+                                    Clabe: <b
+                                        [style]=" {'font-size': data.generalSize +'px','color':data.cTexto}">{{data.sobresClabe}}</b>
+                                </h3>
+
+                                <h3 class="{{data.textoInvFont }}"
+                                    [style]=" {'font-size': data.generalSize +'px','color':data.cPrincipal}"> Nombre:
+                                    <b
+                                        [style]=" {'font-size': data.generalSize +'px','color':data.cTexto}">{{data.sobresFestejadaNombre}}</b>
+                                </h3>
+
+                            </ng-container>
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <h3 class="{{data.textoInvFont }} mt-2 text-justify" [style]="{'color':data.cTexto}">
+                    {{data.sobresFestejadaMensaje}}
+                </h3>
+            </div>
+
+
+
+        </div>
+    </div>
+</ng-container>

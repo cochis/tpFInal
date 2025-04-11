@@ -14,7 +14,7 @@ export class NotasDesingComponent {
   ngAfterViewInit() {
 
     this.notas = (typeof (this.data.notas) == 'string') ? JSON.parse(this.data.notas) : this.data.notas
-    console.log('this.notas::: ', this.notas);
+
 
 
 

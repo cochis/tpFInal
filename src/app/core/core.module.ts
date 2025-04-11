@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './pages/home/home.component';
 import { AboutComponent } from './pages/about/about.component';
@@ -178,7 +178,10 @@ import { ParralaxComponent } from './pages/admin/templates/parralax/parralax.com
 import { NotasDesingComponent } from './pages/admin/templates/new-style/components/notas-desing/notas-desing.component';
 import { CodigoDesingComponent } from './pages/admin/templates/new-style/components/codigo-desing/codigo-desing.component';
 
-
+import localeEs from '@angular/common/locales/es'
+import { registerLocaleData } from '@angular/common';
+import { SobresDesingComponent } from './pages/admin/templates/new-style/components/sobres-desing/sobres-desing.component';
+registerLocaleData(localeEs, 'es')
 
 
 
@@ -356,6 +359,7 @@ import { CodigoDesingComponent } from './pages/admin/templates/new-style/compone
     ParralaxComponent,
     NotasDesingComponent,
     CodigoDesingComponent,
+    SobresDesingComponent,
 
 
   ],
@@ -372,6 +376,7 @@ import { CodigoDesingComponent } from './pages/admin/templates/new-style/compone
     NgxEditorModule,
     FullCalendarModule
   ],
-  exports: [MarketItemsComponent]
+  exports: [MarketItemsComponent],
+  providers: [{ provide: LOCALE_ID, useValue: 'es' }]
 })
 export class CoreModule { }

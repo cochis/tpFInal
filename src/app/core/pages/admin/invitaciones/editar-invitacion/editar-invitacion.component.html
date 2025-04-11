@@ -5181,7 +5181,17 @@
                                                     </div>
                                                 </div>
                                                 <ng-container *ngIf="padrinosCheck.checked">
-                                                    <div class="col-12   text-center" style="margin:auto">
+                                                    <div class="col-12  mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="titlePadrinos ">Titulo para padrinos </label>
+                                                            <input type="text" id="titlePadrinos" #titlePadrinos
+                                                                formControlName="titlePadrinos" class="form-control"
+                                                                placeholder="Mis Padrinos o Nuestros Padrinos">
+                                                        </div>
+                                                    </div>
+                                                </ng-container>
+                                                <ng-container *ngIf="padrinosCheck.checked">
+                                                    <div class="col-12   mt-3 text-center" style="margin:auto">
 
                                                         <button type="button" class="btn btn-lg btn-block but "
                                                             id="btnPadrinoDefault" (click)="addPadrinos('d')">Agregar
@@ -5316,7 +5326,7 @@
                                                     <ng-container
                                                         *ngFor="let chambelan of chambelanes.controls; let i=index">
                                                         <ng-container [formGroupName]="i">
-                                                            <div class="col-12 col-md-8  mt-3"
+                                                            <div class="col-12 col-md-4  mt-3"
                                                                 id="chambelanDefault{{i}}">
                                                                 <div class="form-group ">
                                                                     <label for="name ">Nombre</label>
@@ -5327,6 +5337,28 @@
                                                                         class="form-control">
                                                                 </div>
                                                                 <span *ngIf="submited && errorControl['name'].errors "
+                                                                    class="error">Es requerido
+                                                                </span>
+                                                            </div>
+                                                            <div class="col-12 col-md-4  mt-3" id="img{{i}}">
+                                                                <div class="form-group ">
+                                                                    <label for="chambelanImg{{i}}">
+                                                                        <img src="/assets/images/tp.png" alt=""
+                                                                            class="pointer"
+                                                                            *ngIf="invitacion==undefined || invitacion.data.chambelanes[i].img=='' "
+                                                                            style="width: 150px;">
+
+                                                                        <img [src]="url+'/upload/invitaciones/'+invitacion.data.chambelanes[i].img"
+                                                                            alt="" class=" pointer" *ngIf="invitacion"
+                                                                            style="width: 150px;">
+
+                                                                    </label>
+
+                                                                    <input type="file" id="chambelanImg{{i}}" #img
+                                                                        (change)="cambiarImagen($event,'img',img.id )"
+                                                                        class="form-control">
+                                                                </div>
+                                                                <span *ngIf="submited && errorControl['img'].errors "
                                                                     class="error">Es requerido
                                                                 </span>
                                                             </div>
@@ -5540,6 +5572,84 @@
 
 
 
+
+
+                                            <hr class="mt-3 mb-3">
+
+
+                                            <div class="col-12 mt-3 ma">
+                                                <label class="form-check-label" for="sobresCheck">
+                                                    Sobres
+                                                </label>
+                                                <input class="form-check-input" type="checkbox" id="sobresCheck"
+                                                    #sobresCheck formControlName="sobresCheck">
+
+
+                                            </div>
+                                            <ng-container *ngIf="form.value.sobresCheck">
+                                                <div class="col-12 col-md-6  ma  mt-3">
+                                                    <div class="form-group ">
+                                                        <label for="sobresTitle">Titulo de sobres </label>
+                                                        <input type="text" id="sobresTitle" #sobresTitle
+                                                            formControlName="sobresTitle"
+                                                            placeholder="Sumar Kilómetros a mi Viaje"
+                                                            class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-6  ma  mt-3">
+                                                    <div class="form-group ">
+                                                        <label for="sobresBanco">Titulo de sobres </label>
+                                                        <input type="text" id="sobresBanco" #sobresBanco
+                                                            formControlName="sobresBanco" placeholder="Bancomer"
+                                                            class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-6  ma  mt-3">
+                                                    <div class="form-group ">
+                                                        <label for="sobresCuenta">Numero de cuenta </label>
+                                                        <input type="text" id="sobresCuenta" #sobresCuenta
+                                                            formControlName="sobresCuenta" placeholder="000 000 000 "
+                                                            class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-6  ma  mt-3">
+                                                    <div class="form-group ">
+                                                        <label for="sobresClabe">Numero de cuenta CLABE</label>
+                                                        <input type="text" id="sobresClabe" #sobresClabe
+                                                            formControlName="sobresClabe" placeholder="000 000 000 000 "
+                                                            class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-6  ma  mt-3">
+                                                    <div class="form-group ">
+                                                        <label for="sobresFestejadaTitle">Subtitulo sobres</label>
+                                                        <input type="text" id="sobresFestejadaTitle"
+                                                            #sobresFestejadaTitle formControlName="sobresFestejadaTitle"
+                                                            placeholder="000 000 000 000 " class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-6  ma  mt-3">
+                                                    <div class="form-group ">
+                                                        <label for="sobresFestejadaNombre">Nombre</label>
+                                                        <input type="text" id="sobresFestejadaNombre"
+                                                            #sobresFestejadaNombre
+                                                            formControlName="sobresFestejadaNombre"
+                                                            placeholder="Mariana " class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12  ma  mt-3">
+                                                    <div class="form-group ">
+                                                        <label for="sobresFestejadaMensaje">Mensaje de sobre</label>
+                                                        <input type="text" id="sobresFestejadaMensaje"
+                                                            #sobresFestejadaMensaje
+                                                            formControlName="sobresFestejadaMensaje"
+                                                            placeholder="Mariana " class="form-control">
+                                                    </div>
+                                                </div>
+
+
+
+                                            </ng-container>
 
 
                                             <hr class="mt-3 mb-3">
@@ -5859,40 +5969,18 @@
                                         </div>
                                         <hr class="mt-3 mb-3">
                                         <div class="row text-center mt-3">
-                                            <h5>Mesa de regalos</h5>
 
 
-                                            <div class="col-12 col-md-6  col-md-4     mt-3 ma ">
+                                            <div class="col-12    mt-3 ma ">
+                                                <h5>Mesa de regalos</h5>
 
 
-                                                <label class="form-check-label" for="mesaRegalosCheck">
-                                                    Mesa de regalos
-                                                </label>
                                                 <input class="form-check-input" type="checkbox" id="mesaRegalosCheck"
                                                     #mesaRegalosCheck formControlName="mesaRegalosCheck">
 
 
                                             </div>
-                                            <!-- <div class="col-12  col-md-6  mt-3 text-center "
-                                                *ngIf="form.value.mesaRegalosCheck">
-                                                <div class="form-group    image-upload ">
-                                                    <label for="mesaRegalosImg">Imagen de mesa de regalos
-                                                        <br>
 
-                                                        <img src="/assets/images/tp.png" alt="" class="pointer"
-                                                            *ngIf="invitacion==undefined || invitacion.data.mesaRegalosImg=='' "
-                                                            style="width: 150px;">
-
-                                                        <img [src]="url+'/upload/invitaciones/'+invitacion.data.mesaRegalosImg"
-                                                            alt="" class=" pointer" *ngIf="invitacion"
-                                                            style="width: 150px;">
-                                                      
-
-                                                    </label>
-                                                    <input type="file" id="mesaRegalosImg" #mesaRegalosImg
-                                                        (change)="cambiarImagen($event,'mesaRegalosImg' )">
-                                                </div>
-                                            </div> -->
 
                                             <div class="col-12 col-md-6  mt-3 ma" *ngIf="form.value.mesaRegalosCheck">
                                                 <div class="form-group ">
@@ -5909,6 +5997,24 @@
                                                     <label for="mesaRegalosUrl ">Liga de mesa de regalos </label>
                                                     <input type="text" id="mesaRegalosUrl" #mesaRegalosUrl
                                                         formControlName="mesaRegalosUrl" style="width: 100%;"
+                                                        class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6  mt-3 ma" *ngIf="form.value.mesaRegalosCheck">
+                                                <div class="form-group ">
+                                                    <label for="mesaRegalosLugar2 ">Tienda 2</label>
+                                                    <input type="text" id="mesaRegalosLugar2" #mesaRegalosLugar2
+                                                        formControlName="mesaRegalosLugar2" class="form-control">
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="col-12 col-md-6   mt-3" *ngIf="form.value.mesaRegalosCheck">
+                                                <div class="form-group ">
+                                                    <label for="mesaRegalosUrl2 ">Liga de mesa de regalos </label>
+                                                    <input type="text" id="mesaRegalosUrl2" #mesaRegalosUrl2
+                                                        formControlName="mesaRegalosUrl2" style="width: 100%;"
                                                         class="form-control">
                                                 </div>
                                             </div>

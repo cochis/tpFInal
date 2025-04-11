@@ -65,3 +65,11 @@
 
 
 }
+
+.btn:hover {
+    background-color: white !important;
+}
+
+a:hover {
+    background-color: white !important;
+}

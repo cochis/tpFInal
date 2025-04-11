@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, Input } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-chambelanes-desing',
@@ -8,6 +9,7 @@ import { AfterViewInit, Component, Input } from '@angular/core';
 export class ChambelanesDesingComponent implements AfterViewInit {
   @Input() data: any
   chambelanes = []
+  url = environment.base_url
   constructor() {
 
   }

@@ -1,5 +1,5 @@
 
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, LOCALE_ID } from '@angular/core';
 import { SafeUrl, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { SwPush } from '@angular/service-worker';
@@ -17,6 +17,7 @@ import { MetaService } from 'src/app/core/services/meta.service';
 import { PushsService } from 'src/app/core/services/push.service';
 import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { environment } from 'src/environments/environment';
+
 @Component({
   selector: 'app-new-style',
   templateUrl: './new-style.component.html',
@@ -114,6 +115,7 @@ export class NewStyleComponent implements OnInit {
     'confirmacion',
     'galeriaFiesta',
     'notas',
+    'sobres',
     'codigoVestimenta'
   ]
   bgsframes: Fondo[]
