@@ -17,6 +17,7 @@ export class PadrinosDesingComponent implements AfterViewInit {
     this.padrinos = (typeof (this.data.padrinos) == 'string') ? JSON.parse(this.data.padrinos) : this.data.padrinos
 
 
+
   }
   getImg(img) {
     let imgR = this.bgsframes.filter(bgf => { return bgf.value == img })

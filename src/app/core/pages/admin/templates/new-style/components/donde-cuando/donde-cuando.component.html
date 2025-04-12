@@ -37,19 +37,21 @@
                 *ngIf=" (lugar.dondeCheck =='true' || lugar.dondeCheck ==true)   && (lugar.dondeCheck =='false' || lugar.dondeCheck ==false) "
                 [style]="{'background-image':'url(/assets/invitaciones/background/'+data.fondoInvitacion+')'}">
                 <div class="transform__content noOpc" [style]="{'color':data.cTexto}">
-                    <h1 class="{{data.cabeceraFont}} mt-1 upper">{{lugar.dondeTitle}}</h1>
+                    <h1 class="{{data.cabeceraFont}} mt-1 upper">
+                        {{(lugar.dondeTitulo!='')?lugar.dondeTitulo:lugar.dondeTitle}} </h1>
                     <div class="divisor" [style]="{'background-color':data.cSecond}"></div>
                     <div>
                         <h5
                             class="{{data.cabeceraFont}} mt-2 text-center _animate__fadeInDown animate__slow animate__animated animate__fadeInDown ">
                             {{lugar.dondeText}}</h5>
-                        <h5
-                            class=" {{data.textoInvFont}}  text-center _animate__fadeInDown animate__slow my-3 animate__animated animate__fadeInDown ">
-                            {{lugar.dondeAddress}}</h5>
+
                         <h4
                             class="{{data.cabeceraFont}}  {{data.textoInvFont}}  mt-2 text-center _animate__fadeInDown animate__slow animate__animated animate__fadeInDown ">
                             {{lugar.dondeDate | date : 'mediumDate'}} - {{lugar.dondeDate |
                             date : 'shortTime'}}</h4>
+                        <h5
+                            class=" {{data.textoInvFont}}  text-center _animate__fadeInDown animate__slow my-3 animate__animated animate__fadeInDown ">
+                            {{lugar.dondeAddress}}</h5>
                         <br>
                         <div class="clear"></div>
                         <a class="btn  justify-content-center btn-outline-dark  {{data.textoInvFont}}  d-flex m-auto _animate__fadeInDown animate__slow animate__animated animate__fadeInDown "
@@ -64,19 +66,21 @@
                 *ngIf=" (lugar.dondeCheck =='true' || lugar.dondeCheck ==true)  && (lugar.dondeCheck =='true' || lugar.dondeCheck ==true)"
                 [style]="{'background-image':'url('+url+'/upload/invitaciones/'+ data.fondoInvitacionUp+')'}">
                 <div class="transform__content noOpc" [style]="{'color':data.cTexto}">
-                    <h1 class="{{data.cabeceraFont}} mt-1 upper">{{lugar.dondeTitle}}</h1>
+                    <h1 class="{{data.cabeceraFont}} mt-1 upper">
+                        {{(lugar.dondeTitulo!='')?lugar.dondeTitulo:lugar.dondeTitle}}</h1>
                     <div class="divisor" [style]="{'background-color':data.cSecond}"></div>
                     <div>
                         <h5
                             class="{{data.cabeceraFont}} mt-2 text-center _animate__fadeInDown animate__slow animate__animated animate__fadeInDown ">
                             {{lugar.dondeText}}</h5>
-                        <h5
-                            class=" {{data.textoInvFont}}  text-center _animate__fadeInDown animate__slow my-3 animate__animated animate__fadeInDown ">
-                            {{lugar.dondeAddress}}</h5>
+
                         <h4
                             class="{{data.cabeceraFont}}  {{data.textoInvFont}}  mt-2 text-center _animate__fadeInDown animate__slow animate__animated animate__fadeInDown ">
                             {{lugar.dondeDate | date : 'mediumDate'}} - {{lugar.dondeDate |
                             date : 'shortTime'}}</h4>
+                        <h5
+                            class=" {{data.textoInvFont}}  text-center _animate__fadeInDown animate__slow my-3 animate__animated animate__fadeInDown ">
+                            {{lugar.dondeAddress}}</h5>
                         <br>
                         <div class="clear"></div>
                         <a class="btn  justify-content-center btn-outline-dark  {{data.textoInvFont}}  d-flex m-auto _animate__fadeInDown animate__slow animate__animated animate__fadeInDown "
@@ -129,19 +133,27 @@
                     *ngIf=" (lugar.dondeCheck =='true' || lugar.dondeCheck ==true) && (data.fondoInvitacionCheck ==false || data.fondoInvitacionCheck =='false')"
                     [style]="{'background-image':'url('+url+'/upload/fondos/'+getImg(data.fondoInvitacion)+')'}">
                     <div class="transform__content noOpc" [style]="{'color':data.cTexto}">
-                        <h1 class="{{data.cabeceraFont}}  mt-1 upper">{{lugar.dondeTitle}}</h1>
+                        <h1 class="{{data.cabeceraFont}}  mt-1 upper">
+
+
+                            {{(lugar.dondeTitulo!='')?lugar.dondeTitulo:lugar.dondeTitle}}
+
+
+
+                        </h1>
                         <div class="divisor" [style]="{'background-color':data.cSecond}"></div>
                         <div>
                             <h5
                                 class="{{data.cabeceraFont}} mt-2 text-center _animate__fadeInDown animate__slow animate__animated animate__fadeInDown ">
                                 {{lugar.dondeText}}</h5>
-                            <h5
-                                class=" {{data.textoInvFont}}  text-center _animate__fadeInDown animate__slow my-3 animate__animated animate__fadeInDown ">
-                                {{lugar.dondeAddress}}</h5>
+
                             <h4
                                 class="{{data.cabeceraFont}}  {{data.textoInvFont}}  mt-2 text-center _animate__fadeInDown animate__slow animate__animated animate__fadeInDown ">
                                 {{lugar.dondeDate | date : 'mediumDate'}} - {{lugar.dondeDate
                                 | date : 'shortTime'}}</h4>
+                            <h5
+                                class=" {{data.textoInvFont}}  text-center _animate__fadeInDown animate__slow my-3 animate__animated animate__fadeInDown ">
+                                {{lugar.dondeAddress}}</h5>
                             <br>
                             <a class="btn  justify-content-center btn-outline-dark  {{data.textoInvFont}}  d-flex m-auto _animate__fadeInDown animate__slow animate__animated animate__fadeInDown "
                                 data-toggle="modal" data-target="#evento" [style]="{'border-radius': '8px', 'visibility': 'visible', 'border-color':data.cSecond,
@@ -155,19 +167,25 @@
                     *ngIf=" (lugar.dondeCheck =='true' || lugar.dondeCheck ==true) &&(data.fondoInvitacionCheck ==true || data.fondoInvitacionCheck =='true')"
                     [style]="{'background-image':'url('+url+'/upload/invitaciones/'+ data.fondoInvitacionUp+')'}">
                     <div class="transform__content noOpc" [style]="{'color':data.cTexto}">
-                        <h1 class="{{data.cabeceraFont}}  mt-1 upper">{{lugar.dondeTitle}}</h1>
+                        <h1 class="{{data.cabeceraFont}}  mt-1 upper">
+
+                            {{(lugar.dondeTitulo!='')?lugar.dondeTitulo:lugar.dondeTitle}}
+
+
+                        </h1>
                         <div class="divisor" [style]="{'background-color':data.cSecond}"></div>
                         <div>
                             <h5
                                 class="{{data.cabeceraFont}} mt-2 text-center _animate__fadeInDown animate__slow animate__animated animate__fadeInDown ">
                                 {{lugar.dondeText}}</h5>
-                            <h5
-                                class=" {{data.textoInvFont}}  text-center _animate__fadeInDown animate__slow my-3 animate__animated animate__fadeInDown ">
-                                {{lugar.dondeAddress}}</h5>
+
                             <h4
                                 class="{{data.cabeceraFont}}  {{data.textoInvFont}}  mt-2 text-center _animate__fadeInDown animate__slow animate__animated animate__fadeInDown ">
                                 {{lugar.dondeDate | date : 'mediumDate'}} - {{lugar.dondeDate
                                 | date : 'shortTime'}}</h4>
+                            <h5
+                                class=" {{data.textoInvFont}}  text-center _animate__fadeInDown animate__slow my-3 animate__animated animate__fadeInDown ">
+                                {{lugar.dondeAddress}}</h5>
                             <br>
                             <a class="btn  justify-content-center btn-outline-dark  {{data.textoInvFont}}  d-flex m-auto _animate__fadeInDown animate__slow animate__animated animate__fadeInDown "
                                 data-toggle="modal" data-target="#evento" [style]="{'border-radius': '8px', 'visibility': 'visible', 'border-color':data.cSecond,
@@ -184,19 +202,22 @@
                     *ngIf=" (lugar.dondeCheck =='true' || lugar.dondeCheck ==true) && (data.fondoInvitacionCheck ==false || data.fondoInvitacionCheck =='false') "
                     [style]="{'background-image':'url('+url+'/upload/fondos/'+getImg(data.fondoInvitacion)+')'}">
                     <div class="transform__content noOpc" [style]="{'color':data.cTexto}">
-                        <h1 class="{{data.cabeceraFont}}  mt-1 upper">{{lugar.dondeTitle}}</h1>
+                        <h1 class="{{data.cabeceraFont}}  mt-1 upper">
+                            {{(lugar.dondeTitulo!='')?lugar.dondeTitulo:lugar.dondeTitle}}
+                        </h1>
                         <div class="divisor" [style]="{'background-color':data.cSecond}"></div>
                         <div>
                             <h5
                                 class="{{data.cabeceraFont}} mt-2 text-center _animate__fadeInDown animate__slow animate__animated animate__fadeInDown">
                                 {{lugar.dondeText}}</h5>
-                            <h5
-                                class=" {{data.textoInvFont}}  text-center _animate__fadeInDown animate__slow my-3 animate__animated animate__fadeInDown ">
-                                {{lugar.dondeAddress}}</h5>
+
                             <h4
                                 class="{{data.cabeceraFont}}  {{data.textoInvFont}}  mt-2 text-center _animate__fadeInDown animate__slow animate__animated animate__fadeInDown ">
                                 {{lugar.dondeDate | date : 'mediumDate'}} - {{lugar.dondeDate
                                 | date : 'shortTime'}}</h4>
+                            <h5
+                                class=" {{data.textoInvFont}}  text-center _animate__fadeInDown animate__slow my-3 animate__animated animate__fadeInDown ">
+                                {{lugar.dondeAddress}}</h5>
                             <br>
                             <a class="btn  justify-content-center btn-outline-dark  {{data.textoInvFont}}  d-flex m-auto _animate__fadeInDown animate__slow animate__animated animate__fadeInDown "
                                 data-toggle="modal" data-target="#evento" [style]="{'border-radius': '8px', 'visibility': 'visible', 'border-color':data.cSecond,
@@ -210,19 +231,21 @@
                     *ngIf=" (lugar.dondeCheck =='true' || lugar.dondeCheck ==true) && (data.fondoInvitacionCheck ==true || data.fondoInvitacionCheck =='true') "
                     [style]="{'background-image':'url('+url+'/upload/invitaciones/'+ data.fondoInvitacionUp+')'}">
                     <div class="transform__content noOpc" [style]="{'color':data.cTexto}">
-                        <h1 class="{{data.cabeceraFont}}  mt-1 upper">{{lugar.dondeTitle}}</h1>
+                        <h1 class="{{data.cabeceraFont}}  mt-1 upper">
+                            {{(lugar.dondeTitulo!='')?lugar.dondeTitulo:lugar.dondeTitle}}</h1>
                         <div class="divisor" [style]="{'background-color':data.cSecond}"></div>
                         <div>
                             <h5
                                 class="{{data.cabeceraFont}} mt-2 text-center _animate__fadeInDown animate__slow animate__animated animate__fadeInDown">
                                 {{lugar.dondeText}}</h5>
-                            <h5
-                                class=" {{data.textoInvFont}}  text-center _animate__fadeInDown animate__slow my-3 animate__animated animate__fadeInDown ">
-                                {{lugar.dondeAddress}}</h5>
+
                             <h4
                                 class="{{data.cabeceraFont}}  {{data.textoInvFont}}  mt-2 text-center _animate__fadeInDown animate__slow animate__animated animate__fadeInDown ">
                                 {{lugar.dondeDate | date : 'mediumDate'}} - {{lugar.dondeDate
                                 | date : 'shortTime'}}</h4>
+                            <h5
+                                class=" {{data.textoInvFont}}  text-center _animate__fadeInDown animate__slow my-3 animate__animated animate__fadeInDown ">
+                                {{lugar.dondeAddress}}</h5>
                             <br>
                             <a class="btn  justify-content-center btn-outline-dark  {{data.textoInvFont}}  d-flex m-auto _animate__fadeInDown animate__slow animate__animated animate__fadeInDown "
                                 data-toggle="modal" data-target="#evento" [style]="{'border-radius': '8px', 'visibility': 'visible', 'border-color':data.cSecond,

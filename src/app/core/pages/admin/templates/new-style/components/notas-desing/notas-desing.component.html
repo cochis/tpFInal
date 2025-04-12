@@ -25,38 +25,22 @@
                             [style]="{'border-color':data.cSecond+ '!important' , 'list-style':'none'}">
                             <ng-container *ngFor="let nota of notas ;let i = index">
 
-                                <ng-container *ngIf="(i%2!=0)">
+                                <ng-container>
                                     <li class="_animate__zoomIn animate__animated animate__zoomIn"
                                         [style]="{'border-color':data.cSecond}">
-                                        <!--  <div class="timeline-badge  shadow {{data.cabeceraFont}}"
-                                            [style]="{'background-color':data.cSecond}">{{nota.texto}}</div> -->
+
                                         <div class="timeline-panel mt-5" [style]="{'border-color':data.cSecond}">
                                             <div class="timeline-heading text-center">
-                                                <!-- <img [src]="url+'/upload/fondos/'+getImg(nota.icon)"
-                                                    alt="{{nota.tipo}}" width="40" class="my-3"
-                                                    style="filter:invert(0.3)"><br> -->
+
                                                 <h4 class="timeline-title {{data.textoInvFont}} "
-                                                    [style]="{'color':data.cTexto}">{{ nota.texto}}</h4>
+                                                    [style]="{'color':data.cTexto, 'font-size':data.textoInvSize+'px'}">
+                                                    {{
+                                                    nota.texto}}</h4>
                                             </div>
                                         </div>
                                     </li>
                                 </ng-container>
-                                <ng-container *ngIf="(i%2==0)">
-                                    <li class="timeline-inverted _animate__zoomIn animate__animated animate__zoomIn"
-                                        [style]="{'border-color':data.cSecond}">
-                                        <!--  <div class="timeline-badge {{data.cabeceraFont}} shadow warning"
-                                            [style]="{'background-color':data.cSecond}">{{nota.texto}}</div> -->
-                                        <div class="timeline-panel mt-5" [style]="{'border-color':data.cSecond}">
-                                            <div class="timeline-heading text-center">
-                                                <!-- <img [src]="url+'/upload/fondos/'+getImg(nota.icon)"
-                                                    alt="{{nota.tipo}}" width="50" class="my-3"
-                                                    style="filter:invert(0.3)"><br> -->
-                                                <h4 class="timeline-title {{data.textoInvFont}} "
-                                                    [style]="{'color':data.cTexto}">{{ nota.texto}}</h4>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ng-container>
+
 
 
                             </ng-container>
@@ -84,7 +68,7 @@
                         <div class="wthree_title_agile">
                             <h3 class=" animate__animated {{data.cabeceraFont}} {{data.cabeceraEfecto}} {{data.cabeceraEfectoRep}} ma text-center"
                                 [style]=" {'font-size': data.cabeceraSize +'px','color':data.cTexto}">
-                                Minuto a Minuto
+                                Notas
                             </h3>
 
                             <span class="linea _animate__flipInX animate__animated animate__flipInX"
@@ -95,40 +79,26 @@
                 <div class="row mt-3 " style=" width: 90%; margin: auto;">
                     <div class="col-md-12 ma ">
                         <ul class="timeline" *ngIf="data && notas.length>0"
-                            [style]="{'border-color':data.cSecond+ '!important'}">
+                            [style]="{'border-color':data.cSecond+ '!important','list-style':'none'}">
                             <ng-container *ngFor="let nota of notas ;let i = index">
 
-                                <ng-container *ngIf="(i%2!=0)">
+                                <ng-container>
                                     <li class="_animate__zoomIn animate__animated animate__zoomIn"
                                         [style]="{'border-color':data.cSecond}">
                                         <!-- <div class="timeline-badge  shadow {{data.cabeceraFont}}"
                                             [style]="{'background-color':data.cSecond}">{{nota.texto}}</div> -->
                                         <div class="timeline-panel mt-5" [style]="{'border-color':data.cSecond}">
                                             <div class="timeline-heading text-center">
-                                                <img [src]="url+'/upload/fondos/'+getImg(nota.icon)" alt="{{nota.tipo}}"
-                                                    width="40" class="my-3" style="filter:invert(0.3)"><br>
+
                                                 <h4 class="timeline-title {{data.textoInvFont}} "
-                                                    [style]="{'color':data.cTexto}">{{ nota.texto}}</h4>
+                                                    [style]="{'color':data.cTexto, 'font-size':data.textoInvSize+'px'}">
+                                                    {{
+                                                    nota.texto}}</h4>
                                             </div>
                                         </div>
                                     </li>
                                 </ng-container>
-                                <ng-container *ngIf="(i%2==0)">
-                                    <li class="timeline-inverted _animate__zoomIn animate__animated animate__zoomIn"
-                                        [style]="{'border-color':data.cSecond}">
-                                        <!--  <div class="timeline-badge {{data.cabeceraFont}} shadow warning"
-                                            [style]="{'background-color':data.cSecond}">{{nota.texto}}</div> -->
-                                        <div class="timeline-panel mt-5" [style]="{'border-color':data.cSecond}">
-                                            <div class="timeline-heading text-center">
-                                                <!-- <img [src]="url+'/upload/fondos/'+getImg(nota.icon)"
-                                                    alt="{{nota.tipo}}" width="50" class="my-3"
-                                                    style="filter:invert(0.3)"><br> -->
-                                                <h4 class="timeline-title {{data.textoInvFont}} "
-                                                    [style]="{'color':data.cTexto}">{{ nota.texto}}</h4>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ng-container>
+
 
 
                             </ng-container>

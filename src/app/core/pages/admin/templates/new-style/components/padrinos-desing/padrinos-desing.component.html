@@ -23,6 +23,10 @@
                             <h5 class="{{data.textoInvFont}}" [style]="{'font-weight': 'bold', 'color':data.cTexto}">
                                 {{item.tipo}}</h5>
                             <h3 class="{{data.textoInvFont}}" [style]="{'color':data.cTexto}">{{item.name}}</h3>
+                            <h3 class="{{data.textoInvFont}} mt-1" [style]="{'color':data.cTexto}"
+                                *ngIf="item.name2 && item.name2!=''">&</h3>
+                            <h3 class="{{data.textoInvFont}} mt-1" [style]="{'color':data.cTexto}"
+                                *ngIf="item.name2 && item.name2!=''">{{item.name2}}</h3>
 
                         </div>
                     </ng-container>
@@ -68,7 +72,11 @@
                             <h5 class="{{data.textoInvFont}}" [style]="{'font-weight': 'bold', 'color':data.cTexto}">
                                 {{item.tipo}}</h5>
                             <h3 class="{{data.textoInvFont}}" [style]="{'color':data.cTexto}">{{item.name}}</h3>
-
+                            <h3 class="{{data.textoInvFont}} mt-1" [style]="{'color':data.cTexto}"
+                                *ngIf="item.name2 && item.name2!=''">&</h3>
+                            <h3 class="{{data.textoInvFont}} mt-1" [style]="{'color':data.cTexto}"
+                                *ngIf="item.name2 && item.name2!=''">
+                                {{item.name2}}</h3>
                         </div>
                     </ng-container>
 

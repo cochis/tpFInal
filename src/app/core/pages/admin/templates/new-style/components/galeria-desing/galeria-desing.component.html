@@ -4,7 +4,7 @@
     <div class="wthree_title_agile text-center   ">
         <h3 class=" mt-5 animate__animated ma {{data.cabeceraFont}} {{data.cabeceraEfecto}} {{data.cabeceraEfectoRep}}"
             [style]="{'font-size': data.cabeceraSize +'px','color':data.cTexto}">
-            Momentos
+            {{(data.galeriaTitle=='')?'Momentos':data.galeriaTitle}}
         </h3>
         <div class="ma divisor" [style]="{'background-color':data.cSecond}"> </div>
     </div>

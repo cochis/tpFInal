@@ -1595,7 +1595,8 @@
                                                         formControlName="donde1Title">
                                                 </div>
                                             </div> -->
-                                            <div class="col-12 col-md-6   mt-3 animated1 fadeIn"
+
+                                            <div class="col-12 col-md-4   mt-3 animated1 fadeIn"
                                                 *ngIf="form.value.donde1Check">
                                                 <div class="form-group ">
                                                     <label for="donde1Text ">Nombre de la iglesia </label>
@@ -1604,7 +1605,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-12 col-md-6   mt-3" *ngIf="form.value.donde1Check">
+                                            <div class="col-12 col-md-4   mt-3" *ngIf="form.value.donde1Check">
                                                 <div class="form-group ">
                                                     <label for="donde1Date ">Fecha </label>
                                                     <input type="datetime-local" id="donde1Date" #donde1Date
@@ -2680,8 +2681,7 @@
                                                                                             formControlName="donde1Title">
                                                                                     </div>
                                                                                 </div> -->
-                                            <div class="col-12 col-md-6  col-md-6   mt-3"
-                                                *ngIf="form.value.donde1Check">
+                                            <div class="col-12 col-md-4    mt-3" *ngIf="form.value.donde1Check">
                                                 <div class="form-group ">
                                                     <label for="donde1Text ">Nombre de la iglesia </label>
                                                     <input type="text" id="donde1Text" #donde1Text
@@ -2689,8 +2689,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-12 col-md-6  col-md-6   mt-3"
-                                                *ngIf="form.value.donde1Check">
+                                            <div class="col-12  col-md-4   mt-3" *ngIf="form.value.donde1Check">
                                                 <div class="form-group ">
                                                     <label for="donde1Date ">Fecha </label>
                                                     <input type="datetime-local" id="donde1Date" #donde1Date
@@ -4846,6 +4845,14 @@
                                     <div class="row text-center mb-3">
                                         <h5>Seccion Galeria</h5>
                                         <div class="row text-center mt-3">
+                                            <div class="col-12  mt-3 ma">
+                                                <div class="form-group ">
+                                                    <label for="galeriaTitle ">Titulo de galeria </label>
+                                                    <input type="text" id="galeriaTitle" #galeriaTitle
+                                                        formControlName="galeriaTitle" class="form-control"
+                                                        placeholder="Momentos">
+                                                </div>
+                                            </div>
                                             <div class="form-group    image-upload ">
                                                 <label for="galeria1">Galeria 1
                                                     <b>Se recomienda foto horizontal</b>
@@ -5036,14 +5043,21 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-12 col-md-6   mt-3">
+                                            <div class="col-12 col-md-4   mt-3">
+                                                <div class="form-group ">
+                                                    <label for="donde3Titulo ">Titulo </label>
+                                                    <input type="text" id="donde3Titulo" #donde3Titulo
+                                                        formControlName="donde3Titulo" class="form-control" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-4   mt-3">
                                                 <div class="form-group ">
                                                     <label for="donde3Text ">Nombre </label>
                                                     <input type="text" id="donde3Text" #donde3Text
                                                         formControlName="donde3Text" class="form-control" readonly>
                                                 </div>
                                             </div>
-                                            <div class="col-12 col-md-6   mt-3">
+                                            <div class="col-12 col-md-4   mt-3">
                                                 <div class="form-group ">
                                                     <label for="donde3Date ">Fecha </label>
                                                     <input type="datetime-local" id="donde3Date" #donde3Date
@@ -5204,9 +5218,9 @@
                                                     <ng-container
                                                         *ngFor="let padrino of padrinos.controls; let i=index">
                                                         <ng-container [formGroupName]="i">
-                                                            <div class="col-12 col-md-4  mt-3" id="padrinoDefault{{i}}">
+                                                            <div class="col-12 col-md-3 mt-3" id="padrinoDefault{{i}}">
                                                                 <div class="form-group ">
-                                                                    <label for="icon">Nombre</label>
+                                                                    <label for="icon">Icono</label>
                                                                     <select name="icon" id="icon" formControlName="icon"
                                                                         #icon class="form-select">
                                                                         <option value="">Iconos
@@ -5226,7 +5240,7 @@
                                                                     class="error">Es requerido
                                                                 </span>
                                                             </div>
-                                                            <div class="col-12 col-md-4  mt-3" id="padrinoDefault{{i}}">
+                                                            <div class="col-12 col-md-3  mt-3" id="padrinoDefault{{i}}">
                                                                 <div class="form-group ">
                                                                     <label for="name ">Tipo</label>
                                                                     <input type="text" class="form-control upper"
@@ -5239,9 +5253,9 @@
                                                                     class="error">Es requerido
                                                                 </span>
                                                             </div>
-                                                            <div class="col-12 col-md-4  mt-3" id="padrinoDefault{{i}}">
+                                                            <div class="col-12 col-md-3  mt-3" id="padrinoDefault{{i}}">
                                                                 <div class="form-group ">
-                                                                    <label for="name ">Nombre</label>
+                                                                    <label for="name ">1er Persona</label>
                                                                     <input type="text" class="form-control upper"
                                                                         id="name" formControlName="name" required
                                                                         placeholder="Oscar Ramirez"
@@ -5249,6 +5263,19 @@
                                                                         class="form-control">
                                                                 </div>
                                                                 <span *ngIf="submited && errorControl['name'].errors "
+                                                                    class="error">Es requerido
+                                                                </span>
+                                                            </div>
+                                                            <div class="col-12 col-md-3  mt-3" id="padrinoDefault{{i}}">
+                                                                <div class="form-group ">
+                                                                    <label for="name2 ">2da Persona</label>
+                                                                    <input type="text" class="form-control upper"
+                                                                        id="name2" formControlName="name2" required
+                                                                        placeholder="Oscar Ramirez"
+                                                                        [readonly]="edit==='false'"
+                                                                        class="form-control">
+                                                                </div>
+                                                                <span *ngIf="submited && errorControl['name2'].errors "
                                                                     class="error">Es requerido
                                                                 </span>
                                                             </div>
@@ -5780,7 +5807,15 @@
                                                         formControlName="donde1Title">
                                                 </div>
                                             </div> -->
-                                            <div class="col-12 col-md-6   mt-3 animated1 fadeIn"
+
+                                            <div class="col-12 col-md-4   mt-3">
+                                                <div class="form-group ">
+                                                    <label for="donde1Titulo ">Titulo </label>
+                                                    <input type="text" id="donde1Titulo" #donde1Titulo
+                                                        formControlName="donde1Titulo" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-4  mt-3 animated1 fadeIn"
                                                 *ngIf="form.value.donde1Check">
                                                 <div class="form-group ">
                                                     <label for="donde1Text ">Nombre de la iglesia </label>
@@ -5789,7 +5824,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-12 col-md-6   mt-3" *ngIf="form.value.donde1Check">
+                                            <div class="col-12 col-md-4  mt-3" *ngIf="form.value.donde1Check">
                                                 <div class="form-group ">
                                                     <label for="donde1Date ">Fecha </label>
                                                     <input type="datetime-local" id="donde1Date" #donde1Date
@@ -5852,14 +5887,21 @@
                                                         class="form-control">
                                                 </div>
                                             </div>
-                                            <div class="col-12 col-md-6   mt-3" *ngIf="form.value.donde2Check">
+                                            <div class="col-12 col-md-4   mt-3">
+                                                <div class="form-group ">
+                                                    <label for="donde2Titulo ">Titulo </label>
+                                                    <input type="text" id="donde2Titulo" #donde2Titulo
+                                                        formControlName="donde2Titulo" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-4  mt-3" *ngIf="form.value.donde2Check">
                                                 <div class="form-group ">
                                                     <label for="donde2Text ">Nombre del registro </label>
                                                     <input type="text" id="donde2Text" #donde2Text
                                                         formControlName="donde2Text" class="form-control">
                                                 </div>
                                             </div>
-                                            <div class="col-12 col-md-6   mt-3" *ngIf="form.value.donde2Check">
+                                            <div class="col-12 col-md-4  mt-3" *ngIf="form.value.donde2Check">
                                                 <div class="form-group ">
                                                     <label for="donde2Date ">Fecha </label>
                                                     <input type="datetime-local" id="donde2Date" #donde2Date

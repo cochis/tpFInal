@@ -299,6 +299,8 @@ export class EditarInvitacionComponent {
       donde1Check: [true],
       donde1Img: [''],
       donde1Title: ['Iglesia'],
+      galeriaTitle: ['Momentos'],
+      donde1Titulo: [''],
       donde1Text: [''],
       donde1Date: [(typeof (this.fiesta.fecha) == "number") ? this.functionsService.numberDateTimeLocal(this.fiesta.fecha) : this.fiesta.fecha],
       donde1Icon: ['mt-2 mb-2 text-center bi bi-map pointer'],
@@ -309,6 +311,7 @@ export class EditarInvitacionComponent {
       donde2Check: [true],
       donde2Img: [''],
       donde2Title: ['Civil'],
+      donde2Titulo: [''],
       donde2Text: [''],
       donde2Date: [(typeof (this.fiesta.fecha) == "number") ? this.functionsService.numberDateTimeLocal(this.fiesta.fecha) : this.fiesta.fecha],
       donde2Icon: ['mt-2 mb-2 text-center bi bi-map pointer'],
@@ -319,6 +322,7 @@ export class EditarInvitacionComponent {
       donde3Check: [true],
       donde3Img: [this.fiesta.salon.img],
       donde3Title: ['Lugar del evento'],
+      donde3Titulo: [''],
       donde3Text: [this.fiesta.salon.nombre],
       donde3Date: [(typeof (this.fiesta.fecha) == "number") ? this.functionsService.numberDateTimeLocal(this.fiesta.fecha) : this.fiesta.fecha],
       donde3Icon: ['mt-2 mb-2 text-center bi bi-map pointer'],
@@ -526,7 +530,11 @@ export class EditarInvitacionComponent {
       mensajeEfectoRep: [invitacion.data.mensajeEfectoRep],
       donde1Check: [invitacion.data.donde1Check],
       donde1Img: [invitacion.data.donde1Img],
+      galeriaTitle: [invitacion.data.galeriaTitle],
       donde1Title: [invitacion.data.donde1Title],
+      donde1Titulo: [invitacion.data.donde1Titulo],
+      donde2Titulo: [invitacion.data.donde2Titulo],
+      donde3Titulo: [invitacion.data.donde3Titulo],
       donde1Text: [invitacion.data.donde1Text],
       donde1Date: [invitacion.data.donde1Date],
       donde1Icon: [invitacion.data.donde1Icon],
@@ -885,7 +893,11 @@ export class EditarInvitacionComponent {
       mensajeEfectoRep: [temp.mensajeEfectoRep],
       donde1Check: [temp.donde1Check],
       donde1Img: [temp.donde1Img],
+      galeriaTitle: [temp.galeriaTitle],
       donde1Title: [temp.donde1Title],
+      donde1Titulo: [temp.donde1Titulo],
+      donde2Titulo: [temp.donde2Titulo],
+      donde3Titulo: [temp.donde3Titulo],
       donde1Text: [temp.donde1Text],
       donde1Date: [temp.donde1Date],
       donde1Icon: [temp.donde1Icon],
@@ -1441,7 +1453,11 @@ export class EditarInvitacionComponent {
             mensajeEfectoRep: 1,
             donde1Check: true,
             donde1Img: '',
+            galeriaTitle: 'Momentos',
             donde1Title: 'Iglesia',
+            donde1Titulo: '',
+            donde2Titulo: '',
+            donde3Titulo: '',
             donde1Text: '',
             donde1Date: (typeof (this.fiesta.fecha) == "string") ? this.functionsService.dateToNumber(this.fiesta.fecha) : this.fiesta.fecha,
             donde1Icon: 'mt-2 mb-2 text-center bi bi-map pointer',
@@ -1740,12 +1756,14 @@ export class EditarInvitacionComponent {
     if (padrino) {
       return this.fb.group({
         name: padrino.name,
+        name2: padrino.name2,
         icon: padrino.icon,
         tipo: padrino.tipo
       })
     } else {
       return this.fb.group({
         name: '',
+        name2: '',
         icon: '',
         tipo: ''
       })

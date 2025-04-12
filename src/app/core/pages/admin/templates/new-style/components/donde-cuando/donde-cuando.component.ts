@@ -25,7 +25,8 @@ export class DondeCuandoComponent implements AfterViewInit {
       dondeIcon: this.data.donde1Icon,
       dondeImg: this.data.donde1Img,
       dondeText: this.data.donde1Text,
-      dondeTitle: this.data.donde1Title
+      dondeTitle: this.data.donde1Title,
+      dondeTitulo: this.data.donde1Titulo
     }
 
     if (this.data.donde1Check == 'true' || this.data.donde1Check == true) {
@@ -41,7 +42,8 @@ export class DondeCuandoComponent implements AfterViewInit {
       dondeIcon: this.data.donde2Icon,
       dondeImg: this.data.donde2Img,
       dondeText: this.data.donde2Text,
-      dondeTitle: this.data.donde2Title
+      dondeTitle: this.data.donde2Title,
+      dondeTitulo: this.data.donde2Titulo
     }
 
     if (this.data.donde2Check == 'true' || this.data.donde2Check == true) {
@@ -57,7 +59,9 @@ export class DondeCuandoComponent implements AfterViewInit {
       dondeIcon: this.data.donde3Icon,
       dondeImg: this.data.donde3Img,
       dondeText: this.data.donde3Text,
-      dondeTitle: this.data.donde3Title
+      dondeTitle: this.data.donde3Title,
+
+      dondeTitulo: this.data.donde3Titulo
     }
 
     if (this.data.donde3Check == 'true' || this.data.donde3Check == true) {
