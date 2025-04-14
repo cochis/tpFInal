@@ -824,7 +824,7 @@ export class EditarInvitacionComponent {
   }
   getQrGaleria() {
     let url = this.urlT + 'core/galeria/fst/' + this.fiesta.uid
-    console.log('url::: ', url);
+
 
     return url
 

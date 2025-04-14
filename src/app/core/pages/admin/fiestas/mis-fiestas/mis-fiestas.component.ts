@@ -154,7 +154,7 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
 
       })
     } else if (this.rol === this.CHK) {
-      console.log('this.usuario.salon[0]::: ', this.usuario.salon[0]._id);
+
 
       this.fiestasService.cargarFiestasBySalon(this.usuario.salon[0]._id).subscribe(resp => {
         this.fiestas = this.functionsService.getActives(resp.fiestas)

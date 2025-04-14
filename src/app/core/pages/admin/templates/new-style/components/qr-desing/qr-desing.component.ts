@@ -19,7 +19,7 @@ export class QrDesingComponent implements AfterViewInit {
   ngAfterViewInit() {
     this.bgsframes
     this.data
-    console.log('this.data::: ', this.data);
+
 
 
 
