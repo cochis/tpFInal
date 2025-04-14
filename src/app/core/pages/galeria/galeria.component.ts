@@ -281,6 +281,7 @@ export class GaleriaComponent implements OnInit, OnDestroy {
   deleteOne(foto) {
 
     this.fileService.deleteFoto("galerias", foto.uid).subscribe(res => {
+
       this.getPictures()
       return true
     })

@@ -17,8 +17,9 @@
                         <ng-container *ngIf="!boleto && data && !loading">
 
                             <div class="col-12">
+                                {{data.imgQrCheck}}
                                 <div class="qrcodeImage text-center  mg ma pt-3"
-                                    *ngIf=" (data.checking=='true' || data.checking)">
+                                    *ngIf=" (data.checking=='true' || data.checking) &&  (data.imgQrCheck=='true' || data.imgQrCheck)">
                                     <qrcode (qrCodeURL)="onChangeURL($event)"
                                         [qrdata]="'Bienvenido a  https://www.myticketparty.com/core'"
                                         [allowEmptyString]="true"
@@ -29,8 +30,17 @@
                                         [margin]="4" [scale]="1"
                                         [title]="'Bienvenido a  https://www.myticketparty.com/core'" [width]="300">
                                     </qrcode>
-
-
+                                </div>
+                                <div class="qrcodeImage text-center  mg ma pt-3"
+                                    *ngIf=" (data.checking=='true' || data.checking) &&  (data.imgQrCheck=='false' || !data.imgQrCheck)">
+                                    <qrcode (qrCodeURL)="onChangeURL($event)"
+                                        [qrdata]="'Bienvenido a  https://www.myticketparty.com/core'"
+                                        [allowEmptyString]="true"
+                                        [ariaLabel]="'QR Code image with the following content...'"
+                                        [cssClass]="'center'" [colorDark]="data.cSecond" [colorLight]="'#ffffffff'"
+                                        [elementType]="'canvas'" [errorCorrectionLevel]="'M'" [margin]="4" [scale]="1"
+                                        [title]="'Bienvenido a  https://www.myticketparty.com/core'" [width]="300">
+                                    </qrcode>
                                 </div>
 
                             </div>
@@ -82,7 +92,7 @@
                             <div class="col-12">
 
                                 <div class="qrcodeImage text-center  mg ma pt-3"
-                                    *ngIf="boleto && (data.checking=='true' || data.checking)">
+                                    *ngIf="boleto && (data.checking=='true' || data.checking)  && (data.imgQrCheck=='true' || data.imgQrCheck)">
                                     <qrcode (qrCodeURL)="onChangeURL($event)" [qrdata]="getQr(boleto)"
                                         [allowEmptyString]="true"
                                         [ariaLabel]="'QR Code image with the following content...'"
@@ -92,9 +102,21 @@
                                         [imageHeight]="75" [imageWidth]="75" [margin]="4" [scale]="1"
                                         [title]="fiesta.nombre" [width]="300">
                                     </qrcode>
-
-
                                 </div>
+                                <div class="qrcodeImage text-center  mg ma pt-3"
+                                    *ngIf="boleto && (data.checking=='true' || data.checking)  && (data.imgQrCheck=='false' || !data.imgQrCheck)">
+                                    <qrcode (qrCodeURL)="onChangeURL($event)" [qrdata]="getQr(boleto)"
+                                        [allowEmptyString]="true"
+                                        [ariaLabel]="'QR Code image with the following content...'"
+                                        [cssClass]="'center'" [colorDark]="data.cSecond" [colorLight]="'#ffffffff'"
+                                        [elementType]="'canvas'" [errorCorrectionLevel]="'M'" [imageHeight]="75"
+                                        [imageWidth]="75" [margin]="4" [scale]="1" [title]="fiesta.nombre"
+                                        [width]="300">
+                                    </qrcode>
+                                </div>
+
+
+
                             </div>
                             <div class="col-md-12 mb-3">
                                 <p class="text-center {{data.textoInvFont}}"
@@ -169,7 +191,7 @@
 
                             <div class="col-12">
                                 <div class="qrcodeImage text-center  mg ma pt-3"
-                                    *ngIf=" (data.checking=='true' || data.checking)">
+                                    *ngIf=" (data.checking=='true' || data.checking) && (data.imgQrCheck=='true' || data.imgQrCheck)">
                                     <qrcode (qrCodeURL)="onChangeURL($event)"
                                         [qrdata]="'Bienvenido a  https://www.myticketparty.com/core'"
                                         [allowEmptyString]="true"
@@ -178,6 +200,19 @@
                                         [elementType]="'canvas'" [errorCorrectionLevel]="'M'"
                                         [imageSrc]="'/assets/images/logo.png'" [imageHeight]="75" [imageWidth]="75"
                                         [margin]="4" [scale]="1"
+                                        [title]="'Bienvenido a  https://www.myticketparty.com/core'" [width]="300">
+                                    </qrcode>
+
+
+                                </div>
+                                <div class="qrcodeImage text-center  mg ma pt-3"
+                                    *ngIf=" (data.checking=='true' || data.checking) && (data.imgQrCheck=='false' || !data.imgQrCheck)">
+                                    <qrcode (qrCodeURL)="onChangeURL($event)"
+                                        [qrdata]="'Bienvenido a  https://www.myticketparty.com/core'"
+                                        [allowEmptyString]="true"
+                                        [ariaLabel]="'QR Code image with the following content...'"
+                                        [cssClass]="'center'" [colorDark]="data.cSecond" [colorLight]="'#ffffffff'"
+                                        [elementType]="'canvas'" [errorCorrectionLevel]="'M'" [margin]="4" [scale]="1"
                                         [title]="'Bienvenido a  https://www.myticketparty.com/core'" [width]="300">
                                     </qrcode>
 
@@ -233,7 +268,7 @@
                             <div class="col-12">
 
                                 <div class="qrcodeImage text-center  mg ma pt-3"
-                                    *ngIf="boleto && (data.checking=='true' || data.checking)">
+                                    *ngIf="boleto && (data.checking=='true' || data.checking) && (data.imgQrCheck=='true' || data.imgQrCheck)">
                                     <qrcode (qrCodeURL)="onChangeURL($event)" [qrdata]="getQr(boleto)"
                                         [allowEmptyString]="true"
                                         [ariaLabel]="'QR Code image with the following content...'"
@@ -241,6 +276,18 @@
                                         [elementType]="'canvas'" [errorCorrectionLevel]="'M'"
                                         [imageSrc]="(fiesta.img!=='')?url+'/upload/fiestas/'+fiesta.img:url+'/upload/fiestas/default.jpg'"
                                         [imageHeight]="75" [imageWidth]="75" [margin]="4" [scale]="1"
+                                        [title]="fiesta.nombre" [width]="300">
+                                    </qrcode>
+
+
+                                </div>
+                                <div class="qrcodeImage text-center  mg ma pt-3"
+                                    *ngIf="boleto && (data.checking=='true' || data.checking) && (data.imgQrCheck=='false' || !data.imgQrCheck)">
+                                    <qrcode (qrCodeURL)="onChangeURL($event)" [qrdata]="getQr(boleto)"
+                                        [allowEmptyString]="true"
+                                        [ariaLabel]="'QR Code image with the following content...'"
+                                        [cssClass]="'center'" [colorDark]="data.cSecond" [colorLight]="'#ffffffff'"
+                                        [elementType]="'canvas'" [errorCorrectionLevel]="'M'" [margin]="4" [scale]="1"
                                         [title]="fiesta.nombre" [width]="300">
                                     </qrcode>
 

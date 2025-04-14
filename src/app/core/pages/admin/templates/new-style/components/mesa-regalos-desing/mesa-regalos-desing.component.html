@@ -25,7 +25,8 @@
                         </a>
 
                     </div>
-                    <div class="col-12 col-md-4 ma" *ngIf="data.mesaRegalosUrl!='' && data.mesaRegalosLugar2!=='' ">
+                    <div class="col-12 col-md-4 ma"
+                        *ngIf="(  data.mesaRegalosUrl2  && data.mesaRegalosUrl2!='')&& (data.mesaRegalosLugar2 && data.mesaRegalosLugar2!=='') ">
                         <a [href]="data.mesaRegalosUrl2" class="{{data.textoInvFont }}" target="_blank"
                             rel="noopener noreferrer" [style]="{'text-decoration':'none', 'color':data.cTexto}">
                             <img src="/assets/icons/gift.png" alt=""

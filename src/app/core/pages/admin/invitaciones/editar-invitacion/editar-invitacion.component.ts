@@ -41,6 +41,7 @@ export class EditarInvitacionComponent {
   public imgTemp: any = undefined
   public soundTemp: any = undefined
   url = environment.base_url
+  urlT = environment.text_url
   fiesta: Fiesta
   invitacion: any = undefined
   invitacionTemp: Invitacion = undefined
@@ -141,7 +142,7 @@ export class EditarInvitacionComponent {
           resolve(this.userLocation)
         },
         (err) => {
-          console.error('err::: ', err);
+          // console.error('err::: ', err);
           this.functionsService.alertError(err, 'error')
         }
       )
@@ -157,7 +158,7 @@ export class EditarInvitacionComponent {
       this.functionsService.setLocal('tipoInvitacion', this.fiesta.invitacion)
     },
       (error: any) => {
-        console.error('Error', error)
+        // console.error('Error', error)
         this.loading = false
         this.functionsService.alert('Fiesta', 'Por favor intente mas tarde', 'error')
       })
@@ -351,6 +352,7 @@ export class EditarInvitacionComponent {
       hospedajePhone: [''],
       mesaRegalosCheck: [true],
       confirmacionCheck: [true],
+      ajusteCheck: [true],
       generalCheck: [true],
       generalSize: [15],
       generalTexto: [''],
@@ -391,6 +393,7 @@ export class EditarInvitacionComponent {
       musicaCheck: [true],
       musica: this.fb.array([]),
       codigoVestimentaCheck: [true],
+      imgQrCheck: [true],
       codigoVestimentaHombre: [''],
       codigoVestimentaHombreImg: [''],
       codigoVestimentaMujer: [''],
@@ -584,6 +587,7 @@ export class EditarInvitacionComponent {
       hospedajePhone: [invitacion.data.hospedajePhone],
       mesaRegalosCheck: [invitacion.data.mesaRegalosCheck],
       confirmacionCheck: [invitacion.data.confirmacionCheck],
+      ajusteCheck: [invitacion.data.ajusteCheck],
       generalCheck: [invitacion.data.generalCheck],
       generalSize: [invitacion.data.generalSize],
       generalTexto: [invitacion.data.generalTexto],
@@ -627,6 +631,7 @@ export class EditarInvitacionComponent {
       sobresFestejadaNombre: [invitacion.data.sobresFestejadaNombre],
       sobresFestejadaMensaje: [invitacion.data.sobresFestejadaMensaje],
       codigoVestimentaCheck: [invitacion.data.codigoVestimentaCheck],
+      imgQrCheck: [invitacion.data.imgQrCheck],
       codigoVestimentaHombre: [invitacion.data.codigoVestimentaHombre],
       codigoVestimentaHombreImg: [invitacion.data.codigoVestimentaHombreImg],
       codigoVestimentaMujer: [invitacion.data.codigoVestimentaMujer],
@@ -817,6 +822,13 @@ export class EditarInvitacionComponent {
 
     return JSON.stringify(qr)
   }
+  getQrGaleria() {
+    let url = this.urlT + 'core/galeria/fst/' + this.fiesta.uid
+    console.log('url::: ', url);
+
+    return url
+
+  }
 
 
 
@@ -942,6 +954,7 @@ export class EditarInvitacionComponent {
       hospedajePhone: [temp.hospedajePhone],
       mesaRegalosCheck: [temp.mesaRegalosCheck],
       confirmacionCheck: [temp.confirmacionCheck],
+      ajusteCheck: [temp.ajusteCheck],
       generalCheck: [temp.generalCheck],
       generalSize: [temp.generalSize],
       generalTexto: [temp.generalTexto],
@@ -1047,6 +1060,7 @@ export class EditarInvitacionComponent {
       sobresFestejadaNombre: [temp.data.sobresFestejadaNombre],
       sobresFestejadaMensaje: [temp.data.sobresFestejadaMensaje],
       codigoVestimentaCheck: [temp.data.codigoVestimentaCheck],
+      imgQrCheck: [temp.data.imgQrCheck],
       codigoVestimentaHombre: [temp.data.codigoVestimentaHombre],
       codigoVestimentaHombreImg: [temp.data.codigoVestimentaHombreImg],
       codigoVestimentaMujer: [temp.data.codigoVestimentaMujer],
@@ -1506,6 +1520,7 @@ export class EditarInvitacionComponent {
             hospedajePhone: '',
             mesaRegalosCheck: true,
             confirmacionCheck: true,
+            ajusteCheck: true,
             generalCheck: true,
             generalSize: 15,
             generalTexto: '',
@@ -1706,7 +1721,7 @@ export class EditarInvitacionComponent {
       }
     },
       (error) => {
-        console.error('Error', error)
+        // console.error('Error', error)
         this.functionsService.alertError(error, 'Invitacion')
       })
   }
@@ -2030,7 +2045,7 @@ export class EditarInvitacionComponent {
               }, 800);
             },
             (err) => {
-              console.error('Error', err)
+              // console.error('Error', err)
               this.functionsService.alertError(err, 'Error')
             },
           )
@@ -2123,7 +2138,7 @@ export class EditarInvitacionComponent {
             }, 800);
           },
           (err) => {
-            console.error('Error', err)
+            // console.error('Error', err)
             this.functionsService.alertError(err, 'Error')
           },
         )
@@ -2163,7 +2178,7 @@ export class EditarInvitacionComponent {
               }, 800);
             },
             (err) => {
-              console.error('Error', err)
+              // console.error('Error', err)
               this.functionsService.alertError(err, 'Error')
             },
           )
@@ -2190,7 +2205,7 @@ export class EditarInvitacionComponent {
             }, 800);
           },
           (err) => {
-            console.error('Error', err)
+            // console.error('Error', err)
             this.functionsService.alertError(err, 'Error')
           },
         )
@@ -2313,6 +2328,7 @@ export class EditarInvitacionComponent {
 
       //Boton confirmacion
       this.invitacion.data.confirmacionCheck = false
+      this.invitacion.data.ajusteCheck = false
       //padres
       this.invitacion.data.padresCheck = false
       this.invitacion.data.padres = []
@@ -2358,6 +2374,7 @@ export class EditarInvitacionComponent {
       this.invitacion.data.mesaRegalosImg = ""
       //Codigo Vestimenta
       this.invitacion.data.codigoVestimentaCheck = false
+      this.invitacion.data.imgQrCheck = false
       this.invitacion.data.codigoVestimentaMujerImg = ""
       this.invitacion.data.codigoVestimentaMujer = ""
       this.invitacion.data.codigoVestimentaHombreImg = ""

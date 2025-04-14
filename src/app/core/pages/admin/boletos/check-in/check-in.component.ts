@@ -12,6 +12,7 @@ import { UsuariosService } from 'src/app/core/services/usuarios.service';
 import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
+import { map } from 'rxjs';
 @Component({
   selector: 'app-check-in',
   templateUrl: './check-in.component.html',
@@ -24,6 +25,7 @@ export class CheckInComponent implements AfterViewInit {
   SLN = environment.salon_role
   URS = environment.user_role
   ANF = environment.anf_role
+  CHK = environment.chk_role
   idx: number = undefined
   boleto: Boleto
   boletosFind: any = []
@@ -124,6 +126,26 @@ export class CheckInComponent implements AfterViewInit {
         this.fiestas = this.fiestas.filter(res => {
 
           return res.example == this.example
+        })
+      })
+    } else if (this.role == this.CHK) {
+
+
+
+      this.usuariosService.cargarUsuarioById(this.uid).subscribe((res: any) => {
+
+
+        this.fiestasService.cargarFiestasBySalon(res.usuario.salon[0]._id).subscribe(resp => {
+
+
+          this.fiestas = this.functionsService.getActives(resp.fiestas)
+
+
+
+          this.fiestas = this.fiestas.filter(res => {
+
+            return res.example == this.example
+          })
         })
       })
     }
@@ -275,6 +297,13 @@ export class CheckInComponent implements AfterViewInit {
     this.boletosService.cargarBoletoByFiesta(form.fiesta).subscribe(resp => {
 
       this.boletosFind = this.functionsService.getActives(resp.boleto)
+      this.boletosFind.map(blt => {
+        return blt.nombreGrupo = blt.nombreGrupo.toUpperCase()
+      })
+
+      this.boletosFind.sort(function (a, b) {
+        return (a.nombreGrupo.toLowerCase().localeCompare(b.nombreGrupo.toLowerCase()))
+      });
 
     })
 

@@ -102,8 +102,8 @@
                             <label for="tipo">Tipo</label>
                             <select name="tipo" id="tipo" formControlName="tipo" class="form-control upper"
                                 (change)="filterBy(formInit.value)">
-                                <option value="">Selecciona un tipo</option>
-                                <option value="nombre">Nombre </option>
+                                <option class="upper" value="">Selecciona un tipo</option>
+                                <option class="upper" value="nombre">Nombre </option>
 
 
 
@@ -116,8 +116,9 @@
                             <label for="boleto">Boleto</label>
                             <select name="boleto" id="boleto" formControlName="boleto" #boleto
                                 class="form-control upper" (change)="setBoleto(boleto.value)">
-                                <option value="">Selecciona un boleto</option>
-                                <option [value]="item.uid" *ngFor="let item of boletosFind">{{item.nombreGrupo}}
+                                <option class="upper" value="">Selecciona un boleto</option>
+                                <option class="upper" [value]="item.uid" *ngFor="let item of boletosFind">
+                                    {{item.nombreGrupo}} - MESA : {{item.mesa}}
                                 </option>
 
 
@@ -130,8 +131,9 @@
                             <label for="boleto">Boleto</label>
                             <select name="boleto" id="boleto" formControlName="boleto" #boleto
                                 class="form-control upper" (change)="setBoleto(boleto.value)">
-                                <option value="">Selecciona un boleto</option>
-                                <option [value]="item.uid" *ngFor="let item of boletosFind">{{item.mesa}}</option>
+                                <option class="upper" value="">Selecciona un boleto</option>
+                                <option class="upper" [value]="item.uid" *ngFor="let item of boletosFind">{{item.mesa}}
+                                </option>
 
 
                             </select>

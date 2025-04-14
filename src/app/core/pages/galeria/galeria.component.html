@@ -86,7 +86,7 @@
                                 </div>
                                 <div style="width: 100%;" class="text-center mt-1"
                                     *ngIf="anfitrionId ===uid || rol == ADM">
-                                    <small class="primary upper ma">
+                                    <small class="primary upper ma" *ngIf="item.boleto != null">
                                         <b>
 
                                             {{item.boleto.nombreGrupo}}

@@ -29,8 +29,8 @@
                             O Ingresa por QR
                         </h5>
                     </div>
-                    <div class="col-6 text-center ma qrcodeImage text-center  mg ma pt-3">
-
+                    <div class="col-6 text-center ma qrcodeImage text-center  mg ma pt-3"
+                        *ngIf="(data.imgQrCheck=='true' || data.imgQrCheck)">
                         <qrcode [qrdata]="urlT+'/core/galeria/fst/'+fiesta.uid+'/blt/'+boleto.uid"
                             [allowEmptyString]="true" [ariaLabel]="data.nombreFiesta" [cssClass]="'center'"
                             [elementType]="'canvas'" [errorCorrectionLevel]="'M'"
@@ -38,12 +38,15 @@
                             [imageHeight]="75" [imageWidth]="75" [margin]="4" [scale]="1" [colorDark]="data.cTexto"
                             [colorLight]="'#FFFFFF'" [title]="data.nombreFiesta" [width]=" 300">
                         </qrcode>
-
-
-
-
-
-
+                    </div>
+                    <div class="col-6 text-center ma qrcodeImage text-center  mg ma pt-3"
+                        *ngIf="(data.imgQrCheck=='false' || !data.imgQrCheck)">
+                        <qrcode [qrdata]="urlT+'/core/galeria/fst/'+fiesta.uid+'/blt/'+boleto.uid"
+                            [allowEmptyString]="true" [ariaLabel]="data.nombreFiesta" [cssClass]="'center'"
+                            [elementType]="'canvas'" [errorCorrectionLevel]="'M'" [margin]="4" [scale]="1"
+                            [colorDark]="data.cTexto" [colorLight]="'#FFFFFF'" [title]="data.nombreFiesta"
+                            [width]=" 300">
+                        </qrcode>
                     </div>
                 </div>
             </div>
@@ -85,8 +88,8 @@
                             O Ingresa por QR
                         </h5>
                     </div>
-                    <div class="col-6 text-center ma qrcodeImage text-center  mg ma pt-3">
-
+                    <div class="col-6 text-center ma qrcodeImage text-center  mg ma pt-3"
+                        *ngIf="(data.imgQrCheck=='true' || data.imgQrCheck)">
                         <qrcode [qrdata]="urlT+'/core/galeria/fst/'+fiesta.uid+'/blt/'+boleto.uid"
                             [allowEmptyString]="true" [ariaLabel]="data.nombreFiesta" [cssClass]="'center'"
                             [elementType]="'canvas'" [errorCorrectionLevel]="'M'"
@@ -94,12 +97,15 @@
                             [imageHeight]="75" [imageWidth]="75" [margin]="4" [scale]="1" [colorDark]="data.cTexto"
                             [colorLight]="'#FFFFFF'" [title]="data.nombreFiesta" [width]=" 300">
                         </qrcode>
-
-
-
-
-
-
+                    </div>
+                    <div class="col-6 text-center ma qrcodeImage text-center  mg ma pt-3"
+                        *ngIf="(data.imgQrCheck=='false' || !data.imgQrCheck)">
+                        <qrcode [qrdata]="urlT+'/core/galeria/fst/'+fiesta.uid+'/blt/'+boleto.uid"
+                            [allowEmptyString]="true" [ariaLabel]="data.nombreFiesta" [cssClass]="'center'"
+                            [elementType]="'canvas'" [errorCorrectionLevel]="'M'" [margin]="4" [scale]="1"
+                            [colorDark]="data.cTexto" [colorLight]="'#FFFFFF'" [title]="data.nombreFiesta"
+                            [width]=" 300">
+                        </qrcode>
                     </div>
                 </div>
             </div>

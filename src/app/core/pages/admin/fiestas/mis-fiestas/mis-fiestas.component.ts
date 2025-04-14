@@ -34,7 +34,7 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
   salones: Salon[] = []
   salonesDB: Salon[] = []
   paquetes: Paquete[] = []
-  usuario: Usuario
+  usuario: any
   ADM = environment.admin_role
   SLN = environment.salon_role
   URS = environment.user_role
@@ -52,7 +52,7 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
   example: boolean = false
   public imagenSubir!: File
   public imgTemp: any = undefined
-
+  nPush = 0
   constructor(
     private fiestasService: FiestasService,
     private usuariosService: UsuariosService,
@@ -154,7 +154,9 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
 
       })
     } else if (this.rol === this.CHK) {
-      this.fiestasService.cargarFiestasBySalon(this.usuario.salon[0]).subscribe(resp => {
+      console.log('this.usuario.salon[0]::: ', this.usuario.salon[0]._id);
+
+      this.fiestasService.cargarFiestasBySalon(this.usuario.salon[0]._id).subscribe(resp => {
         this.fiestas = this.functionsService.getActives(resp.fiestas)
         this.fiestasTemp = this.fiestas
 
@@ -321,40 +323,54 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
   enviarPush(boletos) {
-    boletos.forEach(boleto => {
-      if (boleto.activated) {
-        let fiesta = this.fiestas.filter(fst => {
-          return fst.uid == boleto.fiesta
-        })
-        let push = {
-          "notification": {
-            "title": "Hola " + boleto.nombreGrupo + ", recuerda que mi evento es el  " + this.functionsService.datePush(fiesta[0].fecha),
-            "body": fiesta[0].nombre,
-            "vibrate": [
-              100,
-              50,
-              100
-            ],
-            "icon": this.tUrl + "assets/images/qr.jpeg",
-            "image": this.url + "/upload/fiestas/" + fiesta[0].img,
-            "data": {
-              "onActionClick": {
-                "default": {
-                  "operation": "openWindow",
-                  "url": "/core/templates/default/" + boleto.fiesta + "/" + boleto.uid
+    var np = 0
+    this.nPush = boletos.length
+    boletos.forEach((boleto, i) => {
+      this.fiestasService.cargarFiestaById(boleto.fiesta).subscribe(resp => {
+        let invi = resp.fiesta.invitacion
+        if (boleto.activated) {
+          let fiesta = this.fiestas.filter(fst => {
+            return fst.uid == boleto.fiesta
+          })
+          let push = {
+
+            "notification": {
+              "title": "Hola " + boleto.nombreGrupo + ", recuerda que mi evento es el  " + this.functionsService.datePush(fiesta[0].fecha),
+              "body": fiesta[0].nombre,
+              "vibrate": [
+                100,
+                50,
+                100
+              ],
+              "icon": this.tUrl + "assets/images/qr.jpeg",
+              "image": this.url + "/upload/fiestas/" + fiesta[0].img,
+              "data": {
+                "onActionClick": {
+                  "default": {
+                    "operation": "openWindow",
+                    "url": "/core/templates/" + invi + "/" + boleto.fiesta + "/" + boleto.uid
+                  }
                 }
               }
             }
           }
+          this.loading = true
+          this.tokenPushService.sendTokenPushsByBoleto(boleto.uid, push).subscribe(resp => {
+            np = np + 1
+
+            if (np === this.nPush) {
+              this.loading = false
+              this.functionsService.alert("Notificaciones enviadas", "Recuerda pedir a tus invitados que activen las notificaciones en su invitación", "success")
+            }
+          },
+            (err) => {
+              console.error('Error', err)
+              this.functionsService.alertError(err, 'Push Notifiactions')
+            })
         }
-        this.tokenPushService.sendTokenPushsByBoleto(boleto.uid, push).subscribe(resp => {
-          this.functionsService.alert("Notificaciones enviadas", "Recuerda pedir a tus invitados que activen las notificaciones en su invitación", "success")
-        },
-          (err) => {
-            console.error('Error', err)
-            this.functionsService.alertError(err, 'Push Notifiactions')
-          })
-      }
+      })
+
+
 
     });
 

@@ -1,17 +1,14 @@
 <ng-container
     *ngIf="(data.padrinosCheck =='true' || data.padrinosCheck ==true) && (data.fondoInvitacionCheck=='false' || data.fondoInvitacionCheck==false) ">
 
-    <div class="clear"></div>
-    <div class="_animate__zoomIn animate__animated animate__zoomIn btp "
-        [style]="{'background-color':'white','border-color':data.cSecond,
-'background-image':'url('+url+'/upload/fondos/'+getImg(data.fondoInvitacion)+')' , 'background-attachment': 'fixed', 'background-size': '100% 100%', 'background-repeat': 'no-repeat', 'background-position': 'center top'}"
-        *ngIf="data  && padrinos.length>0">
+
+    <div class="_animate__zoomIn animate__animated animate__zoomIn   " *ngIf="data  && padrinos.length>0">
         <div class="text-center mt-5">
             <h3 class="text-center ma animate__animated {{data.cabeceraFont}} {{data.cabeceraEfecto}} {{data.cabeceraEfectoRep}}"
                 [style]="{'font-size': data.cabeceraSize +'px','color':data.cTexto}">
-                {{data.titlePadrinos}}
+                {{(data.titlePadrinos!='')?data.titlePadrinos:'Padrinos' }}
             </h3>
-            <div class="ma divisor" [style]="{'background-color':data.cSecond}"> </div>
+
             <div class="container">
                 <div class="row text-center">
                     <ng-container *ngFor="let item of padrinos">
@@ -19,7 +16,8 @@
                         <div class="col-6 col-md-4 ma">
 
                             <img src="/assets/icons/{{item.icon}}.png" alt=""
-                                [style]="{'width':data.iconSize+'px','height':data.iconSize+'px'}">
+                                [style]="{'width':data.iconSize+'px','height':data.iconSize+'px'}"
+                                *ngIf="item.icon.trim() !==''">
                             <h5 class="{{data.textoInvFont}}" [style]="{'font-weight': 'bold', 'color':data.cTexto}">
                                 {{item.tipo}}</h5>
                             <h3 class="{{data.textoInvFont}}" [style]="{'color':data.cTexto}">{{item.name}}</h3>
@@ -50,17 +48,14 @@
 <ng-container
     *ngIf="(data.padrinosCheck =='true' || data.padrinosCheck ==true) && (data.fondoInvitacionCheck=='true' || data.fondoInvitacionCheck==true) ">
 
-    <div class="clear"></div>
-    <div class="_animate__zoomIn animate__animated animate__zoomIn btp "
-        [style]="{'background-color':'white','border-color':data.cSecond,
-'background-image':'url('+url+'/upload/invitaciones/'+ data.fondoInvitacionUp+')' , 'background-attachment': 'fixed', 'background-size': '100% 100%', 'background-repeat': 'no-repeat', 'background-position': 'center top'}"
-        *ngIf="data  && padrinos.length>0">
+
+    <div class="_animate__zoomIn animate__animated animate__zoomIn   " *ngIf="data  && padrinos.length>0">
         <div class="text-center mt-5">
             <h3 class="text-center ma animate__animated {{data.cabeceraFont}} {{data.cabeceraEfecto}} {{data.cabeceraEfectoRep}}"
                 [style]="{'font-size': data.cabeceraSize +'px','color':data.cTexto}">
-                Padrinos
+                {{(data.titlePadrinos!='')?data.titlePadrinos:'Padrinos' }}
             </h3>
-            <div class="ma divisor" [style]="{'background-color':data.cSecond}"> </div>
+
             <div class="container">
                 <div class="row text-center">
                     <ng-container *ngFor="let item of padrinos">
@@ -68,7 +63,8 @@
                         <div class="col-6 col-md-4 ma">
 
                             <img [src]="url+'/upload/fondos/'+getImg(item.icon)" alt="{{item.tipo}}"
-                                [style]="{'width':data.iconSize+'px','height':data.iconSize+'px'}">
+                                [style]="{'width':data.iconSize+'px','height':data.iconSize+'px'}"
+                                *ngIf="item.icon.trim() !==''">
                             <h5 class="{{data.textoInvFont}}" [style]="{'font-weight': 'bold', 'color':data.cTexto}">
                                 {{item.tipo}}</h5>
                             <h3 class="{{data.textoInvFont}}" [style]="{'color':data.cTexto}">{{item.name}}</h3>
