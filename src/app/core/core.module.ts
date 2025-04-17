@@ -377,6 +377,6 @@ registerLocaleData(localeEs, 'es')
     FullCalendarModule
   ],
   exports: [MarketItemsComponent],
-  providers: [{ provide: LOCALE_ID, useValue: 'es' }]
+  providers: [{ provide: LOCALE_ID, useValue: 'es-MX' }]
 })
 export class CoreModule { }

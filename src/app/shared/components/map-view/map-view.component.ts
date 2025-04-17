@@ -18,6 +18,7 @@ export class MapViewComponent implements AfterViewInit {
   @Input() type!: string;
   @ViewChild('mapDiv') mapDivElement?: ElementRef
   mapID: any
+  userLocation: any
   @Input() $coords: any
   constructor(
     private mapService: MapsService
@@ -25,6 +26,7 @@ export class MapViewComponent implements AfterViewInit {
     this.coordenadas = new EventEmitter()
     this.coordenadasSelect = new EventEmitter()
     this.idMap = new EventEmitter()
+    this.mapService.userLocation = mapService.userLocation
   }
   classMap = 'map-expand'
   map!: any

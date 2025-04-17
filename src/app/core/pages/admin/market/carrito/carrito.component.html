@@ -112,7 +112,7 @@
 
                                                         <th class="text-center">
                                                             {{getTotal(item.value.item,item.value.opcion,item.value.cantidad)|
-                                                            currency}}
+                                                            currency :"MX"}}
                                                         </th>
                                                     </tr>
 
@@ -137,7 +137,7 @@
                                                 Total</td>
                                             <td
                                                 style="background-color:  var(--primary-color) !important; color: var(--white-color) !important;font-weight: 500;">
-                                                {{getAllTotal() | currency}}</td>
+                                                {{getAllTotal() | currency:"MX"}}</td>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -415,13 +415,13 @@
                                             <td class="text-center upper">
                                                 {{item.opcion?item.opcion:''}}</td>
                                             <td class="text-center upper">
-                                                {{getPrecio(item.item,item.opcion) | currency}}
+                                                {{getPrecio(item.item,item.opcion) | currency:"MX"}}
                                             </td>
                                             <td class="text-center upper">
                                                 {{item.cantidad?item.cantidad:''}}</td>
                                             <td class="text-center upper">
                                                 {{getTotal(item.item,item.opcion,item.cantidad)|
-                                                currency}}
+                                                currency:"MX"}}
                                             </td>
                                         </ng-container>
                                     </tr>
@@ -440,7 +440,7 @@
                                         Total</td>
                                     <td
                                         style="background-color:  var(--primary-color) !important; color: var(--white-color) !important;font-weight: 500;">
-                                        {{getAllTotal() | currency}}</td>
+                                        {{getAllTotal() | currency :"MX"}}</td>
                                 </tr>
 
                             </tbody>

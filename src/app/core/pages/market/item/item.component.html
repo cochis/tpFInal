@@ -138,10 +138,10 @@
     </div>
     <div class="row mt-2">
         <div class="col-12 upper">
-            <p style="color:var(--cPrimary); font-size: 20px; font-weight: 900;">{{getPrecio(item)[0] |currency : 'USD'
+            <p style="color:var(--cPrimary); font-size: 20px; font-weight: 900;">{{getPrecio(item)[0] |currency : 'MX'
                 : 'symbol' : '1.0-0'}} -
                 {{getPrecio(item)[1] |
-                currency : 'USD' : 'symbol' : '1.0-0'}}</p>
+                currency : 'MX' : 'symbol' : '1.0-0'}}</p>
             <b>Descripción:</b>
             <div [innerHTML]="convertDes(item.descripcion) " style="margin-top: 10px; text-align: start;"></div>
 

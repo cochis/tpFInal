@@ -16,6 +16,7 @@ export class SearchbarComponent implements AfterViewInit {
   @Input() showBar
   @Input() type
   @Input() mapID
+  @Input() userLocation: any
   constructor(
     private mapsService: MapsService,
   ) { this.coordenadas = new EventEmitter() }
@@ -46,7 +47,7 @@ export class SearchbarComponent implements AfterViewInit {
         this.places = res.features
 
 
-        this.mapsService.createMarkersFromPlaces(this.mapID, this.places)
+        this.mapsService.createMarkersFromPlaces(this.mapID, this.places, this.userLocation)
 
 
         if (res.features.length == 0) {

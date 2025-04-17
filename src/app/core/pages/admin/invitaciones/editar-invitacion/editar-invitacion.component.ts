@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgxPrintService, PrintOptions } from 'ngx-print';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Fiesta } from 'src/app/core/models/fiesta.model';
@@ -88,8 +89,10 @@ export class EditarInvitacionComponent {
   salon: Salon
   ejemplos: Ejemplo[]
   bgsframes: Fondo[]
-
+  urlLink = ''
+  text_url = environment.text_url
   constructor(
+    private printService: NgxPrintService,
     private fb: FormBuilder,
     private functionsService: FunctionsService,
     private route: ActivatedRoute,
@@ -152,6 +155,7 @@ export class EditarInvitacionComponent {
     this.loading = true
     this.fiestasService.cargarFiestaById(id).subscribe((resp: CargarFiesta) => {
       this.fiesta = resp.fiesta
+      console.log(' this.fiesta ::: ', this.fiesta);
       this.salonLocation = [this.fiesta.salon.long, this.fiesta.salon.lat]
       this.usuarioFiesta = this.fiesta.usuarioFiesta._id
       this.invitacionId = this.fiesta.invitacion
@@ -831,7 +835,22 @@ export class EditarInvitacionComponent {
   }
 
 
+  printMe() {
 
+
+
+    this.urlLink = this.urlT + 'core/galeria/fst/' + this.fiesta.uid
+
+
+
+    const customPrintOptions: PrintOptions = new PrintOptions({
+      printSectionId: 'print-section',
+    });
+    customPrintOptions.useExistingCss = true
+
+    this.printService.print(customPrintOptions)
+
+  }
 
 
 

@@ -3,6 +3,7 @@
     <app-loading *ngIf="loading"></app-loading>
 
     <section class="contact-section section-padding section-bg animated1 fadeIn " id="section_5" *ngIf="!loading">
+
         <div class="container bw">
             <div class="card">
                 <div class="card-body">
@@ -937,7 +938,47 @@
                                             </qrcode>
                                         </div>
                                     </div>
+                                    <div class="row text-center mt-3" *ngIf="fiesta.galeria">
+                                        <h5>Sección Galería QR</h5>
 
+
+
+
+
+
+                                        <b>Tu QR de tu galería es</b>
+
+                                        <div class="col-12 col-md-6 ma mt-3">
+                                            <qrcode [qrdata]="getQrGaleria()" [allowEmptyString]="true"
+                                                [ariaLabel]="'Saludos...'" [cssClass]="'center'"
+                                                [colorDark]="form.value.cPrincipal" [colorLight]="'#fff'"
+                                                [elementType]="'canvas'" [errorCorrectionLevel]="'H'" [imageHeight]="50"
+                                                [imageSrc]="(fiesta.img!=='')?url+'/upload/fiestas/'+fiesta.img:url+'/upload/fiestas/default.jpg'"
+                                                [imageHeight]="90" [imageWidth]="90" [margin]="4" [scale]="1"
+                                                [width]="300" class="ma mt-3">
+                                            </qrcode>
+                                        </div>
+
+                                        <!--   <div class="row">
+                                            <div class="col-6 ma">
+                                                <button printSectionId="print-section" type="button" class="btn but"
+                                                    styleSheetFile="assets/css/bootstrap.min.css" ngxPrint
+                                                    (click)="printMe()" ngxPrint>Imprimir QR
+                                                </button>
+
+                                            </div>
+                                        </div> -->
+                                        <div class="row">
+                                            <div class="col-6 ma">
+                                                <button printSectionId="print-section" type="button" class="btn but"
+                                                    styleSheetFile="assets/css/bootstrap.min.css" ngxPrint
+                                                    (click)="printMe()" ngxPrint>Imprimir QR
+                                                </button>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
 
 
 
@@ -2583,7 +2624,84 @@
 
 
 
+                                    <div class="row text-center mt-3" *ngIf="fiesta.checking">
+                                        <h5>Sección QR</h5>
 
+                                        <div class="col-12 mt-3 ma text-center">
+                                            <label class="form-check-label" for="imgQrCheck">
+                                                Imagen en QR
+                                            </label>
+                                            <input class="form-check-input" type="checkbox" id="imgQrCheck" #imgQrCheck
+                                                formControlName="imgQrCheck">
+
+
+                                        </div>
+                                        <hr class="mt-3 mb-3">
+
+
+
+
+                                        <b>Si tu invitación tiene check in este es tu QR </b>
+
+                                        <div class="col-12 col-md-6 ma mt-3" *ngIf="imgQrCheck.checked">
+                                            <qrcode [qrdata]="getQr()" [allowEmptyString]="true"
+                                                [ariaLabel]="'Saludos...'" [cssClass]="'center'"
+                                                [colorDark]="form.value.cSecond" [colorLight]="'#fff'"
+                                                [elementType]="'canvas'" [errorCorrectionLevel]="'M'" [imageHeight]="50"
+                                                [imageSrc]="(fiesta.img!=='')?url+'/upload/fiestas/'+fiesta.img:url+'/upload/fiestas/default.jpg'"
+                                                [imageWidth]="50" [margin]="4" [scale]="1" [width]="200"
+                                                class="ma mt-3">
+                                            </qrcode>
+                                        </div>
+                                        <div class="col-12 col-md-6 ma mt-3" *ngIf="!imgQrCheck.checked">
+                                            <qrcode [qrdata]="getQr()" [allowEmptyString]="true"
+                                                [ariaLabel]="'Saludos...'" [cssClass]="'center'"
+                                                [colorDark]="form.value.cSecond" [colorLight]="'#fff'"
+                                                [elementType]="'canvas'" [errorCorrectionLevel]="'M'" [imageHeight]="50"
+                                                [imageWidth]="50" [margin]="4" [scale]="1" [width]="200"
+                                                class="ma mt-3">
+                                            </qrcode>
+                                        </div>
+
+
+
+
+
+                                    </div>
+                                    <div class="row text-center mt-3" *ngIf="fiesta.galeria">
+                                        <h5>Sección Galería QR</h5>
+
+
+
+
+
+
+                                        <b>Tu QR de tu galería es</b>
+
+                                        <div class="col-12 col-md-6 ma mt-3">
+                                            <qrcode [qrdata]="getQrGaleria()" [allowEmptyString]="true"
+                                                [ariaLabel]="'Saludos...'" [cssClass]="'center'"
+                                                [colorDark]="form.value.byFileColorQr" [colorLight]="'#fff'"
+                                                [elementType]="'canvas'" [errorCorrectionLevel]="'H'" [imageHeight]="50"
+                                                [imageSrc]="(fiesta.img!=='')?url+'/upload/fiestas/'+fiesta.img:url+'/upload/fiestas/default.jpg'"
+                                                [imageHeight]="90" [imageWidth]="90" [margin]="4" [scale]="1"
+                                                [width]="300" class="ma mt-3">
+                                            </qrcode>
+                                        </div>
+                                        <!--  <div class="row">
+                                            <div class="col-6 ma">
+                                                <button printSectionId="print-section" type="button" class="btn but"
+                                                    ngxPrint (click)="printMe()" ngxPrint>Imprimir QR </button>
+
+                                            </div>
+                                        </div> -->
+
+
+
+
+
+
+                                    </div>
 
 
 
@@ -5062,12 +5180,19 @@
                                                 [elementType]="'canvas'" [errorCorrectionLevel]="'H'" [imageHeight]="50"
                                                 [imageSrc]="(fiesta.img!=='')?url+'/upload/fiestas/'+fiesta.img:url+'/upload/fiestas/default.jpg'"
                                                 [imageHeight]="90" [imageWidth]="90" [margin]="4" [scale]="1"
-                                                [width]="400" class="ma mt-3">
+                                                [width]="300" class="ma mt-3">
                                             </qrcode>
                                         </div>
 
+                                        <!--   <div class="row">
+                                            <div class="col-6 ma">
+                                                <button printSectionId="print-section" type="button" class="btn but"
+                                                    styleSheetFile="assets/css/bootstrap.min.css" ngxPrint
+                                                    (click)="printMe()" ngxPrint>Imprimir QR
+                                                </button>
 
-
+                                            </div>
+                                        </div> -->
 
 
 
@@ -6373,6 +6498,55 @@
                                 </form>
                             </ng-container>
 
+
+
+                            <div id="print-section" *ngIf="fiesta" style="display: none;">
+
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-12 text-center">
+
+                                            <div class="qrcodeImage" *ngIf="fiesta.invitacion =='fancy'">
+
+
+
+                                                <qrcode [qrdata]="urlLink" [allowEmptyString]="true"
+                                                    [ariaLabel]="'Saludos...'" [cssClass]="'center'"
+                                                    [colorDark]="form.value.cSecond" [colorLight]="'#fff'"
+                                                    [elementType]="'canvas'" [errorCorrectionLevel]="'H'"
+                                                    [imageHeight]="250" [imageWidth]="250"
+                                                    [imageSrc]="(fiesta.img!=='')?url+'/upload/fiestas/'+fiesta.img: 1"
+                                                    [width]="800" class="ma mt-3">
+                                                </qrcode>
+                                            </div>
+                                            <div class="qrcodeImage" *ngIf="fiesta.invitacion =='default'">
+
+                                                <qrcode [qrdata]="urlLink" [allowEmptyString]="true"
+                                                    [ariaLabel]="'Saludos...'" [cssClass]="'center'"
+                                                    [colorDark]="form.value.cPrincipal" [colorLight]="'#fff'"
+                                                    [elementType]="'canvas'" [errorCorrectionLevel]="'H'"
+                                                    [imageSrc]="(fiesta.img!=='')?url+'/upload/fiestas/'+fiesta.img:url+'/upload/fiestas/default.jpg'"
+                                                    [imageHeight]="250" [imageWidth]="250" [margin]="4" [scale]="1"
+                                                    [width]="800" class="ma mt-3">
+                                                </qrcode>
+                                            </div>
+                                            <div class="qrcodeImage" *ngIf="fiesta.invitacion =='byFile'">
+
+                                                <qrcode [qrdata]="urlLink" [allowEmptyString]="true"
+                                                    [ariaLabel]="'Saludos...'" [cssClass]="'center'"
+                                                    [colorDark]="form.value.byFileColorQr" [colorLight]="'#fff'"
+                                                    [elementType]="'canvas'" [errorCorrectionLevel]="'H'"
+                                                    [imageSrc]="(fiesta.img!=='')?url+'/upload/fiestas/'+fiesta.img:url+'/upload/fiestas/default.jpg'"
+                                                    [imageHeight]="250" [imageWidth]="250" [margin]="4" [scale]="1"
+                                                    [width]="800" class="ma mt-3">
+                                                </qrcode>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
                         </ng-container>
 
 
@@ -6385,5 +6559,9 @@
 
 
 </main>
+
+
+
+
 
 <app-footer></app-footer>

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FunctionsService } from './functions.service';
 import { error } from 'jquery';
-import { LngLatLike, Map, Marker, Popup } from 'mapbox-gl';
+import { LngLatBounds, LngLatLike, Map, Marker, Popup } from 'mapbox-gl';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Feature, PlacesResponse } from 'src/app/core/interfaces/places';
 import { environment } from 'src/environments/environment';
@@ -81,7 +81,7 @@ export class MapsService {
 
   }
 
-  createMarkersFromPlaces(map, places: Feature[]) {
+  createMarkersFromPlaces(map, places: Feature[], userLocation?: [number, number]) {
 
     if (!this.map) throw Error('Mapa nop inicializado')
     this.markers.forEach(marker => marker.remove());
@@ -103,6 +103,11 @@ export class MapsService {
       newMarkers.push(newMarker)
     }
     this.markers = newMarkers
+    if (places.length == 0) return
+    const bounds = new LngLatBounds()
+    newMarkers.forEach(marker => bounds.extend(marker.getLngLat()))
+    if (userLocation) bounds.extend(userLocation)
+    this.map.fitBounds(bounds, { padding: 200 })
   }
 
 

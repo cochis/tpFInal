@@ -78,14 +78,18 @@
                 currency}}
             </h4>
             <h4 class="mt-3 cantidadProducto" [style]="{'color': cS + '!important'}" *ngIf="item.isByColor">
-                {{mayorMenor(item.colores,'menor') | currency}} - {{mayorMenor(item.colores,'mayor') | currency}}
+                {{mayorMenor(item.colores,'menor') | currency}} - {{mayorMenor(item.colores,'mayor') |
+                currency
+                : 'MXN'}}
             </h4>
             <h4 class="mt-3 cantidadProducto" [style]="{'color': cS + '!important'}" *ngIf="item.isByService">
                 {{mayorMenor(item.servicios,'menor') | currency}} - {{mayorMenor(item.servicios,'mayor') |
                 currency}}
             </h4>
             <h4 class="mt-3 cantidadProducto" [style]="{'color': cS + '!important'}" *ngIf="item.isBySize">
-                {{mayorMenor(item.sizes,'menor') | currency}} - {{mayorMenor(item.sizes,'mayor') | currency}}
+                {{mayorMenor(item.sizes,'menor') | currency}} - {{mayorMenor(item.sizes,'mayor')
+                | currency:
+                'MXN'}}
             </h4>
             <!-- inicia carrucelMobil -->
 
@@ -290,7 +294,7 @@
                 </h3>
 
                 <p class="upper precioProducto" [style]="{'color': cP+ '!important'} ">
-                    {{opcSelected.precio | currency}}
+                    {{opcSelected.precio | currency:"MX"}}
                 </p>
             </div>
         </ng-container>
