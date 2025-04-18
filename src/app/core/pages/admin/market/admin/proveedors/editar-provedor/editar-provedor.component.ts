@@ -219,6 +219,7 @@ export class EditarProvedorComponent implements OnDestroy {
       clave: ['', [Validators.required, Validators.minLength(3)]],
       bannerImg: ['', [Validators.required, Validators.minLength(3)]],
       img: ['', [Validators.required, Validators.minLength(3)]],
+      enviosOk: [false],
 
       descripcion: ['', [Validators.required, Validators.minLength(3)]],
       contactos: this.fb.array([]),
@@ -240,6 +241,7 @@ export class EditarProvedorComponent implements OnDestroy {
       clave: [proveedor.clave, [Validators.required, Validators.minLength(3)]],
       descripcion: [proveedor.descripcion, [Validators.required, Validators.minLength(3)]],
       img: [proveedor.img, [Validators.required]],
+      enviosOk: [proveedor.enviosOk,],
 
 
       contactos: this.fb.array([]),

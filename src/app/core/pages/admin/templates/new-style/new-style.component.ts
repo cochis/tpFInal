@@ -801,12 +801,20 @@ export class NewStyleComponent implements OnInit {
     this.qrCodeDownloadLink = url;
   }
   copiarInvitacion(data) {
+    console.log('data::: ', data);
     if (this.functionsService.getLocal('tipoInvitacion') && this.functionsService.getLocal('tipoInvitacion') == 'default') {
       this.functionsService.setLocal('invitacion', data)
       let back = this.functionsService.getLocal('viewTemplate')
       this.functionsService.navigateTo('/core/invitaciones/editar-invitacion/true/' + back)
       this.functionsService.removeItemLocal('viewTemplate')
-    } else {
+    }
+    else if (this.functionsService.getLocal('tipoInvitacion') && this.functionsService.getLocal('tipoInvitacion') == 'fancy') {
+      this.functionsService.setLocal('invitacion', data)
+      let back = this.functionsService.getLocal('viewTemplate')
+      this.functionsService.navigateTo('/core/invitaciones/editar-invitacion/true/' + back)
+      this.functionsService.removeItemLocal('viewTemplate')
+    }
+    else {
       this.functionsService.alert('Alerta', 'El tipo de invitacion no es la dinámica', 'warning')
       let back = this.functionsService.getLocal('viewTemplate')
       this.functionsService.navigateTo('/core/invitaciones/editar-invitacion/true/' + back)

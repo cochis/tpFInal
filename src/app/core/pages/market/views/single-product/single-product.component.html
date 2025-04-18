@@ -68,26 +68,30 @@
             <h3 class="mt-2" class="upper" class="titleProducto" [style]="{'color':cP} ">
                 <b>{{item.nombre}}</b>
             </h3>
-            <span class="linkProveedor" class="linkProveedor" [style]="{ color:cS} "
+            <span class="linkProveedor" [style]="{ color:cS} "
                 routerLink="/core/vista-proveedor/{{item.proveedor._id}}">{{item.proveedor.nombre}} </span>
 
 
 
             <h4 class="mt-3 cantidadProducto" [style]="{'color': cS + '!important'}" *ngIf="item.isByCantidad">
-                {{mayorMenor(item.cantidades,'menor') | currency}} - {{mayorMenor(item.cantidades,'mayor') |
+                {{mayorMenor(item.cantidades,'menor') | currency:
+                'MXN'}} - {{mayorMenor(item.cantidades,'mayor') |
                 currency}}
             </h4>
             <h4 class="mt-3 cantidadProducto" [style]="{'color': cS + '!important'}" *ngIf="item.isByColor">
-                {{mayorMenor(item.colores,'menor') | currency}} - {{mayorMenor(item.colores,'mayor') |
+                {{mayorMenor(item.colores,'menor') | currency:
+                'MXN'}} - {{mayorMenor(item.colores,'mayor') |
                 currency
                 : 'MXN'}}
             </h4>
             <h4 class="mt-3 cantidadProducto" [style]="{'color': cS + '!important'}" *ngIf="item.isByService">
-                {{mayorMenor(item.servicios,'menor') | currency}} - {{mayorMenor(item.servicios,'mayor') |
+                {{mayorMenor(item.servicios,'menor') | currency:
+                'MXN'}} - {{mayorMenor(item.servicios,'mayor') |
                 currency}}
             </h4>
             <h4 class="mt-3 cantidadProducto" [style]="{'color': cS + '!important'}" *ngIf="item.isBySize">
-                {{mayorMenor(item.sizes,'menor') | currency}} - {{mayorMenor(item.sizes,'mayor')
+                {{mayorMenor(item.sizes,'menor') | currency:
+                'MXN'}} - {{mayorMenor(item.sizes,'mayor')
                 | currency:
                 'MXN'}}
             </h4>
@@ -252,6 +256,13 @@
                         <label for="cantidad"></label>
                         <input type="number" id="catidad" class="form-control" min="0" (keyup)="setCantidad($event)"
                             (change)="setCantidad($event)" placeholder="Cantidad" formControlName="cantidad">
+                    </div>
+
+
+                    <div class="col-12 mt-3" *ngIf="item.envios">
+                        <h3 class="linkProveedor" [style]="{ color:cS} ">
+                            Se realizan envíos
+                        </h3>
                     </div>
 
 

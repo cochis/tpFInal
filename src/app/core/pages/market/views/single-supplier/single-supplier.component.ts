@@ -71,7 +71,9 @@ export class SingleSupplierComponent {
   getId(id) {
     this.loading = true
     this.proveedorsService.cargarProveedorById(id).subscribe(res => {
+      console.log('res::: ', res);
       this.proveedor = res.proveedor
+      console.log('this.proveedor::: ', this.proveedor);
 
 
 

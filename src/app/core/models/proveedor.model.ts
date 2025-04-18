@@ -13,6 +13,7 @@ export class Proveedor {
         public ubicacion: string,
         public lng: string,
         public lat: string,
+        public enviosOk: boolean,
         public envios: string,
         public descripcionEnvios: string,
         public ubicaciones: [string],
