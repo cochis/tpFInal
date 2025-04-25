@@ -9,7 +9,7 @@
     <div class="container bw">
         <div class="card">
 
-            <div class="card-body animate__animated animate__fadeIn" *ngIf="!mensajeOk">
+            <div class="card-body animate__animated animate__fadeIn" *ngIf="!mensajeOk && !recordatorioOk">
                 <div class="row">
                     <div class="col-lg-12 col-12 text-center">
                         <h2 class="mb-5" *ngIf="edit=='true'">Editar boletos</h2>
@@ -46,6 +46,10 @@
                         </div>
                         <div class="col-12 mt-3">
                             <label class="custom-btn  but2 mt-3" (click)="verMensaje()"> Editar mensaje WhatsApp
+                            </label>
+                        </div>
+                        <div class="col-12 mt-3">
+                            <label class="custom-btn  but2 mt-3" (click)="verRecordatorio()"> Editar recordatorio
                             </label>
                         </div>
 
@@ -375,9 +379,21 @@
                     </span>
                 </li>
                 <li style="color: var(--cPrimary); font-weight: 800;">
-                    Liga del evento
+                    Cantidad de invitados
                     <span style="color:var(--cSecond)">
                         &#64;&#64;cantidadInvitados&#64;&#64;
+                    </span>
+                </li>
+                <li style="color: var(--cPrimary); font-weight: 800;">
+                    Fecha del evento
+                    <span style="color:var(--cSecond)">
+                        &#64;&#64;fecha_evento&#64;&#64;
+                    </span>
+                </li>
+                <li style="color: var(--cPrimary); font-weight: 800;">
+                    Hora del evento
+                    <span style="color:var(--cSecond)">
+                        &#64;&#64;hora_evento&#64;&#64;
                     </span>
                 </li>
             </ul>
@@ -393,6 +409,66 @@
             <div class="col-6 ma">
 
                 <label class="custom-btn  but2 mt-3" (click)="verMensaje()"> Salir </label>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="container" *ngIf="recordatorioOk">
+    <div class="row">
+        <div class="col-12 text-center animate__animated animate__fadeIn">
+
+
+            <h3>
+                Mensaje
+            </h3>
+            <p>
+                Agregar estas variables en el mensaje
+            </p>
+            <ul style="list-style: none;">
+                <li style="color: var(--cPrimary); font-weight: 800;">
+                    Nombre de Invitado
+                    <span style="color:var(--cSecond)">
+                        &#64;&#64;invitado&#64;&#64;
+                    </span>
+                </li>
+                <li style="color: var(--cPrimary); font-weight: 800;">
+                    Nombre de Evento
+                    <span style="color:var(--cSecond)">
+                        &#64;&#64;nombre_evento&#64;&#64;
+                    </span>
+                </li>
+                <li style="color: var(--cPrimary); font-weight: 800;">
+                    Liga del evento
+                    <span style="color:var(--cSecond)">
+                        &#64;&#64;liga_evento&#64;&#64;
+                    </span>
+                </li>
+                <li style="color: var(--cPrimary); font-weight: 800;">
+                    Cantidad de invitados
+                    <span style="color:var(--cSecond)">
+                        &#64;&#64;cantidadInvitados&#64;&#64;
+                    </span>
+                </li>
+                <li style="color: var(--cPrimary); font-weight: 800;">
+                    Fecha del evento
+                    <span style="color:var(--cSecond)">
+                        &#64;&#64;fecha_evento&#64;&#64;
+                    </span>
+                </li>
+            </ul>
+
+            <div class="col-12 mt-3 text-center">
+                <textarea [ngModel]="recordatorio" name="recordatorio" class="mt-3" #recordatorio id="recordatorio"
+                    style="width: 100%;"></textarea>
+            </div>
+            <div class="col-6 ma">
+
+                <label class="custom-btn  but mt-3" (click)="guardarRecordatorio(recordatorio.value)"> Guardar </label>
+            </div>
+            <div class="col-6 ma">
+
+                <label class="custom-btn  but2 mt-3" (click)="verRecordatorio()"> Salir </label>
             </div>
 
         </div>

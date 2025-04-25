@@ -63,8 +63,11 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
   src1 = interval(5000);
   obs1: Subscription;
   mensajeOk = false
-  mensajeTemp = 'Hola *@@invitado@@*  está invitado a *@@nombre_evento@@*  *@@liga_evento@@*   FAVOR DE CONFIRMAR ASISTENCIA'
+  recordatorioOk = false
+  mensajeTemp = 'Hola *@@invitado@@*  está invitado a *@@nombre_evento@@*  *@@liga_evento@@* con *@@cantidadInvitados@@*  Boletos  FAVOR DE CONFIRMAR ASISTENCIA'
   mensaje = ''
+  recordatorioTemp = 'Hola *@@invitado@@* recuerda que mi evento es *@@fecha_evento@@* *@@nombre_evento@@*'
+  recordatorio = ''
   public qrCodeDownloadLink: SafeUrl = "";
 
   public form!: FormGroup
@@ -118,14 +121,18 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
   getFiesta(id: string) {
     this.fiestasService.cargarFiestaById(id).subscribe((resp: any) => {
       this.fiesta = resp.fiesta
-      this.mensaje = (this.fiesta.mensaje == '') ? this.mensajeTemp : resp.fiesta.mensaje
+
+      this.mensaje = (this.fiesta.mensaje == '' || undefined) ? this.mensajeTemp : resp.fiesta.mensaje
+      this.recordatorio = (this.fiesta.recordatorio == '' || undefined) ? this.recordatorioTemp : resp.fiesta.recordatorio
+
 
     })
   }
   getId(id: string) {
     this.fiestasService.cargarFiestaById(id).subscribe((resp: any) => {
       this.fiesta = resp.fiesta
-      this.mensaje = resp.fiesta.mensaje
+      this.mensaje = (this.fiesta.mensaje == '' || undefined) ? this.mensajeTemp : resp.fiesta.mensaje
+      this.recordatorio = (this.fiesta.recordatorio == '' || undefined) ? this.recordatorioTemp : resp.fiesta.recordatorio
       this.numeroInvitados = this.fiesta.cantidad
       this.setForm(this.fiesta)
     })
@@ -177,6 +184,18 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
       this.mensaje = res.fiestaActualizado.mensaje
       this.mensajeOk = !this.mensajeOk
       this.functionsService.alertUpdate('Mensaje WhatsApp')
+    })
+
+  }
+  verRecordatorio() {
+    this.recordatorioOk = !this.recordatorioOk
+  }
+  guardarRecordatorio(recordatorio) {
+    this.fiesta.recordatorio = recordatorio
+    this.fiestasService.actualizarFiesta(this.fiesta).subscribe((res: any) => {
+      this.recordatorio = res.fiestaActualizado.recordatorio
+      this.recordatorioOk = !this.recordatorioOk
+      this.functionsService.alertUpdate('Recordatorio de fiesta')
     })
 
   }
@@ -444,6 +463,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
           if (this.fiesta.mensaje == '') {
             this.fiesta.mensaje = this.mensajeTemp
           }
+
           this.fiesta.mensaje = this.fiesta.mensaje.replace('@@invitado@@', nGrupo.toLocaleUpperCase())
           this.fiesta.mensaje = this.fiesta.mensaje.replace('@@cantidadInvitados@@', cantP)
           this.fiesta.mensaje = this.fiesta.mensaje.replace('@@nombre_evento@@', evento)

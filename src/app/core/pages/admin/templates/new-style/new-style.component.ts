@@ -801,7 +801,7 @@ export class NewStyleComponent implements OnInit {
     this.qrCodeDownloadLink = url;
   }
   copiarInvitacion(data) {
-    console.log('data::: ', data);
+
     if (this.functionsService.getLocal('tipoInvitacion') && this.functionsService.getLocal('tipoInvitacion') == 'default') {
       this.functionsService.setLocal('invitacion', data)
       let back = this.functionsService.getLocal('viewTemplate')

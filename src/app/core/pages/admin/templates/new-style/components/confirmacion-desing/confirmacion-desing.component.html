@@ -29,6 +29,13 @@
                         Confirmación
                     </button>
                     <button class="btn  upper  mb-3"
+                        [style]="{'background-color':data.cSecond,'color' :data.cTexto,'border': '3px solid'+ data.cTexto ,'width':'100% !important'}"
+                        type="button"
+                        *ngIf=" (data.confirmacionCheck =='true' || data.confirmacionCheck ==true) &&( !boleto.confirmado)"
+                        (click)="declinar(getQr(boleto) ,data.declinar)">
+                        No puedo asistir
+                    </button>
+                    <button class="btn  upper  mb-3"
                         [style]="{'background-color':data.cSecond,'color' :data.cTexto,'border': '3px solid'+ data.cTexto,'width':'100% !important'}"
                         type="button"
                         *ngIf=" (data.confirmacionCheck =='true' || data.confirmacionCheck ==true) && boleto.confirmado"

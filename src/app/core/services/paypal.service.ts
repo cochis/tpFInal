@@ -43,6 +43,7 @@ export class PaypalService {
               bol.nombreGrupo,
               bol.whatsapp,
               bol.confirmado,
+              bol.declinada,
               bol.invitacionEnviada,
               bol.activated,
               bol.ocupados,

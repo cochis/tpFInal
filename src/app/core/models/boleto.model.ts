@@ -10,6 +10,7 @@ export class Boleto {
         public whatsapp: string,
         public confirmado: boolean,
         public invitacionEnviada: boolean,
+        public declinada: boolean,
         public activated: boolean,
         public ocupados: number,
         public vista: boolean,

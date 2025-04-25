@@ -38,6 +38,7 @@ export class BoletosService {
               bol.whatsapp,
               bol.confirmado,
               bol.invitacionEnviada,
+              bol.declinada,
               bol.activated,
               bol.ocupados,
               bol.vista,

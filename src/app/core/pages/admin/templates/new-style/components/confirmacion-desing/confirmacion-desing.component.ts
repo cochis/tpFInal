@@ -122,6 +122,7 @@ export class ConfirmacionDesingComponent implements AfterViewInit {
             })
           },
         }).then((result) => {
+          this.boleto.declinada = false
           this.boleto.requeridos = Number(result.value)
           this.boletosService.registrarAsistencia(this.boleto).subscribe((res: any) => {
             this.boleto.cantidadInvitados
@@ -140,6 +141,24 @@ export class ConfirmacionDesingComponent implements AfterViewInit {
 
 
     }
+  }
+  declinar(data, confirmarCheck?: Boolean) {
+
+
+    this.loading = true
+    data = JSON.parse(data)
+
+    this.boleto.declinada = true
+
+    this.boleto.fechaConfirmacion = this.functionsService.getToday()
+    this.boleto.requeridos = 0
+    this.boleto.cantidadInvitados = 0
+
+    this.boletosService.registrarAsistencia(this.boleto).subscribe((res: any) => {
+      this.functionsService.alert('Invitación', 'Gracias por avisar', 'success')
+      this.loading = false
+    })
+
   }
   getQr(invitado?) {
     var qr

@@ -71,10 +71,16 @@ export class QrCardComponent {
     this.loading = true
     data = JSON.parse(data)
     this.boleto.confirmado = !this.boleto.confirmado
+
     if (!this.boleto.confirmado) {
       this.boleto.fechaConfirmacion = undefined
       this.boleto.requeridos = 0
+      this.boleto.declinada = null
+
+
+
       this.boletosService.registrarAsistencia(this.boleto).subscribe((res: any) => {
+
         this.functionsService.alert('Invitación', 'Se quito la confirmación', 'success')
         this.loading = false
       })
@@ -108,7 +114,9 @@ export class QrCardComponent {
             })
           },
         }).then((result) => {
+          this.boleto.declinada = false
           this.boleto.requeridos = Number(result.value)
+
           this.boletosService.registrarAsistencia(this.boleto).subscribe((res: any) => {
             this.boleto.cantidadInvitados
             this.loading = false
@@ -116,6 +124,7 @@ export class QrCardComponent {
           })
         });
       } else {
+        this.boleto.declinada = false
         this.boletosService.registrarAsistencia(this.boleto).subscribe((res: any) => {
           this.boleto.cantidadInvitados
           this.loading = false
@@ -149,6 +158,7 @@ export class QrCardComponent {
           })
         },
       }).then((result) => {
+        this.boleto.declinada = false
         this.boleto.requeridos = Number(result.value)
         this.boletosService.registrarAsistencia(this.boleto).subscribe((res: any) => {
           this.boleto.cantidadInvitados
@@ -157,5 +167,23 @@ export class QrCardComponent {
         })
       });
     }
+  }
+  declinar(data, confirmarCheck?: Boolean) {
+
+
+    this.loading = true
+    data = JSON.parse(data)
+
+    this.boleto.declinada = true
+
+    this.boleto.fechaConfirmacion = this.functionsService.getToday()
+    this.boleto.requeridos = 0
+    this.boleto.cantidadInvitados = 0
+
+    this.boletosService.registrarAsistencia(this.boleto).subscribe((res: any) => {
+      this.functionsService.alert('Invitación', 'Gracias por avisar', 'success')
+      this.loading = false
+    })
+
   }
 }

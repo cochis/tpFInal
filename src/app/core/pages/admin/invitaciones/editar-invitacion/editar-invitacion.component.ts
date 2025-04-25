@@ -155,7 +155,7 @@ export class EditarInvitacionComponent {
     this.loading = true
     this.fiestasService.cargarFiestaById(id).subscribe((resp: CargarFiesta) => {
       this.fiesta = resp.fiesta
-      console.log(' this.fiesta ::: ', this.fiesta);
+
       this.salonLocation = [this.fiesta.salon.long, this.fiesta.salon.lat]
       this.usuarioFiesta = this.fiesta.usuarioFiesta._id
       this.invitacionId = this.fiesta.invitacion

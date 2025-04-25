@@ -209,10 +209,8 @@ export class SingleProductComponent {
   getId(id) {
     this.loading = true
     this.itemsService.cargarItemById(id).subscribe((res: any) => {
-      console.log('res::: ', res);
 
       this.item = res.item
-      console.log(' this.item::: ', this.item);
 
 
 
