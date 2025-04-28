@@ -99,6 +99,7 @@ export class CheckInComponent implements AfterViewInit {
   }
 
   getFiestas() {
+    console.log('this.role::: ', this.role);
     if (this.role == this.SLN) {
 
       this.fiestasService.cargarFiestasByEmail(this.uid).subscribe(resp => {
@@ -133,12 +134,16 @@ export class CheckInComponent implements AfterViewInit {
 
 
       this.usuariosService.cargarUsuarioById(this.uid).subscribe((res: any) => {
+        console.log('res::: ', res);
 
 
+        console.log('res.usuario.salon[0]._id::: ', res.usuario.salon[0]._id);
         this.fiestasService.cargarFiestasBySalon(res.usuario.salon[0]._id).subscribe(resp => {
+          console.log('resp::: ', resp);
 
 
           this.fiestas = this.functionsService.getActives(resp.fiestas)
+          console.log('this.fiestas ::: ', this.fiestas);
 
 
 

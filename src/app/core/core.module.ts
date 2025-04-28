@@ -181,6 +181,7 @@ import { CodigoDesingComponent } from './pages/admin/templates/new-style/compone
 import localeEs from '@angular/common/locales/es'
 import { registerLocaleData } from '@angular/common';
 import { SobresDesingComponent } from './pages/admin/templates/new-style/components/sobres-desing/sobres-desing.component';
+import { EditarRecordatoriosComponent } from './pages/admin/invitaciones/componentes/editar-recordatorios/editar-recordatorios.component';
 registerLocaleData(localeEs, 'es')
 
 
@@ -360,6 +361,7 @@ registerLocaleData(localeEs, 'es')
     NotasDesingComponent,
     CodigoDesingComponent,
     SobresDesingComponent,
+    EditarRecordatoriosComponent,
 
 
   ],

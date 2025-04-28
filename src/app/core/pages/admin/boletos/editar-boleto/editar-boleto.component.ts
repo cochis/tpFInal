@@ -123,7 +123,8 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
       this.fiesta = resp.fiesta
 
       this.mensaje = (this.fiesta.mensaje == '' || undefined) ? this.mensajeTemp : resp.fiesta.mensaje
-      this.recordatorio = (this.fiesta.recordatorio == '' || undefined) ? this.recordatorioTemp : resp.fiesta.recordatorio
+      this.recordatorio = resp.fiesta.recordatorio
+      console.log('this.recordatorio::: ', this.recordatorio);
 
 
     })
@@ -131,8 +132,9 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
   getId(id: string) {
     this.fiestasService.cargarFiestaById(id).subscribe((resp: any) => {
       this.fiesta = resp.fiesta
+      console.log('this.fiesta ::: ', this.fiesta);
       this.mensaje = (this.fiesta.mensaje == '' || undefined) ? this.mensajeTemp : resp.fiesta.mensaje
-      this.recordatorio = (this.fiesta.recordatorio == '' || undefined) ? this.recordatorioTemp : resp.fiesta.recordatorio
+      this.recordatorio = resp.fiesta.recordatorio
       this.numeroInvitados = this.fiesta.cantidad
       this.setForm(this.fiesta)
     })
@@ -178,11 +180,14 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
   verMensaje() {
     this.mensajeOk = !this.mensajeOk
   }
+
   guardarMensaje(mensaje) {
+    this.loading = true
     this.fiesta.mensaje = mensaje
     this.fiestasService.actualizarFiesta(this.fiesta).subscribe((res: any) => {
       this.mensaje = res.fiestaActualizado.mensaje
       this.mensajeOk = !this.mensajeOk
+      this.loading = false
       this.functionsService.alertUpdate('Mensaje WhatsApp')
     })
 
@@ -191,10 +196,12 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
     this.recordatorioOk = !this.recordatorioOk
   }
   guardarRecordatorio(recordatorio) {
+    this.loading = true
     this.fiesta.recordatorio = recordatorio
     this.fiestasService.actualizarFiesta(this.fiesta).subscribe((res: any) => {
       this.recordatorio = res.fiestaActualizado.recordatorio
       this.recordatorioOk = !this.recordatorioOk
+      this.loading = false
       this.functionsService.alertUpdate('Recordatorio de fiesta')
     })
 

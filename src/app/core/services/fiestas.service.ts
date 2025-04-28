@@ -58,8 +58,8 @@ export class FiestasService {
               fie.croquis,
               fie.croquisOk,
               fie.mensaje,
+              fie.recordatorioOk,
               fie.recordatorio,
-
               fie.usuarioCreated,
               fie.activated,
               fie.dateCreated,

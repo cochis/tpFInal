@@ -204,8 +204,15 @@ export class VistaFiestasComponent {
     this.loading = true
     if (this.rol === this.ADM) {
       this.fiestasService.cargarFiestasAll().subscribe((resp: CargarFiestas) => {
-        this.fiestas = resp.fiestas
-        this.fiestasTemp = resp.fiestas
+        this.fiestas = this.functionsService.getActives(resp.fiestas)
+        console.log('this.example::: ', this.example);
+        this.fiestas = this.fiestas.filter(res => {
+
+          return res.example == this.example
+        })
+
+
+        this.fiestasTemp = this.fiestas
         this.loading = false
       },
         (error) => {
@@ -265,5 +272,13 @@ export class VistaFiestasComponent {
   }
   typeOf(val) {
     return typeof (val)
+  }
+  viewEjemplos() {
+
+
+
+    this.example = !this.example
+
+    this.getFiestas()
   }
 }

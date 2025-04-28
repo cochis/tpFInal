@@ -1083,14 +1083,17 @@
 
                                             </div>
                                             <!-- <hr class="mt-3 mb-3">
-                                            <div class="col-12       mt-3 ma ">
-                                                <label class="form-check-label" for="ajusteCheck">
-                                                    Ajuste de boletos
+                                            <div class="col-12       mt-3 ma text-center">
+                                                <label class="form-check-label" for="recordatorioOk">
+                                                    Editar recordatorio
                                                 </label>
-                                                <input class="form-check-input" type="checkbox" id="ajusteCheck"
-                                                    #ajusteCheck formControlName="ajusteCheck">
+                                                <input class="form-check-input" type="checkbox" id="recordatorioOk"
+                                                    #recordatorioOk formControlName="recordatorioOk">
 
 
+                                            </div>
+                                            <div class="col-12 mt-3 " *ngIf="recordatorioOk.checked">
+                                                <app-editar-recordatorios [data]="fiesta"></app-editar-recordatorios>
                                             </div> -->
                                             <hr class="mt-3 mb-3">
                                             <div class="col-12       mt-3 ma ">
@@ -3031,24 +3034,27 @@
                                             </div>
                                         </div>
                                         <hr class="mt-3 mb-3">
-                                        <div class="col-12       mt-3 ma ">
-                                            <label class="form-check-label" for="ajusteCheck">
+                                        <div class="col-12      text-center  mt-3 ma ">
+                                            <label class="form-check-label ma" for="ajusteCheck">
                                                 Ajuste de boletos
                                             </label>
-                                            <input class="form-check-input" type="checkbox" id="ajusteCheck"
+                                            <input class="form-check-input ma" type="checkbox" id="ajusteCheck"
                                                 #ajusteCheck formControlName="ajusteCheck">
 
 
                                         </div>
-                                        <!--  <hr class="mt-3 mb-3">
-                                        <div class="col-12       mt-3 ma ">
-                                            <label class="form-check-label" for="ajusteCheck">
-                                                Ajuste de boletos
+                                        <!-- <hr class="mt-3 mb-3 ">
+                                        <div class="col-12       mt-3 text-center ma ">
+                                            <label class="form-check-label ma" for="recordatorioOk">
+                                                Editar recordatorio
                                             </label>
-                                            <input class="form-check-input" type="checkbox" id="ajusteCheck"
-                                                #ajusteCheck formControlName="ajusteCheck">
+                                            <input class="form-check-input ma" type="checkbox" id="recordatorioOk"
+                                                #recordatorioOk formControlName="recordatorioOk">
 
 
+                                        </div>
+                                        <div class="col-12 mt-3 text-center" *ngIf="recordatorioOk.checked">
+                                            <app-editar-recordatorios [data]="fiesta"></app-editar-recordatorios>
                                         </div> -->
                                         <hr class="mt-3 mb-3">
                                         <div class="col-12       mt-3 ma  text-center">
@@ -5313,14 +5319,17 @@
 
                                             </div>
                                             <!-- <hr class="mt-3 mb-3">
-                                            <div class="col-12       mt-3 ma ">
-                                                <label class="form-check-label" for="ajusteCheck">
-                                                    Ajuste de boletos
+                                            <div class="col-12       mt-3 ma text-center">
+                                                <label class="form-check-label" for="recordatorioOk">
+                                                    Editar recordatorio
                                                 </label>
-                                                <input class="form-check-input" type="checkbox" id="ajusteCheck"
-                                                    #ajusteCheck formControlName="ajusteCheck">
+                                                <input class="form-check-input" type="checkbox" id="recordatorioOk"
+                                                    #recordatorioOk formControlName="recordatorioOk">
 
 
+                                            </div>
+                                            <div class="col-12 mt-3 " *ngIf="recordatorioOk.checked">
+                                                <app-editar-recordatorios [data]="fiesta"></app-editar-recordatorios>
                                             </div> -->
                                             <hr class="mt-3 mb-3">
                                             <div class="col-12       mt-3 ma ">

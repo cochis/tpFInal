@@ -356,6 +356,8 @@ export class EditarInvitacionComponent {
       hospedajePhone: [''],
       mesaRegalosCheck: [true],
       confirmacionCheck: [true],
+      recordatorioOk: [true],
+      recordatorio: [''],
       ajusteCheck: [true],
       generalCheck: [true],
       generalSize: [15],
@@ -591,6 +593,8 @@ export class EditarInvitacionComponent {
       hospedajePhone: [invitacion.data.hospedajePhone],
       mesaRegalosCheck: [invitacion.data.mesaRegalosCheck],
       confirmacionCheck: [invitacion.data.confirmacionCheck],
+      recordatorioOk: [invitacion.data.recordatorioOk],
+      recordatorio: [invitacion.data.recordatorio],
       ajusteCheck: [invitacion.data.ajusteCheck],
       generalCheck: [invitacion.data.generalCheck],
       generalSize: [invitacion.data.generalSize],
@@ -973,6 +977,8 @@ export class EditarInvitacionComponent {
       hospedajePhone: [temp.hospedajePhone],
       mesaRegalosCheck: [temp.mesaRegalosCheck],
       confirmacionCheck: [temp.confirmacionCheck],
+      recordatorioOk: [temp.recordatorioOk],
+      recordatorio: [temp.recordatorio],
       ajusteCheck: [temp.ajusteCheck],
       generalCheck: [temp.generalCheck],
       generalSize: [temp.generalSize],
@@ -1539,6 +1545,8 @@ export class EditarInvitacionComponent {
             hospedajePhone: '',
             mesaRegalosCheck: true,
             confirmacionCheck: true,
+            recordatorioOk: [true],
+            recordatorio: [''],
             ajusteCheck: true,
             generalCheck: true,
             generalSize: 15,
@@ -2345,6 +2353,10 @@ export class EditarInvitacionComponent {
       this.invitacion.data.galeria5 = ''
       this.invitacion.data.galeria6 = ''
 
+      //recordatorio 
+
+      this.invitacion.data.recordatorioOk = true
+      this.invitacion.data.recordatorio = ''
       //Boton confirmacion
       this.invitacion.data.confirmacionCheck = false
       this.invitacion.data.ajusteCheck = false

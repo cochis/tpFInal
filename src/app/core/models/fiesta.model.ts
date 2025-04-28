@@ -25,6 +25,7 @@ export class Fiesta {
         public croquis: string,
         public croquisOk: boolean,
         public mensaje: string,
+        public recordatorioOk: boolean,
         public recordatorio: string,
 
         public usuarioCreated: any,

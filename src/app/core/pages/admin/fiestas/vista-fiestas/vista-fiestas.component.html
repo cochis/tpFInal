@@ -16,6 +16,23 @@
 
                     </div>
 
+                    <div class="row" *ngIf="rol.includes('ADM')">
+                        <div class="col-12   mb-3   mt-3 ">
+                            <div class="form-group">
+
+                                <div style="width: 100%;" class="ma text-center">
+                                    <button class="btn but ma" type="button" *ngIf="!example" (click)="viewEjemplos()">
+                                        Ver ejemplos</button>
+                                    <button class="btn but ma" type="button" *ngIf="example" (click)="viewEjemplos()">
+                                        Ver Eventos</button>
+
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
                     <div class="row" *ngIf="rol !== ADM">
                         <div class="row  text-center ">
                             <div class="col-12  ma text-center mt-3">

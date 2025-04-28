@@ -190,6 +190,7 @@
                                                 </div>
                                             </div>
 
+
                                             <div class="col-12 col-md-6 mt-3"
                                                 *ngIf="boletoTemp && fiesta.checking && form.value.invitados[i].confirmado">
                                                 <div class="form-group">
@@ -348,7 +349,7 @@
 
 
 </section>
-<div class="container" *ngIf="mensajeOk">
+<div class="container" *ngIf="mensajeOk && !loading">
     <div class="row">
         <div class="col-12 text-center animate__animated animate__fadeIn">
 
@@ -385,17 +386,24 @@
                     </span>
                 </li>
                 <li style="color: var(--cPrimary); font-weight: 800;">
+                    Mesa
+                    <span style="color:var(--cSecond)">
+                        &#64;&#64;mesa&#64;&#64;
+                    </span>
+                </li>
+                <li style="color: var(--cPrimary); font-weight: 800;">
+                    Boleto o Boletos
+                    <span style="color:var(--cSecond)">
+                        &#64;&#64;boletos&#64;&#64;
+                    </span>
+                </li>
+                <li style="color: var(--cPrimary); font-weight: 800;">
                     Fecha del evento
                     <span style="color:var(--cSecond)">
                         &#64;&#64;fecha_evento&#64;&#64;
                     </span>
                 </li>
-                <li style="color: var(--cPrimary); font-weight: 800;">
-                    Hora del evento
-                    <span style="color:var(--cSecond)">
-                        &#64;&#64;hora_evento&#64;&#64;
-                    </span>
-                </li>
+
             </ul>
 
             <div class="col-12 mt-3 text-center">
@@ -414,13 +422,13 @@
         </div>
     </div>
 </div>
-<div class="container" *ngIf="recordatorioOk">
+<div class="container" *ngIf="recordatorioOk && !loading">
     <div class="row">
         <div class="col-12 text-center animate__animated animate__fadeIn">
 
 
             <h3>
-                Mensaje
+                Recordatorio
             </h3>
             <p>
                 Agregar estas variables en el mensaje
@@ -451,20 +459,34 @@
                     </span>
                 </li>
                 <li style="color: var(--cPrimary); font-weight: 800;">
+                    Mesa
+                    <span style="color:var(--cSecond)">
+                        &#64;&#64;mesa&#64;&#64;
+                    </span>
+                </li>
+                <li style="color: var(--cPrimary); font-weight: 800;">
+                    Boleto o Boletos
+                    <span style="color:var(--cSecond)">
+                        &#64;&#64;boletos&#64;&#64;
+                    </span>
+                </li>
+                <li style="color: var(--cPrimary); font-weight: 800;">
                     Fecha del evento
                     <span style="color:var(--cSecond)">
                         &#64;&#64;fecha_evento&#64;&#64;
                     </span>
                 </li>
+
             </ul>
 
             <div class="col-12 mt-3 text-center">
-                <textarea [ngModel]="recordatorio" name="recordatorio" class="mt-3" #recordatorio id="recordatorio"
+                <textarea [ngModel]="recordatorio" name="recordatorio" class="mt-3" #recordatorioPush id="recordatorio"
                     style="width: 100%;"></textarea>
             </div>
             <div class="col-6 ma">
 
-                <label class="custom-btn  but mt-3" (click)="guardarRecordatorio(recordatorio.value)"> Guardar </label>
+                <label class="custom-btn  but mt-3" (click)="guardarRecordatorio(recordatorioPush.value)"> Guardar
+                </label>
             </div>
             <div class="col-6 ma">
 
@@ -474,6 +496,7 @@
         </div>
     </div>
 </div>
+
 
 
 <ng-template #content let-c="close" let-d="dismiss">
