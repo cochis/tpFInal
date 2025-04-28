@@ -34,6 +34,7 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
   salones: Salon[] = []
   salonesDB: Salon[] = []
   paquetes: Paquete[] = []
+  urlT = environment.text_url
   usuario: any
   ADM = environment.admin_role
   SLN = environment.salon_role
@@ -332,7 +333,13 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
 
         let fiesta = resp.fiesta
         let img = fiesta.img
+        let galeriaOk = false
         let recordatorio = fiesta.recordatorio.trim().toUpperCase()
+        if (recordatorio.includes('@@LIGA_GALERIA@@')) {
+          galeriaOk = true
+        }
+
+
         let invi = resp.fiesta.invitacion.trim()
         let invitado = boleto.nombreGrupo.trim().toUpperCase()
         let evento = fiesta.nombre.trim().toUpperCase()
@@ -342,14 +349,16 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
 
         let fecha = this.functionsService.datePush(fiesta.fecha)
         let liga = "/core/templates/" + invi + "/" + boleto.fiesta + "/" + boleto.uid
+        let ligaGaleria = `/core/galeria/fst/${fiesta.uid}/blt/${boleto.uid}`
         recordatorio = recordatorio.replace("@@INVITADO@@", invitado)
         recordatorio = recordatorio.replace("@@FECHA_EVENTO@@", fecha)
         recordatorio = recordatorio.replace("@@CANTIDADINVITADOS@@", cantidad)
         recordatorio = recordatorio.replace("@@MESA@@", mesa)
+        recordatorio = recordatorio.replace('@@LIGA_GALERIA@@', ligaGaleria)
 
         recordatorio = recordatorio.replace("@@BOLETOS@@", cantidadBoletos)
 
-        console.log('recordatorio::: ', recordatorio);
+
 
         if (boleto.activated) {
           let fiesta = this.fiestas.filter(fst => {
@@ -371,19 +380,14 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
                 "onActionClick": {
                   "default": {
                     "operation": "openWindow",
-                    "url": liga
+                    "url": (!galeriaOk) ? liga : ligaGaleria
                   }
                 }
               }
             }
           }
-
-
-
-
           this.tokenPushService.sendTokenPushsByBoleto(boleto.uid, push).subscribe(resp => {
             np = np + 1
-
             if (np === this.nPush) {
               this.loading = false
               this.functionsService.alert(np + " Notificaciones enviadas", "Recuerda pedir a tus invitados que activen las notificaciones en su invitación", "success")
@@ -395,11 +399,7 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
             })
         }
       })
-
-
-
     });
-
     if (boletos.length == 0) {
       this.functionsService.alert("Importante", "Recuerda pedir a tus invitados que activen las notificaciones en su invitación", "info")
     }
@@ -421,8 +421,6 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
         break
     }
   }
-
-
   calcularItems(items) {
     this.cantidadFiestas = this.cantidadFiestas
     this.cantidadGalerias = this.cantidadGalerias

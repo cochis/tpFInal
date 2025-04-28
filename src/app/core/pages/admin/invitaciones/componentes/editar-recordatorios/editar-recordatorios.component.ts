@@ -8,7 +8,7 @@ import { AfterViewInit, Component, Input } from '@angular/core';
 export class EditarRecordatoriosComponent implements AfterViewInit {
   @Input() data: any
   ngAfterViewInit() {
-    console.log(this.data);
+
 
   }
 }

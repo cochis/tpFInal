@@ -124,7 +124,6 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
 
       this.mensaje = (this.fiesta.mensaje == '' || undefined) ? this.mensajeTemp : resp.fiesta.mensaje
       this.recordatorio = resp.fiesta.recordatorio
-      console.log('this.recordatorio::: ', this.recordatorio);
 
 
     })
@@ -132,7 +131,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
   getId(id: string) {
     this.fiestasService.cargarFiestaById(id).subscribe((resp: any) => {
       this.fiesta = resp.fiesta
-      console.log('this.fiesta ::: ', this.fiesta);
+
       this.mensaje = (this.fiesta.mensaje == '' || undefined) ? this.mensajeTemp : resp.fiesta.mensaje
       this.recordatorio = resp.fiesta.recordatorio
       this.numeroInvitados = this.fiesta.cantidad
@@ -466,6 +465,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
           let evento = this.fiesta.nombre
           let boletoP = (cantP == 1) ? 'boleto' : 'boletos'
           let bl = (cantP > 0) ? ` con  *${cantP}* ${boletoP} ` : ``
+          let ligaGaleria = `${this.urlT}core/galeria/fst${this.fiesta.invitacion}/blt/${this.idBoleto}`
 
           if (this.fiesta.mensaje == '') {
             this.fiesta.mensaje = this.mensajeTemp
@@ -474,6 +474,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
           this.fiesta.mensaje = this.fiesta.mensaje.replace('@@invitado@@', nGrupo.toLocaleUpperCase())
           this.fiesta.mensaje = this.fiesta.mensaje.replace('@@cantidadInvitados@@', cantP)
           this.fiesta.mensaje = this.fiesta.mensaje.replace('@@nombre_evento@@', evento)
+          this.fiesta.mensaje = this.fiesta.mensaje.replace('@@liga_galeria@@', ligaGaleria)
           this.fiesta.mensaje = this.fiesta.mensaje.replace('@@liga_evento@@', `${this.urlT}core/templates/${this.fiesta.invitacion}/${this.fiesta.uid}/${this.idBoleto}`)
           let url = `https://api.whatsapp.com/send?phone=${tel}&text=${encodeURIComponent(this.fiesta.mensaje)}`
           Swal.fire({ title: "Enviado por whatsapp!", text: "", icon: "success", confirmButtonColor: "#13547a" });

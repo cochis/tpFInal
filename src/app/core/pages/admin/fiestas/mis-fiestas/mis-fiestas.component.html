@@ -168,7 +168,7 @@
                                                                 <li class="list" style="cursor: pointer;"
                                                                     (click)="enviarPush(boleto.boletos)"
                                                                     alt="Solo quien activo las notificaciones en sus dispositivos"
-                                                                    *ngIf="(rol === URS || rol === ADM  || rol === ANF || rol === SLN ) && (party.fecha > today && party.activated || party.example)">
+                                                                    *ngIf="((rol === URS  || rol === ANF || rol === SLN ) && (party.fecha > today && party.activated || party.example) ||  rol === ADM)">
                                                                     <b class="text-white"
                                                                         style="margin-right:10px">Recordar</b> <i
                                                                         class="bi bi-send"></i>
@@ -190,7 +190,7 @@
 
                                             <br>
                                             <div class="social-share d-flex"
-                                                *ngIf="(rol === URS || rol === ADM  || rol === ANF || rol === SLN ) && (party.fecha > today && party.activated || party.example)">
+                                                *ngIf="((rol === URS  || rol === ANF || rol === SLN ) && (party.fecha > today && party.activated || party.example) || rol === ADM)">
                                                 <p class="text-white  ">Invitados: </p>
 
                                                 <ul class="social-icon">

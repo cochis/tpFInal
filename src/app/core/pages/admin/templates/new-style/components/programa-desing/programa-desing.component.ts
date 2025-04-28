@@ -20,9 +20,13 @@ export class ProgramaDesingComponent implements AfterViewInit {
 
   }
   getImg(img) {
+    if (img != '') {
 
-    let imgR = this.bgsframes.filter(bgf => { return bgf.value == img })
-    return imgR[0].img
+      let imgR = this.bgsframes.filter(bgf => { return bgf.value == img })
+      return imgR[0].img
+    } else {
+      return ''
+    }
 
   }
 }
