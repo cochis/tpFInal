@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-principal-template-desing',
   templateUrl: './principal-template-desing.component.html',
-  styleUrls: ['./principal-template-desing.component.css']
+  styleUrls: ['./principal-template-desing.component.scss']
 })
 export class PrincipalTemplateDesingComponent implements AfterViewInit {
   @Input() data: any

@@ -11,7 +11,7 @@ import { GruposService } from 'src/app/core/services/grupo.service';
 @Component({
   selector: 'app-vista-grupos',
   templateUrl: './vista-grupos.component.html',
-  styleUrls: ['./vista-grupos.component.css']
+  styleUrls: ['./vista-grupos.component.scss']
 })
 export class VistaGruposComponent {
   data!: any

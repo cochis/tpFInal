@@ -7,7 +7,7 @@ import { Fondo } from 'src/app/core/models/fondo.model';
 @Component({
   selector: 'app-view-fancy',
   templateUrl: './view-fancy.component.html',
-  styleUrls: ['./view-fancy.component.css']
+  styleUrls: ['./view-fancy.component.scss']
 })
 export class ViewFancyComponent implements AfterViewInit {
   @Input() data: any;

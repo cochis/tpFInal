@@ -10,7 +10,7 @@ import { CargarFondos } from 'src/app/core/interfaces/cargar-interfaces.interfac
 @Component({
   selector: 'app-vista-fondos',
   templateUrl: './vista-fondos.component.html',
-  styleUrls: ['./vista-fondos.component.css']
+  styleUrls: ['./vista-fondos.component.scss']
 })
 export class VistaFondosComponent {
   data!: any

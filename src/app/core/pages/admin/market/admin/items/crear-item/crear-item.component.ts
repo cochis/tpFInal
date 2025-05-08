@@ -29,7 +29,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-crear-item',
   templateUrl: './crear-item.component.html',
-  styleUrls: ['./crear-item.component.css']
+  styleUrls: ['./crear-item.component.scss']
 })
 export class CrearItemComponent implements OnInit, OnDestroy {
   loading = false

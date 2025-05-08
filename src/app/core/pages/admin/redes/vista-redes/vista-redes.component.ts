@@ -8,7 +8,7 @@ import { CargarRedes } from 'src/app/core/interfaces/cargar-interfaces.interface
 @Component({
   selector: 'app-vista-redes',
   templateUrl: './vista-redes.component.html',
-  styleUrls: ['./vista-redes.component.css']
+  styleUrls: ['./vista-redes.component.scss']
 })
 export class VistaRedesComponent {
   data!: any

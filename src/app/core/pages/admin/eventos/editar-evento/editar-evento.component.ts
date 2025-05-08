@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-editar-evento',
   templateUrl: './editar-evento.component.html',
-  styleUrls: ['./editar-evento.component.css']
+  styleUrls: ['./editar-evento.component.scss']
 })
 export class EditarEventoComponent {
   loading = false

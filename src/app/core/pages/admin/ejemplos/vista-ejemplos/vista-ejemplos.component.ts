@@ -10,7 +10,7 @@ import { CargarEjemplos } from 'src/app/core/interfaces/cargar-interfaces.interf
 @Component({
   selector: 'app-vista-ejemplos',
   templateUrl: './vista-ejemplos.component.html',
-  styleUrls: ['./vista-ejemplos.component.css']
+  styleUrls: ['./vista-ejemplos.component.scss']
 })
 export class VistaEjemplosComponent {
   data!: any

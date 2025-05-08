@@ -16,7 +16,7 @@ import { TipoItem } from 'src/app/core/models/tipoItem.model';
 @Component({
   selector: 'app-vista-items',
   templateUrl: './vista-items.component.html',
-  styleUrls: ['./vista-items.component.css']
+  styleUrls: ['./vista-items.component.scss']
 })
 export class VistaItemsComponent {
   data!: any

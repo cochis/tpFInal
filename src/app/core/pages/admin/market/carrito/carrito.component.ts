@@ -23,7 +23,7 @@ import { TipoMediasService } from 'src/app/core/services/tipoMedia.service';
 @Component({
   selector: 'app-carrito',
   templateUrl: './carrito.component.html',
-  styleUrls: ['./carrito.component.css']
+  styleUrls: ['./carrito.component.scss']
 })
 export class CarritoComponent implements OnInit {
   uid = this.functionsService.getLocal('uid')

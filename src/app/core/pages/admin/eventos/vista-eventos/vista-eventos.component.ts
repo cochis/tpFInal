@@ -10,7 +10,7 @@ import { CargarEventos } from 'src/app/core/interfaces/cargar-interfaces.interfa
 @Component({
   selector: 'app-vista-eventos',
   templateUrl: './vista-eventos.component.html',
-  styleUrls: ['./vista-eventos.component.css']
+  styleUrls: ['./vista-eventos.component.scss']
 })
 export class VistaEventosComponent {
   data!: any

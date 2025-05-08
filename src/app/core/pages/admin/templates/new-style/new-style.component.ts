@@ -21,7 +21,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-new-style',
   templateUrl: './new-style.component.html',
-  styleUrls: ['./new-style.component.css']
+  styleUrls: ['./new-style.component.scss']
 })
 export class NewStyleComponent implements OnInit {
   loading = false

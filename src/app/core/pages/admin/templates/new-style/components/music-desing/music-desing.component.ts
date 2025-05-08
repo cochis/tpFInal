@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-music-desing',
   templateUrl: './music-desing.component.html',
-  styleUrls: ['./music-desing.component.css']
+  styleUrls: ['./music-desing.component.scss']
 })
 export class MusicDesingComponent implements AfterViewInit {
   @Input() data: any

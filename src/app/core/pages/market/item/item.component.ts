@@ -10,7 +10,7 @@ import { DomSanitizer, SafeHtml, Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-item',
   templateUrl: './item.component.html',
-  styleUrls: ['./item.component.css']
+  styleUrls: ['./item.component.scss']
 })
 export class ItemComponent implements AfterViewInit {
   CP = environment.cPrimary

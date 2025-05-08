@@ -17,7 +17,7 @@ import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-by-file',
   templateUrl: './by-file.component.html',
-  styleUrls: ['./by-file.component.css']
+  styleUrls: ['./by-file.component.scss']
 })
 export class ByFileComponent {
   tUrl = environment.text_url

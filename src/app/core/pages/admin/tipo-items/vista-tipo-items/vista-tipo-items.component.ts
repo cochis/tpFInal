@@ -9,7 +9,7 @@ import { CargarTipoItems } from 'src/app/core/interfaces/cargar-interfaces.inter
 @Component({
   selector: 'app-vista-tipo-items',
   templateUrl: './vista-tipo-items.component.html',
-  styleUrls: ['./vista-tipo-items.component.css']
+  styleUrls: ['./vista-tipo-items.component.scss']
 })
 export class VistaTipoItemsComponent {
   data!: any

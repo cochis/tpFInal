@@ -15,7 +15,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-crear-usuario',
   templateUrl: './crear-usuario.component.html',
-  styleUrls: ['./crear-usuario.component.css']
+  styleUrls: ['./crear-usuario.component.scss']
 })
 export class CrearUsuarioComponent {
   ADM = environment.admin_role

@@ -20,7 +20,7 @@ import { Paquete } from 'src/app/core/models/paquete.model';
 @Component({
   selector: 'app-vista-fiestas',
   templateUrl: './vista-fiestas.component.html',
-  styleUrls: ['./vista-fiestas.component.css']
+  styleUrls: ['./vista-fiestas.component.scss']
 })
 export class VistaFiestasComponent {
   data!: any

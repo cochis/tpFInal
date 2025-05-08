@@ -10,7 +10,7 @@ import { FunctionsService } from 'src/app/shared/services/functions.service';
 @Component({
   selector: 'app-crear-tipo-centro',
   templateUrl: './crear-tipo-centro.component.html',
-  styleUrls: ['./crear-tipo-centro.component.css']
+  styleUrls: ['./crear-tipo-centro.component.scss']
 })
 export class CrearTipoCentroComponent {
   loading = false

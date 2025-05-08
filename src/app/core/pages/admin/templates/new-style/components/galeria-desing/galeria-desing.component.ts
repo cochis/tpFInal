@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-galeria-desing',
   templateUrl: './galeria-desing.component.html',
-  styleUrls: ['./galeria-desing.component.css']
+  styleUrls: ['./galeria-desing.component.scss']
 })
 export class GaleriaDesingComponent {
   @Input() data: any

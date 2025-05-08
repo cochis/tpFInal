@@ -7,7 +7,7 @@ import { ParametrosService } from 'src/app/core/services/parametro.service';
 @Component({
   selector: 'app-verification',
   templateUrl: './verification.component.html',
-  styleUrls: ['./verification.component.css']
+  styleUrls: ['./verification.component.scss']
 })
 export class VerificationComponent {
 

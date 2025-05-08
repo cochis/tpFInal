@@ -9,7 +9,7 @@ import { FunctionsService } from 'src/app/shared/services/functions.service';
 @Component({
   selector: 'app-crear-parametro',
   templateUrl: './crear-parametro.component.html',
-  styleUrls: ['./crear-parametro.component.css']
+  styleUrls: ['./crear-parametro.component.scss']
 })
 export class CrearParametroComponent {
   loading = false

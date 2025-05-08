@@ -19,7 +19,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-crear-provedor',
   templateUrl: './crear-provedor.component.html',
-  styleUrls: ['./crear-provedor.component.css']
+  styleUrls: ['./crear-provedor.component.scss']
 })
 export class CrearProvedorComponent implements OnDestroy {
   loading = false

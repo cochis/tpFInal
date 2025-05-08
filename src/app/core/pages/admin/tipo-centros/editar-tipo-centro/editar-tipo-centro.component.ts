@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-editar-tipo-centro',
   templateUrl: './editar-tipo-centro.component.html',
-  styleUrls: ['./editar-tipo-centro.component.css']
+  styleUrls: ['./editar-tipo-centro.component.scss']
 })
 export class EditarTipoCentroComponent {
   loading = false

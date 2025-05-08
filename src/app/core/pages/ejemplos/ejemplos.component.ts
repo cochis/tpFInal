@@ -12,7 +12,7 @@ import { CargarEjemplos } from '../../interfaces/cargar-interfaces.interfaces';
 @Component({
   selector: 'app-ejemplos',
   templateUrl: './ejemplos.component.html',
-  styleUrls: ['./ejemplos.component.css']
+  styleUrls: ['./ejemplos.component.scss']
 })
 export class EjemplosComponent implements OnInit {
   paquetes: Paquete[]

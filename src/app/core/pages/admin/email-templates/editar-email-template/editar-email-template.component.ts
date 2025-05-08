@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-editar-email-template',
   templateUrl: './editar-email-template.component.html',
-  styleUrls: ['./editar-email-template.component.css']
+  styleUrls: ['./editar-email-template.component.scss']
 })
 export class EditarEmailTemplateComponent implements OnDestroy {
   loading = false

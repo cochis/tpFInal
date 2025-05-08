@@ -10,7 +10,7 @@ import { EstatusCotizacionesService } from 'src/app/core/services/estatusCotizac
 @Component({
   selector: 'app-vista-estatus-cotizaciones',
   templateUrl: './vista-estatus-cotizaciones.component.html',
-  styleUrls: ['./vista-estatus-cotizaciones.component.css']
+  styleUrls: ['./vista-estatus-cotizaciones.component.scss']
 })
 export class VistaEstatusCotizacionesComponent {
   data!: any

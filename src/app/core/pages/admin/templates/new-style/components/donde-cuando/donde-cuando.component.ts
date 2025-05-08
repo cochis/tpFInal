@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-donde-cuando',
   templateUrl: './donde-cuando.component.html',
-  styleUrls: ['./donde-cuando.component.css']
+  styleUrls: ['./donde-cuando.component.scss']
 })
 export class DondeCuandoComponent implements AfterViewInit {
   @Input() data: any

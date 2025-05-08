@@ -4,7 +4,7 @@ import { MapsService } from '../../services/maps.service';
 @Component({
   selector: 'app-mtp-logo',
   templateUrl: './mtp-logo.component.html',
-  styleUrls: ['./mtp-logo.component.css']
+  styleUrls: ['./mtp-logo.component.scss']
 })
 export class MtpLogoComponent {
 

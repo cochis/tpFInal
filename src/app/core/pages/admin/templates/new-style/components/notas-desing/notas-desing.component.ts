@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-notas-desing',
   templateUrl: './notas-desing.component.html',
-  styleUrls: ['./notas-desing.component.css']
+  styleUrls: ['./notas-desing.component.scss']
 })
 export class NotasDesingComponent {
   @Input() data: any

@@ -9,7 +9,7 @@ import { CargarTipoUbicaciones } from 'src/app/core/interfaces/cargar-interfaces
 @Component({
   selector: 'app-vista-tipo-ubicaciones',
   templateUrl: './vista-tipo-ubicaciones.component.html',
-  styleUrls: ['./vista-tipo-ubicaciones.component.css']
+  styleUrls: ['./vista-tipo-ubicaciones.component.scss']
 })
 export class VistaTipoUbicacionesComponent {
   data!: any

@@ -9,7 +9,7 @@ import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-pricing',
   templateUrl: './pricing.component.html',
-  styleUrls: ['./pricing.component.css']
+  styleUrls: ['./pricing.component.scss']
 })
 export class PricingComponent {
   paquetes: Paquete[]

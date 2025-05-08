@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-presentacion',
   templateUrl: './presentacion.component.html',
-  styleUrls: ['./presentacion.component.css']
+  styleUrls: ['./presentacion.component.scss']
 })
 export class PresentacionComponent implements AfterViewInit {
   @Input() data: any

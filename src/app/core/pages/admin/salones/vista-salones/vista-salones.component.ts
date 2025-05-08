@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-vista-salones',
   templateUrl: './vista-salones.component.html',
-  styleUrls: ['./vista-salones.component.css']
+  styleUrls: ['./vista-salones.component.scss']
 })
 export class VistaSalonesComponent {
   data!: any

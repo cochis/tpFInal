@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-hospedaje-desing',
   templateUrl: './hospedaje-desing.component.html',
-  styleUrls: ['./hospedaje-desing.component.css']
+  styleUrls: ['./hospedaje-desing.component.scss']
 })
 export class HospedajeDesingComponent implements AfterViewInit {
   @Input() data: any

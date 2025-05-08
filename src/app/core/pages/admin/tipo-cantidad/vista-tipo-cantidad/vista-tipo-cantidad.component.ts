@@ -10,7 +10,7 @@ import { TipoCantidad } from 'src/app/core/models/tipoCantidad.model';
 @Component({
   selector: 'app-vista-tipo-cantidad',
   templateUrl: './vista-tipo-cantidad.component.html',
-  styleUrls: ['./vista-tipo-cantidad.component.css']
+  styleUrls: ['./vista-tipo-cantidad.component.scss']
 })
 export class VistaTipoCantidadComponent {
   data!: any

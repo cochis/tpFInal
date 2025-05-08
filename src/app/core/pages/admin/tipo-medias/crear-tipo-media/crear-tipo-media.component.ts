@@ -9,7 +9,7 @@ import { FunctionsService } from 'src/app/shared/services/functions.service';
 @Component({
   selector: 'app-crear-tipo-media',
   templateUrl: './crear-tipo-media.component.html',
-  styleUrls: ['./crear-tipo-media.component.css']
+  styleUrls: ['./crear-tipo-media.component.scss']
 })
 export class CrearTipoMediaComponent {
   loading = false

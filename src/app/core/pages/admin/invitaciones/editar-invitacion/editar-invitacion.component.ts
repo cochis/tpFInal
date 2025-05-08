@@ -21,7 +21,7 @@ import { Fondo } from 'src/app/core/models/fondo.model';
 @Component({
   selector: 'app-editar-invitacion',
   templateUrl: './editar-invitacion.component.html',
-  styleUrls: ['./editar-invitacion.component.css']
+  styleUrls: ['./editar-invitacion.component.scss']
 })
 export class EditarInvitacionComponent {
   ADM = environment.admin_role

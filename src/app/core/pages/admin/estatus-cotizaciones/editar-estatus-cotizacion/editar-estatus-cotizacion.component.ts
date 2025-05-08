@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-editar-estatus-cotizacion',
   templateUrl: './editar-estatus-cotizacion.component.html',
-  styleUrls: ['./editar-estatus-cotizacion.component.css']
+  styleUrls: ['./editar-estatus-cotizacion.component.scss']
 })
 export class EditarEstatusCotizacionComponent {
   loading = false

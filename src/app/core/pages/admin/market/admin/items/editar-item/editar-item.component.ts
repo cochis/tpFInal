@@ -34,7 +34,7 @@ import { TipoMedia } from 'src/app/core/models/tipoMedia.model';
 @Component({
   selector: 'app-editar-item',
   templateUrl: './editar-item.component.html',
-  styleUrls: ['./editar-item.component.css']
+  styleUrls: ['./editar-item.component.scss']
 })
 export class EditarItemComponent implements OnDestroy {
 

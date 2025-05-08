@@ -19,7 +19,7 @@ import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-default',
   templateUrl: './default.component.html',
-  styleUrls: ['./default.component.css']
+  styleUrls: ['./default.component.scss']
 })
 export class DefaultComponent implements OnInit, AfterViewInit {
   tUrl = environment.text_url

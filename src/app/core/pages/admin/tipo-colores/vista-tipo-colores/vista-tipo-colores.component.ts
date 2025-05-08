@@ -9,7 +9,7 @@ import { CargarTipoColors } from 'src/app/core/interfaces/cargar-interfaces.inte
 @Component({
   selector: 'app-vista-tipo-colores',
   templateUrl: './vista-tipo-colores.component.html',
-  styleUrls: ['./vista-tipo-colores.component.css']
+  styleUrls: ['./vista-tipo-colores.component.scss']
 })
 export class VistaTipoColoresComponent {
   data!: any

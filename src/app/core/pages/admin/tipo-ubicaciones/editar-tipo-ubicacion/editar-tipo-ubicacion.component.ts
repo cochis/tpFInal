@@ -13,7 +13,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-editar-tipo-ubicacion',
   templateUrl: './editar-tipo-ubicacion.component.html',
-  styleUrls: ['./editar-tipo-ubicacion.component.css']
+  styleUrls: ['./editar-tipo-ubicacion.component.scss']
 })
 export class EditarTipoUbicacionComponent {
   loading = false

@@ -4,7 +4,7 @@ import { MapsService } from '../../services/maps.service';
 @Component({
   selector: 'app-mapscreen',
   templateUrl: './mapscreen.component.html',
-  styleUrls: ['./mapscreen.component.css']
+  styleUrls: ['./mapscreen.component.scss']
 })
 export class MapscreenComponent implements AfterViewInit {
   loading = false

@@ -20,7 +20,7 @@ import { InvitacionsService } from 'src/app/core/services/invitaciones.service';
 @Component({
   selector: 'app-vista-invitaciones',
   templateUrl: './vista-invitaciones.component.html',
-  styleUrls: ['./vista-invitaciones.component.css']
+  styleUrls: ['./vista-invitaciones.component.scss']
 })
 export class VistaInvitacionesComponent {
   data!: any

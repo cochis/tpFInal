@@ -10,7 +10,7 @@ import { FunctionsService } from 'src/app/shared/services/functions.service';
 @Component({
   selector: 'app-crear-tipo-modulo',
   templateUrl: './crear-tipo-modulo.component.html',
-  styleUrls: ['./crear-tipo-modulo.component.css']
+  styleUrls: ['./crear-tipo-modulo.component.scss']
 })
 export class CrearTipoModuloComponent {
   loading = false

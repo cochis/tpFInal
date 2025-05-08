@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-editar-tipo-media',
   templateUrl: './editar-tipo-media.component.html',
-  styleUrls: ['./editar-tipo-media.component.css']
+  styleUrls: ['./editar-tipo-media.component.scss']
 })
 export class EditarTipoMediaComponent {
   loading = false

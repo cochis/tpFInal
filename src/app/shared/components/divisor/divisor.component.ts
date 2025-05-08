@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-divisor',
   templateUrl: './divisor.component.html',
-  styleUrls: ['./divisor.component.css']
+  styleUrls: ['./divisor.component.scss']
 })
 export class DivisorComponent {
   CP = environment.cPrimary

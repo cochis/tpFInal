@@ -10,7 +10,7 @@ import { FunctionsService } from 'src/app/shared/services/functions.service';
 @Component({
   selector: 'app-crear-fondo',
   templateUrl: './crear-fondo.component.html',
-  styleUrls: ['./crear-fondo.component.css']
+  styleUrls: ['./crear-fondo.component.scss']
 })
 export class CrearFondoComponent {
   loading = false

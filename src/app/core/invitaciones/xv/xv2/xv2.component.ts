@@ -17,7 +17,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-xv2',
   templateUrl: './xv2.component.html',
-  styleUrls: ['./xv2.component.css']
+  styleUrls: ['./xv2.component.scss']
 })
 export class Xv2Component {
   loading = false

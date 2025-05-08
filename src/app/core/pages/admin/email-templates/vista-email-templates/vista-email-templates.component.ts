@@ -10,7 +10,7 @@ import { CargarMailTemplates } from 'src/app/core/interfaces/cargar-interfaces.i
 @Component({
   selector: 'app-vista-email-templates',
   templateUrl: './vista-email-templates.component.html',
-  styleUrls: ['./vista-email-templates.component.css']
+  styleUrls: ['./vista-email-templates.component.scss']
 })
 export class VistaEmailTemplatesComponent {
   data!: any

@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-diseno-modal',
   templateUrl: './diseno-modal.component.html',
-  styleUrls: ['./diseno-modal.component.css']
+  styleUrls: ['./diseno-modal.component.scss']
 })
 export class DisenoModalComponent {
   @Input() model: any;

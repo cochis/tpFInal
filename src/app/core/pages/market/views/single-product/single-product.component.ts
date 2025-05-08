@@ -16,7 +16,7 @@ import { MetaService } from 'src/app/core/services/meta.service';
 @Component({
   selector: 'app-single-product',
   templateUrl: './single-product.component.html',
-  styleUrls: ['./single-product.component.css']
+  styleUrls: ['./single-product.component.scss']
 })
 export class SingleProductComponent {
   uid = this.functionsService.getLocal('uid')

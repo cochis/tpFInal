@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-menu-desing',
   templateUrl: './menu-desing.component.html',
-  styleUrls: ['./menu-desing.component.css']
+  styleUrls: ['./menu-desing.component.scss']
 })
 export class MenuDesingComponent implements AfterViewInit {
   @Input() data: any

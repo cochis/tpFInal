@@ -21,7 +21,7 @@ import { ComprasService } from 'src/app/core/services/compra.service';
 @Component({
   selector: 'app-vista-compras',
   templateUrl: './vista-compras.component.html',
-  styleUrls: ['./vista-compras.component.css']
+  styleUrls: ['./vista-compras.component.scss']
 })
 export class VistaComprasComponent {
   data!: any

@@ -16,7 +16,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-default',
   templateUrl: './default.component.html',
-  styleUrls: ['./default.component.css']
+  styleUrls: ['./default.component.scss']
 })
 export class DefaultComponent {
   loading = false

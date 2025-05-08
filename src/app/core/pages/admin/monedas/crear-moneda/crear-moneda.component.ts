@@ -9,7 +9,7 @@ import { FunctionsService } from 'src/app/shared/services/functions.service';
 @Component({
   selector: 'app-crear-moneda',
   templateUrl: './crear-moneda.component.html',
-  styleUrls: ['./crear-moneda.component.css']
+  styleUrls: ['./crear-moneda.component.scss']
 })
 export class CrearMonedaComponent {
   loading = false

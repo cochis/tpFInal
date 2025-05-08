@@ -9,7 +9,7 @@ import { Fiesta } from 'src/app/core/models/fiesta.model';
 @Component({
   selector: 'app-shared-default-template',
   templateUrl: './shared-default-template.component.html',
-  styleUrls: ['./shared-default-template.component.css']
+  styleUrls: ['./shared-default-template.component.scss']
 })
 export class SharedDefaultTemplateComponent implements AfterViewInit {
   @Input() fiesta: any;

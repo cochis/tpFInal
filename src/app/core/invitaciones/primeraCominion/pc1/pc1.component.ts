@@ -15,7 +15,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-pc1',
   templateUrl: './pc1.component.html',
-  styleUrls: ['./pc1.component.css']
+  styleUrls: ['./pc1.component.scss']
 })
 export class Pc1Component {
   loading = false

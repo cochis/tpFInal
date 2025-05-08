@@ -12,7 +12,7 @@ import { FunctionsService } from 'src/app/shared/services/functions.service';
 @Component({
   selector: 'app-comprar-paquete',
   templateUrl: './comprar-paquete.component.html',
-  styleUrls: ['./comprar-paquete.component.css']
+  styleUrls: ['./comprar-paquete.component.scss']
 })
 export class ComprarPaqueteComponent {
   public form!: FormGroup

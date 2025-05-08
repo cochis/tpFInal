@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-editar-fondo',
   templateUrl: './editar-fondo.component.html',
-  styleUrls: ['./editar-fondo.component.css']
+  styleUrls: ['./editar-fondo.component.scss']
 })
 export class EditarFondoComponent {
   loading = false

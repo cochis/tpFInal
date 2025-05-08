@@ -12,7 +12,7 @@ import { PaisesService } from 'src/app/core/services/pais.service';
 @Component({
   selector: 'app-vista-cps',
   templateUrl: './vista-cps.component.html',
-  styleUrls: ['./vista-cps.component.css']
+  styleUrls: ['./vista-cps.component.scss']
 })
 export class VistaCpsComponent {
   data!: any

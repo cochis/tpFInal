@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-codigo-desing',
   templateUrl: './codigo-desing.component.html',
-  styleUrls: ['./codigo-desing.component.css']
+  styleUrls: ['./codigo-desing.component.scss']
 })
 export class CodigoDesingComponent {
   @Input() data: any

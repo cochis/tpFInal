@@ -25,7 +25,7 @@ import { Proveedor } from 'src/app/core/models/proveedor.model';
 @Component({
   selector: 'app-editar-salon',
   templateUrl: './editar-salon.component.html',
-  styleUrls: ['./editar-salon.component.css']
+  styleUrls: ['./editar-salon.component.scss']
 })
 export class EditarSalonComponent {
   loading = false

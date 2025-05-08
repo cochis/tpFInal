@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-css-modal',
   templateUrl: './css-modal.component.html',
-  styleUrls: ['./css-modal.component.css']
+  styleUrls: ['./css-modal.component.scss']
 })
 export class CssModalComponent {
   @Input() model: any;

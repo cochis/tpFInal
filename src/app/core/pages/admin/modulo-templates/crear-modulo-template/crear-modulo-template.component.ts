@@ -12,7 +12,7 @@ import { FunctionsService } from 'src/app/shared/services/functions.service';
 @Component({
   selector: 'app-crear-modulo-template',
   templateUrl: './crear-modulo-template.component.html',
-  styleUrls: ['./crear-modulo-template.component.css']
+  styleUrls: ['./crear-modulo-template.component.scss']
 })
 export class CrearModuloTemplateComponent {
   loading = false

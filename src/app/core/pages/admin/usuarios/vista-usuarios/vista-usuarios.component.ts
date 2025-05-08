@@ -24,7 +24,7 @@ import { Paquete } from 'src/app/core/models/paquete.model';
 @Component({
   selector: 'app-vista-usuarios',
   templateUrl: './vista-usuarios.component.html',
-  styleUrls: ['./vista-usuarios.component.css']
+  styleUrls: ['./vista-usuarios.component.scss']
 })
 export class VistaUsuariosComponent {
   uid = this.functionsService.getLocal('uid')

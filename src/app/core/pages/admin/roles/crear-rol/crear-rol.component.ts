@@ -6,7 +6,7 @@ import { FunctionsService } from 'src/app/shared/services/functions.service';
 @Component({
   selector: 'app-crear-rol',
   templateUrl: './crear-rol.component.html',
-  styleUrls: ['./crear-rol.component.css']
+  styleUrls: ['./crear-rol.component.scss']
 })
 export class CrearRolComponent {
   loading = false

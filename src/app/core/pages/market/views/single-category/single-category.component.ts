@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-single-category',
   templateUrl: './single-category.component.html',
-  styleUrls: ['./single-category.component.css']
+  styleUrls: ['./single-category.component.scss']
 })
 export class SingleCategoryComponent {
   constructor(private router: Router) { }

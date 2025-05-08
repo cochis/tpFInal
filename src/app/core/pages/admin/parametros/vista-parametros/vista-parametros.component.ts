@@ -9,7 +9,7 @@ import { CargarParametros } from 'src/app/core/interfaces/cargar-interfaces.inte
 @Component({
   selector: 'app-vista-parametros',
   templateUrl: './vista-parametros.component.html',
-  styleUrls: ['./vista-parametros.component.css']
+  styleUrls: ['./vista-parametros.component.scss']
 })
 export class VistaParametrosComponent {
   data!: any

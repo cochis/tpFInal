@@ -26,7 +26,7 @@ import { ByFileComponent } from '../../templates/by-file/by-file.component';
 @Component({
   selector: 'app-crear-fiesta',
   templateUrl: './crear-fiesta.component.html',
-  styleUrls: ['./crear-fiesta.component.css']
+  styleUrls: ['./crear-fiesta.component.scss']
 })
 export class CrearFiestaComponent {
   ADM = environment.admin_role

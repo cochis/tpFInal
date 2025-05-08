@@ -21,7 +21,7 @@ import { FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-mis-fiestas',
   templateUrl: './mis-fiestas.component.html',
-  styleUrls: ['./mis-fiestas.component.css']
+  styleUrls: ['./mis-fiestas.component.scss']
 })
 export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
   loading = false

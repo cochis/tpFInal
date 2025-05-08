@@ -10,7 +10,7 @@ import { FunctionsService } from 'src/app/shared/services/functions.service';
 @Component({
   selector: 'app-crear-email-template',
   templateUrl: './crear-email-template.component.html',
-  styleUrls: ['./crear-email-template.component.css']
+  styleUrls: ['./crear-email-template.component.scss']
 })
 export class CrearEmailTemplateComponent implements OnDestroy {
   loading = false

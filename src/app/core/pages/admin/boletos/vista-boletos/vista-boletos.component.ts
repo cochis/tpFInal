@@ -23,7 +23,7 @@ import { EmailsService } from 'src/app/core/services/email.service';
 @Component({
   selector: 'app-vista-boletos',
   templateUrl: './vista-boletos.component.html',
-  styleUrls: ['./vista-boletos.component.css']
+  styleUrls: ['./vista-boletos.component.scss']
 })
 export class VistaBoletosComponent {
   data!: any

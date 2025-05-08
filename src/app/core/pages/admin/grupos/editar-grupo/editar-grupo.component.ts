@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-editar-grupo',
   templateUrl: './editar-grupo.component.html',
-  styleUrls: ['./editar-grupo.component.css']
+  styleUrls: ['./editar-grupo.component.scss']
 })
 export class EditarGrupoComponent {
   loading = false

@@ -15,7 +15,7 @@ import { Css } from 'src/app/core/models/css.model';
 @Component({
   selector: 'app-vista-modulo-templates',
   templateUrl: './vista-modulo-templates.component.html',
-  styleUrls: ['./vista-modulo-templates.component.css']
+  styleUrls: ['./vista-modulo-templates.component.scss']
 })
 export class VistaModuloTemplatesComponent {
   data!: any

@@ -11,7 +11,7 @@ import { Calificacion } from '../../../../../../models/calificacion.model';
 @Component({
   selector: 'app-calificacion',
   templateUrl: './calificacion.component.html',
-  styleUrls: ['./calificacion.component.css']
+  styleUrls: ['./calificacion.component.scss']
 })
 export class CalificacionComponent {
   id!: string

@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-editar-red',
   templateUrl: './editar-red.component.html',
-  styleUrls: ['./editar-red.component.css']
+  styleUrls: ['./editar-red.component.scss']
 })
 export class EditarRedComponent {
   loading = false

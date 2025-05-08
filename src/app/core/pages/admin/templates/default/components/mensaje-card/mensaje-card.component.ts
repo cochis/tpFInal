@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-mensaje-card',
   templateUrl: './mensaje-card.component.html',
-  styleUrls: ['./mensaje-card.component.css']
+  styleUrls: ['./mensaje-card.component.scss']
 })
 export class MensajeCardComponent {
   @Input() data: any

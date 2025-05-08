@@ -22,7 +22,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-crear-salon',
   templateUrl: './crear-salon.component.html',
-  styleUrls: ['./crear-salon.component.css']
+  styleUrls: ['./crear-salon.component.scss']
 })
 export class CrearSalonComponent {
   loading = false

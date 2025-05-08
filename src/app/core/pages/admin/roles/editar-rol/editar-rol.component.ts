@@ -15,7 +15,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-editar-rol',
   templateUrl: './editar-rol.component.html',
-  styleUrls: ['./editar-rol.component.css']
+  styleUrls: ['./editar-rol.component.scss']
 })
 export class EditarRolComponent {
   loading = false

@@ -17,7 +17,7 @@ import { RedesService } from 'src/app/core/services/red.service';
 @Component({
   selector: 'app-single-supplier',
   templateUrl: './single-supplier.component.html',
-  styleUrls: ['./single-supplier.component.css']
+  styleUrls: ['./single-supplier.component.scss']
 })
 export class SingleSupplierComponent {
   id!: string

@@ -7,7 +7,7 @@ import { MetaService } from '../../services/meta.service';
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.css']
+  styleUrls: ['./contact.component.scss']
 })
 export class ContactComponent {
   loading = false

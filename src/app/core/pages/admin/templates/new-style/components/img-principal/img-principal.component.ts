@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-img-principal',
   templateUrl: './img-principal.component.html',
-  styleUrls: ['./img-principal.component.css']
+  styleUrls: ['./img-principal.component.scss']
 })
 export class ImgPrincipalComponent implements AfterViewInit {
   @Input() data: any

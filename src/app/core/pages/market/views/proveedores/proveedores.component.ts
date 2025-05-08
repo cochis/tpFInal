@@ -7,7 +7,7 @@ import { FunctionsService } from 'src/app/shared/services/functions.service';
 @Component({
   selector: 'app-proveedores',
   templateUrl: './proveedores.component.html',
-  styleUrls: ['./proveedores.component.css']
+  styleUrls: ['./proveedores.component.scss']
 })
 export class ProveedoresComponent {
   proveedores: Proveedor[] = undefined

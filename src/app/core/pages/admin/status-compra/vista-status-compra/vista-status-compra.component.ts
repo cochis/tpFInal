@@ -10,7 +10,7 @@ import { CargarStatusCompras } from 'src/app/core/interfaces/cargar-interfaces.i
 @Component({
   selector: 'app-vista-status-compra',
   templateUrl: './vista-status-compra.component.html',
-  styleUrls: ['./vista-status-compra.component.css']
+  styleUrls: ['./vista-status-compra.component.scss']
 })
 export class VistaStatusCompraComponent {
   data!: any

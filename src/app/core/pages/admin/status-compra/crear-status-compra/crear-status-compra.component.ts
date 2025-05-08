@@ -9,7 +9,7 @@ import { FunctionsService } from 'src/app/shared/services/functions.service';
 @Component({
   selector: 'app-crear-status-compra',
   templateUrl: './crear-status-compra.component.html',
-  styleUrls: ['./crear-status-compra.component.css']
+  styleUrls: ['./crear-status-compra.component.scss']
 })
 export class CrearStatusCompraComponent {
   loading = false

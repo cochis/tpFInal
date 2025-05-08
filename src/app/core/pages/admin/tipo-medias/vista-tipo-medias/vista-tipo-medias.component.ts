@@ -8,7 +8,7 @@ import { CargarTipoMedias } from 'src/app/core/interfaces/cargar-interfaces.inte
 @Component({
   selector: 'app-vista-tipo-medias',
   templateUrl: './vista-tipo-medias.component.html',
-  styleUrls: ['./vista-tipo-medias.component.css']
+  styleUrls: ['./vista-tipo-medias.component.scss']
 })
 export class VistaTipoMediasComponent {
   data!: any

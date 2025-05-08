@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-listas-card',
   templateUrl: './listas-card.component.html',
-  styleUrls: ['./listas-card.component.css']
+  styleUrls: ['./listas-card.component.scss']
 })
 export class ListasCardComponent {
   @Input() data: any

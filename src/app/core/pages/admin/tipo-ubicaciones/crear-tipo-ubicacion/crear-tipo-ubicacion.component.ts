@@ -12,7 +12,7 @@ import { FunctionsService } from 'src/app/shared/services/functions.service';
 @Component({
   selector: 'app-crear-tipo-ubicacion',
   templateUrl: './crear-tipo-ubicacion.component.html',
-  styleUrls: ['./crear-tipo-ubicacion.component.css']
+  styleUrls: ['./crear-tipo-ubicacion.component.scss']
 })
 export class CrearTipoUbicacionComponent {
   loading = false

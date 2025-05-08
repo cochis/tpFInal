@@ -11,7 +11,7 @@ import { FunctionsService } from 'src/app/shared/services/functions.service';
 @Component({
   selector: 'app-crear-paquete',
   templateUrl: './crear-paquete.component.html',
-  styleUrls: ['./crear-paquete.component.css']
+  styleUrls: ['./crear-paquete.component.scss']
 })
 export class CrearPaqueteComponent {
   loading = false

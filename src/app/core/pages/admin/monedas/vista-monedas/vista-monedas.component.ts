@@ -11,7 +11,7 @@ import { CargarMonedas } from 'src/app/core/interfaces/cargar-interfaces.interfa
 @Component({
   selector: 'app-vista-monedas',
   templateUrl: './vista-monedas.component.html',
-  styleUrls: ['./vista-monedas.component.css']
+  styleUrls: ['./vista-monedas.component.scss']
 })
 export class VistaMonedasComponent {
   data!: any

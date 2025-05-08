@@ -25,7 +25,7 @@ import * as XLSX from 'xlsx'
 @Component({
   selector: 'app-editar-boleto',
   templateUrl: './editar-boleto.component.html',
-  styleUrls: ['./editar-boleto.component.css']
+  styleUrls: ['./editar-boleto.component.scss']
 })
 export class EditarBoletoComponent implements OnInit, OnDestroy {
   convertedJson = []

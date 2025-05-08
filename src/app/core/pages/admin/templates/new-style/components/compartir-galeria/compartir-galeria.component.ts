@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-compartir-galeria',
   templateUrl: './compartir-galeria.component.html',
-  styleUrls: ['./compartir-galeria.component.css']
+  styleUrls: ['./compartir-galeria.component.scss']
 })
 export class CompartirGaleriaComponent implements AfterViewInit {
   @Input() data: any

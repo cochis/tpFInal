@@ -9,7 +9,7 @@ import { FunctionsService } from 'src/app/shared/services/functions.service';
 @Component({
   selector: 'app-crear-pais',
   templateUrl: './crear-pais.component.html',
-  styleUrls: ['./crear-pais.component.css']
+  styleUrls: ['./crear-pais.component.scss']
 })
 export class CrearPaisComponent {
   loading = false

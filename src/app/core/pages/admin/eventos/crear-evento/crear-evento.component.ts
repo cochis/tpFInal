@@ -9,7 +9,7 @@ import { FunctionsService } from 'src/app/shared/services/functions.service';
 @Component({
   selector: 'app-crear-evento',
   templateUrl: './crear-evento.component.html',
-  styleUrls: ['./crear-evento.component.css']
+  styleUrls: ['./crear-evento.component.scss']
 })
 export class CrearEventoComponent {
   loading = false

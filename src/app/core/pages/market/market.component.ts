@@ -12,7 +12,7 @@ import { MetaService } from '../../services/meta.service';
 @Component({
   selector: 'app-market',
   templateUrl: './market.component.html',
-  styleUrls: ['./market.component.css']
+  styleUrls: ['./market.component.scss']
 })
 export class MarketComponent implements AfterViewInit {
   public form!: FormGroup

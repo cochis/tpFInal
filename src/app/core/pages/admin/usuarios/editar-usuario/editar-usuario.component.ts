@@ -16,7 +16,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-editar-usuario',
   templateUrl: './editar-usuario.component.html',
-  styleUrls: ['./editar-usuario.component.css']
+  styleUrls: ['./editar-usuario.component.scss']
 })
 export class EditarUsuarioComponent {
   loading = false

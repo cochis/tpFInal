@@ -23,7 +23,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-single-fiesta',
   templateUrl: './single-fiesta.component.html',
-  styleUrls: ['./single-fiesta.component.css']
+  styleUrls: ['./single-fiesta.component.scss']
 })
 export class SingleFiestaComponent implements OnInit, OnDestroy {
   ADM = environment.admin_role

@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-editar-parametro',
   templateUrl: './editar-parametro.component.html',
-  styleUrls: ['./editar-parametro.component.css']
+  styleUrls: ['./editar-parametro.component.scss']
 })
 export class EditarParametroComponent {
   loading = false

@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-qr-desing',
   templateUrl: './qr-desing.component.html',
-  styleUrls: ['./qr-desing.component.css']
+  styleUrls: ['./qr-desing.component.scss']
 })
 export class QrDesingComponent implements AfterViewInit {
   @Input() data: any

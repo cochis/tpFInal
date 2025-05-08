@@ -18,7 +18,7 @@ import { BoletosService } from 'src/app/core/services/boleto.service';
 @Component({
   selector: 'app-borrado',
   templateUrl: './borrado.component.html',
-  styleUrls: ['./borrado.component.css']
+  styleUrls: ['./borrado.component.scss']
 })
 export class BorradoComponent {
   loading = false

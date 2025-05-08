@@ -8,7 +8,7 @@ import { CargarCategoriaItems } from 'src/app/core/interfaces/cargar-interfaces.
 @Component({
   selector: 'app-market-items',
   templateUrl: './market-items.component.html',
-  styleUrls: ['./market-items.component.css']
+  styleUrls: ['./market-items.component.scss']
 })
 export class MarketItemsComponent implements AfterViewInit {
   @Input() items: any;

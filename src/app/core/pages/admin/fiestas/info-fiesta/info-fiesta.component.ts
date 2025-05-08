@@ -18,7 +18,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-info-fiesta',
   templateUrl: './info-fiesta.component.html',
-  styleUrls: ['./info-fiesta.component.css']
+  styleUrls: ['./info-fiesta.component.scss']
 })
 export class InfoFiestaComponent {
   ADM = environment.admin_role

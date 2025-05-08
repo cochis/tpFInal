@@ -9,7 +9,7 @@ import { FunctionsService } from 'src/app/shared/services/functions.service';
 @Component({
   selector: 'app-crear-tipo-color',
   templateUrl: './crear-tipo-color.component.html',
-  styleUrls: ['./crear-tipo-color.component.css']
+  styleUrls: ['./crear-tipo-color.component.scss']
 })
 export class CrearTipoColorComponent {
   loading = false

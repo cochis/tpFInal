@@ -24,7 +24,7 @@ import { TipoUbicacionesService } from 'src/app/core/services/tipoUbicacion.serv
 @Component({
   selector: 'app-registar-salon',
   templateUrl: './registar-salon.component.html',
-  styleUrls: ['./registar-salon.component.css']
+  styleUrls: ['./registar-salon.component.scss']
 })
 export class RegistarSalonComponent {
   loading = false

@@ -26,7 +26,7 @@ import { Editor, Toolbar } from 'ngx-editor';
 @Component({
   selector: 'app-editar-datos',
   templateUrl: './editar-datos.component.html',
-  styleUrls: ['./editar-datos.component.css']
+  styleUrls: ['./editar-datos.component.scss']
 })
 export class EditarDatosComponent {
 

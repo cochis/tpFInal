@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-confirmacion-desing',
   templateUrl: './confirmacion-desing.component.html',
-  styleUrls: ['./confirmacion-desing.component.css']
+  styleUrls: ['./confirmacion-desing.component.scss']
 })
 export class ConfirmacionDesingComponent implements AfterViewInit {
   @Input() data: any

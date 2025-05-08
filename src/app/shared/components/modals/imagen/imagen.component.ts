@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-imagen',
   templateUrl: './imagen.component.html',
-  styleUrls: ['./imagen.component.css']
+  styleUrls: ['./imagen.component.scss']
 })
 export class ImagenComponent implements OnInit {
   @Input() model: any;

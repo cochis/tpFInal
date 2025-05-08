@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-editar-tipo-color',
   templateUrl: './editar-tipo-color.component.html',
-  styleUrls: ['./editar-tipo-color.component.css']
+  styleUrls: ['./editar-tipo-color.component.scss']
 })
 export class EditarTipoColorComponent {
   loading = false

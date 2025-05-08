@@ -20,7 +20,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-vista-roles',
   templateUrl: './vista-roles.component.html',
-  styleUrls: ['./vista-roles.component.css']
+  styleUrls: ['./vista-roles.component.scss']
 })
 export class VistaRolesComponent {
   data!: any

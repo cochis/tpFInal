@@ -21,7 +21,7 @@ import { RedesService } from 'src/app/core/services/red.service';
 @Component({
   selector: 'app-editar-provedor',
   templateUrl: './editar-provedor.component.html',
-  styleUrls: ['./editar-provedor.component.css']
+  styleUrls: ['./editar-provedor.component.scss']
 })
 export class EditarProvedorComponent implements OnDestroy {
   loading = false

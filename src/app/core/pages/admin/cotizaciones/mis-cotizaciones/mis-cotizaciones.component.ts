@@ -12,7 +12,7 @@ import { TipoMediasService } from 'src/app/core/services/tipoMedia.service';
 @Component({
   selector: 'app-mis-cotizaciones',
   templateUrl: './mis-cotizaciones.component.html',
-  styleUrls: ['./mis-cotizaciones.component.css']
+  styleUrls: ['./mis-cotizaciones.component.scss']
 })
 export class MisCotizacionesComponent {
   data!: any

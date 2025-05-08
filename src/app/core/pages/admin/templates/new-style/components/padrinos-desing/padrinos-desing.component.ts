@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-padrinos-desing',
   templateUrl: './padrinos-desing.component.html',
-  styleUrls: ['./padrinos-desing.component.css']
+  styleUrls: ['./padrinos-desing.component.scss']
 })
 export class PadrinosDesingComponent implements AfterViewInit {
   @Input() data: any

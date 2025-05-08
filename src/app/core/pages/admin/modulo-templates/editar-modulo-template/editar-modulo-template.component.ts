@@ -13,7 +13,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-editar-modulo-template',
   templateUrl: './editar-modulo-template.component.html',
-  styleUrls: ['./editar-modulo-template.component.css']
+  styleUrls: ['./editar-modulo-template.component.scss']
 })
 export class EditarModuloTemplateComponent {
   loading = false

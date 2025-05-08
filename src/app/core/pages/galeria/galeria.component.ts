@@ -21,7 +21,7 @@ import { Boleto } from '../../models/boleto.model';
 @Component({
   selector: 'app-galeria',
   templateUrl: './galeria.component.html',
-  styleUrls: ['./galeria.component.css']
+  styleUrls: ['./galeria.component.scss']
 })
 export class GaleriaComponent implements OnInit, OnDestroy {
   obs1: Subscription;

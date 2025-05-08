@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-sobres-desing',
   templateUrl: './sobres-desing.component.html',
-  styleUrls: ['./sobres-desing.component.css']
+  styleUrls: ['./sobres-desing.component.scss']
 })
 export class SobresDesingComponent {
   @Input() data: any

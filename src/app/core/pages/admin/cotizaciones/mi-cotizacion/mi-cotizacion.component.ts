@@ -20,7 +20,7 @@ import { TipoMedia } from 'src/app/core/models/tipoMedia.model';
 @Component({
   selector: 'app-mi-cotizacion',
   templateUrl: './mi-cotizacion.component.html',
-  styleUrls: ['./mi-cotizacion.component.css']
+  styleUrls: ['./mi-cotizacion.component.scss']
 })
 export class MiCotizacionComponent {
   loading = false

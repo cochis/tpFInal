@@ -5,7 +5,7 @@ import { FunctionsService } from '../../services/functions.service';
 @Component({
   selector: 'app-clock',
   templateUrl: './clock.component.html',
-  styleUrls: ['./clock.component.css']
+  styleUrls: ['./clock.component.scss']
 })
 export class ClockComponent implements AfterViewInit {
   @Input() data: any;

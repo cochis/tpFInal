@@ -4,7 +4,7 @@ import { FormGroup, FormArray, FormBuilder } from '@angular/forms';
 @Component({
   selector: 'app-crear-invitacion',
   templateUrl: './crear-invitacion.component.html',
-  styleUrls: ['./crear-invitacion.component.css']
+  styleUrls: ['./crear-invitacion.component.scss']
 })
 export class CrearInvitacionComponent {
   empForm: FormGroup;

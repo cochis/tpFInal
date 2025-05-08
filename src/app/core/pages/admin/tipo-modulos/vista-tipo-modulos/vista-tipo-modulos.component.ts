@@ -9,7 +9,7 @@ import { CargarTipoModulos } from 'src/app/core/interfaces/cargar-interfaces.int
 @Component({
   selector: 'app-vista-tipo-modulos',
   templateUrl: './vista-tipo-modulos.component.html',
-  styleUrls: ['./vista-tipo-modulos.component.css']
+  styleUrls: ['./vista-tipo-modulos.component.scss']
 })
 export class VistaTipoModulosComponent {
   data!: any

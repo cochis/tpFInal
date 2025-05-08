@@ -3,7 +3,7 @@ import Parallax from 'parallax-js'
 @Component({
   selector: 'app-parralax',
   templateUrl: './parralax.component.html',
-  styleUrls: ['./parralax.component.css']
+  styleUrls: ['./parralax.component.scss']
 })
 export class ParralaxComponent implements AfterViewInit {
   constructor() {

@@ -5,7 +5,7 @@ import { FunctionsService } from 'src/app/shared/services/functions.service';
 @Component({
   selector: 'app-boda1',
   templateUrl: './boda1.component.html',
-  styleUrls: ['./boda1.component.css']
+  styleUrls: ['./boda1.component.scss']
 })
 export class Boda1Component {
   formActive: Boolean = false

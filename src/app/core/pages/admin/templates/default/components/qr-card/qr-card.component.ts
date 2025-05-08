@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-qr-card',
   templateUrl: './qr-card.component.html',
-  styleUrls: ['./qr-card.component.css']
+  styleUrls: ['./qr-card.component.scss']
 })
 export class QrCardComponent {
   @Input() data: any

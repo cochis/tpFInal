@@ -9,7 +9,7 @@ import { FunctionsService } from 'src/app/shared/services/functions.service';
 @Component({
   selector: 'app-crear-ejemplo',
   templateUrl: './crear-ejemplo.component.html',
-  styleUrls: ['./crear-ejemplo.component.css']
+  styleUrls: ['./crear-ejemplo.component.scss']
 })
 export class CrearEjemploComponent {
   loading = false

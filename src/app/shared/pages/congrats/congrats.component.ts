@@ -4,7 +4,7 @@ import { FunctionsService } from '../../services/functions.service';
 @Component({
   selector: 'app-congrats',
   templateUrl: './congrats.component.html',
-  styleUrls: ['./congrats.component.css']
+  styleUrls: ['./congrats.component.scss']
 })
 export class CongratsComponent {
 

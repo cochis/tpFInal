@@ -20,7 +20,7 @@ import { TipoCentro } from 'src/app/core/models/tipoCentro.model';
 @Component({
   selector: 'app-vista-tipo-centros',
   templateUrl: './vista-tipo-centros.component.html',
-  styleUrls: ['./vista-tipo-centros.component.css']
+  styleUrls: ['./vista-tipo-centros.component.scss']
 })
 export class VistaTipoCentrosComponent {
   data!: any

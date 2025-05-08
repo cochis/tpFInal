@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-editar-pais',
   templateUrl: './editar-pais.component.html',
-  styleUrls: ['./editar-pais.component.css']
+  styleUrls: ['./editar-pais.component.scss']
 })
 export class EditarPaisComponent {
   loading = false

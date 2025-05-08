@@ -6,7 +6,7 @@ import { PlacesResponse } from 'src/app/core/interfaces/places';
 @Component({
   selector: 'app-searchbar',
   templateUrl: './searchbar.component.html',
-  styleUrls: ['./searchbar.component.css']
+  styleUrls: ['./searchbar.component.scss']
 })
 export class SearchbarComponent implements AfterViewInit {
   private dobounceTimer?: NodeJS.Timeout

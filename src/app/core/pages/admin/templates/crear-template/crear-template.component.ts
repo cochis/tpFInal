@@ -18,7 +18,7 @@ import { FunctionsService } from 'src/app/shared/services/functions.service';
 @Component({
   selector: 'app-crear-template',
   templateUrl: './crear-template.component.html',
-  styleUrls: ['./crear-template.component.css']
+  styleUrls: ['./crear-template.component.scss']
 })
 export class CrearTemplateComponent {
   loading = false

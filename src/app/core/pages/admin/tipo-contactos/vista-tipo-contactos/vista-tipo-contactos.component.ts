@@ -9,7 +9,7 @@ import { CargarTipoContactos } from 'src/app/core/interfaces/cargar-interfaces.i
 @Component({
   selector: 'app-vista-tipo-contactos',
   templateUrl: './vista-tipo-contactos.component.html',
-  styleUrls: ['./vista-tipo-contactos.component.css']
+  styleUrls: ['./vista-tipo-contactos.component.scss']
 })
 export class VistaTipoContactosComponent {
   data!: any

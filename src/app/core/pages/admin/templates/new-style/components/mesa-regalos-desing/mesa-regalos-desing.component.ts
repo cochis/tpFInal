@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-mesa-regalos-desing',
   templateUrl: './mesa-regalos-desing.component.html',
-  styleUrls: ['./mesa-regalos-desing.component.css']
+  styleUrls: ['./mesa-regalos-desing.component.scss']
 })
 export class MesaRegalosDesingComponent {
   @Input() data: any

@@ -7,7 +7,7 @@ import { FunctionsService } from 'src/app/shared/services/functions.service';
 @Component({
   selector: 'app-crear-estatus-cotizacion',
   templateUrl: './crear-estatus-cotizacion.component.html',
-  styleUrls: ['./crear-estatus-cotizacion.component.css']
+  styleUrls: ['./crear-estatus-cotizacion.component.scss']
 })
 export class CrearEstatusCotizacionComponent {
   loading = false

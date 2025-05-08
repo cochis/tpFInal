@@ -9,7 +9,7 @@ import { FunctionsService } from 'src/app/shared/services/functions.service';
 @Component({
   selector: 'app-crear-categoria-item',
   templateUrl: './crear-categoria-item.component.html',
-  styleUrls: ['./crear-categoria-item.component.css']
+  styleUrls: ['./crear-categoria-item.component.scss']
 })
 export class CrearCategoriaItemComponent {
   loading = false

@@ -19,7 +19,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-crear-compra',
   templateUrl: './crear-compra.component.html',
-  styleUrls: ['./crear-compra.component.css']
+  styleUrls: ['./crear-compra.component.scss']
 })
 export class CrearCompraComponent {
   public form!: FormGroup

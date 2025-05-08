@@ -10,7 +10,7 @@ import { FunctionsService } from 'src/app/shared/services/functions.service';
 @Component({
   selector: 'app-proveedores-items',
   templateUrl: './proveedores-items.component.html',
-  styleUrls: ['./proveedores-items.component.css']
+  styleUrls: ['./proveedores-items.component.scss']
 })
 export class ProveedoresItemsComponent implements AfterViewInit {
   @Input() proveedores: any;

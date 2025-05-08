@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-view-template-file',
   templateUrl: './view-template-file.component.html',
-  styleUrls: ['./view-template-file.component.css']
+  styleUrls: ['./view-template-file.component.scss']
 })
 export class ViewTemplateFileComponent implements AfterViewInit {
   @Input() data: any;

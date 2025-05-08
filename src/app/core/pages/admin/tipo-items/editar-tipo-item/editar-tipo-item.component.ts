@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-editar-tipo-item',
   templateUrl: './editar-tipo-item.component.html',
-  styleUrls: ['./editar-tipo-item.component.css']
+  styleUrls: ['./editar-tipo-item.component.scss']
 })
 export class EditarTipoItemComponent {
   loading = false

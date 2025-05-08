@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-modal-template',
   templateUrl: './modal-template.component.html',
-  styleUrls: ['./modal-template.component.css']
+  styleUrls: ['./modal-template.component.scss']
 })
 export class ModalTemplateComponent implements AfterViewInit {
   @Input() model: any;

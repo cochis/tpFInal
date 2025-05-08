@@ -10,7 +10,7 @@ import { PaquetesService } from 'src/app/core/services/paquete.service';
 @Component({
   selector: 'app-vista-paquetes',
   templateUrl: './vista-paquetes.component.html',
-  styleUrls: ['./vista-paquetes.component.css']
+  styleUrls: ['./vista-paquetes.component.scss']
 })
 export class VistaPaquetesComponent {
   data!: any

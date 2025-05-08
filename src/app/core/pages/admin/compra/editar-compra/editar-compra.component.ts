@@ -14,7 +14,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-editar-compra',
   templateUrl: './editar-compra.component.html',
-  styleUrls: ['./editar-compra.component.css']
+  styleUrls: ['./editar-compra.component.scss']
 })
 export class EditarCompraComponent {
   loading = false

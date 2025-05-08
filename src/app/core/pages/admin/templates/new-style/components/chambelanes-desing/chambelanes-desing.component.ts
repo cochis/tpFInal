@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-chambelanes-desing',
   templateUrl: './chambelanes-desing.component.html',
-  styleUrls: ['./chambelanes-desing.component.css']
+  styleUrls: ['./chambelanes-desing.component.scss']
 })
 export class ChambelanesDesingComponent implements AfterViewInit {
   @Input() data: any

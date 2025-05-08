@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-editar-tipo-cantidad',
   templateUrl: './editar-tipo-cantidad.component.html',
-  styleUrls: ['./editar-tipo-cantidad.component.css']
+  styleUrls: ['./editar-tipo-cantidad.component.scss']
 })
 export class EditarTipoCantidadComponent {
   loading = false

@@ -10,7 +10,7 @@ import { Usuario } from 'src/app/core/models/usuario.model';
 @Component({
   selector: 'app-remember',
   templateUrl: './remember.component.html',
-  styleUrls: ['./remember.component.css']
+  styleUrls: ['./remember.component.scss']
 })
 export class RememberComponent {
   loading = false

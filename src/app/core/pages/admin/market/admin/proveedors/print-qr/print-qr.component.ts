@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-print-qr',
   templateUrl: './print-qr.component.html',
-  styleUrls: ['./print-qr.component.css']
+  styleUrls: ['./print-qr.component.scss']
 })
 export class PrintQrComponent implements AfterViewInit {
   @Input() proveedor: any

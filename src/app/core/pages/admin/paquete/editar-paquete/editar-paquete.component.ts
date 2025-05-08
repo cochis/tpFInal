@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-editar-paquete',
   templateUrl: './editar-paquete.component.html',
-  styleUrls: ['./editar-paquete.component.css']
+  styleUrls: ['./editar-paquete.component.scss']
 })
 export class EditarPaqueteComponent {
   loading = false

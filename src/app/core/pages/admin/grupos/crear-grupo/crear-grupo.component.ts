@@ -10,7 +10,7 @@ import { FunctionsService } from 'src/app/shared/services/functions.service';
 @Component({
   selector: 'app-crear-grupo',
   templateUrl: './crear-grupo.component.html',
-  styleUrls: ['./crear-grupo.component.css']
+  styleUrls: ['./crear-grupo.component.scss']
 })
 export class CrearGrupoComponent {
   loading = false

@@ -10,7 +10,7 @@ import { PaisesService } from 'src/app/core/services/pais.service';
 @Component({
   selector: 'app-vista-paises',
   templateUrl: './vista-paises.component.html',
-  styleUrls: ['./vista-paises.component.css']
+  styleUrls: ['./vista-paises.component.scss']
 })
 export class VistaPaisesComponent {
   data!: any

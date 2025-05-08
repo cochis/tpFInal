@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-invitacion-card',
   templateUrl: './invitacion-card.component.html',
-  styleUrls: ['./invitacion-card.component.css']
+  styleUrls: ['./invitacion-card.component.scss']
 })
 export class InvitacionCardComponent implements AfterViewInit {
   @Input() data: any

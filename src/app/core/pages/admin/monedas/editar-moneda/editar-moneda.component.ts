@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-editar-moneda',
   templateUrl: './editar-moneda.component.html',
-  styleUrls: ['./editar-moneda.component.css']
+  styleUrls: ['./editar-moneda.component.scss']
 })
 export class EditarMonedaComponent {
   loading = false

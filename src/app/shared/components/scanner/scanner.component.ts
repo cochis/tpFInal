@@ -3,7 +3,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 @Component({
   selector: 'app-scanner',
   templateUrl: './scanner.component.html',
-  styleUrls: ['./scanner.component.css']
+  styleUrls: ['./scanner.component.scss']
 })
 export class ScannerComponent {
   loading = false

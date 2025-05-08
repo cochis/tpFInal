@@ -15,7 +15,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-by-images',
   templateUrl: './by-images.component.html',
-  styleUrls: ['./by-images.component.css']
+  styleUrls: ['./by-images.component.scss']
 })
 export class ByImagesComponent {
   loading = false

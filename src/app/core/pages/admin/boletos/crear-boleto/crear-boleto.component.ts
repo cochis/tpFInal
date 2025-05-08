@@ -18,7 +18,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-crear-boleto',
   templateUrl: './crear-boleto.component.html',
-  styleUrls: ['./crear-boleto.component.css']
+  styleUrls: ['./crear-boleto.component.scss']
 })
 export class CrearBoletoComponent {
   ADM = environment.admin_role

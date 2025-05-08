@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-xv1',
   templateUrl: './xv1.component.html',
-  styleUrls: ['./xv1.component.css'] 
+  styleUrls: ['./xv1.component.scss'] 
 })
 export class Xv1Component implements AfterViewInit {
  

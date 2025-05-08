@@ -14,7 +14,7 @@ import { TipoContactosService } from 'src/app/core/services/tipoContacto.service
 @Component({
   selector: 'app-vista-provedors',
   templateUrl: './vista-provedors.component.html',
-  styleUrls: ['./vista-provedors.component.css']
+  styleUrls: ['./vista-provedors.component.scss']
 })
 export class VistaProvedorsComponent {
   data!: any

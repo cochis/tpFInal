@@ -261,6 +261,28 @@
 
                     </ul>
                 </li>
+                <!-- <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Idioma
+                    </a>
+                    <ul class="dropdown-menu">
+
+
+                        <li><a class="dropdown-item" routerLink="/auth/perfil" *ngIf="rol && rol!== ''">Perfil</a></li>
+                        <li><a class="dropdown-item" routerLink="/core/mis-cotizaciones" *ngIf="rol && rol!== ''">Mis
+                                Cotizaciones</a></li>
+                        <li><a class="dropdown-item" routerLink="/core/contact" *ngIf="rol && rol!== ''">Contacto</a>
+                        </li>
+                        <li><a class="dropdown-item" (click)="logout()" *ngIf="rol && rol!== ''">Salir</a></li>
+
+
+                    </ul>
+                </li> -->
+                <select name="" id="">
+                    <option value="es">es</option>
+                    <option value="en">En</option>
+                </select>
                 <li class="nav-item pointer" *ngIf="carrito.length>0" routerLink="/core/market/carrito">
                     <h4><i class="bi bi-cart-check-fill"></i>
                         <span class="badge text-bg-secondary">

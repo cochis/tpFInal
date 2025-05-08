@@ -4,7 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-info-ubicacion',
   templateUrl: './info-ubicacion.component.html',
-  styleUrls: ['./info-ubicacion.component.css']
+  styleUrls: ['./info-ubicacion.component.scss']
 })
 export class InfoUbicacionComponent {
 

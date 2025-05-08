@@ -20,7 +20,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-editar-fiesta',
   templateUrl: './editar-fiesta.component.html',
-  styleUrls: ['./editar-fiesta.component.css']
+  styleUrls: ['./editar-fiesta.component.scss']
 })
 export class EditarFiestaComponent {
   ADM = environment.admin_role

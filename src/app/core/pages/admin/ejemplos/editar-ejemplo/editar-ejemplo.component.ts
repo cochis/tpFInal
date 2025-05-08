@@ -13,7 +13,7 @@ import { Editor, Toolbar } from 'ngx-editor';
 @Component({
   selector: 'app-editar-ejemplo',
   templateUrl: './editar-ejemplo.component.html',
-  styleUrls: ['./editar-ejemplo.component.css']
+  styleUrls: ['./editar-ejemplo.component.scss']
 })
 export class EditarEjemploComponent {
   loading = false

@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-donde-card',
   templateUrl: './donde-card.component.html',
-  styleUrls: ['./donde-card.component.css']
+  styleUrls: ['./donde-card.component.scss']
 })
 export class DondeCardComponent implements AfterViewInit {
   @Input() data: any

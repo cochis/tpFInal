@@ -56,6 +56,7 @@
     "public-ip": "^7.0.1",
     "qrcode": "^1.5.3",
     "rxjs": "~7.8.0",
+    "schematics-scss-migrate": "^2.3.17",
     "secure-ls": "^1.2.6",
     "sweetalert2": "^11.6.13",
     "tslib": "^2.3.0",

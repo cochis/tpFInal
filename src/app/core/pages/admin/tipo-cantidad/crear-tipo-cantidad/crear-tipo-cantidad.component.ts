@@ -10,7 +10,7 @@ import { FunctionsService } from 'src/app/shared/services/functions.service';
 @Component({
   selector: 'app-crear-tipo-cantidad',
   templateUrl: './crear-tipo-cantidad.component.html',
-  styleUrls: ['./crear-tipo-cantidad.component.css']
+  styleUrls: ['./crear-tipo-cantidad.component.scss']
 })
 export class CrearTipoCantidadComponent {
   loading = false

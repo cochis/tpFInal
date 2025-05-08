@@ -9,7 +9,7 @@ import { CargarCategoriaItems } from 'src/app/core/interfaces/cargar-interfaces.
 @Component({
   selector: 'app-vista-categoria-items',
   templateUrl: './vista-categoria-items.component.html',
-  styleUrls: ['./vista-categoria-items.component.css']
+  styleUrls: ['./vista-categoria-items.component.scss']
 })
 export class VistaCategoriaItemsComponent {
   data!: any
