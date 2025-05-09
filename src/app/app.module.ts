@@ -19,12 +19,22 @@ import { ModalModule } from '@developer-partners/ngx-modal-dialog';
 import { NgxPrintModule } from 'ngx-print';
 import { NgxEditorModule } from 'ngx-editor';
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
     BrowserModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
     BrowserAnimationsModule,
     AppRoutingModule,
     AuthModule,
@@ -52,8 +62,15 @@ import { FullCalendarModule } from '@fullcalendar/angular';
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: UnauthorizedInterceptorService,
-    multi: true
-  }],
+    multi: true,
+
+
+  },
+  provideHttpClient(withInterceptorsFromDi())  
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
+  return new TranslateHttpLoader(http, '../assets/i18n/', '.json');
+}
