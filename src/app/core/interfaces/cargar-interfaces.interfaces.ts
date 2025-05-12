@@ -41,6 +41,7 @@ import { TipoUbicacion } from "../models/tipoUbicacion.model"
 import { Red } from "../models/red.model"
 import { MailTemplate } from "../models/mailTemplate.model"
 import { Fondo } from "../models/fondo.model"
+import { Shared } from "../models/shared.model"
 
 
 
@@ -126,6 +127,13 @@ export interface CargarEvento {
 export interface CargarEventos {
     total: number
     eventos: Evento[]
+}
+export interface CargarShared {
+    shared: Shared
+}
+export interface CargarShareds {
+    total: number
+    shareds: Shared[]
 }
 export interface CargarFondo {
     fondo: Fondo

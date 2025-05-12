@@ -13,17 +13,24 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" routerLink="/core/inicio">Inicio</a>
+                    <a class="nav-link active" aria-current="page" routerLink="/core/inicio">
+
+                        {{'menu.inicio'| translate}}
+                    </a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        MarketPlace
+                        {{'menu.market'| translate}}
                     </a>
                     <ul class="dropdown-menu">
 
-                        <li><a class="dropdown-item" routerLink="/core/market">Productos</a></li>
-                        <li><a class="dropdown-item" routerLink="/core/market/proveedores">Proveedores</a></li>
+                        <li><a class="dropdown-item" routerLink="/core/market">
+                                {{'menu.productos'| translate}}
+                            </a></li>
+                        <li><a class="dropdown-item" routerLink="/core/market/proveedores">
+                                {{'menu.proveedores'| translate}}
+                            </a></li>
 
 
 
@@ -31,36 +38,54 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/core/about">Nosotros</a>
+                    <a class="nav-link" routerLink="/core/about">
+                        {{'menu.nosotros'| translate}}
+                    </a>
                 </li>
                 <!--  <li class="nav-item">
                     <a class="nav-link" routerLink="/core/invitaciones">Invitaciones</a>
                 </li> -->
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/core/contact">Contacto</a>
+                    <a class="nav-link" routerLink="/core/contact">
+                        {{'menu.contacto'| translate}}
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/core/pricing">Pricing</a>
+                    <a class="nav-link" routerLink="/core/pricing">
+                        {{'menu.precio'| translate}}
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/core/examples">Ejemplos</a>
+                    <a class="nav-link" routerLink="/core/examples">
+                        {{'menu.ejemplos'| translate}}
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/core/faqs">FAQ´S</a>
+                    <a class="nav-link" routerLink="/core/faqs">
+                        {{'menu.faqs'| translate}}
+                    </a>
                 </li>
 
 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        Cuenta
+                        {{'menu.cuenta'| translate}}
                     </a>
                     <ul class="dropdown-menu">
 
-                        <li><a class="dropdown-item" routerLink="/auth/login" *ngIf="!rol ">Ingresar</a></li>
-                        <li><a class="dropdown-item" routerLink="/auth/register" *ngIf="!rol ">Registrar</a></li>
-                        <li><a class="dropdown-item" routerLink="/auth/perfil" *ngIf="rol && rol!== ''">Perfil</a></li>
-                        <li><a class="dropdown-item" (click)="logout()" *ngIf="rol && rol!== ''">Salir</a></li>
+                        <li><a class="dropdown-item" routerLink="/auth/login" *ngIf="!rol ">
+                                {{'menu.ingresar'| translate}}
+                            </a></li>
+                        <li><a class="dropdown-item" routerLink="/auth/register" *ngIf="!rol ">
+                                {{'menu.registrar'| translate}}
+                            </a></li>
+                        <li><a class="dropdown-item" routerLink="/auth/perfil" *ngIf="rol && rol!== ''">
+                                {{'menu.perfil'| translate}}
+                            </a></li>
+                        <li><a class="dropdown-item" (click)="logout()" *ngIf="rol && rol!== ''">
+                                {{'menu.salir'| translate}}
+                            </a></li>
 
 
                     </ul>
@@ -78,14 +103,10 @@
             </ul>
 
         </div>
+        <!-- <app-select-translate></app-select-translate> -->
 
-        <select name="" id="" >
-            
-            <option value="es"><img src="assets/icons/es.png" alt="" width="50px" height="50px"></option>
-            <option value="en">En</option>
-        </select>
     </div>
-    
+
 </nav>
 <nav class="navbar navbar-expand-lg navbar-dark"
     *ngIf="rol ===ADM  ||rol ===ANF  || rol ===SLN || rol ===CHK || rol ===URS || rol ===PRV">
@@ -105,36 +126,50 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" routerLink="/core/inicio">Inicio</a>
+                    <a class="nav-link active" aria-current="page" routerLink="/core/inicio">
+                        {{'menu.inicio'| translate}}
+                    </a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        MarketPlace
+                        {{'menu.market'| translate}}
                     </a>
                     <ul class="dropdown-menu">
 
-                        <li><a class="dropdown-item" routerLink="/core/market">Productos</a></li>
-                        <li><a class="dropdown-item" routerLink="/core/market/proveedores">Proveedores</a></li>
+                        <li><a class="dropdown-item" routerLink="/core/market">
+                                {{'menu.productos'| translate}}
+                            </a></li>
+                        <li><a class="dropdown-item" routerLink="/core/market/proveedores">
+                                {{'menu.proveedores'| translate}}
+                            </a></li>
 
 
 
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/core/pricing">Pricing</a>
+                    <a class="nav-link" routerLink="/core/pricing">
+                        {{'menu.precio'| translate}}
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/core/examples">Ejemplos</a>
+                    <a class="nav-link" routerLink="/core/examples">
+                        {{'menu.ejemplos'| translate}}
+                    </a>
                 </li>
 
 
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/core/mis-fiestas" *ngIf="rol">Mis eventos</a>
+                    <a class="nav-link" routerLink="/core/mis-fiestas" *ngIf="rol">
+                        {{'menu.mis_eventos'| translate}}
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/core/check-in"
-                        *ngIf="rol ===ADM || rol ===CHK ||  rol ===SLN ||  rol ===ANF">CheckIn</a>
+                        *ngIf="rol ===ADM || rol ===CHK ||  rol ===SLN ||  rol ===ANF">
+                        {{'menu.check-in'| translate}}
+                    </a>
                 </li>
 
 
@@ -143,31 +178,41 @@
                     *ngIf="rol.includes(ADM) ||   rol.includes(SLN) ||   rol.includes(ANF) ||   rol.includes(PRV)">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        Admin
+                        {{'menu.admin'| translate}}
                     </a>
                     <ul class="dropdown-menu  ">
                         <h5 class="ma" style="margin-left: 15px;"><b>General</b></h5>
                         <li *ngIf="rol.includes(ADM) || rol.includes(ANF) || rol.includes(SLN) || rol.includes(PRV) "><a
-                                class="dropdown-item" routerLink="/core/salones/vista-salones">Ver
-                                Centro de eventos</a></li>
+                                class="dropdown-item" routerLink="/core/salones/vista-salones">
+                                {{'menu.admin_centros_eventos'| translate}}
+                            </a></li>
                         <li><a class="dropdown-item" routerLink="/core/usuarios/vista-usuarios"
-                                *ngIf="rol.includes(ANF)  || !rol.includes(PRV)">Ver
-                                usuarios</a></li>
-                        <li><a class="dropdown-item" routerLink="/core/fiestas/vista-fiestas">Ver eventos</a></li>
-                        <li><a class="dropdown-item" routerLink="/core/boletos/vista-boletos">Ver boletos</a></li>
-                        <!-- <li><a class="dropdown-item" routerLink="/core/compras/crear-compra/{{uid}}">Comprar paquete</a>
-                        </li>
-                        <li><a class="dropdown-item" routerLink="/core/mis-compras">Mis compras</a>
-                        </li> -->
+                                *ngIf="rol.includes(ANF)  || !rol.includes(PRV)">
+                                {{'menu.admin_usuarios'| translate}}
+                            </a></li>
+                        <li><a class="dropdown-item" routerLink="/core/fiestas/vista-fiestas">
+                                {{'menu.admin_eventos'| translate}}
+                            </a></li>
+                        <li><a class="dropdown-item" routerLink="/core/boletos/vista-boletos">
+                                {{'menu.admin_boletos'| translate}}
+                            </a></li>
+
                         <ng-container *ngIf="rol.includes(ADM)">
 
                             <hr>
-                            <h5 class="ma" style="margin-left: 15px;"><b>Market place</b></h5>
-                            <li><a class="dropdown-item" routerLink="/core/proveedores/vista-proveedores">Ver
-                                    proveedores</a></li>
-                            <li><a class="dropdown-item" routerLink="/core/items/vista-items">Ver
-                                    Productos</a></li>
-                            <li><a class="dropdown-item" routerLink="/core/promos">Promos</a></li>
+                            <h5 class="ma" style="margin-left: 15px;"><b>
+                                    {{'menu.admin_market_menu'| translate}}
+                                </b></h5>
+                            <li><a class="dropdown-item" routerLink="/core/proveedores/vista-proveedores">
+                                    {{'menu.admin_proveedores_menu'| translate}}
+                                </a></li>
+                            <li><a class="dropdown-item" routerLink="/core/items/vista-items">
+                                    {{'menu.admin_productos_menu'| translate}}
+
+                                </a></li>
+                            <li><a class="dropdown-item" routerLink="/core/promos">
+                                    {{'menu.admin_promos'| translate}}
+                                </a></li>
                         </ng-container>
 
 
@@ -175,14 +220,17 @@
                         <ng-container *ngIf="rol.includes(PRV) || rol.includes(SLN)">
                             <hr>
                             <h5 class="ma" style="margin-left: 15px;"><b>Market</b></h5>
-                            <li><a class="dropdown-item" routerLink="/core/proveedores/editar-datos">Ver
-                                    Edita datos de proveedor</a>
+                            <li><a class="dropdown-item" routerLink="/core/proveedores/editar-datos">
+                                    {{'menu.admin_editar_proveedor'| translate}}
+                                </a>
                             </li>
                             <li><a class="dropdown-item" routerLink="/core/productos/agregar">
-                                    Agregar Productos o servicios</a>
+                                    {{'menu.admin_add_productos'| translate}}
+                                </a>
                             </li>
                             <li><a class="dropdown-item" routerLink="/core/mis-productos">
-                                    Mis Productos o servicios</a>
+                                    {{'menu.admin_mis_productos'| translate}}
+                                </a>
                             </li>
                         </ng-container>
 
@@ -195,16 +243,20 @@
                 <li class="nav-item dropdown" *ngIf="rol ===ADM ">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        Catalogos
+                        {{'menu.catalogos'| translate}}
                     </a>
                     <ul class="dropdown-menu">
 
                         <div class="text-center mt-2">
                             <hr>
-                            <h5>General</h5>
+                            <h5>
+                                {{'menu.catalogos_general'| translate}}
+                            </h5>
                             <hr>
                         </div>
-                        <li><a class="dropdown-item" routerLink="/core/parametros/vista-parametros">Ver parametros</a>
+                        <li><a class="dropdown-item" routerLink="/core/parametros/vista-parametros">
+                                {{'menu.catalogos_parametros'| translate}}
+                            </a>
                         </li>
                         <li><a class="dropdown-item" routerLink="/core/roles/vista-roles">Ver Roles</a></li>
                         <li><a class="dropdown-item" routerLink="/core/paises/vista-paises">Ver paises</a></li>
@@ -286,7 +338,7 @@
 
                     </ul>
                 </li> -->
-              
+
                 <li class="nav-item pointer" *ngIf="carrito.length>0" routerLink="/core/market/carrito">
                     <h4><i class="bi bi-cart-check-fill"></i>
                         <span class="badge text-bg-secondary">
@@ -296,7 +348,7 @@
 
                 </li>
             </ul>
-
+            <!-- <app-select-translate></app-select-translate> -->
         </div>
     </div>
 </nav>

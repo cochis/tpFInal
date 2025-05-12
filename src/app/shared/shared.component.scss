@@ -1,0 +1,15 @@
+.parent {
+  /* Ensure the parent element's height matches the viewport height */
+  height: 100vh; /* or 100% */
+  /* Optionally, set a width if needed, but 100% is common for fullscreen */
+  width: 100%;
+}
+
+.child {
+  /* Set iframe width to 100% of its parent */
+  width: 100%;
+  /* Set iframe height to 100% of its parent */
+  height: 100%;
+  /* Add border if desired */
+  border: none; /* or adjust border styles */
+}

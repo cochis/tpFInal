@@ -348,7 +348,7 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
         let cantidadBoletos = (boleto.cantidadInvitados > 1) ? "BOLETOS" : "BOLETO"
 
         let fecha = this.functionsService.datePush(fiesta.fecha)
-        let liga = "/core/templates/" + invi + "/" + boleto.fiesta + "/" + boleto.uid
+        let liga = "/shared?evt=" + boleto.shared
         let ligaGaleria = `/core/galeria/fst/${fiesta.uid}/blt/${boleto.uid}`
         recordatorio = recordatorio.replace("@@INVITADO@@", invitado)
         recordatorio = recordatorio.replace("@@FECHA_EVENTO@@", fecha)

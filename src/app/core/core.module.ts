@@ -182,6 +182,12 @@ import localeEs from '@angular/common/locales/es'
 import { registerLocaleData } from '@angular/common';
 import { SobresDesingComponent } from './pages/admin/templates/new-style/components/sobres-desing/sobres-desing.component';
 import { EditarRecordatoriosComponent } from './pages/admin/invitaciones/componentes/editar-recordatorios/editar-recordatorios.component';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+
+
+
 registerLocaleData(localeEs, 'es')
 
 
@@ -366,6 +372,13 @@ registerLocaleData(localeEs, 'es')
 
   ],
   imports: [
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
@@ -379,6 +392,12 @@ registerLocaleData(localeEs, 'es')
     FullCalendarModule
   ],
   exports: [MarketItemsComponent],
-  providers: [{ provide: LOCALE_ID, useValue: 'es-MX' }]
+  providers: [
+    { provide: LOCALE_ID, useValue: 'es-MX' },
+    provideHttpClient(withInterceptorsFromDi())
+  ]
 })
 export class CoreModule { }
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
+  return new TranslateHttpLoader(http, '../assets/i18n/', '.json');
+}

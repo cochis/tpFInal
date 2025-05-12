@@ -4,10 +4,12 @@ import { NopagefoundComponent } from './shared/pages/nopagefound/nopagefound.com
 
 import { AuthRoutingModule } from './auth/auth.routing';
 import { CoreRoutingModule } from './core/core.routing';
+import { SharedComponent } from './shared/shared.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: '/core', pathMatch: 'full' },
+  { path: 'shared', component: SharedComponent, pathMatch: 'full' },
   { path: '**', component: NopagefoundComponent },
 ];
 

@@ -16,7 +16,7 @@
     </section> -->
     <section class="featured-section" style="padding-bottom: 0px !important">
         <div class="container text-center pad1y">
-            <h3 class="   upper welcome">Bienvenido</h3>
+            <h3 class="   upper welcome">{{'home.saludo' | translate}}</h3>
 
 
         </div>
@@ -25,7 +25,9 @@
         <div class="container">
 
             <div class="col-12 text-center">
-                <h2 class="mb-4">Asegúrate que su evento, se lleve a cabo sin contratiempos.</h2>
+                <h2 class="mb-4">
+
+                    {{'home.mensaje_saludo' | translate}}</h2>
             </div>
 
         </div>
@@ -37,25 +39,29 @@
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active" id="design-tab" data-bs-toggle="tab"
                             data-bs-target="#marketplace-eventos-tab" type="button" role="tab"
-                            aria-controls="marketplace-eventos-tab" aria-selected="true">Marketplace para
-                            eventos</button>
+                            aria-controls="marketplace-eventos-tab" aria-selected="true">{{'home.menu_marketplace.title'
+                            | translate}}</button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="tipo-evento-tab" data-bs-toggle="tab"
                             data-bs-target="#tipo-centro-evento-tab" type="button" role="tab"
-                            aria-controls="tipo-centro-evento-tab" aria-selected="false">Tipo de centro de
-                            eventos</button>
+                            aria-controls="tipo-centro-evento-tab" aria-selected="false">
+                            {{'home.tipo_centros.title'| translate}}
+                        </button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="tipo-evento-tab" data-bs-toggle="tab"
                             data-bs-target="#tipo-evento-tab-pane" type="button" role="tab"
-                            aria-controls="tipo-evento-tab-pane" aria-selected="false">Tipo de eventos</button>
+                            aria-controls="tipo-evento-tab-pane" aria-selected="false">
+                            {{'home.tipo_eventos.title' | translate}}
+                        </button>
                     </li>
 
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="invitacion-tab" data-bs-toggle="tab"
                             data-bs-target="#invitacion-tab-pane" type="button" role="tab"
-                            aria-controls="invitacion-tab-pane" aria-selected="false">Invitación
+                            aria-controls="invitacion-tab-pane" aria-selected="false">
+                            {{'home.invitacion.title' | translate}}
                         </button>
                     </li>
 
@@ -64,17 +70,23 @@
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="checking-tab" data-bs-toggle="tab"
                             data-bs-target="#checking-tab-pane" type="button" role="tab"
-                            aria-controls="checking-tab-pane" aria-selected="false">Checking</button>
+                            aria-controls="checking-tab-pane" aria-selected="false">
+                            {{'home.checkin.title'| translate}}
+                        </button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="galeria-tab" data-bs-toggle="tab"
                             data-bs-target="#galeria-tab-pane" type="button" role="tab" aria-controls="galeria-tab-pane"
-                            aria-selected="false">Galería</button>
+                            aria-selected="false">
+                            {{'home.galeria.title'| translate}}
+                        </button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="proveedor-tab" data-bs-toggle="tab"
                             data-bs-target="#proveedor-tab-pane" type="button" role="tab"
-                            aria-controls="proveedor-tab-pane" aria-selected="false">Quiero ser proveedor</button>
+                            aria-controls="proveedor-tab-pane" aria-selected="false">
+                            {{'home.proveedor.title'| translate}}
+                        </button>
                     </li>
                 </ul>
             </div>
@@ -94,11 +106,8 @@
 
                                         <div class="d-flex  ma">
                                             <div class="ma title text-center">
-                                                <h5 class="mb-2 ma">Tener una plataforma en línea que centralice todo lo
-                                                    relacionado con la logística de eventos, desde la creación de
-                                                    invitaciones digitales hasta la búsqueda de proveedores, puede hacer
-                                                    que la planificación sea mucho más fácil y
-                                                    eficiente.
+                                                <h5 class="mb-2 ma">
+                                                    {{'home.menu_marketplace.info1' | translate}}
                                                 </h5>
 
 
@@ -106,13 +115,11 @@
                                         </div>
                                         <ul class="mt-3" style="list-style: none; padding: 0;">
                                             <li>
-                                                Es importante aclarar que tu plataforma solo se encarga de realizar
-                                                cotizaciones
+                                                {{'home.menu_marketplace.info_lista1' | translate}}
                                             </li>
 
                                             <li>
-                                                Los pagos se gestionan
-                                                directamente entre los usuarios y los proveedores
+                                                {{'home.menu_marketplace.info_lista2' | translate}}
                                             </li>
 
 
@@ -153,11 +160,8 @@
                                 style="padding: 50px; border-radius: 20px; ">
                                 <div class="d-flex  ma mt-3 mb-3">
                                     <div class="ma title text-center">
-                                        <h5 class="mb-2 ma">¡Eso es una gran idea! Utilizar invitaciones digitales puede
-                                            ser
-                                            una excelente manera de
-                                            facilitar la organización y la
-                                            gestión de eventos en cualquier tipo de centro.
+                                        <h5 class="mb-2 ma">{{'home.tipo_centros.info'
+                                            | translate}}
                                         </h5>
 
 
@@ -170,7 +174,10 @@
 
                                         <div class="d-flex">
                                             <div class="ma title text-center">
-                                                <h5 class="mb-2 ma">Salón de eventos</h5>
+                                                <h5 class="mb-2 ma">
+
+                                                    {{'home.tipo_centros.salones'| translate}}
+                                                </h5>
 
                                             </div>
 
@@ -185,7 +192,9 @@
                                     <div class="custom-block bg-white shadow-lg">
                                         <div class="d-flex">
                                             <div class="ma title text-center">
-                                                <h5 class="mb-2 ma">Escuelas</h5>
+                                                <h5 class="mb-2 ma">
+                                                    {{'home.tipo_centros.escuelas'| translate}}
+                                                </h5>
                                             </div>
                                         </div>
                                         <img src="/assets/icons/school.png" class="custom-block-image img-fluid" alt="">
@@ -197,7 +206,10 @@
                                     <div class="custom-block bg-white shadow-lg">
                                         <div class="d-flex">
                                             <div class="ma title text-center">
-                                                <h5 class="mb-2 ma">Grupos sociales</h5>
+                                                <h5 class="mb-2 ma">
+
+                                                    {{'home.tipo_centros.grupos'| translate}}
+                                                </h5>
                                             </div>
                                         </div>
                                         <img src="/assets/icons/grupos.png" class="custom-block-image img-fluid" alt="">
@@ -207,7 +219,10 @@
                                     <div class="custom-block bg-white shadow-lg">
                                         <div class="d-flex">
                                             <div class="ma title text-center">
-                                                <h5 class="mb-2 ma">Particulares</h5>
+                                                <h5 class="mb-2 ma">
+
+                                                    {{'home.tipo_centros.particulares'| translate}}
+                                                </h5>
                                             </div>
                                         </div>
                                         <img src="/assets/icons/person.png" class="custom-block-image img-fluid" alt="">
@@ -217,7 +232,9 @@
                                     <div class="custom-block bg-white shadow-lg">
                                         <div class="d-flex">
                                             <div class="ma title text-center">
-                                                <h5 class="mb-2 ma">Club's deportivos</h5>
+                                                <h5 class="mb-2 ma">
+                                                    {{'home.tipo_centros.club_deportivo'| translate}}
+                                                </h5>
                                             </div>
                                         </div>
                                         <img src="/assets/icons/sport.png" class="custom-block-image img-fluid" alt="">
@@ -227,7 +244,9 @@
                                     <div class="custom-block bg-white shadow-lg">
                                         <div class="d-flex">
                                             <div class="ma title text-center">
-                                                <h5 class="mb-2 ma">Cualquier centro de eventos</h5>
+                                                <h5 class="mb-2 ma">
+                                                    {{'home.tipo_centros.cualquier'| translate}}
+                                                </h5>
                                             </div>
                                         </div>
                                         <img src="/assets/icons/icon-152x152.png" class="custom-block-image img-fluid"
@@ -253,7 +272,7 @@
                                 <div class="d-flex  ma mt-3 mb-3">
                                     <div class="ma title text-center">
                                         <h5 class="mb-2 ma">
-                                            ¡Perfecto Prepararte para cualquier tipo de eventos!
+                                            {{'home.tipo_eventos.info' | translate}}
                                         </h5>
 
 
@@ -266,7 +285,9 @@
 
                                         <div class="d-flex">
                                             <div class="ma title text-center">
-                                                <h5 class="mb-2 ma">Cumpleaños</h5>
+                                                <h5 class="mb-2 ma">
+                                                    {{'home.tipo_eventos.cumpleanos' | translate}}
+                                                </h5>
 
                                                 <!--  <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p> -->
                                             </div>
@@ -284,7 +305,9 @@
 
                                         <div class="d-flex">
                                             <div class="ma title text-center">
-                                                <h5 class="mb-2 ma">Eventos sociales</h5>
+                                                <h5 class="mb-2 ma">
+                                                    {{'home.tipo_eventos.eventos_sociales' | translate}}
+                                                </h5>
 
                                                 <!--  <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p> -->
                                             </div>
@@ -301,7 +324,9 @@
 
                                         <div class="d-flex">
                                             <div class="ma title text-center">
-                                                <h5 class="mb-2 ma">Eventos laborales</h5>
+                                                <h5 class="mb-2 ma">
+                                                    {{'home.tipo_eventos.eventos_laborales' | translate}}
+                                                </h5>
                                             </div>
                                         </div>
                                         <img src="/assets/icons/people.png" class="custom-block-image img-fluid" alt="">
@@ -311,7 +336,9 @@
                                     <div class="custom-block bg-white shadow-lg">
                                         <div class="d-flex">
                                             <div class="ma title text-center">
-                                                <h5 class="mb-2 ma">Eventos escolares</h5>
+                                                <h5 class="mb-2 ma">
+                                                    {{'home.tipo_eventos.eventos_escolares' | translate}}
+                                                </h5>
                                             </div>
                                         </div>
                                         <img src="/assets/icons/escolar.png" class="custom-block-image img-fluid"
@@ -322,7 +349,9 @@
                                     <div class="custom-block bg-white shadow-lg">
                                         <div class="d-flex">
                                             <div class="ma title text-center">
-                                                <h5 class="mb-2 ma">Y muchos más</h5>
+                                                <h5 class="mb-2 ma">
+                                                    {{'home.tipo_eventos.mas' | translate}}
+                                                </h5>
                                             </div>
                                         </div>
                                         <img src="/assets/icons/icon-152x152.png" class="custom-block-image img-fluid"
@@ -340,8 +369,9 @@
                                 <div class="d-flex  ma mt-3 mb-3">
                                     <div class="ma title text-center">
                                         <h5 class="mb-2 ma">
-                                            Tienes la opción de editar las invitaciones digitales a tu gusto es una
-                                            característica fundamental para personalizar los eventos a tu manera.
+                                            {{'home.invitacion.info' | translate}}
+
+
                                         </h5>
 
 
@@ -356,7 +386,7 @@
 
                                         <div class="d-flex">
                                             <div class="ma title text-center">
-                                                <h5 class="mb-2 ma">Crea y edita tu invitación</h5>
+                                                <h5 class="mb-2 ma">{{'home.invitacion.info2' | translate}}</h5>
 
 
                                             </div>
@@ -426,9 +456,11 @@
 
                                         <div class="d-flex">
                                             <div class="ma title text-center">
-                                                <h5 class="mb-2">Incorpora la función que permita a los invitados subir
-                                                    y descargar fotos del evento es una excelente manera de fomentar
-                                                    la interacción y crear recuerdos compartidos.</h5>
+                                                <h5 class="mb-2">
+
+                                                    {{'home.galeria.info'| translate}}
+
+                                                </h5>
 
 
                                             </div>
@@ -491,7 +523,10 @@
 
 
                                         <div class="ma title text-center">
-                                            <h5 class="mb-2">Proveedor de servicios y productos</h5>
+                                            <h5 class="mb-2">
+                                                {{'home.proveedor.info'| translate}}
+
+                                            </h5>
 
 
                                         </div>
@@ -501,20 +536,13 @@
                                         <img src="/assets/icons/proveedor.png" class="custom-block-image img-fluid"
                                             alt="" style="min-width: 280px !important;">
                                         <div class="col-12 col-md-8 ma mt-3" style="text-align: justify;">
-                                            <p class="mb-2">En la gestión de <b
-                                                    style="color:var(--cPrimary)">oportunidades</b> a través de redes
-                                                sociales,
-                                                la
-                                                práctica de adjuntar imágenes individuales de cada producto resulta
-                                                <b style="color:var(--cPrimary)">INEFICIENTE</b>.
+                                            <p class="mb-2">
+                                                {{'home.proveedor.p1'| translate}}
                                             </p>
 
 
                                             <p class="mb-2">
-                                                Se recomienda, en cambio, proporcionar un código <b
-                                                    style="color:var(--cPrimary)">QR</b>. que
-                                                enlace directamente a su página personal en
-                                                <b style="color:var(--cPrimary)">TicketParty</b>.
+                                                {{'home.proveedor.p2'| translate}}
                                             </p>
                                             <p class="mb-2" style="width: 100%; text-align: center; margin: auto;">
 
@@ -523,9 +551,7 @@
                                             </p>
 
                                             <p class="mb-2">
-                                                Este enfoque optimiza la comunicación al presentar la
-                                                totalidad de su catálogo de productos mediante un
-                                                único enlace conciso.
+                                                {{'home.proveedor.p3'| translate}}
                                             </p>
                                             <p class="mt-2 mb-2" style="width: 100%; text-align: center; margin: auto;">
 
@@ -550,10 +576,8 @@
                                 <div class="d-flex  ma mt-3 mb-3">
                                     <div class="ma title text-center">
                                         <h5 class="mb-2 ma">
-                                            Check-in en tiempo real es excelente para la gestión de eventos! Permitir
-                                            que los organizadores tengan acceso a
-                                            información actualizada sobre su evento puede hacer que la experiencia sea
-                                            mucho más fluida.
+                                            {{'home.checkin.info1'| translate}}
+
                                         </h5>
 
 
@@ -562,22 +586,22 @@
                                 </div>
                                 <ul style="list-style: none;">
                                     <li>
-                                        Cantidad de boletos habilitados
+                                        {{'home.checkin.list1'| translate}}
                                     </li>
                                     <li>
-                                        Cantidad de boletos ocupados
+                                        {{'home.checkin.list2'| translate}}
                                     </li>
                                     <li>
-                                        Cantidad de invitaciones creadas
+                                        {{'home.checkin.list3'| translate}}
                                     </li>
                                     <li>
-                                        La gente que visualizo o confirmo la invitación
+                                        {{'home.checkin.list4'| translate}}
                                     </li>
                                     <li>
-                                        La gente esta en el evento
+                                        {{'home.checkin.list5'| translate}}
                                     </li>
                                     <li>
-                                        Check-In por QR o Lista de invitados
+                                        {{'home.checkin.list6'| translate}}
                                     </li>
                                 </ul>
                             </div>
@@ -588,7 +612,8 @@
 
                                         <div class="d-flex  ma">
                                             <div class="ma title text-center">
-                                                <h5 class="mb-2 ma">Checking por código QR
+                                                <h5 class="mb-2 ma">
+                                                    {{'home.checkin.info2'| translate}}
                                                 </h5>
                                             </div>
                                         </div>
@@ -601,7 +626,8 @@
 
                                         <div class="d-flex  ma">
                                             <div class="ma title text-center">
-                                                <h5 class="mb-2 ma">Visualización en tiempo real
+                                                <h5 class="mb-2 ma">
+                                                    {{'home.checkin.info3'| translate}}
                                                 </h5>
                                             </div>
                                         </div>

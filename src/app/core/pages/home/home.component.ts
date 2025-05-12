@@ -10,6 +10,7 @@ import { Boleto } from '../../models/boleto.model';
 import { CargarUsuario } from '../../interfaces/cargar-interfaces.interfaces';
 import Swal from 'sweetalert2';
 import { ItemsService } from '../../services/item.service';
+import { TraductorService } from '../../services/traductor.service';
 
 @Component({
   selector: 'app-home',
@@ -39,6 +40,7 @@ export class HomeComponent implements AfterViewInit {
     private metaService: MetaService,
     private itemsService: ItemsService,
     private title: Title,
+    private traductor: TraductorService
 
   ) {
 
@@ -58,11 +60,11 @@ export class HomeComponent implements AfterViewInit {
     });
     this.role = this.functionsService.getLocal('role')
     this.uid = this.functionsService.getLocal('uid')
-    this.functionsService.getIp().subscribe(resp => {
+    /* this.functionsService.getIp().subscribe(resp => {
 
 
 
-    })
+    }) */
 
 
 

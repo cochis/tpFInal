@@ -4,10 +4,17 @@ import { TranslateService } from "@ngx-translate/core";
   providedIn: 'root'
 })
 export class TraductorService {
-
+  langs: string[] = []
   constructor(private translate: TranslateService) {
-    this.translate.setDefaultLang('en')
-    this.translate.use('en')
-    console.log(" this.translate: ",  this.translate);
-   }
+    this.translate.setDefaultLang('es')
+    this.translate.use('es')
+    this.translate.addLangs(['en', 'es'])
+    this.langs = this.translate.getLangs()
+  }
+
+
+
+  public changeLang(type: string) {
+    this.translate.use(type)
+  }
 }

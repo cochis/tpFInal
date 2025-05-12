@@ -214,27 +214,36 @@
                                                         formControlName="mesa" placeholder="Mesa">
                                                 </div>
                                             </div>
-                                            <div class=" col-12 col-md-6 mt-4 text-center" *ngIf="fiesta.checking">
+                                            <div class=" col-12 col-md-6 mt-4 text-center"
+                                                *ngIf="fiesta.checking && invitacion">
+                                                <h4>QR de entrada</h4>
                                                 <div class="ma qrcodeImage text-center">
                                                     <qrcode (qrCodeURL)="onChangeURL($event)" [qrdata]="getQr(invitado)"
                                                         [allowEmptyString]="true"
                                                         [ariaLabel]="'QR Code image with the following content...'"
-                                                        [cssClass]="'center'" [colorDark]="'#000000ff'"
+                                                        [cssClass]="'center'"
+                                                        [colorDark]="invitacion.data.colorQr?invitacion.data.colorQr:'#000000'"
                                                         [colorLight]="'#ffffffff'" [elementType]="'canvas'"
                                                         [errorCorrectionLevel]="'M'" [imageHeight]="75"
                                                         [imageWidth]="75" [margin]="4" [scale]="1"
                                                         [title]="getQr(invitado)" [width]="250">
                                                     </qrcode>
-
-
                                                 </div>
-
-                                                <!--   <a [href]="qrCodeDownloadLink" download="qrcode" (click)="send(qr)"
-                                                                                                class="btn btn-success">Descargar QR</a> -->
-
-
-
-
+                                            </div>
+                                            <div class=" col-12 col-md-6 mt-4 text-center" *ngIf="invitacion">
+                                                <h4>QR de Invitación</h4>
+                                                <div class="ma qrcodeImage text-center">
+                                                    <qrcode (qrCodeURL)="onChangeURL($event)"
+                                                        [qrdata]="getQrInvitacion(invitado)" [allowEmptyString]="true"
+                                                        [ariaLabel]="'QR Code image with the following content...'"
+                                                        [cssClass]="'center'"
+                                                        [colorDark]="invitacion.data.colorQr?invitacion.data.colorQr:'#000000'"
+                                                        [colorLight]="'#ffffffff'" [elementType]="'canvas'"
+                                                        [errorCorrectionLevel]="'M'" [imageHeight]="75"
+                                                        [imageWidth]="75" [margin]="4" [scale]="1"
+                                                        [title]="getQr(invitado)" [width]="250">
+                                                    </qrcode>
+                                                </div>
                                             </div>
                                             <div class="col-12 col-md-6  " *ngIf=" boleto[i] && boleto[i]. confirmado">
                                                 <div class="confirmado ma">
@@ -251,7 +260,7 @@
                                                         Valida la cantidad de invitados </small>
                                                 </div>
                                                 <button type="button" class="confirmado ma pointer"
-                                                    *ngIf="invitado.value.uid"
+                                                    *ngIf="invitado.value.uid  "
                                                     (click)="copiarLink(fiesta.uid,invitado.value.uid)">
                                                     Copiar liga de boleto
 

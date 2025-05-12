@@ -41,8 +41,12 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import { ViewTemplateFileComponent } from './components/view-template-file/view-template-file.component';
 import { ClockComponent } from './components/clock/clock.component';
 import { ViewFancyComponent } from './components/view-fancy/view-fancy.component';
+import { SelectTranslateComponent } from './components/select-translate/select-translate.component';
 
-
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { SharedComponent } from './shared.component';
 
 
 
@@ -82,6 +86,8 @@ import { ViewFancyComponent } from './components/view-fancy/view-fancy.component
     ViewTemplateFileComponent,
     ClockComponent,
     ViewFancyComponent,
+    SelectTranslateComponent,
+    SharedComponent,
 
 
   ],
@@ -108,8 +114,10 @@ import { ViewFancyComponent } from './components/view-fancy/view-fancy.component
     ViewTemplateFileComponent,
     ViewFancyComponent,
     ClockComponent,
+    SharedComponent
 
   ],
+  providers: [provideHttpClient(withInterceptorsFromDi())],
   imports: [
     CommonModule,
     RouterModule,
@@ -117,7 +125,17 @@ import { ViewFancyComponent } from './components/view-fancy/view-fancy.component
     ZXingScannerModule,
     QRCodeModule,
     NgxCurrencyDirective,
-    FullCalendarModule
+    FullCalendarModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
   ],
 })
 export class SharedModule { }
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
+  return new TranslateHttpLoader(http, '../assets/i18n/', '.json');
+}

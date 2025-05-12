@@ -6,7 +6,7 @@ import { Salon } from 'src/app/core/models/salon.model';
 import { Boleto } from 'src/app/core/models/boleto.model';
 import { Fiesta } from 'src/app/core/models/fiesta.model';
 
-import { CargarBoleto, CargarFiesta, CargarFiestas, CargarGrupos } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
+import { CargarBoleto, CargarFiesta, CargarFiestas, CargarGrupos, CargarInvitacion } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
 
 import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
@@ -21,6 +21,9 @@ import Swal from 'sweetalert2';
 import { Observable, Subscription, interval } from 'rxjs';
 import { EmailsService } from 'src/app/core/services/email.service';
 import * as XLSX from 'xlsx'
+import { SharedsService } from 'src/app/core/services/shared.service';
+import { InvitacionsService } from 'src/app/core/services/invitaciones.service';
+import { Invitacion } from 'src/app/core/models/invitacion.model';
 
 @Component({
   selector: 'app-editar-boleto',
@@ -48,7 +51,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
   boletoNuevo!: any
   formSubmitted: boolean = false
   cargando: boolean = false
-
+  invitacion!: Invitacion
   numeroInvitados: number = 0
   sumaInvitados: number = 0
   fiesta!: any
@@ -71,6 +74,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
   public qrCodeDownloadLink: SafeUrl = "";
 
   public form!: FormGroup
+  sharedTemp!: any
   constructor(
     config: NgbModalConfig,
     private modalService: NgbModal,
@@ -81,7 +85,9 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
     private gruposService: GruposService,
     private route: ActivatedRoute,
     private fileService: FileService,
-    private emailsService: EmailsService
+    private emailsService: EmailsService,
+    private sharedService: SharedsService,
+    private invitacionService: InvitacionsService,
 
   ) {
     config.backdrop = 'static';
@@ -223,6 +229,15 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
         this.functionsService.alertError(error, 'Boletos')
         this.loading = false
       })
+    this.invitacionService.cargarInvitacionByFiesta(this.id).subscribe((resp: CargarInvitacion) => {
+      this.invitacion = resp.invitacion
+      console.log(' this.invitacion::: ', this.invitacion);
+
+    },
+      (error: any) => {
+        this.functionsService.alertError(error, 'Boletos')
+        this.loading = false
+      })
   }
   get invitados(): FormArray {
     return this.form.get('invitados') as FormArray
@@ -300,6 +315,30 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
       }
 
       return JSON.stringify(invi)
+    }
+  }
+  getQrInvitacion(invitado) {
+    if ((invitado.value !== undefined) && typeof (invitado.value.salon) === 'object') {
+      ;
+      let qr = {
+        uid: '',
+
+        fiesta: this.fiesta.uid,
+        grupo: '',
+
+        salon: invitado.value.salon._id,
+
+      }
+      return JSON.stringify(qr)
+    } else {
+      if (this.boletoTemp) {
+
+        let blt = this.boletoTemp.filter((blt: any) => { return blt.uid === invitado.value.uid })
+        let url = `${this.urlT}shared?evt=${blt[0].shared}`
+        return url
+      } else {
+        return ''
+      }
     }
   }
   selectNumero(event: any) {
@@ -428,6 +467,8 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
   }
   enviarInvitacion(i) {
     let idBoleto = ''
+    var data = null
+    let type = 'invitacion'
     if (this.numeroInvitados < this.total) {
       this.functionsService.alert('Boletos', 'Se ha excedido de la cantidad de boletos permitidos', 'error')
       return
@@ -436,16 +477,14 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
     if (this.role === this.URS) {
       this.form.value.fiesta = this.boleto.fiesta
     }
-
     if (this.form.value.invitados[i].uid) {
       this.actualizarBoleto(this.form.value.invitados[i])
-
     } else {
       this.saveBoleto(this.form.value.invitados[i])
     }
     setTimeout(() => {
       window.scrollTo(0, 800);
-      Swal.fire({
+      let optsSwal = {
         title: "¿Deseas mandar la invitación?",
         showCloseButton: true,
         showDenyButton: true,
@@ -453,65 +492,233 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
         denyButtonText: 'Correo Electronico',
         confirmButtonColor: "#13547a",
         denyButtonColor: '#80d0c7',
-      }).then((result) => {
+      }
+      Swal.fire(optsSwal).then((result) => {
         this.loading = true
-        if (result.isConfirmed) {
-          var texto
-          let tel = this.form.value.invitados[i].whatsapp
-          let nGrupo = this.form.value.invitados[i].nombreGrupo
-          let cantP = Number(this.form.value.invitados[i].cantidadInvitados)
-          let cantT = (cantP == 1) ? 'esta' : 'están'
-          let textoP = (cantP == 1) ? 'invitado' : 'invitados'
-          let evento = this.fiesta.nombre
-          let boletoP = (cantP == 1) ? 'boleto' : 'boletos'
-          let bl = (cantP > 0) ? ` con  *${cantP}* ${boletoP} ` : ``
-          let ligaGaleria = `${this.urlT}core/galeria/fst${this.fiesta.invitacion}/blt/${this.idBoleto}`
+        this.sharedService.cargarSharedsFiestaBoleto(this.fiesta.uid, this.idBoleto).subscribe((res: any) => {
+          console.log('res::: ', res);
+          this.sharedTemp = res.shareds
+          console.log('    this.sharedTemp::: ', this.sharedTemp);
+          if (res.shareds.length == 0) {
+            var boletoShared = null
+            this.boletosService.cargarBoletoById(this.idBoleto).subscribe((resp: CargarBoleto) => {
+              boletoShared = resp.boleto
+              data = {
+                type: 'invitacion',
+                fiesta: this.fiesta.uid,
+                boleto: this.idBoleto,
+                data: {
+                  fiesta: this.fiesta,
+                  boleto: boletoShared,
 
-          if (this.fiesta.mensaje == '') {
-            this.fiesta.mensaje = this.mensajeTemp
-          }
+                },
+                compartidas: 1,
+                vistas: 0,
+                usuarioCreated: this.uid,
+                activated: true,
+                dateCreated: this.today,
+                lastEdited: this.today,
+              }
+              this.sharedService.crearShared(data).subscribe((res: any) => {
 
-          this.fiesta.mensaje = this.fiesta.mensaje.replace('@@invitado@@', nGrupo.toLocaleUpperCase())
-          this.fiesta.mensaje = this.fiesta.mensaje.replace('@@cantidadInvitados@@', cantP)
-          this.fiesta.mensaje = this.fiesta.mensaje.replace('@@nombre_evento@@', evento)
-          this.fiesta.mensaje = this.fiesta.mensaje.replace('@@liga_galeria@@', ligaGaleria)
-          this.fiesta.mensaje = this.fiesta.mensaje.replace('@@liga_evento@@', `${this.urlT}core/templates/${this.fiesta.invitacion}/${this.fiesta.uid}/${this.idBoleto}`)
-          let url = `https://api.whatsapp.com/send?phone=${tel}&text=${encodeURIComponent(this.fiesta.mensaje)}`
-          Swal.fire({ title: "Enviado por whatsapp!", text: "", icon: "success", confirmButtonColor: "#13547a" });
-          window.open(url, '_blank');
-          this.form.value.invitados[i].invitacionEnviada = true
-          this.boleto =
-          {
-            ...this.boleto,
-            ...this.form.value
-          }
-          this.boletosService.actualizarBoleto(this.form.value.invitados[i]).subscribe((resp: any) => {
-            this.loading = false
-            this.functionsService.alertUpdate('Boletos')
-          },
-            (error) => {
-              console.error('error::: ', error);
+                const sharedId = res.shared.uid
+                const actBol = {
+                  ...boletoShared,
+                  shared: res.shared.uid
+                }
+
+                this.boletosService.actualizarBoleto(actBol).subscribe((res: any) => {
+                  console.log('res::: ', res);
+                  data.boleto = res.boletoActualizado
+                  console.log('data::: ', data);
+                  if (result.isConfirmed) {
+                    var texto
+                    let tel = this.form.value.invitados[i].whatsapp
+                    let nGrupo = this.form.value.invitados[i].nombreGrupo
+                    let cantP = Number(this.form.value.invitados[i].cantidadInvitados)
+                    let cantT = (cantP == 1) ? 'esta' : 'están'
+                    let textoP = (cantP == 1) ? 'invitado' : 'invitados'
+                    let evento = this.fiesta.nombre
+                    let boletoP = (cantP == 1) ? 'boleto' : 'boletos'
+                    let bl = (cantP > 0) ? ` con  *${cantP}* ${boletoP} ` : ``
+                    /* let ligaGaleria = `${this.urlT}core/galeria/fst${this.fiesta.invitacion}/blt/${this.idBoleto}` */
+                    let ligaGaleria = `${this.urlT}shared?evt=${data.boleto.shared}`
+
+                    if (this.fiesta.mensaje == '') {
+                      this.fiesta.mensaje = this.mensajeTemp
+                    }
+
+                    this.fiesta.mensaje = this.fiesta.mensaje.replace('@@invitado@@', nGrupo.toLocaleUpperCase())
+                    this.fiesta.mensaje = this.fiesta.mensaje.replace('@@cantidadInvitados@@', cantP)
+                    this.fiesta.mensaje = this.fiesta.mensaje.replace('@@nombre_evento@@', evento)
+                    this.fiesta.mensaje = this.fiesta.mensaje.replace('@@liga_galeria@@', ligaGaleria)
+                    /*    this.fiesta.mensaje = this.fiesta.mensaje.replace('@@liga_evento@@', `${this.urlT}core/templates/${this.fiesta.invitacion}/${this.fiesta.uid}/${this.idBoleto}`) */
+                    console.log('res.shared::: ', res);
+                    this.fiesta.mensaje = this.fiesta.mensaje.replace('@@liga_evento@@', `${this.urlT}shared?evt=${sharedId}`)
+                    console.log('this.fiesta.mensaje::: ', this.fiesta.mensaje);
+                    let url = `https://api.whatsapp.com/send?phone=${tel}&text=${encodeURIComponent(this.fiesta.mensaje)}`
+                    Swal.fire({ title: "Enviado por whatsapp!", text: "", icon: "success", confirmButtonColor: "#13547a" });
+
+
+
+                    window.open(url, '_blank');
+
+
+                    this.form.value.invitados[i].invitacionEnviada = true
+                    this.boleto =
+                    {
+                      ...this.boleto,
+                      ...this.form.value
+                    }
+                    this.boletosService.actualizarBoleto(this.form.value.invitados[i]).subscribe((resp: any) => {
+                      this.loading = false
+                      this.functionsService.alertUpdate('Boletos')
+                    },
+                      (error) => {
+                        console.error('error::: ', error);
+                        this.loading = false
+                        this.functionsService.alertError(error, 'Boletos')
+                      })
+
+                  } else if (result.isDenied) {
+                    console.log('this.sharedTemp::: ', this.sharedTemp);
+                    var shT = this.sharedTemp.filter((sha: any) => {
+                      return sha.boleto == this.boleto.uid
+                    })
+                    shT[0].enviadas = this.sharedTemp.enviadas + 1
+                    console.log(' shT[0]::: ', shT[0]);
+
+
+                    let bol = {
+                      ...this.form.value.invitados[i],
+                      text_url: this.urlT
+                    }
+                    this.emailsService.sendMailByBoleto(bol).subscribe(resp => {
+                      this.loading = false
+                      this.sharedService.actualizarShared(shT[0]).subscribe((resShared: any) => {
+                        console.log('resShared::: ', resShared);
+
+                        Swal.fire({ title: "Enviado por Correo!", text: "", icon: "success", confirmButtonColor: "#13547a" });
+                      })
+
+
+                    },
+                      (error) => {
+                        console.error('error::: ', error);
+                        this.loading = false
+                        this.functionsService.alertError(error, 'Boletos')
+                      })
+
+                  } else {
+                    this.loading = false
+                  }
+                })
+
+
+
+
+              })
+            });
+
+
+
+
+          } else {
+            console.log('existe', res.shareds[0]);
+
+            var sharedT = res.shareds[0]
+            if (result.isConfirmed) {
+              var texto
+              let tel = this.form.value.invitados[i].whatsapp
+              let nGrupo = this.form.value.invitados[i].nombreGrupo
+              let cantP = Number(this.form.value.invitados[i].cantidadInvitados)
+              let cantT = (cantP == 1) ? 'esta' : 'están'
+              let textoP = (cantP == 1) ? 'invitado' : 'invitados'
+              let evento = this.fiesta.nombre
+              let boletoP = (cantP == 1) ? 'boleto' : 'boletos'
+              let bl = (cantP > 0) ? ` con  *${cantP}* ${boletoP} ` : ``
+              let ligaGaleria = `${this.urlT}core/galeria/fst${this.fiesta.invitacion}/blt/${this.idBoleto}`
+              /* let ligaGaleria = `${this.urlT}shared?evt=${res.shareds[0].uid}` */
+
+              if (this.fiesta.mensaje == '') {
+                this.fiesta.mensaje = this.mensajeTemp
+              }
+
+              this.fiesta.mensaje = this.fiesta.mensaje.replace('@@invitado@@', nGrupo.toLocaleUpperCase())
+              this.fiesta.mensaje = this.fiesta.mensaje.replace('@@cantidadInvitados@@', cantP)
+              this.fiesta.mensaje = this.fiesta.mensaje.replace('@@nombre_evento@@', evento)
+              this.fiesta.mensaje = this.fiesta.mensaje.replace('@@liga_galeria@@', ligaGaleria)
+              /* this.fiesta.mensaje = this.fiesta.mensaje.replace('@@liga_evento@@', `${this.urlT}core/templates/${this.fiesta.invitacion}/${this.fiesta.uid}/${this.idBoleto}`) */
+              this.fiesta.mensaje = this.fiesta.mensaje.replace('@@liga_evento@@', `${this.urlT}shared?evt=${res.shareds[0].uid}`)
+              console.log('this.fiesta.mensaje ::: ', this.fiesta.mensaje);
+
+              let url = `https://api.whatsapp.com/send?phone=${tel}&text=${encodeURIComponent(this.fiesta.mensaje)}`
+
+
+              console.log('this.sharedTemp::: ', this.sharedTemp);
+              sharedT.compartidas = sharedT.compartidas + 1
+              console.log('sharedT::: ', sharedT);
+              this.sharedService.actualizarShared(sharedT).subscribe((res: any) => {
+                console.log('res::: ', res);
+
+
+                Swal.fire({ title: "Enviado por whatsapp!", text: "", icon: "success", confirmButtonColor: "#13547a" });
+                window.open(url, '_blank');
+              })
+
+
+
+              this.form.value.invitados[i].invitacionEnviada = true
+              this.boleto =
+              {
+                ...this.boleto,
+                ...this.form.value
+              }
+              this.boletosService.actualizarBoleto(this.form.value.invitados[i]).subscribe((resp: any) => {
+                this.loading = false
+                this.functionsService.alertUpdate('Boletos')
+              },
+                (error) => {
+                  console.error('error::: ', error);
+                  this.loading = false
+                  this.functionsService.alertError(error, 'Boletos')
+                })
+
+            } else if (result.isDenied) {
+              let bol = {
+                ...this.form.value.invitados[i],
+                text_url: this.urlT
+              }
+              this.emailsService.sendMailByBoleto(bol).subscribe((resp: any) => {
+                console.log('resp::: boleto ', resp);
+                this.loading = false
+
+                sharedT.compartidas = sharedT.compartidas + 1
+                console.log('sharedT::: ', sharedT);
+                this.sharedService.actualizarShared(sharedT).subscribe((res: any) => {
+                  console.log('res::: ', res);
+
+                  Swal.fire({ title: "Enviado por Correo!", text: "", icon: "success", confirmButtonColor: "#13547a" });
+                })
+
+
+
+              },
+                (error) => {
+                  console.error('error::: ', error);
+                  this.loading = false
+                  this.functionsService.alertError(error, 'Boletos')
+                })
+            } else {
               this.loading = false
-              this.functionsService.alertError(error, 'Boletos')
-            })
-
-        } else if (result.isDenied) {
-          let bol = {
-            ...this.form.value.invitados[i],
-            text_url: this.urlT
-          }
-          this.emailsService.sendMailByBoleto(bol).subscribe(resp => {
+            }
             this.loading = false
-            Swal.fire({ title: "Enviado por Correo!", text: "", icon: "success", confirmButtonColor: "#13547a" });
-          },
-            (error) => {
-              console.error('error::: ', error);
-              this.loading = false
-              this.functionsService.alertError(error, 'Boletos')
-            })
-        } else {
-          this.loading = false
-        }
+            return
+          }
+
+        })
+
+
       });
 
       this.loading = false
@@ -547,17 +754,26 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
       })
   }
   copiarLink(fiesta, boleto) {
-    this.fiesta.invitacion
+    console.log('boleto::: ', boleto);
 
-    var url = ''
-    url = this.urlT + 'core/templates/' + this.fiesta.invitacion + '/' + fiesta + '/' + boleto
-    var aux = document.createElement("input");
-    aux.setAttribute("value", url);
-    document.body.appendChild(aux);
-    aux.select();
-    document.execCommand("copy");
-    document.body.removeChild(aux);
-    this.functionsService.alert('Liga de fiesta', 'Copiada satisfactoriamente a portapapeles para compartir', 'success')
+    this.sharedService.cargarSharedsFiestaBoleto(this.fiesta.uid, boleto).subscribe((res: any) => {
+      console.log('res::: ', res);
+      this.boletosService.cargarBoletoById(boleto).subscribe((resb: any) => {
+        console.log('resb::: ', resb);
+
+        var url = ''
+        url = this.urlT + 'shared/?evt=' + resb.boleto.shared
+        var aux = document.createElement("input");
+        aux.setAttribute("value", url);
+        document.body.appendChild(aux);
+        aux.select();
+        document.execCommand("copy");
+        document.body.removeChild(aux);
+        this.functionsService.alert('Liga de fiesta', 'Copiada satisfactoriamente a portapapeles para compartir', 'success')
+      })
+
+    })
+
   }
   upload(event) {
     const selectedFile = event.target.files[0]

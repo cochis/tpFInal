@@ -166,7 +166,8 @@ export class VistaBoletosComponent {
     if (this.boletos) {
 
       let res = this.boletos.filter((bol: any) => {
-        if (bol) {
+
+        if (bol && bol.fiesta) {
           return bol.fiesta._id == fiesta
         } else {
           return ''
