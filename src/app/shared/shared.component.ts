@@ -48,10 +48,10 @@ export class SharedComponent {
     this.route.queryParams.subscribe(params => {
 
       this.evt = params.evt
-      console.log(' this.evt ::: ', this.evt);
+
       this.sharedService.cargarSharedById(this.evt).subscribe(res => {
         this.shared = res.shared
-        console.log('this.shared ::: ', this.shared);
+
 
         this.invitacionService.cargarInvitacionByFiesta(this.shared.fiesta).subscribe((resF: any) => {
 
@@ -61,7 +61,7 @@ export class SharedComponent {
             if (this.shared.type == 'invitacion') {
               this.url = `${this.urlT}core/templates/${resF.invitacion.fiesta.invitacion}/${resF.invitacion.fiesta._id}/${this.shared.boleto}`
               this.iframeSrc = this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
-              console.log('url::: ', this.url);
+
 
 
               let t: string = `My Ticket Party | ${resF.invitacion.fiesta.nombre} | ${this.shared.data.boleto.nombreGrupo} | ${this.functionService.numberDateTimeLocal(resF.invitacion.fiesta.fecha)}`;

@@ -204,9 +204,9 @@ export class VistaFiestasComponent {
     this.loading = true
     if (this.rol === this.ADM) {
       this.fiestasService.cargarFiestasAll().subscribe((resp: CargarFiestas) => {
-        console.log('resp::: ', resp);
+
         this.fiestas = this.functionsService.getActives(resp.fiestas)
-        console.log(' this.fiestas::: ', this.fiestas);
+
 
         this.fiestas = this.fiestas.filter(res => {
 
@@ -215,7 +215,7 @@ export class VistaFiestasComponent {
 
 
         this.fiestasTemp = this.fiestas
-        console.log('this.fiestas::: ', this.fiestas);
+
         this.loading = false
 
       },

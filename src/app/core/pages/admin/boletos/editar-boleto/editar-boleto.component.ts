@@ -100,7 +100,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
     this.createForm()
     setTimeout(() => {
       this.loading = false
-    }, 1500);
+    }, 3500);
   }
   ngOnInit() {
     this.obs1 = this.src1.subscribe((value: any) => {
@@ -109,6 +109,54 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
 
       this.boletosService.cargarBoletoByFiesta(this.id).subscribe((resp: CargarBoleto) => {
         this.boletoTemp = this.functionsService.getActives(resp.boleto)
+
+
+        this.boletoTemp.forEach(blt => {
+          if (!blt.shared) {
+
+            let data = {
+              type: 'invitacion',
+              fiesta: this.fiesta.uid,
+              boleto: blt.uid,
+              data: {
+                fiesta: this.fiesta,
+                boleto: blt,
+
+              },
+              compartidas: 1,
+              vistas: 0,
+              usuarioCreated: this.uid,
+              activated: true,
+              dateCreated: this.today,
+              lastEdited: this.today,
+            }
+            this.sharedService.crearShared(data).subscribe((res: any) => {
+
+              const sharedId = res.shared.uid
+              const actBol = {
+                ...blt,
+                shared: res.shared.uid
+              }
+              this.boletosService.actualizarBoleto(actBol).subscribe((res: any) => {
+
+                data.boleto = res.boletoActualizado
+
+
+              })
+
+
+
+
+
+            })
+
+
+
+
+
+
+          }
+        });
 
 
         this.getFiesta(this.fiesta.uid)
@@ -231,7 +279,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
       })
     this.invitacionService.cargarInvitacionByFiesta(this.id).subscribe((resp: CargarInvitacion) => {
       this.invitacion = resp.invitacion
-      console.log(' this.invitacion::: ', this.invitacion);
+
 
     },
       (error: any) => {
@@ -496,9 +544,9 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
       Swal.fire(optsSwal).then((result) => {
         this.loading = true
         this.sharedService.cargarSharedsFiestaBoleto(this.fiesta.uid, this.idBoleto).subscribe((res: any) => {
-          console.log('res::: ', res);
+
           this.sharedTemp = res.shareds
-          console.log('    this.sharedTemp::: ', this.sharedTemp);
+
           if (res.shareds.length == 0) {
             var boletoShared = null
             this.boletosService.cargarBoletoById(this.idBoleto).subscribe((resp: CargarBoleto) => {
@@ -528,9 +576,9 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
                 }
 
                 this.boletosService.actualizarBoleto(actBol).subscribe((res: any) => {
-                  console.log('res::: ', res);
+
                   data.boleto = res.boletoActualizado
-                  console.log('data::: ', data);
+
                   if (result.isConfirmed) {
                     var texto
                     let tel = this.form.value.invitados[i].whatsapp
@@ -553,9 +601,9 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
                     this.fiesta.mensaje = this.fiesta.mensaje.replace('@@nombre_evento@@', evento)
                     this.fiesta.mensaje = this.fiesta.mensaje.replace('@@liga_galeria@@', ligaGaleria)
                     /*    this.fiesta.mensaje = this.fiesta.mensaje.replace('@@liga_evento@@', `${this.urlT}core/templates/${this.fiesta.invitacion}/${this.fiesta.uid}/${this.idBoleto}`) */
-                    console.log('res.shared::: ', res);
+
                     this.fiesta.mensaje = this.fiesta.mensaje.replace('@@liga_evento@@', `${this.urlT}shared?evt=${sharedId}`)
-                    console.log('this.fiesta.mensaje::: ', this.fiesta.mensaje);
+
                     let url = `https://api.whatsapp.com/send?phone=${tel}&text=${encodeURIComponent(this.fiesta.mensaje)}`
                     Swal.fire({ title: "Enviado por whatsapp!", text: "", icon: "success", confirmButtonColor: "#13547a" });
 
@@ -581,12 +629,12 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
                       })
 
                   } else if (result.isDenied) {
-                    console.log('this.sharedTemp::: ', this.sharedTemp);
+
                     var shT = this.sharedTemp.filter((sha: any) => {
                       return sha.boleto == this.boleto.uid
                     })
                     shT[0].enviadas = this.sharedTemp.enviadas + 1
-                    console.log(' shT[0]::: ', shT[0]);
+
 
 
                     let bol = {
@@ -596,7 +644,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
                     this.emailsService.sendMailByBoleto(bol).subscribe(resp => {
                       this.loading = false
                       this.sharedService.actualizarShared(shT[0]).subscribe((resShared: any) => {
-                        console.log('resShared::: ', resShared);
+
 
                         Swal.fire({ title: "Enviado por Correo!", text: "", icon: "success", confirmButtonColor: "#13547a" });
                       })
@@ -624,7 +672,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
 
 
           } else {
-            console.log('existe', res.shareds[0]);
+
 
             var sharedT = res.shareds[0]
             if (result.isConfirmed) {
@@ -650,16 +698,16 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
               this.fiesta.mensaje = this.fiesta.mensaje.replace('@@liga_galeria@@', ligaGaleria)
               /* this.fiesta.mensaje = this.fiesta.mensaje.replace('@@liga_evento@@', `${this.urlT}core/templates/${this.fiesta.invitacion}/${this.fiesta.uid}/${this.idBoleto}`) */
               this.fiesta.mensaje = this.fiesta.mensaje.replace('@@liga_evento@@', `${this.urlT}shared?evt=${res.shareds[0].uid}`)
-              console.log('this.fiesta.mensaje ::: ', this.fiesta.mensaje);
+
 
               let url = `https://api.whatsapp.com/send?phone=${tel}&text=${encodeURIComponent(this.fiesta.mensaje)}`
 
 
-              console.log('this.sharedTemp::: ', this.sharedTemp);
+
               sharedT.compartidas = sharedT.compartidas + 1
-              console.log('sharedT::: ', sharedT);
+
               this.sharedService.actualizarShared(sharedT).subscribe((res: any) => {
-                console.log('res::: ', res);
+
 
 
                 Swal.fire({ title: "Enviado por whatsapp!", text: "", icon: "success", confirmButtonColor: "#13547a" });
@@ -690,13 +738,13 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
                 text_url: this.urlT
               }
               this.emailsService.sendMailByBoleto(bol).subscribe((resp: any) => {
-                console.log('resp::: boleto ', resp);
+
                 this.loading = false
 
                 sharedT.compartidas = sharedT.compartidas + 1
-                console.log('sharedT::: ', sharedT);
+
                 this.sharedService.actualizarShared(sharedT).subscribe((res: any) => {
-                  console.log('res::: ', res);
+
 
                   Swal.fire({ title: "Enviado por Correo!", text: "", icon: "success", confirmButtonColor: "#13547a" });
                 })
@@ -754,12 +802,12 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
       })
   }
   copiarLink(fiesta, boleto) {
-    console.log('boleto::: ', boleto);
+
 
     this.sharedService.cargarSharedsFiestaBoleto(this.fiesta.uid, boleto).subscribe((res: any) => {
-      console.log('res::: ', res);
+
       this.boletosService.cargarBoletoById(boleto).subscribe((resb: any) => {
-        console.log('resb::: ', resb);
+
 
         var url = ''
         url = this.urlT + 'shared/?evt=' + resb.boleto.shared

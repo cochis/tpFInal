@@ -114,7 +114,7 @@ export class SharedsService {
   }
   cargarSharedsFiestaBoleto(fiesta: string, boleto: string) {
     const url = `${base_url}/shareds/fiesta-boleto/${fiesta}/${boleto}`
-    console.log('url::: ', url);
+
     return this.http.get<CargarShareds>(url, this.headers)
   }
 }
