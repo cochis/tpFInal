@@ -23,15 +23,15 @@ export class ContactComponent {
   ) {
 
 
-    let t: string = 'My Ticket Party | Contacto';
+    let t: string = 'Contacto | Escríbenos y Organiza Tu Evento con MyTicketParty';
     this.title.setTitle(t);
 
     this.metaService.generateTags({
-      title: 'My Ticket Party | Contacto',
+      title: 'Contacto | Escríbenos y Organiza Tu Evento con MyTicketParty',
       description:
-        'Si está buscando un contacto para una empresa de logística que ofrezca invitaciones digitales y un marketplace de servicios y productos para eventos, es importante considerar opciones que se especialicen en estas áreas.',
+        '¿Tienes dudas o necesitas ayuda con tu evento? Contáctanos y recibe asesoría sobre invitaciones digitales, proveedores y servicios para eventos.',
       keywords:
-        'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in',
+        'contacto, ayuda, soporte, atención al cliente, preguntas, eventos, MyTicketParty, invitaciones digitales, marketplace de eventos, servicio al cliente',
       slug: 'core/contact',
       colorBar: '#13547a',
       image:

@@ -31,15 +31,15 @@ export class MarketComponent implements AfterViewInit {
   ) {
 
 
-    let t: string = 'My Ticket Party | Marketplace';
+    let t: string = 'Productos y Servicios para Eventos | Mobiliario, Catering, Decoración y Más | MyTicketParty';
     this.title.setTitle(t);
 
     this.metaService.generateTags({
-      title: 'My Ticket Party | Marketplace',
+      title: 'Productos y Servicios para Eventos | Mobiliario, Catering, Decoración y Más | MyTicketParty',
       description:
-        'Marketplace , Un marketplace de servicios y productos para eventos es una plataforma en línea que conecta a organizadores de eventos con proveedores de diversos servicios y productos necesarios para llevar a cabo una celebración exitosa.',
+        'Explora productos y servicios para tu evento: renta de mobiliario, catering, decoración, iluminación, sonido y mucho más. ¡Todo en un solo sitio!',
       keywords:
-        'Myticketparty, Marketplace, Eventos, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, conjunto musicales, insumos, recuerdos, arreglos florales, comida ',
+        'productos para eventos, servicios para eventos, catering, renta de sillas, mobiliario, decoración, sonido, iluminación, logística de eventos, MyTicketParty',
       slug: 'core/market',
       colorBar: '#13547a',
       image:

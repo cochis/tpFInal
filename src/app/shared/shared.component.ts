@@ -63,13 +63,12 @@ export class SharedComponent {
               this.iframeSrc = this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
 
 
-
-              let t: string = `My Ticket Party | ${resF.invitacion.fiesta.nombre} | ${this.shared.data.boleto.nombreGrupo} | ${this.functionService.numberDateTimeLocal(resF.invitacion.fiesta.fecha)}`;
+              let t: string = `My Ticket Party | Estas in${resF.invitacion.fiesta.nombre} | ${this.shared.data.boleto.nombreGrupo} | ${this.functionService.numberDateTimeLocal(resF.invitacion.fiesta.fecha)}`;
               this.title.setTitle(t);
               this.metaService.generateTags({
                 title: `My Ticket Party | ${resF.invitacion.fiesta.nombre} | ${this.shared.data.boleto.nombreGrupo} | ${this.functionService.numberDateTimeLocal(resF.invitacion.fiesta.fecha)}`,
                 description:
-                  `${resF.invitacion.fiesta.nombre} | ${this.shared.data.boleto.nombreGrupo} | ${this.functionService.numberDateTimeLocal(resF.invitacion.fiesta.fecha)}`,
+                  `My Ticket Party | Estás invitado(a) a ${resF.invitacion.fiesta.nombre}. Fecha: ${this.functionService.numberDateTimeLocal(resF.invitacion.fiesta.fecha)}. Confirma tu asistencia y entérate de todos los detalles.`,
                 keywords:
                   'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in',
                 slug: 'core/shared',

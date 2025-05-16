@@ -14,15 +14,15 @@ export class AboutComponent {
     private title: Title,
   ) {
 
-    let t: string = 'My Ticket Party | Nosotros';
+    let t: string = 'Nosotros | MyTicketParty - Invitaciones Digitales Logística de Eventos y Marketplace para Eventos';
     this.title.setTitle(t);
 
     this.metaService.generateTags({
-      title: 'My Ticket Party | Nosotros',
+      title: 'Nosotros | MyTicketParty - Invitaciones Digitales Logística de Eventos y Marketplace para Eventos',
       description:
-        'Nosotros , Invitaciones digitales, logistica y marketplace de servicios y productos para eventos ha revolucionado la forma en que se planifican y organizan celebraciones.',
+        'Conoce a MyTicketParty: un equipo apasionado por ayudarte a organizar eventos inolvidables con invitaciones digitales, logística y un marketplace para eventos  completo.',
       keywords:
-        'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in',
+        'sobre nosotros, quiénes somos, empresa de eventos, organización de eventos, MyTicketParty, invitaciones digitales, marketplace de eventos, logística para eventos, Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in',
       slug: 'core/about',
       colorBar: '#13547a',
       image:

@@ -44,15 +44,12 @@ export class HomeComponent implements AfterViewInit {
 
   ) {
 
-    let t: string = 'My Ticket Party | Inicio';
+    let t: string = 'My Ticket Party | Invitaciones Digitales y Logística De Eventos';
     this.title.setTitle(t);
 
     this.metaService.generateTags({
-      title: 'My Ticket Party | Inicio',
-      description:
-        'La implementación de invitaciones digitales y un marketplace de productos y servicios representa una evolución positiva en la logística de eventos. Al facilitar tanto la convocatoria como la gestión de recursos, estas herramientas no solo optimizan la planificación y ejecución de eventos',
-      keywords:
-        'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in',
+      title: 'My Ticket Party | Invitaciones Digitales y Logística De Eventos',
+
       slug: 'core/inicio',
       colorBar: '#13547a',
       image:

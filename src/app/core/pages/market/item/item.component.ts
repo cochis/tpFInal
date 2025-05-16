@@ -172,7 +172,7 @@ export class ItemComponent implements AfterViewInit {
 
 
   getPrecio(item) {
-    console.log('item::: ', item);
+
 
     var precios
 
@@ -219,7 +219,7 @@ export class ItemComponent implements AfterViewInit {
 
 
   navigateT0(url: string) {
-    console.log('url::: ', url);
+
 
     this.functionsService.navigateTo(url)
   }

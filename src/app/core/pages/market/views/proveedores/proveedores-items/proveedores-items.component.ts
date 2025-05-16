@@ -115,7 +115,7 @@ export class ProveedoresItemsComponent implements AfterViewInit {
 
   }
   navigateT0(url: string) {
-    console.log('url::: ', url);
+
 
     this.functionsService.navigateTo(url)
   }

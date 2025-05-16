@@ -69,7 +69,7 @@ export class SingleProductComponent {
 
 
     this.route.queryParams.subscribe(params => {
-      console.log('params::: ', params);
+
       this.id = params.id
       this.getCatalogos()
       this.getId(this.id)

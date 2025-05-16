@@ -13,15 +13,15 @@ export class FaqsComponent {
     private title: Title,
   ) {
 
-    let t: string = "My Ticket Party | FAQ'S";
+    let t: string = "Preguntas Frecuentes | Todo lo que Necesitas Saber | MyTicketParty";
     this.title.setTitle(t);
 
     this.metaService.generateTags({
-      title: "My Ticket Party | FAQ'S",
+      title: "Preguntas Frecuentes | Todo lo que Necesitas Saber | MyTicketParty",
       description:
-        'Las preguntas frecuentes de la plataforma son una sección esencial donde los usuarios pueden encontrar respuestas a inquietudes comunes sobre su funcionamiento. ',
+        'Resuelve tus dudas sobre invitaciones digitales, check-in, conteo de invitados, proveedores, pagos y cómo organizar tu evento con MyTicketParty.',
       keywords:
-        'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in',
+        'preguntas frecuentes, faqs, ayuda, soporte, dudas, eventos, invitaciones digitales, check-in, conteo de invitados, marketplace, MyTicketParty',
       slug: 'core/faqs',
       colorBar: '#13547a',
       image:
