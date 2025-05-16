@@ -63,6 +63,11 @@ export class EditarFiestaComponent {
     private salonesService: SalonsService,
     private paquetesService: PaquetesService,
   ) {
+
+
+
+
+
     this.id = this.route.snapshot.params['id']
 
     this.edit = this.route.snapshot.params['edit']

@@ -114,4 +114,9 @@ export class ProveedoresItemsComponent implements AfterViewInit {
     return color
 
   }
+  navigateT0(url: string) {
+    console.log('url::: ', url);
+
+    this.functionsService.navigateTo(url)
+  }
 }

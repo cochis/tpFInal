@@ -49,6 +49,13 @@ export class SingleSupplierComponent {
     private sanitizer: DomSanitizer,
 
     private fb: FormBuilder) {
+
+    this.route.queryParams.subscribe(params => {
+      console.log('params::: ', params);
+      this.id = params.id
+      this.getCatalogos()
+      this.getId(this.id)
+    })
     this.CLPR.forEach(cl => {
       if (cl.clave == 'cPrincipalWP') {
 
@@ -59,9 +66,7 @@ export class SingleSupplierComponent {
 
       }
     });
-    this.id = this.route.snapshot.params['id']
-    this.getCatalogos()
-    this.getId(this.id)
+
 
   }
   back(): void {

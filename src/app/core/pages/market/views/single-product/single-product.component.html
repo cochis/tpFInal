@@ -69,7 +69,7 @@
                 <b>{{item.nombre}}</b>
             </h3>
             <span class="linkProveedor" [style]="{ color:cS} "
-                routerLink="/core/vista-proveedor/{{item.proveedor._id}}">{{item.proveedor.nombre}} </span>
+                (click)="navigateT0('/core/vista-proveedor?id='+item.proveedor._id)">{{item.proveedor.nombre}} </span>
 
 
 

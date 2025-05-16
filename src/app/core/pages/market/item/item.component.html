@@ -5,7 +5,7 @@
 
     <div class=" col-12" [style]="{   'background-color': cP, 'color':cS}">
 
-        <h4 class="title-market pointer  " routerLink="/core/vista-producto/{{item.uid}}">
+        <h4 class="title-market pointer  " (click)="navigateT0('/core/vista-producto?id='+item.uid)">
             <span
                 [style]=" {'width':'50px','margin-left':'15px','background-color':cS,
             'color': 'white', 'font-size': '35px' , 'border-radius':' 0 0 15px 15px'}">{{getTypeItem(item.tipoItem)}}</span>
@@ -16,7 +16,8 @@
         </h4>
 
         <h5 class="category-market    pb-3 mt-2" style="margin-left: 25px;"><b class="pointer"
-                routerLink="/core/vista-proveedor/{{item.proveedor._id}}"> {{item.proveedor.nombre}}
+                (click)="navigateT0('/core/vista-proveedor?id='+item.proveedor._id)">
+                {{item.proveedor.nombre}}
             </b> - {{item.categoriaItem.nombre}} </h5>
     </div>
 
@@ -239,7 +240,7 @@
 
             <h5 class="btn   m-2 pointer "
                 [style]="{'font-size': '.8rem', 'color':CW+'!important', 'background-color':cP+ '!important'}"
-                routerLink="/core/vista-producto/{{item.uid}}">
+                (click)="navigateT0('/core/vista-producto?id='+item.uid)">
                 Vista previa
 
             </h5>

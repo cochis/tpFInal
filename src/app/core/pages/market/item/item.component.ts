@@ -33,6 +33,8 @@ export class ItemComponent implements AfterViewInit {
     private sanitizer: DomSanitizer,
   ) {
     this.loading = true
+
+
     this.getCatalogos()
 
 
@@ -170,6 +172,8 @@ export class ItemComponent implements AfterViewInit {
 
 
   getPrecio(item) {
+    console.log('item::: ', item);
+
     var precios
 
 
@@ -211,5 +215,12 @@ export class ItemComponent implements AfterViewInit {
     } else {
       return ''
     }
+  }
+
+
+  navigateT0(url: string) {
+    console.log('url::: ', url);
+
+    this.functionsService.navigateTo(url)
   }
 }

@@ -996,6 +996,12 @@ const routes: Routes = [
 
       },
       {
+        path: 'vista-producto',
+        component: SingleProductComponent,
+        data: { titulo: 'Vista Producto' }
+
+      },
+      {
         path: 'vista-categoria',
         component: SingleCategoryComponent,
         data: { titulo: 'Vista Categoria' }
@@ -1003,6 +1009,12 @@ const routes: Routes = [
       },
       {
         path: 'vista-proveedor/:id',
+        component: SingleSupplierComponent,
+        data: { titulo: 'Vista Proveedor' }
+
+      },
+      {
+        path: 'vista-proveedor',
         component: SingleSupplierComponent,
         data: { titulo: 'Vista Proveedor' }
 

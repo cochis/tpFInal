@@ -30,14 +30,14 @@ export class MetaService {
     config = {
       title: 'Ticket Party',
       description:
-      'Crea, organiza y gestiona tus eventos en línea con invitaciones digitales personalizadas, control de acceso y seguimiento en tiempo real. ¡Haz de tu evento una experiencia inolvidable!',
+        'Crea, organiza y gestiona tus eventos en línea con invitaciones digitales personalizadas, control de acceso y seguimiento en tiempo real. ¡Haz de tu evento una experiencia inolvidable!',
       keywords:
-      'invitaciones digitales, eventos en línea, logística de eventos, organización de eventos, My Ticket Party, invitaciones personalizadas, eventos virtuales, RSVP online',
+        'invitaciones digitales, eventos en línea, logística de eventos, organización de eventos, My Ticket Party, invitaciones personalizadas, eventos virtuales, RSVP online',
       image: '',
       slug: '/',
       colorBar: '#13547a',
-      autor:'My Ticket Party',
-      viewport:'width=device-width, initial-scale=1.0',
+      autor: 'My Ticket Party',
+      viewport: 'width=device-width, initial-scale=1.0',
       ...config,
     };
     console.log("config: ", config);
@@ -46,7 +46,7 @@ export class MetaService {
     this.meta.updateTag({ name: 'keywords', content: config.keywords });
     this.meta.updateTag({ name: 'theme-color', content: config.colorBar });
     this.meta.updateTag({ name: 'viewport', content: config.viewport });
-    this.meta.updateTag({name: 'msapplication-TileColor',content: config.colorBar,});
+    this.meta.updateTag({ name: 'msapplication-TileColor', content: config.colorBar, });
     this.meta.updateTag({ name: 'twitter:card', content: 'summary' });
     this.meta.updateTag({ name: 'twitter:title', content: config.title });
     this.meta.updateTag({ name: 'twitter:description', content: config.description, });
@@ -56,8 +56,8 @@ export class MetaService {
     this.meta.updateTag({ property: 'og:type', content: 'website' });
     this.meta.updateTag({ property: 'og:site_name', content: config.title });
     this.meta.updateTag({ property: 'og:image', content: config.image });
-    this.meta.updateTag({ property: 'og:url',content: `https://myticketparty.com/${config.slug}`,});
-    console.log("  this.meta: ",   this.meta);
+    this.meta.updateTag({ property: 'og:url', content: `https://myticketparty.com/${config.slug}`, });
+    console.log("  this.meta: ", this.meta);
   }
 }
 

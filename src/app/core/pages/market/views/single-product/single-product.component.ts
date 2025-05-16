@@ -68,14 +68,15 @@ export class SingleProductComponent {
 
 
 
+    this.route.queryParams.subscribe(params => {
+      console.log('params::: ', params);
+      this.id = params.id
+      this.getCatalogos()
+      this.getId(this.id)
+    })
 
 
 
-
-
-    this.getCatalogos()
-    this.id = this.route.snapshot.params['id']
-    this.getId(this.id)
 
   }
   getCatalogos() {
@@ -420,5 +421,8 @@ export class SingleProductComponent {
 
     }
 
+  }
+  navigateT0(url: string) {
+    this.functionsService.navigateTo(url)
   }
 }
