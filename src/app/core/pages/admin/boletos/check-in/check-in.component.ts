@@ -62,7 +62,7 @@ export class CheckInComponent implements AfterViewInit {
       slug: 'core/check-in',
       colorBar: '#13547a',
       image:
-        window.location.origin + '/assets/images/qr.jpeg',
+        window.location.origin + '/assets/images/qr.svg',
     }
     this.metaService.generateTags(data)
     this.formInit = this.fb.group({

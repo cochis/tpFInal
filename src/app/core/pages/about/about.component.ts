@@ -26,7 +26,7 @@ export class AboutComponent {
       slug: 'core/about',
       colorBar: '#13547a',
       image:
-        window.location.origin + '/assets/images/qr.jpeg',
+        window.location.origin + '/assets/images/qr.svg',
     });
 
   }

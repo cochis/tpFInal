@@ -75,7 +75,7 @@ export class SharedComponent {
                 slug: 'core/shared',
                 colorBar: '#13547a',
                 image: `${this.urlB}/upload/fiestas/${this.shared.data.fiesta.img}`
-                /* window.location.origin + '/assets/images/qr.jpeg', */
+                /* window.location.origin + '/assets/images/qr.svg', */
               });
 
               setTimeout(() => {

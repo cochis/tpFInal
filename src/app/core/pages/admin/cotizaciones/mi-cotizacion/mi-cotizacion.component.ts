@@ -548,7 +548,7 @@ export class MiCotizacionComponent {
       let cot = [
         {
           alignment: 'center',
-          image: await this.functionsService.imageUrlToBase64(`${this.urlT}/assets/images/logo.png`),
+          image: await this.functionsService.imageUrlToBase64(`${this.urlT}/assets/images/logo.svg`),
           width: 70
         },
         {

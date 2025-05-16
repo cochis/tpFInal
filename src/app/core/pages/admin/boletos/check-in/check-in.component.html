@@ -32,7 +32,7 @@
                             </div>
                             <a (click)="scan()" class="pointer">
 
-                                <img src="/assets/images/qr.jpeg" class="custom-block-image img-fluid img-scan"
+                                <img src="/assets/images/qr.svg" class="custom-block-image img-fluid img-scan"
                                     *ngIf="!scannerActive" alt="">
                             </a>
                             <app-scanner *ngIf="scannerActive" (qr)="showQr($event)"></app-scanner>

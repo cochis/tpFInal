@@ -374,7 +374,7 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
                 50,
                 100
               ],
-              "icon": this.tUrl + "assets/images/qr.jpeg",
+              "icon": this.tUrl + "assets/images/qr.svg",
               "image": this.url + "/upload/fiestas/" + img,
               "data": {
                 "onActionClick": {

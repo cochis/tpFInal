@@ -56,7 +56,7 @@ export class HomeComponent implements AfterViewInit {
       slug: 'core/inicio',
       colorBar: '#13547a',
       image:
-        window.location.origin + '/assets/images/qr.jpeg',
+        window.location.origin + '/assets/images/qr.svg',
     });
     this.role = this.functionsService.getLocal('role')
     this.uid = this.functionsService.getLocal('uid')

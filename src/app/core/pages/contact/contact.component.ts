@@ -35,7 +35,7 @@ export class ContactComponent {
       slug: 'core/contact',
       colorBar: '#13547a',
       image:
-        window.location.origin + '/assets/images/qr.jpeg',
+        window.location.origin + '/assets/images/qr.svg',
     });
 
 

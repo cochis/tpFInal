@@ -43,7 +43,7 @@ export class MarketComponent implements AfterViewInit {
       slug: 'core/market',
       colorBar: '#13547a',
       image:
-        window.location.origin + '/assets/images/qr.jpeg',
+        window.location.origin + '/assets/images/qr.svg',
     });
 
 

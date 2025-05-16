@@ -53,7 +53,7 @@ export class EjemplosComponent implements OnInit {
       slug: 'core/examples',
       colorBar: '#13547a',
       image:
-        window.location.origin + '/assets/images/qr.jpeg',
+        window.location.origin + '/assets/images/qr.svg',
     });
     this.examples
     this.getCatalogos()

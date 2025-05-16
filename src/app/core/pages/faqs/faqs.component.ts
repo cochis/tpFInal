@@ -25,7 +25,7 @@ export class FaqsComponent {
       slug: 'core/faqs',
       colorBar: '#13547a',
       image:
-        window.location.origin + '/assets/images/qr.jpeg',
+        window.location.origin + '/assets/images/qr.svg',
     });
   }
 

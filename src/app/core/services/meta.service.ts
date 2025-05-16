@@ -30,40 +30,34 @@ export class MetaService {
     config = {
       title: 'Ticket Party',
       description:
-        'Empresa dedicada a la administración y gestión de eventos sociales,y marketplace de servicios y productos para públicos o privados para Salones de eventos  o personas.',
+      'Crea, organiza y gestiona tus eventos en línea con invitaciones digitales personalizadas, control de acceso y seguimiento en tiempo real. ¡Haz de tu evento una experiencia inolvidable!',
       keywords:
-        'Marketplace Productos Servicios Eventos sociales públicos privados gestión tiempo real invitados invitaciones personalizadas código QR notificaciones correo electrónico WhatsApp push notification',
+      'invitaciones digitales, eventos en línea, logística de eventos, organización de eventos, My Ticket Party, invitaciones personalizadas, eventos virtuales, RSVP online',
       image: '',
       slug: '/',
       colorBar: '#13547a',
+      autor:'My Ticket Party',
+      viewport:'width=device-width, initial-scale=1.0',
       ...config,
     };
+    console.log("config: ", config);
+    this.meta.updateTag({ name: 'author', content: config.autor });
     this.meta.updateTag({ name: 'description', content: config.description });
     this.meta.updateTag({ name: 'keywords', content: config.keywords });
     this.meta.updateTag({ name: 'theme-color', content: config.colorBar });
-    this.meta.updateTag({
-      name: 'msapplication-TileColor',
-      content: config.colorBar,
-    });
+    this.meta.updateTag({ name: 'viewport', content: config.viewport });
+    this.meta.updateTag({name: 'msapplication-TileColor',content: config.colorBar,});
     this.meta.updateTag({ name: 'twitter:card', content: 'summary' });
     this.meta.updateTag({ name: 'twitter:title', content: config.title });
-    this.meta.updateTag({
-      name: 'twitter:description',
-      content: config.description,
-    });
+    this.meta.updateTag({ name: 'twitter:description', content: config.description, });
     this.meta.updateTag({ name: 'twitter:image', content: config.image });
+    this.meta.updateTag({ property: 'og:title', content: config.title });
+    this.meta.updateTag({ property: 'og:description', content: config.description, });
     this.meta.updateTag({ property: 'og:type', content: 'website' });
     this.meta.updateTag({ property: 'og:site_name', content: config.title });
-    this.meta.updateTag({ property: 'og:title', content: config.title });
-    this.meta.updateTag({
-      property: 'og:description',
-      content: config.description,
-    });
     this.meta.updateTag({ property: 'og:image', content: config.image });
-    this.meta.updateTag({
-      property: 'og:url',
-      content: `https://myticketparty.com/${config.slug}`,
-    });
+    this.meta.updateTag({ property: 'og:url',content: `https://myticketparty.com/${config.slug}`,});
+    console.log("  this.meta: ",   this.meta);
   }
 }
 

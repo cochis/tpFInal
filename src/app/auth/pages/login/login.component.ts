@@ -38,7 +38,7 @@ export class LoginComponent {
       slug: 'auth/login',
       colorBar: '#13547a',
       image:
-        window.location.origin + '/assets/images/qr.jpeg',
+        window.location.origin + '/assets/images/qr.svg',
     }
     this.metaService.generateTags(data)
   }

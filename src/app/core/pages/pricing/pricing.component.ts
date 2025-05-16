@@ -31,7 +31,7 @@ export class PricingComponent {
       slug: 'core/pricing',
       colorBar: '#13547a',
       image:
-        window.location.origin + '/assets/images/qr.jpeg',
+        window.location.origin + '/assets/images/qr.svg',
     });
     this.getPaquetes()
 
