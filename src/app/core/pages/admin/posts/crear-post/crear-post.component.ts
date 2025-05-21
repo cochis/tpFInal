@@ -7,6 +7,7 @@ import { PostsService } from 'src/app/core/services/post.service';
 
 
 import { FunctionsService } from 'src/app/shared/services/functions.service';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-crear-post',
   templateUrl: './crear-post.component.html',
@@ -19,6 +20,7 @@ export class CrearPostComponent implements OnDestroy {
   public form!: FormGroup
   today: Number = this.functionsService.getToday()
   submited = false
+  categorias=environment.categoriasPost
   cargando: boolean = false
   msnOk: boolean = false
   contenido: Editor
@@ -59,6 +61,7 @@ export class CrearPostComponent implements OnDestroy {
 
     this.form = this.fb.group({
       titulo: ['',],
+      categoria: ['',],
       contenido: ['',],
       autor: ['',],
       img: ['',],
@@ -79,7 +82,7 @@ export class CrearPostComponent implements OnDestroy {
       this.postsService.crearPost(this.form.value).subscribe((resp: any) => {
 
         this.functionsService.alert('Post', 'Post creado', 'success')
-        this.functionsService.navigateTo('core/posts/vista-posts')
+        this.functionsService.navigateTo('core/posts/editar-post/true/'+resp.post.uid)
         this.loading = false
       },
         (error) => {

@@ -1,6 +1,7 @@
 export class Post {
     constructor(
         public titulo: string,
+        public categoria: string,
         public contenido: string,
         public autor: string,
         public img: string,

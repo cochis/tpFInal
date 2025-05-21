@@ -429,11 +429,19 @@ export const environment = {
     { name: 'Fuente 10', value: 'font3' },
     { name: 'Fuente 11', value: 'font4' },
   ],
+  categoriasPost: [
+    { nombre: "Selecciona una categoria", id: "" },
+    { nombre: "Planificación", id: "1" },
+    { nombre: "Logística", id: "2" },
+    { nombre: "Comunicación", id: "3" },
+    { nombre: "Ejecución", id: "4" },
+    { nombre: "Seguimiento", id: "5" }
+  ],
 
 
 
   //Variables DEV
-  base_url: "http://localhost:3008/api",
+  /* base_url: "http://localhost:3008/api",
   text_url: "http://localhost:4200/",
   cProvedores: [
     {
@@ -470,7 +478,7 @@ export const environment = {
       value: "67b95a049b1aac6f7ff9c0c9",
       clave: "WHATSAPP"
     },
-  ]
+  ] */
 
 
 
@@ -522,7 +530,7 @@ export const environment = {
 
 
   //Variables PROD
-  /* base_url: "https://www.myticketparty.com/api",
+  base_url: "https://www.myticketparty.com/api",
   text_url: "https://www.myticketparty.com/",
   cProvedores: [
     {
@@ -560,7 +568,7 @@ export const environment = {
       value: "67bb9a22c539cb99eb40fe5c",
       clave: "WHATSAPP"
     },
-  ], */
+  ],
 
 
 

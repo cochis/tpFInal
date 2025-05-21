@@ -8,12 +8,12 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-lg-12 col-12 text-center">
-                            <h2 class="mb-5">Crear evento</h2>
+                            <h2 class="mb-5">Crear post</h2>
                         </div>
                         <form [formGroup]="form" (ngSubmit)="onSubmit()">
                             <div class="row">
-                                <div class="col-6  mt-3 ma">
-                                    <div class="form-group">
+                                <div class="col-6 col-md-12 mt-3 ma">
+                                    <div class="form-group text-center">
                                         <label for="nombre">Titulo</label>
                                         <input type="text" class="form-control upper" id="titulo"
                                             formControlName="titulo" required placeholder="Titulo">
@@ -21,9 +21,19 @@
                                     <span *ngIf="submited && errorControl['titulo'].errors " class="error">Es requerido
                                     </span>
                                 </div>
+                                <div class="col-6 col-md-12 mt-3 ma">
+                                    <div class="form-group">
+                                        <label for="categoria">Categoria</label>
+                                        <select name="categoria" id="categoria" formControlName="categoria" #categoria
+                                            class="form-control upper">
+                                            <option [value]="ct.id" *ngFor="let ct of categorias">{{ct.nombre}}</option>
+
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                             <div class="row">
-                                <div class="col-12   mt-3">
+                                <div class="col-12  text-center mt-3">
                                     <div class="form-group">
                                         <label for="contenido">Contenido</label>
                                         <div class="NgxEditor__Wrapper">

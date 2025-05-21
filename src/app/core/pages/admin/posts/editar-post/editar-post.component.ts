@@ -27,6 +27,7 @@ export class EditarPostComponent implements OnDestroy {
   msnOk: boolean = false
   id!: string
   edit!: string
+  categorias=environment.categoriasPost
   url = environment.base_url
   contenido: Editor
   toolbar: Toolbar = [
@@ -87,6 +88,7 @@ export class EditarPostComponent implements OnDestroy {
   createForm() {
     this.form = this.fb.group({
       titulo: ['',],
+      categoria: ['',],
       contenido: ['',],
       autor: ['',],
       img: ['',],
@@ -100,6 +102,7 @@ export class EditarPostComponent implements OnDestroy {
 
     this.form = this.fb.group({
       titulo: [post.titulo,],
+      categoria: [post.categoria,],
       contenido: [post.contenido,],
       autor: [post.autor,],
       img: [post.img,],
@@ -107,19 +110,14 @@ export class EditarPostComponent implements OnDestroy {
       dateCreated: [post.dateCreated],
       lastEdited: [this.today],
     })
-
+    
+    console.log(" this.form: ",  this.form);
   }
-
+  
   onSubmit() {
     this.loading = true
     this.submited = true
-    this.form.value.nombre = this.form.value.nombre.toUpperCase().trim()
-    this.form.value.clave = this.form.value.clave.toUpperCase().trim()
-    if (this.form.value.nombre === '' || this.form.value.clave === '') {
-      this.functionsService.alertForm('Posts')
-      this.loading = false
-      return
-    }
+  
     if (this.form.valid) {
 
       this.post = {

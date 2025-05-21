@@ -12,9 +12,9 @@
                 <div class="row">
 
                     <div class="col-lg-8 col-12 mx-auto">
-                        <h1 class="text-white text-center">Nosotros</h1>
+                        <h1 class="text-white text-center">Bloc</h1>
 
-                        <h6 class="text-center">Quienes somos</h6>
+                        <h2 class="text-center">Brindamos informaciòn util </h2>
 
 
                     </div>
@@ -29,11 +29,10 @@
             <div class="container">
 
                 <div class="col-12 text-center">
-                    <p class="mb-4">Myticketparty es un marketplace innovador diseñado para facilitar la organización y
-                        gestión de eventos de manera
-                        integral. Ofrecemos una amplia gama de funcionalidades que permiten a los usuarios crear,
-                        personalizar y gestionar sus
-                        eventos de manera eficiente y sencilla.
+                    <p class="mb-4">Un blog informativo es una página web que se actualiza regularmente y proporciona
+                        información sobre un tema específico, como un diario online o un medio de comunicación para
+                        compartir conocimientos y experiencias. Estos blogs se utilizan para expresar ideas, informar a
+                        los lectores o promocionar productos y servicios
                     </p>
                 </div>
 
@@ -43,565 +42,166 @@
             <div class="container-fluid">
                 <div class="row">
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="design-tab" data-bs-toggle="tab"
-                                data-bs-target="#design-tab-pane" type="button" role="tab"
-                                aria-controls="design-tab-pane" aria-selected="true">
-                                Nuestros servicios
+                        <li class="nav-item" role="presentation" *ngIf="isRegister('1')">
+                            <button class="nav-link active" id="tab-1" data-bs-toggle="tab" data-bs-target="#tab-1-pane"
+                                type="button" role="tab" aria-controls="tab-1-pane" aria-selected="true">
+                                Planificación
                             </button>
                         </li>
-                        <!-- 
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="marketing-tab" data-bs-toggle="tab"
-                                data-bs-target="#marketing-tab-pane" type="button" role="tab"
-                                aria-controls="marketing-tab-pane" aria-selected="false">Marketing</button>
+                        <li class="nav-item" role="presentation" *ngIf="isRegister('2')">
+                            <button class="nav-link  " id="tab-2" data-bs-toggle="tab" data-bs-target="#tab-2-pane"
+                                type="button" role="tab" aria-controls="tab-2-pane" aria-selected="true">
+                                Logística
+
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation" *ngIf="isRegister('3')">
+                            <button class="nav-link  " id="tab-3" data-bs-toggle="tab" data-bs-target="#tab-3-pane"
+                                type="button" role="tab" aria-controls="tab-3-pane" aria-selected="true">
+                                Comunicación
+
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation" *ngIf="isRegister('4')">
+                            <button class="nav-link  " id="tab-4" data-bs-toggle="tab" data-bs-target="#tab-4-pane"
+                                type="button" role="tab" aria-controls="tab-4-pane" aria-selected="true">
+                                Ejecución
+
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation" *ngIf="isRegister('5')">
+                            <button class="nav-link  " id="tab-5" data-bs-toggle="tab" data-bs-target="#tab-5-pane"
+                                type="button" role="tab" aria-controls="tab-5-pane" aria-selected="true">
+                                Seguimiento
+                            </button>
                         </li>
 
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="finance-tab" data-bs-toggle="tab"
-                                data-bs-target="#finance-tab-pane" type="button" role="tab"
-                                aria-controls="finance-tab-pane" aria-selected="false">Finance</button>
-                        </li>
-
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="music-tab" data-bs-toggle="tab"
-                                data-bs-target="#music-tab-pane" type="button" role="tab" aria-controls="music-tab-pane"
-                                aria-selected="false">Music</button>
-                        </li>
-
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="education-tab" data-bs-toggle="tab"
-                                data-bs-target="#education-tab-pane" type="button" role="tab"
-                                aria-controls="education-tab-pane" aria-selected="false">Education</button>
-                        </li> -->
                     </ul>
                 </div>
             </div>
-            <ng-template #content let-modal>
-                <div class="modal-header">
-
-                    <button type="button" class="btn-close" aria-label="Close"
-                        (click)="modal.dismiss('Cross click')"></button>
-                </div>
-                <div class="modal-body" style="    text-align: center;
-        display: block;">
-                    <img [src]="img" alt="" style="width: 100%; height: auto; max-height: 100vh; ">
-                </div>
-
-            </ng-template>
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-12">
-                        <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade show active" id="design-tab-pane" role="tabpanel"
-                                aria-labelledby="design-tab" tabindex="0">
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0 ma" style="margin-top: 25px;">
-                                        <div class="custom-block bg-white shadow-lg">
-
-                                            <div class="d-flex ">
-                                                <div class="ma">
-                                                    <h5 class="mb-2 text-center ma title">Marketplace Integrado</h5>
-
-                                                    <!-- <p class="mb-0 text-center">Puedes establecer la cantidad de
-                                                        invitados atravez de una invitacion QR</p> -->
-                                                </div>
 
 
-                                            </div>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="tab-1-pane" role="tabpanel" aria-labelledby="tab-1"
+                    tabindex="1">
+                    <div class="row">
+                        <ng-container *ngFor="let pt of posts">
+                            <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4 mb-lg-0  ma text-center"
+                                style="margin-top: 25px;" *ngIf="pt.categoria=='1'">
+                                <div class="card">
+                                    <img [src]="url+'/upload/posts/'+pt.img" class="card-img-top ma" alt="..."
+                                        style="max-width: 150px;">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{pt.titulo}}</h5>
 
-                                            <img src="assets/icons/market.png" class="custom-block-image img-fluid"
-                                                alt="Galeria">
-                                            <!-- (click)="openXl(content , 'assets/images/fiesta.jpeg')" -->
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0 ma" style="margin-top: 25px;">
-                                        <div class="custom-block bg-white shadow-lg">
-
-                                            <div class="d-flex ">
-                                                <div class="ma">
-                                                    <h5 class="mb-2 text-center ma title">Invitaciones Digitales
-                                                        Personalizables:</h5>
-
-                                                    <!-- <p class="mb-0 text-center">Puedes establecer la cantidad de
-                                                        invitados atravez de una invitacion QR</p> -->
-                                                </div>
-
-
-                                            </div>
-
-                                            <img src="assets/icons/invi.png" class="custom-block-image img-fluid"
-                                                alt="Iglesia">
-                                            <!-- (click)="openXl(content , 'assets/images/fiesta.jpeg')" -->
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0 ma" style="margin-top: 25px;">
-                                        <div class="custom-block bg-white shadow-lg">
-
-                                            <div class="d-flex ">
-                                                <div class="ma">
-                                                    <h5 class="mb-2 text-center ma title">Notificaciones Instantáneas
-                                                    </h5>
-
-                                                    <!-- <p class="mb-0 text-center">Puedes establecer la cantidad de
-                                                        invitados atravez de una invitacion QR</p> -->
-                                                </div>
-
-
-                                            </div>
-
-                                            <img src="assets/icons/send.png" class="custom-block-image img-fluid"
-                                                alt="Salon">
-                                            <!-- (click)="openXl(content , 'assets/images/fiesta.jpeg')" -->
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0 ma" style="margin-top: 25px;">
-                                        <div class="custom-block bg-white shadow-lg">
-
-                                            <div class="d-flex ">
-                                                <div class="ma">
-                                                    <h5 class="mb-2 text-center ma title">Logística en Tiempo Real</h5>
-
-                                                    <!-- <p class="mb-0 text-center">Puedes establecer la cantidad de
-                                                                                            invitados atravez de una invitacion QR</p> -->
-                                                </div>
-
-
-                                            </div>
-
-                                            <img src="assets/icons/checkin.png" class="custom-block-image img-fluid"
-                                                alt="Registro">
-                                            <!-- (click)="openXl(content , 'assets/images/fiesta.jpeg')" -->
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0 ma" style="margin-top: 25px;">
-                                        <div class="custom-block bg-white shadow-lg">
-
-                                            <div class="d-flex ">
-                                                <div class="ma">
-                                                    <h5 class="mb-2 text-center ma title">Recopilación de Fotos del
-                                                        Evento</h5>
-
-                                                    <!-- <p class="mb-0 text-center">Puedes establecer la cantidad de
-                                                        invitados atravez de una invitacion QR</p> -->
-                                                </div>
-
-
-                                            </div>
-                                            <img src="assets/icons/galeriai.png" class="custom-block-image img-fluid"
-                                                alt="Check In">
-                                            <!-- (click)="openXl(content , 'assets/images/fiesta.jpeg')" -->
-                                        </div>
-                                    </div>
-
-                                    <!--   <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0" style="margin-top: 25px;">
-                                        <div class="custom-block bg-white shadow-lg">
-
-                                            <div class="d-flex ">
-                                                <div>
-                                                    <h5 class="mb-2 text-center">Limites</h5>
-
-                                                    <p class="mb-0 text-center">Se limita cantidad de tus invitados</p>
-                                                </div>
-
-
-                                            </div>
-
-                                            <img src="assets/images/fiesta.jpeg" class="custom-block-image img-fluid"
-                                                alt="" (click)="openXl(content , 'assets/images/fiesta.jpeg')">
-
-                                        </div>
-                                    </div> -->
-
-
-                                </div>
-                            </div>
-
-                            <div class="tab-pane fade" id="marketing-tab-pane" role="tabpanel"
-                                aria-labelledby="marketing-tab" tabindex="0">
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
-                                        <div class="custom-block bg-white shadow-lg">
-                                            <a href="topics-detail.html">
-                                                <div class="d-flex">
-                                                    <div>
-                                                        <h5 class="mb-2">Advertising</h5>
-
-                                                        <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-                                                    </div>
-
-                                                    <span class="badge bg-advertising rounded-pill ms-auto">30</span>
-                                                </div>
-
-                                                <img src="images/topics/undraw_online_ad_re_ol62.png"
-                                                    class="custom-block-image img-fluid" alt="">
-                                            </a>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
-                                        <div class="custom-block bg-white shadow-lg">
-                                            <a href="topics-detail.html">
-                                                <div class="d-flex">
-                                                    <div>
-                                                        <h5 class="mb-2">Video Content</h5>
-
-                                                        <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-                                                    </div>
-
-                                                    <span class="badge bg-advertising rounded-pill ms-auto">65</span>
-                                                </div>
-
-                                                <img src="images/topics/undraw_Group_video_re_btu7.png"
-                                                    class="custom-block-image img-fluid" alt="">
-                                            </a>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-4 col-md-6 col-12">
-                                        <div class="custom-block bg-white shadow-lg">
-                                            <a href="topics-detail.html">
-                                                <div class="d-flex">
-                                                    <div>
-                                                        <h5 class="mb-2">Viral Tweet</h5>
-
-                                                        <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-                                                    </div>
-
-                                                    <span class="badge bg-advertising rounded-pill ms-auto">50</span>
-                                                </div>
-
-                                                <img src="images/topics/undraw_viral_tweet_gndb.png"
-                                                    class="custom-block-image img-fluid" alt="">
-                                            </a>
-                                        </div>
+                                        <a [routerLink]="'/core/post/'+pt.uid" class="btn but">Más información</a>
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="tab-pane fade" id="finance-tab-pane" role="tabpanel"
-                                aria-labelledby="finance-tab" tabindex="0">
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-12 mb-4 mb-lg-0">
-                                        <div class="custom-block bg-white shadow-lg">
-                                            <a href="topics-detail.html">
-                                                <div class="d-flex">
-                                                    <div>
-                                                        <h5 class="mb-2">Investment</h5>
-
-                                                        <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-                                                    </div>
-
-                                                    <span class="badge bg-finance rounded-pill ms-auto">30</span>
-                                                </div>
-
-                                                <img src="images/topics/undraw_Finance_re_gnv2.png"
-                                                    class="custom-block-image img-fluid" alt="">
-                                            </a>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6 col-md-6 col-12">
-                                        <div class="custom-block custom-block-overlay">
-                                            <div class="d-flex flex-column h-100">
-                                                <img src="images/businesswoman-using-tablet-analysis-graph-company-finance-strategy-statistics-success-concept-planning-future-office-room.jpg"
-                                                    class="custom-block-image img-fluid" alt="">
-
-                                                <div class="custom-block-overlay-text d-flex">
-                                                    <div>
-                                                        <h5 class="text-white mb-2">Finance</h5>
-
-                                                        <p class="text-white">Lorem ipsum dolor, sit amet consectetur
-                                                            adipisicing elit. Sint animi necessitatibus aperiam
-                                                            repudiandae nam omnis</p>
-
-                                                        <a href="topics-detail.html"
-                                                            class="btn custom-btn mt-2 mt-lg-3">Learn More</a>
-                                                    </div>
-
-                                                    <span class="badge bg-finance rounded-pill ms-auto">25</span>
-                                                </div>
-
-                                                <div class="social-share d-flex">
-                                                    <p class="text-white me-4">Share:</p>
-
-                                                    <ul class="social-icon">
-                                                        <li class="social-icon-item">
-                                                            <a href="#" class="social-icon-link bi-twitter"></a>
-                                                        </li>
-
-                                                        <li class="social-icon-item">
-                                                            <a href="#" class="social-icon-link bi-facebook"></a>
-                                                        </li>
-
-                                                        <li class="social-icon-item">
-                                                            <a href="#" class="social-icon-link bi-pinterest"></a>
-                                                        </li>
-                                                    </ul>
-
-                                                    <a href="#" class="custom-icon bi-bookmark ms-auto"></a>
-                                                </div>
-
-                                                <div class="section-overlay"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="tab-pane fade" id="music-tab-pane" role="tabpanel" aria-labelledby="music-tab"
-                                tabindex="0">
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
-                                        <div class="custom-block bg-white shadow-lg">
-                                            <a href="topics-detail.html">
-                                                <div class="d-flex">
-                                                    <div>
-                                                        <h5 class="mb-2">Composing Song</h5>
-
-                                                        <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-                                                    </div>
-
-                                                    <span class="badge bg-music rounded-pill ms-auto">45</span>
-                                                </div>
-
-                                                <img src="images/topics/undraw_Compose_music_re_wpiw.png"
-                                                    class="custom-block-image img-fluid" alt="">
-                                            </a>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
-                                        <div class="custom-block bg-white shadow-lg">
-                                            <a href="topics-detail.html">
-                                                <div class="d-flex">
-                                                    <div>
-                                                        <h5 class="mb-2">Online Music</h5>
-
-                                                        <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-                                                    </div>
-
-                                                    <span class="badge bg-music rounded-pill ms-auto">45</span>
-                                                </div>
-
-                                                <img src="images/topics/undraw_happy_music_g6wc.png"
-                                                    class="custom-block-image img-fluid" alt="">
-                                            </a>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-4 col-md-6 col-12">
-                                        <div class="custom-block bg-white shadow-lg">
-                                            <a href="topics-detail.html">
-                                                <div class="d-flex">
-                                                    <div>
-                                                        <h5 class="mb-2">Podcast</h5>
-
-                                                        <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-                                                    </div>
-
-                                                    <span class="badge bg-music rounded-pill ms-auto">20</span>
-                                                </div>
-
-                                                <img src="images/topics/undraw_Podcast_audience_re_4i5q.png"
-                                                    class="custom-block-image img-fluid" alt="">
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="tab-pane fade" id="education-tab-pane" role="tabpanel"
-                                aria-labelledby="education-tab" tabindex="0">
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-12 mb-4 mb-lg-3">
-                                        <div class="custom-block bg-white shadow-lg">
-                                            <a href="topics-detail.html">
-                                                <div class="d-flex">
-                                                    <div>
-                                                        <h5 class="mb-2">Graduation</h5>
-
-                                                        <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-                                                    </div>
-
-                                                    <span class="badge bg-education rounded-pill ms-auto">80</span>
-                                                </div>
-
-                                                <img src="images/topics/undraw_Graduation_re_gthn.png"
-                                                    class="custom-block-image img-fluid" alt="">
-                                            </a>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6 col-md-6 col-12">
-                                        <div class="custom-block bg-white shadow-lg">
-                                            <a href="topics-detail.html">
-                                                <div class="d-flex">
-                                                    <div>
-                                                        <h5 class="mb-2">Educator</h5>
-
-                                                        <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-                                                    </div>
-
-
-                                                </div>
-
-                                                <img src="images/topics/undraw_Educator_re_ju47.png"
-                                                    class="custom-block-image img-fluid" alt="">
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        </ng-container>
 
                     </div>
+
+
                 </div>
+                <div class="tab-pane fade " id="tab-2-pane" role="tabpanel" aria-labelledby="tab-2"
+                    tabindex="2">
+                    <div class="row">
+                        <ng-container *ngFor="let pt of posts">
+                            <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4 mb-lg-0  ma text-center"
+                                style="margin-top: 25px;" *ngIf="pt.categoria=='2'">
+                                <div class="card">
+                                    <img [src]="url+'/upload/posts/'+pt.img" class="card-img-top ma" alt="..."
+                                        style="max-width: 150px;">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{pt.titulo}}</h5>
+
+                                        <a href="#" class="btn but">Más información</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+
+                    </div>
+
+
+                </div>
+                <div class="tab-pane fade " id="tab-3-pane" role="tabpanel" aria-labelledby="tab-3"
+                    tabindex="3">
+                    <div class="row">
+                        <ng-container *ngFor="let pt of posts">
+                            <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4 mb-lg-0  ma text-center"
+                                style="margin-top: 25px;" *ngIf="pt.categoria=='3'">
+                                <div class="card">
+                                    <img [src]="url+'/upload/posts/'+pt.img" class="card-img-top ma" alt="..."
+                                        style="max-width: 150px;">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{pt.titulo}}</h5>
+
+                                        <a href="#" class="btn but">Más información</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+
+                    </div>
+
+
+                </div>
+                <div class="tab-pane fade tab-2" id="tab-4-pane" role="tabpanel" aria-labelledby="tab-4"
+                    tabindex="4">
+                    <div class="row">
+                        <ng-container *ngFor="let pt of posts">
+                            <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4 mb-lg-0  ma text-center"
+                                style="margin-top: 25px;" *ngIf="pt.categoria=='4'">
+                                <div class="card">
+                                    <img [src]="url+'/upload/posts/'+pt.img" class="card-img-top ma" alt="..."
+                                        style="max-width: 150px;">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{pt.titulo}}</h5>
+
+                                        <a href="#" class="btn but">Más información</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+
+                    </div>
+
+
+                </div>
+                <div class="tab-pane fade " id="tab-5-pane" role="tabpanel" aria-labelledby="tab-5"
+                    tabindex="5">
+                    <div class="row">
+                        <ng-container *ngFor="let pt of posts">
+                            <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4 mb-lg-0  ma text-center"
+                                style="margin-top: 25px;" *ngIf="pt.categoria=='5'">
+                                <div class="card">
+                                    <img [src]="url+'/upload/posts/'+pt.img" class="card-img-top ma" alt="..."
+                                        style="max-width: 150px;">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{pt.titulo}}</h5>
+
+                                        <a href="#" class="btn but">Más información</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+
+                    </div>
+
+
+                </div>
+
             </div>
+
         </section>
 
 
-        <section class="timeline-section section-padding" id="section_3">
-            <div class="section-overlay"></div>
-
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-12 text-center">
-                        <h2 class="text-white mb-4">¿Como funciona?</h2>
-                    </div>
-
-                    <div class="col-lg-10 col-12 mx-auto">
-                        <div class="timeline-container">
-                            <ul class="vertical-scrollable-timeline" id="vertical-scrollable-timeline">
-                                <div class="list-progress">
-                                    <div class="inner"></div>
-                                </div>
-
-                                <li>
-                                    <h4 class="text-white mb-3">Creas un evento</h4>
-
-                                    <!-- <p class="text-white">Seleccionas
-
-                                        el nombre del evento, el tipo de evento, la
-                                        cantidad de invitados,
-                                        la fecha del evento y el anfitrión.
-                                    </p>
- -->
-
-                                    <div class="icon-holder">
-                                        <!--     <i class="bi-search"></i> -->
-                                    </div>
-                                </li>
-
-                                <li>
-                                    <h4 class="text-white mb-3">Creas tu invitación </h4>
-
-                                    <!--  <p class="text-white">Crea sus boletos y valida la cantidad de invitados</p>
- -->
-                                    <div class="icon-holder">
-                                        <!--    <i class="bi-bookmark"></i> -->
-                                    </div>
-                                </li>
-
-                                <li>
-                                    <h4 class="text-white mb-3">Creas tus boleto y los envías</h4>
-
-                                    <!-- <p class="text-white">
-                                        Al ingresar se controla la cantidad de invitados
-                                    </p> -->
-
-                                    <div class="icon-holder">
-                                        <!--    <i class="bi-book"></i> -->
-                                    </div>
-                                </li>
-                                <li>
-                                    <h4 class="text-white mb-3">Check In</h4>
-
-                                    <!-- <p class="text-white">
-                                        Al ingresar se controla la cantidad de invitados
-                                    </p> -->
-
-                                    <div class="icon-holder">
-                                        <!--   <i class="bi-book"></i> -->
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-        </section>
+        
 
 
 
     </main>
     <app-footer></app-footer>
-    <!--   <footer class="site-footer section-padding">
-        <div class="container">
-            <div class="row">
-
-                <div class="col-lg-3 col-12 mb-4 pb-2">
-                    <a class="navbar-brand mb-2" href="index.html">
-                        <i class="bi-back"></i>
-                        <span>TicketParty</span>
-                    </a>
-                </div>
-
-                <div class="col-lg-3 col-md-4 col-6">
-                    <h6 class="site-footer-title mb-3">Recursos</h6>
-
-                    <ul class="site-footer-links">
-                        <li class="site-footer-link-item">
-                            <a routerLink="/" class="site-footer-link">Inicio</a>
-                        </li>
-                        <li class="site-footer-link-item">
-                            <a routerLink="/core/about" class="site-footer-link">Quienes somos</a>
-                        </li>
-
-                        <li class="site-footer-link-item">
-                            <a routerLink="/auth/register" class="site-footer-link">Registro</a>
-                        </li>
-
-                        <li class="site-footer-link-item">
-                            <a href="#" class="site-footer-link">FAQs</a>
-                        </li>
-
-
-                    </ul>
-                </div>
-
-                <div class="col-lg-3 col-md-4 col-6 mb-4 mb-lg-0">
-                    <h6 class="site-footer-title mb-3">Information</h6>
-
-                    <p class="text-white d-flex mb-1">
-                        <a href="tel: 5566828251" class="site-footer-link">
-                            5566828251
-                        </a>
-                    </p>
-
-                    <p class="text-white d-flex">
-                        <a href="mailto:info@cochisweb.com" class="site-footer-link">
-                            info@cochisweb.com
-                        </a>
-                    </p>
-                </div>
-
-                <div class="col-lg-3 col-md-4 col-12 mt-4 mt-lg-0 ms-auto">
-
-
-                    <p class="copyright-text mt-lg-5 mt-4">Copyright © Ticket Party.
-                        <br>
-                        Creador <a href="https://cochisweb.com">CochisWeb.com</a>
-                    </p>
-
-                </div>
-
-            </div>
-        </div>
-    </footer> -->
 </body>

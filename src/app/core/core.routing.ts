@@ -139,6 +139,7 @@ import { CrearPostComponent } from './pages/admin/posts/crear-post/crear-post.co
 import { EditarPostComponent } from './pages/admin/posts/editar-post/editar-post.component';
 import { VistaPostsComponent } from './pages/admin/posts/vista-posts/vista-posts.component';
 import { BlocComponent } from './pages/bloc/bloc.component';
+import { SinglePostComponent } from './pages/single-post/single-post.component';
 const routes: Routes = [
   {
     path: 'core',
@@ -163,7 +164,7 @@ const routes: Routes = [
 
       },
       {
-        path: 'block',
+        path: 'blog',
         component: BlocComponent,
         data: { titulo: 'Quienes somos' }
 
@@ -431,6 +432,12 @@ const routes: Routes = [
       {
         path: 'posts/vista-posts',
         component: VistaPostsComponent,
+        data: { titulo: 'Vista posts' }
+
+      },
+      {
+        path: 'post/:id',
+        component: SinglePostComponent,
         data: { titulo: 'Vista posts' }
 
       },

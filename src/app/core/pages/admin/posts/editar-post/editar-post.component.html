@@ -23,6 +23,19 @@
                                     <span *ngIf="submited && errorControl['titulo'].errors " class="error">Es requerido
                                     </span>
                                 </div>
+                                <div class="col-12 col-md-6 mt-3 ma">
+                                    <div class="form-group">
+                                        <label for="categoria">Categoria</label>
+                                        <select name="categoria" id="categoria" formControlName="categoria" #categoria
+                                            class="form-control upper">
+                                            <option [value]="ct.id" [disabled]="edit==='false'"
+                                                *ngFor="let ct of categorias">{{ct.nombre}}</option>
+
+
+                                        </select>
+                                    </div>
+                                </div>
+
                                 <div class="col-12 col-md-12 mt-3 text-center">
                                     <div class=" image-upload" class="text-center">
 

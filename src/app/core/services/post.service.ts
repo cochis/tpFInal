@@ -35,6 +35,7 @@ export class PostsService {
           (pst) =>
             new Post(
               pst.titulo,
+              pst.categoria,
               pst.contenido,
               pst.autor,
               pst.img,
@@ -61,6 +62,7 @@ export class PostsService {
           (pst) =>
             new Post(
               pst.titulo,
+              pst.categoria,
               pst.contenido,
               pst.autor,
               pst.img,

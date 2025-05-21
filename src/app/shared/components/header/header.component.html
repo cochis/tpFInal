@@ -37,16 +37,13 @@
                     </ul>
                 </li>
 
+
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/core/about">
                         {{'menu.nosotros'| translate}}
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/core/block">
-                        {{'menu.block'| translate}}
-                    </a>
-                </li>
+
                 <!--  <li class="nav-item">
                     <a class="nav-link" routerLink="/core/invitaciones">Invitaciones</a>
                 </li> -->
@@ -60,6 +57,7 @@
                         {{'menu.precio'| translate}}
                     </a>
                 </li>
+
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/core/examples">
                         {{'menu.ejemplos'| translate}}
@@ -135,6 +133,7 @@
                         {{'menu.inicio'| translate}}
                     </a>
                 </li>
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
@@ -152,6 +151,11 @@
 
 
                     </ul>
+                </li>
+                 <li class="nav-item" *ngIf="rol.includes(ADM)">
+                    <a class="nav-link" routerLink="/core/blog">
+                        {{'menu.blog'| translate}}
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/core/pricing">
@@ -178,7 +182,7 @@
                 </li>
 
 
-
+               
                 <li class="nav-item dropdown"
                     *ngIf="rol.includes(ADM) ||   rol.includes(SLN) ||   rol.includes(ANF) ||   rol.includes(PRV)">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -218,6 +222,7 @@
                             <li><a class="dropdown-item" routerLink="/core/promos">
                                     {{'menu.admin_promos'| translate}}
                                 </a></li>
+
                         </ng-container>
 
 
