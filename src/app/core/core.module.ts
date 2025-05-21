@@ -185,6 +185,11 @@ import { EditarRecordatoriosComponent } from './pages/admin/invitaciones/compone
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { CrearPostComponent } from './pages/admin/posts/crear-post/crear-post.component';
+import { EditarPostComponent } from './pages/admin/posts/editar-post/editar-post.component';
+import { VistaPostsComponent } from './pages/admin/posts/vista-posts/vista-posts.component';
+import { BlocComponent } from './pages/bloc/bloc.component';
+import { SinglePostComponent } from './pages/single-post/single-post.component';
 
 
 
@@ -368,6 +373,11 @@ registerLocaleData(localeEs, 'es')
     CodigoDesingComponent,
     SobresDesingComponent,
     EditarRecordatoriosComponent,
+    CrearPostComponent,
+    EditarPostComponent,
+    VistaPostsComponent,
+    BlocComponent,
+    SinglePostComponent,
 
 
   ],

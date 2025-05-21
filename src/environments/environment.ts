@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   user_ID: '64ff4f79da409a7d91056a5b',
   secret: '1f2d1e2e67df',
-  version: "1.1.42",
+  version: "1.1.5.1",
   publicKey: "BJqZ8KY_kguwLf27SsteILLRHlWY2pJOvrKlyZNeFlEg4O15ut0t7oYMgXHcLPSh2WYCRPwTS3WEPnhXCMZO4Wg",
   privateKey: "v04F9j6-aAZRvYl25BtZu1cezaWT-m4P0sHtE0JbE7g",
   stripeKeyD: 'pk_test_51PipskAbE4XYrXNxNi1oiwylWr7B9mNMfUfQ070Cy09dDPj5HBFYObSajMGjNzlAynX23dT8thcx8sdJxpnP7Vov00wzIocDLR',
@@ -433,7 +433,7 @@ export const environment = {
 
 
   //Variables DEV
-  /* base_url: "http://localhost:3008/api",
+  base_url: "http://localhost:3008/api",
   text_url: "http://localhost:4200/",
   cProvedores: [
     {
@@ -470,7 +470,7 @@ export const environment = {
       value: "67b95a049b1aac6f7ff9c0c9",
       clave: "WHATSAPP"
     },
-  ] */
+  ]
 
 
 
@@ -522,7 +522,7 @@ export const environment = {
 
 
   //Variables PROD
-  base_url: "https://www.myticketparty.com/api",
+  /* base_url: "https://www.myticketparty.com/api",
   text_url: "https://www.myticketparty.com/",
   cProvedores: [
     {
@@ -560,7 +560,7 @@ export const environment = {
       value: "67bb9a22c539cb99eb40fe5c",
       clave: "WHATSAPP"
     },
-  ],
+  ], */
 
 
 

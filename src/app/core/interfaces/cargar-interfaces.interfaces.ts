@@ -42,6 +42,7 @@ import { Red } from "../models/red.model"
 import { MailTemplate } from "../models/mailTemplate.model"
 import { Fondo } from "../models/fondo.model"
 import { Shared } from "../models/shared.model"
+import { Post } from "../models/post.model"
 
 
 
@@ -127,6 +128,13 @@ export interface CargarEvento {
 export interface CargarEventos {
     total: number
     eventos: Evento[]
+}
+export interface CargarPost {
+    post: Post
+}
+export interface CargarPosts {
+    total: number
+    posts: Post[]
 }
 export interface CargarShared {
     shared: Shared

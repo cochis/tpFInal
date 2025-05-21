@@ -23,7 +23,7 @@ export class FileService {
   }
   async actualizarFoto(
     archivo: File,
-    tipo: 'usuarios' | 'fiestas' | 'salones' | 'galerias' | 'invitaciones' | 'paquetes' | 'proveedor' | 'imgItems' | 'items' | 'fondos',
+    tipo: 'usuarios' | 'fiestas' | 'salones' | 'galerias' | 'invitaciones' | 'paquetes' | 'proveedor' | 'imgItems' | 'items' | 'fondos' | 'posts',
     id: string,
     type?: string
   ) {
@@ -50,6 +50,7 @@ export class FileService {
       } else {
 
         url = `${base_url}/upload/${tipo}/${id}`
+
 
 
       }

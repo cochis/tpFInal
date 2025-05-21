@@ -135,6 +135,10 @@ import { EditarFondoComponent } from './pages/admin/fondos/editar-fondo/editar-f
 import { CrearFondoComponent } from './pages/admin/fondos/crear-fondo/crear-fondo.component';
 import { VistaFondosComponent } from './pages/admin/fondos/vista-fondos/vista-fondos.component';
 import { ParralaxComponent } from './pages/admin/templates/parralax/parralax.component';
+import { CrearPostComponent } from './pages/admin/posts/crear-post/crear-post.component';
+import { EditarPostComponent } from './pages/admin/posts/editar-post/editar-post.component';
+import { VistaPostsComponent } from './pages/admin/posts/vista-posts/vista-posts.component';
+import { BlocComponent } from './pages/bloc/bloc.component';
 const routes: Routes = [
   {
     path: 'core',
@@ -155,6 +159,12 @@ const routes: Routes = [
       {
         path: 'about',
         component: AboutComponent,
+        data: { titulo: 'Quienes somos' }
+
+      },
+      {
+        path: 'block',
+        component: BlocComponent,
         data: { titulo: 'Quienes somos' }
 
       },
@@ -401,6 +411,27 @@ const routes: Routes = [
         path: 'eventos/vista-eventos',
         component: VistaEventosComponent,
         data: { titulo: 'Vista eventos' }
+
+      },
+      //Post
+      {
+        path: 'posts/editar-post/:edit/:id',
+        component: EditarPostComponent,
+        data: { titulo: 'Editar post' },
+        canActivate: [authGuard]
+
+      },
+      {
+        path: 'posts/crear-post',
+        component: CrearPostComponent,
+        data: { titulo: 'Crear post' },
+        canActivate: [authGuard]
+
+      },
+      {
+        path: 'posts/vista-posts',
+        component: VistaPostsComponent,
+        data: { titulo: 'Vista posts' }
 
       },
       //Fondos

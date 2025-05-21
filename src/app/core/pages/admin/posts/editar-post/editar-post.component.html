@@ -1,0 +1,97 @@
+<app-header></app-header>
+<main>
+    <app-loading class="animated1 fadeIn" *ngIf="loading"></app-loading>
+    <app-message class="animated1 fadeIn" *ngIf="msnOk"></app-message>
+    <section class="contact-section section-padding section-bg animated1 fadeIn " id="section_5" *ngIf="!loading">
+        <div class="container bw">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-12 col-12 text-center">
+                            <h2 class="mb-5" *ngIf="edit=='true'">Editar post</h2>
+                            <h2 class="mb-5" *ngIf="edit=='false'">Ver post</h2>
+                        </div>
+                        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                            <div class="row">
+                                <div class="col-12 col-md-6 mt-3">
+                                    <div class="form-group">
+                                        <label for="titulo">Titulo</label>
+                                        <input type="text" class="form-control upper" id="titulo"
+                                            formControlName="titulo" required placeholder="Titulo"
+                                            [readonly]="edit==='false'">
+                                    </div>
+                                    <span *ngIf="submited && errorControl['titulo'].errors " class="error">Es requerido
+                                    </span>
+                                </div>
+                                <div class="col-12 col-md-12 mt-3 text-center">
+                                    <div class=" image-upload" class="text-center">
+
+                                        <label for="file-input" [ngClass]=" {'pointer':edit ==='true'}">
+
+                                            <ng-container *ngIf="post" class="text-center">
+                                                <img *ngIf="post.img ==='' && !imgTemp   "
+                                                    [src]="url+'/upload/posts/default.jpg'+post.img"
+                                                    alt="Click aquí para subir tu foto"
+                                                    title="Click aquí para subir tu foto" class="img-avatar">
+                                                <img *ngIf="post.img !=='' && !imgTemp   "
+                                                    [src]="url+'/upload/posts/'+post.img"
+                                                    alt="Click aquí para subir tu foto"
+                                                    title="Click aquí para subir tu foto" class="img-avatar">
+
+                                            </ng-container>
+                                        </label>
+
+                                        <input id="file-input" type="file" class="ion-no-border"
+                                            (change)="cambiarImagen($event,'img')" *ngIf="edit ==='true'" />
+
+
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12   mt-3">
+                                        <div class="form-group">
+                                            <label for="contenido">Contenido</label>
+                                            <div class="NgxEditor__Wrapper">
+                                                <ngx-editor-menu [editor]="contenido" [toolbar]="toolbar">
+                                                </ngx-editor-menu>
+                                                <ngx-editor [editor]="contenido"
+                                                    formControlName="contenido"></ngx-editor>
+                                            </div>
+                                        </div>
+                                        <span *ngIf="submited && errorControl['contenido'].errors " class="error">Es
+                                            requerido
+                                        </span>
+                                    </div>
+
+
+
+                                </div>
+
+
+                            </div>
+
+                            <div class="row mt-5 text-center">
+
+                                <div class="col-12 col-md-6  mt-3 text-center " *ngIf="edit==='true'">
+                                    <button type="submit" class="btn btn-lg btn-block but  ">Editar</button>
+
+                                </div>
+                                <div class="col-12 col-md-6  mt-3 text-center">
+                                    <button class="btn btn-lg btn-block btn-warning" (click)="back()">Regresar</button>
+
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+
+</main>
+<app-footer></app-footer>
