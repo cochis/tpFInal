@@ -1,18 +1,26 @@
 <app-header></app-header>
 
-<app-loading *ngIf="loading"></app-loading>
-<ng-container *ngIf="!loading">
-
-    <div *ngIf="post" class="animate__animated animate__fadeIn">
-        <div class="container-fluid">
-
-
-
+<body id="top" class="animate__animated animate__fadeIn">
+     <app-loading *ngIf="loading"></app-loading>
+    <main *ngIf="!loading">
+        <section class="hero-section d-flex justify-content-center align-items-center" id="section_1">
+            <div class="container">
+                <div class="row">
+                    <div class=" col-12 mx-auto">
+                        <h1 class="text-white text-center">{{post.titulo}}</h1>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+       
+        <div class="container"  *ngIf="!loading">
+            <div class="row">
+                 <div class="col-12">
+                    <div [innerHTML]="convertDes(post.contenido)" style="margin-top: 10px;"></div>
+                 </div>
+            </div>
         </div>
-
-    </div>
-  
-
-   
-</ng-container>
-<app-footer></app-footer>
+    </main>
+    <app-footer></app-footer>
+</body>

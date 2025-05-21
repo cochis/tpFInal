@@ -45,4 +45,8 @@ export class SinglePostComponent {
 
     })
   }
+  convertDes(des: string) {
+    return this.sanitizer.bypassSecurityTrustHtml(des);
+ 
+  }
 }
