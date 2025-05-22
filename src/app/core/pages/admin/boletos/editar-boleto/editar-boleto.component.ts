@@ -24,6 +24,7 @@ import * as XLSX from 'xlsx'
 import { SharedsService } from 'src/app/core/services/shared.service';
 import { InvitacionsService } from 'src/app/core/services/invitaciones.service';
 import { Invitacion } from 'src/app/core/models/invitacion.model';
+import * as FileSaver from 'file-saver';
 
 @Component({
   selector: 'app-editar-boleto',
@@ -109,8 +110,9 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
 
       this.boletosService.cargarBoletoByFiesta(this.id).subscribe((resp: CargarBoleto) => {
         this.boletoTemp = this.functionsService.getActives(resp.boleto)
+        console.log("  this.boletoTemp: ", this.boletoTemp);
 
-
+        //this.exportToExcel(this.boletoTemp)
         this.boletoTemp.forEach(blt => {
           if (!blt.shared) {
 
@@ -995,5 +997,22 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
         await invitados.push(res)
       })
     });
+  }
+  exportToExcel( ): void {
+    // 1. Convertir JSON a hoja de cálculo
+    const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.boletoTemp);
+
+    // 2. Crear un libro de Excel y agregar la hoja
+    const workbook: XLSX.WorkBook = {
+      Sheets: { 'Datos': worksheet },
+      SheetNames: ['Datos']
+    };
+
+    // 3. Generar un buffer Excel
+    const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+
+    // 4. Guardar el archivo
+    const blob = new Blob([excelBuffer], { type: 'application/octet-stream' });
+    FileSaver.saveAs(blob, 'datos.xlsx');
   }
 }

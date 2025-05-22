@@ -43,6 +43,7 @@
     "D": "^1.0.0",
     "datatables.net": "^1.13.6",
     "datatables.net-dt": "^1.13.6",
+    "file-saver": "^2.0.5",
     "firebase-tools": "^12.6.1",
     "jquery": "^3.6.0",
     "jspdf-autotable": "^3.8.4",

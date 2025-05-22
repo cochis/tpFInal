@@ -14,344 +14,339 @@
                     <div class="col-lg-12 col-12 text-center">
                         <h2 class="mb-5" *ngIf="edit=='true'">Editar boletos</h2>
                         <h2 class="mb-5" *ngIf="edit=='false'">Ver boletos</h2>
+                    </div>
+                </div>
+                <div class="row text-center">
 
+                    <div class="col-12" *ngIf="fiesta.checking">
 
+                        <h3>Cantidad de invitaciones: {{numeroInvitados}} </h3>
+                        <h3 *ngIf="form.value.invitados.length==0" class="ion-text-center">Cargando
+                        </h3>
+                        <h3 *ngIf="form.value.invitados.length>0" class="ion-text-center">Invitados {{total}}
+                        </h3>
+                    </div>
+                    <div class="col-12" color="danger" *ngIf="numeroInvitados >0 &&numeroInvitados<total">
+                        <h3> Ya no tiene boletos disponibles </h3>
+                    </div>
+                </div>
+                <div class="row text-center">
 
-                        <div class="col-12" *ngIf="fiesta.checking">
 
-                            <h3>Cantidad de invitaciones: {{numeroInvitados}} </h3>
-                            <h3 *ngIf="form.value.invitados.length==0" class="ion-text-center">Cargando
-                            </h3>
-                            <h3 *ngIf="form.value.invitados.length>0" class="ion-text-center">Invitados {{total}}
-                            </h3>
-                        </div>
-                        <div class="col-12" color="danger" *ngIf="numeroInvitados >0 &&numeroInvitados<total">
-                            <h3> Ya no tiene boletos disponibles </h3>
-                        </div>
+                    <div class="col-12 col-sm-6    mt-50">
 
 
-                        <div class="col-12   mt-50">
+                        <a class="custom-btn  but2" href="/assets/download/invitados.xlsx"
+                            download="invitados.xlsx">
+                            Plantilla para subir invitados
+                        </a>
 
-                            <br>
-                            <a class="btn btn-lg btn-block btn-warning" href="/assets/download/invitados.xlsx"
-                                download="invitados.xlsx">
-                                Plantilla para subir invitados
-                            </a>
-                            <br>
-                            <br>
-                            <input type="file" name="invitadosXls" id="invitadosXls" #invitadosXls
-                                (change)="uploadBoletos($event)">
-                            <label for="invitadosXls" class="custom-btn  but "> Agregar por archivo</label>
 
-                        </div>
-                        <div class="col-12 mt-3">
-                            <label class="custom-btn  but2 mt-3" (click)="verMensaje()"> Editar mensaje WhatsApp
-                            </label>
-                        </div>
-                        <div class="col-12 mt-3">
-                            <label class="custom-btn  but2 mt-3" (click)="verRecordatorio()"> Editar recordatorio
-                            </label>
-                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6    mt-50">
+                        <input type="file" name="invitadosXls" id="invitadosXls" #invitadosXls
+                            (change)="uploadBoletos($event)">
+                        <label for="invitadosXls" class="custom-btn  but "> Agregar por archivo</label>
 
-                        <div class="col-12   mt-50" *ngIf="total >0">
+                    </div>
 
-                            <button class="custom-btn  but " (click)="showConfirmados(content)" style="margin: auto;">
-                                Confirmados</button>
-                        </div>
+                </div>
+                <div class="row text-center">
 
 
+                    <div class="col-12 col-md-6  mt-3 text-center">
+                        <label class="custom-btn  but2 mt-3" (click)="verMensaje()"> Editar mensaje WhatsApp
+                        </label>
+                    </div>
+                    <div class="col-12 col-md-6   mt-3 text-center">
+                        <label class="custom-btn  but2 mt-3" (click)="verRecordatorio()"> Editar recordatorio
+                        </label>
+                    </div>
 
+                    <div class="col-12    mt-50 text-center" *ngIf="total >0">
 
+                        <button class="custom-btn  but " (click)="showConfirmados(content)" style="margin: auto;">
+                            Confirmados</button>
+                    </div>
+                </div>
+                <div class="row">
 
-                        <div class="row">
+                    <div class=" col-12 col-md-6 mt-3 mb-3 text-center ma"
+                        *ngIf="this.form.value.fiesta !=='' &&  edit ==='true'">
 
-                            <div class=" col-12 col-md-6 mt-3 mb-3 text-center ma"
-                                *ngIf="this.form.value.fiesta !=='' &&  edit ==='true'">
+                        <button class="btn but" type="button" id="btnInvitado" *ngIf="this.form.value.fiesta !=='' "
+                            (click)="addInvitados()" [disabled]="getDisabled()"><i class="icon-plus"></i>
+                            Invitado</button>
 
-                                <button class="btn but" type="button" id="btnInvitado"
-                                    *ngIf="this.form.value.fiesta !=='' " (click)="addInvitados()"
-                                    [disabled]="getDisabled()"><i class="icon-plus"></i>
-                                    Invitado</button>
+                    </div>
+                    <div id="IniInvitado" class=" col-12 col-md-6 mt-3 mb-3 text-center ma" *ngIf="invitados.length>1">
 
-                            </div>
-                            <div id="IniInvitado" class=" col-12 col-md-6 mt-3 mb-3 text-center ma"
-                                *ngIf="invitados.length>1">
 
-
-                                <button class="btn but" type="button" (click)="functionsService.scroolTo('finInvitado')"
-                                    *ngIf="invitados.length >1">Bajar<i class="bi bi-arrow-down"></i></button>
-
-                            </div>
-                        </div>
-
-
-                        <form [formGroup]="form" (ngSubmit)="onSubmit()">
-
-                            <div class="row">
-
-
-
-                                <div class="col-12 col-md-6 ma mt-3" *ngIf="role !== URS">
-                                    <div class="form-group">
-                                        <label for="nombreGrupo">Fiesta</label>
-                                        <input type="text" class="form-control upper" id="fiesta"
-                                            formControlName="fiesta" required placeholder="Fiesta" readonly>
-                                    </div>
-                                </div>
-
-
-
-
-
-
-                                <div class="col-12 col-md-6 ma mt-3" *ngIf="role == URS">
-                                    <div class="form-group">
-                                        <label for="nombreGrupo">Fiesta</label>
-                                        <input type="text" class="form-control upper" id="fiesta"
-                                            formControlName="fiesta" required placeholder="Fiesta" readonly>
-                                    </div>
-
-
-                                </div>
-
-
-                            </div>
-
-                            <div formArrayName="invitados">
-                                <div *ngFor="let invitado of invitados['controls'] ; let i=index">
-
-                                    <div [formGroupName]="i" *ngIf="  invitado.value.activated "
-                                        class="animate__animated animate__fadeIn">
-
-                                        <div class="row" id="boleto{{i}}">
-                                            <div class="col-12 col-md-6 mt-3">
-
-                                                <div class="form-group">
-                                                    <label for="grupo">Grupo</label>
-                                                    <select name="" id="grupo" formControlName="grupo"
-                                                        class="form-control upper">
-                                                        <option value="">Selecciona un grupo</option>
-                                                        <option [value]="item.uid" *ngFor="let item of grupos">
-                                                            {{item.nombre}}
-                                                        </option>
-                                                    </select>
-                                                </div>
-                                                <span
-                                                    *ngIf="submited && errorControl['invitados']['controls'][i]['controls']['grupo'].errors "
-                                                    class="error">Es
-                                                    requerido
-                                                </span>
-                                            </div>
-
-                                            <div class="col-12 col-md-6 mt-3">
-                                                <div class="form-group">
-                                                    <label for="nombreGrupo">Nombre de Grupo</label>
-                                                    <input type="text" class="form-control upper" id="nombreGrupo"
-                                                        formControlName="nombreGrupo" required
-                                                        placeholder="Nombre de grupo">
-                                                </div>
-                                                <span
-                                                    *ngIf="submited && errorControl['invitados']['controls'][i]['controls']['nombreGrupo'].errors "
-                                                    class="error">Es
-                                                    requerido
-                                                </span>
-                                            </div>
-                                            <div class="col-12 col-md-6 mt-3">
-                                                <div class="form-group">
-                                                    <label for="whatsapp">Teléfono</label>
-                                                    <input type="text" class="form-control upper" id="whatsapp"
-                                                        formControlName="whatsapp" required placeholder="Teléfono">
-                                                </div>
-                                                <span
-                                                    *ngIf="submited && errorControl['invitados']['controls'][i]['controls']['whatsapp'].errors "
-                                                    class="error">Número de teléfono erróneo
-                                                </span>
-                                            </div>
-
-                                            <div class="col-12 col-md-6 mt-3">
-                                                <div class="form-group">
-                                                    <label for="email">Correo electrónico</label>
-                                                    <input type="email" class="form-control upper" id="email"
-                                                        formControlName="email" placeholder="Correo electrónico">
-                                                </div>
-                                                <span
-                                                    *ngIf="submited && errorControl['invitados']['controls'][i]['controls']['email'].errors "
-                                                    class="error">Correo electrónico invalido
-                                                </span>
-                                            </div>
-
-                                            <div class="col-12 col-md-6 mt-3" *ngIf="fiesta.checking">
-                                                <div class="form-group" style="margin-top:15px">
-                                                    <label for="cantidadInvitados">Cantidad de invitados</label>
-                                                    <input type="number" class="form-control upper"
-                                                        id="cantidadInvitados" min="1"
-                                                        formControlName="cantidadInvitados"
-                                                        placeholder="Cantidad de invitados" #cantidadInvitados>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="col-12 col-md-6 mt-3"
-                                                *ngIf="boletoTemp && fiesta.checking && form.value.invitados[i].confirmado">
-                                                <div class="form-group">
-                                                    <label for="requeridos"
-                                                        *ngIf="requeridos.value<=form.value.invitados[i].cantidadInvitados"
-                                                        style="margin-top:15px">Boletos Requeridos</label>
-
-
-                                                    <label for="requeridos" class="requeridos"
-                                                        *ngIf="requeridos.value>form.value.invitados[i].cantidadInvitados">
-                                                        Boletos Requeridos</label>
-                                                    <input type="number" class="form-control upper" id="requeridos"
-                                                        min="1" formControlName="requeridos" #requeridos
-                                                        placeholder="Boletos requeridos" readonly>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-md-4 mt-3" *ngIf="fiesta.mesaOk">
-                                                <div class="form-group">
-                                                    <label for="mesa">Mesa</label>
-                                                    <input type="text" class="form-control upper" id="mesa"
-                                                        formControlName="mesa" placeholder="Mesa">
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-
-                                                <div class=" col-12 col-md-6 mt-4 text-center"
-                                                    *ngIf="fiesta.checking && invitacion">
-                                                    <h4>QR de entrada</h4>
-                                                    <div class="ma qrcodeImage text-center">
-                                                        <qrcode (qrCodeURL)="onChangeURL($event)"
-                                                            [qrdata]="getQr(invitado)" [allowEmptyString]="true"
-                                                            [ariaLabel]="'QR Code image with the following content...'"
-                                                            [cssClass]="'center'" [colorDark]="'#22547b'"
-                                                            [colorLight]="'#ffffffff'" [elementType]="'canvas'"
-                                                            [errorCorrectionLevel]="'M'" [imageHeight]="75"
-                                                            [imageWidth]="75" [margin]="4" [scale]="1"
-                                                            [title]="getQr(invitado)" [width]="250">
-                                                        </qrcode>
-                                                    </div>
-                                                </div>
-                                                <div class=" col-12 col-md-6 mt-4 text-center" *ngIf="invitacion">
-                                                    <h4>QR de Invitación</h4>
-                                                    <div class="ma qrcodeImage text-center">
-                                                        <qrcode (qrCodeURL)="onChangeURL($event)"
-                                                            [qrdata]="getQrInvitacion(invitado)"
-                                                            [allowEmptyString]="true"
-                                                            [ariaLabel]="'QR Code image with the following content...'"
-                                                            [cssClass]="'center'" [colorDark]="'#22547b'"
-                                                            [colorLight]="'#ffffffff'" [elementType]="'canvas'"
-                                                            [errorCorrectionLevel]="'M'" [imageHeight]="75"
-                                                            [imageWidth]="75" [margin]="4" [scale]="1"
-                                                            [title]="getQr(invitado)" [width]="250">
-                                                        </qrcode>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-md-6  " *ngIf=" boleto[i] && boleto[i]. confirmado">
-                                                <div class="confirmado ma">
-                                                    Confirmado
-
-                                                </div>
-
-                                            </div>
-                                            <div>
-                                                <div class="col-12">
-
-                                                    <small class="error"
-                                                        *ngIf="numeroInvitados > 0 &&numeroInvitados<total">
-                                                        Valida la cantidad de invitados </small>
-                                                </div>
-                                                <button type="button" class="confirmado ma pointer"
-                                                    *ngIf="invitado.value.uid  "
-                                                    (click)="copiarLink(fiesta.uid,invitado.value.uid)">
-                                                    Copiar liga de boleto
-
-                                                </button>
-                                                <button type="button" class="visualizado ma  "
-                                                    *ngIf=" invitado.value.uid && boleto[i].vista">
-                                                    Invitación visualizada
-
-                                                </button>
-
-                                            </div>
-
-
-
-                                            <div class="col-12   mt-3" *ngIf="edit==='true'  ">
-
-                                                <!--  <button (click)="saveBoleto(invitado.value)"
-                                                    *ngIf=" invitado.value.uid == '' && !getDisabled() && boletoTemp.length>0"
-                                                    class="custom-btn  but   " [disabled]="getDisabled()">Guardar
-                                                    invitado</button> -->
-                                                <a (click)="enviarInvitacion(i)"
-                                                    *ngIf="boleto[i] && boleto[i].invitacionEnviada == false"
-                                                    class="custom-btn  but   ">Enviar invitación</a>
-                                                <a (click)="enviarInvitacion(i)"
-                                                    *ngIf="boleto[i] && boleto[i].invitacionEnviada != false"
-                                                    class="custom-btn  but   ">Reenviar invitación</a>
-                                            </div>
-
-                                            <div class="col-12   mt-3" *ngIf="boleto[i]">
-
-
-                                                <a (click)="removeInvitados(i)" *ngIf="edit==='true'   "
-                                                    class="custom-btn  "><i class="bi bi-trash"></i></a>
-                                            </div>
-
-
-                                        </div>
-                                        <hr>
-
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div id="finInvitado" class=" col-12 col-md-6 mt-3 mb-3 text-center ma"
-                                *ngIf="invitados.length>1">
-
-
-                                <button class="btn but" type="button"
-                                    (click)="functionsService.scroolTo('btnInvitado')"> Subir<i
-                                        class="bi bi-arrow-up"></i></button>
-
-                            </div>
-
-
-
-                            <div class="row mt-5 text-center" *ngIf="role !== URS">
-
-                                <div class="col-12 col-md-6  mt-3 text-center" *ngIf="edit==='true'">
-                                    <button type="submit" class="btn btn-lg btn-block but  "
-                                        [disabled]="getDisabled()">Guardar</button>
-
-                                </div>
-                                <div class="col-12 col-md-6  mt-3 text-center">
-                                    <button class="btn btn-lg btn-block btn-warning" (click)="back()">Regresar</button>
-
-                                </div>
-                            </div>
-                            <div class="row mt-5 text-center" *ngIf="role == URS">
-
-                                <div class="col-12 col-md-6  mt-3 text-center ">
-                                    <button type="submit" class="btn btn-lg btn-block but  "
-                                        [disabled]="getDisabled()">Guardar</button>
-
-                                </div>
-                                <div class="col-12 col-md-6  mt-3 text-center">
-                                    <button class="btn btn-lg btn-block btn-warning"
-                                        (click)="backURS()">Regresar</button>
-
-                                </div>
-                            </div>
-
-
-                        </form>
+                        <button class="btn but" type="button" (click)="functionsService.scroolTo('finInvitado')"
+                            *ngIf="invitados.length >1">Bajar<i class="bi bi-arrow-down"></i></button>
 
                     </div>
                 </div>
+
+
+                <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+                    <div class="row">
+
+
+
+                        <div class="col-12 col-md-6 ma mt-3" *ngIf="role !== URS">
+                            <div class="form-group">
+                                <label for="nombreGrupo">Fiesta</label>
+                                <input type="text" class="form-control upper" id="fiesta" formControlName="fiesta"
+                                    required placeholder="Fiesta" readonly>
+                            </div>
+                        </div>
+
+
+
+
+
+
+                        <div class="col-12 col-md-6 ma mt-3" *ngIf="role == URS">
+                            <div class="form-group">
+                                <label for="nombreGrupo">Fiesta</label>
+                                <input type="text" class="form-control upper" id="fiesta" formControlName="fiesta"
+                                    required placeholder="Fiesta" readonly>
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+                    <div formArrayName="invitados">
+                        <div *ngFor="let invitado of invitados['controls'] ; let i=index">
+
+                            <div [formGroupName]="i" *ngIf="  invitado.value.activated "
+                                class="animate__animated animate__fadeIn">
+
+                                <div class="row" id="boleto{{i}}">
+                                    <div class="col-12 col-md-6 mt-3">
+
+                                        <div class="form-group">
+                                            <label for="grupo">Grupo</label>
+                                            <select name="" id="grupo" formControlName="grupo"
+                                                class="form-control upper">
+                                                <option value="">Selecciona un grupo</option>
+                                                <option [value]="item.uid" *ngFor="let item of grupos">
+                                                    {{item.nombre}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <span
+                                            *ngIf="submited && errorControl['invitados']['controls'][i]['controls']['grupo'].errors "
+                                            class="error">Es
+                                            requerido
+                                        </span>
+                                    </div>
+
+                                    <div class="col-12 col-md-6 mt-3">
+                                        <div class="form-group">
+                                            <label for="nombreGrupo">Nombre de Grupo</label>
+                                            <input type="text" class="form-control upper" id="nombreGrupo"
+                                                formControlName="nombreGrupo" required placeholder="Nombre de grupo">
+                                        </div>
+                                        <span
+                                            *ngIf="submited && errorControl['invitados']['controls'][i]['controls']['nombreGrupo'].errors "
+                                            class="error">Es
+                                            requerido
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-md-6 mt-3">
+                                        <div class="form-group">
+                                            <label for="whatsapp">Teléfono</label>
+                                            <input type="text" class="form-control upper" id="whatsapp"
+                                                formControlName="whatsapp" required placeholder="Teléfono">
+                                        </div>
+                                        <span
+                                            *ngIf="submited && errorControl['invitados']['controls'][i]['controls']['whatsapp'].errors "
+                                            class="error">Número de teléfono erróneo
+                                        </span>
+                                    </div>
+
+                                    <div class="col-12 col-md-6 mt-3">
+                                        <div class="form-group">
+                                            <label for="email">Correo electrónico</label>
+                                            <input type="email" class="form-control upper" id="email"
+                                                formControlName="email" placeholder="Correo electrónico">
+                                        </div>
+                                        <span
+                                            *ngIf="submited && errorControl['invitados']['controls'][i]['controls']['email'].errors "
+                                            class="error">Correo electrónico invalido
+                                        </span>
+                                    </div>
+
+                                    <div class="col-12 col-md-6 mt-3" *ngIf="fiesta.checking">
+                                        <div class="form-group" style="margin-top:15px">
+                                            <label for="cantidadInvitados">Cantidad de invitados</label>
+                                            <input type="number" class="form-control upper" id="cantidadInvitados"
+                                                min="1" formControlName="cantidadInvitados"
+                                                placeholder="Cantidad de invitados" #cantidadInvitados>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-12 col-md-6 mt-3"
+                                        *ngIf="boletoTemp && fiesta.checking && form.value.invitados[i].confirmado">
+                                        <div class="form-group">
+                                            <label for="requeridos"
+                                                *ngIf="requeridos.value<=form.value.invitados[i].cantidadInvitados"
+                                                style="margin-top:15px">Boletos Requeridos</label>
+
+
+                                            <label for="requeridos" class="requeridos"
+                                                *ngIf="requeridos.value>form.value.invitados[i].cantidadInvitados">
+                                                Boletos Requeridos</label>
+                                            <input type="number" class="form-control upper" id="requeridos" min="1"
+                                                formControlName="requeridos" #requeridos
+                                                placeholder="Boletos requeridos" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-4 mt-3" *ngIf="fiesta.mesaOk">
+                                        <div class="form-group">
+                                            <label for="mesa">Mesa</label>
+                                            <input type="text" class="form-control upper" id="mesa"
+                                                formControlName="mesa" placeholder="Mesa">
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class=" col-12 col-md-6 mt-4 text-center"
+                                            *ngIf="fiesta.checking && invitacion">
+                                            <h4>QR de entrada</h4>
+                                            <div class="ma qrcodeImage text-center">
+                                                <qrcode (qrCodeURL)="onChangeURL($event)" [qrdata]="getQr(invitado)"
+                                                    [allowEmptyString]="true"
+                                                    [ariaLabel]="'QR Code image with the following content...'"
+                                                    [cssClass]="'center'" [colorDark]="'#22547b'"
+                                                    [colorLight]="'#ffffffff'" [elementType]="'canvas'"
+                                                    [errorCorrectionLevel]="'M'" [imageHeight]="75" [imageWidth]="75"
+                                                    [margin]="4" [scale]="1" [title]="getQr(invitado)" [width]="250">
+                                                </qrcode>
+                                            </div>
+                                        </div>
+                                        <div class=" col-12 col-md-6 mt-4 text-center" *ngIf="invitacion">
+                                            <h4>QR de Invitación</h4>
+                                            <div class="ma qrcodeImage text-center">
+                                                <qrcode (qrCodeURL)="onChangeURL($event)"
+                                                    [qrdata]="getQrInvitacion(invitado)" [allowEmptyString]="true"
+                                                    [ariaLabel]="'QR Code image with the following content...'"
+                                                    [cssClass]="'center'" [colorDark]="'#22547b'"
+                                                    [colorLight]="'#ffffffff'" [elementType]="'canvas'"
+                                                    [errorCorrectionLevel]="'M'" [imageHeight]="75" [imageWidth]="75"
+                                                    [margin]="4" [scale]="1" [title]="getQr(invitado)" [width]="250">
+                                                </qrcode>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6  text-center ma " *ngIf=" boleto[i] && boleto[i]. confirmado">
+                                        <div class="confirmado ma">
+                                            Confirmado
+
+                                        </div>
+
+                                    </div>
+                                    <div class="col-12 ma text-center">
+                                        <div >
+
+                                            <small class="error" *ngIf="numeroInvitados > 0 &&numeroInvitados<total">
+                                                Valida la cantidad de invitados </small>
+                                        </div>
+                                        <button type="button" class="confirmado ma pointer" *ngIf="invitado.value.uid  "
+                                            (click)="copiarLink(fiesta.uid,invitado.value.uid)">
+                                            Copiar liga de boleto
+
+                                        </button>
+                                        <button type="button" class="visualizado ma  "
+                                            *ngIf=" invitado.value.uid && boleto[i].vista">
+                                            Invitación visualizada
+
+                                        </button>
+
+                                    </div>
+
+
+
+                                    <div class="col-12 ma text-center mt-3" *ngIf="edit==='true'  ">
+
+                                        <!--  <button (click)="saveBoleto(invitado.value)"
+                                                    *ngIf=" invitado.value.uid == '' && !getDisabled() && boletoTemp.length>0"
+                                                    class="custom-btn  but   " [disabled]="getDisabled()">Guardar
+                                                    invitado</button> -->
+                                        <a (click)="enviarInvitacion(i)"
+                                            *ngIf="boleto[i] && boleto[i].invitacionEnviada == false"
+                                            class="custom-btn  but   ">Enviar invitación</a>
+                                        <a (click)="enviarInvitacion(i)"
+                                            *ngIf="boleto[i] && boleto[i].invitacionEnviada != false"
+                                            class="custom-btn  but   ">Reenviar invitación</a>
+                                    </div>
+
+                                    <div class="col-12   ma text-center mt-3" *ngIf="boleto[i]">
+
+
+                                        <a (click)="removeInvitados(i)" *ngIf="edit==='true'   " class="custom-btn  "><i
+                                                class="bi bi-trash"></i></a>
+                                    </div>
+
+
+                                </div>
+                                <hr>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div id="finInvitado" class=" col-12 col-md-6 mt-3 mb-3 text-center ma" *ngIf="invitados.length>1">
+                        <button class="btn but" type="button" (click)="functionsService.scroolTo('btnInvitado')">
+                            Subir<i class="bi bi-arrow-up"></i></button>
+                    </div>
+                    <div id="finInvitado" class=" col-12 col-md-6 mt-3 mb-3 text-center ma" *ngIf="invitados.length>1">
+                        <button class="btn  btn-warning" type="button" (click)="exportToExcel()">
+                            Descargar Invitaciones<i class="bi bi-file-arrow-down"></i></button>
+                    </div>
+
+
+
+                    <div class="row mt-5 text-center" *ngIf="role !== URS">
+
+                        <div class="col-12 col-md-6  mt-3 text-center" *ngIf="edit==='true'">
+                            <button type="submit" class="btn btn-lg btn-block but  "
+                                [disabled]="getDisabled()">Guardar</button>
+
+                        </div>
+                        <div class="col-12 col-md-6  mt-3 text-center">
+                            <button class="btn btn-lg btn-block btn-warning" (click)="back()">Regresar</button>
+
+                        </div>
+                    </div>
+                    <div class="row mt-5 text-center" *ngIf="role == URS">
+
+                        <div class="col-12 col-md-6  mt-3 text-center ">
+                            <button type="submit" class="btn btn-lg btn-block but  "
+                                [disabled]="getDisabled()">Guardar</button>
+
+                        </div>
+                        <div class="col-12 col-md-6  mt-3 text-center">
+                            <button class="btn btn-lg btn-block btn-warning" (click)="backURS()">Regresar</button>
+
+                        </div>
+                    </div>
+
+
+                </form>
+
+
             </div>
+
 
 
 

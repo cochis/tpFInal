@@ -7,6 +7,7 @@ import { FiestasService } from 'src/app/core/services/fiestas.service';
 import { Fiesta } from 'src/app/core/models/fiesta.model';
 import { CargarFiestas } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
 import { ParametrosService } from 'src/app/core/services/parametro.service';
+import { AuthService } from '../../../auth/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -21,6 +22,8 @@ export class HeaderComponent {
       window.location.reload();
     }
   }
+ 
+ 
   ADM = environment.admin_role
   SLN = environment.salon_role
   URS = environment.user_role
@@ -44,9 +47,10 @@ export class HeaderComponent {
     private functionsService: FunctionsService,
     private fiestasService: FiestasService,
     private parametrosService: ParametrosService,
+    private authService: AuthService,
 
   ) {
-
+ 
 
     if (this.URLBASE.includes('cochisweb')) {
       this.demo = true
