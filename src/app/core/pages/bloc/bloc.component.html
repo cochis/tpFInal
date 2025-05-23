@@ -12,9 +12,9 @@
                 <div class="row">
 
                     <div class="col-lg-8 col-12 mx-auto">
-                        <h1 class="text-white text-center">Bloc</h1>
+                        <h1 class="text-white text-center">Blog</h1>
 
-                        <h2 class="text-center">Brindamos informaciòn util </h2>
+                        <h2 class="text-center" style="color: #13547a; font-size: 18px;">Brindamos informaciòn util </h2>
 
 
                     </div>
@@ -28,7 +28,7 @@
         <section class="explore-section section-padding" id="section_2">
             <div class="container">
 
-                <div class="col-12 text-center">
+                <div class="col-12" style="text-align: justify;">
                     <p class="mb-4">Un blog informativo es una página web que se actualiza regularmente y proporciona
                         información sobre un tema específico, como un diario online o un medio de comunicación para
                         compartir conocimientos y experiencias. Estos blogs se utilizan para expresar ideas, informar a
@@ -89,12 +89,13 @@
                             <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4 mb-lg-0  ma text-center"
                                 style="margin-top: 25px;" *ngIf="pt.categoria=='1'">
                                 <div class="card">
-                                    <img [src]="url+'/upload/posts/'+pt.img" class="card-img-top ma" alt="..."
-                                        style="max-width: 150px;">
+                                    <img [src]="url+'/upload/posts/'+pt.img" class="card-img-top ma imgBlog" [alt]="pt.titulo">
                                     <div class="card-body">
-                                        <h5 class="card-title">{{pt.titulo}}</h5>
+                                        <b class="upper" style="font-size: 11px; font-weight: bolder; color: #717275;"> {{pt.dateCreated | date:"fullDate"}}</b>
 
-                                        <a [routerLink]="'/core/post/'+pt.uid" class="btn but">Más información</a>
+                                        <h2 class="card-title text-justify" style="    font-size: 17px; color: #13547a;">{{pt.titulo}}</h2>
+
+                                        <a [routerLink]="'/core/post/'+pt.uid" class="btn but2">Más información</a>
                                     </div>
                                 </div>
                             </div>
@@ -104,19 +105,19 @@
 
 
                 </div>
-                <div class="tab-pane fade " id="tab-2-pane" role="tabpanel" aria-labelledby="tab-2"
-                    tabindex="2">
+                <div class="tab-pane fade " id="tab-2-pane" role="tabpanel" aria-labelledby="tab-2" tabindex="2">
                     <div class="row">
                         <ng-container *ngFor="let pt of posts">
-                            <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4 mb-lg-0  ma text-center"
+                           <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4 mb-lg-0  ma text-center"
                                 style="margin-top: 25px;" *ngIf="pt.categoria=='2'">
                                 <div class="card">
-                                    <img [src]="url+'/upload/posts/'+pt.img" class="card-img-top ma" alt="..."
-                                        style="max-width: 150px;">
+                                    <img [src]="url+'/upload/posts/'+pt.img" class="card-img-top ma imgBlog" [alt]="pt.titulo">
                                     <div class="card-body">
-                                        <h5 class="card-title">{{pt.titulo}}</h5>
+                                        <b class="upper" style="font-size: 11px; font-weight: bolder; color: #717275;"> {{pt.dateCreated | date:"fullDate"}}</b>
 
-                                        <a href="#" class="btn but">Más información</a>
+                                        <h2 class="card-title text-justify" style="    font-size: 17px; color: #13547a;">{{pt.titulo}}</h2>
+
+                                        <a [routerLink]="'/core/post/'+pt.uid" class="btn but2">Más información</a>
                                     </div>
                                 </div>
                             </div>
@@ -126,19 +127,19 @@
 
 
                 </div>
-                <div class="tab-pane fade " id="tab-3-pane" role="tabpanel" aria-labelledby="tab-3"
-                    tabindex="3">
+                <div class="tab-pane fade " id="tab-3-pane" role="tabpanel" aria-labelledby="tab-3" tabindex="3">
                     <div class="row">
                         <ng-container *ngFor="let pt of posts">
                             <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4 mb-lg-0  ma text-center"
                                 style="margin-top: 25px;" *ngIf="pt.categoria=='3'">
                                 <div class="card">
-                                    <img [src]="url+'/upload/posts/'+pt.img" class="card-img-top ma" alt="..."
-                                        style="max-width: 150px;">
+                                    <img [src]="url+'/upload/posts/'+pt.img" class="card-img-top ma imgBlog" [alt]="pt.titulo">
                                     <div class="card-body">
-                                        <h5 class="card-title">{{pt.titulo}}</h5>
+                                        <b class="upper" style="font-size: 11px; font-weight: bolder; color: #717275;"> {{pt.dateCreated | date:"fullDate"}}</b>
 
-                                        <a href="#" class="btn but">Más información</a>
+                                        <h2 class="card-title text-justify" style="    font-size: 17px; color: #13547a;">{{pt.titulo}}</h2>
+
+                                        <a [routerLink]="'/core/post/'+pt.uid" class="btn but2">Más información</a>
                                     </div>
                                 </div>
                             </div>
@@ -148,19 +149,19 @@
 
 
                 </div>
-                <div class="tab-pane fade tab-2" id="tab-4-pane" role="tabpanel" aria-labelledby="tab-4"
-                    tabindex="4">
+                <div class="tab-pane fade tab-2" id="tab-4-pane" role="tabpanel" aria-labelledby="tab-4" tabindex="4">
                     <div class="row">
                         <ng-container *ngFor="let pt of posts">
-                            <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4 mb-lg-0  ma text-center"
+                             <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4 mb-lg-0  ma text-center"
                                 style="margin-top: 25px;" *ngIf="pt.categoria=='4'">
                                 <div class="card">
-                                    <img [src]="url+'/upload/posts/'+pt.img" class="card-img-top ma" alt="..."
-                                        style="max-width: 150px;">
+                                    <img [src]="url+'/upload/posts/'+pt.img" class="card-img-top ma imgBlog" [alt]="pt.titulo">
                                     <div class="card-body">
-                                        <h5 class="card-title">{{pt.titulo}}</h5>
+                                        <b class="upper" style="font-size: 11px; font-weight: bolder; color: #717275;"> {{pt.dateCreated | date:"fullDate"}}</b>
 
-                                        <a href="#" class="btn but">Más información</a>
+                                        <h2 class="card-title text-justify" style="    font-size: 17px; color: #13547a;">{{pt.titulo}}</h2>
+
+                                        <a [routerLink]="'/core/post/'+pt.uid" class="btn but2">Más información</a>
                                     </div>
                                 </div>
                             </div>
@@ -170,19 +171,19 @@
 
 
                 </div>
-                <div class="tab-pane fade " id="tab-5-pane" role="tabpanel" aria-labelledby="tab-5"
-                    tabindex="5">
+                <div class="tab-pane fade " id="tab-5-pane" role="tabpanel" aria-labelledby="tab-5" tabindex="5">
                     <div class="row">
                         <ng-container *ngFor="let pt of posts">
-                            <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4 mb-lg-0  ma text-center"
+                             <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4 mb-lg-0  ma text-center"
                                 style="margin-top: 25px;" *ngIf="pt.categoria=='5'">
                                 <div class="card">
-                                    <img [src]="url+'/upload/posts/'+pt.img" class="card-img-top ma" alt="..."
-                                        style="max-width: 150px;">
+                                    <img [src]="url+'/upload/posts/'+pt.img" class="card-img-top ma imgBlog" [alt]="pt.titulo">
                                     <div class="card-body">
-                                        <h5 class="card-title">{{pt.titulo}}</h5>
+                                        <b class="upper" style="font-size: 11px; font-weight: bolder; color: #717275;"> {{pt.dateCreated | date:"fullDate"}}</b>
 
-                                        <a href="#" class="btn but">Más información</a>
+                                        <h2 class="card-title text-justify" style="    font-size: 17px; color: #13547a;">{{pt.titulo}}</h2>
+
+                                        <a [routerLink]="'/core/post/'+pt.uid" class="btn but2">Más información</a>
                                     </div>
                                 </div>
                             </div>
@@ -198,7 +199,7 @@
         </section>
 
 
-        
+
 
 
 
