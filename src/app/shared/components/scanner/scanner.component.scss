@@ -3,7 +3,7 @@
         position: relative;
 
         zxing-scanner {
-            max-width: 50%;
+            max-width: 100%;
         }
 
         .qr-area {
@@ -16,9 +16,10 @@
             width: 100%;
 
             .area {
+                margin-top:150px;
                 height: 200px;
                 width: 200px;
-                border: 2px solid red;
+                border: 5px solid #80d0c7;
             }
         }
     }
