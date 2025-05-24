@@ -47,6 +47,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { SharedComponent } from './shared.component';
+import { ChatbotComponent } from './components/chatbot/chatbot.component';
 
 
 
@@ -88,6 +89,7 @@ import { SharedComponent } from './shared.component';
     ViewFancyComponent,
     SelectTranslateComponent,
     SharedComponent,
+    ChatbotComponent,
 
 
   ],
@@ -114,7 +116,8 @@ import { SharedComponent } from './shared.component';
     ViewTemplateFileComponent,
     ViewFancyComponent,
     ClockComponent,
-    SharedComponent
+    SharedComponent,
+    ChatbotComponent
 
   ],
   providers: [provideHttpClient(withInterceptorsFromDi())],

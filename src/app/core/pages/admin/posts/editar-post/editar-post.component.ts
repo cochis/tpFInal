@@ -27,7 +27,7 @@ export class EditarPostComponent implements OnDestroy {
   msnOk: boolean = false
   id!: string
   edit!: string
-  categorias=environment.categoriasPost
+  categorias = environment.categoriasPost
   url = environment.base_url
   contenido: Editor
   toolbar: Toolbar = [
@@ -110,14 +110,14 @@ export class EditarPostComponent implements OnDestroy {
       dateCreated: [post.dateCreated],
       lastEdited: [this.today],
     })
-    
-    console.log(" this.form: ",  this.form);
+
+
   }
-  
+
   onSubmit() {
     this.loading = true
     this.submited = true
-  
+
     if (this.form.valid) {
 
       this.post = {
@@ -174,7 +174,7 @@ export class EditarPostComponent implements OnDestroy {
       .actualizarFoto(this.imagenSubir, 'posts', this.post.uid)
       .then(
         (img) => {
-          console.log('img::: ', img);
+
           this.post.img = img
 
           //message

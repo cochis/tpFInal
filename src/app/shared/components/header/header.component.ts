@@ -22,8 +22,8 @@ export class HeaderComponent {
       window.location.reload();
     }
   }
- 
- 
+
+
   ADM = environment.admin_role
   SLN = environment.salon_role
   URS = environment.user_role
@@ -50,7 +50,7 @@ export class HeaderComponent {
     private authService: AuthService,
 
   ) {
- 
+
 
     if (this.URLBASE.includes('cochisweb')) {
       this.demo = true
@@ -99,7 +99,11 @@ export class HeaderComponent {
     })
   }
   logout() {
-    this.functionsService.clearLocal()
+    this.functionsService.removeItemLocal('email')
+    this.functionsService.removeItemLocal('proveedor')
+    this.functionsService.removeItemLocal('token')
+    this.functionsService.removeItemLocal('uid')
+    this.functionsService.removeItemLocal('role')
     this.rol = this.functionsService.getLocal('role')
 
     if (!this.rol) {

@@ -1,6 +1,7 @@
 @import url("fonts.css");
 
 :root {
+     color-scheme: only light;
     --cPrimary: #13547a;
     --cSecond: #80d0c7;
     --cWhite: #ffffff;
@@ -598,7 +599,7 @@ input[type="file"] {
         display: none;
     }
 
-    .descripcionProdructo {
+    .descripcionProdructo , .tc{
 
         text-align: center;
     }
@@ -1186,4 +1187,30 @@ a {
     margin: 5px 0;
     padding: 10px;
     border-radius: 5px;
+}
+
+.pChat{
+    font-size: 15px;
+}
+.pChat strong{
+    color:#22547b
+}
+.pH{
+    font-size: 20px ;
+    color:#13547a;
+}
+.aChat{
+    cursor: pointer;
+    text-decoration: none;
+    color:#13547a;
+    font-weight: bolder;
+}
+
+.lstNone{
+ list-style: none !important; 
+}
+.iconChat{
+    color: #80d0c7;
+    font-size: 25px;
+    font-weight: bolder;
 }

@@ -1,0 +1,112 @@
+<button class="btn btn-primary chatbot-float-btn but" (click)="isOpen()">
+    <i class="bi bi-chat-square-fill" style="color:#80d0c7"></i>
+</button>
+
+<div id="chatbotModal" class="modal show d-block" tabindex="-1" role="dialog"
+    [ngClass]="{ 'chatbot-fullscreen': isMobile, 'chatbot-modal': !isMobile }" *ngIf="open">
+    <div class="modal-dialog modal-dialog-scrollable h-100">
+        <div class="modal-content h-100">
+            <div class="modal-header">
+                <h5 class="modal-title ma" style="color:#13547a;"><i class="bi bi-chat-square-fill"
+                        style="color:#80d0c7"></i> Chatbot</h5>
+
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="form" (ngSubmit)="onSubmit()" *ngIf="!user && !lead">
+                    <div class="row">
+                        <div class="col-12  mt-3">
+                            <div class="form-group">
+                                <label for="nombre">Nombre</label>
+                                <input type="text" class="form-control upper" id="nombre" formControlName="nombre"
+                                    required placeholder="Nombre">
+                            </div>
+                            <span *ngIf="submited && errorControl['nombre'].errors " class="error">Es requerido
+                            </span>
+                        </div>
+                        <div class="col-12  mt-3">
+
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control upper" id="email" formControlName="email"
+                                    placeholder="Email">
+                            </div>
+                            <span *ngIf="submited && errorControl['email'].errors " class="error">Es requerido
+                            </span>
+                        </div>
+                        <div class="col-12  mt-3">
+
+                            <div class="form-group">
+                                <label for="telefono">Teléfono</label>
+                                <input type="telefono" class="form-control upper" id="telefono"
+                                    formControlName="telefono" placeholder="Teléfono">
+                            </div>
+                            <span *ngIf="submited && errorControl['telefono'].errors " class="error">Es requerido
+                            </span>
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="row mt-5 text-center">
+
+                        <div class="col-12 col-md-6  mt-3 text-center  ma">
+                            <button type="submit" class="btn btn-lg btn-block but  ">Seguir</button>
+
+                        </div>
+
+                    </div>
+                </form>
+
+                <div class="chat-box    " *ngIf="user || lead">
+                    <div class="bot-text" *ngIf="user"><b *ngIf="user">{{user.nombre}}</b> {{ currentNode.text }} </div>
+                    <div class="bot-text" *ngIf="lead"><b *ngIf="lead">{{lead.nombre}}</b> {{ currentNode.text }} </div>
+                    <div class="text-center">
+
+                        <a class="btn but2 tc" [href]="currentNode.link" target="_blank"
+                            *ngIf="currentNode.link && currentNode.link!='' && currentNode.type =='link'">
+                            <i [class]="currentNode.icon" style="color:#13547a;"></i> {{currentNode.linkText}}</a>
+                        <a class="btn but2 tc" [href]="'mailto:'+currentNode.link"
+                            *ngIf="currentNode.link && currentNode.link!=''&& currentNode.type =='email'  ">
+                            <i [class]="currentNode.icon" style="color:#13547a"></i> {{currentNode.linkText}}</a>
+                        <a class="btn but2 tc" [href]="'tel:'+currentNode.link" target="_blank"
+                            *ngIf="currentNode.link && currentNode.link!=''&& currentNode.type =='phone'  ">
+                            <i [class]="currentNode.icon" style="color:#13547a"></i> {{currentNode.linkText}}</a>
+                        <a class="btn but2 tc" [href]="currentNode.link"
+                            *ngIf="currentNode.link && currentNode.link!=''&& currentNode.type =='web'  ">
+                            <i [class]="currentNode.icon" style="color:#13547a"></i> {{currentNode.linkText}}</a>
+                    </div>
+
+                    <div *ngIf="currentNode.info" class="mt-5 mb-5 text-justify">
+
+                        <div class="text-justify" style="font-size: 5px !important;"
+                            [innerHTML]="funtionsSrvice.convertDesComplete(currentNode.info)">
+                        </div>
+
+
+                    </div>
+                    <div *ngIf="currentNode.costo" class="mt-5 mb-5 text-center"
+                        style="font-size: 20px; color:var(--primary-color)">
+
+                        <b>{{currentNode.costo | currency:'MXN'}}</b>
+
+                    </div>
+
+
+                    <div class="options">
+                        <button class="btn but" *ngFor="let option of currentNode.options" (click)="goTo(option.next)">
+                            {{ option.label }}
+                        </button>
+                        <br>
+                    </div>
+                    <ng-container *ngIf="currentNode.next!=='start'">
+
+                        <button class="btn but2 ma" (click)="isOpen( )" style="width: 100%;">
+                            Salir
+                        </button>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

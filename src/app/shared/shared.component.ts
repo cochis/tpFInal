@@ -43,7 +43,9 @@ export class SharedComponent {
 
   ) {
 
+    const element = document.getElementById(`appchatbot`);
 
+    element.classList.add('dpN');
     this.loading = true
     this.route.queryParams.subscribe(params => {
 

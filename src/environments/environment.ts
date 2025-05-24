@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   user_ID: '64ff4f79da409a7d91056a5b',
   secret: '1f2d1e2e67df',
-  version: "1.1.5.5",
+  version: "1.1.6.3",
   publicKey: "BJqZ8KY_kguwLf27SsteILLRHlWY2pJOvrKlyZNeFlEg4O15ut0t7oYMgXHcLPSh2WYCRPwTS3WEPnhXCMZO4Wg",
   privateKey: "v04F9j6-aAZRvYl25BtZu1cezaWT-m4P0sHtE0JbE7g",
   stripeKeyD: 'pk_test_51PipskAbE4XYrXNxNi1oiwylWr7B9mNMfUfQ070Cy09dDPj5HBFYObSajMGjNzlAynX23dT8thcx8sdJxpnP7Vov00wzIocDLR',
@@ -230,6 +230,7 @@ export const environment = {
     },
   ],
   apiKey_mapBox: 'pk.eyJ1IjoiY29jaGlzIiwiYSI6ImNsb2c0M3NxNDByazEya3Jydmc2amtrNTcifQ.j0MCmbfTjEUQMtby7r42Cw',
+  openai: "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",
   cPrimary: '#13547a',
   cSecond: '#80d0c7',
   icons: [

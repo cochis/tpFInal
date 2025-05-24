@@ -27,7 +27,7 @@ export class SinglePostComponent {
     private functionsService: FunctionsService,
   ) {
     this.id = this.route.snapshot.params['id']
-    console.log("     this.id: ", this.id);
+
     this.getId(this.id)
   }
 
@@ -37,7 +37,7 @@ export class SinglePostComponent {
     this.loading = true
     this.postService.cargarPostById(id).subscribe((resp: CargarPost) => {
       this.post = resp.post
-      console.log(" this.post : ", this.post);
+
       this.loading = false
     }, (error) => {
       this.loading = false
@@ -46,7 +46,7 @@ export class SinglePostComponent {
     })
   }
   convertDes(des: string) {
-    return this.sanitizer.bypassSecurityTrustHtml(des);
- 
+    return this.functionsService.convertDesComplete(des)
+
   }
 }

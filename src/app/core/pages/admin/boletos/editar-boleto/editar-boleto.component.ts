@@ -110,7 +110,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
 
       this.boletosService.cargarBoletoByFiesta(this.id).subscribe((resp: CargarBoleto) => {
         this.boletoTemp = this.functionsService.getActives(resp.boleto)
-        console.log("  this.boletoTemp: ", this.boletoTemp);
+
 
         //this.exportToExcel(this.boletoTemp)
         this.boletoTemp.forEach(blt => {
@@ -998,7 +998,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
       })
     });
   }
-  exportToExcel( ): void {
+  exportToExcel(): void {
     // 1. Convertir JSON a hoja de cálculo
     const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.boletoTemp);
 

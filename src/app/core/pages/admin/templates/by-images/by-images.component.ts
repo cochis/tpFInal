@@ -60,6 +60,9 @@ export class ByImagesComponent {
     private fiestasService: FiestasService,
     private tokenPushService: TokenPushsService
   ) {
+    const element = document.getElementById(`appchatbot`);
+    element.classList.add('dpN');
+
     this.init()
     this.restParty()
   }

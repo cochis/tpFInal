@@ -108,6 +108,8 @@ export class ByFileComponent {
     private pushsService: PushsService,
     private title: Title,
   ) {
+    const element = document.getElementById(`appchatbot`);
+    element.classList.add('dpN');
 
     this.loading = true
     this.fiestaId = this.route.snapshot.params['fiesta']

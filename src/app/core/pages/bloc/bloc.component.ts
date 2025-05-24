@@ -3,6 +3,7 @@ import { PostsService } from '../../services/post.service';
 import { Post } from '../../models/post.model';
 import { CargarPosts } from '../../interfaces/cargar-interfaces.interfaces';
 import { environment } from 'src/environments/environment';
+import { FunctionsService } from 'src/app/shared/services/functions.service';
 
 @Component({
   selector: 'app-bloc',
@@ -11,7 +12,7 @@ import { environment } from 'src/environments/environment';
 })
 export class BlocComponent {
   posts: Post[]
-  url = environment.base_url  
+  url = environment.base_url
   catePosts = [
     { categoria: '1', post: [] },
     { categoria: '2', post: [] },
@@ -20,11 +21,12 @@ export class BlocComponent {
     { categoria: '5', post: [] },
   ]
   constructor(
-    private postService: PostsService
+    private postService: PostsService,
+    private functionsService: FunctionsService
   ) {
     this.postService.cargarPostsAll().subscribe((resp: CargarPosts) => {
-      console.log("resp: ", resp);
-      this.posts = resp.posts
+
+      this.posts = this.functionsService.getActives(resp.posts)
 
       this.posts.forEach(p => {
         this.catePosts.forEach((cp, i) => {
@@ -34,7 +36,7 @@ export class BlocComponent {
         });
 
       });
-      console.log(" catePosts: ", this.catePosts);
+
 
     })
   }

@@ -20,7 +20,7 @@ export class CrearPostComponent implements OnDestroy {
   public form!: FormGroup
   today: Number = this.functionsService.getToday()
   submited = false
-  categorias=environment.categoriasPost
+  categorias = environment.categoriasPost
   cargando: boolean = false
   msnOk: boolean = false
   contenido: Editor
@@ -57,7 +57,7 @@ export class CrearPostComponent implements OnDestroy {
 
 
   createForm() {
-    console.log('this.uid::: ', this.uid);
+
 
     this.form = this.fb.group({
       titulo: ['',],
@@ -82,7 +82,7 @@ export class CrearPostComponent implements OnDestroy {
       this.postsService.crearPost(this.form.value).subscribe((resp: any) => {
 
         this.functionsService.alert('Post', 'Post creado', 'success')
-        this.functionsService.navigateTo('core/posts/editar-post/true/'+resp.post.uid)
+        this.functionsService.navigateTo('core/posts/editar-post/true/' + resp.post.uid)
         this.loading = false
       },
         (error) => {

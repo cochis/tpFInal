@@ -24,7 +24,12 @@ export class VerificationComponent {
 
     this.authService.verificationEmail(this.email).subscribe((resp: any) => {
       setTimeout(() => {
-        this.functionsService.clearLocal()
+        this.functionsService.removeItemLocal('email')
+        this.functionsService.removeItemLocal('proveedor')
+        this.functionsService.removeItemLocal('token')
+        this.functionsService.removeItemLocal('uid')
+        this.functionsService.removeItemLocal('role')
+
         this.functionsService.navigateTo('auth/login')
       }, 1500);
     })

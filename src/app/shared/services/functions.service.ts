@@ -63,6 +63,11 @@ export class FunctionsService {
       return ''
     }
   }
+
+  convertDesComplete(des: string) {
+    return this.sanitizer.bypassSecurityTrustHtml(des);
+
+  }
   back() {
     this.location.back();
   }

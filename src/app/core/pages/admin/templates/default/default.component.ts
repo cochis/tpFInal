@@ -122,8 +122,8 @@ export class DefaultComponent implements OnInit, AfterViewInit {
     private metaService: MetaService,
     private title: Title,
   ) {
-
-
+    const element = document.getElementById(`appchatbot`);
+    element.classList.add('dpN');
 
 
 

@@ -37,7 +37,11 @@
                     </ul>
                 </li>
 
-
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/core/blog">
+                        {{'menu.blog'| translate}}
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/core/about">
                         {{'menu.nosotros'| translate}}
@@ -152,7 +156,7 @@
 
                     </ul>
                 </li>
-                 <li class="nav-item" *ngIf="rol.includes(ADM)">
+                <li class="nav-item">
                     <a class="nav-link" routerLink="/core/blog">
                         {{'menu.blog'| translate}}
                     </a>
@@ -182,7 +186,7 @@
                 </li>
 
 
-               
+
                 <li class="nav-item dropdown"
                     *ngIf="rol.includes(ADM) ||   rol.includes(SLN) ||   rol.includes(ANF) ||   rol.includes(PRV)">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
