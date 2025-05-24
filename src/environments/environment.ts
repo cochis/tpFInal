@@ -230,7 +230,7 @@ export const environment = {
     },
   ],
   apiKey_mapBox: 'pk.eyJ1IjoiY29jaGlzIiwiYSI6ImNsb2c0M3NxNDByazEya3Jydmc2amtrNTcifQ.j0MCmbfTjEUQMtby7r42Cw',
-  openai: "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",
+
   cPrimary: '#13547a',
   cSecond: '#80d0c7',
   icons: [
