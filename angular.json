@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/client",
+            "outputPath": "dist/tp/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -101,6 +101,60 @@
             ],
             "scripts": []
           }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/tp/server",
+            "main": "server.ts",
+            "tsConfig": "tsconfig.server.json"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "sourceMap": true,
+              "extractLicenses": false,
+              "vendorChunk": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "configurations": {
+            "development": {
+              "browserTarget": "tp:build:development",
+              "serverTarget": "tp:server:development"
+            },
+            "production": {
+              "browserTarget": "tp:build:production",
+              "serverTarget": "tp:server:production"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "tp:build:production",
+              "serverTarget": "tp:server:production"
+            },
+            "development": {
+              "browserTarget": "tp:build:development",
+              "serverTarget": "tp:server:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }

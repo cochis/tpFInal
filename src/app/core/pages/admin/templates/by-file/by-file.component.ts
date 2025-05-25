@@ -109,7 +109,9 @@ export class ByFileComponent {
     private title: Title,
   ) {
     const element = document.getElementById(`appchatbot`);
+    const element2 = document.getElementById(`appsocialshared`);
     element.classList.add('dpN');
+    element2.classList.add('dpN');
 
     this.loading = true
     this.fiestaId = this.route.snapshot.params['fiesta']

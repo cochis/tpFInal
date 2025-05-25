@@ -1,5 +1,5 @@
-import { AfterViewInit, Component } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
 import { UsuariosService } from '../../services/usuarios.service';
 import { FunctionsService } from 'src/app/shared/services/functions.service';
@@ -17,7 +17,7 @@ import { TraductorService } from '../../services/traductor.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements AfterViewInit {
+export class HomeComponent implements OnInit, AfterViewInit {
   scannerActive = false
   today: Number = this.functionsService.getToday()
   ADM = environment.admin_role
@@ -40,32 +40,49 @@ export class HomeComponent implements AfterViewInit {
     private metaService: MetaService,
     private itemsService: ItemsService,
     private title: Title,
-    private traductor: TraductorService
+    private traductor: TraductorService,
+    private meta: Meta, private titleService: Title
 
   ) {
-
     let t: string = 'My Ticket Party | Invitaciones Digitales y Logística De Eventos';
-    this.title.setTitle(t);
 
-    this.metaService.generateTags({
-      title: 'My Ticket Party | Invitaciones Digitales y Logística De Eventos',
-
-      slug: 'core/inicio',
-      colorBar: '#13547a',
-      image:
-        window.location.origin + '/assets/images/qr.svg',
-    });
     this.role = this.functionsService.getLocal('role')
     this.uid = this.functionsService.getLocal('uid')
-    /* this.functionsService.getIp().subscribe(resp => {
+    /*   this.functionsService.getIp().subscribe(resp => {
+        console.log('resp::: ', resp);
+     })
+   */
+    /*  this.title.setTitle(t);
+     this.metaService.generateTags({
+       author: 'My Ticket Padsdsdsrty ',
+       title: 'My Ticket Party | Invitaciones Digitales y Logística De Eventos',
+       slug: 'core/inicio',
+       colorBar: '#13547a',
+       image:
+         window.location.origin + '/assets/images/qr.svg',
+     });
+  */
 
 
+  }
+  ngOnInit(): void {
+    const titulo = 'Invitaciones Digitales y Logistica de eventos- MyTicketParty';
+    const descripcion = 'Crea y personaliza invitaciones digitales para tus eventos con MyTicketParty. Gestiona boletos, asigna mesas y comparte tu celebración fácilmente.';
 
-    }) */
+    this.titleService.setTitle(titulo);
 
-
-
-
+    this.meta.addTags([
+      { name: 'author', content: 'MyTicketParty' },
+      { name: 'description', content: descripcion },
+      { property: 'og:title', content: titulo },
+      { property: 'og:description', content: descripcion },
+      { property: 'og:image', content: 'http://localhost:4200/assets/images/qr.svg' },
+      { property: 'og:url', content: 'https://www.myticketparty.com/core/inicio' },
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:title', content: titulo },
+      { name: 'twitter:description', content: descripcion },
+      { name: 'twitter:image', content: 'http://localhost:4200/assets/images/qr.svg' }
+    ]);
   }
   ngAfterViewInit() {
     this.getUser(this.role)

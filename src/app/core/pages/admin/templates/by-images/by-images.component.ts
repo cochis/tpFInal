@@ -61,7 +61,9 @@ export class ByImagesComponent {
     private tokenPushService: TokenPushsService
   ) {
     const element = document.getElementById(`appchatbot`);
+    const element2 = document.getElementById(`appsocialshared`);
     element.classList.add('dpN');
+    element2.classList.add('dpN');
 
     this.init()
     this.restParty()

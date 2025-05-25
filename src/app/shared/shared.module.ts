@@ -48,6 +48,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { SharedComponent } from './shared.component';
 import { ChatbotComponent } from './components/chatbot/chatbot.component';
+import { SocialSharedComponent } from './components/social-shared/social-shared.component';
 
 
 
@@ -90,6 +91,7 @@ import { ChatbotComponent } from './components/chatbot/chatbot.component';
     SelectTranslateComponent,
     SharedComponent,
     ChatbotComponent,
+    SocialSharedComponent,
 
 
   ],
@@ -117,7 +119,8 @@ import { ChatbotComponent } from './components/chatbot/chatbot.component';
     ViewFancyComponent,
     ClockComponent,
     SharedComponent,
-    ChatbotComponent
+    ChatbotComponent,
+    SocialSharedComponent
 
   ],
   providers: [provideHttpClient(withInterceptorsFromDi())],

@@ -133,8 +133,9 @@ export class NewStyleComponent implements OnInit {
     private fondosService: FondosService
   ) {
     const element = document.getElementById(`appchatbot`);
+    const element2 = document.getElementById(`appsocialshared`);
     element.classList.add('dpN');
-
+    element2.classList.add('dpN');
     this.loading = true
     this.fondosService.cargarFondosAll().subscribe(resp => {
       this.bgsframes = this.functionsService.getActives(resp.fondos)

@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, ElementRef, HostListener } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { CHAT_FLOW } from 'src/assets/data/chat-flow';
@@ -30,6 +30,7 @@ export class ChatbotComponent {
     private funtionsSrvice: FunctionsService,
     private usuarioService: UsuariosService,
     private route: ActivatedRoute,
+    private eRef: ElementRef,
   ) {
 
 
@@ -56,7 +57,12 @@ export class ChatbotComponent {
     }
     this.checkViewport();
   }
-
+  @HostListener('document:click', ['$event'])
+  handleClickOutside(event: Event) {
+    if (this.isOpen && !this.eRef.nativeElement.contains(event.target)) {
+      this.open = false;
+    }
+  }
   onResize() {
     this.checkViewport();
   }

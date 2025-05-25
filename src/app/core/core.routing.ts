@@ -147,8 +147,8 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: MarketComponent,
-        data: { titulo: 'Market' }
+        component: HomeComponent,
+        data: { titulo: 'Home' }
 
       },
       {

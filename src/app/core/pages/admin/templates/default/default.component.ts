@@ -123,7 +123,9 @@ export class DefaultComponent implements OnInit, AfterViewInit {
     private title: Title,
   ) {
     const element = document.getElementById(`appchatbot`);
+    const element2 = document.getElementById(`appsocialshared`);
     element.classList.add('dpN');
+    element2.classList.add('dpN');
 
 
 
