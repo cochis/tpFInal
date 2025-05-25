@@ -1,6 +1,6 @@
 
 import { Component, Inject, OnInit, LOCALE_ID } from '@angular/core';
-import { SafeUrl, Title } from '@angular/platform-browser';
+import { Meta, SafeUrl, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { SwPush } from '@angular/service-worker';
 import { ModalService } from '@developer-partners/ngx-modal-dialog';
@@ -130,7 +130,9 @@ export class NewStyleComponent implements OnInit {
     private readonly _modalService: ModalService,
     private metaService: MetaService,
     private title: Title,
-    private fondosService: FondosService
+    private fondosService: FondosService,
+    private meta: Meta,
+    private titleService: Title
   ) {
     const element = document.getElementById(`appchatbot`);
     const element2 = document.getElementById(`appsocialshared`);
@@ -186,24 +188,24 @@ export class NewStyleComponent implements OnInit {
 
 
 
-          setTimeout(() => {
-
-            let t: string = `My Ticket Party | ${this.fiesta.nombre}  -  ${this.functionsService.numberToDate(Number(this.fiesta.fecha))} - para ${this.boleto.grupo} `;
-            this.title.setTitle(t.toUpperCase());
-            let data = {
-              title: t.toUpperCase(),
-              description:
-                `${this.dataDondeCard.mensaje1} `,
-              keywords:
-                'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in',
-              slug: 'core/templates/default',
-              colorBar: '#13547a',
-              image: `${this.url}/upload/invitaciones/${this.invitacion.img1}`
-
-            }
-            this.metaService.generateTags(data)
-
-          }, 500);
+          /*     setTimeout(() => {
+    
+                let t: string = `My Ticket Party | ${this.fiesta.nombre}  -  ${this.functionsService.numberToDate(Number(this.fiesta.fecha))} - para ${this.boleto.grupo} `;
+                this.title.setTitle(t.toUpperCase());
+                let data = {
+                  title: t.toUpperCase(),
+                  description:
+                    `${this.dataDondeCard.mensaje1} `,
+                  keywords:
+                    'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in',
+                  slug: 'core/templates/default',
+                  colorBar: '#13547a',
+                  image: `${this.url}/upload/invitaciones/${this.invitacion.img1}`
+    
+                }
+                this.metaService.generateTags(data)
+    
+              }, 500); */
           this.restParty()
           this.invitacion = await this.dateToNumber(this.invitacion)
 
@@ -652,8 +654,40 @@ export class NewStyleComponent implements OnInit {
 
 
   ngOnInit() {
+    const titulo = `My Ticket Party | ${this.state.nombreFiesta}  -  ${this.functionsService.numberToDate(Number(this.state.fiestaDate))}  `;;
+    const descripcion = `${this.state.nombreFiesta} | MyTicketParty `
+    this.titleService.setTitle(titulo);
 
+    this.meta.addTags([
+      { name: 'author', content: 'MyTicketParty' },
+      { name: 'description', content: descripcion },
+      { name: 'keywords', content: 'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in' },
+      { property: 'og:title', content: titulo },
+      { property: 'og:description', content: descripcion },
+      { property: 'og:image', content: `${this.url}/upload/invitaciones/${this.state.byFileInvitacion}` },
+      { property: 'og:url', content: 'https://www.myticketparty.com/core/inicio' },
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:title', content: titulo },
+      { name: 'twitter:description', content: descripcion },
+      { name: 'twitter:image', content: `${this.url}/upload/invitaciones/${this.state.byFileInvitacion}` },
+      { name: 'slug', content: 'core/inicio' },
+      { name: 'colorBar', content: '#13547a' },
+    ]);
 
+    let t: string = `My Ticket Party | ${this.fiesta.nombre}  -  ${this.functionsService.numberToDate(Number(this.fiesta.fecha))} - para ${this.boleto.grupo} `;
+    this.title.setTitle(t.toUpperCase());
+    let data = {
+      title: t.toUpperCase(),
+      description:
+        `${this.dataDondeCard.mensaje1} `,
+      keywords:
+        'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in',
+      slug: 'core/templates/default',
+      colorBar: '#13547a',
+      image: `${this.url}/upload/invitaciones/${this.invitacion.img1}`
+
+    }
+    this.metaService.generateTags(data)
   }
 
   onScroll(event: any) {

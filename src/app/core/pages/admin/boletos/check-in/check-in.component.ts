@@ -1,6 +1,6 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Title } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 import { error } from 'jquery';
 import { CargarUsuario } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
 import { Boleto } from 'src/app/core/models/boleto.model';
@@ -18,7 +18,7 @@ import { map } from 'rxjs';
   templateUrl: './check-in.component.html',
   styleUrls: ['./check-in.component.scss']
 })
-export class CheckInComponent implements AfterViewInit {
+export class CheckInComponent implements OnInit, AfterViewInit {
   scannerActive = false
   loading = false
   ADM = environment.admin_role
@@ -48,23 +48,25 @@ export class CheckInComponent implements AfterViewInit {
     private fb: FormBuilder,
     private metaService: MetaService,
     private title: Title,
+    private meta: Meta,
+    private titleService: Title
   ) {
 
 
-    let t: string = 'My Ticket Party | Check In';
-    this.title.setTitle(t);
-    let data = {
-      title: 'Ticket Party |  Check In ',
-      description:
-        'El "check in" de eventos  permite a los organizadores y participantes gestionar la entrada a un evento de manera eficiente',
-      keywords:
-        'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in',
-      slug: 'core/check-in',
-      colorBar: '#13547a',
-      image:
-        window.location.origin + '/assets/images/qr.svg',
-    }
-    this.metaService.generateTags(data)
+    /*  let t: string = 'My Ticket Party | Check In';
+     this.title.setTitle(t);
+     let data = {
+       title: 'Ticket Party |  Check In ',
+       description:
+         'El "check in" de eventos  permite a los organizadores y participantes gestionar la entrada a un evento de manera eficiente',
+       keywords:
+         'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in',
+       slug: 'core/check-in',
+       colorBar: '#13547a',
+       image:
+         window.location.origin + '/assets/images/qr.svg',
+     }
+     this.metaService.generateTags(data) */
     this.formInit = this.fb.group({
       tipo: ['', [Validators.required]],
       fiesta: ['', [Validators.required]],
@@ -72,6 +74,28 @@ export class CheckInComponent implements AfterViewInit {
       mesa: ['', [Validators.required]],
       boleto: ['', [Validators.required]],
     })
+  }
+  ngOnInit(): void {
+    const titulo = 'My Ticket Party |  Check In ';
+    const descripcion = 'El "check in" de eventos  permite a los organizadores y participantes gestionar la entrada a un evento de manera eficiente';
+
+    this.titleService.setTitle(titulo);
+
+    this.meta.addTags([
+      { name: 'author', content: 'MyTicketParty' },
+      { name: 'description', content: descripcion },
+      { name: 'keywords', content: 'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in' },
+      { property: 'og:title', content: titulo },
+      { property: 'og:description', content: descripcion },
+      { property: 'og:image', content: 'https://www.myticketparty.com/assets/images/qr.svg' },
+      { property: 'og:url', content: 'https://www.myticketparty.com/core/check-in' },
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:title', content: titulo },
+      { name: 'twitter:description', content: descripcion },
+      { name: 'twitter:image', content: 'https://www.myticketparty.com/assets/images/qr.svg' },
+      { name: 'slug', content: 'core/check-in' },
+      { name: 'colorBar', content: '#13547a' },
+    ]);
   }
   ngAfterViewInit() {
     this.getUser(this.role)

@@ -15,7 +15,7 @@ import { PushsService } from 'src/app/core/services/push.service';
 import { ImgTemplate } from 'src/app/core/models/img.model';
 import { ModalService } from '@developer-partners/ngx-modal-dialog';
 import { ImagenComponent } from 'src/app/shared/components/modals/imagen/imagen.component';
-import { Title } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-default',
   templateUrl: './default.component.html',
@@ -121,6 +121,9 @@ export class DefaultComponent implements OnInit, AfterViewInit {
     private readonly _modalService: ModalService,
     private metaService: MetaService,
     private title: Title,
+    private meta: Meta,
+    private titleService: Title
+
   ) {
     const element = document.getElementById(`appchatbot`);
     const element2 = document.getElementById(`appsocialshared`);
@@ -169,24 +172,9 @@ export class DefaultComponent implements OnInit, AfterViewInit {
 
 
 
-          setTimeout(() => {
 
-            let t: string = `My Ticket Party | ${this.fiesta.nombre}  -  ${this.functionsService.numberToDate(Number(this.fiesta.fecha))} - para ${this.boleto.grupo} `;
-            this.title.setTitle(t.toUpperCase());
-            let data = {
-              title: t.toUpperCase(),
-              description:
-                `${this.dataDondeCard.mensaje1} `,
-              keywords:
-                'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in',
-              slug: 'core/templates/default',
-              colorBar: '#13547a',
-              image: `${this.url}/upload/invitaciones/${this.invitacion.img1}`
 
-            }
-            this.metaService.generateTags(data)
 
-          }, 500);
           this.restParty()
           this.invitacion = await this.dateToNumber(this.invitacion)
           this.invitacion.mesa = this.boleto.mesa
@@ -614,7 +602,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
 
     if (this.dataDondeCard) {
 
-      setTimeout(() => {
+      /* setTimeout(() => {
 
         let t: string = `My Ticket Party | ${this.dataDondeCard.nombreFiesta}  -  ${this.functionsService.numberToDate(Number(this.dataDondeCard.fiestaDate))}`;
         this.title.setTitle(t);
@@ -631,14 +619,13 @@ export class DefaultComponent implements OnInit, AfterViewInit {
         }
         this.metaService.generateTags(data)
 
-      }, 500);
+      }, 500); */
     }
 
 
 
 
   }
-
 
 
   onScroll(event: any) {
@@ -667,7 +654,43 @@ export class DefaultComponent implements OnInit, AfterViewInit {
     });
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+
+    let t: string = `My Ticket Party | ${this.fiesta.nombre}  -  ${this.functionsService.numberToDate(Number(this.fiesta.fecha))} - para ${this.boleto.grupo} `;
+    this.title.setTitle(t.toUpperCase());
+    let data = {
+      title: t.toUpperCase(),
+      description:
+        `${this.dataDondeCard.mensaje1} `,
+      keywords:
+        'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in',
+      slug: 'core/templates/default',
+      colorBar: '#13547a',
+      image: `${this.url}/upload/invitaciones/${this.invitacion.img1}`
+
+    }
+    this.metaService.generateTags(data)
+    const titulo = `My Ticket Party | ${this.state.nombreFiesta}  -  ${this.functionsService.numberToDate(Number(this.state.fiestaDate))}  `;;
+    const descripcion = `${this.state.nombreFiesta} | MyTicketParty `
+    this.titleService.setTitle(titulo);
+
+    this.meta.addTags([
+      { name: 'author', content: 'MyTicketParty' },
+      { name: 'description', content: descripcion },
+      { name: 'keywords', content: 'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in' },
+      { property: 'og:title', content: titulo },
+      { property: 'og:description', content: descripcion },
+      { property: 'og:image', content: `${this.url}/upload/invitaciones/${this.state.byFileInvitacion}` },
+      { property: 'og:url', content: 'https://www.myticketparty.com/core/inicio' },
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:title', content: titulo },
+      { name: 'twitter:description', content: descripcion },
+      { name: 'twitter:image', content: `${this.url}/upload/invitaciones/${this.state.byFileInvitacion}` },
+      { name: 'slug', content: 'core/inicio' },
+      { name: 'colorBar', content: '#13547a' },
+    ]);
+  }
+
   async dateToNumber(data) {
     data.dateCreated = (typeof (data.dateCreated) == 'string') ? this.functionsService.dateToNumber(data.dateCreated) : data.dateCreated
     data.lastEdited = (data.lastEdited != undefined) ? (typeof (data.lastEdited) == 'string') ? this.functionsService.dateToNumber(data.lastEdited) : data.lastEdited : ''

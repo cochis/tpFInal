@@ -6,7 +6,7 @@ import { ItemsService } from 'src/app/core/services/item.service';
 import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
-import { DomSanitizer, SafeHtml, Title } from '@angular/platform-browser';
+import { DomSanitizer, Meta, SafeHtml, Title } from '@angular/platform-browser';
 import { TipoMediasService } from 'src/app/core/services/tipoMedia.service';
 import { TipoMedia } from 'src/app/core/models/tipoMedia.model';
 import { CargarTipoMedias } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
@@ -64,7 +64,9 @@ export class SingleProductComponent {
     private sanitizer: DomSanitizer,
     private salonsService: SalonsService,
     private metaService: MetaService,
-    private title: Title
+    private title: Title,
+    private meta: Meta,
+    private titleService: Title
   ) {
     this.route.queryParams.subscribe(params => {
       this.id = params.id;
@@ -73,6 +75,29 @@ export class SingleProductComponent {
     });
   }
 
+
+  ngOnInit(): void {
+    const titulo = ` ${this.item.nombre} | My Ticket Party `
+    const descripcion = `Descripción del producto : ${this.functionsService.convertDesSinHtml(this.item.descripcion)}`
+
+    this.titleService.setTitle(titulo);
+
+    this.meta.addTags([
+      { name: 'author', content: 'MyTicketParty' },
+      { name: 'description', content: descripcion },
+      { name: 'keywords', content: 'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in' },
+      { property: 'og:title', content: titulo },
+      { property: 'og:description', content: descripcion },
+      { property: 'og:image', content: this.url + '/upload/items/' + this.getImgPrincipal() },
+      { property: 'og:url', content: 'https://www.myticketparty.com/core/inicio' },
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:title', content: titulo },
+      { name: 'twitter:description', content: descripcion },
+      { name: 'twitter:image', content: this.url + '/upload/items/' + this.getImgPrincipal() },
+      { name: 'slug', content: 'core/inicio' },
+      { name: 'colorBar', content: '#13547a' },
+    ]);
+  }
   getCatalogos() {
     this.tipoMediasService.cargarTipoMediasAll().subscribe(
       (resp: CargarTipoMedias) => {
@@ -162,18 +187,18 @@ export class SingleProductComponent {
     this.itemsService.cargarItemById(id).subscribe((res: any) => {
       this.item = res.item;
 
-      const t: string = `My Ticket Party | ${this.item.nombre}`;
-      this.title.setTitle(t);
-
-      this.metaService.generateTags({
-        title: `My Ticket Party| ${this.item.nombre}`,
-        description: `Descripción del producto : ${this.functionsService.convertDesSinHtml(this.item.descripcion)}`,
-        keywords: 'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in',
-        slug: 'core/faqs',
-        colorBar: '#13547a',
-        image: this.url + '/upload/items/' + this.getImgPrincipal(),
-      });
-
+      /*  const t: string = `My Ticket Party | ${this.item.nombre}`;
+       this.title.setTitle(t);
+ 
+       this.metaService.generateTags({
+         title: `My Ticket Party| ${this.item.nombre}`,
+         description: `Descripción del producto : ${this.functionsService.convertDesSinHtml(this.item.descripcion)}`,
+         keywords: 'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in',
+         slug: 'core/faqs',
+         colorBar: '#13547a',
+         image: this.url + '/upload/items/' + this.getImgPrincipal(),
+       });
+  */
       if (this.item.proveedor.ubicaciones?.length > 0) {
         this.getUbicacion(this.item.proveedor.ubicaciones[0]);
       }

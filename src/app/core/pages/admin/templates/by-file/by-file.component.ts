@@ -13,13 +13,13 @@ import Swal from 'sweetalert2';
 import { MetaService } from 'src/app/core/services/meta.service';
 import { PushsService } from 'src/app/core/services/push.service';
 import { Push } from 'src/app/core/models/push.model';
-import { Title } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-by-file',
   templateUrl: './by-file.component.html',
   styleUrls: ['./by-file.component.scss']
 })
-export class ByFileComponent {
+export class ByFileComponent implements OnInit {
   tUrl = environment.text_url
   respuesta: any
   readonly VAPID_PUBLIC_KEY = environment.publicKey
@@ -107,6 +107,8 @@ export class ByFileComponent {
     private metaService: MetaService,
     private pushsService: PushsService,
     private title: Title,
+    private meta: Meta,
+    private titleService: Title
   ) {
     const element = document.getElementById(`appchatbot`);
     const element2 = document.getElementById(`appsocialshared`);
@@ -145,29 +147,12 @@ export class ByFileComponent {
         this.invitacionsService.cargarInvitacionByFiesta(this.fiestaId).subscribe(async (resp: any) => {
           this.invitacion = { ...resp.invitacion.data, byFile: true }
           let t: string = `My Ticket Party | ${this.fiesta.nombre}  -  ${this.functionsService.numberToDate(Number(this.fiesta.fecha))} `;
-          this.title.setTitle(t.toUpperCase());
-          let data = {
-            title: t.toUpperCase(),
-            description:
-              t.toUpperCase(),
-            keywords:
-              'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in',
-            slug: 'core/templates/byFile',
-            colorBar: '#13547a',
-            image: `${this.url}/upload/invitaciones/${this.invitacion.byFileInvitacion}`
 
-          }
-          this.metaService.generateTags(data)
           this.invitacion.byFile = true
-
           this.restParty()
-
           this.invitacion = await this.dateToNumber(this.invitacion)
           this.invitacion.mesa = this.boleto.mesa
           this.date = this.vistaTemp ? this.today + 15000 : this.fiesta.fecha
-
-
-
           this.invitacion.cantidad = this.boleto.cantidadInvitados
           this.invitacion.invitado = this.boleto.nombreGrupo
           this.repitVideo = this.invitacion.repitVideo
@@ -341,33 +326,46 @@ export class ByFileComponent {
         this.musicaInvitacion = this.state.musicaInvitacion
         this.musicRepit = this.state.musicRepit
         this.mesaOk = this.state.mesaOk
-        setTimeout(() => {
 
-          let t: string = `My Ticket Party | ${this.state.nombreFiesta}  -  ${this.functionsService.numberToDate(Number(this.state.fiestaDate))}  `;
-          this.title.setTitle(t.toUpperCase());
-          let data = {
-            title: t.toUpperCase(),
-            description:
-              `${this.state.nombreFiesta} `,
-            keywords:
-              'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in',
-            slug: 'core/templates/byFile',
-            colorBar: '#13547a',
-            image: `${this.url}/upload/invitaciones/${this.state.byFileInvitacion}`
-
-          }
-          this.metaService.generateTags(data)
-
-        }, 500);
 
       }
 
     }
+    /*  this.title.setTitle(t.toUpperCase());
+          let data = {
+            title: t.toUpperCase(),
+            description:
+              t.toUpperCase(),
+            keywords:
+              'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in',
+            slug: 'core/templates/byFile',
+            colorBar: '#13547a',
+            image: `${this.url}/upload/invitaciones/${this.invitacion.byFileInvitacion}`
 
+          }
+          this.metaService.generateTags(data) */
 
   }
   ngOnInit() {
+    const titulo = `My Ticket Party | ${this.state.nombreFiesta}  -  ${this.functionsService.numberToDate(Number(this.state.fiestaDate))}  `;;
+    const descripcion = `${this.state.nombreFiesta} | MyTicketParty `
+    this.titleService.setTitle(titulo);
 
+    this.meta.addTags([
+      { name: 'author', content: 'MyTicketParty' },
+      { name: 'description', content: descripcion },
+      { name: 'keywords', content: 'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in' },
+      { property: 'og:title', content: titulo },
+      { property: 'og:description', content: descripcion },
+      { property: 'og:image', content: `${this.url}/upload/invitaciones/${this.state.byFileInvitacion}` },
+      { property: 'og:url', content: 'https://www.myticketparty.com/core/inicio' },
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:title', content: titulo },
+      { name: 'twitter:description', content: descripcion },
+      { name: 'twitter:image', content: `${this.url}/upload/invitaciones/${this.state.byFileInvitacion}` },
+      { name: 'slug', content: 'core/inicio' },
+      { name: 'colorBar', content: '#13547a' },
+    ]);
   }
 
   onScroll(event: any) {
@@ -423,18 +421,18 @@ export class ByFileComponent {
   }
   setData(fiesta, boleto) {
 
-
-    this.metaService.generateTags({
-      title: `${fiesta.nombre} -  ${this.functionsService.datePush(fiesta.fecha)}  `,
-      description:
-        `Hola ${boleto.nombreGrupo} te invito tienes  ${boleto.cantidadInvitados} boletos`,
-      keywords:
-        'No faltes, te espero ',
-      slug: `core/templates/default/${fiesta.uid}/${boleto.uid}`,
-      colorBar: '#13547a',
-      image:
-        this.url + '/upload/invitaciones/' + this.invitacion.img1,
-    });
+    /* 
+        this.metaService.generateTags({
+          title: `${fiesta.nombre} -  ${this.functionsService.datePush(fiesta.fecha)}  `,
+          description:
+            `Hola ${boleto.nombreGrupo} te invito tienes  ${boleto.cantidadInvitados} boletos`,
+          keywords:
+            'No faltes, te espero ',
+          slug: `core/templates/default/${fiesta.uid}/${boleto.uid}`,
+          colorBar: '#13547a',
+          image:
+            this.url + '/upload/invitaciones/' + this.invitacion.img1,
+        }); */
   }
   ngAfterViewInit(): void {
     setTimeout(() => {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -26,13 +26,13 @@ import { PoliticaDePrivacidadComponent } from 'src/app/core/pages/politica-de-pr
 import { ParametrosService } from 'src/app/core/services/parametro.service';
 import { Parametro } from 'src/app/core/models/parametro.model';
 import { validateHeaderValue } from 'http';
-import { Title } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
   today = this.functionsService.getToday()
   loading = false
   vieWPass = false
@@ -86,27 +86,51 @@ export class RegisterComponent {
     private metaService: MetaService,
     private readonly _modalService: ModalService,
     private title: Title,
+    private meta: Meta,
+    private titleService: Title
   ) {
 
 
-    let t: string = 'My Ticket Party | Login';
-    this.title.setTitle(t);
-    let data = {
-      title: 'Ticket Party | Login ',
-      description:
-        'Ingresa a nuestra aplicación con usuario y contraseña',
-      keywords:
-        'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in',
-      slug: 'auth/login',
-      colorBar: '#13547a',
-      image:
-        window.location.origin + '/assets/images/qr.svg',
-    }
-    this.metaService.generateTags(data)
+    /*   let t: string = 'My Ticket Party | Login';
+      this.title.setTitle(t);
+      let data = {
+        title: 'Ticket Party | Login ',
+        description:
+          'Ingresa a nuestra aplicación con usuario y contraseña',
+        keywords:
+          'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in',
+        slug: 'auth/login',
+        colorBar: '#13547a',
+        image:
+          window.location.origin + '/assets/images/qr.svg',
+      }
+      this.metaService.generateTags(data) */
     this.getParams()
 
     this.getCatalogos()
 
+  }
+  ngOnInit(): void {
+    const titulo = 'Registro | MyTicketParty';
+    const descripcion = 'Crea tu cuenta personaliza invitaciones digitales para tus eventos con MyTicketParty. Gestiona boletos, asigna mesas y comparte tu celebración fácilmente.';
+
+    this.titleService.setTitle(titulo);
+
+    this.meta.addTags([
+      { name: 'author', content: 'MyTicketParty' },
+      { name: 'description', content: descripcion },
+      { property: 'og:title', content: titulo },
+      { name: 'keywords', content: 'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in' },
+      { property: 'og:description', content: descripcion },
+      { property: 'og:image', content: 'https://www.myticketparty.com/assets/images/qr.svg' },
+      { property: 'og:url', content: 'https://www.myticketparty.com/auth/register' },
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:title', content: titulo },
+      { name: 'twitter:description', content: descripcion },
+      { name: 'twitter:image', content: 'https://www.myticketparty.com/assets/images/qr.svg' },
+      { name: 'slug', content: 'auth/register' },
+      { name: 'colorBar', content: '#13547a' },
+    ]);
   }
   get errorControl() {
     return this.form.controls;

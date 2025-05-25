@@ -41,7 +41,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
     private itemsService: ItemsService,
     private title: Title,
     private traductor: TraductorService,
-    private meta: Meta, private titleService: Title
+    private meta: Meta,
+    private titleService: Title
 
   ) {
     let t: string = 'My Ticket Party | Invitaciones Digitales y Logística De Eventos';
@@ -74,14 +75,17 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.meta.addTags([
       { name: 'author', content: 'MyTicketParty' },
       { name: 'description', content: descripcion },
+      { name: 'keywords', content: 'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in' },
       { property: 'og:title', content: titulo },
       { property: 'og:description', content: descripcion },
-      { property: 'og:image', content: 'http://localhost:4200/assets/images/qr.svg' },
+      { property: 'og:image', content: 'https://www.myticketparty.com/assets/images/qr.svg' },
       { property: 'og:url', content: 'https://www.myticketparty.com/core/inicio' },
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:title', content: titulo },
       { name: 'twitter:description', content: descripcion },
-      { name: 'twitter:image', content: 'http://localhost:4200/assets/images/qr.svg' }
+      { name: 'twitter:image', content: 'https://www.myticketparty.com/assets/images/qr.svg' },
+      { name: 'slug', content: 'core/inicio' },
+      { name: 'colorBar', content: '#13547a' },
     ]);
   }
   ngAfterViewInit() {
