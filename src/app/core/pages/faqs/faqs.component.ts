@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
+import { Meta, Title, DomSanitizer, SafeHtml, } from '@angular/platform-browser';
 import { MetaService } from '../../services/meta.service';
 import { PostsService } from '../../services/post.service';
 import { Post } from '../../models/post.model';
@@ -19,7 +19,8 @@ export class FaqsComponent implements OnInit {
     private meta: Meta,
     private titleService: Title,
     private postsservice: PostsService,
-    private functionsService: FunctionsService
+    private functionsService: FunctionsService,
+    private sanitizer: DomSanitizer,
   ) {
 
     this.postsservice.cargarPostsAll().subscribe((res: CargarPosts) => {
@@ -53,5 +54,11 @@ export class FaqsComponent implements OnInit {
       { name: 'colorBar', content: '#13547a' },
     ]);
   }
+ convertDes(des: string) {
+    return this.sanitizer.bypassSecurityTrustHtml(des);
 
+
+
+
+  }
 }

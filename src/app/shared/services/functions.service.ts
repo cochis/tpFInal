@@ -413,4 +413,7 @@ export class FunctionsService {
     if (element) element.classList.add('dpN');
     if (element2) element2.classList.add('dpN');
   }
+  eliminarEtiquetasHTML(cadena) {
+    return cadena.replace(/<[^>]*>/g, '');
+  }
 }
