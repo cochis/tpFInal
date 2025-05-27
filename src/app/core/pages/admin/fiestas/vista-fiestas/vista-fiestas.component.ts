@@ -205,7 +205,7 @@ export class VistaFiestasComponent {
     if (this.rol === this.ADM) {
       this.fiestasService.cargarFiestasAll().subscribe((resp: CargarFiestas) => {
 
-        this.fiestas = this.functionsService.getActives(resp.fiestas)
+        this.fiestas = resp.fiestas
 
 
         this.fiestas = this.fiestas.filter(res => {

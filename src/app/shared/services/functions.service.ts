@@ -405,4 +405,12 @@ export class FunctionsService {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
   }
+
+
+  quitarChatShared() {
+    const element = document.getElementById(`appchatbot`);
+    const element2 = document.getElementById(`appsocialshared`);
+    if (element) element.classList.add('dpN');
+    if (element2) element2.classList.add('dpN');
+  }
 }

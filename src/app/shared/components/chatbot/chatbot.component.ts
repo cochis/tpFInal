@@ -57,12 +57,12 @@ export class ChatbotComponent {
     }
     this.checkViewport();
   }
-  @HostListener('document:click', ['$event'])
-  handleClickOutside(event: Event) {
-    if (this.isOpen && !this.eRef.nativeElement.contains(event.target)) {
-      this.open = false;
-    }
-  }
+  /*   @HostListener('document:click', ['$event'])
+    handleClickOutside(event: Event) {
+      if (this.isOpen && !this.eRef.nativeElement.contains(event.target)) {
+        this.open = false;
+      }
+    } */
   onResize() {
     this.checkViewport();
   }

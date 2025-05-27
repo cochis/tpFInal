@@ -110,10 +110,7 @@ export class ByFileComponent implements OnInit {
     private meta: Meta,
     private titleService: Title
   ) {
-    const element = document.getElementById(`appchatbot`);
-    const element2 = document.getElementById(`appsocialshared`);
-    element.classList.add('dpN');
-    element2.classList.add('dpN');
+    this.functionsService.quitarChatShared()
 
     this.loading = true
     this.fiestaId = this.route.snapshot.params['fiesta']

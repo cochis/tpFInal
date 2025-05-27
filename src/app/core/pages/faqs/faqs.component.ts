@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { MetaService } from '../../services/meta.service';
+import { PostsService } from '../../services/post.service';
+import { Post } from '../../models/post.model';
+import { CargarPosts } from '../../interfaces/cargar-interfaces.interfaces';
+import { FunctionsService } from 'src/app/shared/services/functions.service';
 
 @Component({
   selector: 'app-faqs',
@@ -8,27 +12,24 @@ import { MetaService } from '../../services/meta.service';
   styleUrls: ['./faqs.component.scss']
 })
 export class FaqsComponent implements OnInit {
+  posts: Post[]
   constructor(
     private metaService: MetaService,
     private title: Title,
     private meta: Meta,
-    private titleService: Title
+    private titleService: Title,
+    private postsservice: PostsService,
+    private functionsService: FunctionsService
   ) {
 
-    /*  let t: string = "Preguntas Frecuentes | Todo lo que Necesitas Saber | MyTicketParty";
-     this.title.setTitle(t);
- 
-     this.metaService.generateTags({
-       title: "Preguntas Frecuentes | Todo lo que Necesitas Saber | MyTicketParty",
-       description:
-         'Resuelve tus dudas sobre invitaciones digitales, check-in, conteo de invitados, proveedores, pagos y cómo organizar tu evento con MyTicketParty.',
-       keywords:
-         'preguntas frecuentes, faqs, ayuda, soporte, dudas, eventos, invitaciones digitales, check-in, conteo de invitados, marketplace, MyTicketParty',
-       slug: 'core/faqs',
-       colorBar: '#13547a',
-       image:
-         window.location.origin + '/assets/images/qr.svg',
-     }); */
+    this.postsservice.cargarPostsAll().subscribe((res: CargarPosts) => {
+      this.posts = res.posts.filter((p: Post) => {
+        return p.categoria == '6'
+      })
+      this.posts = this.functionsService.getActives(this.posts)
+      console.log(' this.posts::: ', this.posts);
+
+    })
   }
   ngOnInit(): void {
     const titulo = 'Preguntas Frecuentes | Todo lo que Necesitas Saber | MyTicketParty';
