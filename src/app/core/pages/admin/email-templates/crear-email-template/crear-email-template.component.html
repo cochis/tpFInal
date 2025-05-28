@@ -31,17 +31,27 @@
                                     <span *ngIf="submited && errorControl['clave'].errors " class="error">Es requerido
                                     </span>
                                 </div>
+                                <div class="col-12 mt-3">
+
+                                    <div class="form-group">
+                                        <label for="descripcion">Descripciòn</label>
+                                        <input type="text" class="form-control upper" id="descripcion" formControlName="descripcion"
+                                            placeholder="Descripciòn">
+                                    </div>
+                                    <span *ngIf="submited && errorControl['descripcion'].errors " class="error">Es requerido
+                                    </span>
+                                </div>
 
                                 <div class="col-12   mt-3">
                                     <div class="form-group">
-                                        <label for="email">Descripción</label>
+                                        <label for="template">Pantilla</label>
                                         <div class="NgxEditor__Wrapper">
-                                            <ngx-editor-menu [editor]="email" [toolbar]="toolbar">
+                                            <ngx-editor-menu [editor]="template" [toolbar]="toolbar">
                                             </ngx-editor-menu>
-                                            <ngx-editor [editor]="email" formControlName="email"></ngx-editor>
+                                            <ngx-editor [editor]="template" formControlName="template"></ngx-editor>
                                         </div>
                                     </div>
-                                    <span *ngIf="submited && errorControl['email'].errors " class="error">Es
+                                    <span *ngIf="submited && errorControl['template'].errors " class="error">Es
                                         requerido
                                     </span>
                                 </div>

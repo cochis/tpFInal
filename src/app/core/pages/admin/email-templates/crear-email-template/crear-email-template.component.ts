@@ -1,7 +1,9 @@
 import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Editor, Toolbar } from 'ngx-editor';
+import { EmailTemplate } from 'src/app/core/models/emailTemplate.model';
 import { MailTemplate } from 'src/app/core/models/mailTemplate.model';
+import { EmailTemplatesService } from 'src/app/core/services/emailTemplate.service';
 
 import { MailTemplatesService } from 'src/app/core/services/mailTemplate.service';
 
@@ -15,13 +17,13 @@ import { FunctionsService } from 'src/app/shared/services/functions.service';
 export class CrearEmailTemplateComponent implements OnDestroy {
   loading = false
   uid = this.functionsService.getLocal('uid')
-  mailTemplate: MailTemplate
+  emailTemplate: EmailTemplate
   public form!: FormGroup
   today: Number = this.functionsService.getToday()
   submited = false
   cargando: boolean = false
   msnOk: boolean = false
-  email: Editor
+  template: Editor
   toolbar: Toolbar = [
     ['bold', 'italic'],
     ['underline', 'strike'],
@@ -37,11 +39,11 @@ export class CrearEmailTemplateComponent implements OnDestroy {
     private fb: FormBuilder,
     private functionsService: FunctionsService,
 
-    private mailTemplatesService: MailTemplatesService,
+    private emailTemplateService: EmailTemplatesService,
 
   ) {
     this.loading = true
-    this.email = new Editor();
+    this.template = new Editor();
     this.createForm()
     setTimeout(() => {
 
@@ -58,9 +60,9 @@ export class CrearEmailTemplateComponent implements OnDestroy {
     this.form = this.fb.group({
       nombre: ['', [Validators.required, Validators.minLength(3)]],
       clave: ['', [Validators.required, Validators.minLength(3)]],
-      email: ['', [Validators.required]],
-
-      activated: [false],
+      descripcion: ['', [Validators.required, Validators.minLength(3)]],
+      template: ['', [Validators.required, Validators.minLength(3)]],
+         activated: [true],
       dateCreated: [this.today],
       lastEdited: [this.today],
     })
@@ -80,7 +82,7 @@ export class CrearEmailTemplateComponent implements OnDestroy {
         ...this.form.value,
         usuarioCreated: this.uid
       }
-      this.mailTemplatesService.crearMailTemplate(email).subscribe((resp: any) => {
+      this.emailTemplateService.crearEmailTemplate(email).subscribe((resp: any) => {
         this.functionsService.alert('MailTemplate', 'MailTemplate creado', 'success')
         this.functionsService.navigateTo('core/email-templates/vista-email-templates')
         this.loading = false
@@ -100,7 +102,7 @@ export class CrearEmailTemplateComponent implements OnDestroy {
     this.functionsService.navigateTo('core/email-templates/vista-email-templates')
   }
   ngOnDestroy() {
-    this.email.destroy();
+    this.template.destroy();
   }
 }
 

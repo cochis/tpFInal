@@ -2,10 +2,10 @@ import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Editor, Toolbar } from 'ngx-editor';
-import { CargarMailTemplate } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
-import { MailTemplate } from 'src/app/core/models/mailTemplate.model';
-import { MailTemplatesService } from 'src/app/core/services/mailTemplate.service';
-
+import { CargarEmailTemplate } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
+import { EmailTemplate } from 'src/app/core/models/emailTemplate.model';
+import { EmailTemplatesService } from 'src/app/core/services/emailTemplate.service';
+ 
 
 import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { environment } from 'src/environments/environment';
@@ -18,7 +18,7 @@ export class EditarEmailTemplateComponent implements OnDestroy {
   loading = false
   public imagenSubir!: File
   public imgTemp: any = undefined
-  mailTemplate: MailTemplate
+  emailTemplate: EmailTemplate
   public form!: FormGroup
   today: Number = this.functionsService.getToday()
   submited: boolean = false
@@ -27,7 +27,7 @@ export class EditarEmailTemplateComponent implements OnDestroy {
   id!: string
   edit!: string
   url = environment.base_url
-  email: Editor
+  template: Editor
   toolbar: Toolbar = [
     ['bold', 'italic'],
     ['underline', 'strike'],
@@ -43,12 +43,12 @@ export class EditarEmailTemplateComponent implements OnDestroy {
     private fb: FormBuilder,
     private functionsService: FunctionsService,
 
-    private mailTemplatesService: MailTemplatesService,
+    private emailTemplatesService: EmailTemplatesService,
 
     private route: ActivatedRoute,
 
   ) {
-    this.email = new Editor();
+    this.template = new Editor();
     this.id = this.route.snapshot.params['id']
     this.edit = this.route.snapshot.params['edit']
     this.loading = true
@@ -60,19 +60,19 @@ export class EditarEmailTemplateComponent implements OnDestroy {
   }
   getId(id: string) {
 
-    this.mailTemplatesService.cargarMailTemplateById(id).subscribe((resp: CargarMailTemplate) => {
+    this.emailTemplatesService.cargarEmailTemplateById(id).subscribe((resp: CargarEmailTemplate) => {
 
-      this.mailTemplate = resp.mailTemplate
+      this.emailTemplate = resp.emailTemplate
 
       setTimeout(() => {
 
-        this.setForm(this.mailTemplate)
+        this.setForm(this.emailTemplate)
       }, 500);
 
     },
       (error: any) => {
 
-        this.functionsService.alertError(error, 'MailTemplates')
+        this.functionsService.alertError(error, 'EmailTemplates')
         this.loading = false
 
 
@@ -93,16 +93,17 @@ export class EditarEmailTemplateComponent implements OnDestroy {
       lastEdited: [this.today],
     })
   }
-  setForm(mailTemplate: MailTemplate) {
+  setForm(emailTemplate: EmailTemplate) {
 
 
 
     this.form = this.fb.group({
-      nombre: [mailTemplate.nombre, [Validators.required, Validators.minLength(3)]],
-      clave: [mailTemplate.clave, [Validators.required, Validators.minLength(3)]],
-      email: [mailTemplate.email, [Validators.required]],
-      activated: [mailTemplate.activated],
-      dateCreated: [mailTemplate.dateCreated],
+      nombre: [emailTemplate.nombre, [Validators.required, Validators.minLength(3)]],
+      clave: [emailTemplate.clave, [Validators.required, Validators.minLength(3)]],
+      template: [emailTemplate.template, [Validators.required]],
+      descripcion: [emailTemplate.descripcion, [Validators.required]],
+      activated: [emailTemplate.activated],
+      dateCreated: [emailTemplate.dateCreated],
       lastEdited: [this.today],
     })
 
@@ -114,20 +115,20 @@ export class EditarEmailTemplateComponent implements OnDestroy {
     this.form.value.nombre = this.form.value.nombre.toUpperCase().trim()
     this.form.value.clave = this.form.value.clave.toUpperCase().trim()
     if (this.form.value.nombre === '' || this.form.value.clave === '') {
-      this.functionsService.alertForm('MailTemplates')
+      this.functionsService.alertForm('EmailTemplates')
       this.loading = false
       return
     }
     if (this.form.valid) {
 
-      this.mailTemplate = {
-        ...this.mailTemplate,
+      this.emailTemplate = {
+        ...this.emailTemplate,
         ...this.form.value,
 
 
       }
-      this.mailTemplatesService.actualizarMailTemplate(this.mailTemplate).subscribe((resp: any) => {
-        this.functionsService.alertUpdate('MailTemplates')
+      this.emailTemplatesService.actualizarEmailTemplate(this.emailTemplate).subscribe((resp: any) => {
+        this.functionsService.alertUpdate('EmailTemplates')
         this.functionsService.navigateTo('core/email-templates/vista-email-templates')
         this.loading = false
       },
@@ -135,7 +136,7 @@ export class EditarEmailTemplateComponent implements OnDestroy {
 
           //message
           this.loading = false
-          this.functionsService.alertError(error, 'MailTemplates')
+          this.functionsService.alertError(error, 'EmailTemplates')
 
 
         })
@@ -156,7 +157,7 @@ export class EditarEmailTemplateComponent implements OnDestroy {
     this.functionsService.navigateTo('core/email-templates/vista-email-templates')
   }
   ngOnDestroy() {
-    this.email.destroy();
+    this.template.destroy();
 
   }
 }

@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { BusquedasService } from 'src/app/shared/services/busquedas.service';
 import { environment } from 'src/environments/environment';
-import { MailTemplatesService } from 'src/app/core/services/mailTemplate.service';
-import { MailTemplate } from 'src/app/core/models/mailTemplate.model';
-import { CargarMailTemplates } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
+ 
+import { CargarEmailTemplates } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
+import { EmailTemplate } from 'src/app/core/models/emailTemplate.model';
+import { EmailTemplatesService } from 'src/app/core/services/emailTemplate.service';
 
 
 @Component({
@@ -14,8 +15,8 @@ import { CargarMailTemplates } from 'src/app/core/interfaces/cargar-interfaces.i
 })
 export class VistaEmailTemplatesComponent {
   data!: any
-  mailTemplates: MailTemplate[]
-  mailTemplatesTemp: MailTemplate[]
+  mailTemplates: EmailTemplate[]
+  mailTemplatesTemp: EmailTemplate[]
   loading = false
   url = environment.base_url
   ADM = environment.admin_role
@@ -30,9 +31,9 @@ export class VistaEmailTemplatesComponent {
 
     private busquedasService: BusquedasService,
 
-    private mailTemplatesService: MailTemplatesService
+    private emailTemplatesService: EmailTemplatesService
   ) {
-    this.getMailTemplates()
+    this.getEmailTemplates()
 
   }
 
@@ -52,7 +53,7 @@ export class VistaEmailTemplatesComponent {
 
 
 
-  setMailTemplates() {
+  setEmailTemplates() {
     this.loading = true
     setTimeout(() => {
 
@@ -66,43 +67,43 @@ export class VistaEmailTemplatesComponent {
 
     }, 500);
   }
-  getMailTemplates() {
+  getEmailTemplates() {
     this.loading = true
     if (this.rol === this.ADM) {
-      this.mailTemplatesService.cargarMailTemplatesAll().subscribe((resp: CargarMailTemplates) => {
-        this.mailTemplates = resp.mailTemplates
-        this.mailTemplatesTemp = resp.mailTemplates
+      this.emailTemplatesService.cargarEmailTemplatesAll().subscribe((resp: CargarEmailTemplates) => {
+        this.mailTemplates = resp.emailTemplates
+        this.mailTemplatesTemp = resp.emailTemplates
         setTimeout(() => {
           this.loading = false
         }, 1500);
       },
         (error) => {
           this.loading = false
-          this.functionsService.alertError(error, 'MailTemplates')
+          this.functionsService.alertError(error, 'EmailTemplates')
         });
     } else if (this.rol === this.SLN || this.rol == this.ANF) {
       let usr = this.functionsService.getLocal('uid')
-      this.mailTemplatesService.cargarMailTemplatesByEmail(usr).subscribe((resp: CargarMailTemplates) => {
-        this.mailTemplates = resp.mailTemplates
-        this.mailTemplatesTemp = resp.mailTemplates
+      this.emailTemplatesService.cargarEmailTemplatesByEmail(usr).subscribe((resp: CargarEmailTemplates) => {
+        this.mailTemplates = resp.emailTemplates
+        this.mailTemplatesTemp = resp.emailTemplates
         setTimeout(() => {
           this.loading = false
         }, 1500);
       });
     }
   }
-  editMailTemplate(id: string) {
+  editEmailTemplate(id: string) {
     this.functionsService.navigateTo(`/core/email-templates/editar-email-template/true/${id}`)
   }
-  isActived(mailTemplate: MailTemplate) {
-    this.mailTemplatesService.isActivedMailTemplate(mailTemplate).subscribe((resp: any) => {
-      this.getMailTemplates()
+  isActived(mailTemplate: EmailTemplate) {
+    this.emailTemplatesService.isActivedEmailTemplate(mailTemplate).subscribe((resp: any) => {
+      this.getEmailTemplates()
     },
       (error: any) => {
-        this.functionsService.alertError(error, 'MailTemplates')
+        this.functionsService.alertError(error, 'EmailTemplates')
       })
   }
-  viewMailTemplate(id: string) {
+  viewEmailTemplate(id: string) {
     this.functionsService.navigateTo(`/core/email-templates/editar-email-template/false/${id}`)
   }
   stopLoading() {
@@ -110,7 +111,7 @@ export class VistaEmailTemplatesComponent {
       this.loading = false
     }, 3000);
   }
-  newMailTemplate() {
+  newEmailTemplate() {
     this.functionsService.navigateTo('core/email-templates/crear-email-template')
   }
 }

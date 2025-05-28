@@ -34,18 +34,37 @@
                                 </div>
                                 <div class="col-12   mt-3">
                                     <div class="form-group">
-                                        <label for="email">Email</label>
-                                        <div class="NgxEditor__Wrapper">
-                                            <ngx-editor-menu [editor]="email" [toolbar]="toolbar">
-                                            </ngx-editor-menu>
-                                            <ngx-editor [editor]="email" formControlName="email"></ngx-editor>
-                                        </div>
+                                        <label for="descripcion">Descripciòn</label>
+                                        <input type="text" class="form-control upper" id="descripcion"
+                                            formControlName="descripcion" required placeholder="Descripciòn"
+                                            [readonly]="edit==='false'">
                                     </div>
-                                    <span *ngIf="submited && errorControl['email'].errors " class="error">Es
+                                    <span *ngIf="submited && errorControl['descripcion'].errors " class="error">Es
                                         requerido
                                     </span>
                                 </div>
-
+                                <div class="col-12   mt-3">
+                                    <div class="form-group">
+                                        <label for="template">Plantilla</label>
+                                        <div class="NgxEditor__Wrapper">
+                                            <ngx-editor-menu [editor]="template" [toolbar]="toolbar">
+                                            </ngx-editor-menu>
+                                            <ngx-editor [editor]="template" formControlName="template"></ngx-editor>
+                                        </div>
+                                    </div>
+                                    <span *ngIf="submited && errorControl['template'].errors " class="error">Es
+                                        requerido
+                                    </span>
+                                </div>
+                                <div class="col-12   mt-3">
+                                    <div class="form-group">
+                                        <label for="template">HTML</label>
+                                        <textarea type="text" class="form-control upper" id="template" formControlName="template"
+                                            required placeholder="Clave" [readonly]="edit==='false'"></textarea>
+                                    </div>
+                                    <span *ngIf="submited && errorControl['template'].errors " class="error">Es requerido
+                                    </span>
+                                </div>
 
                             </div>
 

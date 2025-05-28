@@ -43,6 +43,7 @@ import { MailTemplate } from "../models/mailTemplate.model"
 import { Fondo } from "../models/fondo.model"
 import { Shared } from "../models/shared.model"
 import { Post } from "../models/post.model"
+import { EmailTemplate } from "../models/emailTemplate.model"
 
 
 
@@ -128,6 +129,13 @@ export interface CargarEvento {
 export interface CargarEventos {
     total: number
     eventos: Evento[]
+}
+export interface CargarEmailTemplate {
+    emailTemplate: EmailTemplate
+}
+export interface CargarEmailTemplates {
+    total: number
+    emailTemplates: EmailTemplate[]
 }
 export interface CargarPost {
     post: Post
