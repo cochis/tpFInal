@@ -5,6 +5,7 @@ export class Post {
         public contenido: string,
         public autor: string,
         public img: string,
+        public respuestas: any[],
         public usuarioCreated: any,
         public activated: boolean,
         public dateCreated: number,

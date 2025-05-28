@@ -1,26 +1,120 @@
 <app-header></app-header>
 
 <body id="top" class="animate__animated animate__fadeIn">
-     <app-loading *ngIf="loading"></app-loading>
+    <app-loading *ngIf="loading"></app-loading>
     <main *ngIf="!loading">
         <section class="hero-section d-flex justify-content-center align-items-center" id="section_1">
             <div class="container">
                 <div class="row">
                     <div class=" col-12 mx-auto">
                         <h1 class="text-white text-center">{{post.titulo}}</h1>
-                        
+
                     </div>
                 </div>
             </div>
         </section>
-       
-        <div class="container"  *ngIf="!loading">
+
+        <div class="container" *ngIf="!loading">
             <div class="row">
-                 <div class="col-12">
+                <div class="col-12">
                     <div [innerHTML]="convertDes(post.contenido)" style="margin-top: 10px;"></div>
-                 </div>
+                </div>
             </div>
         </div>
+        <div class="container">
+            <div class="col-12 text-center mt5 mb-3">
+                <h3>Comentarios</h3>
+                <ng-container *ngFor="let com of post.respuestas; let i = index">
+                    <div class="col-12" *ngIf="rol==ADM">
+                        <i *ngIf="com.activated" class="bi bi-trash pointer but2" (click)="desActComentrio(i)"></i>
+                        <i *ngIf="!com.activated" class="bi bi-check2-circle pointer but"
+                            (click)="desActComentrio(i)"></i>
+
+                    </div>
+                    <div class="card mb-3" [ngClass]="{ 'bg-light': i % 2 === 0, 'bg-white': i % 2 !== 0 }"
+                        *ngIf="com.activated">
+                        <div class="card-body">
+                            <h5 class="card-title mb-1  upper" style="color:rgb(19, 84, 122) ;">{{ com.autor }}
+                                -
+                                <small class="text-muted " style="font-weight: 900; font-size: 15px;">{{
+                                    com.date | date: 'medium' }}</small>
+                            </h5>
+                            <p class="card-text mb-2">{{ com.contenido }}</p>
+                            <p class="card-text">
+
+                            </p>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+
+            <div class="row" *ngIf="rol">
+
+                <form [formGroup]="respuestaForm" (ngSubmit)="onSubmit()">
+                    <div class="col-12 col-md-6 ma">
+
+                        <div class="form-group">
+                            <label for="autor">Nombre:</label>
+                            <input id="autor" formControlName="autor" class="form-control" />
+                            <div
+                                *ngIf="respuestaForm.get('autor')?.invalid && (respuestaForm.get('autor')?.dirty || respuestaForm.get('autor')?.touched)">
+                                <small *ngIf="respuestaForm.get('autor')?.errors?.['required']">El autor es
+                                    obligatorio.</small>
+                                <small *ngIf="respuestaForm.get('autor')?.errors?.['minlength']">El nombre debe tener al
+                                    menos 3
+                                    caracteres.</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+
+                        <div class="form-group">
+                            <label for="contenido">Respuesta:</label>
+                            <textarea id="contenido" formControlName="contenido" class="form-control"></textarea>
+                            <div
+                                *ngIf="respuestaForm.get('contenido')?.invalid && (respuestaForm.get('contenido')?.dirty || respuestaForm.get('contenido')?.touched)">
+                                <small *ngIf="respuestaForm.get('contenido')?.errors?.['required']">El contenido es
+                                    obligatorio.</small>
+                                <small *ngIf="respuestaForm.get('contenido')?.errors?.['maxlength']">El contenido no
+                                    puede
+                                    exceder
+                                    500
+                                    caracteres.</small>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="col-12 col-md-6 ma mt-5 text-center">
+
+                        <button type="submit" class="btn btn-primary but" [disabled]="respuestaForm.invalid">Enviar
+                            respuesta</button>
+                    </div>
+                </form>
+            </div>
+            <div class="row" *ngIf="!rol">
+                <div class="col-12 text-center mt-5">
+                    <h3>
+                        Para poder comentar debes de tener un usuario
+                    </h3>
+                </div>
+                <div class="col-6 mt-3 text-center">
+
+
+
+                    <button type="button" class="btn but" routerLink="/auth/login"> Ingresar</button>
+                </div>
+                <div class="col-6 mt-3 text-center">
+
+
+                    <button type="button" class="btn but2" routerLink="/auth/register">Registro </button>
+                </div>
+            </div>
+        </div>
+
+
     </main>
     <app-footer></app-footer>
 </body>
