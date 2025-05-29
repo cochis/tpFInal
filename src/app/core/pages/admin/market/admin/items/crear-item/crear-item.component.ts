@@ -74,7 +74,7 @@ export class CrearItemComponent implements OnInit, OnDestroy {
   ];
   public imagenSubir!: File
   public imgTemp: any = undefined
-
+   
   constructor(
     private fb: FormBuilder,
     private functionsService: FunctionsService,
@@ -122,6 +122,7 @@ export class CrearItemComponent implements OnInit, OnDestroy {
       idealTo: this.fb.array([]),
       calificacion: [0],
       envios: [false],
+      example: [false],
       descripcionEnvios: [''],
 
       sizes: this.fb.array([]),
@@ -153,6 +154,7 @@ export class CrearItemComponent implements OnInit, OnDestroy {
         idealTo: this.fb.array([]),
         calificacion: [(item.calificacion) ? item.calificacion : 0],
         envios: [(item.envios) ? item.envios : false],
+        example: [(item.example) ? item.example : false],
         descripcionEnvios: [(item.descripcionEnvios) ? item.descripcionEnvios : ''],
         sizes: this.fb.array([]),
         colores: this.fb.array([]),

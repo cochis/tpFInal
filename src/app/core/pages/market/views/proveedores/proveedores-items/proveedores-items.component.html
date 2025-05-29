@@ -1,31 +1,36 @@
 <app-loading *ngIf="loading"></app-loading>
 
 <div class="row " *ngIf="!loading && proveedores.length >0">
-    <div class="  col-md-6 col-12  mt-3"
-        *ngFor="let item of proveedores  | paginate: { itemsPerPage: 12, currentPage: p }  ; let i=index">
-        <!--  <app-item [item]="item" [cP]="cP" [cS]="cS"></app-item> -->
+
+
+    <ng-container *ngFor="let item of proveedores  | paginate: { itemsPerPage: 12, currentPage: p }  ; let i=index">
 
 
 
-        <div class="custom-block bg-white shadow-lg ma pointer" *ngIf="!loading && item.colores && item.nombre "
-            style="height: 100% !important; max-height: 750px;   text-align: center;"
-            (click)="navigateT0('core/vista-proveedor?id='+item.uid)">
-
-            <div class=" col-12"
-                [style]="{   'background-color': getColor(item.colores,'P'), 'color':getColor(item.colores,'S'),'border-radius':20+'px','height': 50+'px'}">
-
-                <h4 class="title-market pointer   "
-                    style="font-size: 25px;line-height: 50px;text-shadow: 0 0 5px var(--cWhite), 0 0 10px var(--cWhite), 0 0 20px var(--cWhite), 0 0 40px var(--cWhite), 0 0 80px var(--cWhite);">
-
-                    {{item.nombre}}
+        <div class="  col-md-6 col-12  mt-3" *ngIf="!item.example">
+            <!--  <app-item [item]="item" [cP]="cP" [cS]="cS"></app-item> -->
 
 
 
-                </h4>
+            <div class="custom-block bg-white shadow-lg ma pointer" *ngIf="!loading && item.colores && item.nombre "
+                style="height: 100% !important; max-height: 750px;   text-align: center;"
+                (click)="navigateT0('core/vista-proveedor?id='+item.uid)">
 
-            </div>
+                <div class=" col-12"
+                    [style]="{   'background-color': getColor(item.colores,'P'), 'color':getColor(item.colores,'S'),'border-radius':20+'px','height': 50+'px'}">
 
-            <div style=" display: flex;
+                    <h4 class="title-market pointer   "
+                        style="font-size: 25px;line-height: 50px;text-shadow: 0 0 5px var(--cWhite), 0 0 10px var(--cWhite), 0 0 20px var(--cWhite), 0 0 40px var(--cWhite), 0 0 80px var(--cWhite);">
+
+                        {{item.nombre}}
+
+
+
+                    </h4>
+
+                </div>
+
+                <div style=" display: flex;
   width: 250px;
   height: 250px;
   margin: 0 auto;
@@ -34,17 +39,18 @@
  
   justify-content: center;">
 
-                <img [style]=" {'width': 100+'%','background-color':hexToRgbA(getColor(item.colores,'P')),'padding': 10+'px','border-radius':20+'px'}"
-                    src="{{url}}/upload/proveedores/{{item.img}}" alt="">
+                    <img [style]=" {'width': 100+'%','background-color':hexToRgbA(getColor(item.colores,'P')),'padding': 10+'px','border-radius':20+'px'}"
+                        src="{{url}}/upload/proveedores/{{item.img}}" alt="">
+                </div>
+
+
             </div>
 
 
+
+
         </div>
-
-
-
-
-    </div>
+    </ng-container>
     <div class="col-12 mt-5 text-center">
         <pagination-controls (pageChange)="p = $event" autoHide="true" previousLabel="Anterior" nextLabel="Siguiente"
             responsive="true"></pagination-controls>

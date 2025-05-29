@@ -71,8 +71,6 @@ export class SocialSharedComponent {
     this.shareUrl = this.shareUrl.replace('http://localhost:4200/', 'https://www.myticketparty.com/')
     this.shareText = `${title} - ${description} | MyTicketParty.com`;
 
-    // console.log('🟢 URL:', this.shareUrl);
-    // console.log('🟢 Título:', title);
-    // console.log('🟢 Descripción:', description);
+ 
   }
 }

@@ -21,6 +21,7 @@ export class Item {
         public promedioCalificacion: [number],
         public envios: boolean,
         public descripcionEnvios: string,
+        public example: boolean,
         public usuarioCreated: any,
         public activated: boolean,
         public dateCreated: number,

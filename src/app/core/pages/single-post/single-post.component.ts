@@ -43,7 +43,7 @@ export class SinglePostComponent {
     if (this.rol) {
       this.usuarioServices.cargarUsuarioById(this.uid).subscribe(res => {
         this.usuario = res.usuario
-        console.log(' this.usuario::: ', this.usuario);
+     
       })
     }
     this.respuestaForm = this.fb.group({
@@ -70,7 +70,7 @@ export class SinglePostComponent {
       if (!this.post.respuestas) {
         this.post.respuestas = []
       }
-      console.log(" this.post : ", this.post);
+   ;
 
       this.loading = false
     }, (error) => {
@@ -83,7 +83,7 @@ export class SinglePostComponent {
 
     if (this.respuestaForm.valid) {
       if (!this.post.respuestas) {
-        console.log('this.post.respuestas::: ', this.post.respuestas);
+ 
         let r = {
           ...this.respuestaForm.value,
           activated: true,
@@ -99,15 +99,15 @@ export class SinglePostComponent {
         this.post.respuestas.unshift(r)
       }
 
-      console.log('this.post::: ', this.post);
+ 
       this.postService.actualizarPost(this.post).subscribe((res: any) => {
-        console.log('res::: ', res);
+    
         this.post = res.postActualizado
       })
       // Aquí puedes enviar los datos al backend
       this.respuestaForm.reset();
     } else {
-      console.log('Formulario inválido');
+      console.error('Formulario inválido');
     }
   }
   ngOnInit(): void {
@@ -139,9 +139,7 @@ export class SinglePostComponent {
 
 
   desActComentrio(i) {
-    console.log('i::: ', i);
-    console.log('this.post::: ', this.post);
-    console.log('    this.post.respuestas[i].::: ', this.post.respuestas[i]);
+  
     this.post.respuestas[i].activated = !this.post.respuestas[i].activated
     this.postService.actualizarPost(this.post).subscribe((resp: any) => {
       this.post = resp.postActualizado
@@ -151,7 +149,7 @@ export class SinglePostComponent {
     this.loading = true
     this.postService.cargarPostById(id).subscribe((resp: CargarPost) => {
       this.post = resp.post
-      console.log(" this.post : ", this.post);
+   
 
       this.loading = false
     }, (error) => {

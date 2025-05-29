@@ -75,6 +75,8 @@ export class EditarDatosComponent {
     ['align_left', 'align_center', 'align_right', 'align_justify'],
   ];
   public qrCodeDownloadLink: SafeUrl = "";
+    rol = this.functionsService.getLocal('role')
+  ADM = environment.admin_role
   constructor(
     private fb: FormBuilder,
     private functionsService: FunctionsService,
@@ -147,6 +149,7 @@ export class EditarDatosComponent {
       descripcionEnvios: [''],
       contactos: this.fb.array([]),
       colores: this.fb.array([]),
+      example: [false],
       activated: [true],
       dateCreated: [this.today],
       lastEdited: [this.today],

@@ -49,6 +49,8 @@ export class EditarProvedorComponent implements OnDestroy {
   descripcion: Editor
   redesAll: Red[]
   public qrCodeDownloadLink: SafeUrl = "";
+  rol = this.functionsService.getLocal('role')
+  ADM = environment.admin_role
   toolbar: Toolbar = [
     ['bold', 'italic'],
     ['underline', 'strike'],
@@ -190,7 +192,7 @@ export class EditarProvedorComponent implements OnDestroy {
 
       this.proveedor = resp.proveedor
 
-      this.urlLink = this.text_url + 'core/vista-proveedor/' + this.proveedor.uid
+      this.urlLink = this.text_url + 'core/vista-proveedor/?id=' + this.proveedor.uid
       if (this.proveedor.lng && this.proveedor.lat) {
         this.location = [this.proveedor.lng, this.proveedor.lat]
       }
@@ -242,12 +244,13 @@ export class EditarProvedorComponent implements OnDestroy {
       descripcion: [proveedor.descripcion, [Validators.required, Validators.minLength(3)]],
       img: [proveedor.img, [Validators.required]],
       enviosOk: [proveedor.enviosOk,],
-
-
+      
+      
       contactos: this.fb.array([]),
       redes: this.fb.array([]),
       bannerImg: [proveedor.bannerImg, [Validators.required]],
       colores: this.fb.array([]),
+      example: [proveedor.example],
       activated: [proveedor.activated],
       dateCreated: [proveedor.dateCreated],
       lastEdited: [this.today],
@@ -500,6 +503,7 @@ export class EditarProvedorComponent implements OnDestroy {
 
   }
   onChangeURL(url: SafeUrl) {
+    console.log("url: ", url);
     this.qrCodeDownloadLink = url;
   }
 }

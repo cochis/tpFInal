@@ -157,6 +157,7 @@ export class EditarItemComponent implements OnDestroy {
       idealTo: this.fb.array([]),
       calificacion: [null],
       envios: [false],
+      example: [false],
       descripcionEnvios: [''],
 
       sizes: this.fb.array([]),
@@ -192,6 +193,7 @@ export class EditarItemComponent implements OnDestroy {
       idealTo: this.fb.array([]),
       calificacion: [(item.calificacion) ? item.calificacion : 0],
       envios: [(item.envios) ? item.envios : false],
+      example: [(item.example) ? item.example : false],
       descripcionEnvios: [(item.descripcionEnvios) ? item.descripcionEnvios : ''],
       sizes: this.fb.array([]),
       colores: this.fb.array([]),

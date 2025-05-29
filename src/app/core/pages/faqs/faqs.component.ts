@@ -28,7 +28,7 @@ export class FaqsComponent implements OnInit {
         return p.categoria == '6'
       })
       this.posts = this.functionsService.getActives(this.posts)
-      console.log(' this.posts::: ', this.posts);
+  
 
     })
   }

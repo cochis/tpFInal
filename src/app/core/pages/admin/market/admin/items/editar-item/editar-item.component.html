@@ -13,6 +13,14 @@
                         </div>
                         <form [formGroup]="form" (ngSubmit)="onSubmit()">
                             <div class="row">
+                                <div class="col-12 ma mt-3 mb-3 text-center" *ngIf="rol==ADM">
+                                    <input class="form-check-input pointer" type="checkbox" formControlName="example"
+                                        #example name="example" id="example">
+                                    <label class="form-check-label pointer" for="example" style="margin-left: 25px;">
+                                        Ejemplo
+                                    </label>
+
+                                </div>
                                 <div class="col-12 col-md-6 mt-3">
                                     <div class="form-group">
                                         <label for="proveedor">Proveedor</label>
@@ -32,6 +40,7 @@
                                         requerido
                                     </span>
                                 </div>
+                                
                                 <div class="col-12 col-md-6 mt-3">
                                     <div class="form-group">
                                         <label for="nombre">Nombre</label>

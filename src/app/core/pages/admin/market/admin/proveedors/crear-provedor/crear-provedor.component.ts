@@ -46,6 +46,8 @@ export class CrearProvedorComponent implements OnDestroy {
     ['text_color', 'background_color'],
     ['align_left', 'align_center', 'align_right', 'align_justify'],
   ];
+  rol = this.functionsService.getLocal('role')
+  ADM = environment.admin_role
   constructor(
     private fb: FormBuilder,
     private functionsService: FunctionsService,
@@ -73,6 +75,7 @@ export class CrearProvedorComponent implements OnDestroy {
       nombre: ['', [Validators.required, Validators.minLength(3)]],
       clave: ['', [Validators.required, Validators.minLength(3)]],
       descripcion: ['', [Validators.required]],
+      example: [true],
       activated: [true],
       dateCreated: [this.today],
       lastEdited: [this.today],

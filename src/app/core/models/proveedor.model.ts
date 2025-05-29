@@ -17,6 +17,7 @@ export class Proveedor {
         public envios: string,
         public descripcionEnvios: string,
         public ubicaciones: [string],
+        public example: boolean,
         public usuarioCreated: any,
         public activated: boolean,
         public dateCreated: number,

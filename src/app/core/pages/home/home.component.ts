@@ -50,7 +50,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.role = this.functionsService.getLocal('role')
     this.uid = this.functionsService.getLocal('uid')
     /*   this.functionsService.getIp().subscribe(resp => {
-        console.log('resp::: ', resp);
+       
      })
    */
     /*  this.title.setTitle(t);
