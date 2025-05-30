@@ -249,7 +249,7 @@ export class VistaBoletosComponent {
         }
         let email = {
           to: bol.email,
-          sender: 'info@cochisweb.com',
+          sender: 'myticketparty@cochisweb.com',
           fiesta: bol.fiesta,
           boleto: bol.uid,
           text_url: this.text_url

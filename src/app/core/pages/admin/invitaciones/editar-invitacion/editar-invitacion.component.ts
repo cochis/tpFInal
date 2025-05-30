@@ -253,6 +253,8 @@ export class EditarInvitacionComponent {
       fondoInvitacionUp: [''],
       marcoFotoUp: [''],
       imgIntroLeftUp: [''],
+      marcoSizeSubtitle: [15],
+      marcoSizeTitle: [15],
       imgIntroRightCheck: [''],
       imgIntroRightUp: [''],
       imgIntroLeft: ['bg7.png'],
@@ -380,6 +382,7 @@ export class EditarInvitacionComponent {
       titlePadrinos: ['Mis Padrinos'],
       notas: this.fb.array([]),
       chambelanesCheck: [true],
+      chambelanText: ['Chambelanes'],
       chambelanesImgCheck: [true],
       chambelanes: this.fb.array([]),
       padresCheck: [true],
@@ -624,6 +627,7 @@ export class EditarInvitacionComponent {
       musica: this.fb.array([]),
       menu: this.fb.array([]),
       chambelanesCheck: [invitacion.data.chambelanesCheck],
+      chambelanText: [invitacion.data.chambelanText],
       chambelanesImgCheck: [invitacion.data.chambelanesImgCheck],
       padresCheck: [invitacion.data.padresCheck],
 
@@ -688,6 +692,8 @@ export class EditarInvitacionComponent {
 
       imgIntroLeftCheck: [invitacion.data.imgIntroLeftCheck ? invitacion.data.imgIntroLeftCheck : ''],
       imgIntroLeftUp: [invitacion.data.imgIntroLeftUp ? invitacion.data.imgIntroLeftUp : ''],
+      marcoSizeSubtitle: [invitacion.data.marcoSizeSubtitle ? invitacion.data.marcoSizeSubtitle : ''],
+      marcoSizeTitle: [invitacion.data.marcoSizeTitle ? invitacion.data.marcoSizeTitle : ''],
       imgIntroRightCheck: [invitacion.data.imgIntroRightCheck ? invitacion.data.imgIntroRightCheck : ''],
       imgIntroRightUp: [invitacion.data.imgIntroRightUp ? invitacion.data.imgIntroRightUp : ''],
 
@@ -1008,7 +1014,8 @@ export class EditarInvitacionComponent {
       imgIntroRightCheck: [temp.imgIntroRightCheck],
       imgIntroRightUp: [temp.imgIntroRightUp],
 
-
+      marcoSizeSubtitle: [temp.marcoSizeSubtitle],
+      marcoSizeTitle: [temp.marcoSizeTitle],
 
 
       imgIntroLeft: [temp.imgIntroLeft],
@@ -1070,6 +1077,7 @@ export class EditarInvitacionComponent {
       musica: this.fb.array([]),
       menu: this.fb.array([]),
       chambelanesCheck: [temp.data.chambelanesCheck],
+      chambelanText: [temp.data.chambelanText],
       chambelanesImgCheck: [temp.data.chambelanesImgCheck],
       padresCheck: [temp.data.padresCheck],
 
@@ -1295,6 +1303,14 @@ export class EditarInvitacionComponent {
       if (this.form.value.imgIntroLeftUp == '' && this.invitacion.data.imgIntroLeftUp !== '') {
         this.form.value.imgIntroLeftUp = this.invitacion.data.imgIntroLeftUp
       }
+
+
+      if (this.form.value.marcoSizeSubtitle == '' && this.invitacion.data.marcoSizeSubtitle !== '') {
+        this.form.value.marcoSizeSubtitle = this.invitacion.data.marcoSizeSubtitle
+      }
+      if (this.form.value.marcoSizeTitle == '' && this.invitacion.data.marcoSizeTitle !== '') {
+        this.form.value.marcoSizeTitle = this.invitacion.data.marcoSizeTitle
+      }
       if (this.form.value.imgIntroRightUp == '' && this.invitacion.data.imgIntroRightUp !== '') {
         this.form.value.imgIntroRightUp = this.invitacion.data.imgIntroRightUp
       }
@@ -1398,6 +1414,7 @@ export class EditarInvitacionComponent {
     data.itinerarioCheck = (data.itinerarioCheck == 'true' || data.itinerarioCheck == true) ? true : false
     data.chambelanesImgCheck = (data.chambelanesImgCheck == 'true' || data.chambelanesImgCheck == true) ? true : false
     data.chambelanesCheck = (data.chambelanesCheck == 'true' || data.chambelanesCheck == true) ? true : false
+
     data.padresCheck = (data.padresCheck == 'true' || data.padresCheck == true) ? true : false
 
     data.padrinosCheck = (data.padrinosCheck == 'true' || data.padrinosCheck == true) ? true : false
@@ -1569,6 +1586,7 @@ export class EditarInvitacionComponent {
             invitacionTemplate: false,
             notas: [],
             chambelanesCheck: true,
+            chambelanText: 'Chambelanes',
             chambelanesImgCheck: true,
             padresCheck: true,
 
@@ -1604,6 +1622,8 @@ export class EditarInvitacionComponent {
             fondoInvitacionCheck: false,
             marcoFotoCheck: '',
             imgIntroLeftUp: '',
+            marcoSizeSubti: 15,
+            marcoSizeTitle: 15,
             imgIntroRightCheck: '',
             imgIntroRightUp: '',
             fondoInvitacionUp: '',
@@ -2368,6 +2388,7 @@ export class EditarInvitacionComponent {
       this.invitacion.data.padrinos = []
       //chambelanes
       this.invitacion.data.chambelanesCheck = false
+      this.invitacion.data.chambelanText = 'Chambelanes'
       this.invitacion.data.chambelanesImgCheck = false
       this.invitacion.data.chambelanes = []
       //menu

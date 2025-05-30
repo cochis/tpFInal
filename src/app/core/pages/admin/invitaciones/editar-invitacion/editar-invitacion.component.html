@@ -4542,9 +4542,45 @@
 
                                             <ng-container *ngIf="imgIntro">
                                                 <div class="row text-center mt-3 animate__animated animate__fadeIn">
+
+
+
+
+                                                    <div class="col-12 col-md-6   mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="marcoSizeTitle ">Tamaño de titulo </label>
+                                                            <a class="range"
+                                                                (click)="changeRange('marcoSizeTitle','-')"> <b
+                                                                    class="range-icon">-</b> </a>
+                                                            <input type="range" id="marcoSizeTitle" #marcoSizeTitle
+                                                                formControlName="marcoSizeTitle" min="15" max="180">
+                                                            <a class="range"
+                                                                (click)="changeRange('marcoSizeTitle','+')"> <b
+                                                                    class="range-icon">+</b> </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6   mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="marcoSizeSubtitle ">Tamaño del subtitulo
+                                                            </label>
+                                                            <a class="range"
+                                                                (click)="changeRange('marcoSizeSubtitle','-')"> <b
+                                                                    class="range-icon">-</b> </a>
+                                                            <input type="range" id="marcoSizeSubtitle"
+                                                                #marcoSizeSubtitle formControlName="marcoSizeSubtitle"
+                                                                min="15" max="180">
+                                                            <a class="range"
+                                                                (click)="changeRange('marcoSizeSubtitle','+')"> <b
+                                                                    class="range-icon">+</b> </a>
+                                                        </div>
+                                                    </div>
+
+
+
+
                                                     <div class="col-12       mt-3 ma  text-center">
                                                         <label class="form-check-label" for="imgIntroLeftCheck">
-                                                            Subir Imagen Izquierda
+                                                            Subir Imagen
                                                         </label>
                                                         <input class="form-check-input" type="checkbox"
                                                             id="imgIntroLeftCheck" #imgIntroLeftCheck
@@ -4856,13 +4892,13 @@
                                                             <label for="marcoFotoUp">Imagen de fondo
                                                                 <img src="/assets/images/tp.png" alt="" class="pointer"
                                                                     style="width: 150px;"
-                                                                    *ngIf="invitacion==undefined || invitacion.data.marcoFotoUp ==''">
+                                                                    *ngIf="invitacion==undefined || invitacion.data.marcoFoto ==''">
                                                                 <img [src]="url+'/upload/invitaciones/'+invitacion.data.marcoFotoUp"
                                                                     alt="" class=" pointer" *ngIf="invitacion"
                                                                     style="width: 150px;">
                                                             </label>
                                                             <input type="file" id="marcoFotoUp" #marcoFotoUp
-                                                                (change)="cambiarImagen($event,'marcoFotoUp' )">
+                                                                (change)="cambiarImagen($event,'marcoFoto' )">
                                                         </div>
                                                     </div>
                                                     <div class="col-6  mt-3">
@@ -5575,6 +5611,18 @@
                                                         <input class="form-check-input" type="checkbox"
                                                             id="chambelanesCheck" #chambelanesCheck
                                                             formControlName="chambelanesCheck">
+                                                    </div>
+                                                    <div class="col-12 col-md-4   mb-5">
+                                                        <div class="form-group ">
+                                                            <label for="chambelanText ">Texto de apartado </label>
+                                                            <input type="text" class="form-control upper"
+                                                                id="chambelanText" formControlName="chambelanText"
+                                                                required placeholder="Oscar Ramirez"
+                                                                [readonly]="edit==='false'" class="form-control">
+                                                        </div>
+                                                        <span *ngIf="submited && errorControl['chambelanText'].errors "
+                                                            class="error">Es requerido
+                                                        </span>
                                                     </div>
                                                 </div>
 
