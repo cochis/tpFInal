@@ -4543,7 +4543,18 @@
                                             <ng-container *ngIf="imgIntro">
                                                 <div class="row text-center mt-3 animate__animated animate__fadeIn">
 
-
+                                                    <div class="form-group ">
+                                                        <label for="bgIntro">Imagen de fondo
+                                                            <img src="/assets/images/tp.png" alt="" class="pointer"
+                                                                style="width: 150px;"
+                                                                *ngIf="invitacion==undefined || invitacion.data.bgIntro ==''">
+                                                            <img [src]="url+'/upload/invitaciones/'+invitacion.data.bgIntro"
+                                                                alt="" class=" pointer" *ngIf="invitacion"
+                                                                style="width: 150px;">
+                                                        </label>
+                                                        <input type="file" id="bgIntro" #bgIntro
+                                                            (change)="cambiarImagen($event,'bgIntro' )">
+                                                    </div>
 
 
                                                     <div class="col-12 col-md-6   mt-3">

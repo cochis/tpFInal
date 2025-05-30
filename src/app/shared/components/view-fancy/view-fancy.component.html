@@ -268,7 +268,18 @@
             <a class="botonVer nlink inviVer {{data.textoInvFont}} pointer" (click)="closePresentacion()">Ve tu
                 invitacion</a>
         </div>
-        <div class="row" style="overflow: hidden; width: 100% !important; max-height: 400px; padding: 20px;">
+        <div class="row" style="overflow: hidden; width: 100% !important; max-height: 400px; padding: 20px; background-image: url('{{url}}/upload/invitaciones/{{data.bgIntro}}');
+        background-repeat: no-repeat;
+        background-size: 100% 100vh;
+        background-position: center top;
+        background-attachment: fixed;">
+
+
+
+
+
+
+
 
             <div class="col-6 animate__animated {{data.efectoImgLeft}} {{data.repImgLeft}}"
                 *ngIf="!data.imgIntroLeftCheck" style=" height: 100vh; background-image: url('{{url}}/upload/fondos/{{getImg(data.imgIntroLeft)}}');

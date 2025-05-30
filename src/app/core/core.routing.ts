@@ -187,12 +187,12 @@ const routes: Routes = [
         data: { titulo: 'Contacto' }
 
       },
-      {
+      /* {
         path: 'pricing',
         component: PricingComponent,
         data: { titulo: 'Pricing' }
 
-      },
+      }, */
       {
         path: 'politica-de-privacidad',
         component: PoliticaDePrivacidadComponent,

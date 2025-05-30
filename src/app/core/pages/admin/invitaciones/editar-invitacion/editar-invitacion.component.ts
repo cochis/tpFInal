@@ -252,6 +252,7 @@ export class EditarInvitacionComponent {
       marcoFotoCheck: [''],
       fondoInvitacionUp: [''],
       marcoFotoUp: [''],
+      bgIntro: [''],
       imgIntroLeftUp: [''],
       marcoSizeSubtitle: [15],
       marcoSizeTitle: [15],
@@ -691,6 +692,7 @@ export class EditarInvitacionComponent {
 
 
       imgIntroLeftCheck: [invitacion.data.imgIntroLeftCheck ? invitacion.data.imgIntroLeftCheck : ''],
+      bgIntro: [invitacion.data.bgIntro ? invitacion.data.bgIntro : ''],
       imgIntroLeftUp: [invitacion.data.imgIntroLeftUp ? invitacion.data.imgIntroLeftUp : ''],
       marcoSizeSubtitle: [invitacion.data.marcoSizeSubtitle ? invitacion.data.marcoSizeSubtitle : ''],
       marcoSizeTitle: [invitacion.data.marcoSizeTitle ? invitacion.data.marcoSizeTitle : ''],
@@ -1010,6 +1012,7 @@ export class EditarInvitacionComponent {
 
 
       marcoFotoCheck: [temp.marcoFotoCheck],
+      bgIntro: [temp.bgIntro],
       imgIntroLeftUp: [temp.imgIntroLeftUp],
       imgIntroRightCheck: [temp.imgIntroRightCheck],
       imgIntroRightUp: [temp.imgIntroRightUp],
@@ -1299,6 +1302,9 @@ export class EditarInvitacionComponent {
       }
       if (this.form.value.byFileInvitacion == '' && this.invitacion.data.byFileInvitacion !== '') {
         this.form.value.byFileInvitacion = this.invitacion.data.byFileInvitacion
+      }
+      if (this.form.value.bgIntro == '' && this.invitacion.data.bgIntro !== '') {
+        this.form.value.bgIntro = this.invitacion.data.bgIntro
       }
       if (this.form.value.imgIntroLeftUp == '' && this.invitacion.data.imgIntroLeftUp !== '') {
         this.form.value.imgIntroLeftUp = this.invitacion.data.imgIntroLeftUp
@@ -1621,6 +1627,7 @@ export class EditarInvitacionComponent {
             imgIntroLeftCheck: '',
             fondoInvitacionCheck: false,
             marcoFotoCheck: '',
+            bgIntro: '',
             imgIntroLeftUp: '',
             marcoSizeSubti: 15,
             marcoSizeTitle: 15,
@@ -2156,6 +2163,9 @@ export class EditarInvitacionComponent {
               case 'codigoVestimentaHombreImg':
                 this.invitacion.data.codigoVestimentaHombreImg = img
                 break;
+              case 'bgIntro':
+                this.invitacion.data.bgIntro = img
+                break;
               case 'imgIntroLeftUp':
                 this.invitacion.data.imgIntroLeftUp = img
                 break;
@@ -2356,6 +2366,7 @@ export class EditarInvitacionComponent {
 
       //imagenes intro
       this.invitacion.data.imgIntroLeftCheck = ''
+      this.invitacion.data.bgIntro = ''
       this.invitacion.data.imgIntroLeftUp = ''
       this.invitacion.data.imgIntroRightCheck = ''
       this.invitacion.data.imgIntroRightUp = ''
