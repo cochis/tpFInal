@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { AfterViewInit, Component, Input } from '@angular/core';
 import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { environment } from 'src/environments/environment';
 
@@ -7,12 +7,16 @@ import { environment } from 'src/environments/environment';
   templateUrl: './galeria-desing.component.html',
   styleUrls: ['./galeria-desing.component.scss']
 })
-export class GaleriaDesingComponent {
+export class GaleriaDesingComponent implements AfterViewInit {
   @Input() data: any
 
   constructor(
     private functionsService: FunctionsService
   ) {
+
+  }
+  ngAfterViewInit(): void {
+    console.log(this.data);
 
   }
   url = environment.base_url

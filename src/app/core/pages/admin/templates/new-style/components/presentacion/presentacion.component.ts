@@ -21,8 +21,8 @@ export class PresentacionComponent implements AfterViewInit {
   }
   ngAfterViewInit() {
     setTimeout(() => {
-      this.functionsService.scroolTo('end')
-    }, 1800)
+      this.closePresentacion()
+    }, 5000);
 
   }
 

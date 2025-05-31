@@ -256,6 +256,7 @@ export class EditarInvitacionComponent {
       imgIntroLeftUp: [''],
       marcoSizeSubtitle: [15],
       marcoSizeTitle: [15],
+      mensajeInicial: ['Ve tu invitación'],
       imgIntroRightCheck: [''],
       imgIntroRightUp: [''],
       imgIntroLeft: ['bg7.png'],
@@ -307,6 +308,7 @@ export class EditarInvitacionComponent {
       donde1Check: [true],
       donde1Img: [''],
       donde1Title: ['Iglesia'],
+      galeriaCheck: [false],
       galeriaTitle: ['Momentos'],
       donde1Titulo: [''],
       donde1Text: [''],
@@ -316,6 +318,7 @@ export class EditarInvitacionComponent {
       donde1AddressUbicacionLng: [''],
       donde1AddressUbicacionLat: [''],
       donde1Address: [''],
+
       donde2Check: [true],
       donde2Img: [''],
       donde2Title: ['Civil'],
@@ -543,6 +546,7 @@ export class EditarInvitacionComponent {
       mensajeEfectoRep: [invitacion.data.mensajeEfectoRep],
       donde1Check: [invitacion.data.donde1Check],
       donde1Img: [invitacion.data.donde1Img],
+      galeriaCheck: [invitacion.data.galeriaCheck],
       galeriaTitle: [invitacion.data.galeriaTitle],
       donde1Title: [invitacion.data.donde1Title],
       donde1Titulo: [invitacion.data.donde1Titulo],
@@ -555,6 +559,7 @@ export class EditarInvitacionComponent {
       donde1AddressUbicacionLng: [invitacion.data.donde1AddressUbicacionLng],
       donde1AddressUbicacionLat: [invitacion.data.donde1AddressUbicacionLat],
       donde1Address: [invitacion.data.donde1Address],
+
       donde2Check: [invitacion.data.donde2Check],
       donde2Img: [invitacion.data.donde2Img],
       donde2Title: [invitacion.data.donde2Title],
@@ -696,6 +701,7 @@ export class EditarInvitacionComponent {
       imgIntroLeftUp: [invitacion.data.imgIntroLeftUp ? invitacion.data.imgIntroLeftUp : ''],
       marcoSizeSubtitle: [invitacion.data.marcoSizeSubtitle ? invitacion.data.marcoSizeSubtitle : ''],
       marcoSizeTitle: [invitacion.data.marcoSizeTitle ? invitacion.data.marcoSizeTitle : ''],
+      mensajeInicial: [invitacion.data.mensajeInicial ? invitacion.data.mensajeInicial : ''],
       imgIntroRightCheck: [invitacion.data.imgIntroRightCheck ? invitacion.data.imgIntroRightCheck : ''],
       imgIntroRightUp: [invitacion.data.imgIntroRightUp ? invitacion.data.imgIntroRightUp : ''],
 
@@ -936,6 +942,7 @@ export class EditarInvitacionComponent {
       mensajeEfectoRep: [temp.mensajeEfectoRep],
       donde1Check: [temp.donde1Check],
       donde1Img: [temp.donde1Img],
+      galeriaCheck: [temp.galeriaCheck],
       galeriaTitle: [temp.galeriaTitle],
       donde1Title: [temp.donde1Title],
       donde1Titulo: [temp.donde1Titulo],
@@ -948,6 +955,7 @@ export class EditarInvitacionComponent {
       donde1AddressUbicacionLng: [temp.donde1AddressUbicacionLng],
       donde1AddressUbicacionLat: [temp.donde1AddressUbicacionLat],
       donde1Address: [temp.donde1Address],
+
       donde2Check: [temp.donde2Check],
       donde2Img: [temp.donde2Img],
       donde2Title: [temp.donde2Title],
@@ -1019,6 +1027,7 @@ export class EditarInvitacionComponent {
 
       marcoSizeSubtitle: [temp.marcoSizeSubtitle],
       marcoSizeTitle: [temp.marcoSizeTitle],
+      mensajeInicial: [temp.mensajeInicial],
 
 
       imgIntroLeft: [temp.imgIntroLeft],
@@ -1317,6 +1326,9 @@ export class EditarInvitacionComponent {
       if (this.form.value.marcoSizeTitle == '' && this.invitacion.data.marcoSizeTitle !== '') {
         this.form.value.marcoSizeTitle = this.invitacion.data.marcoSizeTitle
       }
+      if (this.form.value.mensajeInicial == '' && this.invitacion.data.mensajeInicial !== '') {
+        this.form.value.mensajeInicial = this.invitacion.data.mensajeInicial
+      }
       if (this.form.value.imgIntroRightUp == '' && this.invitacion.data.imgIntroRightUp !== '') {
         this.form.value.imgIntroRightUp = this.invitacion.data.imgIntroRightUp
       }
@@ -1414,6 +1426,7 @@ export class EditarInvitacionComponent {
     data.donde2Date = (typeof (data.donde2Date) == 'string') ? this.functionsService.dateToNumber(data.donde2Date) : data.donde2Date
     data.donde3Date = (typeof (data.donde3Date) == 'string') ? this.functionsService.dateToNumber(data.donde3Date) : data.donde3Date
     data.donde1Check = (data.donde1Check == 'true' || data.donde1Check == true) ? true : false
+    data.galeriaCheck = (data.galeriaCheck == 'true' || data.galeriaCheck == true) ? true : false
     data.donde2Check = (data.donde2Check == 'true' || data.donde2Check == true) ? true : false
     data.donde3Check = (data.donde3Check == 'true' || data.donde3Check == true) ? true : false
     data.notaCheck = (data.notaCheck == 'true' || data.notaCheck == true) ? true : false
@@ -1439,6 +1452,7 @@ export class EditarInvitacionComponent {
     data.donde3Date = (typeof (data.donde3Date) == 'number') ? this.functionsService.numberDateTimeLocal(data.donde3Date) : data.donde3Date
     data.lastEdited = (typeof (data.lastEdited) == 'number') ? this.functionsService.numberDateTimeLocal(data.lastEdited) : data.lastEdited
     data.donde1Check = (data.donde1Check == 'true' || data.donde1Check == true) ? true : false
+    data.galeriaCheck = (data.galeriaCheck == 'true' || data.galeriaCheck == true) ? true : false
     data.donde2Check = (data.donde2Check == 'true' || data.donde2Check == true) ? true : false
     data.donde3Check = (data.donde3Check == 'true' || data.donde3Check == true) ? true : false
 
@@ -1515,6 +1529,7 @@ export class EditarInvitacionComponent {
             mensajeEfectoRep: 1,
             donde1Check: true,
             donde1Img: '',
+            galeriaCheck: false,
             galeriaTitle: 'Momentos',
             donde1Title: 'Iglesia',
             donde1Titulo: '',
@@ -1527,6 +1542,7 @@ export class EditarInvitacionComponent {
             donde1AddressUbicacionLng: '',
             donde1AddressUbicacionLat: '',
             donde1Address: '',
+
             donde2Check: true,
             donde2Img: '',
             donde2Title: 'Civil',
@@ -1631,6 +1647,7 @@ export class EditarInvitacionComponent {
             imgIntroLeftUp: '',
             marcoSizeSubti: 15,
             marcoSizeTitle: 15,
+            mensajeInicial: 'Ve tu invitación',
             imgIntroRightCheck: '',
             imgIntroRightUp: '',
             fondoInvitacionUp: '',
@@ -2339,6 +2356,7 @@ export class EditarInvitacionComponent {
       this.invitacion.data.donde1AddressUbicacionLat = ''
       this.invitacion.data.donde1AddressUbicacionLng = ''
       //Donde y cuando Registro
+      this.invitacion.data.galeriaCheck = false
       this.invitacion.data.donde2Check = false
       this.invitacion.data.donde2Img = ''
       this.invitacion.data.donde2Text = ''
