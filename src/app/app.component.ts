@@ -16,7 +16,7 @@ export class AppComponent {
   constructor(
     private update: SwUpdate,
     private functionsService: FunctionsService,
-    private traductor:TraductorService
+    private traductor: TraductorService
   ) {
 
     console.info('Version ', this.ver);
@@ -25,7 +25,7 @@ export class AppComponent {
 
   }
   updateClient() {
-    this.update.available.subscribe((event) => {
+    this.update.activateUpdate().then((event) => {
       Swal.fire({
         title: 'Existe una nueva version de la aplicación favor de actualizar',
         confirmButtonColor: '#22547b',
