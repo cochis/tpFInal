@@ -369,7 +369,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
   }
   getQrInvitacion(invitado) {
     if ((invitado.value !== undefined) && typeof (invitado.value.salon) === 'object') {
-      ;
+
       let qr = {
         uid: '',
 

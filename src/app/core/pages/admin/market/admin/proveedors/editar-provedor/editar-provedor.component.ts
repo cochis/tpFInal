@@ -244,8 +244,8 @@ export class EditarProvedorComponent implements OnDestroy {
       descripcion: [proveedor.descripcion, [Validators.required, Validators.minLength(3)]],
       img: [proveedor.img, [Validators.required]],
       enviosOk: [proveedor.enviosOk,],
-      
-      
+
+
       contactos: this.fb.array([]),
       redes: this.fb.array([]),
       bannerImg: [proveedor.bannerImg, [Validators.required]],
@@ -503,7 +503,7 @@ export class EditarProvedorComponent implements OnDestroy {
 
   }
   onChangeURL(url: SafeUrl) {
-    console.log("url: ", url);
+
     this.qrCodeDownloadLink = url;
   }
 }

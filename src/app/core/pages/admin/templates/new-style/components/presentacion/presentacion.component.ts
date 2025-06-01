@@ -22,7 +22,7 @@ export class PresentacionComponent implements AfterViewInit {
   ngAfterViewInit() {
     setTimeout(() => {
       this.closePresentacion()
-    }, 5000);
+    }, 7000);
 
   }
 

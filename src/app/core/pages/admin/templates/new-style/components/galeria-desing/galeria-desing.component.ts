@@ -16,7 +16,7 @@ export class GaleriaDesingComponent implements AfterViewInit {
 
   }
   ngAfterViewInit(): void {
-    console.log(this.data);
+
 
   }
   url = environment.base_url

@@ -18,6 +18,7 @@ export class MarketComponent implements OnInit, AfterViewInit {
   public form!: FormGroup
 
   items: Item[] = []
+  itemsTemp: Item[] = []
   categoriaItems: CategoriaItem[]
   loading: boolean = false
 
@@ -97,6 +98,8 @@ export class MarketComponent implements OnInit, AfterViewInit {
   getItems() {
     this.itemsService.cargarItemsAll().subscribe(res => {
       this.items = this.functionsService.getActivos(res.items)
+      this.itemsTemp = this.items
+
 
 
     })
@@ -109,6 +112,7 @@ export class MarketComponent implements OnInit, AfterViewInit {
       this.categoriaItems = resp.categoriaItems
 
 
+
     },
       (error: any) => {
         this.functionsService.alertError(error, 'Perfil')
@@ -117,12 +121,34 @@ export class MarketComponent implements OnInit, AfterViewInit {
 
 
   }
+
+  filterBY(cat: any) {
+
+    if (cat !== '') {
+      this.items = this.itemsTemp
+      this.items = this.items.filter((it: any) => {
+
+        return it.categoriaItem._id == cat
+      })
+    } else {
+      this.items = this.itemsTemp
+    }
+
+  }
   orderBy(value) {
 
-    switch (value.target.value) {
-      case 'categoria':
+    switch (value) {
+      case 'menor':
+
+        this.items = [...this.items].sort((a: any, b: any) => a.precio - b.precio);
 
 
+        break;
+      case 'mayor':
+        this.items = [...this.items].sort((a: any, b: any) => b.precio - a.precio);
+
+
+        break;
 
       default:
         break;

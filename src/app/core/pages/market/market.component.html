@@ -50,6 +50,40 @@
                     <b2>Sin productos o servicios registrados</b2>
                 </div>
             </ng-container>
+
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-6 ma mt-3 mb-4">
+                        <label for="filtro"></label>
+                        <select name="filtro" id="filtro" class="form-control upper " (change)="filterBY(filtro.value)"
+                            #filtro>
+                            <option value="">FILTRO POR CATEGORIAS</option>
+                            <ng-container *ngFor="let item of categoriaItems">
+
+                                <option [value]="item.uid">{{item.nombre}}</option>
+                            </ng-container>
+
+
+
+
+
+
+                        </select>
+                    </div>
+                    <!--  <div class="col-6 ma mt-3 mb-4">
+                        <label for="orden"></label>
+                        <select name="orden" id="orden" class="form-control upper " (change)="orderBy(orden.value)"
+                            #orden>
+                            <option value="">ORDEN POR</option>
+                            <option value="menor">Menor precio al Mayor precio</option>
+                            <option value="mayor">Mayor precio al Menor precio</option>
+
+                        </select>
+                    </div> -->
+
+                </div>
+            </div>
             <ng-container *ngIf="items.length>0">
 
                 <app-market-items [items]="items"></app-market-items>
