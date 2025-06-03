@@ -18,7 +18,7 @@ import { SafeUrl } from '@angular/platform-browser';
 import { FileService } from 'src/app/core/services/file.service';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2';
-import { Observable, Subscription, interval } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription, interval, switchMap } from 'rxjs';
 import { EmailsService } from 'src/app/core/services/email.service';
 import * as XLSX from 'xlsx'
 import { SharedsService } from 'src/app/core/services/shared.service';
@@ -64,7 +64,8 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
   retornaBoletosSubs: Subscription
   msnOk: boolean = false
   btnDisabled = false
-  src1 = interval(5000);
+  tiempo = new BehaviorSubject<number>(5000);
+  contador = 0;
   obs1: Subscription;
   mensajeOk = false
   recordatorioOk = false
@@ -103,45 +104,69 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
       this.loading = false
     }, 3500);
   }
+
+
+  changeTime(value) {
+    const nuevoTiempo = parseInt(value, 10);
+    this.tiempo.next(nuevoTiempo);
+
+    this.contador = 0; // Reiniciar contador si deseas
+
+
+  }
   ngOnInit() {
-    this.obs1 = this.src1.subscribe((value: any) => {
-
-      let restore = false
-
-      this.boletosService.cargarBoletoByFiesta(this.id).subscribe((resp: CargarBoleto) => {
-        this.boletoTemp = this.functionsService.getActives(resp.boleto)
 
 
-        //this.exportToExcel(this.boletoTemp)
-        this.boletoTemp.forEach(blt => {
-          if (!blt.shared) {
 
-            let data = {
-              type: 'invitacion',
-              fiesta: this.fiesta.uid,
-              boleto: blt.uid,
-              data: {
-                fiesta: this.fiesta,
-                boleto: blt,
+    this.obs1 = this.tiempo
+      .pipe(
+        switchMap(ms => interval(ms))
+      )
+      .subscribe((value: any) => {
 
-              },
-              compartidas: 1,
-              vistas: 0,
-              usuarioCreated: this.uid,
-              activated: true,
-              dateCreated: this.today,
-              lastEdited: this.today,
-            }
-            this.sharedService.crearShared(data).subscribe((res: any) => {
 
-              const sharedId = res.shared.uid
-              const actBol = {
-                ...blt,
-                shared: res.shared.uid
+        let restore = false
+
+        this.boletosService.cargarBoletoByFiesta(this.id).subscribe((resp: CargarBoleto) => {
+          this.boletoTemp = this.functionsService.getActives(resp.boleto)
+
+
+          //this.exportToExcel(this.boletoTemp)
+          this.boletoTemp.forEach(blt => {
+            if (!blt.shared) {
+
+              let data = {
+                type: 'invitacion',
+                fiesta: this.fiesta.uid,
+                boleto: blt.uid,
+                data: {
+                  fiesta: this.fiesta,
+                  boleto: blt,
+
+                },
+                compartidas: 1,
+                vistas: 0,
+                usuarioCreated: this.uid,
+                activated: true,
+                dateCreated: this.today,
+                lastEdited: this.today,
               }
-              this.boletosService.actualizarBoleto(actBol).subscribe((res: any) => {
+              this.sharedService.crearShared(data).subscribe((res: any) => {
 
-                data.boleto = res.boletoActualizado
+                const sharedId = res.shared.uid
+                const actBol = {
+                  ...blt,
+                  shared: res.shared.uid
+                }
+                this.boletosService.actualizarBoleto(actBol).subscribe((res: any) => {
+
+                  data.boleto = res.boletoActualizado
+
+
+                })
+
+
+
 
 
               })
@@ -150,23 +175,17 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
 
 
 
-            })
+
+            }
+          });
 
 
-
-
-
-
-          }
-        });
-
-
-        this.getFiesta(this.fiesta.uid)
-      },
-        (error: any) => {
-          this.functionsService.alertError(error, 'Boletos')
-        })
-    });
+          this.getFiesta(this.fiesta.uid)
+        },
+          (error: any) => {
+            this.functionsService.alertError(error, 'Boletos')
+          })
+      });
   }
   ngOnDestroy(): void {
     if (this.obs1) this.obs1.unsubscribe();
@@ -1000,19 +1019,40 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
   }
   exportToExcel(): void {
     // 1. Convertir JSON a hoja de cálculo
-    const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.boletoTemp);
+    let blts = []
+    this.boletoTemp.forEach(b => {
+      if (b.activated) {
+        let blt = {
+          "Asistirá": (b.declinada == null || b.declinada) ? "😥" : "😃",
+          "Invitado": b.nombreGrupo.toUpperCase(),
+          "Cantidad": b.cantidadInvitados,
+          "Boletos Requeridos": b.requeridos,
+          "Mesa": b.mesa,
+          "WhatsApp": b.whatsapp,
+          "Email": b.email,
+          "Invitacion Enviada": (b.invitacionEnviada == null || !b.invitacionEnviada) ? '❌' : '✅',
+          "Invitacion Vista": (b.vista == null || !b.vista) ? '❌' : '✅',
+          "Invitacion Confirmada": (b.confirmado == null || !b.confirmado) ? '❌' : '✅',
+
+        }
+        blts.push(blt)
+      }
+    });
+
+
+    const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(blts);
 
     // 2. Crear un libro de Excel y agregar la hoja
     const workbook: XLSX.WorkBook = {
-      Sheets: { 'Datos': worksheet },
-      SheetNames: ['Datos']
+      Sheets: { 'Invitados': worksheet },
+      SheetNames: ['Invitados']
     };
 
     // 3. Generar un buffer Excel
     const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
-
+    let fiesta = this.fiesta.nombre + this.functionsService.numberDateTimeLocal(this.today) + '.xlsx'
     // 4. Guardar el archivo
     const blob = new Blob([excelBuffer], { type: 'application/octet-stream' });
-    FileSaver.saveAs(blob, 'datos.xlsx');
+    FileSaver.saveAs(blob, fiesta);
   }
 }
