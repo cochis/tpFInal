@@ -28,7 +28,7 @@ export class FaqsComponent implements OnInit {
         return p.categoria == '6'
       })
       this.posts = this.functionsService.getActives(this.posts)
-  
+
 
     })
   }
@@ -44,17 +44,17 @@ export class FaqsComponent implements OnInit {
       { name: 'keywords', content: 'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in' },
       { property: 'og:title', content: titulo },
       { property: 'og:description', content: descripcion },
-      { property: 'og:image', content: 'https://www.myticketparty.com/assets/images/qr.svg' },
+      { property: 'og:image', content: 'https://www.myticketparty.com/assets/images/myticketparty.png' },
       { property: 'og:url', content: 'https://www.myticketparty.com/core/faqs' },
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:title', content: titulo },
       { name: 'twitter:description', content: descripcion },
-      { name: 'twitter:image', content: 'https://www.myticketparty.com/assets/images/qr.svg' },
+      { name: 'twitter:image', content: 'https://www.myticketparty.com/assets/images/myticketparty.png' },
       { name: 'slug', content: 'core/faqs' },
       { name: 'colorBar', content: '#13547a' },
     ]);
   }
- convertDes(des: string) {
+  convertDes(des: string) {
     return this.sanitizer.bypassSecurityTrustHtml(des);
 
 

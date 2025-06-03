@@ -25,17 +25,8 @@ export class AppComponent {
 
   }
   updateClient() {
-    this.update.activateUpdate().then((event) => {
-      Swal.fire({
-        title: 'Existe una nueva version de la aplicación favor de actualizar',
-        confirmButtonColor: '#22547b',
-        confirmButtonText: 'Actualizar',
-      }).then((result) => {
-        if (result.isConfirmed) {
-          this.functionsService.logout()
-          window.location.reload()
-        }
-      })
+    this.update.checkForUpdate().then((event) => {
+      this.update.activateUpdate()
     })
   }
 

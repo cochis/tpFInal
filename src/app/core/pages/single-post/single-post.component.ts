@@ -43,7 +43,7 @@ export class SinglePostComponent {
     if (this.rol) {
       this.usuarioServices.cargarUsuarioById(this.uid).subscribe(res => {
         this.usuario = res.usuario
-     
+
       })
     }
     this.respuestaForm = this.fb.group({
@@ -70,7 +70,7 @@ export class SinglePostComponent {
       if (!this.post.respuestas) {
         this.post.respuestas = []
       }
-   ;
+      ;
 
       this.loading = false
     }, (error) => {
@@ -83,7 +83,7 @@ export class SinglePostComponent {
 
     if (this.respuestaForm.valid) {
       if (!this.post.respuestas) {
- 
+
         let r = {
           ...this.respuestaForm.value,
           activated: true,
@@ -99,9 +99,9 @@ export class SinglePostComponent {
         this.post.respuestas.unshift(r)
       }
 
- 
+
       this.postService.actualizarPost(this.post).subscribe((res: any) => {
-    
+
         this.post = res.postActualizado
       })
       // Aquí puedes enviar los datos al backend
@@ -128,7 +128,7 @@ export class SinglePostComponent {
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:title', content: titulo },
         { name: 'twitter:description', content: descripcion },
-        { name: 'twitter:image', content: 'https://www.myticketparty.com/assets/images/qr.svg' },
+        { name: 'twitter:image', content: 'https://www.myticketparty.com/assets/images/myticketparty.png' },
         { name: 'slug', content: 'core/faqs' },
         { name: 'colorBar', content: '#13547a' },
       ]);
@@ -139,7 +139,7 @@ export class SinglePostComponent {
 
 
   desActComentrio(i) {
-  
+
     this.post.respuestas[i].activated = !this.post.respuestas[i].activated
     this.postService.actualizarPost(this.post).subscribe((resp: any) => {
       this.post = resp.postActualizado
@@ -149,7 +149,7 @@ export class SinglePostComponent {
     this.loading = true
     this.postService.cargarPostById(id).subscribe((resp: CargarPost) => {
       this.post = resp.post
-   
+
 
       this.loading = false
     }, (error) => {
