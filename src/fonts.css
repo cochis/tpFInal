@@ -26,6 +26,27 @@
         url("/assets/fonts/daemon.ttf") format("opentype") tech(color-COLRv1);
 }
 
+@font-face {
+    font-family: "font5";
+    src:
+        local("font5"),
+        url("/assets/fonts/boots.ttf") format("opentype") tech(color-COLRv1);
+}
+
+@font-face {
+    font-family: "font6";
+    src:
+        local("font6"),
+        url("/assets/fonts/rebel.ttf") format("opentype") tech(color-COLRv1);
+}
+
+@font-face {
+    font-family: "font7";
+    src:
+        local("font7"),
+        url("/assets/fonts/roth.ttf") format("opentype") tech(color-COLRv1);
+}
+
 .font1 {
     font-family: 'font1';
     font-weight: 400;
@@ -49,6 +70,29 @@
     font-weight: 400;
     font-style: normal;
 }
+
+.font5 {
+    font-family: 'font5';
+    font-weight: 400;
+    font-style: normal;
+}
+
+.font6 {
+    font-family: 'font6';
+    font-weight: 400;
+    font-style: normal;
+}
+
+.font7 {
+    font-family: 'font7';
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+
+
+
 
 .pacific {
     font-family: "Pacifico", cursive;

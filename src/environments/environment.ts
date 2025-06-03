@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   user_ID: '64ff4f79da409a7d91056a5b',
   secret: '1f2d1e2e67df',
-  version: "1.3.0.2",
+  version: "1.3.0.4",
   publicKey: "BJqZ8KY_kguwLf27SsteILLRHlWY2pJOvrKlyZNeFlEg4O15ut0t7oYMgXHcLPSh2WYCRPwTS3WEPnhXCMZO4Wg",
   privateKey: "v04F9j6-aAZRvYl25BtZu1cezaWT-m4P0sHtE0JbE7g",
   stripeKeyD: 'pk_test_51PipskAbE4XYrXNxNi1oiwylWr7B9mNMfUfQ070Cy09dDPj5HBFYObSajMGjNzlAynX23dT8thcx8sdJxpnP7Vov00wzIocDLR',
@@ -47,164 +47,88 @@ export const environment = {
     '6727d2dbccbd48678e4b7b2b|https://www.myticketparty.com/core/templates/default/6727d2dbccbd48678e4b7b2b/6727d886ccbd48678e4b7e94|Deportivo|default'
   ],
   efectos: [
-    {
-      nombre: "Bounce",
-      clave: "animate__bounce"
-    },
-    {
-      nombre: "Flash",
-      clave: "animate__flash"
-    },
-    {
-      nombre: "Pulse",
-      clave: "animate__pulse"
-    },
-    {
-      nombre: "RubberBand",
-      clave: "animate__rubberBand"
-    },
-    {
-      nombre: "Shake X",
-      clave: "animate__shakeX"
-    },
-    {
-      nombre: "Shake Y",
-      clave: "animate__shakeY"
-    },
-    {
-      nombre: "HeadShake",
-      clave: "animate__shakeY"
-    },
-    {
-      nombre: "Swing",
-      clave: "animate__swing"
-    },
-    {
-      nombre: "Tada",
-      clave: "animate__tada"
-    },
-    {
-      nombre: "Wobble",
-      clave: "animate__wobble"
-    },
-    {
-      nombre: "Jello",
-      clave: "animate__jello"
-    },
-    {
-      nombre: "BackInDown",
-      clave: "animate__backInDown"
-    },
-    {
-      nombre: "BackInLeft",
-      clave: "animate__backInLeft"
-    },
-    {
-      nombre: "BackInRight",
-      clave: "animate__backInRight"
-    },
-    {
-      nombre: "BackInUp",
-      clave: "animate__backInUp"
-    },
-
-    {
-      nombre: "FadeIn",
-      clave: "animate__fadeIn"
-    },
-    {
-      nombre: "FadeInDown",
-      clave: "animate__fadeInDown"
-    },
-    {
-      nombre: "FadeInLeft",
-      clave: "animate__fadeInLeft"
-    },
-    {
-      nombre: "FadeInRight",
-      clave: "animate__fadeInRight"
-    },
-    {
-      nombre: "FadeInUp",
-      clave: "animate__fadeInUp"
-    },
-    {
-      nombre: "FadeInTopLeft",
-      clave: "animate__fadeInTopLeft"
-    },
-    {
-      nombre: "FadeInTopRight",
-      clave: "animate__fadeInTopRight"
-    },
-    {
-      nombre: "FadeInBottomLeft",
-      clave: "animate__fadeInBottomLeft"
-    },
-    {
-      nombre: "FadeInBottomRight",
-      clave: "animate__fadeInBottomRight"
-    },
-
-    {
-      nombre: "Fip",
-      clave: "animate__flip"
-    },
-    {
-      nombre: "FlipInX",
-      clave: "animate__flipInX"
-    },
-    {
-      nombre: "FlipInY",
-      clave: "animate__flipInY"
-    },
-    {
-      nombre: "LightSpeedInRight",
-      clave: "animate__lightSpeedInRight"
-    },
-    {
-      nombre: "LightSpeedInLeft",
-      clave: "animate__lightSpeedInLeft"
-    },
-    {
-      nombre: "RotateIn",
-      clave: "animate__rotateIn"
-    },
-    {
-      nombre: "JackInTheBox",
-      clave: "animate__jackInTheBox"
-    },
-    {
-      nombre: "RollIn",
-      clave: "animate__rollIn"
-    },
-    {
-      nombre: "ZoomIn",
-      clave: "animate__zoomIn"
-    },
-    {
-      nombre: "ZoomInDown",
-      clave: "animate__zoomInDown"
-    },
-    {
-      nombre: "ZoomInUp",
-      clave: "animate__zoomInUp"
-    },
-    {
-      nombre: "SlideInDown",
-      clave: "animate__slideInDown"
-    },
-    {
-      nombre: "SlideInLeft",
-      clave: "animate__slideInLeft"
-    },
-    {
-      nombre: "SlideInRight",
-      clave: "animate__slideInRight"
-    },
-    {
-      nombre: "SlideInUp",
-      clave: "animate__slideInUp"
-    },
+    { nombre: "BOUNCE", clave: "animate__bounce" },
+    { nombre: "FLASH", clave: "animate__flash" },
+    { nombre: "PULSE", clave: "animate__pulse" },
+    { nombre: "RUBBERBAND", clave: "animate__rubberBand" },
+    { nombre: "SHAKEX", clave: "animate__shakeX" },
+    { nombre: "SHAKEY", clave: "animate__shakeY" },
+    { nombre: "HEADSHAKE", clave: "animate__headShake" },
+    { nombre: "SWING", clave: "animate__swing" },
+    { nombre: "TADA", clave: "animate__tada" },
+    { nombre: "WOBBLE", clave: "animate__wobble" },
+    { nombre: "JELLO", clave: "animate__jello" },
+    { nombre: "HEARTBEAT", clave: "animate__heartBeat" },
+    { nombre: "BACKINDOWN", clave: "animate__backInDown" },
+    { nombre: "BACKINLEFT", clave: "animate__backInLeft" },
+    { nombre: "BACKOUTRIGHT", clave: "animate__backOutRight" },
+    { nombre: "BACKOUTUP", clave: "animate__backOutUp" },
+    { nombre: "BOUNCEIN", clave: "animate__bounceIn" },
+    { nombre: "BOUNCEOUTDOWN", clave: "animate__bounceOutDown" },
+    { nombre: "BOUNCEOUTLEFT", clave: "animate__bounceOutLeft" },
+    { nombre: "BOUNCEOUTRIGHT", clave: "animate__bounceOutRight" },
+    { nombre: "BOUNCEOUTUP", clave: "animate__bounceOutUp" },
+    { nombre: "FADEIN", clave: "animate__fadeIn" },
+    { nombre: "FADEINDOWN", clave: "animate__fadeInDown" },
+    { nombre: "FADEINDOWNBIG", clave: "animate__fadeInDownBig" },
+    { nombre: "FADEINLEFT", clave: "animate__fadeInLeft" },
+    { nombre: "FADEINLEFTBIG", clave: "animate__fadeInLeftBig" },
+    { nombre: "FADEINRIGHT", clave: "animate__fadeInRight" },
+    { nombre: "FADEINRIGHTBIG", clave: "animate__fadeInRightBig" },
+    { nombre: "FADEINUP", clave: "animate__fadeInUp" },
+    { nombre: "FADEINUPBIG", clave: "animate__fadeInUpBig" },
+    { nombre: "FADEINTOPLEFT", clave: "animate__fadeInTopLeft" },
+    { nombre: "FADEINTOPRIGHT", clave: "animate__fadeInTopRight" },
+    { nombre: "FADEINBOTTOMLEFT", clave: "animate__fadeInBottomLeft" },
+    { nombre: "FADEINBOTTOMRIGHT", clave: "animate__fadeInBottomRight" },
+    { nombre: "FADEOUT", clave: "animate__fadeOut" },
+    { nombre: "FADEOUTDOWN", clave: "animate__fadeOutDown" },
+    { nombre: "FADEOUTDOWNBIG", clave: "animate__fadeOutDownBig" },
+    { nombre: "FADEOUTLEFT", clave: "animate__fadeOutLeft" },
+    { nombre: "FADEOUTLEFTBIG", clave: "animate__fadeOutLeftBig" },
+    { nombre: "FADEOUTRIGHT", clave: "animate__fadeOutRight" },
+    { nombre: "FADEOUTRIGHTBIG", clave: "animate__fadeOutRightBig" },
+    { nombre: "FADEOUTUP", clave: "animate__fadeOutUp" },
+    { nombre: "FADEOUTTOPLEFT", clave: "animate__fadeOutTopLeft" },
+    { nombre: "FADEOUTTOPRIGHT", clave: "animate__fadeOutTopRight" },
+    { nombre: "FADEOUTBOTTOMRIGHT", clave: "animate__fadeOutBottomRight" },
+    { nombre: "FADEOUTBOTTOMLEFT", clave: "animate__fadeOutBottomLeft" },
+    { nombre: "FLIP", clave: "animate__flip" },
+    { nombre: "FLIPINX", clave: "animate__flipInX" },
+    { nombre: "FLIPINY", clave: "animate__flipInY" },
+    { nombre: "FLIPOUTX", clave: "animate__flipOutX" },
+    { nombre: "FLIPOUTY", clave: "animate__flipOutY" },
+    { nombre: "LIGHTSPEEDINRIGHT", clave: "animate__lightSpeedInRight" },
+    { nombre: "LIGHTSPEEDINLEFT", clave: "animate__lightSpeedInLeft" },
+    { nombre: "LIGHTSPEEDOUTRIGHT", clave: "animate__lightSpeedOutRight" },
+    { nombre: "LIGHTSPEEDOUTLEFT", clave: "animate__lightSpeedOutLeft" },
+    { nombre: "ROTATEIN", clave: "animate__rotateIn" },
+    { nombre: "ROTATEINDOWNLEFT", clave: "animate__rotateInDownLeft" },
+    { nombre: "ROTATEINDOWNRIGHT", clave: "animate__rotateInDownRight" },
+    { nombre: "ROTATEOUTUPLEFT", clave: "animate__rotateOutUpLeft" },
+    { nombre: "ROTATEOUTUPRIGHT", clave: "animate__rotateOutUpRight" },
+    { nombre: "HINGE", clave: "animate__hinge" },
+    { nombre: "JACKINTHEBOX", clave: "animate__jackInTheBox" },
+    { nombre: "ROLLIN", clave: "animate__rollIn" },
+    { nombre: "ROLLOUT", clave: "animate__rollOut" },
+    { nombre: "ZOOMIN", clave: "animate__zoomIn" },
+    { nombre: "ZOOMINDOWN", clave: "animate__zoomInDown" },
+    { nombre: "ZOOMINLEFT", clave: "animate__zoomInLeft" },
+    { nombre: "ZOOMINRIGHT", clave: "animate__zoomInRight" },
+    { nombre: "ZOOMINUP", clave: "animate__zoomInUp" },
+    { nombre: "ZOOMOUT", clave: "animate__zoomOut" },
+    { nombre: "ZOOMOUTDOWN", clave: "animate__zoomOutDown" },
+    { nombre: "ZOOMOUTLEFT", clave: "animate__zoomOutLeft" },
+    { nombre: "ZOOMOUTRIGHT", clave: "animate__zoomOutRight" },
+    { nombre: "ZOOMOUTUP", clave: "animate__zoomOutUp" },
+    { nombre: "SLIDEINDOWN", clave: "animate__slideInDown" },
+    { nombre: "SLIDEINLEFT", clave: "animate__slideInLeft" },
+    { nombre: "SLIDEINRIGHT", clave: "animate__slideInRight" },
+    { nombre: "SLIDEINUP", clave: "animate__slideInUp" },
+    { nombre: "SLIDEOUTDOWN", clave: "animate__slideOutDown" },
+    { nombre: "SLIDEOUTLEFT", clave: "animate__slideOutLeft" },
+    { nombre: "SLIDEOUTRIGHT", clave: "animate__slideOutRight" },
+    { nombre: "SLIDEOUTRIGHT", clave: "animate__slideOutRight" },
 
   ],
   repEfec: [
@@ -429,6 +353,9 @@ export const environment = {
     { name: 'Fuente 9', value: 'font2' },
     { name: 'Fuente 10', value: 'font3' },
     { name: 'Fuente 11', value: 'font4' },
+    { name: 'Fuente 12', value: 'font5' },
+    { name: 'Fuente 13', value: 'font6' },
+    { name: 'Fuente 14', value: 'font7' },
   ],
   categoriasPost: [
     { nombre: "Selecciona una categoria", id: "" },
