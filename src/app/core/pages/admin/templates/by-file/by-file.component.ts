@@ -10,7 +10,7 @@ import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { environment } from 'src/environments/environment';
 import { SwPush } from '@angular/service-worker';
 import Swal from 'sweetalert2';
-import { MetaService } from 'src/app/core/services/meta.service';
+
 import { PushsService } from 'src/app/core/services/push.service';
 import { Push } from 'src/app/core/models/push.model';
 import { Meta, Title } from '@angular/platform-browser';
@@ -104,7 +104,6 @@ export class ByFileComponent implements OnInit {
     private route: ActivatedRoute,
     private boletosService: BoletosService,
     private swPush: SwPush,
-    private metaService: MetaService,
     private pushsService: PushsService,
     private title: Title,
     private meta: Meta,
@@ -328,30 +327,25 @@ export class ByFileComponent implements OnInit {
       }
 
     }
-    /*  this.title.setTitle(t.toUpperCase());
-          let data = {
-            title: t.toUpperCase(),
-            description:
-              t.toUpperCase(),
-            keywords:
-              'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in',
-            slug: 'core/templates/byFile',
-            colorBar: '#13547a',
-            image: `${this.url}/upload/invitaciones/${this.invitacion.byFileInvitacion}`
 
-          }
-          this.metaService.generateTags(data) */
 
   }
   ngOnInit() {
     const titulo = `My Ticket Party | ${this.state.nombreFiesta}  -  ${this.functionsService.numberToDate(Number(this.state.fiestaDate))}  `;;
     const descripcion = `${this.state.nombreFiesta} | MyTicketParty `
+    this.meta.removeTag('name="description"');
+    this.meta.removeTag('property="og:title"');
+    this.meta.removeTag('property="og:description"');
+    this.meta.removeTag('property="og:image"');
+    this.meta.removeTag('twitter:card');
+    this.meta.removeTag('twitter:title');
+    this.meta.removeTag('twitter:description');
+    this.meta.removeTag('twitter:image');
     this.titleService.setTitle(titulo);
-
     this.meta.addTags([
       { name: 'author', content: 'MyTicketParty' },
       { name: 'description', content: descripcion },
-      { name: 'keywords', content: 'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in' },
+      { name: 'keywords', content: 'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in,MyTicketParty, invitaciones digitales personalizadas,crear invitaciones con boletos,boletos digitales para fiestas,invitaciones para eventos privados,invitaciones con código QR,entradas digitales para fiestas,invitaciones con control de acceso,tickets personalizados para eventos,cómo hacer invitaciones digitales para fiestas,plataforma para crear boletos con QR,invitaciones con entrada digital para eventos,boletos para fiestas con lista de invitados,crear invitaciones con diseño personalizado,control de acceso para eventos privados,envío de boletos digitales por WhatsApp o email,invitaciones interactivas para eventos,Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in' },
       { property: 'og:title', content: titulo },
       { property: 'og:description', content: descripcion },
       { property: 'og:image', content: `${this.url}/upload/invitaciones/${this.state.byFileInvitacion}` },

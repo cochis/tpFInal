@@ -10,7 +10,7 @@ import { Boleto } from '../core/models/boleto.model';
 import { Invitacion } from '../core/models/invitacion.model';
 import { error } from 'console';
 import { environment } from 'src/environments/environment';
-import { DomSanitizer, SafeUrl, Title } from '@angular/platform-browser';
+import { DomSanitizer, Meta, SafeUrl, Title } from '@angular/platform-browser';
 import { MetaService } from '../core/services/meta.service';
 import { FunctionsService } from './services/functions.service';
 @Component({
@@ -40,7 +40,8 @@ export class SharedComponent {
     private metaService: MetaService,
     private functionService: FunctionsService,
     private title: Title,
-
+    private meta: Meta,
+    private titleService: Title
   ) {
 
     this.functionService.quitarChatShared()
@@ -63,19 +64,34 @@ export class SharedComponent {
               this.iframeSrc = this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
 
 
-              let t: string = `My Ticket Party | Estas in${resF.invitacion.fiesta.nombre} | ${this.shared.data.boleto.nombreGrupo} | ${this.functionService.numberDateTimeLocal(resF.invitacion.fiesta.fecha)}`;
-              this.title.setTitle(t);
-              this.metaService.generateTags({
-                title: `My Ticket Party | ${resF.invitacion.fiesta.nombre} | ${this.shared.data.boleto.nombreGrupo} | ${this.functionService.numberDateTimeLocal(resF.invitacion.fiesta.fecha)}`,
-                description:
-                  `My Ticket Party | Estás invitado(a) a ${resF.invitacion.fiesta.nombre}. Fecha: ${this.functionService.numberDateTimeLocal(resF.invitacion.fiesta.fecha)}. Confirma tu asistencia y entérate de todos los detalles.`,
-                keywords:
-                  'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in',
-                slug: 'core/shared',
-                colorBar: '#13547a',
-                image: `${this.urlB}/upload/fiestas/${this.shared.data.fiesta.img}`
-                /* window.location.origin + '/assets/images/qr.svg', */
-              });
+              let t: string = `My Ticket Party | Estas invitado ${resF.invitacion.fiesta.nombre}  `;
+              let d: string = `${this.shared.data.boleto.nombreGrupo} | ${this.functionService.numberDateTimeLocal(resF.invitacion.fiesta.fecha)}`;
+              this.titleService.setTitle(t);
+              this.meta.removeTag('name="description"');
+              this.meta.removeTag('property="og:title"');
+              this.meta.removeTag('property="og:description"');
+              this.meta.removeTag('property="og:image"');
+              this.meta.removeTag('twitter:card');
+              this.meta.removeTag('twitter:title');
+              this.meta.removeTag('twitter:description');
+              this.meta.removeTag('twitter:image');
+              this.meta.addTags([
+                { name: 'author', content: 'MyTicketParty' },
+                { name: 'description', content: d },
+                { name: 'keywords', content: 'MyTicketParty, invitaciones digitales personalizadas,crear invitaciones con boletos,boletos digitales para fiestas,invitaciones para eventos privados,invitaciones con código QR,entradas digitales para fiestas,invitaciones con control de acceso,tickets personalizados para eventos,cómo hacer invitaciones digitales para fiestas,plataforma para crear boletos con QR,invitaciones con entrada digital para eventos,boletos para fiestas con lista de invitados,crear invitaciones con diseño personalizado,control de acceso para eventos privados,envío de boletos digitales por WhatsApp o email,invitaciones interactivas para eventos,Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in' },
+                { property: 'og:title', content: t },
+                { property: 'og:description', content: d },
+                { property: 'og:image', content: `${this.urlB}/upload/fiestas/${this.shared.data.fiesta.img}` },
+                { property: 'og:url', content: 'https://www.myticketparty.com' },
+                { name: 'twitter:card', content: 'summary_large_image' },
+                { name: 'twitter:title', content: t },
+                { name: 'twitter:description', content: d },
+                { name: 'twitter:image', content: `${this.urlB}/upload/fiestas/${this.shared.data.fiesta.img}` },
+                { name: 'slug', content: '/' },
+                { name: 'colorBar', content: '#13547a' },
+              ]);
+
+
 
               setTimeout(() => {
 

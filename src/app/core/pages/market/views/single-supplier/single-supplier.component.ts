@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Proveedor } from '../../../../models/proveedor.model';
 import { environment } from 'src/environments/environment';
@@ -10,7 +10,7 @@ import { Item } from 'src/app/core/models/item.model';
 import { TipoContactosService } from '../../../../services/tipoContacto.service';
 import { CargarRedes, CargarTipoContactos } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
 import { TipoContacto } from 'src/app/core/models/tipoContacto.model';
-import { DomSanitizer, SafeHtml, Title } from '@angular/platform-browser';
+import { DomSanitizer, Meta, SafeHtml, Title } from '@angular/platform-browser';
 import { MetaService } from 'src/app/core/services/meta.service';
 import { Red } from 'src/app/core/models/red.model';
 import { RedesService } from 'src/app/core/services/red.service';
@@ -19,7 +19,7 @@ import { RedesService } from 'src/app/core/services/red.service';
   templateUrl: './single-supplier.component.html',
   styleUrls: ['./single-supplier.component.scss']
 })
-export class SingleSupplierComponent {
+export class SingleSupplierComponent implements OnInit {
   id!: string
   proveedor: Proveedor
   CTPR: any = environment.contactosProveedor
@@ -37,7 +37,7 @@ export class SingleSupplierComponent {
   descripcionHTML: SafeHtml;
   redesAll: Red[]
   constructor(
-    private metaService: MetaService,
+
     private title: Title,
     private router: Router,
     private route: ActivatedRoute,
@@ -47,7 +47,8 @@ export class SingleSupplierComponent {
     private functionsService: FunctionsService,
     private redesService: RedesService,
     private sanitizer: DomSanitizer,
-
+    private meta: Meta,
+    private titleService: Title,
     private fb: FormBuilder) {
 
     this.route.queryParams.subscribe(params => {
@@ -69,6 +70,39 @@ export class SingleSupplierComponent {
 
 
   }
+  ngOnInit() {
+    this.meta.removeTag('name="description"');
+    this.meta.removeTag('property="og:title"');
+    this.meta.removeTag('property="og:description"');
+    this.meta.removeTag('property="og:image"');
+    this.meta.removeTag('twitter:card');
+    this.meta.removeTag('twitter:title');
+    this.meta.removeTag('twitter:description');
+    this.meta.removeTag('twitter:image');
+    this.titleService.setTitle(`My Ticket Party | ${this.proveedor.nombre}`);
+    this.meta.addTags([
+      { name: 'author', content: 'MyTicketParty' },
+      { name: 'description', content: `Descripción del producto : ${this.functionsService.convertDesSinHtml(this.proveedor.descripcion)}` },
+      { name: 'keywords', content: 'MyTicketParty, invitaciones digitales personalizadas,crear invitaciones con boletos,boletos digitales para fiestas,invitaciones para eventos privados,invitaciones con código QR,entradas digitales para fiestas,invitaciones con control de acceso,tickets personalizados para eventos,cómo hacer invitaciones digitales para fiestas,plataforma para crear boletos con QR,invitaciones con entrada digital para eventos,boletos para fiestas con lista de invitados,crear invitaciones con diseño personalizado,control de acceso para eventos privados,envío de boletos digitales por WhatsApp o email,invitaciones interactivas para eventos,Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in' },
+      { property: 'og:title', content: `My Ticket Party| ${this.proveedor.nombre}` },
+      { property: 'og:description', content: `Descripción del producto : ${this.functionsService.convertDesSinHtml(this.proveedor.descripcion)}` },
+      { property: 'og:image', content: 'https://www.myticketparty.com/assets/images/myticketparty.png' },
+      { property: 'og:url', content: 'https://www.myticketparty.com' },
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:title', content: `My Ticket Party| ${this.proveedor.nombre}` },
+      { name: 'twitter:description', content: `Descripción del producto : ${this.functionsService.convertDesSinHtml(this.proveedor.descripcion)}` },
+      { name: 'twitter:image', content: 'https://www.myticketparty.com/assets/images/myticketparty.png' },
+      { name: 'slug', content: '/' },
+      { name: 'colorBar', content: '#13547a' },
+    ]);
+
+
+
+
+
+
+
+  }
   back(): void {
     this.router.navigate(['/core/market']);
   }
@@ -85,16 +119,6 @@ export class SingleSupplierComponent {
       let t: string = `My Ticket Party | ${this.proveedor.nombre}`;
       this.title.setTitle(t);
 
-      this.metaService.generateTags({
-        title: `My Ticket Party| ${this.proveedor.nombre}`,
-        description:
-          `Descripción del producto : ${this.functionsService.convertDesSinHtml(this.proveedor.descripcion)}`,
-        keywords:
-          'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in',
-        slug: 'core/faqs',
-        colorBar: '#13547a',
-        image: this.url + '/upload/proveedores/' + this.proveedor.img,
-      });
 
 
 

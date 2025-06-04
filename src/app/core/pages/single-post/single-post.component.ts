@@ -28,9 +28,7 @@ export class SinglePostComponent {
   rol = this.functionsService.getLocal('role')
   ADM = environment.admin_role
   constructor(
-    private metaService: MetaService,
-    private title: Title,
-    private router: Router,
+
     private route: ActivatedRoute,
     private sanitizer: DomSanitizer,
     private postService: PostsService,
@@ -38,7 +36,8 @@ export class SinglePostComponent {
     private functionsService: FunctionsService,
     private meta: Meta,
     private titleService: Title,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+
   ) {
     if (this.rol) {
       this.usuarioServices.cargarUsuarioById(this.uid).subscribe(res => {
@@ -114,7 +113,14 @@ export class SinglePostComponent {
     setTimeout(() => {
       const titulo = 'Preguntas Frecuentes | ' + this.post.titulo + ' | MyTicketParty';
       const descripcion = this.eliminarEtiquetasHTML(this.post.contenido).slice(0, 200) + '...'
-
+      this.meta.removeTag('name="description"');
+      this.meta.removeTag('property="og:title"');
+      this.meta.removeTag('property="og:description"');
+      this.meta.removeTag('property="og:image"');
+      this.meta.removeTag('twitter:card');
+      this.meta.removeTag('twitter:title');
+      this.meta.removeTag('twitter:description');
+      this.meta.removeTag('twitter:image');
       this.titleService.setTitle(titulo);
 
       this.meta.addTags([

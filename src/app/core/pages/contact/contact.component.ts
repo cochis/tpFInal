@@ -18,29 +18,13 @@ export class ContactComponent implements OnInit {
     private contactoService: ContactosService,
     private fb: FormBuilder,
     private functionsService: FunctionsService,
-    private metaService: MetaService,
-    private title: Title,
+
     private meta: Meta,
     private titleService: Title
   ) {
 
 
-    /*  let t: string = 'Contacto | Escríbenos y Organiza Tu Evento con MyTicketParty';
-     this.title.setTitle(t);
- 
-     this.metaService.generateTags({
-       title: 'Contacto | Escríbenos y Organiza Tu Evento con MyTicketParty',
-       description:
-         '¿Tienes dudas o necesitas ayuda con tu evento? Contáctanos y recibe asesoría sobre invitaciones digitales, proveedores y servicios para eventos.',
-       keywords:
-         'contacto, ayuda, soporte, atención al cliente, preguntas, eventos, MyTicketParty, invitaciones digitales, marketplace de eventos, servicio al cliente',
-       slug: 'core/contact',
-       colorBar: '#13547a',
-       image:
-         window.location.origin + '/assets/images/qr.svg',
-     });
- 
-  */
+
 
 
     this.createForm()
@@ -48,13 +32,19 @@ export class ContactComponent implements OnInit {
   ngOnInit(): void {
     const titulo = 'Contacto | Escríbenos y Organiza Tu Evento con MyTicketParty';
     const descripcion = '¿Tienes dudas o necesitas ayuda con tu evento? Contáctanos y recibe asesoría sobre invitaciones digitales, proveedores y servicios para eventos.';
-
+    this.meta.removeTag('name="description"');
+    this.meta.removeTag('property="og:title"');
+    this.meta.removeTag('property="og:description"');
+    this.meta.removeTag('property="og:image"');
+    this.meta.removeTag('twitter:card');
+    this.meta.removeTag('twitter:title');
+    this.meta.removeTag('twitter:description');
+    this.meta.removeTag('twitter:image');
     this.titleService.setTitle(titulo);
-
     this.meta.addTags([
       { name: 'author', content: 'MyTicketParty' },
       { name: 'description', content: descripcion },
-      { name: 'keywords', content: 'contacto, ayuda, soporte, atención al cliente, preguntas, eventos, MyTicketParty, invitaciones digitales, marketplace de eventos, servicio al cliente' },
+      { name: 'keywords', content: 'contacto, ayuda, soporte, atención al cliente, preguntas, eventos, MyTicketParty, invitaciones digitales, marketplace de eventos, servicio al cliente,MyTicketParty, invitaciones digitales personalizadas,crear invitaciones con boletos,boletos digitales para fiestas,invitaciones para eventos privados,invitaciones con código QR,entradas digitales para fiestas,invitaciones con control de acceso,tickets personalizados para eventos,cómo hacer invitaciones digitales para fiestas,plataforma para crear boletos con QR,invitaciones con entrada digital para eventos,boletos para fiestas con lista de invitados,crear invitaciones con diseño personalizado,control de acceso para eventos privados,envío de boletos digitales por WhatsApp o email,invitaciones interactivas para eventos,Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in' },
       { property: 'og:title', content: titulo },
       { property: 'og:description', content: descripcion },
       { property: 'og:image', content: 'https://www.myticketparty.com/assets/images/myticketparty.png' },

@@ -7,7 +7,7 @@ import { Fiesta } from 'src/app/core/models/fiesta.model';
 import { Salon } from 'src/app/core/models/salon.model';
 import { BoletosService } from 'src/app/core/services/boleto.service';
 import { FiestasService } from 'src/app/core/services/fiestas.service';
-import { MetaService } from 'src/app/core/services/meta.service';
+
 import { SalonsService } from 'src/app/core/services/salon.service';
 import { TokenPushsService } from 'src/app/core/services/tokenPush.service';
 import { FunctionsService } from 'src/app/shared/services/functions.service';
@@ -62,7 +62,7 @@ export class Xv2Component {
     private salonsService: SalonsService,
     private fiestasService: FiestasService,
     private tokenPushService: TokenPushsService,
-    private metaService: MetaService,
+
   ) {
 
     this.init()
@@ -121,17 +121,7 @@ export class Xv2Component {
   }
 
   setData(fiesta, boleto) {
-    this.metaService.generateTags({
-      title: `${fiesta.nombre} -  ${this.functionsService.datePush(fiesta.fecha)}  `,
-      description:
-        `Hola ${boleto.nombreGrupo} te invito tienes  ${boleto.cantidadInvitados} boletos`,
-      keywords:
-        'No faltes, te espero ',
-      slug: `core/templates/default/${fiesta.uid}/${boleto.uid}`,
-      colorBar: '#153860',
-      image:
-        this.urlT + 'assets/invitaciones/xv/1.png',
-    });
+
   }
   getQr(boleto) {
     var qr: any = {

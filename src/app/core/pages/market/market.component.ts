@@ -7,7 +7,7 @@ import { CategoriaItem } from '../../models/categoriaItem.model';
 import { CargarCategoriaItems } from '../../interfaces/cargar-interfaces.interfaces';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Meta, Title } from '@angular/platform-browser';
-import { MetaService } from '../../services/meta.service';
+
 
 @Component({
   selector: 'app-market',
@@ -26,28 +26,12 @@ export class MarketComponent implements OnInit, AfterViewInit {
     private itemsService: ItemsService,
     private categoriaItemsService: CategoriaItemsService,
     private functionsService: FunctionsService,
-    private metaService: MetaService,
-    private title: Title,
     private fb: FormBuilder,
     private meta: Meta,
     private titleService: Title
   ) {
 
-    /* 
-        let t: string = 'Productos y Servicios para Eventos | Mobiliario, Catering, Decoración y Más | MyTicketParty';
-        this.title.setTitle(t);
-    
-        this.metaService.generateTags({
-          title: 'Productos y Servicios para Eventos | Mobiliario, Catering, Decoración y Más | MyTicketParty',
-          description:
-            'Descubre el marketplace líder en productos y servicios para eventos: decoración, catering, mobiliario, entretenimiento y más. ¡Organiza tu evento perfecto hoy!',
-          keywords:
-            'productos para eventos, servicios para eventos, catering, renta de sillas, mobiliario, decoración, sonido, iluminación, logística de eventos, MyTicketParty',
-          slug: 'core/market',
-          colorBar: '#13547a',
-          image:
-            window.location.origin + '/assets/images/qr.svg',
-        }); */
+
 
 
     this.getItems()
@@ -57,14 +41,21 @@ export class MarketComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     const titulo = 'Productos y Servicios para Eventos | Mobiliario, Catering, Decoración y Más | MyTicketParty';
-    const descripcion = 'Descubre el marketplace líder en productos y servicios para eventos: decoración, catering, mobiliario, entretenimiento y más. ¡Organiza tu evento perfecto hoy!';
-
+    const descripcion = 'Descubre el marketplace líder en productos y servicios para eventos: decoración, catering, mobiliario, entretenimiento y más. ¡Organiza tu evento perfecto hoy!,';
+    this.meta.removeTag('name="description"');
+    this.meta.removeTag('property="og:title"');
+    this.meta.removeTag('property="og:description"');
+    this.meta.removeTag('property="og:image"');
+    this.meta.removeTag('twitter:card');
+    this.meta.removeTag('twitter:title');
+    this.meta.removeTag('twitter:description');
+    this.meta.removeTag('twitter:image');
     this.titleService.setTitle(titulo);
 
     this.meta.addTags([
       { name: 'author', content: 'MyTicketParty' },
       { name: 'description', content: descripcion },
-      { name: 'keywords', content: 'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in' },
+      { name: 'keywords', content: 'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in,MyTicketParty, invitaciones digitales personalizadas,crear invitaciones con boletos,boletos digitales para fiestas,invitaciones para eventos privados,invitaciones con código QR,entradas digitales para fiestas,invitaciones con control de acceso,tickets personalizados para eventos,cómo hacer invitaciones digitales para fiestas,plataforma para crear boletos con QR,invitaciones con entrada digital para eventos,boletos para fiestas con lista de invitados,crear invitaciones con diseño personalizado,control de acceso para eventos privados,envío de boletos digitales por WhatsApp o email,invitaciones interactivas para eventos,Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in' },
       { property: 'og:title', content: titulo },
       { property: 'og:description', content: descripcion },
       { property: 'og:image', content: 'https://www.myticketparty.com/assets/images/myticketparty.png' },

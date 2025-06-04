@@ -1,13 +1,11 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Meta, Title } from '@angular/platform-browser';
-import { error } from 'jquery';
 import { CargarUsuario } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
 import { Boleto } from 'src/app/core/models/boleto.model';
 import { Fiesta } from 'src/app/core/models/fiesta.model';
 import { BoletosService } from 'src/app/core/services/boleto.service';
 import { FiestasService } from 'src/app/core/services/fiestas.service';
-import { MetaService } from 'src/app/core/services/meta.service';
 import { UsuariosService } from 'src/app/core/services/usuarios.service';
 import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { environment } from 'src/environments/environment';
@@ -46,27 +44,10 @@ export class CheckInComponent implements OnInit, AfterViewInit {
     private boletosService: BoletosService,
     private fiestasService: FiestasService,
     private fb: FormBuilder,
-    private metaService: MetaService,
     private title: Title,
     private meta: Meta,
     private titleService: Title
   ) {
-
-
-    /*  let t: string = 'My Ticket Party | Check In';
-     this.title.setTitle(t);
-     let data = {
-       title: 'Ticket Party |  Check In ',
-       description:
-         'El "check in" de eventos  permite a los organizadores y participantes gestionar la entrada a un evento de manera eficiente',
-       keywords:
-         'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in',
-       slug: 'core/check-in',
-       colorBar: '#13547a',
-       image:
-         window.location.origin + '/assets/images/qr.svg',
-     }
-     this.metaService.generateTags(data) */
     this.formInit = this.fb.group({
       tipo: ['', [Validators.required]],
       fiesta: ['', [Validators.required]],
@@ -78,13 +59,19 @@ export class CheckInComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     const titulo = 'My Ticket Party |  Check In ';
     const descripcion = 'El "check in" de eventos  permite a los organizadores y participantes gestionar la entrada a un evento de manera eficiente';
-
+    this.meta.removeTag('name="description"');
+    this.meta.removeTag('property="og:title"');
+    this.meta.removeTag('property="og:description"');
+    this.meta.removeTag('property="og:image"');
+    this.meta.removeTag('twitter:card');
+    this.meta.removeTag('twitter:title');
+    this.meta.removeTag('twitter:description');
+    this.meta.removeTag('twitter:image');
     this.titleService.setTitle(titulo);
-
     this.meta.addTags([
       { name: 'author', content: 'MyTicketParty' },
       { name: 'description', content: descripcion },
-      { name: 'keywords', content: 'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in' },
+      { name: 'keywords', content: 'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in,MyTicketParty, invitaciones digitales personalizadas,crear invitaciones con boletos,boletos digitales para fiestas,invitaciones para eventos privados,invitaciones con código QR,entradas digitales para fiestas,invitaciones con control de acceso,tickets personalizados para eventos,cómo hacer invitaciones digitales para fiestas,plataforma para crear boletos con QR,invitaciones con entrada digital para eventos,boletos para fiestas con lista de invitados,crear invitaciones con diseño personalizado,control de acceso para eventos privados,envío de boletos digitales por WhatsApp o email,invitaciones interactivas para eventos,Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in' },
       { property: 'og:title', content: titulo },
       { property: 'og:description', content: descripcion },
       { property: 'og:image', content: 'https://www.myticketparty.com/assets/images/myticketparty.png' },

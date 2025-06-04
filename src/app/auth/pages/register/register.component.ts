@@ -83,44 +83,31 @@ export class RegisterComponent implements OnInit {
     private paquetesService: PaquetesService,
     private tipoCentrosService: TipoCentrosService,
     private swPush: SwPush,
-    private metaService: MetaService,
     private readonly _modalService: ModalService,
     private title: Title,
     private meta: Meta,
     private titleService: Title
   ) {
-
-
-    /*   let t: string = 'My Ticket Party | Login';
-      this.title.setTitle(t);
-      let data = {
-        title: 'Ticket Party | Login ',
-        description:
-          'Ingresa a nuestra aplicación con usuario y contraseña',
-        keywords:
-          'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in',
-        slug: 'auth/login',
-        colorBar: '#13547a',
-        image:
-          window.location.origin + '/assets/images/qr.svg',
-      }
-      this.metaService.generateTags(data) */
     this.getParams()
-
     this.getCatalogos()
-
   }
   ngOnInit(): void {
     const titulo = 'Registro | MyTicketParty';
     const descripcion = 'Crea tu cuenta personaliza invitaciones digitales para tus eventos con MyTicketParty. Gestiona boletos, asigna mesas y comparte tu celebración fácilmente.';
-
+    this.meta.removeTag('name="description"');
+    this.meta.removeTag('property="og:title"');
+    this.meta.removeTag('property="og:description"');
+    this.meta.removeTag('property="og:image"');
+    this.meta.removeTag('twitter:card');
+    this.meta.removeTag('twitter:title');
+    this.meta.removeTag('twitter:description');
+    this.meta.removeTag('twitter:image');
     this.titleService.setTitle(titulo);
-
     this.meta.addTags([
       { name: 'author', content: 'MyTicketParty' },
       { name: 'description', content: descripcion },
       { property: 'og:title', content: titulo },
-      { name: 'keywords', content: 'Myticketparty, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in' },
+      { name: 'keywords', content: 'MyTicketParty, invitaciones digitales personalizadas,crear invitaciones con boletos,boletos digitales para fiestas,invitaciones para eventos privados,invitaciones con código QR,entradas digitales para fiestas,invitaciones con control de acceso,tickets personalizados para eventos,cómo hacer invitaciones digitales para fiestas,plataforma para crear boletos con QR,invitaciones con entrada digital para eventos,boletos para fiestas con lista de invitados,crear invitaciones con diseño personalizado,control de acceso para eventos privados,envío de boletos digitales por WhatsApp o email,invitaciones interactivas para eventos,Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in' },
       { property: 'og:description', content: descripcion },
       { property: 'og:image', content: 'https://www.myticketparty.com/assets/images/myticketparty.png' },
       { property: 'og:url', content: 'https://www.myticketparty.com/auth/register' },
