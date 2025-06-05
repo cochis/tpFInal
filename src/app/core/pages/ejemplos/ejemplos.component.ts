@@ -47,14 +47,7 @@ export class EjemplosComponent implements OnInit {
   async ngOnInit() {
     const titulo = 'My Ticket Party | Ejemplos de invitaciones digitales';
     const descripcion = 'Las invitaciones digitales para logística son herramientas eficaces para coordinar eventos, reuniones o capacitaciones en el sector.';
-    this.meta.removeTag('name="description"');
-    this.meta.removeTag('property="og:title"');
-    this.meta.removeTag('property="og:description"');
-    this.meta.removeTag('property="og:image"');
-    this.meta.removeTag('twitter:card');
-    this.meta.removeTag('twitter:title');
-    this.meta.removeTag('twitter:description');
-    this.meta.removeTag('twitter:image');
+    this.functionsService.removeTags()
     this.titleService.setTitle(titulo);
     this.meta.addTags([
       { name: 'author', content: 'MyTicketParty' },

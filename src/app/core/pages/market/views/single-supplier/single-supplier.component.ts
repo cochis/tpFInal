@@ -71,14 +71,8 @@ export class SingleSupplierComponent implements OnInit {
 
   }
   ngOnInit() {
-    this.meta.removeTag('name="description"');
-    this.meta.removeTag('property="og:title"');
-    this.meta.removeTag('property="og:description"');
-    this.meta.removeTag('property="og:image"');
-    this.meta.removeTag('twitter:card');
-    this.meta.removeTag('twitter:title');
-    this.meta.removeTag('twitter:description');
-    this.meta.removeTag('twitter:image');
+    this.functionsService.removeTags()
+
     this.titleService.setTitle(`My Ticket Party | ${this.proveedor.nombre}`);
     this.meta.addTags([
       { name: 'author', content: 'MyTicketParty' },

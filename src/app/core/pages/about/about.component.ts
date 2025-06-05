@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Meta, Title } from '@angular/platform-browser';
+import { FunctionsService } from 'src/app/shared/services/functions.service';
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
@@ -11,19 +12,13 @@ export class AboutComponent implements OnInit {
   constructor(private modalService: NgbModal,
     private title: Title,
     private meta: Meta,
-    private titleService: Title
+    private titleService: Title,
+    private functionsService : FunctionsService
   ) { }
   ngOnInit() {
     const titulo = 'Nosotros | MyTicketParty - Invitaciones Digitales Logística de Eventos y Marketplace para Eventos';
     const descripcion = 'Conoce a MyTicketParty: un equipo apasionado por ayudarte a organizar eventos inolvidables con invitaciones digitales, logística y un marketplace para eventos  completo.';
-    this.meta.removeTag('name="description"');
-    this.meta.removeTag('property="og:title"');
-    this.meta.removeTag('property="og:description"');
-    this.meta.removeTag('property="og:image"');
-    this.meta.removeTag('twitter:card');
-    this.meta.removeTag('twitter:title');
-    this.meta.removeTag('twitter:description');
-    this.meta.removeTag('twitter:image');
+    this.functionsService.removeTags()
     this.titleService.setTitle(titulo);
     this.meta.addTags([
       { name: 'author', content: 'MyTicketParty' },

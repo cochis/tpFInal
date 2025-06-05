@@ -47,14 +47,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     const titulo = 'Invitaciones Digitales y Logistica de eventos- MyTicketParty';
     const descripcion = 'Crea y personaliza invitaciones digitales para tus eventos con MyTicketParty. Gestiona boletos, asigna mesas y comparte tu celebración fácilmente.';
-    this.meta.removeTag('name="description"');
-    this.meta.removeTag('property="og:title"');
-    this.meta.removeTag('property="og:description"');
-    this.meta.removeTag('property="og:image"');
-    this.meta.removeTag('twitter:card');
-    this.meta.removeTag('twitter:title');
-    this.meta.removeTag('twitter:description');
-    this.meta.removeTag('twitter:image');
+    this.functionsService.removeTags()
     this.titleService.setTitle(titulo);
     this.meta.addTags([
       { name: 'author', content: 'MyTicketParty' },

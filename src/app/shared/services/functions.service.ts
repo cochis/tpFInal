@@ -8,7 +8,7 @@ import { SwPush } from '@angular/service-worker';
 import * as SecureLS from 'secure-ls';
 import { Parametro } from 'src/app/core/models/parametro.model';
 import { Location } from '@angular/common';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { DomSanitizer, Meta, SafeHtml } from '@angular/platform-browser';
 import { SeoService } from './seo.service';
 @Injectable({
   providedIn: 'root'
@@ -24,7 +24,8 @@ export class FunctionsService {
     private swPush: SwPush,
     private http: HttpClient,
     private seo: SeoService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private meta: Meta,
   ) { }
   getIp() {
     return this.http.get("https://geolocation-db.com/json/");
@@ -415,5 +416,23 @@ export class FunctionsService {
   }
   eliminarEtiquetasHTML(cadena) {
     return cadena.replace(/<[^>]*>/g, '');
+  }
+  async removeTags() {
+    if (this.meta.getTag('name="description"')) {
+      console.log(" this.meta: ", this.meta.getTag('name="description"'))
+      this.meta.removeTag('name="description"')
+    }
+    if (this.meta.getTag('property="og:title"')) {
+      this.meta.removeTag('property="og:title"')
+    }
+    if (this.meta.getTag('property="og:description"')) {
+      this.meta.removeTag('property="og:description"')
+    }
+    if (this.meta.getTag('property="og:image"')) {
+      this.meta.removeTag('property="og:image"')
+    }
+    
+     
+
   }
 }

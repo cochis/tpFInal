@@ -32,14 +32,7 @@ export class ContactComponent implements OnInit {
   ngOnInit(): void {
     const titulo = 'Contacto | Escríbenos y Organiza Tu Evento con MyTicketParty';
     const descripcion = '¿Tienes dudas o necesitas ayuda con tu evento? Contáctanos y recibe asesoría sobre invitaciones digitales, proveedores y servicios para eventos.';
-    this.meta.removeTag('name="description"');
-    this.meta.removeTag('property="og:title"');
-    this.meta.removeTag('property="og:description"');
-    this.meta.removeTag('property="og:image"');
-    this.meta.removeTag('twitter:card');
-    this.meta.removeTag('twitter:title');
-    this.meta.removeTag('twitter:description');
-    this.meta.removeTag('twitter:image');
+    this.functionsService.removeTags()
     this.titleService.setTitle(titulo);
     this.meta.addTags([
       { name: 'author', content: 'MyTicketParty' },

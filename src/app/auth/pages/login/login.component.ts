@@ -33,14 +33,10 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     const titulo = 'My Ticket Party | Login';
     const descripcion = 'Ingresa a nuestra aplicación con usuario y contraseña';
-    this.meta.removeTag('name="description"');
-    this.meta.removeTag('property="og:title"');
-    this.meta.removeTag('property="og:description"');
-    this.meta.removeTag('property="og:image"');
-    this.meta.removeTag('twitter:card');
-    this.meta.removeTag('twitter:title');
-    this.meta.removeTag('twitter:description');
-    this.meta.removeTag('twitter:image');
+
+    
+    this.functionsService.removeTags()
+
     this.titleService.setTitle(titulo);
 
     this.meta.addTags([

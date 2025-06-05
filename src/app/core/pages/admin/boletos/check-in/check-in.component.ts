@@ -59,14 +59,7 @@ export class CheckInComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     const titulo = 'My Ticket Party |  Check In ';
     const descripcion = 'El "check in" de eventos  permite a los organizadores y participantes gestionar la entrada a un evento de manera eficiente';
-    this.meta.removeTag('name="description"');
-    this.meta.removeTag('property="og:title"');
-    this.meta.removeTag('property="og:description"');
-    this.meta.removeTag('property="og:image"');
-    this.meta.removeTag('twitter:card');
-    this.meta.removeTag('twitter:title');
-    this.meta.removeTag('twitter:description');
-    this.meta.removeTag('twitter:image');
+    this.functionsService.removeTags()
     this.titleService.setTitle(titulo);
     this.meta.addTags([
       { name: 'author', content: 'MyTicketParty' },

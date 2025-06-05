@@ -38,13 +38,14 @@ export class SharedComponent {
     private boletoService: BoletosService,
     private sanitizer: DomSanitizer,
     private metaService: MetaService,
-    private functionService: FunctionsService,
+ 
     private title: Title,
     private meta: Meta,
-    private titleService: Title
+    private titleService: Title,
+    private functionsService:FunctionsService
   ) {
 
-    this.functionService.quitarChatShared()
+    this.functionsService.quitarChatShared()
     this.loading = true
     this.route.queryParams.subscribe(params => {
 
@@ -65,16 +66,10 @@ export class SharedComponent {
 
 
               let t: string = `My Ticket Party | Estas invitado ${resF.invitacion.fiesta.nombre}  `;
-              let d: string = `${this.shared.data.boleto.nombreGrupo} | ${this.functionService.numberDateTimeLocal(resF.invitacion.fiesta.fecha)}`;
+              let d: string = `${this.shared.data.boleto.nombreGrupo} | ${this.functionsService.numberDateTimeLocal(resF.invitacion.fiesta.fecha)}`;
               this.titleService.setTitle(t);
-              this.meta.removeTag('name="description"');
-              this.meta.removeTag('property="og:title"');
-              this.meta.removeTag('property="og:description"');
-              this.meta.removeTag('property="og:image"');
-              this.meta.removeTag('twitter:card');
-              this.meta.removeTag('twitter:title');
-              this.meta.removeTag('twitter:description');
-              this.meta.removeTag('twitter:image');
+               this.functionsService.removeTags()
+              
               this.meta.addTags([
                 { name: 'author', content: 'MyTicketParty' },
                 { name: 'description', content: d },

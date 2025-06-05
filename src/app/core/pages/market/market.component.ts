@@ -42,14 +42,7 @@ export class MarketComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     const titulo = 'Productos y Servicios para Eventos | Mobiliario, Catering, Decoración y Más | MyTicketParty';
     const descripcion = 'Descubre el marketplace líder en productos y servicios para eventos: decoración, catering, mobiliario, entretenimiento y más. ¡Organiza tu evento perfecto hoy!,';
-    this.meta.removeTag('name="description"');
-    this.meta.removeTag('property="og:title"');
-    this.meta.removeTag('property="og:description"');
-    this.meta.removeTag('property="og:image"');
-    this.meta.removeTag('twitter:card');
-    this.meta.removeTag('twitter:title');
-    this.meta.removeTag('twitter:description');
-    this.meta.removeTag('twitter:image');
+    this.functionsService.removeTags()
     this.titleService.setTitle(titulo);
 
     this.meta.addTags([

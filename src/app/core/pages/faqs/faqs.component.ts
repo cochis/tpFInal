@@ -33,14 +33,7 @@ export class FaqsComponent implements OnInit {
   ngOnInit(): void {
     const titulo = 'Preguntas Frecuentes | Todo lo que Necesitas Saber | MyTicketParty';
     const descripcion = 'Resuelve tus dudas sobre invitaciones digitales, check-in, conteo de invitados, proveedores, pagos y cómo organizar tu evento con MyTicketParty.';
-    this.meta.removeTag('name="description"');
-    this.meta.removeTag('property="og:title"');
-    this.meta.removeTag('property="og:description"');
-    this.meta.removeTag('property="og:image"');
-    this.meta.removeTag('twitter:card');
-    this.meta.removeTag('twitter:title');
-    this.meta.removeTag('twitter:description');
-    this.meta.removeTag('twitter:image');
+    this.functionsService.removeTags()
     this.titleService.setTitle(titulo);
 
     this.meta.addTags([
