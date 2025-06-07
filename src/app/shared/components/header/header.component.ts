@@ -1,4 +1,4 @@
-import { Component, HostListener, } from '@angular/core';
+import { AfterViewInit, Component, HostListener, OnInit, } from '@angular/core';
 
 import { FunctionsService } from '../../services/functions.service';
 import { environment } from 'src/environments/environment';
@@ -8,14 +8,15 @@ import { Fiesta } from 'src/app/core/models/fiesta.model';
 import { CargarFiestas } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
 import { ParametrosService } from 'src/app/core/services/parametro.service';
 import { AuthService } from '../../../auth/services/auth.service';
-
+import { preventDefault } from '@fullcalendar/core/internal';
+declare const google: any;
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent {
-
+export class HeaderComponent implements OnInit {
+  showWidget = false;
   @HostListener('window:storage', ['$event'])
   onStorageChange(event: StorageEvent) {
     if (event.key === 'carrito') {
@@ -41,6 +42,7 @@ export class HeaderComponent {
   email !: string
   demo = false
   DEMO = environment.DEMO
+  showTranslate = false;
   msnDemo = ''
   constructor(
     private router: Router,
@@ -50,7 +52,6 @@ export class HeaderComponent {
     private authService: AuthService,
 
   ) {
-
 
     if (this.URLBASE.includes('cochisweb')) {
       this.demo = true
@@ -90,6 +91,9 @@ export class HeaderComponent {
 
 
   }
+  ngOnInit(): void {
+    this.loadGoogleTranslate();
+  }
   getParties() {
     this.fiestasService.cargarFiestasByanfitrion(this.email).subscribe((resp: CargarFiestas) => {
       this.fiestas = resp.fiestas
@@ -114,6 +118,31 @@ export class HeaderComponent {
 
 
 
+  }
+
+  toggleTranslate(): void {
+    this.showWidget = !this.showWidget;
+  }
+  loadGoogleTranslate(): void {
+    const scriptId = 'google-translate-script';
+
+    if (!document.getElementById(scriptId)) {
+      const script = document.createElement('script');
+      script.id = scriptId;
+      script.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+      document.body.appendChild(script);
+    }
+
+    (window as any).googleTranslateElementInit = () => {
+      new google.translate.TranslateElement(
+        {
+          pageLanguage: 'es',
+          includedLanguages: 'en,es,pt,fr',
+          layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+        },
+        'google_translate_element'
+      );
+    };
   }
 
 

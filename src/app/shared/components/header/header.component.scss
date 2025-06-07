@@ -63,3 +63,48 @@
         margin-left: .5em;
     }
 }
+#google_translate_fab {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: white;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  #google_translate_fab img {
+    width: 32px;
+    height: 32px;
+  }
+  
+  #google_translate_container {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    z-index: 9999;
+    background: white;
+    padding: 10px;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  }
+.VIpgJd-ZVi9od-ORHb{
+    display: none !important;
+}  
+.goog-te-menu2-item {
+    display: none !important;
+  }
+  
+  /* Muestra solo Inglés, Español, Portugués y Francés */
+  .goog-te-menu2-item span:text("English"),
+  .goog-te-menu2-item span:text("Español"),
+  .goog-te-menu2-item span:text("Português"),
+  .goog-te-menu2-item span:text("Français") {
+    display: block !important;
+  }
