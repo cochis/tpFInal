@@ -38,11 +38,11 @@ export class SharedComponent {
     private boletoService: BoletosService,
     private sanitizer: DomSanitizer,
     private metaService: MetaService,
- 
+
     private title: Title,
     private meta: Meta,
     private titleService: Title,
-    private functionsService:FunctionsService
+    private functionsService: FunctionsService
   ) {
 
     this.functionsService.quitarChatShared()
@@ -63,13 +63,14 @@ export class SharedComponent {
             if (this.shared.type == 'invitacion') {
               this.url = `${this.urlT}core/templates/${resF.invitacion.fiesta.invitacion}/${resF.invitacion.fiesta._id}/${this.shared.boleto}`
               this.iframeSrc = this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
+              console.log(' this.url::: ', this.url);
 
 
               let t: string = `My Ticket Party | Estas invitado ${resF.invitacion.fiesta.nombre}  `;
               let d: string = `${this.shared.data.boleto.nombreGrupo} | ${this.functionsService.numberDateTimeLocal(resF.invitacion.fiesta.fecha)}`;
               this.titleService.setTitle(t);
-               this.functionsService.removeTags()
-              
+              this.functionsService.removeTags()
+
               this.meta.addTags([
                 { name: 'author', content: 'MyTicketParty' },
                 { name: 'description', content: d },

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
 import { UsuariosService } from '../../services/usuarios.service';
@@ -11,13 +11,14 @@ import { CargarUsuario } from '../../interfaces/cargar-interfaces.interfaces';
 import Swal from 'sweetalert2';
 import { ItemsService } from '../../services/item.service';
 import { TraductorService } from '../../services/traductor.service';
-
+import Parallax from 'parallax-js';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, AfterViewInit {
+  @ViewChild('parallaxScene') parallaxScene!: ElementRef;
   scannerActive = false
   today: Number = this.functionsService.getToday()
   ADM = environment.admin_role
@@ -67,6 +68,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
   ngAfterViewInit() {
     this.getUser(this.role)
+    const parallaxInstance = new Parallax(this.parallaxScene.nativeElement, {
+      relativeInput: true,
+    });
   }
 
   getUser(role) {

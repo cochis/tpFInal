@@ -419,7 +419,7 @@ export class FunctionsService {
   }
   async removeTags() {
     if (this.meta.getTag('name="description"')) {
-      console.log(" this.meta: ", this.meta.getTag('name="description"'))
+
       this.meta.removeTag('name="description"')
     }
     if (this.meta.getTag('property="og:title"')) {
@@ -431,8 +431,8 @@ export class FunctionsService {
     if (this.meta.getTag('property="og:image"')) {
       this.meta.removeTag('property="og:image"')
     }
-    
-     
+
+
 
   }
 }

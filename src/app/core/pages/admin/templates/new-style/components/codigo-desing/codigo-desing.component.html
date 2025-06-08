@@ -1,4 +1,4 @@
-<ng-container *ngIf="data.codigoVestimentaCheck =='true' || data.codigoVestimentaCheck ==true">
+<ng-container *ngIf="data.codigoVestimentaCheck =='true' || data.codigoVestimentaCheck">
     <div class="  text-center  mt-3 btp "
         [style]="{'background-color': 'white','width':'100%','text-align':'center','border-color':data.cSecond }">
         <div class="row">
@@ -12,7 +12,7 @@
 
             <div class="col-6 ma text-center">
                 <img [src]="url+'/upload/invitaciones/'+data.codigoVestimentaMujerImg" class="circle" alt="Mujer"
-                    [style]="{'width':'100px'}" *ngIf="data.codigoVestimentaMujer !=''">
+                    [style]="{'width':'100px'}">
 
                 <h3 class="{{data.textoInvFont}}" [style]="{'color':data.cTexto}">{{data.codigoVestimentaMujer}}</h3>
 
@@ -20,7 +20,7 @@
             </div>
             <div class="col-6 ma text-center">
                 <img [src]="url+'/upload/invitaciones/'+data.codigoVestimentaHombreImg" class="circle" alt="Hombre"
-                    [style]="{'width':'100px'}" *ngIf="data.codigoVestimentaHombre!=''">
+                    [style]="{'width':'100px'}">
 
                 <h3 class="{{data.textoInvFont}}" [style]="{'color':data.cTexto}">{{data.codigoVestimentaHombre}}</h3>
 

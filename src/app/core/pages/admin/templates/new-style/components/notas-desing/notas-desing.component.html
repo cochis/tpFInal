@@ -1,5 +1,5 @@
 <ng-container
-    *ngIf="(data.itinerarioCheck =='true' || data.itinerarioCheck ==true) && (data.fondoInvitacionCheck=='false' || data.fondoInvitacionCheck==false)">
+    *ngIf="(data.itinerarioCheck =='true' || data.itinerarioCheck  ) && (data.fondoInvitacionCheck=='false' || !data.fondoInvitacionCheck )">
 
     <div class="w-100 bg-1-img py-4 border-color btp"
         [style]="{'background-color':'white','border-color':data.cSecond,
@@ -56,7 +56,7 @@
 
 
 <ng-container
-    *ngIf="(data.itinerarioCheck =='true' || data.itinerarioCheck ==true) && (data.fondoInvitacionCheck=='true' || data.fondoInvitacionCheck==true)">
+    *ngIf="(data.itinerarioCheck =='true' || data.itinerarioCheck  ) && (data.fondoInvitacionCheck=='true' || data.fondoInvitacionCheck )">
 
     <div class="w-100 bg-1-img py-4 border-color btp"
         [style]="{'background-color':'white','border-color':data.cSecond,

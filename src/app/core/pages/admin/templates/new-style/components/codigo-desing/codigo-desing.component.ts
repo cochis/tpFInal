@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { AfterViewInit, Component, Input } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -6,7 +6,11 @@ import { environment } from 'src/environments/environment';
   templateUrl: './codigo-desing.component.html',
   styleUrls: ['./codigo-desing.component.scss']
 })
-export class CodigoDesingComponent {
+export class CodigoDesingComponent implements AfterViewInit {
+  ngAfterViewInit(): void {
+    console.log(this.data);
+
+  }
   @Input() data: any
   url = environment.base_url
 }

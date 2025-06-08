@@ -47,6 +47,13 @@
         url("/assets/fonts/roth.ttf") format("opentype") tech(color-COLRv1);
 }
 
+@font-face {
+    font-family: "font8";
+    src:
+        local("font8"),
+        url("/assets/fonts/naruto.ttf") format("opentype") tech(color-COLRv1);
+}
+
 .font1 {
     font-family: 'font1';
     font-weight: 400;
@@ -85,6 +92,12 @@
 
 .font7 {
     font-family: 'font7';
+    font-weight: 400;
+    font-style: normal;
+}
+
+.font8 {
+    font-family: 'font8';
     font-weight: 400;
     font-style: normal;
 }
