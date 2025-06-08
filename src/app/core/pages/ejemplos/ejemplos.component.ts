@@ -1,58 +1,58 @@
 import { Component, OnInit } from '@angular/core';
-import { PaquetesService } from '../../services/paquete.service';
-import { Paquete } from '../../models/paquete.model';
-import { FunctionsService } from 'src/app/shared/services/functions.service';
+import { Meta, Title, DomSanitizer, SafeHtml } from '@angular/platform-browser';
+
 import { environment } from 'src/environments/environment';
-import { DomSanitizer, Meta, SafeHtml, SafeUrl, Title } from '@angular/platform-browser';
+import { PaquetesService } from '../../services/paquete.service';
 import { FiestasService } from '../../services/fiestas.service';
 import { EjemplosService } from '../../services/ejemplo.service';
+import { FunctionsService } from 'src/app/shared/services/functions.service';
+
 import { CargarEjemplos } from '../../interfaces/cargar-interfaces.interfaces';
+import { Paquete } from '../../models/paquete.model';
+
 @Component({
   selector: 'app-ejemplos',
   templateUrl: './ejemplos.component.html',
   styleUrls: ['./ejemplos.component.scss']
 })
 export class EjemplosComponent implements OnInit {
-  paquetes: Paquete[]
-  url = environment.base_url
-  urlInvitacion = environment.urlInvitacion
-  examples = environment.examples
-  urlInvitacionFile = environment.urlInvitacionFile
-  fiestas = []
-  ejemplos = []
-  res = []
-  sanitizedUrl: any
-  sanitizedUrlFile: any
-  descripcionHTML: SafeHtml;
-  classView = ''
-  showOk = false
+  paquetes: Paquete[] = [];
+  ejemplos: any[] = [];
+  fiestas: any[] = [];
+
+  url = environment.base_url;
+  urlInvitacion = environment.urlInvitacion;
+  urlInvitacionFile = environment.urlInvitacionFile;
+  examples = environment.examples;
+
+  sanitizedUrl: any;
+  sanitizedUrlFile: any;
 
   constructor(
-
+    private meta: Meta,
+    private titleService: Title,
+    private sanitizer: DomSanitizer,
     private functionsService: FunctionsService,
     private paquetesService: PaquetesService,
-    private domSanitizer: DomSanitizer,
     private fiestasService: FiestasService,
-    private ejemplosService: EjemplosService,
-    private sanitizer: DomSanitizer,
+    private ejemplosService: EjemplosService
+  ) { }
 
-    private meta: Meta,
-    private titleService: Title
-  ) {
-
-
-    this.examples
-    this.getCatalogos()
+  ngOnInit(): void {
+    this.setMetaTags();
+    this.loadCatalogs();
   }
-  async ngOnInit() {
+
+  private setMetaTags(): void {
     const titulo = 'My Ticket Party | Ejemplos de invitaciones digitales';
     const descripcion = 'Las invitaciones digitales para logística son herramientas eficaces para coordinar eventos, reuniones o capacitaciones en el sector.';
-    this.functionsService.removeTags()
+
+    this.functionsService.removeTags();
     this.titleService.setTitle(titulo);
     this.meta.addTags([
       { name: 'author', content: 'MyTicketParty' },
       { name: 'description', content: descripcion },
-      { name: 'keywords', content: 'MyTicketParty, invitaciones digitales personalizadas,crear invitaciones con boletos,boletos digitales para fiestas,invitaciones para eventos privados,invitaciones con código QR,entradas digitales para fiestas,invitaciones con control de acceso,tickets personalizados para eventos,cómo hacer invitaciones digitales para fiestas,plataforma para crear boletos con QR,invitaciones con entrada digital para eventos,boletos para fiestas con lista de invitados,crear invitaciones con diseño personalizado,control de acceso para eventos privados,envío de boletos digitales por WhatsApp o email,invitaciones interactivas para eventos,Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in' },
+      { name: 'keywords', content: 'invitaciones digitales, boletos digitales, fiestas, eventos, QR, logística' },
       { property: 'og:title', content: titulo },
       { property: 'og:description', content: descripcion },
       { property: 'og:image', content: 'https://www.myticketparty.com/assets/images/myticketparty.png' },
@@ -62,75 +62,35 @@ export class EjemplosComponent implements OnInit {
       { name: 'twitter:description', content: descripcion },
       { name: 'twitter:image', content: 'https://www.myticketparty.com/assets/images/myticketparty.png' },
       { name: 'slug', content: 'core/examples' },
-      { name: 'colorBar', content: '#13547a' },
+      { name: 'colorBar', content: '#13547a' }
     ]);
   }
-  returnSinitizer(url: string) {
-    return this.domSanitizer.bypassSecurityTrustResourceUrl(this.url);
-  }
-  async getInfoFiesta() {
-    this.examples.forEach(async element => {
-      let fiesta = element.split('|')
-      await this.fiestasService.cargarFiestaById(fiesta[0]).subscribe(async (resp: any) => {
-        let res = { fiesta: resp, url: fiesta[1] }
-        this.fiestas.push(res)
 
-      })
+  private loadCatalogs(): void {
+    this.ejemplosService.cargarEjemplosAll().subscribe((resp: CargarEjemplos) => {
+      const activos = this.functionsService.getActives(resp.ejemplos);
+      this.ejemplos = activos;
+
+      this.sanitizedUrl = this.getExampleUrl('default');
+      this.sanitizedUrlFile = this.getExampleUrl('file');
+
+      this.fiestas = activos.map(ej => ({
+        fiesta: ej.fiesta,
+        url: ej.urlFiestaBoleto
+      }));
     });
   }
 
-  viewAcooridion(i) {
-
-  }
-  getCatalogos() {
-    this.ejemplosService.cargarEjemplosAll().subscribe((resp: CargarEjemplos) => {
-
-      this.ejemplos = resp.ejemplos
-
-
-      this.sanitizedUrl = this.getExamplesURL('default', 'url')
-      this.sanitizedUrlFile = this.getExamplesURL('file', 'url')
-
-
-
-      this.ejemplos = this.functionsService.getActives(resp.ejemplos)
-
-      resp.ejemplos.forEach(ej => {
-        let r = {
-          fiesta: ej.fiesta, url: ej.urlFiestaBoleto
-        }
-        this.fiestas.push(r)
-      });
-
-    })
+  getExampleUrl(type: string): any {
+    const ejemplo = this.ejemplos.find(ex => ex.activated && ex.tipo.toLowerCase() === type);
+    return ejemplo ? this.sanitizer.bypassSecurityTrustResourceUrl(ejemplo.urlFiestaBoleto) : null;
   }
 
-  getExamplesURL(type, tipo, id?) {
-
-
-    if (tipo == 'url') {
-
-      let res: any
-      this.ejemplos.forEach(ex => {
-        if (ex.activated && type == ex.tipo.toLowerCase()) {
-
-          res = this.domSanitizer.bypassSecurityTrustResourceUrl(ex.urlFiestaBoleto);
-
-          return
-        }
-
-      });
-      return res
-    } else {
-
-
-
-
-
-      return this.convertDes(tipo)
-    }
+  convertDes(html: string): SafeHtml {
+    return this.sanitizer.bypassSecurityTrustHtml(html);
   }
-  convertDes(des: string) {
-    return this.sanitizer.bypassSecurityTrustHtml(des);
+
+  returnSanitizerUrl(): any {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
   }
 }

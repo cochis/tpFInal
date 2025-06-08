@@ -15,12 +15,10 @@
         <app-loading *ngIf="!ejemplos  "></app-loading>
         <div class="container">
             <div class="row">
-
                 <p class="w-100 text-center mt-5">
                     Todas nuestros tipos de invitaciones se adecuan a cualquier tipo de evento
                 </p>
                 <ng-container *ngFor="let ejemplo of ejemplos ; let i =index">
-
                     <div class=" col-12 col-md-6 mt-5 ma text-start" *ngIf="ejemplo.tipo=='Fancy' ">
                         <div class="col-12  ma text-center">
                             <img [src]="url+'/upload/fiestas/'+ejemplo.fiesta.img" alt="{{ejemplo.fiesta.nombre}}"
@@ -51,7 +49,6 @@
                                     data-bs-parent="#accordionPricing">
                                     <div class="accordion-body text-center">
                                         <div class="custom-block bg-white shadow-lg" style="width: 100%;">
-
                                             <div class="accordion-body ma">
                                                 <div [innerHTML]="convertDes(ejemplo.recomendacion)"
                                                     style="margin-top: 10px; text-align: left !important;"></div>
@@ -59,14 +56,12 @@
                                                     [href]="ejemplo.urlFiestaBoleto" target="_blank"> Ver
                                                     invitación</a>
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                     <div class=" col-12 col-md-6 mt-5 ma text-start" *ngIf="ejemplo.tipo=='Beauty'">
                         <div class="col-12  ma text-center">
                             <img [src]="url+'/upload/fiestas/'+ejemplo.fiesta.img" alt="{{ejemplo.fiesta.nombre}}"
@@ -105,14 +100,12 @@
                                                     [href]="ejemplo.urlFiestaBoleto" target="_blank"> Ver
                                                     invitación</a>
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                     <div class=" col-12 col-md-6 mt-5 ma text-start" *ngIf="ejemplo.tipo=='Por archivo'">
                         <div class="col-12  ma text-center">
                             <img [src]="url+'/upload/fiestas/'+ejemplo.fiesta.img" alt="{{ejemplo.fiesta.nombre}}"
@@ -151,7 +144,6 @@
                                                     [href]="ejemplo.urlFiestaBoleto" target="_blank"> Ver
                                                     invitación</a>
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
@@ -162,7 +154,6 @@
             </div>
             <div class="row">
                 <div class="col-12 col-md-6 mt-5 ma text-start">
-
                     <div class="col-12  ma text-center">
                         <img src="https://www.myticketparty.com/assets/images/qr.svg" alt="Galeria de imagenes"
                             title="Galeria de imagenes " class="  ma mb-3 shadowFin"
@@ -175,10 +166,6 @@
                                 target="_blank">
                                 Ver ejemplo</a></h5>
                     </div>
-
-
-
-
                 </div>
             </div>
         </div>

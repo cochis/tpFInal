@@ -5,13 +5,11 @@ import { UsuariosService } from '../../services/usuarios.service';
 import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { BoletosService } from '../../services/boleto.service';
 import { ProveedorsService } from '../../services/proveedor.service';
-import { MetaService } from '../../services/meta.service';
 import { Boleto } from '../../models/boleto.model';
 import { CargarUsuario } from '../../interfaces/cargar-interfaces.interfaces';
 import Swal from 'sweetalert2';
-import { ItemsService } from '../../services/item.service';
-import { TraductorService } from '../../services/traductor.service';
 import Parallax from 'parallax-js';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -19,19 +17,23 @@ import Parallax from 'parallax-js';
 })
 export class HomeComponent implements OnInit, AfterViewInit {
   @ViewChild('parallaxScene') parallaxScene!: ElementRef;
-  scannerActive = false
-  today: Number = this.functionsService.getToday()
-  ADM = environment.admin_role
-  SLN = environment.salon_role
-  URS = environment.user_role
-  ANF = environment.anf_role
-  PRV = environment.prv_role
-  editBoleto = false
-  role = ''
-  uid = ''
-  invitado: any
-  idx: number = undefined
-  boleto: Boleto
+
+  // Roles
+  ADM = environment.admin_role;
+  SLN = environment.salon_role;
+  URS = environment.user_role;
+  ANF = environment.anf_role;
+  PRV = environment.prv_role;
+
+  // Estado
+  scannerActive = false;
+  editBoleto = false;
+  today: number = this.functionsService.getToday();
+  role = this.functionsService.getLocal('role');
+  uid = this.functionsService.getLocal('uid');
+  idx: number | undefined;
+  invitado: any;
+  boleto!: Boleto;
 
   constructor(
     private functionsService: FunctionsService,
@@ -40,20 +42,18 @@ export class HomeComponent implements OnInit, AfterViewInit {
     private boletosService: BoletosService,
     private meta: Meta,
     private titleService: Title
+  ) { }
 
-  ) {
-    this.role = this.functionsService.getLocal('role')
-    this.uid = this.functionsService.getLocal('uid')
-  }
   ngOnInit(): void {
-    const titulo = 'Invitaciones Digitales y Logistica de eventos- MyTicketParty';
+    const titulo = 'Invitaciones Digitales y Logistica de eventos - MyTicketParty';
     const descripcion = 'Crea y personaliza invitaciones digitales para tus eventos con MyTicketParty. Gestiona boletos, asigna mesas y comparte tu celebración fácilmente.';
-    this.functionsService.removeTags()
+
+    this.functionsService.removeTags();
     this.titleService.setTitle(titulo);
     this.meta.addTags([
       { name: 'author', content: 'MyTicketParty' },
       { name: 'description', content: descripcion },
-      { name: 'keywords', content: 'MyTicketParty, invitaciones digitales personalizadas,crear invitaciones con boletos,boletos digitales para fiestas,invitaciones para eventos privados,invitaciones con código QR,entradas digitales para fiestas,invitaciones con control de acceso,tickets personalizados para eventos,cómo hacer invitaciones digitales para fiestas,plataforma para crear boletos con QR,invitaciones con entrada digital para eventos,boletos para fiestas con lista de invitados,crear invitaciones con diseño personalizado,control de acceso para eventos privados,envío de boletos digitales por WhatsApp o email,invitaciones interactivas para eventos,Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in' },
+      { name: 'keywords', content: 'MyTicketParty, invitaciones digitales personalizadas, crear invitaciones con boletos, boletos digitales para fiestas, invitaciones para eventos privados, invitaciones con código QR, entradas digitales para fiestas, invitaciones con control de acceso, tickets personalizados para eventos, cómo hacer invitaciones digitales para fiestas, plataforma para crear boletos con QR, invitaciones con entrada digital para eventos, boletos para fiestas con lista de invitados, crear invitaciones con diseño personalizado, control de acceso para eventos privados, envío de boletos digitales por WhatsApp o email, invitaciones interactivas para eventos, Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in' },
       { property: 'og:title', content: titulo },
       { property: 'og:description', content: descripcion },
       { property: 'og:image', content: 'https://www.myticketparty.com/assets/images/myticketparty.png' },
@@ -66,176 +66,110 @@ export class HomeComponent implements OnInit, AfterViewInit {
       { name: 'colorBar', content: '#13547a' },
     ]);
   }
+
   ngAfterViewInit() {
-    this.getUser(this.role)
-    const parallaxInstance = new Parallax(this.parallaxScene.nativeElement, {
+    this.getUser(this.role);
+    new Parallax(this.parallaxScene.nativeElement, {
       relativeInput: true,
     });
   }
 
-  getUser(role) {
-    if (role == this.SLN || role == this.ANF) {
+  getUser(role: string): void {
+    if ([this.SLN, this.ANF, this.PRV].includes(role)) {
+      this.usuariosService.cargarUsuarioById(this.uid).subscribe({
+        next: (resp: CargarUsuario) => {
+          const user = resp.usuario;
+          const hasSalon = user?.salon?.length > 0;
 
-      this.usuariosService.cargarUsuarioById(this.uid).subscribe((resp: CargarUsuario) => {
-
-        if (resp.usuario.salon.length < 1 || resp.usuario.salon == undefined || resp.usuario.salon == null) {
-
-          this.functionsService.navigateTo('core/salones/registrar-salon')
-
-        }
-
-      },
-        (error) => {
-          this.functionsService.alertError(error, 'Home')
-        })
-    }
-    else if (role == this.PRV) {
-
-      this.usuariosService.cargarUsuarioById(this.uid).subscribe((resp: CargarUsuario) => {
-
-
-        if (resp.usuario.salon.length < 1 || resp.usuario.salon == undefined || resp.usuario.salon == null) {
-
-          Swal.fire({
-            title: "¿Tienes alguna ubicación?  ",
-            showDenyButton: true,
-            showCancelButton: false,
-            confirmButtonText: "Si",
-            confirmButtonColor: "#13547a",
-            denyButtonText: `No`,
-            denyButtonColor: "#81d0c7",
-          }).then((result) => {
-
-
-            if (result.isConfirmed) {
-
-              this.functionsService.navigateTo('core/salones/registrar-salon')
-
-
-
-            } else if (result.isDenied) {
-
-              this.proveedorsService.cargarProveedorsByCreador(this.uid).subscribe(resp => {
-                if (resp.proveedors.length == 0) {
-                  this.functionsService.navigateTo('core/proveedores/editar-datos')
+          if (!hasSalon) {
+            if (role === this.PRV) {
+              Swal.fire({
+                title: '¿Tienes alguna ubicación?',
+                showDenyButton: true,
+                confirmButtonText: 'Si',
+                confirmButtonColor: '#13547a',
+                denyButtonText: 'No',
+                denyButtonColor: '#81d0c7',
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  this.functionsService.navigateTo('core/salones/registrar-salon');
+                } else if (result.isDenied) {
+                  this.proveedorsService.cargarProveedorsByCreador(this.uid).subscribe((res) => {
+                    if (res.proveedors.length === 0) {
+                      this.functionsService.navigateTo('core/proveedores/editar-datos');
+                    }
+                  });
                 }
-
-              })
+              });
+            } else {
+              this.functionsService.navigateTo('core/salones/registrar-salon');
             }
-          });
-
+          }
+        },
+        error: (error) => {
+          this.functionsService.alertError(error, 'Home');
         }
-
-        /* if (resp.usuario.proveedor.length < 1 || resp.usuario.proveedor == undefined || resp.usuario.proveedor == null) {
-          this.functionsService.navigateTo('core/proveedores/editar-datos')
-        } */
-
-
-      },
-        (error) => {
-          this.functionsService.alertError(error, 'Home')
-        })
-
-
-
-
-
-
-
-
+      });
     }
   }
 
-
-
-
-
-
-
-  scan() {
-
-
-    this.scannerActive = true
-    setTimeout(() => {
-      this.scannerActive = false
-    }, 15000);
-
-
-
-
+  scan(): void {
+    this.scannerActive = true;
+    setTimeout(() => this.scannerActive = false, 15000);
   }
 
-  stop() {
-    this.scannerActive = false
+  stop(): void {
+    this.scannerActive = false;
   }
-  showQr(qr: any) {
 
-    if (qr.ok) {
+  showQr(qr: any): void {
+    if (!qr.ok) {
+      this.functionsService.alert('Check in', 'Ha sucedido algo extraño', 'error');
+      return;
+    }
 
-      this.stop()
+    this.stop();
 
-
-      this.boletosService.cargarBoletoByFiesta(qr.data.fiesta).subscribe((res: any) => {
-        this.idx = undefined
-        this.editBoleto = true
-        let invi: any = qr.data.invitado
-        let bt: any = res.boleto[0].invitados
-        this.boleto = res.boleto[0]
-
-        bt.includes(invi)
-
+    this.boletosService.cargarBoletoByFiesta(qr.data.fiesta).subscribe({
+      next: (res: any) => {
+        this.idx = undefined;
+        this.editBoleto = false;
+        const invi: any = qr.data.invitado;
+        const bt: any[] = res.boleto[0].invitados;
+        this.boleto = res.boleto[0];
 
         bt.forEach((b, index) => {
-
           if (
-            b.grupo == invi.grupo &&
-            b.nombreGrupo == invi.nombreGrupo &&
-            b.cantidad == invi.cantidad
+            b.grupo === invi.grupo &&
+            b.nombreGrupo === invi.nombreGrupo &&
+            b.cantidad === invi.cantidad
           ) {
-
-            this.idx = index
-
-          } else {
-
-
+            this.idx = index;
           }
-
         });
 
-        /* this.functionsService.alert('Check in', 'El boleto ha sido modificado favor de comunicarse con el anfitrión', 'error') */
         if (this.idx !== undefined) {
-          this.editBoleto = true
-          this.invitado = bt[this.idx]
-          this.invitado.confirmado = true
+          this.invitado = bt[this.idx];
+          this.invitado.confirmado = true;
+          this.editBoleto = true;
 
-
-
-          this.boletosService.actualizarBoletoRegistro(this.boleto).subscribe(res => {
-
-            this.functionsService.alertUpdate('Confirmaste tu asistencia')
-
-
-          },
-            (error) => {
-              console.error('Error', error)
-              this.functionsService.alertError(error, 'Confirma asistencia')
-            })
+          this.boletosService.actualizarBoletoRegistro(this.boleto).subscribe({
+            next: () => {
+              this.functionsService.alertUpdate('Confirmaste tu asistencia');
+            },
+            error: (err) => {
+              console.error('Error', err);
+              this.functionsService.alertError(err, 'Confirma asistencia');
+            }
+          });
         } else {
-          this.editBoleto = false
-          this.invitado = undefined
-          this.functionsService.alert('Check in', 'El boleto ha sido modificado favor de comunicarse con el anfitrión', 'error')
+          this.invitado = undefined;
+          this.functionsService.alert('Check in', 'El boleto ha sido modificado. Favor de comunicarse con el anfitrión', 'error');
         }
-
-      })
-
-
-
-    } else {
-      this.functionsService.alert('Check in', 'El ha sucedido algo extraño', 'error')
-    }
-
-
+      },
+      error: (err) => {
+        this.functionsService.alertError(err, 'Carga de Boleto');
+      }
+    });
   }
-
-
 }

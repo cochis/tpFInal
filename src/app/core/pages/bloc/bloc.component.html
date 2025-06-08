@@ -1,33 +1,20 @@
 <app-header></app-header>
 
 <body id="top">
-
     <main>
-
-
-
-
         <section class="hero-section d-flex justify-content-center align-items-center" id="section_1">
             <div class="container">
                 <div class="row">
-
                     <div class="col-lg-8 col-12 mx-auto">
                         <h1 class="text-white text-center">Blog</h1>
-
-                        <h2 class="text-center" style="color: #13547a; font-size: 18px;">Brindamos informaciòn util </h2>
-
-
+                        <h2 class="text-center" style="color: #13547a; font-size: 18px;">Brindamos informaciòn util
+                        </h2>
                     </div>
-
                 </div>
             </div>
         </section>
-
-
-
         <section class="explore-section section-padding" id="section_2">
             <div class="container">
-
                 <div class="col-12" style="text-align: justify;">
                     <p class="mb-4">Un blog informativo es una página web que se actualiza regularmente y proporciona
                         información sobre un tema específico, como un diario online o un medio de comunicación para
@@ -35,10 +22,7 @@
                         los lectores o promocionar productos y servicios
                     </p>
                 </div>
-
             </div>
-
-
             <div class="container-fluid">
                 <div class="row">
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -52,21 +36,18 @@
                             <button class="nav-link  " id="tab-2" data-bs-toggle="tab" data-bs-target="#tab-2-pane"
                                 type="button" role="tab" aria-controls="tab-2-pane" aria-selected="true">
                                 Logística
-
                             </button>
                         </li>
                         <li class="nav-item" role="presentation" *ngIf="isRegister('3')">
                             <button class="nav-link  " id="tab-3" data-bs-toggle="tab" data-bs-target="#tab-3-pane"
                                 type="button" role="tab" aria-controls="tab-3-pane" aria-selected="true">
                                 Comunicación
-
                             </button>
                         </li>
                         <li class="nav-item" role="presentation" *ngIf="isRegister('4')">
                             <button class="nav-link  " id="tab-4" data-bs-toggle="tab" data-bs-target="#tab-4-pane"
                                 type="button" role="tab" aria-controls="tab-4-pane" aria-selected="true">
                                 Ejecución
-
                             </button>
                         </li>
                         <li class="nav-item" role="presentation" *ngIf="isRegister('5')">
@@ -75,12 +56,9 @@
                                 Seguimiento
                             </button>
                         </li>
-
                     </ul>
                 </div>
             </div>
-
-
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="tab-1-pane" role="tabpanel" aria-labelledby="tab-1"
                     tabindex="1">
@@ -89,43 +67,39 @@
                             <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4 mb-lg-0  ma text-center"
                                 style="margin-top: 25px;" *ngIf="pt.categoria=='1'">
                                 <div class="card">
-                                    <img [src]="url+'/upload/posts/'+pt.img" class="card-img-top ma imgBlog" [alt]="pt.titulo">
+                                    <img [src]="url+'/upload/posts/'+pt.img" class="card-img-top ma imgBlog"
+                                        [alt]="pt.titulo">
                                     <div class="card-body">
-                                        <b class="upper" style="font-size: 11px; font-weight: bolder; color: #717275;"> {{pt.dateCreated | date:"fullDate"}}</b>
-
-                                        <h2 class="card-title text-justify" style="    font-size: 17px; color: #13547a;">{{pt.titulo}}</h2>
-
+                                        <b class="upper" style="font-size: 11px; font-weight: bolder; color: #717275;">
+                                            {{pt.dateCreated | date:"fullDate"}}</b>
+                                        <h2 class="card-title text-justify"
+                                            style="    font-size: 17px; color: #13547a;">{{pt.titulo}}</h2>
                                         <a [routerLink]="'/core/post/'+pt.uid" class="btn but2">Más información</a>
                                     </div>
                                 </div>
                             </div>
                         </ng-container>
-
                     </div>
-
-
                 </div>
                 <div class="tab-pane fade " id="tab-2-pane" role="tabpanel" aria-labelledby="tab-2" tabindex="2">
                     <div class="row">
                         <ng-container *ngFor="let pt of posts">
-                           <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4 mb-lg-0  ma text-center"
+                            <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4 mb-lg-0  ma text-center"
                                 style="margin-top: 25px;" *ngIf="pt.categoria=='2'">
                                 <div class="card">
-                                    <img [src]="url+'/upload/posts/'+pt.img" class="card-img-top ma imgBlog" [alt]="pt.titulo">
+                                    <img [src]="url+'/upload/posts/'+pt.img" class="card-img-top ma imgBlog"
+                                        [alt]="pt.titulo">
                                     <div class="card-body">
-                                        <b class="upper" style="font-size: 11px; font-weight: bolder; color: #717275;"> {{pt.dateCreated | date:"fullDate"}}</b>
-
-                                        <h2 class="card-title text-justify" style="    font-size: 17px; color: #13547a;">{{pt.titulo}}</h2>
-
+                                        <b class="upper" style="font-size: 11px; font-weight: bolder; color: #717275;">
+                                            {{pt.dateCreated | date:"fullDate"}}</b>
+                                        <h2 class="card-title text-justify"
+                                            style="    font-size: 17px; color: #13547a;">{{pt.titulo}}</h2>
                                         <a [routerLink]="'/core/post/'+pt.uid" class="btn but2">Más información</a>
                                     </div>
                                 </div>
                             </div>
                         </ng-container>
-
                     </div>
-
-
                 </div>
                 <div class="tab-pane fade " id="tab-3-pane" role="tabpanel" aria-labelledby="tab-3" tabindex="3">
                     <div class="row">
@@ -133,76 +107,62 @@
                             <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4 mb-lg-0  ma text-center"
                                 style="margin-top: 25px;" *ngIf="pt.categoria=='3'">
                                 <div class="card">
-                                    <img [src]="url+'/upload/posts/'+pt.img" class="card-img-top ma imgBlog" [alt]="pt.titulo">
+                                    <img [src]="url+'/upload/posts/'+pt.img" class="card-img-top ma imgBlog"
+                                        [alt]="pt.titulo">
                                     <div class="card-body">
-                                        <b class="upper" style="font-size: 11px; font-weight: bolder; color: #717275;"> {{pt.dateCreated | date:"fullDate"}}</b>
-
-                                        <h2 class="card-title text-justify" style="    font-size: 17px; color: #13547a;">{{pt.titulo}}</h2>
-
+                                        <b class="upper" style="font-size: 11px; font-weight: bolder; color: #717275;">
+                                            {{pt.dateCreated | date:"fullDate"}}</b>
+                                        <h2 class="card-title text-justify"
+                                            style="    font-size: 17px; color: #13547a;">{{pt.titulo}}</h2>
                                         <a [routerLink]="'/core/post/'+pt.uid" class="btn but2">Más información</a>
                                     </div>
                                 </div>
                             </div>
                         </ng-container>
-
                     </div>
-
-
                 </div>
                 <div class="tab-pane fade tab-2" id="tab-4-pane" role="tabpanel" aria-labelledby="tab-4" tabindex="4">
                     <div class="row">
                         <ng-container *ngFor="let pt of posts">
-                             <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4 mb-lg-0  ma text-center"
+                            <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4 mb-lg-0  ma text-center"
                                 style="margin-top: 25px;" *ngIf="pt.categoria=='4'">
                                 <div class="card">
-                                    <img [src]="url+'/upload/posts/'+pt.img" class="card-img-top ma imgBlog" [alt]="pt.titulo">
+                                    <img [src]="url+'/upload/posts/'+pt.img" class="card-img-top ma imgBlog"
+                                        [alt]="pt.titulo">
                                     <div class="card-body">
-                                        <b class="upper" style="font-size: 11px; font-weight: bolder; color: #717275;"> {{pt.dateCreated | date:"fullDate"}}</b>
-
-                                        <h2 class="card-title text-justify" style="    font-size: 17px; color: #13547a;">{{pt.titulo}}</h2>
-
+                                        <b class="upper" style="font-size: 11px; font-weight: bolder; color: #717275;">
+                                            {{pt.dateCreated | date:"fullDate"}}</b>
+                                        <h2 class="card-title text-justify"
+                                            style="    font-size: 17px; color: #13547a;">{{pt.titulo}}</h2>
                                         <a [routerLink]="'/core/post/'+pt.uid" class="btn but2">Más información</a>
                                     </div>
                                 </div>
                             </div>
                         </ng-container>
-
                     </div>
-
-
                 </div>
                 <div class="tab-pane fade " id="tab-5-pane" role="tabpanel" aria-labelledby="tab-5" tabindex="5">
                     <div class="row">
                         <ng-container *ngFor="let pt of posts">
-                             <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4 mb-lg-0  ma text-center"
+                            <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4 mb-lg-0  ma text-center"
                                 style="margin-top: 25px;" *ngIf="pt.categoria=='5'">
                                 <div class="card">
-                                    <img [src]="url+'/upload/posts/'+pt.img" class="card-img-top ma imgBlog" [alt]="pt.titulo">
+                                    <img [src]="url+'/upload/posts/'+pt.img" class="card-img-top ma imgBlog"
+                                        [alt]="pt.titulo">
                                     <div class="card-body">
-                                        <b class="upper" style="font-size: 11px; font-weight: bolder; color: #717275;"> {{pt.dateCreated | date:"fullDate"}}</b>
-
-                                        <h2 class="card-title text-justify" style="    font-size: 17px; color: #13547a;">{{pt.titulo}}</h2>
-
+                                        <b class="upper" style="font-size: 11px; font-weight: bolder; color: #717275;">
+                                            {{pt.dateCreated | date:"fullDate"}}</b>
+                                        <h2 class="card-title text-justify"
+                                            style="    font-size: 17px; color: #13547a;">{{pt.titulo}}</h2>
                                         <a [routerLink]="'/core/post/'+pt.uid" class="btn but2">Más información</a>
                                     </div>
                                 </div>
                             </div>
                         </ng-container>
-
                     </div>
-
-
                 </div>
-
             </div>
-
         </section>
-
-
-
-
-
-
     </main>
     <app-footer></app-footer>
 </body>

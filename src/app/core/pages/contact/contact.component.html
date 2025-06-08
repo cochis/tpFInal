@@ -1,13 +1,10 @@
 <app-header></app-header>
-
 <section class="section-padding section-bg">
     <div class="container">
         <div class="row">
-
             <div class="col-lg-12 col-12">
                 <h3 class="mb-4 pb-2">Estamos encantados de escucharte</h3>
             </div>
-
             <div class="col-lg-12 col-12" *ngIf="!loading && !submited">
                 <form action="#" method="post" class="custom-form contact-form" role="form" [formGroup]="form"
                     (ngSubmit)="sendContacto()">
@@ -16,57 +13,40 @@
                             <div class="form-floating">
                                 <input type="text" name="Nombre" id="nombre" formControlName="nombre"
                                     class="form-control" placeholder="Nombre" required="">
-
                                 <label for="floatingInput">Nombre</label>
                             </div>
                         </div>
-
                         <div class="col-lg-6 col-md-6 col-12">
                             <div class="form-floating">
                                 <input type="email" name="email" id="email" formControlName="email"
                                     pattern="[^ @]*@[^ @]*" class="form-control" placeholder="Email address"
                                     required="">
-
                                 <label for="floatingInput">Correo electrónico</label>
                             </div>
                         </div>
-
                         <div class="col-lg-12 col-12">
                             <div class="form-floating">
                                 <input type="text" name="subject" id="subject" formControlName="subject"
                                     class="form-control" placeholder="Name" required="">
-
                                 <label for="floatingInput">Asunto</label>
                             </div>
-
                             <div class="form-floating">
                                 <textarea class="form-control" id="message" formControlName="message" name="message"
                                     placeholder="Coméntanos tus dudas"></textarea>
-
                                 <label for="floatingTextarea">Coméntanos tus dudas</label>
                             </div>
                         </div>
-
                         <div class="col-lg-4 col-12 ms-auto">
                             <button type="submit" class="form-control" (click)="sendContacto()">Enviar</button>
                         </div>
-
                     </div>
                 </form>
             </div>
-
-
-
             <div class="col-lg-12 col-12" *ngIf="!loading && submited" style="height: 450px;">
-
                 <h3>Mensaje enviado pronto nos comunicaremos...</h3>
             </div>
-
             <app-loading *ngIf="loading"></app-loading>
-
-
         </div>
     </div>
 </section>
-
 <app-footer></app-footer>

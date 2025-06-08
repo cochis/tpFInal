@@ -2,19 +2,15 @@
 <section class="faq-section section-padding" id="section_4">
     <div class="container">
         <div class="row">
-
             <div class="col-12 ma text-center">
                 <h2 class="mb-4 ma">Preguntas frecuentes</h2>
             </div>
-
             <div class="clearfix"></div>
-
             <div class=" col-6 ma text-center">
                 <img src="assets/images/faq_graphic.jpg" class="img-fluid ma" style="max-width: 250px;" alt="FAQs">
             </div>
         </div>
         <div class="row">
-
             <div class=" col-12 m-auto">
                 <div class="accordion" id="accordionExample">
                     <div class="accordion-item" *ngFor="let item of posts; let i = index">
@@ -28,15 +24,12 @@
                         <div [attr.id]="'collapse' + i" class="accordion-collapse collapse"
                             [attr.aria-labelledby]="'heading' + i" data-bs-parent="#accordionExample">
                             <div class="accordion-body">
-                             <div [innerHTML]="convertDes(item.contenido)" style="margin-top: 10px;"></div>
+                                <div [innerHTML]="convertDes(item.contenido)" style="margin-top: 10px;"></div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-
             </div>
-
         </div>
     </div>
 </section>
