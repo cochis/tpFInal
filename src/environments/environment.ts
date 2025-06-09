@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   user_ID: '64ff4f79da409a7d91056a5b',
   secret: '1f2d1e2e67df',
-  version: "1.3.0.13",
+  version: "1.3.0.14",
   publicKey: "BJqZ8KY_kguwLf27SsteILLRHlWY2pJOvrKlyZNeFlEg4O15ut0t7oYMgXHcLPSh2WYCRPwTS3WEPnhXCMZO4Wg",
   privateKey: "v04F9j6-aAZRvYl25BtZu1cezaWT-m4P0sHtE0JbE7g",
   stripeKeyD: 'pk_test_51PipskAbE4XYrXNxNi1oiwylWr7B9mNMfUfQ070Cy09dDPj5HBFYObSajMGjNzlAynX23dT8thcx8sdJxpnP7Vov00wzIocDLR',
@@ -357,6 +357,8 @@ export const environment = {
     { name: 'Fuente 13', value: 'font6' },
     { name: 'Fuente 14', value: 'font7' },
     { name: 'Fuente 15', value: 'font8' },
+    { name: 'Fuente 16', value: 'font9' },
+    { name: 'Fuente 17', value: 'font10' },
   ],
   categoriasPost: [
     { nombre: "Selecciona una categoria", id: "" },

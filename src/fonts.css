@@ -54,6 +54,20 @@
         url("/assets/fonts/naruto.ttf") format("opentype") tech(color-COLRv1);
 }
 
+@font-face {
+    font-family: "font9";
+    src:
+        local("font9"),
+        url("/assets/fonts/eternal.ttf") format("opentype") tech(color-COLRv1);
+}
+
+@font-face {
+    font-family: "font10";
+    src:
+        local("font10"),
+        url("/assets/fonts/solo.otf") format("opentype") tech(color-COLRv1);
+}
+
 .font1 {
     font-family: 'font1';
     font-weight: 400;
@@ -98,6 +112,18 @@
 
 .font8 {
     font-family: 'font8';
+    font-weight: 400;
+    font-style: normal;
+}
+
+.font9 {
+    font-family: 'font9';
+    font-weight: 400;
+    font-style: normal;
+}
+
+.font10 {
+    font-family: 'font10';
     font-weight: 400;
     font-style: normal;
 }
