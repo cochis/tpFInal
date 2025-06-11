@@ -41,8 +41,10 @@ export class PrintQrComponent implements AfterViewInit {
 
 
 
-    this.urlLink = this.text_url + 'core/vista-proveedor/' + this.proveedor.uid
-
+    this.urlLink = this.text_url + 'core/vista-proveedor/?id=' + this.proveedor.uid
+    console.log("this.urlLink: ", this.urlLink);
+// https://www.myticketparty.com/core/vista-proveedor/6839ffd9499862fce1abe979
+// https://www.myticketparty.com/core/vista-proveedor?id=6839ffd9499862fce1abe979
 
     setTimeout(() => {
       const customPrintOptions: PrintOptions = new PrintOptions({
