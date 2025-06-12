@@ -56,13 +56,13 @@
 
 
 
+        <h1 class="subTitleInv {{data.nombreFont}}"
+            [style]="{'color':data.cTexto,'font-size':data.marcoSizeSubtitle+'px','text-shadow':data.nShTit+'px '+data.nShTit+'px ' +data.nShTit +'px' + data.cShTit}">
+            {{data.tipoFiesta}} </h1>
         <h2 class=" mt-5 titleInv {{data.nombreFont}}"
             [style]="{'color':data.cTexto,'font-size':data.marcoSizeTitle+'px','text-shadow':data.nShSubTit+'px '+data.nShSubTit+'px ' +data.nShSubTit +'px' + data.cShSubTit}">
             {{data.nombreFiesta}}
         </h2>
-        <h3 class="subTitleInv {{data.nombreFont}}"
-            [style]="{'color':data.cTexto,'font-size':data.marcoSizeSubtitle+'px','text-shadow':data.nShTit+'px '+data.nShTit+'px ' +data.nShTit +'px' + data.cShTit}">
-            {{data.tipoFiesta}} </h3>
 
         <!-- <img class="frame" src="/assets/invitaciones/frames/frame5.png">
         <img class="pic"
@@ -73,8 +73,8 @@
 
 
 
-        <a class="botonVer nlink inviVer {{data.textoInvFont}} pointer"
-            [style]="{'color':data.cSecond,'text-shadow':data.nShTit+'px '+data.nShTit+'px ' +data.nShTit +'px' + data.cShTit}"
+        <a class="botonVer nlink inviVer animate__animated  {{data.fuenteMensajeInicial}}  {{data.efectoMensajeInicial}}  {{data.repEfectoMensajeInicial}} pointer "
+            [style]="{'color':data.colorMensajeInicial, 'font-size':data.sizeMensajeInicial+'px','text-shadow':data.nShMensaje+'px '+data.nShMensaje+'px ' +data.nShMensaje +'px' + data.cShMensaje}"
             (click)="closePresentacion()">{{data.mensajeInicial}}</a>
     </div>
 </div>

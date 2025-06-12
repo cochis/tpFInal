@@ -9,19 +9,38 @@ import Parallax from 'parallax-js';
 })
 export class GaleriaDesingComponent implements AfterViewInit {
   @Input() data: any
-  @ViewChild('scene1', { static: false }) scene1!: ElementRef;
-  @ViewChild('scene2', { static: false }) scene2!: ElementRef;
-  @ViewChild('scene3', { static: false }) scene3!: ElementRef;
+
   constructor(
     private functionsService: FunctionsService
   ) {
 
   }
   ngAfterViewInit(): void {
-    new Parallax(this.scene1.nativeElement);
-    new Parallax(this.scene2.nativeElement);
-    new Parallax(this.scene3.nativeElement);
-
+    console.log(this.data);
+    
+    // Detectar si se necesita permiso (solo iOS Safari)
+    if (typeof DeviceMotionEvent !== 'undefined' && typeof (DeviceMotionEvent as any).requestPermission === 'function') {
+      (DeviceMotionEvent as any).requestPermission()
+        .then((response: string) => {
+          if (response === 'granted') {
+            this.initParallax();
+          }
+        })
+        .catch(console.error);
+    } else {
+      this.initParallax(); // Android o navegadores que no requieren permiso
+    }
+  }
+  initParallax() {
+    const scenes = document.querySelectorAll('.parallax-scene');
+    scenes.forEach(scene => {
+      new Parallax(scene as HTMLElement, {
+        relativeInput: false,
+        gyroscope: true,
+        hoverOnly: false,
+        clipRelativeInput: true
+      });
+    });
   }
   url = environment.base_url
 
@@ -29,6 +48,7 @@ export class GaleriaDesingComponent implements AfterViewInit {
   viewImg = false
 
   selectImg(img) {
+    console.log("img: ", img);
     this.imgSelect = img
     this.viewImg = true
 

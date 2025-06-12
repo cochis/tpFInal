@@ -95,6 +95,7 @@ export class DefaultComponent implements OnInit, AfterViewInit {
   items = [
     'invitacion',
     'mensaje',
+    'galeria',
     'padres',
     'padrinos',
     'chambelanes',

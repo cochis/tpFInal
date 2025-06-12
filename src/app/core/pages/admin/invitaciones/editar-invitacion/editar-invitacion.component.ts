@@ -253,6 +253,12 @@ export class EditarInvitacionComponent {
       fondoInvitacionUp: [''],
       marcoFotoUp: [''],
       bgIntro: [''],
+      fuenteMensajeInicial: [''],
+      efectoMensajeInicial: [''],
+      repEfectoMensajeInicial: [''],
+      colorMensajeInicial: [''],
+      sizeMensajeInicial: [''],
+      tiempoEsperaMensajeInicial: [''],
       imgIntroLeftUp: [''],
       marcoSizeSubtitle: [15],
       marcoSizeTitle: [15],
@@ -275,6 +281,8 @@ export class EditarInvitacionComponent {
       nShTexto: [''],
       cShTit: [''],
       nShTit: [''],
+      cShMensaje: [''],
+      nShMensaje: [''],
       cShSubTit: [''],
       nShSubTit: [''],
       nombreEfecto: [''],
@@ -698,6 +706,13 @@ export class EditarInvitacionComponent {
 
       imgIntroLeftCheck: [invitacion.data.imgIntroLeftCheck ? invitacion.data.imgIntroLeftCheck : ''],
       bgIntro: [invitacion.data.bgIntro ? invitacion.data.bgIntro : ''],
+      fuenteMensajeInicial: [invitacion.data.fuenteMensajeInicial ? invitacion.data.fuenteMensajeInicial : ''],
+      efectoMensajeInicial: [invitacion.data.efectoMensajeInicial ? invitacion.data.efectoMensajeInicial : ''],
+      repEfectoMensajeInicial: [invitacion.data.repEfectoMensajeInicial ? invitacion.data.repEfectoMensajeInicial : ''],
+      colorMensajeInicial: [invitacion.data.colorMensajeInicial ? invitacion.data.colorMensajeInicial : ''],
+      sizeMensajeInicial: [invitacion.data.sizeMensajeInicial ? invitacion.data.sizeMensajeInicial : ''],
+      tiempoEsperaMensajeInicial: [invitacion.data.tiempoEsperaMensajeInicial ? invitacion.data.tiempoEsperaMensajeInicial : ''],
+
       imgIntroLeftUp: [invitacion.data.imgIntroLeftUp ? invitacion.data.imgIntroLeftUp : ''],
       marcoSizeSubtitle: [invitacion.data.marcoSizeSubtitle ? invitacion.data.marcoSizeSubtitle : ''],
       marcoSizeTitle: [invitacion.data.marcoSizeTitle ? invitacion.data.marcoSizeTitle : ''],
@@ -726,6 +741,8 @@ export class EditarInvitacionComponent {
       nShTexto: [invitacion.data.nShTexto ? invitacion.data.nShTexto : ''],
       cShTit: [invitacion.data.cShTit ? invitacion.data.cShTit : ''],
       nShTit: [invitacion.data.nShTit ? invitacion.data.nShTit : ''],
+      cShMensaje: [invitacion.data.cShMensaje ? invitacion.data.cShMensaje : ''],
+      nShMensaje: [invitacion.data.nShMensaje ? invitacion.data.nShMensaje : ''],
       cShSubTit: [invitacion.data.cShSubTit ? invitacion.data.cShSubTit : ''],
       nShSubTit: [invitacion.data.nShSubTit ? invitacion.data.nShSubTit : ''],
 
@@ -1021,6 +1038,16 @@ export class EditarInvitacionComponent {
 
       marcoFotoCheck: [temp.marcoFotoCheck],
       bgIntro: [temp.bgIntro],
+      fuenteMensajeInicial: [temp.fuenteMensajeInicial],
+      efectoMensajeInicial: [temp.efectoMensajeInicial],
+      repEfectoMensajeInicial: [temp.repEfectoMensajeInicial],
+      colorMensajeInicial: [temp.colorMensajeInicial],
+      sizeMensajeInicial: [temp.sizeMensajeInicial],
+      tiempoEsperaMensajeInicial: [temp.tiempoEsperaMensajeInicial],
+
+
+
+
       imgIntroLeftUp: [temp.imgIntroLeftUp],
       imgIntroRightCheck: [temp.imgIntroRightCheck],
       imgIntroRightUp: [temp.imgIntroRightUp],
@@ -1052,6 +1079,8 @@ export class EditarInvitacionComponent {
       nShTexto: [temp.nShTexto],
       cShTit: [temp.cShTit],
       nShTit: [temp.nShTit],
+      cShMensaje: [temp.cShMensaje],
+      nShMensaje: [temp.nShMensaje],
       cShSubTit: [temp.cShSubTit],
       nShSubTit: [temp.nShSubTit],
       inicialTFont: [temp.inicialTFont],
@@ -1314,6 +1343,24 @@ export class EditarInvitacionComponent {
       }
       if (this.form.value.bgIntro == '' && this.invitacion.data.bgIntro !== '') {
         this.form.value.bgIntro = this.invitacion.data.bgIntro
+      }
+      if (this.form.value.fuenteMensajeInicial == '' && this.invitacion.data.fuenteMensajeInicial !== '') {
+        this.form.value.fuenteMensajeInicial = this.invitacion.data.fuenteMensajeInicial
+      }
+      if (this.form.value.efectoMensajeInicial == '' && this.invitacion.data.efectoMensajeInicial !== '') {
+        this.form.value.efectoMensajeInicial = this.invitacion.data.efectoMensajeInicial
+      }
+      if (this.form.value.repEfectoMensajeInicial == '' && this.invitacion.data.repEfectoMensajeInicial !== '') {
+        this.form.value.repEfectoMensajeInicial = this.invitacion.data.repEfectoMensajeInicial
+      }
+      if (this.form.value.colorMensajeInicial == '' && this.invitacion.data.colorMensajeInicial !== '') {
+        this.form.value.colorMensajeInicial = this.invitacion.data.colorMensajeInicial
+      }
+      if (this.form.value.sizeMensajeInicial == '' && this.invitacion.data.sizeMensajeInicial !== '') {
+        this.form.value.sizeMensajeInicial = this.invitacion.data.sizeMensajeInicial
+      }
+      if (this.form.value.tiempoEsperaMensajeInicial == '' && this.invitacion.data.tiempoEsperaMensajeInicial !== '') {
+        this.form.value.tiempoEsperaMensajeInicial = this.invitacion.data.tiempoEsperaMensajeInicial
       }
       if (this.form.value.imgIntroLeftUp == '' && this.invitacion.data.imgIntroLeftUp !== '') {
         this.form.value.imgIntroLeftUp = this.invitacion.data.imgIntroLeftUp
@@ -1644,6 +1691,13 @@ export class EditarInvitacionComponent {
             fondoInvitacionCheck: false,
             marcoFotoCheck: '',
             bgIntro: '',
+            fuenteMensajeInicial: '',
+            efectoMensajeInicial: '',
+            repEfectoMensajeInicial: '',
+            colorMensajeInicial: '',
+            sizeMensajeInicial: '',
+            tiempoEsperaMensajeInicial: '',
+
             imgIntroLeftUp: '',
             marcoSizeSubti: 15,
             marcoSizeTitle: 15,
@@ -1675,6 +1729,8 @@ export class EditarInvitacionComponent {
             nShTexto: "",
             cShTit: "",
             nShTit: "",
+            cShMensaje: "",
+            nShMensaje: "",
             cShSubTit: "",
             nShSubTit: "",
             mensajeFont: "pacific",
@@ -2385,6 +2441,13 @@ export class EditarInvitacionComponent {
       //imagenes intro
       this.invitacion.data.imgIntroLeftCheck = ''
       this.invitacion.data.bgIntro = ''
+      this.invitacion.data.fuenteMensajeInicial = ''
+      this.invitacion.data.efectoMensajeInicial = ''
+      this.invitacion.data.repEfectoMensajeInicial = ''
+      this.invitacion.data.colorMensajeInicial = ''
+      this.invitacion.data.sizeMensajeInicial = ''
+      this.invitacion.data.tiempoEsperaMensajeInicial = ''
+
       this.invitacion.data.imgIntroLeftUp = ''
       this.invitacion.data.imgIntroRightCheck = ''
       this.invitacion.data.imgIntroRightUp = ''

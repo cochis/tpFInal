@@ -20,9 +20,16 @@ export class PresentacionComponent implements AfterViewInit {
     }, 1500);
   }
   ngAfterViewInit() {
-    setTimeout(() => {
-      this.closePresentacion()
-    }, 5000);
+    let time = Number(this.data.tiempoEsperaMensajeInicial)
+    console.log("this.data.tiempoEsperaMensajeInicial: ", this.data.tiempoEsperaMensajeInicial);
+    console.log("time: ", time);
+    if (time > 0) {
+      setTimeout(() => {
+        this.closePresentacion()
+      }, time * 1000);
+
+    }
+
 
   }
 
@@ -42,7 +49,13 @@ export class PresentacionComponent implements AfterViewInit {
   }
   getImg(img) {
     let imgR = this.bgsframes.filter(bgf => { return bgf.value == img })
-    return imgR[0].img
+    console.log("imgR: ", imgR);
+    if(imgR.length>0){
+
+      return imgR[0].img
+    }else{
+      return ''
+    }
 
   }
 }

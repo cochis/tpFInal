@@ -1096,6 +1096,145 @@
                                                 <app-editar-recordatorios [data]="fiesta"></app-editar-recordatorios>
                                             </div> -->
                                             <hr class="mt-3 mb-3">
+
+ <div class="row text-center mb-3">
+                                        <h5>Sección Galeria</h5>
+                                        <div class="col-12       mt-3 ma  text-center">
+                                            <label class="form-check-label" for="galeriaCheck">
+                                                Galeria de fotos
+                                            </label>
+                                            <input class="form-check-input" type="checkbox" id="galeriaCheck"
+                                                #galeriaCheck formControlName="galeriaCheck">
+                                        </div>
+                                        <div class="row text-center mt-3" *ngIf="form.value.galeriaCheck">
+                                            <div class="col-12  mt-3 ma">
+                                                <div class="form-group ">
+                                                    <label for="galeriaTitle ">Titulo de galeria </label>
+                                                    <input type="text" id="galeriaTitle" #galeriaTitle
+                                                        formControlName="galeriaTitle" class="form-control"
+                                                        placeholder="Momentos">
+                                                </div>
+                                            </div>
+                                            <div class="form-group    image-upload ">
+                                                <label for="galeria1">Galeria 1
+                                                    <b>Se recomienda foto horizontal</b>
+                                                    <br>
+
+                                                    <img src="/assets/images/tp.png" alt="" class="pointer"
+                                                        *ngIf="invitacion==undefined || invitacion.data.galeria1=='' "
+                                                        style="width: 150px;">
+
+                                                    <img [src]="url+'/upload/invitaciones/'+invitacion.data.galeria1"
+                                                        alt="" class=" pointer" *ngIf="invitacion"
+                                                        style="width: 150px;">
+                                                    <!-- invitacion.data.mensajeImg!='' -->
+
+                                                </label>
+                                                <input type="file" id="galeria1" #galeria1
+                                                    (change)="cambiarImagen($event,'galeria1' )">
+                                            </div>
+                                            <div class="form-group    image-upload ">
+                                                <label for="galeria2">Galeria 2
+                                                    <b>Se recomienda foto vertical</b>
+                                                    <br>
+
+                                                    <img src="/assets/images/tp.png" alt="" class="pointer"
+                                                        *ngIf="invitacion==undefined || invitacion.data.galeria2=='' "
+                                                        style="width: 150px;">
+
+                                                    <img [src]="url+'/upload/invitaciones/'+invitacion.data.galeria2"
+                                                        alt="" class=" pointer" *ngIf="invitacion"
+                                                        style="width: 150px;">
+                                                    <!-- invitacion.data.mensajeImg!='' -->
+
+                                                </label>
+                                                <input type="file" id="galeria2" #galeria2
+                                                    (change)="cambiarImagen($event,'galeria2' )">
+                                            </div>
+                                            <div class="form-group    image-upload ">
+                                                <label for="galeria3">Galeria 3
+                                                    <b>Se recomienda foto vertical</b>
+                                                    <br>
+
+                                                    <img src="/assets/images/tp.png" alt="" class="pointer"
+                                                        *ngIf="invitacion==undefined || invitacion.data.galeria3=='' "
+                                                        style="width: 150px;">
+
+                                                    <img [src]="url+'/upload/invitaciones/'+invitacion.data.galeria3"
+                                                        alt="" class=" pointer" *ngIf="invitacion"
+                                                        style="width: 150px;">
+                                                    <!-- invitacion.data.mensajeImg!='' -->
+
+                                                </label>
+                                                <input type="file" id="galeria3" #galeria3
+                                                    (change)="cambiarImagen($event,'galeria3' )">
+                                            </div>
+                                            <div class="form-group    image-upload ">
+                                                <label for="galeria4">Galeria 4
+                                                    <b>Se recomienda foto horizontal</b>
+                                                    <br>
+
+                                                    <img src="/assets/images/tp.png" alt="" class="pointer"
+                                                        *ngIf="invitacion==undefined || invitacion.data.galeria4=='' "
+                                                        style="width: 150px;">
+
+                                                    <img [src]="url+'/upload/invitaciones/'+invitacion.data.galeria4"
+                                                        alt="" class=" pointer" *ngIf="invitacion"
+                                                        style="width: 150px;">
+                                                    <!-- invitacion.data.mensajeImg!='' -->
+
+                                                </label>
+                                                <input type="file" id="galeria4" #galeria4
+                                                    (change)="cambiarImagen($event,'galeria4' )">
+                                            </div>
+                                            <div class="form-group    image-upload ">
+                                                <label for="galeria5">Galeria 5
+                                                    <b>Se recomienda foto horizontal</b>
+                                                    <br>
+
+                                                    <img src="/assets/images/tp.png" alt="" class="pointer"
+                                                        *ngIf="invitacion==undefined || invitacion.data.galeria5=='' "
+                                                        style="width: 150px;">
+
+                                                    <img [src]="url+'/upload/invitaciones/'+invitacion.data.galeria5"
+                                                        alt="" class=" pointer" *ngIf="invitacion"
+                                                        style="width: 150px;">
+                                                    <!-- invitacion.data.mensajeImg!='' -->
+
+                                                </label>
+                                                <input type="file" id="galeria5" #galeria5
+                                                    (change)="cambiarImagen($event,'galeria5' )">
+                                            </div>
+                                            <div class="form-group    image-upload ">
+                                                <label for="galeria6">Galeria 6
+                                                    <b>Se recomienda foto Vertical</b>
+                                                    <br>
+
+                                                    <img src="/assets/images/tp.png" alt="" class="pointer"
+                                                        *ngIf="invitacion==undefined || invitacion.data.galeria6=='' "
+                                                        style="width: 150px;">
+
+                                                    <img [src]="url+'/upload/invitaciones/'+invitacion.data.galeria6"
+                                                        alt="" class=" pointer" *ngIf="invitacion"
+                                                        style="width: 150px;">
+                                                    <!-- invitacion.data.mensajeImg!='' -->
+
+                                                </label>
+                                                <input type="file" id="galeria6" #galeria6
+                                                    (change)="cambiarImagen($event,'galeria6' )">
+                                            </div>
+
+
+
+
+
+                                        </div>
+                                    </div>
+
+
+
+
+                                            <hr class="mt-3 mb-3">
                                             <div class="col-12       mt-3 ma ">
                                                 <label class="form-check-label" for="confirmacionCheck">
                                                     Botón de confirmación
@@ -4556,13 +4695,147 @@
                                                             (change)="cambiarImagen($event,'bgIntro' )">
                                                     </div>
 
-                                                    <div class="col-12      mt-3">
+                                                    <div class="col-12  mt-3">
                                                         <div class="form-group ">
                                                             <label for="mensajeInicial ">Mensaje inicio </label>
                                                             <input type="text" id="mensajeInicial" #mensajeInicial
                                                                 formControlName="mensajeInicial" class="form-control">
                                                         </div>
                                                     </div>
+                                                    <div class="col-12   col-md-6    mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="fuenteMensajeInicial ">Fuente de Mensaje
+                                                                inicial</label>
+                                                            <select name="fuenteMensajeInicial"
+                                                                id="fuenteMensajeInicial"
+                                                                formControlName="fuenteMensajeInicial"
+                                                                class="form-control upper {{fuenteMensajeInicial}}"
+                                                                #fuenteMensajeInicial>
+                                                                <option value="">Seleccione el tipo de fuente</option>
+                                                                <ng-container *ngFor="let font of fonts">
+
+                                                                    <option [value]="font.value" [class]="font.value">
+                                                                        {{font.name}}</option>
+                                                                </ng-container>
+
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6  mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="colorMensajeInicial ">Color mesaje
+                                                            </label>
+                                                            <input type="color" class="form-control upper"
+                                                                id="colorMensajeInicial"
+                                                                formControlName="colorMensajeInicial" required
+                                                                placeholder="Color mesaje" [readonly]="edit==='false'">
+                                                        </div>
+                                                        <span
+                                                            *ngIf="submited && errorControl['colorMensajeInicial'].errors "
+                                                            class="error">Es requerido
+                                                        </span>
+                                                    </div>
+                                                    <div class="col-12  col-md-6   mt-3 ma">
+                                                        <div class="form-group ">
+                                                            <label for="efectoMensajeInicial ">Efecto de mensaje
+                                                                inicial</label>
+                                                            <select name="efectoMensajeInicial"
+                                                                id="efectoMensajeInicial"
+                                                                formControlName="efectoMensajeInicial"
+                                                                class="form-control upper {{efectoMensajeInicial}}"
+                                                                #efectoMensajeInicial>
+                                                                <option value="" selected>Seleccione el tipo de efecto
+                                                                </option>
+                                                                <option [class]="item.clave" [value]="item.clave"
+                                                                    class="name" *ngFor="let item of efectos">
+                                                                    {{item.nombre}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12  col-md-6   mt-3 ma">
+                                                        <div class="form-group ">
+                                                            <label for="repEfectoMensajeInicial ">Repetir Efecto</label>
+                                                            <select name="repEfectoMensajeInicial"
+                                                                id="repEfectoMensajeInicial"
+                                                                formControlName="repEfectoMensajeInicial"
+                                                                class="form-control upper {{repEfectoMensajeInicial}}"
+                                                                #repEfectoMensajeInicial>
+                                                                <option value="" selected>Seleccione el tipo de efecto
+                                                                </option>
+                                                                <option [class]="item.clave" [value]="item.clave"
+                                                                    class="name" *ngFor="let item of repEfec">
+                                                                    {{item.nombre}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="col-12 col-md-6   mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="sizeMensajeInicial ">Tamaño del Mensaje
+                                                            </label>
+                                                            <a class="range"
+                                                                (click)="changeRange('sizeMensajeInicial','-')"> <b
+                                                                    class="range-icon">-</b> </a>
+                                                            <input type="range" id="sizeMensajeInicial"
+                                                                #sizeMensajeInicial formControlName="sizeMensajeInicial"
+                                                                min="15" max="180">
+                                                            <a class="range"
+                                                                (click)="changeRange('sizeMensajeInicial','+')"> <b
+                                                                    class="range-icon">+</b> </a>
+                                                        </div>
+                                                    </div>
+
+
+
+                                                    <div class="col-12   col-md-6    mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="tiempoEsperaMensajeInicial ">Tiempo para
+                                                                redireccion</label>
+                                                            <select name="tiempoEsperaMensajeInicial"
+                                                                id="tiempoEsperaMensajeInicial"
+                                                                formControlName="tiempoEsperaMensajeInicial"
+                                                                class="form-control upper {{tiempoEsperaMensajeInicial}}"
+                                                                #tiempoEsperaMensajeInicial>
+                                                                <option value="">Sin Redireccion Automatica</option>
+                                                                <option value="5">5 segundos</option>
+                                                                <option value="10">10 segundos</option>
+                                                                <option value="15">15 segundos</option>
+                                                                <option value="20">20 segundos</option>
+
+
+
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-12 col-md-6  mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="cShMensaje ">Color de sombra de titulo </label>
+                                                            <input type="color" class="form-control upper"
+                                                                id="cShMensaje" formControlName="cShMensaje" required
+                                                                placeholder="Color de fondo"
+                                                                [readonly]="edit==='false'">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12  col-md-6   mt-3 ma">
+                                                        <div class="form-group ">
+                                                            <label for="nShMensaje ">Cantidad de sobra</label>
+                                                            <select name="nShMensaje" id="nShMensaje"
+                                                                formControlName="nShMensaje" class="form-control upper"
+                                                                #nShMensaje>
+                                                                <option value="" selected>Seleccione la cantidad de
+                                                                    sombra
+                                                                </option>
+                                                                <option value="0">0</option>
+                                                                <option value="1">1</option>
+                                                                <option value="2">2</option>
+                                                                <option value="3">3</option>
+
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
                                                     <div class="col-12 col-md-6   mt-3">
                                                         <div class="form-group ">
                                                             <label for="marcoSizeTitle ">Tamaño de titulo </label>
@@ -4576,6 +4849,7 @@
                                                                     class="range-icon">+</b> </a>
                                                         </div>
                                                     </div>
+
                                                     <div class="col-12 col-md-6   mt-3">
                                                         <div class="form-group ">
                                                             <label for="marcoSizeSubtitle ">Tamaño del subtitulo
@@ -4915,7 +5189,7 @@
                                                                     style="width: 150px;">
                                                             </label>
                                                             <input type="file" id="marcoFotoUp" #marcoFotoUp
-                                                                (change)="cambiarImagen($event,'marcoFoto' )">
+                                                                (change)="cambiarImagen($event,'marcoFotoUp' )">
                                                         </div>
                                                     </div>
                                                     <div class="col-6  mt-3">
