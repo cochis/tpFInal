@@ -376,6 +376,8 @@ export class EditarInvitacionComponent {
       generalCheck: [true],
       generalSize: [15],
       generalTexto: [''],
+      startText: [''],
+      endText: [''],
       mesaRegalosLugar: [''],
       mesaRegalosLugar2: [''],
       mesaRegalosUrl: [''],
@@ -616,6 +618,8 @@ export class EditarInvitacionComponent {
       generalCheck: [invitacion.data.generalCheck],
       generalSize: [invitacion.data.generalSize],
       generalTexto: [invitacion.data.generalTexto],
+      startText: [invitacion.data.startText],
+      endText: [invitacion.data.endText],
       mesaRegalosLugar: [invitacion.data.mesaRegalosLugar],
       mesaRegalosLugar2: [invitacion.data.mesaRegalosLugar2],
       mesaRegalosUrl: [invitacion.data.mesaRegalosUrl],
@@ -1016,6 +1020,8 @@ export class EditarInvitacionComponent {
       generalCheck: [temp.generalCheck],
       generalSize: [temp.generalSize],
       generalTexto: [temp.generalTexto],
+      startText: [temp.startText],
+      endText: [temp.endText],
       mesaRegalosLugar: [temp.mesaRegalosLugar],
       mesaRegalosLugar2: [temp.mesaRegalosLugar2],
       mesaRegalosUrl: [temp.mesaRegalosUrl],
@@ -1637,6 +1643,8 @@ export class EditarInvitacionComponent {
             generalCheck: true,
             generalSize: 15,
             generalTexto: '',
+            startText: '',
+            endText: '',
             mesaRegalosLugar: '',
             mesaRegalosLugar2: '',
             mesaRegalosUrl: '',
@@ -2529,6 +2537,8 @@ export class EditarInvitacionComponent {
 
 
       this.invitacion.data.generalTexto = ''
+      this.invitacion.data.startText = ''
+      this.invitacion.data.endText = ''
       this.invitacion.data.mensajeFont = ''
       this.invitacion.data.mensajeEfecto = ''
       this.invitacion.data.mensajeEfectoRep = ''
@@ -2548,6 +2558,8 @@ export class EditarInvitacionComponent {
 
       this.invitacion.data.generalCheck = false
       this.invitacion.data.generalTexto = ''
+      this.invitacion.data.startText = ''
+      this.invitacion.data.endText = ''
 
 
 
