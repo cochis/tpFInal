@@ -6,7 +6,7 @@
         <div class="row">
             <h3 class=" mt-5 animate__animated {{data.cabeceraFont}} {{data.cabeceraEfecto}} {{data.cabeceraEfectoRep}} ma text-center"
                 [style]=" {'font-size': data.cabeceraSize +'px','color':data.cTexto}">
-                Compartir a galería
+                {{data.galeryTitle}}
             </h3>
             <div class="ma divisor" [style]="{'background-color':data.cSecond}"> </div>
         </div>
@@ -19,14 +19,14 @@
                         <button type="button" class="btn mt-3 mb-3" tabindex="0"
                             [style]="{'background-color': data.cSecond, 'border': '3px solid'+ data.cTexto, 'color': data.cTexto,'width':'100% !important'}"
                             routerLink="/core/galeria/fst/{{fiesta.uid}}/blt/{{boleto.uid}}">
-                            COMPARTE TUS <i class="bi bi-images"
+                            {{data.galeryButtom}} <i class="bi bi-images"
                                 [style]="{'color': data.cTexto,'font-size': '30px','margin-left':'10px'}"></i></button>
                     </div>
 
                     <div class="col-12 text-center {{data.textoInvFont}}">
                         <h5 class="{{data.textoInvFont}}"
                             [style]="{' font-size':data.textoInvSize ,'color':data.cTexto}">
-                            O Ingresa por QR
+                            {{data.galeryText}}
                         </h5>
                     </div>
                     <div class="col-6 text-center ma qrcodeImage text-center  mg ma pt-3"
@@ -65,7 +65,7 @@
         <div class="row">
             <h3 class=" mt-5 animate__animated {{data.cabeceraFont}} {{data.cabeceraEfecto}} {{data.cabeceraEfectoRep}} ma text-center"
                 [style]=" {'font-size': data.cabeceraSize +'px','color':data.cTexto}">
-                Compartir a galería
+                {{data.galeryTitle}}
             </h3>
             <div class="ma divisor" [style]="{'background-color':data.cSecond}"> </div>
         </div>
@@ -78,14 +78,14 @@
                         <button type="button" class="btn mt-3 mb-3" tabindex="0"
                             [style]="{'background-color': data.cSecond, 'border': '3px solid'+ data.cTexto, 'color': data.cTexto,'width':'100% !important'}"
                             routerLink="/core/galeria/fst/{{fiesta.uid}}/blt/{{boleto.uid}}">
-                            COMPARTE TUS <i class="bi bi-images"
+                            {{data.galeryButtom}}<i class="bi bi-images"
                                 [style]="{'color': data.cTexto,'font-size': '30px','margin-left':'10px'}"></i></button>
                     </div>
 
                     <div class="col-12 text-center {{data.textoInvFont}}">
                         <h5 class="{{data.textoInvFont}}"
                             [style]="{' font-size':data.textoInvSize ,'color':data.cTexto}">
-                            O Ingresa por QR
+                            {{data.galeryText}}
                         </h5>
                     </div>
                     <div class="col-6 text-center ma qrcodeImage text-center  mg ma pt-3"
@@ -130,7 +130,7 @@
         <div class="row">
             <h3 class=" animate__animated {{data.cabeceraFont}} {{data.cabeceraEfecto}} {{data.cabeceraEfectoRep}} ma text-center"
                 [style]=" {'font-size': data.cabeceraSize +'px','color':data.cTexto}">
-                Compartir a galería
+                {{data.galeryTitle}}
             </h3>
             <div class="ma divisor" [style]="{'background-color':data.cSecond}"> </div>
         </div>
@@ -152,7 +152,7 @@
                 </div>
                 <div class="col-12 text-center {{data.textoInvFont}}">
                     <h5 class="{{data.textoInvFont}}" [style]="{'font-size':data.textoInvSize ,'color':data.cTexto}">
-                        O Ingresa por QR
+                        {{data.galeryText}}
                     </h5>
                 </div>
                 <div class="col-6 text-center ma qrcodeImage text-center  mg ma pt-3">
@@ -178,7 +178,7 @@
         <div class="row">
             <h3 class=" animate__animated {{data.cabeceraFont}} {{data.cabeceraEfecto}} {{data.cabeceraEfectoRep}} ma text-center"
                 [style]=" {'font-size': data.cabeceraSize +'px','color':data.cTexto}">
-                Compartir a galería
+                {{data.galeryTitle}}
             </h3>
             <div class="ma divisor" [style]="{'background-color':data.cSecond}"> </div>
         </div>
@@ -195,12 +195,12 @@
 
                     <button type="button" class="btn mt-3 mb-3" tabindex="0"
                         [style]="{'background-color': data.cSecond, 'border': '3px solid'+ data.cTexto, 'color': data.cTexto,'width':'100% !important'}">
-                        COMPARTE TUS <i class="bi bi-images"
+                        {{data.galeryButtom}} <i class="bi bi-images"
                             [style]="{'color': data.cTexto,'font-size': '30px','margin-left':'10px'}"></i></button>
                 </div>
                 <div class="col-12 text-center {{data.textoInvFont}}">
                     <h5 class="{{data.textoInvFont}}" [style]="{'font-size':data.textoInvSize ,'color':data.cTexto}">
-                        O Ingresa por QR
+                        {{data.galeryText}}
                     </h5>
                 </div>
                 <div class="col-6 text-center ma qrcodeImage text-center  mg ma pt-3">

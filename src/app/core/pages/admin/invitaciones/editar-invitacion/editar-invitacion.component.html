@@ -400,6 +400,46 @@
                                                                 class="form-control">
                                                         </div>
                                                     </div>
+                                                    <div class="col-12 col-md-6 ma  mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="dayText ">Dias
+                                                            </label>
+
+                                                            <input type="text" id="dayText" #dayText
+                                                                formControlName="dayText" placeholder="Dias"
+                                                                class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6 ma  mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="hourText ">Horas
+                                                            </label>
+
+                                                            <input type="text" id="hourText" #hourText
+                                                                formControlName="hourText" placeholder="Horas"
+                                                                class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6 ma  mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="minText ">Minutos
+                                                            </label>
+
+                                                            <input type="text" id="minText" #minText
+                                                                formControlName="minText" placeholder="Minutos"
+                                                                class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6 ma  mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="segText ">Segundos
+                                                            </label>
+
+                                                            <input type="text" id="segText" #segText
+                                                                formControlName="segText" placeholder="Segundos"
+                                                                class="form-control">
+                                                        </div>
+                                                    </div>
                                                     <div class="  col-12    mt-3 ma" *ngIf="typeCount.value =='1'">
                                                         <div class="form-group ">
                                                             <label for="inicialTSize ">Tamaño inicial del conteo
@@ -950,6 +990,16 @@
                                     <div class="row text-center mt-3" *ngIf="fiesta.checking">
                                         <h5>Sección QR</h5>
                                         <hr class="mt-3 mb-3">
+
+                                        <div class="row">
+                                            <div class="col-12 col-md-6  ma mt-3">
+                                                <div class="form-group ">
+                                                    <label for="boletoTitle ">Titulo de Boleto </label>
+                                                    <input type="text" id="boletoTitle" #boletoTitle
+                                                        formControlName="boletoTitle" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
                                         <b>Si tu invitación tiene check in este es tu QR </b>
 
                                         <div class="col-12 col-md-6 ma mt-3">
@@ -1034,6 +1084,16 @@
                                         <div class="row text-center mt-3 ma">
                                             <h5>Sección Dónde y Cuándo</h5>
                                             <hr class="mt-3 mb-3">
+                                            <div class="row">
+                                                <div class="col-12 col-md-6  ma mt-3">
+                                                    <div class="form-group ">
+                                                        <label for="whereTitle ">Titulo Donde & Cuando </label>
+                                                        <input type="text" id="whereTitle" #whereTitle
+                                                            formControlName="whereTitle" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                             <div class="col-12 col-md-6     mt-3">
 
 
@@ -1254,7 +1314,30 @@
 
                                                 </div>
                                             </div>
+                                            <div class="row">
+                                                <div class="col-12 col-md-6  ma mt-3">
+                                                    <div class="form-group ">
+                                                        <label for="galeryTitle "> Titulo Galeria de fotos </label>
+                                                        <input type="text" id="galeryTitle" #galeryTitle
+                                                            formControlName="galeryTitle" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-4  ma mt-3">
+                                                    <div class="form-group ">
+                                                        <label for="galeryButtom "> Boton Galeria de fotos </label>
+                                                        <input type="text" id="galeryButtom" #galeryButtom
+                                                            formControlName="galeryButtom" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-4  ma mt-3">
+                                                    <div class="form-group ">
+                                                        <label for="galeryText "> Texto Galeria de fotos </label>
+                                                        <input type="text" id="galeryText" #galeryText
+                                                            formControlName="galeryText" class="form-control">
+                                                    </div>
+                                                </div>
 
+                                            </div>
 
 
 
@@ -1549,7 +1632,15 @@
                                                 </div>
 
                                                 <ng-container *ngIf="menuCheck.checked">
-
+                                                    <div class="row">
+                                                        <div class="col-12 col-md-6  ma text-center   mt-3 mb-3">
+                                                            <div class="form-group ">
+                                                                <label for="menuTitle ">Titulo de menu </label>
+                                                                <input type="text" id="menuTitle" #menuTitle
+                                                                    formControlName="menuTitle" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     <div class="col-12  text-center" style="margin:auto">
 
                                                         <button type="button" id="btnMenuDefault"
@@ -2500,7 +2591,7 @@
                                                                     class="range-icon">+</b> </a>
                                                         </div>
                                                     </div>
-                                                    
+
                                                     <div class="col-12 col-md-6 ma  mt-3">
                                                         <div class="form-group ">
                                                             <label for="startText ">Texto inicial
@@ -2518,6 +2609,46 @@
 
                                                             <input type="text" id="endText" #endText
                                                                 formControlName="endText" placeholder="Comenzamos"
+                                                                class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6 ma  mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="dayText ">Dias
+                                                            </label>
+
+                                                            <input type="text" id="dayText" #dayText
+                                                                formControlName="dayText" placeholder="Dias"
+                                                                class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6 ma  mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="hourText ">Horas
+                                                            </label>
+
+                                                            <input type="text" id="hourText" #hourText
+                                                                formControlName="hourText" placeholder="Horas"
+                                                                class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6 ma  mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="minText ">Minutos
+                                                            </label>
+
+                                                            <input type="text" id="minText" #minText
+                                                                formControlName="minText" placeholder="Minutos"
+                                                                class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6 ma  mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="segText ">Segundos
+                                                            </label>
+
+                                                            <input type="text" id="segText" #segText
+                                                                formControlName="segText" placeholder="Segundos"
                                                                 class="form-control">
                                                         </div>
                                                     </div>
@@ -2813,7 +2944,16 @@
 
                                     <div class="row text-center mt-3" *ngIf="fiesta.checking">
                                         <h5>Sección QR</h5>
-
+                                        <hr class="mt-3 mb-3">
+                                        <div class="row">
+                                            <div class="col-12 col-md-6  ma mt-3">
+                                                <div class="form-group ">
+                                                    <label for="boletoTitle ">Titulo de Boleto </label>
+                                                    <input type="text" id="boletoTitle" #boletoTitle
+                                                        formControlName="boletoTitle" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="col-12 mt-3 ma text-center">
                                             <label class="form-check-label" for="imgQrCheck">
                                                 Imagen en QR
@@ -2899,6 +3039,15 @@
                                         <div class="row text-center mt-3 ma">
                                             <h5>Sección Dónde y Cuándo</h5>
                                             <hr class="mt-3 mb-3">
+                                            <div class="row">
+                                                <div class="col-12 col-md-6  ma mt-3">
+                                                    <div class="form-group ">
+                                                        <label for="whereTitle ">Titulo Donde & Cuando </label>
+                                                        <input type="text" id="whereTitle" #whereTitle
+                                                            formControlName="whereTitle" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div class="col-12 col-md-6     mt-3">
 
 
@@ -3240,6 +3389,31 @@
                                         <div class="col-12 mt-3 text-center" *ngIf="recordatorioOk.checked">
                                             <app-editar-recordatorios [data]="fiesta"></app-editar-recordatorios>
                                         </div> -->
+
+                                        <div class="row">
+                                            <div class="col-12 col-md-6  ma mt-3">
+                                                <div class="form-group ">
+                                                    <label for="galeryTitle "> Titulo Galeria de fotos </label>
+                                                    <input type="text" id="galeryTitle" #galeryTitle
+                                                        formControlName="galeryTitle" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-4  ma mt-3">
+                                                <div class="form-group ">
+                                                    <label for="galeryButtom "> Boton Galeria de fotos </label>
+                                                    <input type="text" id="galeryButtom" #galeryButtom
+                                                        formControlName="galeryButtom" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-4  ma mt-3">
+                                                <div class="form-group ">
+                                                    <label for="galeryText "> Texto Galeria de fotos </label>
+                                                    <input type="text" id="galeryText" #galeryText
+                                                        formControlName="galeryText" class="form-control">
+                                                </div>
+                                            </div>
+
+                                        </div>
                                         <hr class="mt-3 mb-3">
                                         <div class="col-12       mt-3 ma  text-center">
                                             <label class="form-check-label" for="confirmacionCheck">
@@ -3510,13 +3684,22 @@
                                             </div>
 
                                             <div class="row" *ngIf="menuCheck.checked">
-
+                                                <div class="row">
+                                                    <div class="col-12 col-md-6  ma text-center   mt-3 mb-3">
+                                                        <div class="form-group ">
+                                                            <label for="menuTitle ">Titulo de menu </label>
+                                                            <input type="text" id="menuTitle" #menuTitle
+                                                                formControlName="menuTitle" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <div class="col-12  text-center" style="margin:auto">
 
                                                     <button type="button" class="btn btn-lg btn-block but "
                                                         (click)="addMenus('f')" id="btnMenuFile">Agregar
                                                         Menu</button>
                                                 </div>
+
                                             </div>
                                             <ng-container formArrayName="menu" *ngIf="menuCheck.checked">
 
@@ -4443,7 +4626,46 @@
                                                                 class="form-control">
                                                         </div>
                                                     </div>
+                                                    <div class="col-12 col-md-6 ma  mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="dayText ">Dias
+                                                            </label>
 
+                                                            <input type="text" id="dayText" #dayText
+                                                                formControlName="dayText" placeholder="Dias"
+                                                                class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6 ma  mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="hourText ">Horas
+                                                            </label>
+
+                                                            <input type="text" id="hourText" #hourText
+                                                                formControlName="hourText" placeholder="Horas"
+                                                                class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6 ma  mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="minText ">Minutos
+                                                            </label>
+
+                                                            <input type="text" id="minText" #minText
+                                                                formControlName="minText" placeholder="Minutos"
+                                                                class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6 ma  mt-3">
+                                                        <div class="form-group ">
+                                                            <label for="segText ">Segundos
+                                                            </label>
+
+                                                            <input type="text" id="segText" #segText
+                                                                formControlName="segText" placeholder="Segundos"
+                                                                class="form-control">
+                                                        </div>
+                                                    </div>
 
                                                 </div>
 
@@ -5529,7 +5751,33 @@
                                     </div>
                                     <div class="row text-center mt-3" *ngIf="fiesta.checking">
                                         <h5>Sección QR</h5>
+                                        <hr class="mt-3 mb-3">
+                                        <div class="row">
+                                            <div class="col-12   ma mt-3">
+                                                <div class="form-group ">
+                                                    <label for="boletoTitle ">Titulo de Boleto </label>
+                                                    <input type="text" id="boletoTitle" #boletoTitle
+                                                        formControlName="boletoTitle" class="form-control">
+                                                </div>
+                                            </div>
 
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12 col-md-6  ma mt-3">
+                                                <div class="form-group ">
+                                                    <label for="boletoText ">Texto de boletos </label>
+                                                    <input type="text" id="boletoText" #boletoText
+                                                        formControlName="boletoText" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6  ma mt-3">
+                                                <div class="form-group ">
+                                                    <label for="mesaText ">Texto de mesa </label>
+                                                    <input type="text" id="mesaText" #mesaText
+                                                        formControlName="mesaText" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="col-12 mt-3 ma text-center">
                                             <label class="form-check-label" for="imgQrCheck">
                                                 Imagen en QR
@@ -5640,6 +5888,15 @@
                                         <div class="row text-center mt-3 ma">
                                             <h5>Sección Dónde y Cuándo</h5>
                                             <hr class="mt-3 mb-3">
+                                            <div class="row">
+                                                <div class="col-12 col-md-6  ma mt-3">
+                                                    <div class="form-group ">
+                                                        <label for="whereTitle ">Titulo Donde & Cuando </label>
+                                                        <input type="text" id="whereTitle" #whereTitle
+                                                            formControlName="whereTitle" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div class="col-12 col-md-6     mt-3">
 
 
@@ -5668,14 +5925,14 @@
                                                 <div class="form-group ">
                                                     <label for="donde3Titulo ">Titulo </label>
                                                     <input type="text" id="donde3Titulo" #donde3Titulo
-                                                        formControlName="donde3Titulo" class="form-control" readonly>
+                                                        formControlName="donde3Titulo" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-4   mt-3">
                                                 <div class="form-group ">
                                                     <label for="donde3Text ">Nombre </label>
                                                     <input type="text" id="donde3Text" #donde3Text
-                                                        formControlName="donde3Text" class="form-control" readonly>
+                                                        formControlName="donde3Text" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-4   mt-3">
@@ -5689,7 +5946,7 @@
                                                 <div class="form-group ">
                                                     <label for="donde3Address ">Dirección </label>
                                                     <input type="text" id="donde3Address" #donde3Address
-                                                        formControlName="donde3Address" class="form-control" readonly
+                                                        formControlName="donde3Address" class="form-control"
                                                         style="width: 100%;">
                                                 </div>
                                             </div>
@@ -5733,6 +5990,30 @@
                                             <div class="col-12 mt-3 " *ngIf="recordatorioOk.checked">
                                                 <app-editar-recordatorios [data]="fiesta"></app-editar-recordatorios>
                                             </div> -->
+                                            <div class="row">
+                                                <div class="col-12 col-md-6  ma mt-3">
+                                                    <div class="form-group ">
+                                                        <label for="galeryTitle "> Titulo Galeria de fotos </label>
+                                                        <input type="text" id="galeryTitle" #galeryTitle
+                                                            formControlName="galeryTitle" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-4  ma mt-3">
+                                                    <div class="form-group ">
+                                                        <label for="galeryButtom "> Boton Galeria de fotos </label>
+                                                        <input type="text" id="galeryButtom" #galeryButtom
+                                                            formControlName="galeryButtom" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-4  ma mt-3">
+                                                    <div class="form-group ">
+                                                        <label for="galeryText "> Texto Galeria de fotos </label>
+                                                        <input type="text" id="galeryText" #galeryText
+                                                            formControlName="galeryText" class="form-control">
+                                                    </div>
+                                                </div>
+
+                                            </div>
                                             <hr class="mt-3 mb-3">
                                             <div class="col-12       mt-3 ma ">
                                                 <label class="form-check-label" for="confirmacionCheck">
@@ -5742,6 +6023,49 @@
                                                     #confirmacionCheck formControlName="confirmacionCheck">
 
 
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12 col-md-6  ma mt-3">
+                                                    <div class="form-group ">
+                                                        <label for="confirmacionTexto ">Texto Confirmacion</label>
+                                                        <input type="text" id="confirmacionTexto" #confirmacionTexto
+                                                            formControlName="confirmacionTexto" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-6  ma mt-3">
+                                                    <div class="form-group ">
+                                                        <label for="confirmacionBotonTexto ">Texto Botón
+                                                            Confirmacion</label>
+                                                        <input type="text" id="confirmacionBotonTexto"
+                                                            #confirmacionBotonTexto
+                                                            formControlName="confirmacionBotonTexto"
+                                                            class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-6  ma mt-3">
+                                                    <div class="form-group ">
+                                                        <label for="quitarConfirmacionBotonTexto ">Texto Botón
+                                                            Confirmacion</label>
+                                                        <input type="text" id="quitarConfirmacionBotonTexto"
+                                                            #quitarConfirmacionBotonTexto
+                                                            formControlName="quitarConfirmacionBotonTexto"
+                                                            class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-6  ma mt-3">
+                                                    <div class="form-group ">
+                                                        <label for="sinConfBotonTexto ">Texto Botón Confirmacion</label>
+                                                        <input type="text" id="sinConfBotonTexto" #sinConfBotonTexto
+                                                            formControlName="sinConfBotonTexto" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12    ma mt-3">
+                                                    <div class="form-group ">
+                                                        <label for="questionConfirm ">Pregunta de confirmación</label>
+                                                        <input type="text" id="questionConfirm" #questionConfirm
+                                                            formControlName="questionConfirm" class="form-control">
+                                                    </div>
+                                                </div>
                                             </div>
 
 
@@ -6084,7 +6408,15 @@
                                                 </div>
 
                                                 <ng-container *ngIf="menuCheck.checked">
-
+                                                    <div class="row">
+                                                        <div class="col-12 col-md-6  ma text-center   mt-3 mb-3">
+                                                            <div class="form-group ">
+                                                                <label for="menuTitle ">Titulo de menu </label>
+                                                                <input type="text" id="menuTitle" #menuTitle
+                                                                    formControlName="menuTitle" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     <div class="col-12  text-center" style="margin:auto">
 
                                                         <button type="button" id="btnMenuDefault"
@@ -6349,6 +6681,16 @@
 
                                             </div>
                                             <ng-container *ngIf="form.value.codigoVestimentaCheck">
+                                                <div class="row">
+                                                    <div class="col-12 col-md-6  ma text-center   mt-3 mb-3">
+                                                        <div class="form-group ">
+                                                            <label for="dressTitle ">Titulo de Codigo de vestimenta
+                                                            </label>
+                                                            <input type="text" id="dressTitle" #dressTitle
+                                                                formControlName="dressTitle" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <div class="col-12  col-md-6  mt-3 text-center ma"
                                                     *ngIf="form.value.codigoVestimentaCheck">
                                                     <div class="form-group    image-upload ">
@@ -6464,7 +6806,7 @@
                                                 </div>
                                             </div> -->
 
-                                            <div class="col-12 col-md-4   mt-3">
+                                            <div class="col-12 col-md-4   mt-3" *ngIf="form.value.donde1Check">
                                                 <div class="form-group ">
                                                     <label for="donde1Titulo ">Titulo </label>
                                                     <input type="text" id="donde1Titulo" #donde1Titulo
@@ -6543,7 +6885,7 @@
                                                         class="form-control">
                                                 </div>
                                             </div>
-                                            <div class="col-12 col-md-4   mt-3">
+                                            <div class="col-12 col-md-4   mt-3" *ngIf="form.value.donde2Check">
                                                 <div class="form-group ">
                                                     <label for="donde2Titulo ">Titulo </label>
                                                     <input type="text" id="donde2Titulo" #donde2Titulo
@@ -6606,6 +6948,18 @@
                                                     #hospedajeCheck formControlName="hospedajeCheck">
 
 
+                                            </div>
+                                            <div class="row">
+
+                                                <div class="col-12 col-md-6 " style="margin:auto"
+                                                    *ngIf="hospedajeCheck.checked">
+                                                    <div class="form-group ">
+                                                        <label for="hospedajeTitle  ">Titulo de hospedaje </label>
+                                                        <input type="text" id="hospedajeTitle " #hospedajeTitle
+                                                            formControlName="hospedajeTitle" class="form-control"
+                                                            placeholder="Hospedaje">
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="col-12  col-md-6  mt-3 text-center "
                                                 *ngIf="form.value.hospedajeCheck">
@@ -6678,7 +7032,18 @@
 
 
                                             </div>
+                                            <div class="row">
 
+                                                <div class="col-12 col-md-6 " style="margin:auto"
+                                                    *ngIf="mesaRegalosCheck.checked">
+                                                    <div class="form-group ">
+                                                        <label for="mesaTitle  ">Titulo de mesa de regalos </label>
+                                                        <input type="text" id="mesaTitle " #mesaTitle
+                                                            formControlName="mesaTitle" class="form-control"
+                                                            placeholder="Mesa de regalos">
+                                                    </div>
+                                                </div>
+                                            </div>
 
                                             <div class="col-12 col-md-6  mt-3 ma" *ngIf="form.value.mesaRegalosCheck">
                                                 <div class="form-group ">
@@ -6733,12 +7098,22 @@
                                             </div>
 
                                             <ng-container *ngIf="itinerarioCheck.checked">
-                                                <div class="col-12  text-center" style="margin:auto">
+                                                <div class="col-12 col-md-6 " style="margin:auto"
+                                                    *ngIf="itinerarioCheck.checked">
+                                                    <div class="form-group ">
+                                                        <label for="itiTitle ">Titulo de intinerario </label>
+                                                        <input type="text" id="itiTitle" #itiTitle
+                                                            formControlName="itiTitle" class="form-control"
+                                                            placeholder="Itinerario">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12  col-md-6  text-center" style="margin:auto">
 
                                                     <button type="button" class="btn btn-lg btn-block but "
                                                         id="btnItinerarioDeafult" (click)="addItinerarios('d')">Agregar
                                                         itinerario</button>
                                                 </div>
+
                                             </ng-container>
 
                                             <ng-container formArrayName="itinerarios" *ngIf="itinerarioCheck.checked">
@@ -6845,9 +7220,22 @@
                                                 <input class="form-check-input" type="checkbox" id="notaCheck"
                                                     #notaCheck formControlName="notaCheck">
                                             </div>
+
+
+
                                             <div class="row">
                                             </div>
-                                            <div class="col-12 text-center" style="margin:auto"
+
+
+                                            <div class="col-12 col-md-6 " style="margin:auto" *ngIf="notaCheck.checked">
+                                                <div class="form-group ">
+                                                    <label for="notasTitle ">Titulo de notas </label>
+                                                    <input type="text" id="notasTitle" #notasTitle
+                                                        formControlName="notasTitle" class="form-control"
+                                                        placeholder="Notas">
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6 text-center" style="margin:auto"
                                                 *ngIf="notaCheck.checked">
 
                                                 <button type="button" id="btnNotaDefault"

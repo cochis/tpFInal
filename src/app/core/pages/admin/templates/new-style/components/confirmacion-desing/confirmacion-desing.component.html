@@ -4,7 +4,7 @@
         <div class="row">
             <h3 class=" mt-5 animate__animated {{data.cabeceraFont}} {{data.cabeceraEfecto}} {{data.cabeceraEfectoRep}} ma text-center"
                 [style]=" {'font-size': data.cabeceraSize +'px','color':data.cTexto}">
-                Confirmación
+                {{data.confirmacionTexto}}
             </h3>
             <div class="ma divisor" [style]="{'background-color':data.cSecond}"> </div>
         </div>
@@ -26,21 +26,21 @@
                         type="button"
                         *ngIf=" (data.confirmacionCheck =='true' || data.confirmacionCheck ==true) &&( !boleto.confirmado)"
                         (click)="confirmar(getQr(boleto) ,data.ajusteCheck)">
-                        Confirmación
+                        {{data.confirmacionBotonTexto}}
                     </button>
                     <button class="btn  upper  mb-3"
                         [style]="{'background-color':data.cSecond,'color' :data.cTexto,'border': '3px solid'+ data.cTexto ,'width':'100% !important'}"
                         type="button"
                         *ngIf=" (data.confirmacionCheck =='true' || data.confirmacionCheck ==true) &&( !boleto.confirmado)"
                         (click)="declinar(getQr(boleto) ,data.declinar)">
-                        No puedo asistir
+                        {{data.sinConfBotonTexto}}
                     </button>
                     <button class="btn  upper  mb-3"
                         [style]="{'background-color':data.cSecond,'color' :data.cTexto,'border': '3px solid'+ data.cTexto,'width':'100% !important'}"
                         type="button"
                         *ngIf=" (data.confirmacionCheck =='true' || data.confirmacionCheck ==true) && boleto.confirmado"
                         (click)="confirmar(getQr(boleto))">
-                        Quitar confirmación
+                        {{data.quitarConfirmacionBotonTexto}}
                     </button>
 
 
@@ -52,7 +52,7 @@
                     <button class="btn  upper  mb-3"
                         [style]="{'background-color':data.cSecond,'color' :data.cTexto, 'border': '3px solid'+ data.cTexto,'width':'100% !important'}"
                         type="button">
-                        Confirmación
+                        {{data.confirmacionTexto}}
                     </button>
                 </div>
 

@@ -21,8 +21,7 @@ export class PresentacionComponent implements AfterViewInit {
   }
   ngAfterViewInit() {
     let time = Number(this.data.tiempoEsperaMensajeInicial)
-    console.log("this.data.tiempoEsperaMensajeInicial: ", this.data.tiempoEsperaMensajeInicial);
-    console.log("time: ", time);
+
     if (time > 0) {
       setTimeout(() => {
         this.closePresentacion()
@@ -49,11 +48,11 @@ export class PresentacionComponent implements AfterViewInit {
   }
   getImg(img) {
     let imgR = this.bgsframes.filter(bgf => { return bgf.value == img })
-    console.log("imgR: ", imgR);
-    if(imgR.length>0){
+
+    if (imgR.length > 0) {
 
       return imgR[0].img
-    }else{
+    } else {
       return ''
     }
 

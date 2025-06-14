@@ -15,7 +15,7 @@
 
                         <div class="col-6 col-md-4 ma">
 
-                            <img src="/assets/icons/{{item.icon}}.png" alt=""
+                            <img [src]="url+'/upload/fondos/'+getImg(item.icon)" alt=""
                                 [style]="{'width':data.iconSize+'px','height':data.iconSize+'px'}"
                                 *ngIf="item.icon.trim() !==''">
                             <h5 class="{{data.textoInvFont}}" [style]="{'font-weight': 'bold', 'color':data.cTexto}">

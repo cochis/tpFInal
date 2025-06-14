@@ -11,7 +11,7 @@
         <div class="row text-center  " style="margin-top: 15px;">
 
             <div class="col-12 col-md-8 ma text-center">
-                <img src="/assets/icons/tarjeta.svg" alt="" style="width: 100px;">
+                <img [src]="url+'/upload/fondos/'+getImg('bank')" alt="" style="width: 100px;">
 
                 <a class="btn btn-outline-dark justify-content-center {{data.textoInvFont}}  d-flex m-auto _animate__fadeInDown animate__slow animate__animated animate__fadeInDown "
                     data-toggle="modal" data-target="#evento" [style]="{'border-radius': '8px', 'visibility': 'visible', 'border-color':data.cSecond,

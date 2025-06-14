@@ -9,7 +9,7 @@
 
                 <h3 class=" mt-5 animate__animated {{data.cabeceraFont}} {{data.cabeceraEfecto}} {{data.cabeceraEfectoRep}}"
                     [style]="{'font-size': data.cabeceraSize +'px','color':data.cTexto}">
-                    Tu boleto
+                    {{data.boletoTitle}}
                 </h3>
                 <div class="row p-0 m-0">
                     <ng-container *ngIf="data">
@@ -133,11 +133,11 @@
 
 
                                     <b *ngIf="boleto.cantidadInvitados==1">
-                                        {{boleto.cantidadInvitados}} Boleto
+                                        {{boleto.cantidadInvitados}} {{data.boletoText}}
 
                                     </b>
                                     <b *ngIf="boleto.cantidadInvitados>1">
-                                        {{boleto.cantidadInvitados}} Boletos
+                                        {{boleto.cantidadInvitados}} {{data.boletoText}}s
 
                                     </b>
                                 </p>
@@ -145,7 +145,7 @@
                                     [style]="{'color':data.cTexto+ ' !important'} " *ngIf="fiesta.mesaOk">
                                     <b>
 
-                                        Mesa {{boleto.mesa}}
+                                        {{data.mesaText}} {{boleto.mesa}}
                                     </b>
                                 </p>
 
@@ -182,7 +182,7 @@
 
                 <h3 class=" mt-5 animate__animated {{data.cabeceraFont}} {{data.cabeceraEfecto}} {{data.cabeceraEfectoRep}}"
                     [style]="{'font-size': data.cabeceraSize +'px','color':data.cTexto}">
-                    Tu boleto
+                    {{data.boletoTitle}}
                 </h3>
                 <div class="row p-0 m-0">
                     <ng-container *ngIf="data">
@@ -309,11 +309,11 @@
 
 
                                     <b *ngIf="boleto.cantidadInvitados==1">
-                                        {{boleto.cantidadInvitados}} Boleto
+                                        {{boleto.cantidadInvitados}} {{data.boletoText}}
 
                                     </b>
                                     <b *ngIf="boleto.cantidadInvitados>1">
-                                        {{boleto.cantidadInvitados}} Boletos
+                                        {{boleto.cantidadInvitados}} {{data.boletoText}}s
 
                                     </b>
                                 </p>
@@ -321,7 +321,7 @@
                                     [style]="{'color':data.cTexto+ ' !important'} " *ngIf="fiesta.mesaOk">
                                     <b>
 
-                                        Mesa {{boleto.mesa}}
+                                        {{data.mesaText}} {{boleto.mesa}}
                                     </b>
                                 </p>
 

@@ -45,7 +45,7 @@ export class ConfirmacionDesingComponent implements AfterViewInit {
         if (confirmarCheck) {
 
           Swal.fire({
-            title: '¿Cuantas personas asistiran?',
+            title: this.data.questionConfirm,
             html: `<input type="number" class="form-control" value="${(this.boleto.cantidadInvitados) ? this.boleto.cantidadInvitados : '0'}" step="1"id="range-value"  class="form-control">`,
             input: 'range',
             confirmButtonColor: "#13547a",
@@ -96,7 +96,7 @@ export class ConfirmacionDesingComponent implements AfterViewInit {
       if (confirmarCheck) {
 
         Swal.fire({
-          title: '¿Cuantas personas asistiran?',
+          title: this.data.questionConfirm,
           html: `<input type="number" value="${this.boleto.cantidadInvitados}" step="1"id="range-value">`,
           input: 'range',
           confirmButtonColor: "#13547a",

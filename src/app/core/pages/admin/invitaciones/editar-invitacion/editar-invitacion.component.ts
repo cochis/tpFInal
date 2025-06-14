@@ -377,7 +377,29 @@ export class EditarInvitacionComponent {
       generalSize: [15],
       generalTexto: [''],
       startText: [''],
+      whereTitle: [''],
+      hospedajeTitle: [''],
+      mesaTitle: [''],
+      itiTitle: [''],
+      notasTitle: [''],
+      confirmacionTexto: [''],
+      confirmacionBotonTexto: [''],
+      quitarConfirmacionBotonTexto: [''],
+      sinConfBotonTexto: [''],
+      questionConfirm: [''],
+      galeryTitle: [''],
+      galeryButtom: [''],
+      galeryText: [''],
       endText: [''],
+      dayText: [''],
+      hourText: [''],
+      minText: [''],
+      segText: [''],
+      menuTitle: [''],
+      dressTitle: [''],
+      boletoTitle: [''],
+      boletoText: [''],
+      mesaText: [''],
       mesaRegalosLugar: [''],
       mesaRegalosLugar2: [''],
       mesaRegalosUrl: [''],
@@ -619,7 +641,30 @@ export class EditarInvitacionComponent {
       generalSize: [invitacion.data.generalSize],
       generalTexto: [invitacion.data.generalTexto],
       startText: [invitacion.data.startText],
+      whereTitle: [invitacion.data.whereTitle],
+      hospedajeTitle: [invitacion.data.hospedajeTitle],
+      mesaTitle: [invitacion.data.mesaTitle],
+      itiTitle: [invitacion.data.itiTitle],
+      notasTitle: [invitacion.data.notasTitle],
+      confirmacionTexto: [invitacion.data.confirmacionTexto],
+      confirmacionBotonTexto: [invitacion.data.confirmacionBotonTexto],
+      quitarConfirmacionBotonTexto: [invitacion.data.quitarConfirmacionBotonTexto],
+      sinConfBotonTexto: [invitacion.data.sinConfBotonTexto],
+      questionConfirm: [invitacion.data.questionConfirm],
+      galeryTitle: [invitacion.data.galeryTitle],
+      galeryButtom: [invitacion.data.galeryButtom],
+      galeryText: [invitacion.data.galeryText],
+
       endText: [invitacion.data.endText],
+      dayText: [invitacion.data.dayText],
+      hourText: [invitacion.data.hourText],
+      minText: [invitacion.data.minText],
+      segText: [invitacion.data.segText],
+      menuTitle: [invitacion.data.menuTitle],
+      dressTitle: [invitacion.data.dressTitle],
+      boletoTitle: [invitacion.data.boletoTitle],
+      boletoText: [invitacion.data.boletoText],
+      mesaText: [invitacion.data.mesaText],
       mesaRegalosLugar: [invitacion.data.mesaRegalosLugar],
       mesaRegalosLugar2: [invitacion.data.mesaRegalosLugar2],
       mesaRegalosUrl: [invitacion.data.mesaRegalosUrl],
@@ -1022,6 +1067,30 @@ export class EditarInvitacionComponent {
       generalTexto: [temp.generalTexto],
       startText: [temp.startText],
       endText: [temp.endText],
+
+      dayText: [temp.dayText],
+      hourText: [temp.hourText],
+      minText: [temp.minText],
+      segText: [temp.segText],
+      menuTitle: [temp.menuTitle],
+      dressTitle: [temp.dressTitle],
+      boletoTitle: [temp.boletoTitle],
+      boletoText: [temp.boletoText],
+      mesaText: [temp.mesaText],
+      whereTitle: [temp.whereTitle],
+      hospedajeTitle: [temp.hospedajeTitle],
+      mesaTitle: [temp.mesaTitle],
+      itiTitle: [temp.itiTitle],
+      notasTitle: [temp.notasTitle],
+      confirmacionTexto: [temp.confirmacionTexto],
+      confirmacionBotonTexto: [temp.confirmacionBotonTexto],
+      quitarConfirmacionBotonTexto: [temp.quitarConfirmacionBotonTexto],
+      sinConfBotonTexto: [temp.sinConfBotonTexto],
+      questionConfirm: [temp.questionConfirm],
+      galeryTitle: [temp.galeryTitle],
+      galeryButtom: [temp.galeryButtom],
+      galeryText: [temp.galeryText],
+
       mesaRegalosLugar: [temp.mesaRegalosLugar],
       mesaRegalosLugar2: [temp.mesaRegalosLugar2],
       mesaRegalosUrl: [temp.mesaRegalosUrl],
@@ -1644,7 +1713,29 @@ export class EditarInvitacionComponent {
             generalSize: 15,
             generalTexto: '',
             startText: '',
+            whereTitle: '',
+            hospedajeTitle: '',
+            mesaTitle: '',
+            itiTitle: '',
+            notasTitle: '',
+            confirmacionTexto: '',
+            confirmacionBotonTexto: '',
+            quitarConfirmacionBotonTexto: '',
+            sinConfBotonTexto: '',
+            questionConfirm: '',
+            galeryTitle: '',
+            galeryButtom: '',
+            galeryText: '',
             endText: '',
+            dayText: '',
+            hourText: '',
+            minText: '',
+            segText: '',
+            menuTitle: '',
+            dressTitle: '',
+            boletoTitle: '',
+            boletotext: '',
+            mesaText: '',
             mesaRegalosLugar: '',
             mesaRegalosLugar2: '',
             mesaRegalosUrl: '',
@@ -2538,7 +2629,30 @@ export class EditarInvitacionComponent {
 
       this.invitacion.data.generalTexto = ''
       this.invitacion.data.startText = ''
+
+      this.invitacion.data.whereTitle = ''
+      this.invitacion.data.hospedajeTitle = ''
+      this.invitacion.data.mesaTitle = ''
+      this.invitacion.data.itiTitle = ''
+      this.invitacion.data.notasTitle = ''
+      this.invitacion.data.confirmacionTexto = ''
+      this.invitacion.data.confirmacionBotonTexto = ''
+      this.invitacion.data.quitarConfirmacionBotonTexto = ''
+      this.invitacion.data.sinConfBotonTexto = ''
+      this.invitacion.data.questionConfirm = ''
+      this.invitacion.data.galeryTitle = ''
+      this.invitacion.data.galeryButtom = ''
+      this.invitacion.data.galeryText = ''
       this.invitacion.data.endText = ''
+      this.invitacion.data.dayText = ''
+      this.invitacion.data.hourText = ''
+      this.invitacion.data.minText = ''
+      this.invitacion.data.segText = ''
+      this.invitacion.data.menuTitle = ''
+      this.invitacion.data.dressTitle = ''
+      this.invitacion.data.boletoTitle = ''
+      this.invitacion.data.boletoText = ''
+      this.invitacion.data.mesaText = ''
       this.invitacion.data.mensajeFont = ''
       this.invitacion.data.mensajeEfecto = ''
       this.invitacion.data.mensajeEfectoRep = ''
@@ -2560,8 +2674,30 @@ export class EditarInvitacionComponent {
       this.invitacion.data.generalTexto = ''
       this.invitacion.data.startText = ''
       this.invitacion.data.endText = ''
+      this.invitacion.data.dayText = ''
+      this.invitacion.data.hourText = ''
+      this.invitacion.data.minText = ''
+      this.invitacion.data.segText = ''
+      this.invitacion.data.menuTitle = ''
+      this.invitacion.data.dressTitle = ''
+      this.invitacion.data.boletoTitle = ''
+      this.invitacion.data.boletoText = ''
+      this.invitacion.data.mesaText = ''
 
+      this.invitacion.data.whereTitle = ''
+      this.invitacion.data.hospedajeTitle = ''
+      this.invitacion.data.mesaTitle = ''
+      this.invitacion.data.itiTitle = ''
+      this.invitacion.data.notasTitle = ''
 
+      this.invitacion.data.confirmacionTexto = ''
+      this.invitacion.data.confirmacionBotonTexto = ''
+      this.invitacion.data.quitarConfirmacionBotonTexto = ''
+      this.invitacion.data.sinConfBotonTexto = ''
+      this.invitacion.data.questionConfirm = ''
+      this.invitacion.data.galeryTitle = ''
+      this.invitacion.data.galeryButtom = ''
+      this.invitacion.data.galeryText = ''
 
 
 
