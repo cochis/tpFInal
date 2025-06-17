@@ -62,9 +62,8 @@ export class SharedComponent {
 
             if (this.shared.type == 'invitacion') {
               this.url = `${this.urlT}core/templates/${resF.invitacion.fiesta.invitacion}/${resF.invitacion.fiesta._id}/${this.shared.boleto}`
-              console.log("this.url: ", this.url);
+
               this.iframeSrc = this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
-              console.log(' this.url::: ', this.url);
 
 
               let t: string = `My Ticket Party | Estas invitado ${resF.invitacion.fiesta.nombre}  `;

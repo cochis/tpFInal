@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 })
 export class CodigoDesingComponent implements AfterViewInit {
   ngAfterViewInit(): void {
-    console.log(this.data);
+
 
   }
   @Input() data: any

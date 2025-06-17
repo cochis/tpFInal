@@ -16,8 +16,7 @@ export class GaleriaDesingComponent implements AfterViewInit {
 
   }
   ngAfterViewInit(): void {
-    console.log(this.data);
-    
+
     // Detectar si se necesita permiso (solo iOS Safari)
     if (typeof DeviceMotionEvent !== 'undefined' && typeof (DeviceMotionEvent as any).requestPermission === 'function') {
       (DeviceMotionEvent as any).requestPermission()
@@ -48,7 +47,7 @@ export class GaleriaDesingComponent implements AfterViewInit {
   viewImg = false
 
   selectImg(img) {
-    console.log("img: ", img);
+
     this.imgSelect = img
     this.viewImg = true
 

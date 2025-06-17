@@ -83,7 +83,8 @@
                         </a>
 
                     </div>
-                    <div class="col-sm-12 col-md-4 ma" *ngIf="data.mesaRegalosLugar2 !='' &&  data.mesaRegalosUrl2!=''">
+                    <div class="col-sm-12 col-md-4 ma"
+                        *ngIf="data.mesaRegalosLugar2.length>0 &&  data.mesaRegalosUrl2.length>0">
                         <a [href]="data.mesaRegalosUrl2" class="{{data.textoInvFont }}" target="_blank"
                             rel="noopener noreferrer" [style]="{'text-decoration':'none', 'color':data.cTexto}">
                             <img [src]="url+'/upload/fondos/'+getImg('gift')" alt=""

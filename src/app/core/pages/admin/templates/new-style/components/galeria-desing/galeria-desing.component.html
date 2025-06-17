@@ -13,7 +13,7 @@
         <section>
 
             <section class="text-center w-100">
-              <!--   <div class="row">
+                <!--   <div class="row">
 
                     <div class="col-4 mb-4 ">
 
@@ -44,66 +44,69 @@
                 </div> -->
                 <div class="row  ">
                     <div class="col-4">
-                        <div class="card overflow-hidden"  (click)="selectImg(data.galeria1)" data-toggle="modal" data-target="#exampleModal" >
-                            <div class="parallax-scene w-100 h-100" [attr.id]="'scene1'">
+                        <div class="card overflow-hidden" (click)="selectImg(data.galeria1)" data-toggle="modal"
+                            data-target="#exampleModal">
+                            <div class="parallax-scene w-100 h340 " [attr.id]="'scene1'">
                                 <div data-depth="1">
                                     <img [src]="url+'/upload/invitaciones/'+data.galeria1" alt="{{data.nombreFiesta}}"
-                                        class="w-100 h-100 object-cover"
-                                       >
+                                        class="w-100 h-100 object-cover">
                                 </div>
                             </div>
-                            
+
                         </div>
-                        <div class="card overflow-hidden" (click)="selectImg(data.galeria2)" data-toggle="modal" data-target="#exampleModal" >
-                           
-                            <div class="parallax-scene w-100 h-100" [attr.id]="'scene2'" >
+                        <div class="card overflow-hidden" (click)="selectImg(data.galeria2)" data-toggle="modal"
+                            data-target="#exampleModal">
+
+                            <div class="parallax-scene w-100  h600 " [attr.id]="'scene2'">
                                 <div data-depth="1">
                                     <img [src]="url+'/upload/invitaciones/'+data.galeria2" alt="{{data.nombreFiesta}}"
-                                        class="w-100 h-100 object-cover"
-                                        
-                                        >
+                                        class="w-100 h-100 object-cover">
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-4">
-                        <div class="card overflow-hidden">
-                            <div class="parallax-scene w-100 h-100" [attr.id]="'scene3'">
+                        <div class="card overflow-hidden" (click)="selectImg(data.galeria3)" data-toggle="modal"
+                            data-target="#exampleModal">
+                            <div class="parallax-scene w-100 h-100  " [attr.id]="'scene3'">
                                 <div data-depth="1">
                                     <img [src]="url+'/upload/invitaciones/'+data.galeria3" alt="{{data.nombreFiesta}}"
-                                        class="w-100 h-100 object-cover"
-                                        (click)="selectImg(data.galeria3)" data-toggle="modal" data-target="#exampleModal">
+                                        class="w-100  h-100 object-cover">
                                 </div>
                             </div>
-                            <div class="parallax-scene w-100 h-100" [attr.id]="'scene4'">
+                        </div>
+                        <div class="card overflow-hidden" (click)="selectImg(data.galeria4)" data-toggle="modal"
+                            data-target="#exampleModal">
+                            <div class="parallax-scene w-100 h-100   " [attr.id]="'scene4'">
                                 <div data-depth="1">
                                     <img [src]="url+'/upload/invitaciones/'+data.galeria4" alt="{{data.nombreFiesta}}"
-                                        class="w-100 h-100 object-cover"
-                                        (click)="selectImg(data.galeria4)" data-toggle="modal" data-target="#exampleModal">
+                                        class="w-100 h-100 object-cover">
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-4">
-                        <div class="card overflow-hidden">
-                            <div class="parallax-scene w-100 h-100" [attr.id]="'scene5'">
+                        <div class="card overflow-hidden" (click)="selectImg(data.galeria5)" data-toggle="modal"
+                            data-target="#exampleModal">
+                            <div class="parallax-scene w-100 h-100 " [attr.id]="'scene5'">
                                 <div data-depth="1">
                                     <img [src]="url+'/upload/invitaciones/'+data.galeria5" alt="{{data.nombreFiesta}}"
-                                        class="w-100 h-100 object-cover"
-                                        (click)="selectImg(data.galeria5)" data-toggle="modal" data-target="#exampleModal">
+                                        class="w-100  h-100 object-cover">
                                 </div>
                             </div>
-                            <div class="parallax-scene w-100 h-100" [attr.id]="'scene6'">
+                        </div>
+                        <div class="card overflow-hidden" (click)="selectImg(data.galeria6)" data-toggle="modal"
+                            data-target="#exampleModal">
+                            <div class="parallax-scene w-100 h-100 " [attr.id]="'scene6'">
                                 <div data-depth="1">
                                     <img [src]="url+'/upload/invitaciones/'+data.galeria6" alt="{{data.nombreFiesta}}"
-                                        class="w-100 h-100 object-cover"
-                                        (click)="selectImg(data.galeria6)" data-toggle="modal" data-target="#exampleModal">
+                                        class="w-100   h-100   object-cover">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
 
             </section>
 

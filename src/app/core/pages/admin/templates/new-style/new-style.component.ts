@@ -187,7 +187,8 @@ export class NewStyleComponent implements OnInit {
 
           this.invitacion.mesa = this.boleto.mesa
 
-          this.date = !this.fiesta.example ? this.fiesta.fecha : this.today + 30000
+          this.date = !this.fiesta.example ? this.fiesta.fecha : this.today + 15000
+
 
 
 

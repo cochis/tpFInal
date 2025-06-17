@@ -17,6 +17,7 @@ export class TimerComponent implements AfterViewInit {
   minutos = 0
   segundos = 0
   text = ''
+  hide = false
   constructor(private functionsService: FunctionsService) {
     this.today = this.functionsService.getToday()
     this.restParty()
@@ -30,7 +31,7 @@ export class TimerComponent implements AfterViewInit {
     const interval = setInterval((): void => {
       if (this.date > 0 && this.dias >= 0 && this.horas >= 0 && this.minutos >= 0 && this.segundos >= 0) {
         ++i
-        this.text = (this.data.endText)?this.data.endText:'Iniciamos en:'
+        this.text = (this.data.endText) ? this.data.endText : 'Iniciamos en:'
         let d = (this.date - this.functionsService.getToday()) / 86400000
         this.dias = Math.trunc(d)
         let hr = ((this.date - this.functionsService.getToday()) % 86400000)
@@ -40,8 +41,11 @@ export class TimerComponent implements AfterViewInit {
         let seg = (this.date - this.functionsService.getToday()) - ((this.dias * 86400000) + (this.horas * 3600000) + (this.minutos * 60000))
         this.segundos = (Math.trunc(seg / 1000) <= 0) ? 0 : Math.trunc(seg / 1000)
         if (seg > 0) {
-          this.text = (this.data.startText)?this.data.startText:'Comenzamos'
+          this.text = (this.data.startText) ? this.data.startText : 'Comenzamos'
+
         }
+      } else {
+        this.hide = true
       }
     }, 1000);
   }
