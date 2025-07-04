@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CargarEvento, CargarEventos, CargarFiesta, CargarPaquetes, CargarRoles, CargarSalons, CargarUsuario, CargarUsuarios } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
 import { Evento } from 'src/app/core/models/evento.model';
 import { Fiesta } from 'src/app/core/models/fiesta.model';
+import { Invitacion } from 'src/app/core/models/invitacion.model';
 import { Paquete } from 'src/app/core/models/paquete.model';
 import { Role } from 'src/app/core/models/role.model';
 import { Salon } from 'src/app/core/models/salon.model';
@@ -11,6 +12,7 @@ import { Usuario } from 'src/app/core/models/usuario.model';
 import { EventosService } from 'src/app/core/services/evento.service';
 import { FiestasService } from 'src/app/core/services/fiestas.service';
 import { FileService } from 'src/app/core/services/file.service';
+import { InvitacionsService } from 'src/app/core/services/invitaciones.service';
 import { PaquetesService } from 'src/app/core/services/paquete.service';
 import { RolesService } from 'src/app/core/services/roles.service';
 import { SalonsService } from 'src/app/core/services/salon.service';
@@ -37,7 +39,7 @@ export class EditarFiestaComponent {
   salones: Salon[]
   eventos: Evento[]
   paquetes: Paquete[]
-  fiesta: Fiesta
+  fiesta: any
   usuarios: Usuario[]
   usuario: Usuario
   submited: boolean = false
@@ -51,6 +53,8 @@ export class EditarFiestaComponent {
   edit!: string
   url = environment.base_url
   cantidadGalerias = 0
+  invitacion: Invitacion
+  salonSelected: Salon
 
   constructor(
     private fb: FormBuilder,
@@ -62,6 +66,7 @@ export class EditarFiestaComponent {
     private route: ActivatedRoute,
     private salonesService: SalonsService,
     private paquetesService: PaquetesService,
+    private invitacionsSevices: InvitacionsService
   ) {
 
 
@@ -108,6 +113,7 @@ export class EditarFiestaComponent {
 
       this.salonesService.cargarSalonsAll().subscribe((resp: CargarSalons) => {
         this.salones = this.functionsService.getActivos(resp.salons)
+
 
 
       },
@@ -300,14 +306,49 @@ export class EditarFiestaComponent {
       this.fiesta = {
         ...this.fiesta,
         ...this.form.value,
+        activated: this.fiesta.activated
 
       }
 
       this.fiestasServices.actualizarFiesta(this.fiesta).subscribe((resp: any) => {
 
+        this.fiesta = resp.fiestaActualizado
 
         this.functionsService.alertUpdate('Fiestas')
-        this.functionsService.navigateTo('core/fiestas/vista-fiestas')
+
+
+        this.invitacionsSevices.cargarInvitacionByFiesta(this.fiesta.uid).subscribe((resp: any) => {
+
+          this.invitacion = resp.invitacion
+
+
+          let invi = {
+            ...this.invitacion, data: {
+              ...this.invitacion.data, donde3Address: `${this.fiesta.calle} ${this.fiesta.numeroExt} ${(this.fiesta.numeroInt !== '') ? 'Int. ' + this.fiesta.numeroInt : ''} ${this.fiesta.coloniaBarrio} ${this.fiesta.municipioDelegacion}  ${this.fiesta.estado}`,
+              donde3AddressUbicacion: `https://www.google.com/maps?q=${this.fiesta.lat},${this.fiesta.long}&z=21`,
+              donde3AddressUbicacionLat: this.fiesta.lat,
+              donde3AddressUbicacionLng: this.fiesta.long,
+              donde3Date: this.fiesta.fecha,
+              donde3Text: this.salonSelected.nombre
+            }
+          }
+
+          this.invitacionsSevices.actualizarInvitacion(invi).subscribe((resp) => {
+
+            this.functionsService.navigateTo('core/fiestas/vista-fiestas')
+          },
+            (error) => {
+              console.error('error::: ', error);
+
+            })
+
+
+
+
+
+        })
+
+
         this.loading = false
       },
         (error) => {
@@ -390,7 +431,7 @@ export class EditarFiestaComponent {
 
   }
   setSalon(salon) {
-
+    this.salonSelected = salon
 
     if (!salon) {
       this.form = this.fb.group({
