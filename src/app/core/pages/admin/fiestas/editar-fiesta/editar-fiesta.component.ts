@@ -314,12 +314,14 @@ export class EditarFiestaComponent {
 
         this.fiesta = resp.fiestaActualizado
 
+
         this.functionsService.alertUpdate('Fiestas')
 
 
         this.invitacionsSevices.cargarInvitacionByFiesta(this.fiesta.uid).subscribe((resp: any) => {
 
           this.invitacion = resp.invitacion
+
 
 
           let invi = {
@@ -329,7 +331,8 @@ export class EditarFiestaComponent {
               donde3AddressUbicacionLat: this.fiesta.lat,
               donde3AddressUbicacionLng: this.fiesta.long,
               donde3Date: this.fiesta.fecha,
-              donde3Text: this.salonSelected.nombre
+              donde3Text: this.salonSelected ? this.salonSelected.nombre : resp.invitacion.data.donde3Text,
+              donde3Img: this.salonSelected ? this.salonSelected.img : resp.invitacion.data.donde3Img,
             }
           }
 

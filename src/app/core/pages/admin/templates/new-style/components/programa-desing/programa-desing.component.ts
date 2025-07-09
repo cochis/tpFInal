@@ -14,6 +14,7 @@ export class ProgramaDesingComponent implements AfterViewInit {
 
   ngAfterViewInit() {
 
+
     this.programas = (typeof (this.data.itinerarios) == 'string') ? JSON.parse(this.data.itinerarios) : this.data.itinerarios
     this.programas = JSON.parse(this.data.itinerarios)
 
