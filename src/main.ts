@@ -9,5 +9,5 @@ if (!navigator.geolocation) {
 }
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
-import Mapboxgl from 'mapbox-gl'; // or "const mapboxgl = require('mapbox-gl');"
+import Mapboxgl from 'mapbox-gl';
 Mapboxgl.accessToken = 'pk.eyJ1IjoiY29jaGlzIiwiYSI6ImNsb2c0M3NxNDByazEya3Jydmc2amtrNTcifQ.j0MCmbfTjEUQMtby7r42Cw';

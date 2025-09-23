@@ -938,9 +938,11 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
       }
 
       let invi = await this.validarInvitadosFile(jsonData.Invitados)
+      console.log('invi::: ', invi);
 
 
       let final = await this.crearInvitacionesFile(invi)
+      console.log('final::: ', final);
 
       setTimeout(() => {
         this.getId(this.id)
@@ -1020,10 +1022,12 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
   exportToExcel(): void {
     // 1. Convertir JSON a hoja de cálculo
     let blts = []
+    console.log('this.boletoTemp::: ', this.boletoTemp);
     this.boletoTemp.forEach(b => {
+      console.log('b::: ', b);
       if (b.activated) {
         let blt = {
-          "Asistirá": (b.declinada == null || b.declinada) ? "😥" : "😃",
+          "Asistirá": (b.declinada == null || b.declinada) ? "❌" : "✅",
           "Invitado": b.nombreGrupo.toUpperCase(),
           "Cantidad": b.cantidadInvitados,
           "Boletos Requeridos": b.requeridos,

@@ -25,29 +25,31 @@
                     <div class="card {{data.textoInvFont }}">
 
                         <div class="card-body">
-                            <h5 class="card-title  {{data.textoInvFont }}" [style]=" { 'color':data.cTexto}">
+                            <h5 class="card-title  {{data.textoInvFont }}"
+                                [style]=" { 'color':data.cTexto ,'color':data.cSecond}">
                                 {{data.sobresFestejadaTitle}}
                             </h5>
                             <ng-container class="card-text text-center {{data.textoInvFont }} ">
                                 <h3 class="{{data.textoInvFont }}"
-                                    [style]=" {'font-size': data.generalSize +'px','color':data.cPrincipal}">
+                                    [style]=" {'font-size': data.generalSize +'px','color':data.cSecond}">
                                     Banco: <b
                                         [style]=" {'font-size': data.generalSize +'px','color':data.cTexto}">{{data.sobresBanco}}</b>
                                 </h3>
                                 <h3 class="{{data.textoInvFont }}"
-                                    [style]=" {'font-size': data.generalSize +'px','color':data.cPrincipal}">
+                                    [style]=" {'font-size': data.generalSize +'px','color':data.cSecond}">
                                     Cuenta: <b
                                         [style]=" {'font-size': data.generalSize +'px','color':data.cTexto}">{{data.sobresCuenta}}</b>
                                 </h3>
 
                                 <h3 class="{{data.textoInvFont }}"
-                                    [style]=" {'font-size': data.generalSize +'px','color':data.cPrincipal}">
+                                    [style]=" {'font-size': data.generalSize +'px','color':data.cSecond}" *ngIf="
+                                    data.sobresClabe && data.sobresClabe!=''">
                                     Clabe: <b
                                         [style]=" {'font-size': data.generalSize +'px','color':data.cTexto}">{{data.sobresClabe}}</b>
                                 </h3>
 
                                 <h3 class="{{data.textoInvFont }}"
-                                    [style]=" {'font-size': data.generalSize +'px','color':data.cPrincipal}"> Nombre:
+                                    [style]=" {'font-size': data.generalSize +'px','color':data.cSecond}"> Nombre:
                                     <b
                                         [style]=" {'font-size': data.generalSize +'px','color':data.cTexto}">{{data.sobresFestejadaNombre}}</b>
                                 </h3>
