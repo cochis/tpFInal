@@ -207,6 +207,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
     this.fiestasService.cargarFiestaById(id).subscribe((resp: any) => {
       this.fiesta = resp.fiesta
 
+
       this.mensaje = (this.fiesta.mensaje == '' || undefined) ? this.mensajeTemp : resp.fiesta.mensaje
       this.recordatorio = resp.fiesta.recordatorio
       this.numeroInvitados = this.fiesta.cantidad
@@ -353,7 +354,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
   }
   getDisabled() {
 
-    if (this.numeroInvitados < this.total) {
+    if (this.numeroInvitados < this.total && this.fiesta.checking) {
       return true
     } else {
       return false
@@ -538,7 +539,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
     let idBoleto = ''
     var data = null
     let type = 'invitacion'
-    if (this.numeroInvitados < this.total) {
+    if (this.numeroInvitados < this.total && this.fiesta.checking) {
       this.functionsService.alert('Boletos', 'Se ha excedido de la cantidad de boletos permitidos', 'error')
       return
     }
@@ -938,11 +939,11 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
       }
 
       let invi = await this.validarInvitadosFile(jsonData.Invitados)
-      console.log('invi::: ', invi);
+
 
 
       let final = await this.crearInvitacionesFile(invi)
-      console.log('final::: ', final);
+
 
       setTimeout(() => {
         this.getId(this.id)
@@ -1022,9 +1023,9 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
   exportToExcel(): void {
     // 1. Convertir JSON a hoja de cálculo
     let blts = []
-    console.log('this.boletoTemp::: ', this.boletoTemp);
+
     this.boletoTemp.forEach(b => {
-      console.log('b::: ', b);
+
       if (b.activated) {
         let blt = {
           "Asistirá": (b.declinada == null || b.declinada) ? "❌" : "✅",

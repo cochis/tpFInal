@@ -263,7 +263,7 @@ export class EditarFiestaComponent {
         cp: [fiesta.salon.cp, [Validators.required]],
         estado: [fiesta.salon.estado, [Validators.required]],
         pais: [fiesta.salon.pais, [Validators.required]],
-        comoLlegar: [fiesta.salon.comoLlegar, [Validators.required]],
+        comoLlegar: [fiesta.salon.comoLlegar],
         salon: [(this.edit === 'false') ? salon : fiesta.salon._id, [Validators.required]],
         usuarioFiesta: [(this.edit === 'false') ? usuarioFiesta : fiesta.usuarioFiesta._id, [Validators.required]],
         invitacion: [fiesta.invitacion],
