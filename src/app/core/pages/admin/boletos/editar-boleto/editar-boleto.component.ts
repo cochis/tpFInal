@@ -1023,14 +1023,15 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
   exportToExcel(): void {
     // 1. Convertir JSON a hoja de cálculo
     let blts = []
+    console.log(this.fiesta);
 
     this.boletoTemp.forEach(b => {
 
       if (b.activated) {
         let blt = {
-          "Asistirá": (b.declinada == null || b.declinada) ? "❌" : "✅",
+          "Asistirá": (b.confirmado == null || b.confirmado) ? "❌" : "✅",
           "Invitado": b.nombreGrupo.toUpperCase(),
-          "Cantidad": b.cantidadInvitados,
+          "Cantidad": (this.fiesta.checking) ? "N/A" : b.cantidadInvitados,
           "Boletos Requeridos": b.requeridos,
           "Mesa": b.mesa,
           "WhatsApp": b.whatsapp,
