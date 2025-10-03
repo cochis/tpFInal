@@ -31,6 +31,10 @@
 
                     </div>
                 </div>
+
+                <button class="floating-button" (click)="functionsService.scroolTo('btnInvitado')">
+                    <span><i class="bi bi-arrow-up"></i></span>
+                </button>
                 <div class="row text-center">
 
                     <div class="col-12" *ngIf="fiesta.checking">
@@ -84,8 +88,7 @@
                     </div>
                     <div class="row">
 
-                        <div id="finInvitado" class=" col-12 col-md-6 mt-3 mb-3 text-center ma"
-                            *ngIf="invitados.length>1">
+                        <div class=" col-12 col-md-6 mt-3 mb-3 text-center ma" *ngIf="invitados.length>1">
                             <button class="btn  btn-warning" type="button" (click)="exportToExcel()">
                                 Reporte de Invitaciones<i class="bi bi-file-arrow-down"></i></button>
                         </div>
@@ -328,7 +331,7 @@
                     </div>
 
 
-                    <div id="finInvitado" class=" col-12 col-md-6 mt-3 mb-3 text-center ma" *ngIf="invitados.length>1">
+                    <div class=" col-12 col-md-6 mt-3 mb-3 text-center ma" *ngIf="invitados.length>1">
                         <button class="btn but" type="button" (click)="functionsService.scroolTo('btnInvitado')">
                             Subir<i class="bi bi-arrow-up"></i></button>
                     </div>
@@ -363,7 +366,7 @@
 
 
                 </form>
-
+                <div id="finInvitado"> </div>
 
             </div>
 

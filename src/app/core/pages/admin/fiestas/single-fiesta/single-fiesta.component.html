@@ -128,10 +128,10 @@
                         <th class="text-center" style="font-size: 35px;">
 
                             <i class="bi bi-emoji-laughing-fill ma prima"
-                                *ngIf=" item.declinada !== null  && item.declinada == false  "></i>
+                                *ngIf=" item.confirmado !== null  && item.confirmado"></i>
 
                             <i class="bi bi-emoji-frown-fill ma second"
-                                *ngIf="item.declinada !== null  && item.declinada"></i>
+                                *ngIf="item.confirmado !== null  && !item.confirmado"></i>
                         </th>
                         <td class="text-center prima ">{{item.mesa}}</td>
 

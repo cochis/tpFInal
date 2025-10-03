@@ -350,13 +350,23 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
         let fecha = this.functionsService.datePush(fiesta.fecha)
         let liga = "/shared?evt=" + boleto.shared
         let ligaGaleria = `/core/galeria/fst/${fiesta.uid}/blt/${boleto.uid}`
+
+
+
+
+
         recordatorio = recordatorio.replace("@@INVITADO@@", invitado)
+        recordatorio = recordatorio.replace("@@FECHA_EVENTO@@", fecha)
         recordatorio = recordatorio.replace("@@FECHA_EVENTO@@", fecha)
         recordatorio = recordatorio.replace("@@CANTIDADINVITADOS@@", cantidad)
         recordatorio = recordatorio.replace("@@MESA@@", mesa)
         recordatorio = recordatorio.replace('@@LIGA_GALERIA@@', ligaGaleria)
+        recordatorio = recordatorio.replace('@@NOMBRE_EVENTO@@ ', evento)
 
         recordatorio = recordatorio.replace("@@BOLETOS@@", cantidadBoletos)
+        console.log('recordatorio::: ', recordatorio);
+
+        return
 
 
 

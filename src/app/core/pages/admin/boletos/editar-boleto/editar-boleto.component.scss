@@ -59,3 +59,43 @@
     border-radius: 25px;
     border: 4px solid  #22547b;
 }
+
+/* En editar-boleto.component.scss */
+
+.floating-button {
+    /* Posición Fija: Esencial para que sea flotante y estático */
+    position: fixed;
+    bottom: 30px; /* Ajusta la distancia desde el fondo */
+    right: 30px;  /* Ajusta la distancia desde la derecha */
+    z-index: 1050; /* Asegura que esté por encima de otros elementos */
+    
+    /* Estilo Circular y Tamaño */
+    width: 60px;  /* Tamaño del botón */
+    height: 60px;
+    border-radius: 50%; /* Lo hace un círculo perfecto */
+    border: none; /* Quita el borde por defecto */
+    padding: 0;
+    
+    /* Color y Sombra (Basado en la imagen) */
+    background-color: #13547a; /* Color azul oscuro/marino */
+    color: white; /* Color del ícono (blanco) */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); /* Sombra para darle profundidad */
+    cursor: pointer;
+    
+    /* Centrado del Ícono */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* Efecto al pasar el mouse (opcional) */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.floating-button:hover {
+    background-color: #0d3a54; /* Un tono más oscuro al pasar el mouse */
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
+}
+
+.floating-button span i {
+    font-size: 1.5rem; /* Hace el ícono más grande */
+}

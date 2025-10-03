@@ -62,7 +62,6 @@ export class SharedComponent {
 
             if (this.shared.type == 'invitacion') {
               this.url = `${this.urlT}core/templates/${resF.invitacion.fiesta.invitacion}/${resF.invitacion.fiesta._id}/${this.shared.boleto}`
-              console.log(' this.url ::: ', this.url);
 
 
 
