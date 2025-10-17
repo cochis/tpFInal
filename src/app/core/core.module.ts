@@ -190,6 +190,7 @@ import { EditarPostComponent } from './pages/admin/posts/editar-post/editar-post
 import { VistaPostsComponent } from './pages/admin/posts/vista-posts/vista-posts.component';
 import { BlocComponent } from './pages/bloc/bloc.component';
 import { SinglePostComponent } from './pages/single-post/single-post.component';
+import { FuncionalidadesComponent } from './pages/funcionalidades/funcionalidades.component';
 
 
 
@@ -378,6 +379,7 @@ registerLocaleData(localeEs, 'es')
     VistaPostsComponent,
     BlocComponent,
     SinglePostComponent,
+    FuncionalidadesComponent
 
 
   ],

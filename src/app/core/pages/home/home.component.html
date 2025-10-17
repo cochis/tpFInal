@@ -1,419 +1,99 @@
 <app-header></app-header>
-<div class="animate__animated animate__fadeIn">
-    <section class="featured-section" style="padding-bottom: 0px !important">
-        <div class="container text-center pad1y">
-            <h1 class="   upper welcome">{{'home.saludo' | translate}}</h1>
-            <img src="assets/images/logo.svg" alt="MyTicketParty.com" style="width: 150px; margin-bottom: 25px;">
+<header class="hero-section">
+    <div class="container position-relative">
+        <img src="assets/images/logo.svg" alt="Logo de MyTicketParty para crear invitaciones digitales"
+            class="hero-logo">
+
+        <h1 class="display-4">Diseñamos Tu Invitación Digital Única para Tu Evento</h1>
+        <p class="lead" style="color:#fff">Dale vida a tu celebración con una invitación 100% personalizada. Para bodas,
+            XV años, bautizos
+            o cualquier fiesta. Tú pones la creatividad, nosotros la tecnología.</p>
+        <div>
+            <a routerLink="/core/funcionalidades" class="btn btn-principal mt-3">Ver Funcionalidades</a>
+            <a routerLink="/core/examples" class="btn btn-secundario mt-3">Ver Ejemplos</a>
         </div>
-    </section>
-    <section class="explore-section section-padding" id="section_2">
-        <div class="container">
-            <div class="col-12 text-center">
-                <h2 class="mb-4">
-                    {{'home.mensaje_saludo' | translate}}</h2>
+    </div>
+</header>
+
+<section id="check-in" class="text-center bg-light">
+</section>
+
+<section id="features">
+    <div class="container">
+        <h2 class="section-title">Herramientas Creativas para Tu Invitación</h2>
+        <div class="row g-4">
+
+            <div class="col-md-6 col-lg-3 d-flex align-items-stretch">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-palette"></i></div>
+                    <h3>Creatividad sin Límites y QR</h3>
+                    <p>Sube tus imágenes, elige colores y tipografías. Diseña desde cero y genera boletos digitales con
+                        código QR para tus invitados.</p>
+                </div>
             </div>
-        </div>
-        <div class="container-fluid mb-3">
-            <div class="row">
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="design-tab" data-bs-toggle="tab"
-                            data-bs-target="#marketplace-eventos-tab" type="button" role="tab"
-                            aria-controls="marketplace-eventos-tab" aria-selected="true">{{'home.menu_marketplace.title'
-                            | translate}}</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="tipo-evento-tab" data-bs-toggle="tab"
-                            data-bs-target="#tipo-centro-evento-tab" type="button" role="tab"
-                            aria-controls="tipo-centro-evento-tab" aria-selected="false">
-                            {{'home.tipo_centros.title'| translate}}
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="tipo-evento-tab" data-bs-toggle="tab"
-                            data-bs-target="#tipo-evento-tab-pane" type="button" role="tab"
-                            aria-controls="tipo-evento-tab-pane" aria-selected="false">
-                            {{'home.tipo_eventos.title' | translate}}
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="invitacion-tab" data-bs-toggle="tab"
-                            data-bs-target="#invitacion-tab-pane" type="button" role="tab"
-                            aria-controls="invitacion-tab-pane" aria-selected="false">
-                            {{'home.invitacion.title' | translate}}
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="checking-tab" data-bs-toggle="tab"
-                            data-bs-target="#checking-tab-pane" type="button" role="tab"
-                            aria-controls="checking-tab-pane" aria-selected="false">
-                            {{'home.checkin.title'| translate}}
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="galeria-tab" data-bs-toggle="tab"
-                            data-bs-target="#galeria-tab-pane" type="button" role="tab" aria-controls="galeria-tab-pane"
-                            aria-selected="false">
-                            {{'home.galeria.title'| translate}}
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="proveedor-tab" data-bs-toggle="tab"
-                            data-bs-target="#proveedor-tab-pane" type="button" role="tab"
-                            aria-controls="proveedor-tab-pane" aria-selected="false">
-                            {{'home.proveedor.title'| translate}}
-                        </button>
-                    </li>
-                </ul>
+
+            <div class="col-md-6 col-lg-3 d-flex align-items-stretch">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-map-marked-alt"></i></div>
+                    <h3>Mapas y Cuenta Regresiva</h3>
+                    <p>Integra la ubicación exacta de tu evento. Un contador regresivo aumentará la emoción para el gran
+                        día.</p>
+                </div>
             </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade show active" id="marketplace-eventos-tab" role="tabpanel"
-                            aria-labelledby="design-tab" tabindex="0">
-                            <div class="row">
-                                <div class=" col-12 mb-4 mb-lg-3 ma">
-                                    <div class="custom-block bg-white shadow-lg text-center">
-                                        <div class="d-flex  ma">
-                                            <div class="ma title text-center">
-                                                <h5 class="mb-2 ma">
-                                                    {{'home.menu_marketplace.info1' | translate}}
-                                                </h5>
-                                            </div>
-                                        </div>
-                                        <ul class="mt-3" style="list-style: none; padding: 0;">
-                                            <li>
-                                                {{'home.menu_marketplace.info_lista1' | translate}}
-                                            </li>
-                                            <li>
-                                                {{'home.menu_marketplace.info_lista2' | translate}}
-                                            </li>
-                                        </ul>
-                                        <div class="ma"
-                                            style="width: 300px; padding: 20px; background-color: var(--cPrimary);border: 5px solid var(--cSecond);border-radius: 20px;">
-                                            <div #parallaxScene id="scene">
-                                                <div data-depth="0.2">
-                                                    <img src="assets/images/logo.svg" alt="MyTicketParty.com"
-                                                        style="width: 250px; ">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade  " id="tipo-centro-evento-tab" role="tabpanel"
-                            aria-labelledby="design-tab" tabindex="0">
-                            <div class="  bg-white shadow-lg text-center mt-3 mb-3"
-                                style="padding: 50px; border-radius: 20px; ">
-                                <div class="d-flex  ma mt-3 mb-3">
-                                    <div class="ma title text-center">
-                                        <h5 class="mb-2 ma">{{'home.tipo_centros.info'
-                                            | translate}}
-                                        </h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row text-start">
-                                <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
-                                    <div class="custom-block bg-white shadow-lg">
-                                        <div class="d-flex">
-                                            <div class="ma title text-center">
-                                                <h5 class="mb-2 ma">
-                                                    {{'home.tipo_centros.salones'| translate}}
-                                                </h5>
-                                            </div>
-                                        </div>
-                                        <img src="/assets/icons/evento.png" class="custom-block-image img-fluid" alt="">
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
-                                    <div class="custom-block bg-white shadow-lg">
-                                        <div class="d-flex">
-                                            <div class="ma title text-center">
-                                                <h5 class="mb-2 ma">
-                                                    {{'home.tipo_centros.escuelas'| translate}}
-                                                </h5>
-                                            </div>
-                                        </div>
-                                        <img src="/assets/icons/school.png" class="custom-block-image img-fluid" alt="">
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6 col-12 ma  ">
-                                    <div class="custom-block bg-white shadow-lg">
-                                        <div class="d-flex">
-                                            <div class="ma title text-center">
-                                                <h5 class="mb-2 ma">
-                                                    {{'home.tipo_centros.grupos'| translate}}
-                                                </h5>
-                                            </div>
-                                        </div>
-                                        <img src="/assets/icons/grupos.png" class="custom-block-image img-fluid" alt="">
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6 col-12   mt-3">
-                                    <div class="custom-block bg-white shadow-lg">
-                                        <div class="d-flex">
-                                            <div class="ma title text-center">
-                                                <h5 class="mb-2 ma">
-                                                    {{'home.tipo_centros.particulares'| translate}}
-                                                </h5>
-                                            </div>
-                                        </div>
-                                        <img src="/assets/icons/person.png" class="custom-block-image img-fluid" alt="">
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6 col-12   mt-3">
-                                    <div class="custom-block bg-white shadow-lg">
-                                        <div class="d-flex">
-                                            <div class="ma title text-center">
-                                                <h5 class="mb-2 ma">
-                                                    {{'home.tipo_centros.club_deportivo'| translate}}
-                                                </h5>
-                                            </div>
-                                        </div>
-                                        <img src="/assets/icons/sport.png" class="custom-block-image img-fluid" alt="">
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6 col-12   mt-3">
-                                    <div class="custom-block bg-white shadow-lg">
-                                        <div class="d-flex">
-                                            <div class="ma title text-center">
-                                                <h5 class="mb-2 ma">
-                                                    {{'home.tipo_centros.cualquier'| translate}}
-                                                </h5>
-                                            </div>
-                                        </div>
-                                        <img src="/assets/icons/icon-152x152.png" class="custom-block-image img-fluid"
-                                            alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="tipo-evento-tab-pane" role="tabpanel"
-                            aria-labelledby="tipo-evento-tab" tabindex="0">
-                            <div class="  bg-white shadow-lg text-center mt-3 mb-3"
-                                style="padding: 50px; border-radius: 20px; ">
-                                <div class="d-flex  ma mt-3 mb-3">
-                                    <div class="ma title text-center">
-                                        <h5 class="mb-2 ma">
-                                            {{'home.tipo_eventos.info' | translate}}
-                                        </h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3 ma">
-                                    <div class="custom-block bg-white shadow-lg">
-                                        <div class="d-flex">
-                                            <div class="ma title text-center">
-                                                <h5 class="mb-2 ma">
-                                                    {{'home.tipo_eventos.cumpleanos' | translate}}
-                                                </h5>
-                                            </div>
-                                        </div>
-                                        <img src="/assets/icons/birthday.png" class="custom-block-image img-fluid"
-                                            alt="">
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3 ma">
-                                    <div class="custom-block bg-white shadow-lg">
-                                        <div class="d-flex">
-                                            <div class="ma title text-center">
-                                                <h5 class="mb-2 ma">
-                                                    {{'home.tipo_eventos.eventos_sociales' | translate}}
-                                                </h5>
-                                            </div>
-                                        </div>
-                                        <img src="/assets/icons/social.png" class="custom-block-image img-fluid" alt="">
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3 ma">
-                                    <div class="custom-block bg-white shadow-lg">
-                                        <div class="d-flex">
-                                            <div class="ma title text-center">
-                                                <h5 class="mb-2 ma">
-                                                    {{'home.tipo_eventos.eventos_laborales' | translate}}
-                                                </h5>
-                                            </div>
-                                        </div>
-                                        <img src="/assets/icons/people.png" class="custom-block-image img-fluid" alt="">
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3 ma">
-                                    <div class="custom-block bg-white shadow-lg">
-                                        <div class="d-flex">
-                                            <div class="ma title text-center">
-                                                <h5 class="mb-2 ma">
-                                                    {{'home.tipo_eventos.eventos_escolares' | translate}}
-                                                </h5>
-                                            </div>
-                                        </div>
-                                        <img src="/assets/icons/escolar.png" class="custom-block-image img-fluid"
-                                            alt="">
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3 ma">
-                                    <div class="custom-block bg-white shadow-lg">
-                                        <div class="d-flex">
-                                            <div class="ma title text-center">
-                                                <h5 class="mb-2 ma">
-                                                    {{'home.tipo_eventos.mas' | translate}}
-                                                </h5>
-                                            </div>
-                                        </div>
-                                        <img src="/assets/icons/icon-152x152.png" class="custom-block-image img-fluid"
-                                            alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="invitacion-tab-pane" role="tabpanel"
-                            aria-labelledby="invitacion-tab" tabindex="0">
-                            <div class="  bg-white shadow-lg text-center mt-3 mb-3"
-                                style="padding: 50px; border-radius: 20px; ">
-                                <div class="d-flex  ma mt-3 mb-3">
-                                    <div class="ma title text-center">
-                                        <h5 class="mb-2 ma">
-                                            {{'home.invitacion.info' | translate}}
-                                        </h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class=" col-12 mb-4 mb-lg-0">
-                                    <div class="custom-block bg-white shadow-lg">
-                                        <div class="d-flex">
-                                            <div class="ma title text-center">
-                                                <h5 class="mb-2 ma">{{'home.invitacion.info2' | translate}}</h5>
-                                            </div>
-                                        </div>
-                                        <img src="/assets/icons/invitacion.png" class="custom-block-image img-fluid"
-                                            alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="galeria-tab-pane" role="tabpanel" aria-labelledby="galeria-tab"
-                            tabindex="0">
-                            <div class="row">
-                                <div class=" col-12 mb-4 mb-lg-3 ma">
-                                    <div class="custom-block bg-white shadow-lg">
-                                        <div class="d-flex">
-                                            <div class="ma title text-center">
-                                                <h5 class="mb-2">
-                                                    {{'home.galeria.info'| translate}}
-                                                </h5>
-                                            </div>
-                                        </div>
-                                        <img src="/assets/icons/galeria.png" class="custom-block-image img-fluid" alt=""
-                                            style="min-width: 380px !important;">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="proveedor-tab-pane" role="tabpanel"
-                            aria-labelledby="proveedor-tab" tabindex="0">
-                            <div class="row">
-                                <div class=" col-12 mb-4 mb-lg-3 ma">
-                                    <div class="custom-block bg-white shadow-lg">
-                                        <div class="ma title text-center">
-                                            <h5 class="mb-2">
-                                                {{'home.proveedor.info'| translate}}
-                                            </h5>
-                                        </div>
-                                        <img src="/assets/icons/proveedor.png" class="custom-block-image img-fluid"
-                                            alt="" style="min-width: 280px !important;">
-                                        <div class="col-12 col-md-8 ma mt-3" style="text-align: justify;">
-                                            <p class="mb-2">
-                                                {{'home.proveedor.p1'| translate}}
-                                            </p>
-                                            <p class="mb-2">
-                                                {{'home.proveedor.p2'| translate}}
-                                            </p>
-                                            <p class="mb-2" style="width: 100%; text-align: center; margin: auto;">
-                                                <img src="/assets/icons/QRExample.png" alt="QR TicketParty"
-                                                    style="width: 80%; margin: auto;max-width: 350px;">
-                                            </p>
-                                            <p class="mb-2">
-                                                {{'home.proveedor.p3'| translate}}
-                                            </p>
-                                            <p class="mt-2 mb-2" style="width: 100%; text-align: center; margin: auto;">
-                                                <img src="/assets/icons/paginaProveedor.png" alt="QR TicketParty"
-                                                    style="width: 80%; margin: auto;max-width: 350px;">
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="checking-tab-pane" role="tabpanel" aria-labelledby="checking-tab"
-                            tabindex="0">
-                            <div class="  bg-white shadow-lg text-center mt-3 mb-3"
-                                style="padding: 50px; border-radius: 20px; ">
-                                <div class="d-flex  ma mt-3 mb-3">
-                                    <div class="ma title text-center">
-                                        <h5 class="mb-2 ma">
-                                            {{'home.checkin.info1'| translate}}
-                                        </h5>
-                                    </div>
-                                </div>
-                                <ul style="list-style: none;">
-                                    <li>
-                                        {{'home.checkin.list1'| translate}}
-                                    </li>
-                                    <li>
-                                        {{'home.checkin.list2'| translate}}
-                                    </li>
-                                    <li>
-                                        {{'home.checkin.list3'| translate}}
-                                    </li>
-                                    <li>
-                                        {{'home.checkin.list4'| translate}}
-                                    </li>
-                                    <li>
-                                        {{'home.checkin.list5'| translate}}
-                                    </li>
-                                    <li>
-                                        {{'home.checkin.list6'| translate}}
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6 col-12 mb-4 mb-lg-3 ma">
-                                    <div class="custom-block bg-white shadow-lg">
-                                        <div class="d-flex  ma">
-                                            <div class="ma title text-center">
-                                                <h5 class="mb-2 ma">
-                                                    {{'home.checkin.info2'| translate}}
-                                                </h5>
-                                            </div>
-                                        </div>
-                                        <img src="/assets/icons/QRExample.png" class="custom-block-image img-fluid"
-                                            alt="">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-12 mb-4 mb-lg-3 ma">
-                                    <div class="custom-block bg-white shadow-lg">
-                                        <div class="d-flex  ma">
-                                            <div class="ma title text-center">
-                                                <h5 class="mb-2 ma">
-                                                    {{'home.checkin.info3'| translate}}
-                                                </h5>
-                                            </div>
-                                        </div>
-                                        <img src="/assets/icons/evento-checking.png"
-                                            class="custom-block-image img-fluid" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+            <div class="col-md-6 col-lg-3 d-flex align-items-stretch">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-gifts"></i></div>
+                    <h3>Mesa de Regalos y Galería</h3>
+                    <p>Facilita la elección de regalos con una lista integrada y comparte los mejores momentos en una
+                        galería de fotos privada.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3 d-flex align-items-stretch">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-check-circle"></i></div>
+                    <h3>Confirmación RSVP y Multimedia</h3>
+                    <p>Tus invitados confirman asistencia con un solo clic. Además, puedes añadir música de fondo y
+                        videos personalizados.</p>
                 </div>
             </div>
         </div>
-    </section>
-</div>
+    </div>
+</section>
+
+<section class="testimonials-section">
+    <div class="container">
+        <h2 class="section-title">Clientes que Dieron Vida a sus Eventos</h2>
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <div class="testimonial-card">
+                    <img src="https://picsum.photos/seed/weddingcouple/200" alt="Pareja de boda"
+                        class="testimonial-img">
+                    <p>"Diseñamos nuestra invitación de boda exactamente como la soñamos. A nuestros invitados les
+                        encantó recibir todo en un solo link. ¡Muy moderno!"</p>
+                    <div class="testimonial-author">- Mariana & Diego</div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="testimonial-card">
+                    <img src="https://picsum.photos/seed/quinceanera/200" alt="Joven de XV años"
+                        class="testimonial-img">
+                    <p>"Pude usar los colores y fotos que yo quería para mi invitación de XV años. La confirmación por
+                        QR fue lo máximo para organizar las mesas."</p>
+                    <div class="testimonial-author">- Valentina G.</div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="testimonial-card">
+                    <img src="https://picsum.photos/seed/birthdayparty/200" alt="Persona en fiesta de cumpleaños"
+                        class="testimonial-img">
+                    <p>"¡La mejor herramienta para organizar mi fiesta de cumpleaños! Súper fácil de usar y el resultado
+                        es muy profesional. Todos mis amigos confirmaron al instante."</p>
+                    <div class="testimonial-author">- Ricardo S.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <app-footer></app-footer>
