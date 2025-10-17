@@ -68,6 +68,13 @@
         url("/assets/fonts/solo.otf") format("opentype") tech(color-COLRv1);
 }
 
+@font-face {
+    font-family: "font11";
+    src:
+        local("font11"),
+        url("/assets/fonts/one_piece.ttf") format("opentype") tech(color-COLRv1);
+}
+
 .font1 {
     font-family: 'font1';
     font-weight: 400;
@@ -124,6 +131,13 @@
 
 .font10 {
     font-family: 'font10';
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+.font11 {
+    font-family: 'font11';
     font-weight: 400;
     font-style: normal;
 }
