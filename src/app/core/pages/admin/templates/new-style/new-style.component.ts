@@ -1,3 +1,4 @@
+
 import { Component, Inject, OnInit, LOCALE_ID } from '@angular/core';
 import { Meta, SafeUrl, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
@@ -23,7 +24,6 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./new-style.component.scss']
 })
 export class NewStyleComponent implements OnInit {
-  // --- Declaración de Propiedades ---
   loading = false
   presentacionView = true
   invitacionView = false
@@ -96,32 +96,29 @@ export class NewStyleComponent implements OnInit {
   dataListasCard: any
   dataDondeCard: any
   public qrCodeDownloadLink: SafeUrl = "";
-  allItems: number[] = [];
-  visibleItems: number[] = [];
-  itemsPerLoad = 10;
+  allItems: number[] = [];  // Lista completa de elementos
+  visibleItems: number[] = []; // Lista de elementos visibles
+  itemsPerLoad = 10; // Cantidad de elementos a mostrar por scroll
   bgs: any = []
   frames: any = []
   items = [
-    'timer', 'dondeCuando', 'galery', 'padrinos', 'chambelanes', 'programa',
-    'menu', 'mesa-regalos', 'hospedaje', 'qr', 'confirmacion',
-    'galeriaFiesta', 'notas', 'sobres', 'codigoVestimenta'
+    'timer',
+    'dondeCuando',
+    'galery',
+    'padrinos',
+    'chambelanes',
+    'programa',
+    'menu',
+    'mesa-regalos',
+    'hospedaje',
+    'qr',
+    'confirmacion',
+    'galeriaFiesta',
+    'notas',
+    'sobres',
+    'codigoVestimenta'
   ]
   bgsframes: Fondo[]
-
-  /**
-   * @description Constructor del componente. Se encarga de inyectar los servicios necesarios.
-   * @param functionsService - Servicio con funciones de utilidad.
-   * @param fiestasService - Servicio para gestionar los datos de las fiestas.
-   * @param invitacionsService - Servicio para gestionar los datos de las invitaciones.
-   * @param route - Proporciona acceso a la información de la ruta actual.
-   * @param boletosService - Servicio para gestionar los boletos.
-   * @param swPush - Servicio para gestionar las notificaciones push.
-   * @param pushsService - Servicio personalizado para notificaciones push.
-   * @param _modalService - Servicio para mostrar diálogos modales.
-   * @param title - Servicio de Angular para manipular el título del documento.
-   * @param fondosService - Servicio para cargar los fondos y marcos.
-   * @param meta - Servicio de Angular para manipular las meta-etiquetas del documento.
-   */
   constructor(
     private functionsService: FunctionsService,
     private fiestasService: FiestasService,
@@ -131,64 +128,74 @@ export class NewStyleComponent implements OnInit {
     private swPush: SwPush,
     private pushsService: PushsService,
     private readonly _modalService: ModalService,
+
     private title: Title,
     private fondosService: FondosService,
-    private meta: Meta
+    private meta: Meta,
+    private titleService: Title
   ) {
     this.functionsService.quitarChatShared()
     this.loading = true
-
-    // Carga todos los fondos y marcos disponibles.
     this.fondosService.cargarFondosAll().subscribe(resp => {
       this.bgsframes = this.functionsService.getActives(resp.fondos)
-      this.frames = this.bgsframes.filter(bgf => { return bgf.tipo == 'FRAME' })
-      this.bgs = this.bgsframes.filter(bgf => { return bgf.tipo == 'BG' })
-    })
 
-    // Obtiene los IDs de la fiesta y boleto desde la URL.
+
+      this.frames = this.bgsframes.filter(bgf => { return bgf.tipo == 'FRAME' })
+
+
+      this.bgs = this.bgsframes.filter(bgf => { return bgf.tipo == 'BG' })
+
+    })
     this.fiestaId = this.route.snapshot.params['fiesta']
     this.copyId = this.route.snapshot.params['copy']
     this.boletoId = this.route.snapshot.params['boleto']
-
     if (this.fiestaId && this.boletoId) {
-      // Si existen IDs, carga la información del boleto.
       this.boletosService.cargarBoletoById(this.boletoId).subscribe((resp: any) => {
         this.boleto = resp.boleto
+
+
         if (!this.boleto.activated) {
           this.functionsService.alert('Boleto eliminado', 'Contactar con el anfitrion', 'info')
           this.functionsService.navigateTo('/core/inicio')
         }
         this.boleto.vista = true
-        this.boletosService.isVistaBoleto(this.boleto).subscribe(() => {
-          this.subscribeNotification()
+        this.boletosService.registrarPushNotification(this.boleto).subscribe((resp: any) => {
+          this.boletosService.isVistaBoleto(this.boleto).subscribe((resp2: any) => {
+            this.boleto = resp.boletoActualizado
+
+
+            this.subscribeNotification()
+          })
         })
       }, (error) => {
         console.error('Error', error)
         this.functionsService.alertError(error, 'Boletos')
       })
-
-      // Carga la información de la fiesta.
       this.fiestasService.cargarFiestaById(this.fiestaId).subscribe((resp: any) => {
         this.fiesta = resp.fiesta
+
+
+
+
 
         this.checking = this.fiesta.checking
         this.invitacionsService.cargarInvitacionByFiesta(this.fiestaId).subscribe(async (resp: any) => {
           this.invitacion = resp.invitacion.data
 
-          // --- ¡AQUÍ SE ESTABLECE EL SEO! ---
-          // Llama a la función para configurar las meta-etiquetas ahora que tenemos todos los datos.
-          this.setSeoData(this.fiesta, this.invitacion);
-
           this.restParty()
           this.invitacion = await this.dateToNumber(this.invitacion)
+
           this.invitacion.mesa = this.boleto.mesa
+
           this.date = !this.fiesta.example ? this.fiesta.fecha : this.today + 15000
+
+
+
+
+
           this.invitacion.cantidad = this.boleto.cantidadInvitados
           this.invitacion.invitado = this.boleto.nombreGrupo
-
-          // Asignación de datos de la invitación a propiedades del componente
           this.donde1Check = this.invitacion.donde1Check
-          // ... (resto de asignaciones de propiedades)
           this.donde2Check = this.invitacion.donde2Check
           this.donde3Check = this.invitacion.donde3Check
           this.hospedajeCheck = this.invitacion.hospedajeCheck
@@ -213,116 +220,510 @@ export class NewStyleComponent implements OnInit {
           this.musicaInvitacion = this.invitacion.musicaInvitacion
 
 
-          // Configuración de los datos para las tarjetas de la UI
-          this.dataPrincipal = { /* ... (datos para la tarjeta principal) */ }
-          this.dataInvitacionCard = { /* ... (datos para la tarjeta de invitación) */ }
-          this.dataMensajeCard = { /* ... (datos para la tarjeta de mensaje) */ }
-          this.dataListasCard = { /* ... (datos para la tarjeta de listas) */ }
-          this.dataDondeCard = { /* ... (datos para la tarjeta de dónde y cuándo) */ }
+          this.dataPrincipal = {
+            vistaTemp: false,
+            type: 'seccionInicial',
+            size: 'sm',
+            cPrincipal: this.invitacion.cPrincipal,
+            cSecond: this.invitacion.cSecond,
+            imgWidth: this.invitacion.imgWidth,
+            cWhite: this.invitacion.cWhite,
+            img1: this.invitacion.img1,
+            efectoImg1: this.invitacion.efectoImg1,
+            repEfectoImg1: this.invitacion.repEfectoImg1,
+            xImg1: this.invitacion.xImg1,
+            yImg1: this.invitacion.yImg1,
+            generalCheck: this.invitacion.generalCheck,
+            generalTexto: this.invitacion.generalTexto,
+            generalSize: this.invitacion.generalSize ? this.invitacion.generalSize : 15,
+            nombreFiesta: this.invitacion.nombreFiesta,
+            nombreSize: this.invitacion.nombreSize,
+            nombreFont: this.invitacion.nombreFont,
+            nombreEfecto: this.invitacion.nombreEfecto,
+            nombreEfectoRep: this.invitacion.nombreEfectoRep,
+            topTitle: this.invitacion.topTitle,
+            tipoFiesta: this.invitacion.tipoFiesta,
+            tipoSize: this.invitacion.tipoSize,
+            tipoFont: this.invitacion.tipoFont,
+            tipoEfecto: this.invitacion.tipoEfecto,
+            tipoEfectoRep: this.invitacion.tipoEfectoRep,
+            topDate: this.invitacion.topDate,
+
+            efectoCount: this.invitacion.efectoCount,
+            efectoRepCount: this.invitacion.efectoRepCount,
+            mensajeFont: this.invitacion.mensajeFont,
+            inicialTFont: this.invitacion.inicialTFont,
+            finalTFont: this.invitacion.finalTFont,
+            inviFont: this.invitacion.inviFont,
+            inviFont2: this.invitacion.inviFont2,
+            inviEfecto: this.invitacion.inviEfecto,
+            inviEfectoRep: this.invitacion.inviEfectoRep,
+            inicialTSize: this.invitacion.inicialTSize,
+            finalTSize: this.invitacion.finalTSize,
+            cabeceraFont: this.invitacion.cabeceraFont,
+            cabeceraSize: this.invitacion.cabeceraSize,
+            date: this.fiesta.fecha,
+            typeCount: this.invitacion.typeCount,
+
+          }
+
+
+          this.dataInvitacionCard = {
+            ...this.invitacion,
+            inviEfecto: this.invitacion.inviEfecto,
+            inviEfectoRep: this.invitacion.inviEfectoRep,
+            generalCheck: resp.invitacion.data.generalCheck,
+            cPrincipal: this.invitacion.cPrincipal,
+            cWhite: this.invitacion.cWhite,
+            inviFont: this.invitacion.inviFont,
+            inviFont2: this.invitacion.inviFont2,
+            generalSize: this.invitacion.generalSize,
+            nombreGrupo: this.boleto.nombreGrupo,
+            cantidad: this.boleto.cantidadInvitados,
+            nombreFont: this.invitacion.nombreFont,
+            mesa: this.invitacion.mesa,
+            generalTexto: this.invitacion.generalTexto,
+            croquisOk: this.fiesta.croquisOk,
+            croquis: this.fiesta.croquis,
+            cSecond: this.invitacion.cSecond,
+            checking: this.fiesta.checking,
+            cabeceraFont: this.invitacion.cabeceraFont,
+            cabeceraSize: this.invitacion.cabeceraSize,
+            vistaTemp: false,
+
+
+          }
+          this.dataMensajeCard = {
+            vistaTemp: false,
+            ...this.invitacion
+
+          }
+          this.dataListasCard = {
+            vistaTemp: false,
+            ...this.invitacion
+
+          }
+          this.dataDondeCard = {
+            vistaTemp: false,
+            ...this.invitacion
+
+          }
+
 
           setTimeout(() => {
+
             this.loading = false
           }, 1500);
           this.presentacionView = true
 
         }, (error) => {
-          console.error('Error cargando invitación', error);
-          this.functionsService.alertError(error, 'Invitaciones');
-          this.functionsService.navigateTo('/core/inicio');
+          console.error('Error', error)
+          this.functionsService.alertError(error, 'Fiestas')
+          this.functionsService.navigateTo('/core/inicio')
         })
       }, (error) => {
-        console.error('Error cargando fiesta', error);
-        this.functionsService.alertError(error, 'Fiestas');
-        this.functionsService.navigateTo('/core/inicio');
+        console.error('Error', error)
+        this.functionsService.alertError(error, 'Fiestas')
+        this.functionsService.navigateTo('/core/inicio')
       })
     } else {
-      // Lógica para cuando no hay IDs en la URL (modo de vista previa o template).
       this.restParty()
       this.state = this.route.snapshot.queryParams
-      // ... (resto de la lógica para la vista previa)
+
+      for (let key in this.state) {
+        ++this.count;
+      }
+      if (this.count == 0) {
+        this.vistaTemp = true
+        this.invitacion = {
+          checking: true,
+          cPrincipal: 'pink',
+          cSecond: '#c51132',
+          cWhite: 'white',
+          img1: '/assets/images/xv/xv3.jpeg',
+          xImg1: 76,
+          topTitle: 40,
+          invitado: 'Familia Ramírez',
+          mesa: '1 y 2 ',
+          cantidad: 5,
+          tipoFiesta: 'Mis XV',
+          tipoSize: 85,
+          topDate: 50,
+
+          efectoCount: '',
+          efectoRepCount: '',
+          nombreFiesta: 'Mariana',
+          nombreSize: 87,
+          textInvitacionValida: '¡Los esperamos!',
+          mensajeImg: '/assets/images/xv/xv3.jpeg',
+          mensaje1: 'Tengo el vestido, la ilusión, la felicidad, el lugar y todo lo que se pueda soñar. Sólo me falta que ustedes estén conmigo en este día.',
+          mensajeSize: 20,
+          generalSize: 15,
+          donde1Check: true,
+          donde1Img: '/assets/images/xv/xv2.jpg',
+          donde1Title: 'Iglesia',
+          donde1Text: 'Basilica de Guadalupe',
+          donde1Date: 123,
+          donde1Icon: 'mt-2 mb-2 text-cente bi bi-map pointer',
+          donde1Address: ' Progreso, Yuc., México',
+          donde1AddressUbicacion: 'https://www.google.com/maps/place/la+Bas%C3%ADlica+de+Guadalupe,+Villa+Gustavo+A.+Madero,+07050+Ciudad+de+M%C3%A9xico,+CDMX/@19.4846491,-99.1199821,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1f99dd5163e39:0x73360cc13e70980f!8m2!3d19.4846441!4d-99.1174072!16s%2Fg%2F11s0sv5b2v?entry=ttu',
+          donde2Check: true,
+          croquisOk: true,
+          donde2Img: '/assets/images/xv/xv4.jpg',
+          donde2Title: 'Civil',
+          donde2Text: 'Registro',
+          donde2Date: 789456123,
+          donde2Icon: 'mt-2 mb-2 text-cente bi bi-map pointer',
+          donde2Address: ' Progreso, Yuc., México',
+          donde2AddressUbicacion: 'https://www.google.com/maps/place/la+Bas%C3%ADlica+de+Guadalupe,+Villa+Gustavo+A.+Madero,+07050+Ciudad+de+M%C3%A9xico,+CDMX/@19.4846491,-99.1199821,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1f99dd5163e39:0x73360cc13e70980f!8m2!3d19.4846441!4d-99.1174072!16s%2Fg%2F11s0sv5b2v?entry=ttu',
+          donde3Check: true,
+          donde3Img: '/assets/images/xv/xv3.jpeg',
+          donde3Title: 'Lugar del evento',
+          donde3Text: 'Registro',
+          donde3Date: 789456123,
+          donde3Icon: 'mt-2 mb-2 text-center bi bi-map pointer',
+          donde3Address: ' Progreso, Yuc., México',
+          donde3AddressUbicacion: 'https://www.google.com/maps/place/la+Bas%C3%ADlica+de+Guadalupe,+Villa+Gustavo+A.+Madero,+07050+Ciudad+de+M%C3%A9xico,+CDMX/@19.4846491,-99.1199821,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1f99dd5163e39:0x73360cc13e70980f!8m2!3d19.4846441!4d-99.1174072!16s%2Fg%2F11s0sv5b2v?entry=ttu',
+          hospedajeCheck: true,
+          hospedajeImg: '/assets/images/xv/hotel.jpg',
+          hospedajeName: 'Camino real',
+          hospedajeIcon: 'mt-2 mb-2 text-center  bi-info-circle pointer',
+          hospedajeAddress: 'Centro Comercial City, Av. Andrés García Lavín 298-32, Fundura Montebello, 97113 Mérida, Yuc., México.',
+          hospedajeUbicacion: 'https://www.google.com/maps/place/la+Bas%C3%ADlica+de+Guadalupe,+Villa+Gustavo+A.+Madero,+07050+Ciudad+de+M%C3%A9xico,+CDMX/@19.4846441,-99.1174072,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1f99dd5163e39:0x73360cc13e70980f!8m2!3d19.4846441!4d-99.1174072!16s%2Fg%2F11s0sv5b2v?entry=ttu',
+          hospedajeUrl: 'https://www.caminoreal.com/',
+          hospedajePhone: '529996893000',
+          itinerarioCheck: true,
+          ItinerarioName: 'Mariana´s Party',
+          itinerarios: [
+            {
+              name: 'Misa',
+              hr: '15:00 hrs'
+            },
+            {
+              name: 'Registro civil',
+              hr: '17:00 hrs'
+            },
+            {
+              name: 'Ceremonia',
+              hr: '18:30 hrs'
+            }
+          ],
+          notaCheck: true,
+          notas: [
+            {
+              texto: 'Tu Presencia sera el mejor regalo',
+
+            },
+            {
+              texto: 'No olvides tener cuidado de tus hijos',
+
+            }
+          ],
+          padres: [
+            {
+              name: 'Vianney Vicuña',
+              texto: 'Madre de la novia',
+
+            },
+            {
+              name: 'Oscar Ramírez',
+              texto: 'Padre de la novia',
+
+            },
+            {
+              name: 'Mariana Rodríguez',
+              texto: 'Madre del novio',
+
+            },
+            {
+              name: 'Alejandro Gómez',
+              texto: 'Padre del novio',
+
+            },
+          ],
+          padrinos: [
+            { name: 'Mayra Rendon' },
+            { name: 'Christian Daniel Bonilla' },
+          ],
+          musica: [
+            { name: 'Banda MS' },
+            { name: 'Sonora Dinamita' },
+          ],
+          menu: [
+            { tipo: '1er tiempo', name: 'Ensalada Cesar' },
+            { tipo: '2do tiempo', name: 'Sopa gratinada' },
+            { tipo: '3er tiempo', name: 'Cordón Blue' },
+
+          ],
+          colorQr: '#ffffff',
+          colorBGQr: '#f82525',
+          imgWidth: 100
+        }
+        this.itinerarios = this.invitacion.itinerarios
+        this.notas = this.invitacion.notas
+        this.padres = this.invitacion.padres
+        this.padrinos = this.invitacion.padrinos
+        this.chambelanes = this.invitacion.chambelanes
+        this.menu = this.invitacion.menu
+        this.musica = this.invitacion.musica
+      } else {
+        this.vistaTemp = false
+
+        this.itinerarios = JSON.parse(this.state.itinerarios)
+        this.notas = JSON.parse(this.state.notas)
+        this.padres = JSON.parse(this.state.padres)
+        this.padrinos = JSON.parse(this.state.padrinos)
+        this.chambelanes = JSON.parse(this.state.chambelanes)
+        this.menu = JSON.parse(this.state.menu)
+        this.musica = JSON.parse(this.state.musica)
+        this.musicaInvitacion = this.state.musicaInvitacion
+        this.donde1Check = (this.state.donde1Check == 'true') ? true : false
+        this.donde2Check = (this.state.donde2Check == 'true') ? true : false
+        this.donde3Check = (this.state.donde3Check == 'true') ? true : false
+        this.croquisOk = (this.state.croquisOk == 'true') ? true : false
+        this.codigoVestimentaCheck = (this.state.codigoVestimentaCheck == 'true') ? true : false
+        this.chambelanesCheck = (this.state.chambelanesCheck == 'true') ? true : false
+        this.padresCheck = (this.state.padresCheck == 'true') ? true : false
+        this.isMusic = (this.state.isMusic == 'true') ? true : false
+        this.musicRepit = (this.state.musicRepit == 'true') ? true : false
+        this.padrinosCheck = (this.state.padrinosCheck == 'true') ? true : false
+        this.menuCheck = (this.state.menuCheck == 'true') ? true : false
+        this.musicaCheck = (this.state.musicaCheck == 'true') ? true : false
+        this.itinerarioCheck = (this.state.itinerarioCheck == 'true') ? true : false
+        this.hospedajeCheck = (this.state.hospedajeCheck == 'true') ? true : false
+        this.mesaRegalosCheck = (this.state.mesaRegalosCheck == 'true') ? true : false
+        this.confirmacionCheck = (this.state.confirmacionCheck == 'true') ? true : false
+        this.generalCheck = (this.state.generalCheck == 'true') ? true : false
+        this.invitacion = this.state
+        this.checking = (this.state.checking == 'true') ? true : false
+        this.date = this.invitacion.fiestaDate
+        this.croquisOk = (this.state.croquisOk == 'true') ? true : false
+        this.btnBack = true
+        this.checking = (this.state.checking == 'true') ? true : false
+        this.notaCheck = (this.state.notaCheck == 'true') ? true : false
+        this.padresCheck = (this.state.padresCheck == 'true') ? true : false
+
+
+        this.musicRepit = (this.state.musicRepit == 'true') ? true : false
+
+
+
+
+
+
+
+        this.dataPrincipal = {
+          vistaTemp: true,
+          type: 'seccionInicial',
+          size: 'sm',
+          cPrincipal: this.state.cPrincipal,
+          cSecond: this.state.cSecond,
+          imgWidth: this.state.imgWidth,
+          cWhite: this.state.cWhite,
+          img1: this.state.img1,
+          efectoImg1: this.state.efectoImg1,
+          repEfectoImg1: this.state.repEfectoImg1,
+          xImg1: this.state.xImg1,
+          yImg1: this.state.yImg1,
+          generalCheck: this.state.generalCheck,
+          generalTexto: this.state.generalTexto,
+          generalSize: this.state.generalSize ? this.state.generalSize : 15,
+          nombreFiesta: this.state.nombreFiesta,
+          nombreSize: this.state.nombreSize,
+          nombreFont: this.state.nombreFont,
+          nombreEfecto: this.state.nombreEfecto,
+          nombreEfectoRep: this.state.nombreEfectoRep,
+          topTitle: this.state.topTitle,
+          tipoFiesta: this.state.tipoFiesta,
+          tipoSize: this.state.tipoSize,
+          tipoFont: this.state.tipoFont,
+          tipoEfecto: this.state.tipoEfecto,
+          tipoEfectoRep: this.state.tipoEfectoRep,
+          topDate: this.state.topDate,
+          efectoCount: this.state.efectoCount,
+          efectoRepCount: this.state.efectoRepCount,
+          mensajeFont: this.state.mensajeFont,
+          inicialTFont: this.state.inicialTFont,
+          finalTFont: this.state.finalTFont,
+          inviFont: this.state.inviFont,
+          inviFont2: this.state.inviFont2,
+          inviEfecto: this.state.inviEfecto,
+          inviEfectoRep: this.state.inviEfectoRep,
+          inicialTSize: this.state.inicialTSize,
+          finalTSize: this.state.finalTSize,
+          cabeceraFont: this.state.cabeceraFont,
+          cabeceraSize: this.state.cabeceraSize,
+          typeCount: this.state.typeCount,
+          date: JSON.parse(this.state.fiesta).fecha,
+          example: JSON.parse(this.state.fiesta).example
+        }
+
+
+
+
+        this.dataInvitacionCard = {
+          vistaTemp: true,
+          inviEfecto: this.state.inviEfecto,
+          efectoInvi: this.state.efectoInvi,
+          repEfectoInvi: this.state.repEfectoInvi,
+          inviEfectoRep: this.state.inviEfectoRep,
+          generalCheck: this.state.generalCheck,
+          cPrincipal: this.state.cPrincipal,
+          cWhite: this.state.cWhite,
+          inviFont: this.state.inviFont,
+          inviFont2: this.state.inviFont2,
+          generalSize: this.state.generalSize,
+          nombreGrupo: 'Familia Gonzalez',
+          cantidad: this.state.cantidad,
+          nombreFont: this.state.nombreFont,
+          mesa: '1',
+          generalTexto: this.state.generalTexto,
+          cabeceraFont: this.state.cabeceraFont,
+          cabeceraSize: this.state.cabeceraSize,
+          croquisOk: this.state.croquisOk,
+          croquis: this.state.croquis,
+          cSecond: this.state.cSecond,
+          checking: (this.state.checking == 'true') ? true : false
+        }
+
+        this.dataMensajeCard = {
+
+          vistaTemp: true,
+          ...this.state
+        }
+        this.dataListasCard = {
+          vistaTemp: true,
+          ...this.state,
+          chambelanesCheck: this.chambelanesCheck,
+          menuCheck: this.menuCheck,
+          musicaCheck: this.musicaCheck,
+          padresCheck: this.padresCheck,
+          isMusic: this.isMusic,
+          musicRepit: this.musicRepit,
+          padrinosCheck: this.padrinosCheck,
+          codigoVestimentaCheck: this.codigoVestimentaCheck,
+          itinerarioCheck: this.itinerarioCheck,
+          mesaRegalosCheck: this.mesaRegalosCheck,
+        }
+        this.dataDondeCard = {
+          vistaTemp: true,
+          ...this.state,
+          donde1Check: this.donde1Check,
+          donde2Check: this.donde2Check,
+          donde3Check: this.donde3Check,
+          hospedajeCheck: this.hospedajeCheck,
+        }
+
+        setTimeout(() => {
+
+          this.loading = false
+        }, 1500);
+        this.presentacionView = true
+
+
+
+      }
     }
+
+
+
   }
 
-  /**
-   * @description Hook del ciclo de vida de Angular. Se ejecuta una vez que el componente se inicializa.
-   */
-  ngOnInit() { }
 
-  /**
-   * @description Se dispara con el evento de scroll en la ventana.
-   * Verifica qué elementos son visibles en pantalla y les aplica animaciones.
-   * @param event - El evento de scroll.
-   */
+  ngOnInit() {
+
+
+
+  }
+
   onScroll(event: any) {
+    const element = event.target;
+
     this.items.forEach((item, i) => {
       const element = document.getElementById(`${item}`);
+      let visibleItem = '';
+
       if (element) {
         const rect = element.getBoundingClientRect();
-        if (rect.top <= window.innerHeight) {
+        if (((rect.top) <= window.innerHeight) || i == this.items.length) {
+
+          visibleItem = `Item ${item}`;
+
           element.classList.remove('noVisible');
           element.classList.add('animate__fadeIn');
-        } else {
+          ;
+        }
+        else {
           element.classList.add('noVisible');
           element.classList.remove('animate__fadeIn');
+
         }
       }
     });
   }
 
-  /**
-   * @description Hook del ciclo de vida. Se ejecuta después de que la vista del componente ha sido inicializada.
-   */
   ngAfterViewInit(): void {
+    if (this.boleto && this.fiesta) {
+      this.setData(this.fiesta, this.boleto)
+    }
     setTimeout(() => {
       this.loading = false
     }, 2000);
   }
+  setData(fiesta, boleto) {
+    const titulo = `My Ticket Party | ${fiesta.nombreFiesta}  - ${boleto.nombreGrupo} - ${this.functionsService.numberToDate(Number(fiesta.fiestaDate))}  `;;
+    const descripcion = `${fiesta.nombreFiesta} | ${boleto.nombreGrupo} | MyTicketParty `
+    this.functionsService.removeTags()
+    this.titleService.setTitle(titulo);
+    this.meta.addTags([
+      { name: 'author', content: 'MyTicketParty' },
+      { name: 'description', content: descripcion },
+      { name: 'keywords', content: 'MyTicketParty, invitaciones digitales personalizadas,crear invitaciones con boletos,boletos digitales para fiestas,invitaciones para eventos privados,invitaciones con código QR,entradas digitales para fiestas,invitaciones con control de acceso,tickets personalizados para eventos,cómo hacer invitaciones digitales para fiestas,plataforma para crear boletos con QR,invitaciones con entrada digital para eventos,boletos para fiestas con lista de invitados,crear invitaciones con diseño personalizado,control de acceso para eventos privados,envío de boletos digitales por WhatsApp o email,invitaciones interactivas para eventos,Logística, Eventos, marketplace, productos, servicios, invitaciones digitales, tiempo real, cotizaciones, galería de imágenes, check in' },
+      { property: 'og:title', content: titulo },
+      { property: 'og:description', content: descripcion },
+      { property: 'og:image', content: 'https://www.myticketparty.com/api/upload/fiestas/' + fiesta.img },
+      { property: 'og:url', content: 'https://www.myticketparty.com' },
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:title', content: titulo },
+      { name: 'twitter:description', content: descripcion },
+      { name: 'twitter:image', content: 'https://www.myticketparty.com/api/upload/fiestas/' + fiesta.img },
+      { name: 'slug', content: '/' },
+      { name: 'colorBar', content: '#13547a' },
+    ]);
 
-  /**
-   * @description Configura las meta-etiquetas para SEO y redes sociales.
-   * Utiliza los datos de la fiesta para crear un título, descripción e imagen dinámicos.
-   * @param fiesta - El objeto que contiene la información de la fiesta (para la imagen).
-   * @param invitacion - El objeto con los detalles de la invitación (para los textos).
-   */
-  setSeoData(fiesta: Fiesta, invitacion: any) {
-    const titulo = `Estás invitado a: ${invitacion.nombreFiesta || 'un evento especial'}`;
-    const descripcion = `Acompáñanos a celebrar ${invitacion.tipoFiesta || 'este gran día'}. ¡No te lo pierdas!`;
-    const imageUrl = `${this.url}/upload/fiestas/${fiesta.img}`;
 
-    this.title.setTitle(titulo);
-    this.meta.updateTag({ name: 'description', content: descripcion });
-    this.meta.updateTag({ property: 'og:title', content: titulo });
-    this.meta.updateTag({ property: 'og:description', content: descripcion });
-    this.meta.updateTag({ property: 'og:image', content: imageUrl });
-    this.meta.updateTag({ property: 'og:url', content: window.location.href });
-    this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
+
+
   }
+  closePresentacion(close) {
 
-  /**
-   * @description Gestiona la animación de cierre de la pantalla de presentación
-   * y la aparición de la invitación principal.
-   * @param close - Booleano que indica si se debe cerrar.
-   */
-  closePresentacion(close: boolean) {
+
     document.getElementById('presentacion').classList.add('animate__bounceOutUp');
+
+
     setTimeout(() => {
       this.presentacionView = false
       this.invitacionView = true
+
       setTimeout(() => {
+
         document.getElementById('invitacion').classList.add(this.invitacion.invitacionEfecto);
       }, 10);
+
       setTimeout(() => {
         document.getElementById('invitacion').classList.remove('dn');
+
+
       }, 4000);
     }, 2500);
-  }
 
-  /**
-   * @description Inicia un intervalo que actualiza el contador de tiempo restante para la fiesta cada segundo.
-   */
+
+  }
   restParty() {
+    let i = 0
     const interval = setInterval((): void => {
       if (this.date > 0) {
+        ++i
         let d = (this.date - this.functionsService.getToday()) / 86400000
         this.dias = Math.trunc(d)
         let hr = ((this.date - this.functionsService.getToday()) % 86400000)
@@ -334,15 +735,12 @@ export class NewStyleComponent implements OnInit {
       }
     }, 1000);
   }
-
-  /**
-   * @description Solicita al usuario permiso para recibir notificaciones push
-   * y registra la suscripción en el backend.
-   */
   subscribeNotification() {
-    this.swPush.requestSubscription({
-      serverPublicKey: this.VAPID_PUBLIC_KEY
-    })
+    this.swPush.requestSubscription(
+      {
+        serverPublicKey: this.VAPID_PUBLIC_KEY
+      }
+    )
       .then(respuesta => {
         this.pushsService.crearPush(respuesta).subscribe((resp: any) => {
           this.functionsService.setLocal("pushService", resp)
@@ -355,73 +753,88 @@ export class NewStyleComponent implements OnInit {
           if (!bl) {
             this.boleto.pushNotification.push(resp.pushDB.uid)
           }
-          this.boletosService.registrarPushNotification(this.boleto).subscribe((res) => { })
+          this.boletosService.registrarPushNotification(this.boleto).subscribe((res) => {
+          })
         })
       })
       .catch(err => {
-        console.error('Error al suscribir a notificaciones', err)
+        console.error('Error', err)
+        return {
+          ok: false,
+          err
+        }
       })
   }
-
-  /**
-   * @description Convierte las fechas en formato de texto a formato numérico (timestamp).
-   * @param data - El objeto de datos de la invitación.
-   * @returns Una promesa que se resuelve con el objeto de datos actualizado.
-   */
-  async dateToNumber(data: any) {
-    // ... (lógica de conversión de fecha a número)
+  async dateToNumber(data) {
+    data.dateCreated = (typeof (data.dateCreated) == 'string') ? this.functionsService.dateToNumber(data.dateCreated) : data.dateCreated
+    data.lastEdited = (data.lastEdited != undefined) ? (typeof (data.lastEdited) == 'string') ? this.functionsService.dateToNumber(data.lastEdited) : data.lastEdited : ''
+    data.donde1Date = (typeof (data.donde1Date) == 'string') ? this.functionsService.dateToNumber(data.donde1Date) : data.donde1Date
+    data.donde2Date = (typeof (data.donde2Date) == 'string') ? this.functionsService.dateToNumber(data.donde2Date) : data.donde2Date
+    data.donde3Date = (typeof (data.donde3Date) == 'string') ? this.functionsService.dateToNumber(data.donde3Date) : data.donde3Date
+    data.donde1Check = (data.donde1Check == 'true' || data.donde1Check == true) ? true : false
+    data.donde2Check = (data.donde2Check == 'true' || data.donde2Check == true) ? true : false
+    data.donde3Check = (data.donde3Check == 'true' || data.donde3Check == true) ? true : false
+    data.croquisOk = (data.croquisOk == 'true' || data.croquisOk == true) ? true : false
+    data.fiestaDate = (typeof (data.donde3Date) == 'string') ? this.functionsService.dateToNumber(data.donde3Date) : data.donde3Date
     return await data
   }
-
-  /**
-   * @description Convierte las fechas en formato numérico (timestamp) a formato de texto.
-   * @param data - El objeto de datos de la invitación.
-   * @returns Una promesa que se resuelve con el objeto de datos actualizado.
-   */
-  async numberToData(data: any) {
-    // ... (lógica de conversión de número a fecha)
+  async numberToData(data) {
+    data.dateCreated = (typeof (data.dateCreated) == 'number') ? this.functionsService.numberToDate(data.dateCreated) : data.dateCreated
+    data.donde1Date = (typeof (data.donde1Date) == 'number') ? this.functionsService.numberDateTimeLocal(data.donde1Date) : data.donde1Date
+    data.donde2Date = (typeof (data.donde2Date) == 'number') ? this.functionsService.numberDateTimeLocal(data.donde2Date) : data.donde2Date
+    data.donde3Date = (typeof (data.donde3Date) == 'number') ? this.functionsService.numberDateTimeLocal(data.donde3Date) : data.donde3Date
+    data.lastEdited = (typeof (data.lastEdited) == 'number') ? this.functionsService.numberDateTimeLocal(data.lastEdited) : data.lastEdited
+    data.donde1Check = (data.donde1Check == 'true' || data.donde1Check == true) ? true : false
+    data.donde2Check = (data.donde2Check == 'true' || data.donde2Check == true) ? true : false
+    data.donde3Check = (data.donde3Check == 'true' || data.donde3Check == true) ? true : false
+    data.croquisOk = (data.croquisOk == 'true' || data.croquisOk == true) ? true : false
     return await data
   }
-
-  /**
-   * @description Genera el contenido en formato JSON para el código QR.
-   * @param boleto - El objeto del boleto.
-   * @returns Una cadena de texto en formato JSON para el QR.
-   */
-  getQr(boleto?: Boleto) {
+  getQr(boleto?) {
     if (boleto) {
+
       var qr: any = {
+
         uid: boleto.uid,
         fiesta: boleto.fiesta,
         grupo: boleto.grupo,
         salon: boleto.salon,
+
         activated: boleto.activated
       }
-      return JSON.stringify(qr)
-    } else {
-      return JSON.stringify({ url: 'https://myticketparty.com' })
-    }
-  }
+      qr = JSON.stringify(qr)
 
-  /**
-   * @description Se activa cuando la URL del código QR cambia, permitiendo su descarga.
-   * @param url - La URL segura del código QR generado.
-   */
+
+
+      return qr
+    } else {
+      return { url: 'https://myticketparty.com' }
+    }
+
+  }
   onChangeURL(url: SafeUrl) {
     this.qrCodeDownloadLink = url;
   }
+  copiarInvitacion(data) {
 
-  /**
-   * @description Copia los datos de la invitación actual para ser utilizados en un nuevo diseño o plantilla.
-   * @param data - Los datos de la invitación a copiar.
-   */
-  copiarInvitacion(data: any) {
     if (this.functionsService.getLocal('tipoInvitacion') && this.functionsService.getLocal('tipoInvitacion') == 'default') {
       this.functionsService.setLocal('invitacion', data)
       let back = this.functionsService.getLocal('viewTemplate')
       this.functionsService.navigateTo('/core/invitaciones/editar-invitacion/true/' + back)
       this.functionsService.removeItemLocal('viewTemplate')
     }
-    // ... (resto de la lógica)
+    else if (this.functionsService.getLocal('tipoInvitacion') && this.functionsService.getLocal('tipoInvitacion') == 'fancy') {
+      this.functionsService.setLocal('invitacion', data)
+      let back = this.functionsService.getLocal('viewTemplate')
+      this.functionsService.navigateTo('/core/invitaciones/editar-invitacion/true/' + back)
+      this.functionsService.removeItemLocal('viewTemplate')
+    }
+    else {
+      this.functionsService.alert('Alerta', 'El tipo de invitacion no es la dinámica', 'warning')
+      let back = this.functionsService.getLocal('viewTemplate')
+      this.functionsService.navigateTo('/core/invitaciones/editar-invitacion/true/' + back)
+      this.functionsService.removeItemLocal('viewTemplate')
+    }
   }
 }
+
