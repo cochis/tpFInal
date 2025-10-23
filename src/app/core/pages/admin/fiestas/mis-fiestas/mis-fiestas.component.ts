@@ -364,7 +364,6 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
         recordatorio = recordatorio.replace('@@NOMBRE_EVENTO@@ ', evento)
 
         recordatorio = recordatorio.replace("@@BOLETOS@@", cantidadBoletos)
-        console.log('recordatorio::: ', recordatorio);
 
         return
 

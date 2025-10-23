@@ -73,6 +73,7 @@ export class SharedComponent implements OnInit { // Agregamos OnInit por buenas 
 
               // 5. Construir la URL del Iframe (Template de la Invitación)
               this.url = `${this.urlT}core/templates/${resF.invitacion.fiesta.invitacion}/${resF.invitacion.fiesta._id}/${this.shared.boleto}`;
+              console.log('  this.url::: ', this.url);
 
               // 6. Sanitizar la URL para permitir que se cargue en el iframe
               this.iframeSrc = this.sanitizer.bypassSecurityTrustResourceUrl(this.url);

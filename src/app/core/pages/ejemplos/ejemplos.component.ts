@@ -68,7 +68,7 @@ export class EjemplosComponent implements OnInit {
 
   private loadCatalogs(): void {
     this.ejemplosService.cargarEjemplosAll().subscribe((resp: CargarEjemplos) => {
-      console.log('resp::: ', resp);
+
       const activos = this.functionsService.getActives(resp.ejemplos);
       this.ejemplos = activos;
 
