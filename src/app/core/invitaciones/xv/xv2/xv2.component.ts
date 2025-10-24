@@ -86,7 +86,7 @@ export class Xv2Component {
 
     }, (error) => {
       this.functionsService.alertError(error, 'No se encontro el boleto')
-      this.functionsService.navigateTo("/core/inicio")
+      this.functionsService.navigateTo("/inicio")
     })
     this.fiestasService.cargarFiestaById(this.fiestaid).subscribe((resp: CargarFiesta) => {
       this.fiesta = resp.fiesta
@@ -109,7 +109,7 @@ export class Xv2Component {
 
     }, (error) => {
       this.functionsService.alertError(error, 'No se encontro la fiesta')
-      this.functionsService.navigateTo("/core/inicio")
+      this.functionsService.navigateTo("/inicio")
     })
 
     setTimeout(() => {

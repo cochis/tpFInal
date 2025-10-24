@@ -74,8 +74,7 @@
                                                                     class="bi bi-trash"></i></button>
                                                         </th>
                                                         <th class="text-center">
-                                                            <a
-                                                                routerLink="/core/vista-producto/{{item.value.item.uid}}">
+                                                            <a routerLink="/vista-producto/{{item.value.item.uid}}">
                                                                 <img [src]="getImagen(item.value.item.photos,i)"
                                                                     style="width: 50px; height: 50px;"
                                                                     [alt]="item.nombre">
@@ -365,7 +364,7 @@
                                             </th>
                                             <td>
 
-                                                <a routerLink="/core/vista-proveedor/{{item.item.proveedor._id}}"
+                                                <a routerLink="/vista-proveedor/{{item.item.proveedor._id}}"
                                                     style="color:var(--primary-color); text-decoration: none;">
 
                                                     <img [src]="url+'/upload/proveedores/'+item.item.proveedor.img"

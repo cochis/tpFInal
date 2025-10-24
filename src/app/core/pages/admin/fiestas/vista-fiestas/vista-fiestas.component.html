@@ -67,7 +67,7 @@
                                     evento</button>
                                 <button class="btn but   "
                                     *ngIf="cantidadFiestas<=0 &&(rol == ANF || rol== SLN || rol== PRV)"
-                                    routerLink="/core/compras/crear-compra/{{uid}}">Comprar
+                                    routerLink="/compras/crear-compra/{{uid}}">Comprar
                                     paquete</button>
 
                             </div>
@@ -148,7 +148,7 @@
                                     </td>
                                     <td class="upper">{{fiesta.nombre}}</td>
                                     <td class="upper pointer"
-                                        routerLink="/core/invitaciones/editar-invitacion/true/{{fiesta.uid}}">
+                                        routerLink="/invitaciones/editar-invitacion/true/{{fiesta.uid}}">
                                         <i class="bi bi-file-earmark-fill second "></i>
                                     </td>
 

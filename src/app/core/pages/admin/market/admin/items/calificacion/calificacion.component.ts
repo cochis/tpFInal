@@ -186,7 +186,7 @@ export class CalificacionComponent {
     this.loading = false
   }
   back() {
-    this.functionsService.navigateTo("/core/inicio")
+    this.functionsService.navigateTo("/inicio")
   }
   setCalificacion(i) {
 

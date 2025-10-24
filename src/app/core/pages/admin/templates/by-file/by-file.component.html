@@ -18,7 +18,7 @@
 
         <div class="col-6 text-center" style="margin:auto">
             <button class="btn btn-lg btn-block btn-warning mt-3"
-                routerLink="/core/invitaciones/editar-invitacion/true/{{invitacion.fiestaId}}">
+                routerLink="/invitaciones/editar-invitacion/true/{{invitacion.fiestaId}}">
                 Seguir editando
             </button>
         </div>
@@ -690,7 +690,7 @@
                             </button>
                             <button class="btn mt-3 mb-5" *ngIf="fiesta.galeria"
                                 [style]="{'background-color':invitacion.byFileColorFr,'color':invitacion.byFileColorTx,'border':3+'px solid '+invitacion.byFileColorBG}"
-                                type="button" routerLink="/core/galeria/fst/{{fiestaId}}/blt/{{boletoId}}">
+                                type="button" routerLink="/galeria/fst/{{fiestaId}}/blt/{{boletoId}}">
                                 Sube tus fotos <i class="bi bi-images"
                                     [style]="{'font-size':30+'px','margin-left':10+'px','color':invitacion.byFileColorBG}"></i>
                             </button>

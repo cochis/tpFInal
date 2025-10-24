@@ -10,10 +10,10 @@
             <div class="col-12 col-md-6 mt-4 ma text-center mt-3">
 
                 <button type="button" class="btn btn-lg btn-block but"
-                    *ngIf="cantidadFiestas>0 &&(rol == ANF || rol== SLN) " routerLink="/core/fiestas/crear-fiesta">Nuevo
+                    *ngIf="cantidadFiestas>0 &&(rol == ANF || rol== SLN) " routerLink="/fiestas/crear-fiesta">Nuevo
                     evento</button>
                 <button class="btn but   " *ngIf="cantidadFiestas<=0 &&(rol == ANF || rol== SLN) "
-                    routerLink="/core/compras/crear-compra/{{uid}}">Comprar
+                    routerLink="/compras/crear-compra/{{uid}}">Comprar
                     paquete</button>
 
 
@@ -93,7 +93,7 @@
 
                                             <div class="custom-block-overlay-text d-flex">
                                                 <div>
-                                                    <a routerLink="/core/fiestas/single-fiesta/{{party.uid}}"
+                                                    <a routerLink="/fiestas/single-fiesta/{{party.uid}}"
                                                         style="text-decoration: none;">
                                                         <b style="margin-right:10px ; font-size: 25px; color:#13547a">
                                                             Ver evento
@@ -102,13 +102,12 @@
                                                     </a>
                                                     <h4 class="text-white mb-2" style="font-size: 18px;">
                                                         <a class="textDN text-white"
-                                                            routerLink="/core/info-fiesta/{{party.uid}}">
+                                                            routerLink="/info-fiesta/{{party.uid}}">
 
                                                             {{party.nombre}}
                                                         </a>
 
-                                                        <a
-                                                            routerLink="/core/salones/editar-salon/true/{{party.salon._id}}">
+                                                        <a routerLink="/salones/editar-salon/true/{{party.salon._id}}">
                                                             <small
                                                                 style="color:var(--primary-color) ;font-size:15px ;">&nbsp;{{
 
@@ -126,7 +125,7 @@
                                                                 style="   
                                                                 margin-left: 15px;width: 30px;height: 30px;background-color: #ffffff;border-radius: 100%;text-align: center !important;"
                                                                 *ngIf="rol===ANF"
-                                                                routerLink="/core/galeria/fst/{{party.uid}}/anf/{{uid}}">
+                                                                routerLink="/galeria/fst/{{party.uid}}/anf/{{uid}}">
 
                                                                 <i class="bi bi-images ma"
                                                                     style=" font-size: 20px;margin:auto; color:#13547a ; display: block; "></i>
@@ -135,7 +134,7 @@
                                                                 style="   
                                                                 margin-left: 15px;width: 30px;height: 30px;background-color: #ffffff;border-radius: 100%;text-align: center !important;"
                                                                 *ngIf="rol!==ANF"
-                                                                routerLink="/core/galeria/fst/{{party.uid}}/anf/{{party.usuarioFiesta._id}}">
+                                                                routerLink="/galeria/fst/{{party.uid}}/anf/{{party.usuarioFiesta._id}}">
 
                                                                 <i class="bi bi-images ma"
                                                                     style=" font-size: 20px;margin:auto; color:#13547a ; display: block; "></i>
@@ -219,7 +218,7 @@
 
                                                 <ul class="social-icon">
                                                     <li class="social-icon-item">
-                                                        <a routerLink="/core/invitaciones/editar-invitacion/true/{{party.uid}}"
+                                                        <a routerLink="/invitaciones/editar-invitacion/true/{{party.uid}}"
                                                             class="social-icon-link bi bi-file-earmark-fill "
                                                             style="text-decoration: none; font-size: 25px;">
                                                         </a>

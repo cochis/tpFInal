@@ -13,7 +13,7 @@
                     <div class="col-12  ">
 
                         <h4 class="text-white mb-2" style="font-size: 18px;">
-                            <a class="textDN text-white" routerLink="/core/info-fiesta/{{fiesta.uid}}">
+                            <a class="textDN text-white" routerLink="/info-fiesta/{{fiesta.uid}}">
 
                                 {{fiesta.nombre}}
                             </a>
@@ -31,7 +31,7 @@
                                 <a class="text-center ma"
                                     style="   
                                                                     margin-left: 15px;width: 30px;height: 30px;background-color: #ffffff;border-radius: 100%;text-align: center !important;"
-                                    *ngIf="rol===ANF" routerLink="/core/galeria/fst/{{fiesta.uid}}/anf/{{uid}}">
+                                    *ngIf="rol===ANF" routerLink="/galeria/fst/{{fiesta.uid}}/anf/{{uid}}">
 
                                     <i class="bi bi-images ma"
                                         style=" font-size: 20px;margin:auto; color:#13547a ; display: block; "></i>
@@ -40,7 +40,7 @@
                                     style="   
                                                                     margin-left: 15px;width: 30px;height: 30px;background-color: #ffffff;border-radius: 100%;text-align: center !important;"
                                     *ngIf="rol!==ANF"
-                                    routerLink="/core/galeria/fst/{{fiesta.uid}}/anf/{{fiesta.usuarioFiesta._id}}">
+                                    routerLink="/galeria/fst/{{fiesta.uid}}/anf/{{fiesta.usuarioFiesta._id}}">
 
                                     <i class="bi bi-images ma"
                                         style=" font-size: 20px;margin:auto; color:#13547a ; display: block; "></i>

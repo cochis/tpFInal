@@ -143,15 +143,10 @@ import { SinglePostComponent } from './pages/single-post/single-post.component';
 import { FuncionalidadesComponent } from './pages/funcionalidades/funcionalidades.component';
 const routes: Routes = [
   {
-    path: 'core',
+    path: '',
     component: CoreComponent,
     children: [
-      {
-        path: '',
-        component: HomeComponent,
-        data: { titulo: 'Home' }
 
-      },
       {
         path: 'funcionalidades',
         component: FuncionalidadesComponent,
@@ -979,7 +974,26 @@ const routes: Routes = [
 
       },
       {
-        path: 'templates/fancy/:fiesta/:boleto/:copy',
+        path: 'core/templates/fancy/:fiesta/:boleto/:copy',
+        component: NewStyleComponent,
+        data: { titulo: 'Template Fancy' }
+
+      },
+      //////
+      {
+        path: 'core/templates/fancy',
+        component: NewStyleComponent,
+        data: { titulo: 'Template Fancy' }
+
+      },
+      {
+        path: 'core/templates/fancy/:fiesta/:boleto',
+        component: NewStyleComponent,
+        data: { titulo: 'Template Fancy' }
+
+      },
+      {
+        path: 'core/templates/fancy/:fiesta/:boleto/:copy',
         component: NewStyleComponent,
         data: { titulo: 'Template Fancy' }
 

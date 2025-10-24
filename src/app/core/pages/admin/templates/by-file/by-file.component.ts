@@ -122,7 +122,7 @@ export class ByFileComponent implements OnInit {
 
         if (!this.boleto.activated) {
           this.functionsService.alert('Boleto eliminado', 'Contactar con el anfitrion', 'info')
-          this.functionsService.navigateTo("/core/inicio")
+          this.functionsService.navigateTo("/inicio")
         }
         this.boleto.vista = true
         this.boletosService.registrarPushNotification(this.boleto).subscribe((resp: any) => {
@@ -179,12 +179,12 @@ export class ByFileComponent implements OnInit {
         }, (error) => {
           console.error('Error', error)
           this.functionsService.alertError(error, 'Fiestas')
-          this.functionsService.navigateTo("/core/inicio")
+          this.functionsService.navigateTo("/inicio")
         })
       }, (error) => {
         console.error('Error', error)
         this.functionsService.alertError(error, 'Fiestas')
-        this.functionsService.navigateTo("/core/inicio")
+        this.functionsService.navigateTo("/inicio")
       })
     } else {
       this.restParty()
@@ -342,12 +342,12 @@ export class ByFileComponent implements OnInit {
       { property: 'og:title', content: titulo },
       { property: 'og:description', content: descripcion },
       { property: 'og:image', content: `${this.url}/upload/invitaciones/${this.state.byFileInvitacion}` },
-      { property: 'og:url', content: 'https://www.myticketparty.com/core/inicio' },
+      { property: 'og:url', content: 'https://www.myticketparty.com/inicio' },
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:title', content: titulo },
       { name: 'twitter:description', content: descripcion },
       { name: 'twitter:image', content: `${this.url}/upload/invitaciones/${this.state.byFileInvitacion}` },
-      { name: 'slug', content: 'core/inicio' },
+      { name: 'slug', content: 'inicio' },
       { name: 'colorBar', content: '#13547a' },
     ]);
   }

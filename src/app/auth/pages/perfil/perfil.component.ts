@@ -222,7 +222,7 @@ export class PerfilComponent {
       )
   }
   back() {
-    this.functionsService.navigateTo("/core/inicio")
+    this.functionsService.navigateTo("/inicio")
   }
   getCatalog(tipo: string, id: string) {
     if (id) {

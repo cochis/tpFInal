@@ -75,7 +75,7 @@ export class EditarDatosComponent {
     ['align_left', 'align_center', 'align_right', 'align_justify'],
   ];
   public qrCodeDownloadLink: SafeUrl = "";
-    rol = this.functionsService.getLocal('role')
+  rol = this.functionsService.getLocal('role')
   ADM = environment.admin_role
   constructor(
     private fb: FormBuilder,
@@ -266,14 +266,14 @@ export class EditarDatosComponent {
                 this.functionsService.alert('Proveedor', 'Proveedor creado', 'success')
 
 
-                this.functionsService.navigateTo('/core/inicio')
+                this.functionsService.navigateTo('/inicio')
 
               })
             } else {
               if (this.isProveedor) {
 
 
-                this.functionsService.navigateTo('/core/inicio')
+                this.functionsService.navigateTo('/inicio')
               } else {
                 setTimeout(() => {
 
@@ -317,7 +317,7 @@ export class EditarDatosComponent {
   }
 
   back() {
-    this.functionsService.navigateTo('/core/inicio')
+    this.functionsService.navigateTo('/inicio')
   }
   getCatalogos() {
     this.tipoContactosService.cargarTipoContactosAll().subscribe((resp: CargarTipoContactos) => {
@@ -613,7 +613,7 @@ export class EditarDatosComponent {
           this.functionsService.alertUpdate('Proveedor')
           if (this.isProveedor) {
 
-            this.functionsService.navigateTo('/core/inicio')
+            this.functionsService.navigateTo('/inicio')
           } else {
             this.functionsService.navigateTo('core/proveedores/editar-datos')
 

@@ -13,19 +13,19 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" routerLink="/core/inicio">
+                    <a class="nav-link active" aria-current="page" routerLink="/inicio">
 
                         {{'menu.inicio'| translate}}
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" routerLink="/core/funcionalidades">
+                    <a class="nav-link active" aria-current="page" routerLink="/funcionalidades">
 
                         {{'menu.funcionalidades'| translate}}
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/core/examples">
+                    <a class="nav-link" routerLink="/examples">
                         {{'menu.ejemplos'| translate}}
                     </a>
                 </li>
@@ -36,10 +36,10 @@
                     </a>
                     <ul class="dropdown-menu">
 
-                        <li><a class="dropdown-item" routerLink="/core/market">
+                        <li><a class="dropdown-item" routerLink="/market">
                                 {{'menu.productos'| translate}}
                             </a></li>
-                        <li><a class="dropdown-item" routerLink="/core/market/proveedores">
+                        <li><a class="dropdown-item" routerLink="/market/proveedores">
                                 {{'menu.proveedores'| translate}}
                             </a></li>
 
@@ -49,33 +49,33 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/core/blog">
+                    <a class="nav-link" routerLink="/blog">
                         {{'menu.blog'| translate}}
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/core/about">
+                    <a class="nav-link" routerLink="/about">
                         {{'menu.nosotros'| translate}}
                     </a>
                 </li>
 
                 <!--  <li class="nav-item">
-                    <a class="nav-link" routerLink="/core/invitaciones">Invitaciones</a>
+                    <a class="nav-link" routerLink="/invitaciones">Invitaciones</a>
                 </li> -->
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/core/contact">
+                    <a class="nav-link" routerLink="/contact">
                         {{'menu.contacto'| translate}}
                     </a>
                 </li>
                 <!--   <li class="nav-item">
-                    <a class="nav-link" routerLink="/core/pricing">
+                    <a class="nav-link" routerLink="/pricing">
                         {{'menu.precio'| translate}}
                     </a>
                 </li> -->
 
 
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/core/faqs">
+                    <a class="nav-link" routerLink="/faqs">
                         {{'menu.faqs'| translate}}
                     </a>
                 </li>
@@ -104,7 +104,7 @@
 
                     </ul>
                 </li>
-                <li class="nav-item pointer" *ngIf="carrito.length>0" routerLink="/core/market/carrito">
+                <li class="nav-item pointer" *ngIf="carrito.length>0" routerLink="/market/carrito">
                     <h4><i class="bi bi-cart-check-fill"></i>
                         <span class="badge text-bg-secondary">
                             {{carrito.length}}
@@ -141,17 +141,17 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" routerLink="/core/inicio">
+                    <a class="nav-link active" aria-current="page" routerLink="/inicio">
                         {{'menu.inicio'| translate}}
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" routerLink="/core/funcionalidades">
+                    <a class="nav-link active" aria-current="page" routerLink="/funcionalidades">
                         {{'menu.funcionalidades'| translate}}
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/core/examples">
+                    <a class="nav-link" routerLink="/examples">
                         {{'menu.ejemplos'| translate}}
                     </a>
                 </li>
@@ -162,10 +162,10 @@
                     </a>
                     <ul class="dropdown-menu">
 
-                        <li><a class="dropdown-item" routerLink="/core/market">
+                        <li><a class="dropdown-item" routerLink="/market">
                                 {{'menu.productos'| translate}}
                             </a></li>
-                        <li><a class="dropdown-item" routerLink="/core/market/proveedores">
+                        <li><a class="dropdown-item" routerLink="/market/proveedores">
                                 {{'menu.proveedores'| translate}}
                             </a></li>
 
@@ -174,12 +174,12 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/core/blog">
+                    <a class="nav-link" routerLink="/blog">
                         {{'menu.blog'| translate}}
                     </a>
                 </li>
                 <!--  <li class="nav-item">
-                    <a class="nav-link" routerLink="/core/pricing">
+                    <a class="nav-link" routerLink="/pricing">
                         {{'menu.precio'| translate}}
                     </a>
                 </li> -->
@@ -187,12 +187,12 @@
 
 
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/core/mis-fiestas" *ngIf="rol">
+                    <a class="nav-link" routerLink="/mis-fiestas" *ngIf="rol">
                         {{'menu.mis_eventos'| translate}}
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/core/check-in"
+                    <a class="nav-link" routerLink="/check-in"
                         *ngIf="rol ===ADM || rol ===CHK ||  rol ===SLN ||  rol ===ANF">
                         {{'menu.check-in'| translate}}
                     </a>
@@ -209,17 +209,17 @@
                     <ul class="dropdown-menu  ">
                         <h5 class="ma" style="margin-left: 15px;"><b>General</b></h5>
                         <li *ngIf="rol.includes(ADM) || rol.includes(ANF) || rol.includes(SLN) || rol.includes(PRV) "><a
-                                class="dropdown-item" routerLink="/core/salones/vista-salones">
+                                class="dropdown-item" routerLink="/salones/vista-salones">
                                 {{'menu.admin_centros_eventos'| translate}}
                             </a></li>
-                        <li><a class="dropdown-item" routerLink="/core/usuarios/vista-usuarios"
+                        <li><a class="dropdown-item" routerLink="/usuarios/vista-usuarios"
                                 *ngIf="rol.includes(ANF)  || !rol.includes(PRV)">
                                 {{'menu.admin_usuarios'| translate}}
                             </a></li>
-                        <li><a class="dropdown-item" routerLink="/core/fiestas/vista-fiestas">
+                        <li><a class="dropdown-item" routerLink="/fiestas/vista-fiestas">
                                 {{'menu.admin_eventos'| translate}}
                             </a></li>
-                        <li><a class="dropdown-item" routerLink="/core/boletos/vista-boletos">
+                        <li><a class="dropdown-item" routerLink="/boletos/vista-boletos">
                                 {{'menu.admin_boletos'| translate}}
                             </a></li>
 
@@ -229,14 +229,14 @@
                             <h5 class="ma" style="margin-left: 15px;"><b>
                                     {{'menu.admin_market_menu'| translate}}
                                 </b></h5>
-                            <li><a class="dropdown-item" routerLink="/core/proveedores/vista-proveedores">
+                            <li><a class="dropdown-item" routerLink="/proveedores/vista-proveedores">
                                     {{'menu.admin_proveedores_menu'| translate}}
                                 </a></li>
-                            <li><a class="dropdown-item" routerLink="/core/items/vista-items">
+                            <li><a class="dropdown-item" routerLink="/items/vista-items">
                                     {{'menu.admin_productos_menu'| translate}}
 
                                 </a></li>
-                            <li><a class="dropdown-item" routerLink="/core/promos">
+                            <li><a class="dropdown-item" routerLink="/promos">
                                     {{'menu.admin_promos'| translate}}
                                 </a></li>
 
@@ -247,15 +247,15 @@
                         <ng-container *ngIf="rol.includes(PRV) || rol.includes(SLN)">
                             <hr>
                             <h5 class="ma" style="margin-left: 15px;"><b>Market</b></h5>
-                            <li><a class="dropdown-item" routerLink="/core/proveedores/editar-datos">
+                            <li><a class="dropdown-item" routerLink="/proveedores/editar-datos">
                                     {{'menu.admin_editar_proveedor'| translate}}
                                 </a>
                             </li>
-                            <li><a class="dropdown-item" routerLink="/core/productos/agregar">
+                            <li><a class="dropdown-item" routerLink="/productos/agregar">
                                     {{'menu.admin_add_productos'| translate}}
                                 </a>
                             </li>
-                            <li><a class="dropdown-item" routerLink="/core/mis-productos">
+                            <li><a class="dropdown-item" routerLink="/mis-productos">
                                     {{'menu.admin_mis_productos'| translate}}
                                 </a>
                             </li>
@@ -281,29 +281,29 @@
                             </h5>
                             <hr>
                         </div>
-                        <li><a class="dropdown-item" routerLink="/core/parametros/vista-parametros">
+                        <li><a class="dropdown-item" routerLink="/parametros/vista-parametros">
                                 {{'menu.catalogos_parametros'| translate}}
                             </a>
                         </li>
-                        <li><a class="dropdown-item" routerLink="/core/email-templates/vista-email-templates">
+                        <li><a class="dropdown-item" routerLink="/email-templates/vista-email-templates">
                                 {{'menu.catalogos_email_templates'| translate}}
                             </a>
                         </li>
-                        <li><a class="dropdown-item" routerLink="/core/posts/vista-posts">Ver Post</a></li>
-                        <li><a class="dropdown-item" routerLink="/core/roles/vista-roles">Ver Roles</a></li>
-                        <li><a class="dropdown-item" routerLink="/core/paises/vista-paises">Ver paises</a></li>
-                        <li><a class="dropdown-item" routerLink="/core/grupos/vista-grupos">Ver grupos</a></li>
-                        <li><a class="dropdown-item" routerLink="/core/eventos/vista-eventos">Ver eventos</a></li>
-                        <li><a class="dropdown-item" routerLink="/core/fondos/vista-fondos">Ver fondos</a></li>
-                        <li><a class="dropdown-item" routerLink="/core/tipo-centros/vista-tipo-centros">Ver Tipo
+                        <li><a class="dropdown-item" routerLink="/posts/vista-posts">Ver Post</a></li>
+                        <li><a class="dropdown-item" routerLink="/roles/vista-roles">Ver Roles</a></li>
+                        <li><a class="dropdown-item" routerLink="/paises/vista-paises">Ver paises</a></li>
+                        <li><a class="dropdown-item" routerLink="/grupos/vista-grupos">Ver grupos</a></li>
+                        <li><a class="dropdown-item" routerLink="/eventos/vista-eventos">Ver eventos</a></li>
+                        <li><a class="dropdown-item" routerLink="/fondos/vista-fondos">Ver fondos</a></li>
+                        <li><a class="dropdown-item" routerLink="/tipo-centros/vista-tipo-centros">Ver Tipo
                                 centros</a></li>
-                        <li><a class="dropdown-item" routerLink="/core/ejemplos/vista-ejemplos">Ver ejemplos</a></li>
-                        <li><a class="dropdown-item" routerLink="/core/paquete/vista-paquetes">Ver tipo paquetes</a>
+                        <li><a class="dropdown-item" routerLink="/ejemplos/vista-ejemplos">Ver ejemplos</a></li>
+                        <li><a class="dropdown-item" routerLink="/paquete/vista-paquetes">Ver tipo paquetes</a>
                         </li>
-                        <li><a class="dropdown-item" routerLink="/core/cps/vista-cps">Ver cps</a></li>
-                        <li><a class="dropdown-item" routerLink="/core/tipo-medios/vista-tipo-medios">Ver tipo de
+                        <li><a class="dropdown-item" routerLink="/cps/vista-cps">Ver cps</a></li>
+                        <li><a class="dropdown-item" routerLink="/tipo-medios/vista-tipo-medios">Ver tipo de
                                 medios</a> </li>
-                        <!--  <li><a class="dropdown-item" routerLink="/core/email-templates/vista-email-templates">Ver email
+                        <!--  <li><a class="dropdown-item" routerLink="/email-templates/vista-email-templates">Ver email
                                 templates</a> </li> -->
 
 
@@ -312,27 +312,27 @@
                             <h5>Marketplace</h5>
                             <hr>
                         </div>
-                        <li><a class="dropdown-item" routerLink="/core/monedas/vista-monedas">Ver monedas</a></li>
-                        <li><a class="dropdown-item" routerLink="/core/tipo-contactos/vista-tipo-contactos">Ver tipo
+                        <li><a class="dropdown-item" routerLink="/monedas/vista-monedas">Ver monedas</a></li>
+                        <li><a class="dropdown-item" routerLink="/tipo-contactos/vista-tipo-contactos">Ver tipo
                                 contactos</a> </li>
-                        <li><a class="dropdown-item" routerLink="/core/tipo-colores/vista-tipo-colores">Ver tipo
+                        <li><a class="dropdown-item" routerLink="/tipo-colores/vista-tipo-colores">Ver tipo
                                 colores</a></li>
-                        <li><a class="dropdown-item" routerLink="/core/tipo-items/vista-tipo-items">Ver tipo de venta de
+                        <li><a class="dropdown-item" routerLink="/tipo-items/vista-tipo-items">Ver tipo de venta de
                                 Items</a></li>
-                        <li><a class="dropdown-item" routerLink="/core/redes/vista-redes">Ver redes</a></li>
-                        <li><a class="dropdown-item" routerLink="/core/tipo-ubicaciones/vista-tipo-ubicaciones">Ver Tipo
+                        <li><a class="dropdown-item" routerLink="/redes/vista-redes">Ver redes</a></li>
+                        <li><a class="dropdown-item" routerLink="/tipo-ubicaciones/vista-tipo-ubicaciones">Ver Tipo
                                 ubicaciones</a></li>
-                        <li><a class="dropdown-item"
-                                routerLink="/core/estatus-cotizaciones/vista-estatus-cotizaciones">Ver estatus de
+                        <li><a class="dropdown-item" routerLink="/estatus-cotizaciones/vista-estatus-cotizaciones">Ver
+                                estatus de
                                 cotizaciones</a> </li>
-                        <li><a class="dropdown-item" routerLink="/core/categoria-items/vista-categoria-items">Ver
+                        <li><a class="dropdown-item" routerLink="/categoria-items/vista-categoria-items">Ver
                                 categorias de Items</a></li>
 
 
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/core/faqs">FAQ´S</a>
+                    <a class="nav-link" routerLink="/faqs">FAQ´S</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -343,9 +343,9 @@
 
 
                         <li><a class="dropdown-item" routerLink="/auth/perfil" *ngIf="rol && rol!== ''">Perfil</a></li>
-                        <li><a class="dropdown-item" routerLink="/core/mis-cotizaciones" *ngIf="rol && rol!== ''">Mis
+                        <li><a class="dropdown-item" routerLink="/mis-cotizaciones" *ngIf="rol && rol!== ''">Mis
                                 Cotizaciones</a></li>
-                        <li><a class="dropdown-item" routerLink="/core/contact" *ngIf="rol && rol!== ''">Contacto</a>
+                        <li><a class="dropdown-item" routerLink="/contact" *ngIf="rol && rol!== ''">Contacto</a>
                         </li>
                         <li><a class="dropdown-item" (click)="logout()" *ngIf="rol && rol!== ''">Salir</a></li>
 
@@ -361,9 +361,9 @@
 
 
                         <li><a class="dropdown-item" routerLink="/auth/perfil" *ngIf="rol && rol!== ''">Perfil</a></li>
-                        <li><a class="dropdown-item" routerLink="/core/mis-cotizaciones" *ngIf="rol && rol!== ''">Mis
+                        <li><a class="dropdown-item" routerLink="/mis-cotizaciones" *ngIf="rol && rol!== ''">Mis
                                 Cotizaciones</a></li>
-                        <li><a class="dropdown-item" routerLink="/core/contact" *ngIf="rol && rol!== ''">Contacto</a>
+                        <li><a class="dropdown-item" routerLink="/contact" *ngIf="rol && rol!== ''">Contacto</a>
                         </li>
                         <li><a class="dropdown-item" (click)="logout()" *ngIf="rol && rol!== ''">Salir</a></li>
 
@@ -371,7 +371,7 @@
                     </ul>
                 </li> -->
 
-                <li class="nav-item pointer" *ngIf="carrito.length>0" routerLink="/core/market/carrito">
+                <li class="nav-item pointer" *ngIf="carrito.length>0" routerLink="/market/carrito">
                     <h4><i class="bi bi-cart-check-fill"></i>
                         <span class="badge text-bg-secondary">
                             {{carrito.length}}

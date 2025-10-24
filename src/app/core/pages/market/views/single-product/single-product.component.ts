@@ -88,12 +88,12 @@ export class SingleProductComponent {
       { property: 'og:title', content: titulo },
       { property: 'og:description', content: descripcion },
       { property: 'og:image', content: this.url + '/upload/items/' + this.getImgPrincipal() },
-      { property: 'og:url', content: 'https://www.myticketparty.com/core/inicio' },
+      { property: 'og:url', content: 'https://www.myticketparty.com/inicio' },
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:title', content: titulo },
       { name: 'twitter:description', content: descripcion },
       { name: 'twitter:image', content: this.url + '/upload/items/' + this.getImgPrincipal() },
-      { name: 'slug', content: 'core/inicio' },
+      { name: 'slug', content: 'inicio' },
       { name: 'colorBar', content: '#13547a' },
     ]);
   }

@@ -156,7 +156,7 @@ export class NewStyleComponent implements OnInit {
 
         if (!this.boleto.activated) {
           this.functionsService.alert('Boleto eliminado', 'Contactar con el anfitrion', 'info')
-          this.functionsService.navigateTo('/core/inicio')
+          this.functionsService.navigateTo('/inicio')
         }
         this.boleto.vista = true
         this.boletosService.registrarPushNotification(this.boleto).subscribe((resp: any) => {
@@ -319,12 +319,12 @@ export class NewStyleComponent implements OnInit {
         }, (error) => {
           console.error('Error', error)
           this.functionsService.alertError(error, 'Fiestas')
-          this.functionsService.navigateTo('/core/inicio')
+          this.functionsService.navigateTo('/inicio')
         })
       }, (error) => {
         console.error('Error', error)
         this.functionsService.alertError(error, 'Fiestas')
-        this.functionsService.navigateTo('/core/inicio')
+        this.functionsService.navigateTo('/inicio')
       })
     } else {
       this.restParty()

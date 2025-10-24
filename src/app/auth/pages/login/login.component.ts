@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
     const titulo = 'My Ticket Party | Login';
     const descripcion = 'Ingresa a nuestra aplicación con usuario y contraseña';
 
-    
+
     this.functionsService.removeTags()
 
     this.titleService.setTitle(titulo);
@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
 
         setTimeout(() => {
 
-          this.functionsService.navigateTo('core/inicio')
+          this.functionsService.navigateTo('inicio')
           this.loading = false
         }, 2000);
         //message

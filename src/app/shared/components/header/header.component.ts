@@ -111,7 +111,7 @@ export class HeaderComponent implements OnInit {
     this.rol = this.functionsService.getLocal('role')
 
     if (!this.rol) {
-      this.functionsService.navigateTo("/core/inicio")
+      this.functionsService.navigateTo("/inicio")
     }
 
 
