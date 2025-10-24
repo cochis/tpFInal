@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   user_ID: '64ff4f79da409a7d91056a5b',
   secret: '1f2d1e2e67df',
-  version: "1.3.2.3",
+  version: "1.3.3.0",
   publicKey: "BJqZ8KY_kguwLf27SsteILLRHlWY2pJOvrKlyZNeFlEg4O15ut0t7oYMgXHcLPSh2WYCRPwTS3WEPnhXCMZO4Wg",
   privateKey: "v04F9j6-aAZRvYl25BtZu1cezaWT-m4P0sHtE0JbE7g",
   stripeKeyD: 'pk_test_51PipskAbE4XYrXNxNi1oiwylWr7B9mNMfUfQ070Cy09dDPj5HBFYObSajMGjNzlAynX23dT8thcx8sdJxpnP7Vov00wzIocDLR',
@@ -376,6 +376,7 @@ export const environment = {
   //Variables DEV
   /* base_url: "http://localhost:3008/api",
   text_url: "http://localhost:4200/",
+    socketUrl: 'http://localhost:3008',
   cProvedores: [
     {
       value: "679a73e437dec3f0672e2ec1",
@@ -465,6 +466,8 @@ export const environment = {
   //Variables PROD
   base_url: "https://www.myticketparty.com/api",
   text_url: "https://www.myticketparty.com/",
+  socketUrl: 'https://www.myticketparty.com',
+  //socketUrl: 'https://www.myticketparty.com',
   cProvedores: [
     {
       value: "67bb99a9c539cb99eb40fe22",

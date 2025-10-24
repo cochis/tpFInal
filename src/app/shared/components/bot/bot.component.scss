@@ -1,0 +1,246 @@
+
+:host {
+display: block;
+}
+
+/*
+* 1. Estilos del Botón Flotante (FAB) (MODIFICADO)
+*/
+.chat-fab {
+/* NUEVO: Necesario para que el tooltip se posicione en base a él */
+position: relative;
+
+/* (El resto de estilos de .chat-fab se quedan igual) */
+position: fixed;
+bottom: 20px;
+right: 20px;
+z-index: 1000;
+width: 60px;
+height: 60px;
+border-radius: 50%;
+background-color: #80d0c7;
+color: white;
+border: none;
+display: flex;
+justify-content: center;
+align-items: center;
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+cursor: pointer;
+transition: all 0.2s ease-in-out;
+}
+
+.chat-fab:hover {
+background-color: #80d0c7;
+transform: scale(1.05);
+}
+
+/*
+* 2. Estilos del Modal Overlay (Fondo oscuro) (Sin cambios)
+*/
+.modal-overlay {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.5);
+z-index: 1050;
+display: flex;
+justify-content: center;
+align-items: center;
+animation: fadeIn 0.3s ease-out;
+}
+
+/*
+* 3. Estilos del Popup del Chat (Ventana) (MODIFICADO)
+*/
+.chat-popup {
+width: 350px;
+max-width: 90vw;
+border-radius: 12px; /* Bordes más suaves */
+display: flex;
+flex-direction: column;
+box-shadow: 0 4px 25px rgba(0, 0, 0, 0.15); /* Sombra más suave */
+overflow: hidden;
+background-color: #fff;
+z-index: 1051;
+animation: zoomIn 0.3s ease-out;
+/* Fuente moderna */
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/*
+* 4. Animaciones (Sin cambios)
+*/
+@keyframes fadeIn {
+from { opacity: 0; }
+to { opacity: 1; }
+}
+
+@keyframes zoomIn {
+from {
+opacity: 0;
+transform: scale(0.95);
+}
+to {
+opacity: 1;
+transform: scale(1);
+}
+}
+
+/*
+* 5. Estilos internos (Header, Mensajes, Input) (MODIFICADO)
+*/
+.chat-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 12px 15px;
+background-color: #fff; /* Fondo blanco limpio */
+border-bottom: 1px solid #eee; /* Borde sutil */
+}
+
+/* Contenedor del título y el ícono */
+.chat-title {
+display: flex;
+align-items: center;
+font-weight: 600;
+font-size: 16px;
+color: #333;
+}
+
+/* Estilo para el ícono SVG del bot */
+.chat-icon {
+margin-right: 8px;
+fill: #80d0c7; /* Color del ícono */
+}
+
+.chat-header .toggle-btn {
+background: none;
+border: none;
+font-size: 20px;
+font-weight: bold;
+color: #888;
+cursor: pointer;
+line-height: 1;
+padding: 0 5px;
+}
+
+.chat-header .toggle-btn:hover {
+color: #333;
+}
+
+.chat-messages {
+height: 400px;
+overflow-y: auto;
+padding: 10px;
+display: flex;
+flex-direction: column;
+gap: 8px;
+background-color: #fafafa;
+}
+
+.message {
+padding: 8px 12px;
+border-radius: 16px;
+max-width: 80%;
+word-wrap: break-word;
+line-height: 1.4;
+animation: fadeIn 0.3s ease;
+font-size: 14px;
+}
+
+.message span {
+white-space: pre-wrap;
+}
+
+.message.bot {
+background-color: #f0f0f0;
+color: #333;
+align-self: flex-start;
+}
+
+.message.user {
+background-color: #80d0c7;
+color: white;
+align-self: flex-end;
+}
+
+/*
+* 6. Área del Menú (MODIFICADO)
+*/
+.chat-menu-area {
+display: flex;
+flex-direction: column;
+gap: 8px;
+padding: 10px;
+border-top: 1px solid #eee; /* Borde sutil */
+background-color: #fff;
+max-height: 180px;
+overflow-y: auto;
+}
+
+.menu-option-btn {
+background-color: #fff; /* Botones más limpios */
+border: 1px solid #ddd;
+border-radius: 8px;
+padding: 10px;
+cursor: pointer;
+text-align: left;
+font-size: 14px;
+font-family: inherit; /* Hereda la fuente moderna */
+color: #333;
+transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
+width: 100%;
+}
+
+.menu-option-btn:hover {
+background-color: #f9f9f9;
+border-color: #80d0c7;
+box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/*
+* 7. NUEVO: Estilos para el Tooltip Moderno
+*/
+.fab-tooltip {
+position: absolute;
+/* Posición: a la izquierda del botón */
+right: 75px; /* (Ancho del botón 60px + 15px de espacio) */
+top: 50%;
+transform: translateY(-50%);
+
+/* Apariencia */
+background-color: #333;
+color: white;
+padding: 6px 12px;
+border-radius: 6px;
+font-size: 14px;
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+white-space: nowrap;
+
+/* Oculto por defecto */
+opacity: 0;
+visibility: hidden;
+transition: opacity 0.2s ease, visibility 0.2s ease;
+z-index: 1001;
+}
+
+/* Se muestra al hacer hover sobre el botón padre (.chat-fab) */
+.chat-fab:hover .fab-tooltip {
+opacity: 1;
+visibility: visible;
+}
+
+/* Flecha/Triángulo para el tooltip */
+.fab-tooltip::after {
+content: '';
+position: absolute;
+top: 50%;
+transform: translateY(-50%);
+left: 100%; /* Lado derecho del tooltip */
+border-width: 6px;
+border-style: solid;
+/* Flecha apuntando a la derecha (hacia el botón) */
+border-color: transparent transparent transparent #333;
+}

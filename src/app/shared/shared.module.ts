@@ -9,7 +9,7 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { MessageComponent } from './components/message/message.component';
 import { NavComponent } from './components/nav/nav.component';
 
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { ScannerComponent } from './components/scanner/scanner.component';
@@ -49,6 +49,8 @@ import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/
 import { SharedComponent } from './shared.component';
 import { ChatbotComponent } from './components/chatbot/chatbot.component';
 import { SocialSharedComponent } from './components/social-shared/social-shared.component';
+import { BotComponent } from './components/bot/bot.component';
+
 
 
 
@@ -92,6 +94,7 @@ import { SocialSharedComponent } from './components/social-shared/social-shared.
     SharedComponent,
     ChatbotComponent,
     SocialSharedComponent,
+    BotComponent
 
 
   ],
@@ -120,7 +123,8 @@ import { SocialSharedComponent } from './components/social-shared/social-shared.
     ClockComponent,
     SharedComponent,
     ChatbotComponent,
-    SocialSharedComponent
+    SocialSharedComponent,
+    BotComponent
 
   ],
   providers: [provideHttpClient(withInterceptorsFromDi())],
@@ -132,6 +136,7 @@ import { SocialSharedComponent } from './components/social-shared/social-shared.
     QRCodeModule,
     NgxCurrencyDirective,
     FullCalendarModule,
+    FormsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

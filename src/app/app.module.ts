@@ -23,6 +23,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { SharedModule } from "./shared/shared.module";
+import { BotComponent } from './shared/components/bot/bot.component';
 @NgModule({
   declarations: [
     AppComponent
@@ -58,7 +59,7 @@ import { SharedModule } from "./shared/shared.module";
       registrationStrategy: 'registerWhenStable:10000'
     }),
     NgbModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

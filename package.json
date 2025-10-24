@@ -71,6 +71,7 @@
     "rxjs": "~7.8.0",
     "schematics-scss-migrate": "^2.3.17",
     "secure-ls": "^1.2.6",
+    "socket.io-client": "^4.8.1",
     "sweetalert2": "^11.6.13",
     "tslib": "^2.3.0",
     "web-push": "^3.6.6",
