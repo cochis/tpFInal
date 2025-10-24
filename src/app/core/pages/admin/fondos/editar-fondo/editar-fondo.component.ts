@@ -117,7 +117,7 @@ export class EditarFondoComponent {
       }
       this.fondosService.actualizarFondo(this.fondo).subscribe((resp: any) => {
         this.functionsService.alertUpdate('Fondos')
-        this.functionsService.navigateTo('core/fondos/vista-fondos')
+        this.functionsService.navigateTo('fondos/vista-fondos')
         this.loading = false
       },
         (error) => {
@@ -142,7 +142,7 @@ export class EditarFondoComponent {
 
 
   back() {
-    this.functionsService.navigateTo('core/fondos/vista-fondos')
+    this.functionsService.navigateTo('fondos/vista-fondos')
   }
   cambiarImagen(file: any) {
     this.loading = true

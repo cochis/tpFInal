@@ -113,7 +113,7 @@ export class EditarMonedaComponent {
       }
       this.monedasService.actualizarMoneda(this.moneda).subscribe((resp: any) => {
         this.functionsService.alertUpdate('Monedas')
-        this.functionsService.navigateTo('core/monedas/vista-monedas')
+        this.functionsService.navigateTo('monedas/vista-monedas')
         this.loading = false
       },
         (error) => {
@@ -138,7 +138,7 @@ export class EditarMonedaComponent {
 
 
   back() {
-    this.functionsService.navigateTo('core/monedas/vista-monedas')
+    this.functionsService.navigateTo('monedas/vista-monedas')
   }
 
 }

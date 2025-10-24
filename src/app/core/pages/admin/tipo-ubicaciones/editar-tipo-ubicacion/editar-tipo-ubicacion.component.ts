@@ -119,7 +119,7 @@ export class EditarTipoUbicacionComponent {
       }
       this.tipoUbicacionesService.actualizarTipoUbicacion(this.tipoUbicacion).subscribe((resp: any) => {
         this.functionsService.alertUpdate('Tipo de Ubicaciones')
-        this.functionsService.navigateTo('core/tipo-ubicaciones/vista-tipo-ubicaciones')
+        this.functionsService.navigateTo('tipo-ubicaciones/vista-tipo-ubicaciones')
         this.loading = false
       },
         (error) => {
@@ -153,7 +153,7 @@ export class EditarTipoUbicacionComponent {
       })
   }
   back() {
-    this.functionsService.navigateTo('core/tipo-ubicaciones/vista-tipo-ubicaciones')
+    this.functionsService.navigateTo('tipo-ubicaciones/vista-tipo-ubicaciones')
   }
 
 }

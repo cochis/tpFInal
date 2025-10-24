@@ -60,7 +60,7 @@ export class CrearGrupoComponent {
       this.gruposService.crearGrupo(this.form.value).subscribe((resp: any) => {
 
         this.functionsService.alert('Grupos', 'Grupo creado', 'success')
-        this.functionsService.navigateTo('core/grupos/vista-grupos')
+        this.functionsService.navigateTo('grupos/vista-grupos')
         this.loading = false
       },
         (error) => {
@@ -84,7 +84,7 @@ export class CrearGrupoComponent {
   }
 
   back() {
-    this.functionsService.navigateTo('core/grupos/vista-grupos')
+    this.functionsService.navigateTo('grupos/vista-grupos')
   }
 
 }

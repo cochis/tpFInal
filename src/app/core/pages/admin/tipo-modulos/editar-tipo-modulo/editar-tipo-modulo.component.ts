@@ -117,7 +117,7 @@ export class EditarTipoModuloComponent {
       }
       this.tipoModulosService.actualizarTipoModulo(this.tipoModulo).subscribe((resp: any) => {
         this.functionsService.alertUpdate('TipoModulos')
-        this.functionsService.navigateTo('core/tipo-modulos/vista-tipo-modulos')
+        this.functionsService.navigateTo('tipo-modulos/vista-tipo-modulos')
         this.loading = false
       },
         (error) => {
@@ -142,7 +142,7 @@ export class EditarTipoModuloComponent {
 
 
   back() {
-    this.functionsService.navigateTo('core/tipo-modulos/vista-tipo-modulos')
+    this.functionsService.navigateTo('tipo-modulos/vista-tipo-modulos')
   }
 
 }

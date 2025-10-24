@@ -119,7 +119,7 @@ export class VistaTipoModulosComponent {
   }
   newTipoModulo() {
 
-    this.functionsService.navigateTo('core/tipo-modulos/crear-tipo-modulo')
+    this.functionsService.navigateTo('tipo-modulos/crear-tipo-modulo')
   }
 
 }

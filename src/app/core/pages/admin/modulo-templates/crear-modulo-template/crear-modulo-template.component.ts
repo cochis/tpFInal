@@ -94,7 +94,7 @@ export class CrearModuloTemplateComponent {
       this.form.value.nombre = this.form.value.nombre.toUpperCase().trim()
       this.moduloTemplatesService.crearModuloTemplate(this.form.value).subscribe((resp: any) => {
         this.functionsService.alert('ModuloTemplate', 'ModuloTemplate creado', 'success')
-        this.functionsService.navigateTo('core/modulo-templates/vista-modulo-templates')
+        this.functionsService.navigateTo('modulo-templates/vista-modulo-templates')
         this.loading = false
       },
         (error) => {
@@ -117,7 +117,7 @@ export class CrearModuloTemplateComponent {
   }
 
   back() {
-    this.functionsService.navigateTo('core/modulo-templates/vista-modulo-templates')
+    this.functionsService.navigateTo('modulo-templates/vista-modulo-templates')
   }
 
   disabledBtn() {

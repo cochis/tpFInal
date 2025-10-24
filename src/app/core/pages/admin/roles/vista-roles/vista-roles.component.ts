@@ -115,7 +115,7 @@ export class VistaRolesComponent {
 
   newRol() {
 
-    this.functionsService.navigateTo('core/roles/crear-rol')
+    this.functionsService.navigateTo('roles/crear-rol')
   }
 
 }

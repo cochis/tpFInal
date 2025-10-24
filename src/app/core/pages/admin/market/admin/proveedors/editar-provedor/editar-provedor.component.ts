@@ -310,7 +310,7 @@ export class EditarProvedorComponent implements OnDestroy {
       this.proveedorsService.actualizarProveedor(this.proveedor).subscribe((resp: any) => {
 
         this.functionsService.alertUpdate('Proveedores')
-        this.functionsService.navigateTo('core/proveedores/vista-proveedores')
+        this.functionsService.navigateTo('proveedores/vista-proveedores')
         this.loading = false
       },
         (error) => {
@@ -374,7 +374,7 @@ export class EditarProvedorComponent implements OnDestroy {
 
 
   back() {
-    this.functionsService.navigateTo('core/proveedores/vista-proveedores')
+    this.functionsService.navigateTo('proveedores/vista-proveedores')
   }
   cambiarImagen(file: any, type) {
 

@@ -212,7 +212,7 @@ export class EditarUsuarioComponent {
 
       this.usuariosService.actualizarUsuario(this.usuario).subscribe((resp: any) => {
         this.functionsService.alertUpdate('Usuarios')
-        this.functionsService.navigateTo('core/usuarios/vista-usuarios')
+        this.functionsService.navigateTo('usuarios/vista-usuarios')
         this.loading = false
       },
         (error) => {
@@ -258,7 +258,7 @@ export class EditarUsuarioComponent {
       )
   }
   back() {
-    this.functionsService.navigateTo('core/usuarios/vista-usuarios')
+    this.functionsService.navigateTo('usuarios/vista-usuarios')
   }
   getCatalog(tipo: string, id: string) {
     if (id) {

@@ -69,7 +69,7 @@ export class CrearFondoComponent {
 
 
 
-        this.functionsService.navigateTo('core/fondos/editar-fondo/true/' + resp.fondo.uid)
+        this.functionsService.navigateTo('fondos/editar-fondo/true/' + resp.fondo.uid)
         this.loading = false
       },
         (error) => {
@@ -92,7 +92,7 @@ export class CrearFondoComponent {
   }
 
   back() {
-    this.functionsService.navigateTo('core/fondos/vista-fondos')
+    this.functionsService.navigateTo('fondos/vista-fondos')
   }
 
 

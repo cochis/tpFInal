@@ -72,7 +72,7 @@ export class VistaTipoItemsComponent {
 
   editTipoItem(id: string) {
 
-    this.functionsService.navigateTo(`core/tipo-items/editar-tipo-item/true/${id}`)
+    this.functionsService.navigateTo(`tipo-items/editar-tipo-item/true/${id}`)
 
   }
   isActived(tipoItem: TipoItem) {
@@ -88,7 +88,7 @@ export class VistaTipoItemsComponent {
       })
   }
   viewTipoItem(id: string) {
-    this.functionsService.navigateTo(`core/tipo-items/editar-tipo-item/false/${id}`)
+    this.functionsService.navigateTo(`tipo-items/editar-tipo-item/false/${id}`)
 
   }
   stopLoading() {
@@ -98,7 +98,7 @@ export class VistaTipoItemsComponent {
   }
   newTipoItem() {
 
-    this.functionsService.navigateTo('core/tipo-items/crear-tipo-item')
+    this.functionsService.navigateTo('tipo-items/crear-tipo-item')
   }
 
 }

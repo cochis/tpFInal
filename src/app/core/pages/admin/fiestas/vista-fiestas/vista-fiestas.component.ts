@@ -272,7 +272,7 @@ export class VistaFiestasComponent {
     }, 3000);
   }
   newFiesta() {
-    this.functionsService.navigateTo('core/fiestas/crear-fiesta')
+    this.functionsService.navigateTo('fiestas/crear-fiesta')
   }
   typeOf(val) {
     return typeof (val)

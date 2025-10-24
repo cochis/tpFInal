@@ -115,7 +115,7 @@ export class EditarTipoColorComponent {
       }
       this.tipoColorsService.actualizarTipoColor(this.tipoColor).subscribe((resp: any) => {
         this.functionsService.alertUpdate('TipoColors')
-        this.functionsService.navigateTo('core/tipo-colores/vista-tipo-colores')
+        this.functionsService.navigateTo('tipo-colores/vista-tipo-colores')
         this.loading = false
       },
         (error) => {
@@ -140,7 +140,7 @@ export class EditarTipoColorComponent {
 
 
   back() {
-    this.functionsService.navigateTo('core/tipo-colores/vista-tipo-colores')
+    this.functionsService.navigateTo('tipo-colores/vista-tipo-colores')
   }
 
 }

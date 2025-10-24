@@ -126,7 +126,7 @@ export class VistaEjemplosComponent {
   }
   newEjemplo() {
 
-    this.functionsService.navigateTo('core/ejemplos/crear-ejemplo')
+    this.functionsService.navigateTo('ejemplos/crear-ejemplo')
   }
 
 }

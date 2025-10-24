@@ -163,7 +163,7 @@ export class PerfilComponent {
       this.usuariosService.actualizarUsuario(this.usuario).subscribe((resp: any) => {
         this.form.reset()
         this.functionsService.alertUpdate('Usuarioss')
-        this.functionsService.navigateTo('core/usuarios/vista-usuarios')
+        this.functionsService.navigateTo('usuarios/vista-usuarios')
         this.loading = false
       },
         (error) => {

@@ -151,7 +151,7 @@ export class VistaSalonesComponent {
   }
   newSalon() {
 
-    this.functionsService.navigateTo('core/salones/crear-salon')
+    this.functionsService.navigateTo('salones/crear-salon')
   }
 
 }

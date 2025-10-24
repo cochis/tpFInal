@@ -151,7 +151,7 @@ export class EditarPaqueteComponent {
       }
       this.paquetesService.actualizarPaquete(this.paquete).subscribe((resp: any) => {
         this.functionsService.alertUpdate('Paquetes')
-        this.functionsService.navigateTo('core/paquete/vista-paquetes')
+        this.functionsService.navigateTo('paquete/vista-paquetes')
         this.loading = false
       },
         (error) => {
@@ -210,6 +210,6 @@ export class EditarPaqueteComponent {
       )
   }
   back() {
-    this.functionsService.navigateTo('core/paquete/vista-paquetes')
+    this.functionsService.navigateTo('paquete/vista-paquetes')
   }
 }

@@ -434,7 +434,7 @@ export class EditarDatosComponent {
                   this.proveedor.bannerImg = img
                 }
                 //message
-                this.functionsService.navigateTo(`core/proveedores/editar-datos`)
+                this.functionsService.navigateTo(`proveedores/editar-datos`)
                 this.loading = false
                 this.imgTemp = undefined
                 /* this.getId(this.id) */
@@ -615,7 +615,7 @@ export class EditarDatosComponent {
 
             this.functionsService.navigateTo('/inicio')
           } else {
-            this.functionsService.navigateTo('core/proveedores/editar-datos')
+            this.functionsService.navigateTo('proveedores/editar-datos')
 
           }
           this.loading = false

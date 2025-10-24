@@ -113,7 +113,7 @@ export class EditarRedComponent {
       }
       this.redesService.actualizarRed(this.red).subscribe((resp: any) => {
         this.functionsService.alertUpdate('Redes')
-        this.functionsService.navigateTo('core/redes/vista-redes')
+        this.functionsService.navigateTo('redes/vista-redes')
         this.loading = false
       },
         (error) => {
@@ -138,7 +138,7 @@ export class EditarRedComponent {
 
 
   back() {
-    this.functionsService.navigateTo('core/redes/vista-redes')
+    this.functionsService.navigateTo('redes/vista-redes')
   }
 
 }

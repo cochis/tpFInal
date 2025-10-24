@@ -67,7 +67,7 @@ export class CrearTipoModuloComponent {
       this.tipoModulosService.crearTipoModulo(this.form.value).subscribe((resp: any) => {
 
         this.functionsService.alert('TipoModulo', 'TipoModulo creado', 'success')
-        this.functionsService.navigateTo('core/tipo-modulos/vista-tipo-modulos')
+        this.functionsService.navigateTo('tipo-modulos/vista-tipo-modulos')
         this.loading = false
       },
         (error) => {
@@ -90,7 +90,7 @@ export class CrearTipoModuloComponent {
   }
 
   back() {
-    this.functionsService.navigateTo('core/tipo-modulos/vista-tipo-modulos')
+    this.functionsService.navigateTo('tipo-modulos/vista-tipo-modulos')
   }
 
 }

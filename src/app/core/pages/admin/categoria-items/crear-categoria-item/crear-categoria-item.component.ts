@@ -66,7 +66,7 @@ export class CrearCategoriaItemComponent {
       this.categoriaItemsService.crearCategoriaItem(this.form.value).subscribe((resp: any) => {
 
         this.functionsService.alert('CategoriaItem', 'CategoriaItem creado', 'success')
-        this.functionsService.navigateTo('core/categoria-items/vista-categoria-items')
+        this.functionsService.navigateTo('categoria-items/vista-categoria-items')
         this.loading = false
       },
         (error) => {
@@ -89,7 +89,7 @@ export class CrearCategoriaItemComponent {
   }
 
   back() {
-    this.functionsService.navigateTo('core/categoria-items/vista-categoria-items')
+    this.functionsService.navigateTo('categoria-items/vista-categoria-items')
   }
 
 }

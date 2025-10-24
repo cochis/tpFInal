@@ -205,7 +205,7 @@ export class EditarSalonComponent {
           this.fiestasService.cargarFiestasBySalon(this.salon.uid).subscribe((res: any) => {
             if (res.fiestas.length == 0) {
               this.functionsService.alertUpdate('Ubicación')
-              this.functionsService.navigateTo('core/salones/vista-salones')
+              this.functionsService.navigateTo('salones/vista-salones')
             } else {
               let fsts: any = this.functionsService.getActives(res.fiestas)
               fsts.forEach(fst => {
@@ -229,16 +229,16 @@ export class EditarSalonComponent {
                     this.invitacionesServices.actualizarInvitacion(inv).subscribe(ri => {
 
                       this.functionsService.alertUpdate('Ubicación e Invitaciones')
-                      this.functionsService.navigateTo('core/salones/vista-salones')
+                      this.functionsService.navigateTo('salones/vista-salones')
 
 
                     })
                     this.functionsService.alertUpdate('Ubicación')
-                    this.functionsService.navigateTo('core/salones/vista-salones')
+                    this.functionsService.navigateTo('salones/vista-salones')
 
                   } else {
                     this.functionsService.alertUpdate('Ubicación')
-                    this.functionsService.navigateTo('core/salones/vista-salones')
+                    this.functionsService.navigateTo('salones/vista-salones')
                   }
 
                 }))
@@ -262,7 +262,7 @@ export class EditarSalonComponent {
 
 
             if (resp.proveedors.length == 0) {
-              this.functionsService.navigateTo('core/proveedores/editar-datos')
+              this.functionsService.navigateTo('proveedores/editar-datos')
             } else {
 
               this.functionsService.navigateTo('/')
@@ -367,7 +367,7 @@ export class EditarSalonComponent {
 
   }
   back() {
-    this.functionsService.navigateTo('core/salones/vista-salones')
+    this.functionsService.navigateTo('salones/vista-salones')
   }
   getCatalogos() {
     this.loading = true

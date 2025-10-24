@@ -64,7 +64,7 @@ export class CrearEventoComponent {
       this.eventosService.crearEvento(this.form.value).subscribe((resp: any) => {
 
         this.functionsService.alert('Evento', 'Evento creado', 'success')
-        this.functionsService.navigateTo('core/eventos/vista-eventos')
+        this.functionsService.navigateTo('eventos/vista-eventos')
         this.loading = false
       },
         (error) => {
@@ -87,7 +87,7 @@ export class CrearEventoComponent {
   }
 
   back() {
-    this.functionsService.navigateTo('core/eventos/vista-eventos')
+    this.functionsService.navigateTo('eventos/vista-eventos')
   }
 
 }

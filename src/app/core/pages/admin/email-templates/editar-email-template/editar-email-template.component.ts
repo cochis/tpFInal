@@ -5,7 +5,7 @@ import { Editor, Toolbar } from 'ngx-editor';
 import { CargarEmailTemplate } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
 import { EmailTemplate } from 'src/app/core/models/emailTemplate.model';
 import { EmailTemplatesService } from 'src/app/core/services/emailTemplate.service';
- 
+
 
 import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { environment } from 'src/environments/environment';
@@ -129,7 +129,7 @@ export class EditarEmailTemplateComponent implements OnDestroy {
       }
       this.emailTemplatesService.actualizarEmailTemplate(this.emailTemplate).subscribe((resp: any) => {
         this.functionsService.alertUpdate('EmailTemplates')
-        this.functionsService.navigateTo('core/email-templates/vista-email-templates')
+        this.functionsService.navigateTo('email-templates/vista-email-templates')
         this.loading = false
       },
         (error) => {
@@ -154,7 +154,7 @@ export class EditarEmailTemplateComponent implements OnDestroy {
 
 
   back() {
-    this.functionsService.navigateTo('core/email-templates/vista-email-templates')
+    this.functionsService.navigateTo('email-templates/vista-email-templates')
   }
   ngOnDestroy() {
     this.template.destroy();

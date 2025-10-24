@@ -62,7 +62,7 @@ export class CrearEmailTemplateComponent implements OnDestroy {
       clave: ['', [Validators.required, Validators.minLength(3)]],
       descripcion: ['', [Validators.required, Validators.minLength(3)]],
       template: ['', [Validators.required, Validators.minLength(3)]],
-         activated: [true],
+      activated: [true],
       dateCreated: [this.today],
       lastEdited: [this.today],
     })
@@ -84,7 +84,7 @@ export class CrearEmailTemplateComponent implements OnDestroy {
       }
       this.emailTemplateService.crearEmailTemplate(email).subscribe((resp: any) => {
         this.functionsService.alert('MailTemplate', 'MailTemplate creado', 'success')
-        this.functionsService.navigateTo('core/email-templates/vista-email-templates')
+        this.functionsService.navigateTo('email-templates/vista-email-templates')
         this.loading = false
       },
         (error) => {
@@ -99,7 +99,7 @@ export class CrearEmailTemplateComponent implements OnDestroy {
     }
   }
   back() {
-    this.functionsService.navigateTo('core/email-templates/vista-email-templates')
+    this.functionsService.navigateTo('email-templates/vista-email-templates')
   }
   ngOnDestroy() {
     this.template.destroy();

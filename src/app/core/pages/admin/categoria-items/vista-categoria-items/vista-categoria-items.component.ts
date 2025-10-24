@@ -72,7 +72,7 @@ export class VistaCategoriaItemsComponent {
 
   editCategoriaItem(id: string) {
 
-    this.functionsService.navigateTo(`core/categoria-items/editar-categoria-item/true/${id}`)
+    this.functionsService.navigateTo(`categoria-items/editar-categoria-item/true/${id}`)
 
   }
   isActived(categoriaItem: CategoriaItem) {
@@ -88,7 +88,7 @@ export class VistaCategoriaItemsComponent {
       })
   }
   viewCategoriaItem(id: string) {
-    this.functionsService.navigateTo(`core/categoria-items/editar-categoria-item/false/${id}`)
+    this.functionsService.navigateTo(`categoria-items/editar-categoria-item/false/${id}`)
 
   }
   stopLoading() {
@@ -98,7 +98,7 @@ export class VistaCategoriaItemsComponent {
   }
   newCategoriaItem() {
 
-    this.functionsService.navigateTo('core/categoria-items/crear-categoria-item')
+    this.functionsService.navigateTo('categoria-items/crear-categoria-item')
   }
 
 }

@@ -92,7 +92,7 @@ export class CheckInComponent implements OnInit, AfterViewInit {
     if (role == this.SLN) {
       this.usuariosService.cargarUsuarioById(this.uid).subscribe((resp: CargarUsuario) => {
         if (!resp.usuario.salon || resp.usuario.salon == undefined || resp.usuario.salon == null) {
-          this.functionsService.navigateTo('core/salones/registrar-salon')
+          this.functionsService.navigateTo('salones/registrar-salon')
         }
       },
         (error) => {

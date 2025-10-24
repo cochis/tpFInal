@@ -126,7 +126,7 @@ export class VistaTipoCantidadComponent {
   }
   newTipoCantidad() {
 
-    this.functionsService.navigateTo('core/tipo-cantidad/crear-tipo-cantidad')
+    this.functionsService.navigateTo('tipo-cantidad/crear-tipo-cantidad')
   }
 
 }

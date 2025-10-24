@@ -92,7 +92,7 @@ export class VistaTipoCentrosComponent {
 
   editTipoCentro(id: string) {
 
-    this.functionsService.navigateTo(`core/tipo-centros/editar-tipo-centro/true/${id}`)
+    this.functionsService.navigateTo(`tipo-centros/editar-tipo-centro/true/${id}`)
 
   }
   isActived(rol: TipoCentro) {
@@ -108,13 +108,13 @@ export class VistaTipoCentrosComponent {
       })
   }
   viewTipoCentro(id: string) {
-    this.functionsService.navigateTo(`core/tipo-centros/editar-tipo-centro/false/${id}`)
+    this.functionsService.navigateTo(`tipo-centros/editar-tipo-centro/false/${id}`)
 
   }
 
   newTipoCentro() {
 
-    this.functionsService.navigateTo('core/tipo-centros/crear-tipo-centro')
+    this.functionsService.navigateTo('tipo-centros/crear-tipo-centro')
   }
 
 }

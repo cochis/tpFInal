@@ -201,7 +201,7 @@ export class VistaUsuariosComponent {
     this.functionsService.navigateTo(`/core/usuarios/editar-usuario/false/${id}`)
   }
   newUser() {
-    this.functionsService.navigateTo('core/usuarios/crear-usuario')
+    this.functionsService.navigateTo('usuarios/crear-usuario')
   }
 
   cargarCreador(id: string) {

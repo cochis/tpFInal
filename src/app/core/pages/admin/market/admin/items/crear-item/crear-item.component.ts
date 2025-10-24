@@ -74,7 +74,7 @@ export class CrearItemComponent implements OnInit, OnDestroy {
   ];
   public imagenSubir!: File
   public imgTemp: any = undefined
-   
+
   constructor(
     private fb: FormBuilder,
     private functionsService: FunctionsService,
@@ -402,7 +402,7 @@ export class CrearItemComponent implements OnInit, OnDestroy {
 
   }
   back() {
-    this.functionsService.navigateTo('core/items/vista-items')
+    this.functionsService.navigateTo('items/vista-items')
   }
   getCatalogos() {
 
@@ -570,7 +570,7 @@ export class CrearItemComponent implements OnInit, OnDestroy {
 
             })
             //message
-            //this.functionsService.navigateTo(`core/items/editar-item/true/${this.item.uid}`)
+            //this.functionsService.navigateTo(`items/editar-item/true/${this.item.uid}`)
             this.loading = true
             this.imgTemp = undefined
 
@@ -628,7 +628,7 @@ export class CrearItemComponent implements OnInit, OnDestroy {
                   this.functionsService.navigateTo(`/core/items/editar-item/true/${this.item.uid}`)
                 })
                 //message
-                //this.functionsService.navigateTo(`core/items/editar-item/true/${this.item.uid}`)
+                //this.functionsService.navigateTo(`items/editar-item/true/${this.item.uid}`)
                 this.loading = true
                 this.imgTemp = undefined
 
@@ -657,7 +657,7 @@ export class CrearItemComponent implements OnInit, OnDestroy {
                    //this.item.bannerImg = img
                  }
                  //message
-                 this.functionsService.navigateTo(`core/items/editar-item/true/${this.item.uid}`)
+                 this.functionsService.navigateTo(`items/editar-item/true/${this.item.uid}`)
                  this.loading = true
                  this.imgTemp = undefined
                    this.getId(this.id)  

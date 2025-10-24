@@ -227,7 +227,7 @@ export class VistaBoletosComponent {
     }, 3000);
   }
   newBoleto() {
-    this.functionsService.navigateTo('core/boletos/crear-boleto')
+    this.functionsService.navigateTo('boletos/crear-boleto')
   }
   getInvitados(invitados: any) {
     let totalInvitados = invitados.reduce((sum: any, value: any) => (typeof value.cantidad == "number" ? sum + value.cantidad : sum), 0);

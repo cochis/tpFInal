@@ -119,7 +119,7 @@ export class VistaGruposComponent {
 
   newGrupo() {
 
-    this.functionsService.navigateTo('core/grupos/crear-grupo')
+    this.functionsService.navigateTo('grupos/crear-grupo')
   }
 
 }

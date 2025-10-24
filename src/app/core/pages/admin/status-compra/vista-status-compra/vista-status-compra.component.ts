@@ -124,7 +124,7 @@ export class VistaStatusCompraComponent {
   }
   newStatusCompra() {
 
-    this.functionsService.navigateTo('core/status-compra/crear-status-compra')
+    this.functionsService.navigateTo('status-compra/crear-status-compra')
   }
 
 }

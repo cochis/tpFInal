@@ -99,7 +99,7 @@ export class CrearTipoCantidadComponent {
       this.tipoCantidadesService.crearTipoCantidad(this.form.value).subscribe((resp: any) => {
 
         this.functionsService.alert('TipoCantidad', 'TipoCantidad creado', 'success')
-        this.functionsService.navigateTo('core/tipo-cantidad/vista-tipo-cantidades')
+        this.functionsService.navigateTo('tipo-cantidad/vista-tipo-cantidades')
         this.loading = false
       },
         (error) => {
@@ -123,7 +123,7 @@ export class CrearTipoCantidadComponent {
   }
 
   back() {
-    this.functionsService.navigateTo('core/tipo-cantidad/vista-tipo-cantidades')
+    this.functionsService.navigateTo('tipo-cantidad/vista-tipo-cantidades')
   }
 
 }

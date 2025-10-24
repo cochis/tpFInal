@@ -123,7 +123,7 @@ export class VistaParametrosComponent {
   }
   newParametro() {
 
-    this.functionsService.navigateTo('core/parametros/crear-parametro')
+    this.functionsService.navigateTo('parametros/crear-parametro')
   }
 
 }

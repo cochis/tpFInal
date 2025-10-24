@@ -128,7 +128,7 @@ export class EditarPostComponent implements OnDestroy {
       }
       this.postsService.actualizarPost(this.post).subscribe((resp: any) => {
         this.functionsService.alertUpdate('Posts')
-        this.functionsService.navigateTo('core/posts/vista-posts')
+        this.functionsService.navigateTo('posts/vista-posts')
         this.loading = false
       },
         (error) => {
@@ -194,7 +194,7 @@ export class EditarPostComponent implements OnDestroy {
   }
 
   back() {
-    this.functionsService.navigateTo('core/posts/vista-posts')
+    this.functionsService.navigateTo('posts/vista-posts')
   }
   ngOnDestroy() {
     this.contenido.destroy();

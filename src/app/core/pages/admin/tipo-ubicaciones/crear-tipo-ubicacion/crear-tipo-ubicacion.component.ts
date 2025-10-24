@@ -70,7 +70,7 @@ export class CrearTipoUbicacionComponent {
       this.tipoUbicacionesService.crearTipoUbicacion(this.form.value).subscribe((resp: any) => {
 
         this.functionsService.alert('TipoUbicacion', 'TipoUbicacion creado', 'success')
-        this.functionsService.navigateTo('core/tipo-ubicaciones/vista-tipo-ubicaciones')
+        this.functionsService.navigateTo('tipo-ubicaciones/vista-tipo-ubicaciones')
         this.loading = false
       },
         (error) => {
@@ -102,7 +102,7 @@ export class CrearTipoUbicacionComponent {
       })
   }
   back() {
-    this.functionsService.navigateTo('core/tipo-ubicaciones/vista-tipo-ubicaciones')
+    this.functionsService.navigateTo('tipo-ubicaciones/vista-tipo-ubicaciones')
   }
 
 }

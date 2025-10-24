@@ -124,7 +124,7 @@ export class VistaEstatusCotizacionesComponent {
   }
   newEstatusCotizacion() {
 
-    this.functionsService.navigateTo('core/estatus-cotizaciones/crear-estatus-cotizacion')
+    this.functionsService.navigateTo('estatus-cotizaciones/crear-estatus-cotizacion')
   }
 
 }

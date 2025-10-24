@@ -477,7 +477,7 @@ export class MiCotizacionComponent {
 
       this.cotizacionsService.actualizarCotizacion(this.cotizacion).subscribe((resp: any) => {
         this.functionsService.alertUpdate('Cotizaciones')
-        this.functionsService.navigateTo('core/mis-cotizaciones')
+        this.functionsService.navigateTo('mis-cotizaciones')
         this.loading = false
       },
         (error) => {
@@ -513,7 +513,7 @@ export class MiCotizacionComponent {
 
   }
   back() {
-    this.functionsService.navigateTo('core/mis-cotizaciones')
+    this.functionsService.navigateTo('mis-cotizaciones')
   }
 
   sendPdf() {

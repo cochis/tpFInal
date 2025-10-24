@@ -118,7 +118,7 @@ export class EditarTipoContactoComponent {
       }
       this.tipoContactosService.actualizarTipoContacto(this.tipoContacto).subscribe((resp: any) => {
         this.functionsService.alertUpdate('TipoContactos')
-        this.functionsService.navigateTo('core/tipo-contactos/vista-tipo-contactos')
+        this.functionsService.navigateTo('tipo-contactos/vista-tipo-contactos')
         this.loading = false
       },
         (error) => {
@@ -143,7 +143,7 @@ export class EditarTipoContactoComponent {
 
 
   back() {
-    this.functionsService.navigateTo('core/tipo-contactos/vista-tipo-contactos')
+    this.functionsService.navigateTo('tipo-contactos/vista-tipo-contactos')
   }
 
 }

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FunctionsService } from 'src/app/shared/services/functions.service';
 import { BusquedasService } from 'src/app/shared/services/busquedas.service';
 import { environment } from 'src/environments/environment';
- 
+
 import { CargarEmailTemplates } from 'src/app/core/interfaces/cargar-interfaces.interfaces';
 import { EmailTemplate } from 'src/app/core/models/emailTemplate.model';
 import { EmailTemplatesService } from 'src/app/core/services/emailTemplate.service';
@@ -112,6 +112,6 @@ export class VistaEmailTemplatesComponent {
     }, 3000);
   }
   newEmailTemplate() {
-    this.functionsService.navigateTo('core/email-templates/crear-email-template')
+    this.functionsService.navigateTo('email-templates/crear-email-template')
   }
 }

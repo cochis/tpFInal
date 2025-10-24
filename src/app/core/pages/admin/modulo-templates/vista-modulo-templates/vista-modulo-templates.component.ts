@@ -177,7 +177,7 @@ export class VistaModuloTemplatesComponent {
   }
   newModuloTemplate() {
 
-    this.functionsService.navigateTo('core/modulo-templates/crear-modulo-template')
+    this.functionsService.navigateTo('modulo-templates/crear-modulo-template')
   }
 
 }

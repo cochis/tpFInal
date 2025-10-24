@@ -196,7 +196,7 @@ export class EditarCompraComponent {
       }
       this.comprasService.actualizarCompra(this.compra).subscribe((resp: any) => {
         this.functionsService.alertUpdate('Compras')
-        this.functionsService.navigateTo('core/compras/vista-compras')
+        this.functionsService.navigateTo('compras/vista-compras')
         this.loading = false
       },
         (error) => {
@@ -220,7 +220,7 @@ export class EditarCompraComponent {
 
 
   back() {
-    this.functionsService.navigateTo('core/mis-compras')
+    this.functionsService.navigateTo('mis-compras')
   }
 
 }

@@ -114,7 +114,7 @@ export class EditarStatusCompraComponent {
       }
       this.statusComprasService.actualizarStatusCompra(this.statusCompra).subscribe((resp: any) => {
         this.functionsService.alertUpdate('Estatus de compra')
-        this.functionsService.navigateTo('core/status-compra/vista-status-compra')
+        this.functionsService.navigateTo('status-compra/vista-status-compra')
         this.loading = false
       },
         (error) => {
@@ -139,7 +139,7 @@ export class EditarStatusCompraComponent {
 
 
   back() {
-    this.functionsService.navigateTo('core/status-compra/vista-status-compra')
+    this.functionsService.navigateTo('status-compra/vista-status-compra')
   }
 
 }

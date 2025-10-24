@@ -113,7 +113,7 @@ export class EditarPaisComponent {
       }
       this.paisesService.actualizarPais(this.pais).subscribe((resp: any) => {
         this.functionsService.alertUpdate('Paises')
-        this.functionsService.navigateTo('core/paises/vista-paises')
+        this.functionsService.navigateTo('paises/vista-paises')
         this.loading = false
       },
         (error) => {
@@ -138,7 +138,7 @@ export class EditarPaisComponent {
 
 
   back() {
-    this.functionsService.navigateTo('core/paises/vista-paises')
+    this.functionsService.navigateTo('paises/vista-paises')
   }
 
 }

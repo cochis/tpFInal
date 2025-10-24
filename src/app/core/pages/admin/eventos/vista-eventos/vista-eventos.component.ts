@@ -124,7 +124,7 @@ export class VistaEventosComponent {
   }
   newEvento() {
 
-    this.functionsService.navigateTo('core/eventos/crear-evento')
+    this.functionsService.navigateTo('eventos/crear-evento')
   }
 
 }

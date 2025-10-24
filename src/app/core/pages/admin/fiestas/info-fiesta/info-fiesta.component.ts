@@ -208,7 +208,7 @@ export class InfoFiestaComponent {
       }
       this.fiestasServices.actualizarFiestaByUsr(this.fiesta).subscribe((resp: any) => {
         this.functionsService.alertUpdate('Fiestas')
-        this.functionsService.navigateTo('core/mis-fiestas')
+        this.functionsService.navigateTo('mis-fiestas')
         this.loading = false
       },
         (error) => {

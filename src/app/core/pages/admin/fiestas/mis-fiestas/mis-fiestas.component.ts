@@ -277,7 +277,7 @@ export class MisFiestasComponent implements OnInit, AfterViewInit, OnDestroy {
     return total
   }
   setInvitados(fiesta: string) {
-    this.functionsService.navigateTo(`core/agregar-invitado/true/${fiesta}`)
+    this.functionsService.navigateTo(`agregar-invitado/true/${fiesta}`)
   }
   cambiarImagen(file: any, fiesta: any, i: number) {
     this.imagenSubir = file.target.files[0]

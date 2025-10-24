@@ -63,7 +63,7 @@ export class CrearEstatusCotizacionComponent {
       this.estatusCotizacionesService.crearEstatusCotizacion(this.form.value).subscribe((resp: any) => {
 
         this.functionsService.alert('EstatusCotizacion', 'EstatusCotizacion creado', 'success')
-        this.functionsService.navigateTo('core/estatus-cotizaciones/vista-estatus-cotizaciones')
+        this.functionsService.navigateTo('estatus-cotizaciones/vista-estatus-cotizaciones')
         this.loading = false
       },
         (error) => {
@@ -86,7 +86,7 @@ export class CrearEstatusCotizacionComponent {
   }
 
   back() {
-    this.functionsService.navigateTo('core/estatus-cotizaciones/vista-estatus-cotizaciones')
+    this.functionsService.navigateTo('estatus-cotizaciones/vista-estatus-cotizaciones')
   }
 
 }

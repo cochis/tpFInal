@@ -56,7 +56,7 @@ export class CrearEjemploComponent {
       this.form.value.nombre = this.form.value.nombre.toUpperCase().trim()
       this.ejemplosService.crearEjemplo(this.form.value).subscribe((resp: any) => {
         this.functionsService.alert('Ejemplo', 'Ejemplo creado', 'success')
-        this.functionsService.navigateTo('core/ejemplos/vista-ejemplos')
+        this.functionsService.navigateTo('ejemplos/vista-ejemplos')
         this.loading = false
       },
         (error) => {
@@ -72,7 +72,7 @@ export class CrearEjemploComponent {
     }
   }
   back() {
-    this.functionsService.navigateTo('core/ejemplos/vista-ejemplos')
+    this.functionsService.navigateTo('ejemplos/vista-ejemplos')
   }
   getCatalogos() {
     this.loading = true

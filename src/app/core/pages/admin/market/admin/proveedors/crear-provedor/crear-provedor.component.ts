@@ -137,7 +137,7 @@ export class CrearProvedorComponent implements OnDestroy {
 
         this.proveedor = resp.proveedor
         this.functionsService.alert('Proveedor', 'Proveedor creado', 'success')
-        this.functionsService.navigateTo(`core/proveedores/editar-proveedor/true/${this.proveedor.uid}`)
+        this.functionsService.navigateTo(`proveedores/editar-proveedor/true/${this.proveedor.uid}`)
         this.loading = false
       },
         (error) => {
@@ -159,7 +159,7 @@ export class CrearProvedorComponent implements OnDestroy {
 
   }
   back() {
-    this.functionsService.navigateTo('core/proveedores/vista-proveedores')
+    this.functionsService.navigateTo('proveedores/vista-proveedores')
   }
   getCatalogos() {
     this.tipoContactosService.cargarTipoContactosAll().subscribe((resp: CargarTipoContactos) => {
@@ -246,7 +246,7 @@ export class CrearProvedorComponent implements OnDestroy {
                   this.proveedor.bannerImg = img
                 }
                 //message
-                this.functionsService.navigateTo(`core/proveedores/editar-proveedor/true/${this.proveedor.uid}`)
+                this.functionsService.navigateTo(`proveedores/editar-proveedor/true/${this.proveedor.uid}`)
                 this.loading = true
                 this.imgTemp = undefined
                 /* this.getId(this.id) */

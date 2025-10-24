@@ -66,7 +66,7 @@ export class CrearTipoMediaComponent {
       this.tipoMediasService.crearTipoMedia(this.form.value).subscribe((resp: any) => {
 
         this.functionsService.alert('TipoMedia', 'TipoMedia creado', 'success')
-        this.functionsService.navigateTo('core/tipo-medios/vista-tipo-medios')
+        this.functionsService.navigateTo('tipo-medios/vista-tipo-medios')
         this.loading = false
       },
         (error) => {
@@ -89,7 +89,7 @@ export class CrearTipoMediaComponent {
   }
 
   back() {
-    this.functionsService.navigateTo('core/tipo-medios/vista-tipo-medios')
+    this.functionsService.navigateTo('tipo-medios/vista-tipo-medios')
   }
 
 }

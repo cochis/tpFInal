@@ -120,7 +120,7 @@ export class VistaInvitacionesComponent {
 
   newInvitacion() {
 
-    this.functionsService.navigateTo('core/invitaciones/crear-invitacion')
+    this.functionsService.navigateTo('invitaciones/crear-invitacion')
   }
 
 }

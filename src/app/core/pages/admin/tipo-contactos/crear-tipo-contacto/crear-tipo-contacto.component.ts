@@ -68,7 +68,7 @@ export class CrearTipoContactoComponent {
       this.tipoContactosService.crearTipoContacto(this.form.value).subscribe((resp: any) => {
 
         this.functionsService.alert('TipoContacto', 'TipoContacto creado', 'success')
-        this.functionsService.navigateTo('core/tipo-contactos/vista-tipo-contactos')
+        this.functionsService.navigateTo('tipo-contactos/vista-tipo-contactos')
         this.loading = false
       },
         (error) => {
@@ -91,7 +91,7 @@ export class CrearTipoContactoComponent {
   }
 
   back() {
-    this.functionsService.navigateTo('core/tipo-contactos/vista-tipo-contactos')
+    this.functionsService.navigateTo('tipo-contactos/vista-tipo-contactos')
   }
 
 }

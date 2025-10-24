@@ -123,7 +123,7 @@ export class VistaPostsComponent {
   }
   newPost() {
 
-    this.functionsService.navigateTo('core/posts/crear-post')
+    this.functionsService.navigateTo('posts/crear-post')
   }
 
 }

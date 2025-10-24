@@ -112,7 +112,7 @@ export class EditarGrupoComponent {
 
       this.gruposService.actualizarGrupo(this.grupo).subscribe((resp: any) => {
         this.functionsService.alertUpdate('Grupos')
-        this.functionsService.navigateTo('core/grupos/vista-grupos')
+        this.functionsService.navigateTo('grupos/vista-grupos')
         this.loading = false
       },
         (error) => {
@@ -138,7 +138,7 @@ export class EditarGrupoComponent {
 
 
   back() {
-    this.functionsService.navigateTo('core/grupos/vista-grupos')
+    this.functionsService.navigateTo('grupos/vista-grupos')
   }
 
 }

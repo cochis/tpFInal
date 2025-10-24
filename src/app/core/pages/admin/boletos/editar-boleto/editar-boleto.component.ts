@@ -569,9 +569,9 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
     if ((this.form.value.invitados.length - 1) === index) {
       this.functionsService.alertUpdate('Boletos')
       if (this.role == this.URS) {
-        this.functionsService.navigateTo('core/mis-fiestas')
+        this.functionsService.navigateTo('mis-fiestas')
       } else {
-        this.functionsService.navigateTo('core/boletos/vista-boletos')
+        this.functionsService.navigateTo('boletos/vista-boletos')
       }
       this.ngOnDestroy() // Detiene el polling de nuevo, aunque ya se detuvo al inicio
     }
@@ -609,9 +609,9 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
   back() {
     this.ngOnDestroy()
     if (this.role == this.URS) {
-      this.functionsService.navigateTo('core/mis-fiestas')
+      this.functionsService.navigateTo('mis-fiestas')
     } else {
-      this.functionsService.navigateTo('core/boletos/vista-boletos')
+      this.functionsService.navigateTo('boletos/vista-boletos')
     }
   }
 
@@ -619,7 +619,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
    * Navega de regreso a la lista de fiestas (versión para usuario - URS).
    */
   backURS() {
-    this.functionsService.navigateTo('core/mis-fiestas')
+    this.functionsService.navigateTo('mis-fiestas')
   }
 
   /**
@@ -902,6 +902,7 @@ export class EditarBoletoComponent implements OnInit, OnDestroy {
       // Carga el boleto para obtener el UID del 'shared'
       this.boletosService.cargarBoletoById(boleto).subscribe((resb: any) => {
         var url = this.urlT + 'shared/?evt=' + resb.boleto.shared
+        console.log('url::: ', url);
         // Lógica para copiar al portapapeles
         var aux = document.createElement("input");
         aux.setAttribute("value", url);

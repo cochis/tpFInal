@@ -124,7 +124,7 @@ export class VistaFondosComponent {
   }
   newFondo() {
 
-    this.functionsService.navigateTo('core/fondos/crear-fondo')
+    this.functionsService.navigateTo('fondos/crear-fondo')
   }
 
 }

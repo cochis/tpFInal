@@ -156,7 +156,7 @@ export class VistaComprasComponent {
 
   newCompra() {
 
-    this.functionsService.navigateTo('core/compras/crear-compra/' + this.uid)
+    this.functionsService.navigateTo('compras/crear-compra/' + this.uid)
   }
   getTotal(i) {
 

@@ -115,7 +115,7 @@ export class EditarTipoCentroComponent {
       }
       this.tipoCentrosService.actualizarTipoCentro(this.tipoCentro).subscribe((resp: any) => {
         this.functionsService.alertUpdate('Tipo de centros de eventos')
-        this.functionsService.navigateTo('core/tipo-centros/vista-tipo-centros')
+        this.functionsService.navigateTo('tipo-centros/vista-tipo-centros')
         this.loading = false
       },
         (error) => {
@@ -140,7 +140,7 @@ export class EditarTipoCentroComponent {
 
 
   back() {
-    this.functionsService.navigateTo('core/tipo-centros/vista-tipo-centros')
+    this.functionsService.navigateTo('tipo-centros/vista-tipo-centros')
   }
 
 }

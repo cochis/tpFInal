@@ -127,7 +127,7 @@ export class VistaPaquetesComponent {
   }
   newPaquete() {
 
-    this.functionsService.navigateTo('core/paquete/crear-paquete')
+    this.functionsService.navigateTo('paquete/crear-paquete')
   }
 
 }

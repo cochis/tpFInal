@@ -65,7 +65,7 @@ export class CrearParametroComponent {
       this.parametrosService.crearParametro(this.form.value).subscribe((resp: any) => {
 
         this.functionsService.alert('Parametro', 'Parametro creado', 'success')
-        this.functionsService.navigateTo('core/parametros/vista-parametros')
+        this.functionsService.navigateTo('parametros/vista-parametros')
         this.loading = false
       },
         (error) => {
@@ -88,7 +88,7 @@ export class CrearParametroComponent {
   }
 
   back() {
-    this.functionsService.navigateTo('core/parametros/vista-parametros')
+    this.functionsService.navigateTo('parametros/vista-parametros')
   }
 
 }

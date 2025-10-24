@@ -64,7 +64,7 @@ export class CrearPaisComponent {
       this.paisesService.crearPais(this.form.value).subscribe((resp: any) => {
 
         this.functionsService.alert('Pais', 'Pais creado', 'success')
-        this.functionsService.navigateTo('core/paises/vista-paises')
+        this.functionsService.navigateTo('paises/vista-paises')
         this.loading = false
       },
         (error) => {
@@ -87,7 +87,7 @@ export class CrearPaisComponent {
   }
 
   back() {
-    this.functionsService.navigateTo('core/paises/vista-paises')
+    this.functionsService.navigateTo('paises/vista-paises')
   }
 
 }

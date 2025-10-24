@@ -521,10 +521,10 @@ export class EditarItemComponent implements OnDestroy {
         this.functionsService.alert('Producto o servicio', 'Editado', 'success')
         if (this.rol == this.ADM) {
 
-          this.functionsService.navigateTo('core/items/vista-items')
+          this.functionsService.navigateTo('items/vista-items')
           this.loading = false
         } else {
-          this.functionsService.navigateTo('core/mis-productos')
+          this.functionsService.navigateTo('mis-productos')
           this.loading = false
 
         }
@@ -551,7 +551,7 @@ export class EditarItemComponent implements OnDestroy {
 
 
   back() {
-    this.functionsService.navigateTo('core/items/vista-items')
+    this.functionsService.navigateTo('items/vista-items')
   }
   getCatalogos() {
     this.tipoContactosService.cargarTipoContactosAll().subscribe((resp: CargarTipoContactos) => {

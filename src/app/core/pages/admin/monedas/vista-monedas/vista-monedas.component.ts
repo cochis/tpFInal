@@ -125,7 +125,7 @@ export class VistaMonedasComponent {
   }
   newMoneda() {
 
-    this.functionsService.navigateTo('core/monedas/crear-moneda')
+    this.functionsService.navigateTo('monedas/crear-moneda')
   }
 
 }

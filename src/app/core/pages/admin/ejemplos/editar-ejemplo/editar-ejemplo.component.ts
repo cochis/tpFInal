@@ -112,7 +112,7 @@ export class EditarEjemploComponent {
       }
       this.ejemplosService.actualizarEjemplo(this.ejemplo).subscribe((resp: any) => {
         this.functionsService.alertUpdate('Ejemplos')
-        this.functionsService.navigateTo('core/ejemplos/vista-ejemplos')
+        this.functionsService.navigateTo('ejemplos/vista-ejemplos')
         this.loading = false
       },
         (error) => {
@@ -127,7 +127,7 @@ export class EditarEjemploComponent {
     }
   }
   back() {
-    this.functionsService.navigateTo('core/ejemplos/vista-ejemplos')
+    this.functionsService.navigateTo('ejemplos/vista-ejemplos')
   }
   getCatalogos() {
     this.loading = true

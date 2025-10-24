@@ -117,7 +117,7 @@ export class EditarCategoriaItemComponent {
       }
       this.categoriaItemsService.actualizarCategoriaItem(this.categoriaItem).subscribe((resp: any) => {
         this.functionsService.alertUpdate('CategoriaItems')
-        this.functionsService.navigateTo('core/categoria-items/vista-categoria-items')
+        this.functionsService.navigateTo('categoria-items/vista-categoria-items')
         this.loading = false
       },
         (error) => {
@@ -142,7 +142,7 @@ export class EditarCategoriaItemComponent {
 
 
   back() {
-    this.functionsService.navigateTo('core/categoria-items/vista-categoria-items')
+    this.functionsService.navigateTo('categoria-items/vista-categoria-items')
   }
 
 }

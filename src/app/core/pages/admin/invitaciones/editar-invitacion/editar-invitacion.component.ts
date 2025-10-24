@@ -1477,9 +1477,9 @@ export class EditarInvitacionComponent {
 
           this.functionsService.alertUpdate('Invitación')
           if (this.rol != this.URS) {
-            this.functionsService.navigateTo('core/fiestas/vista-fiestas')
+            this.functionsService.navigateTo('fiestas/vista-fiestas')
           } else {
-            this.functionsService.navigateTo('core/mis-fiestas')
+            this.functionsService.navigateTo('mis-fiestas')
           }
         })
       }, 500);
@@ -1508,16 +1508,16 @@ export class EditarInvitacionComponent {
           this.invitacion = res.invitacion
 
           this.functionsService.alertUpdate('Invitación')
-          this.functionsService.navigateTo('core/fiestas/vista-fiestas')
+          this.functionsService.navigateTo('fiestas/vista-fiestas')
         })
       }, 500);
     }
   }
   back() {
     if (this.rol == this.ADM || this.rol == this.SLN || this.rol == this.ANF) {
-      this.functionsService.navigateTo('core/fiestas/vista-fiestas')
+      this.functionsService.navigateTo('fiestas/vista-fiestas')
     } else {
-      this.functionsService.navigateTo('core/mis-fiestas')
+      this.functionsService.navigateTo('mis-fiestas')
     }
   }
   get itinerarios(): FormArray {

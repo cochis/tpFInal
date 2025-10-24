@@ -117,7 +117,7 @@ export class EditarTipoItemComponent {
       }
       this.tipoItemsService.actualizarTipoItem(this.tipoItem).subscribe((resp: any) => {
         this.functionsService.alertUpdate('TipoItems')
-        this.functionsService.navigateTo('core/tipo-items/vista-tipo-items')
+        this.functionsService.navigateTo('tipo-items/vista-tipo-items')
         this.loading = false
       },
         (error) => {
@@ -142,7 +142,7 @@ export class EditarTipoItemComponent {
 
 
   back() {
-    this.functionsService.navigateTo('core/tipo-items/vista-tipo-items')
+    this.functionsService.navigateTo('tipo-items/vista-tipo-items')
   }
 
 }

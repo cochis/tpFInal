@@ -183,7 +183,7 @@ export class RegistarSalonComponent {
         this.usuariosService.actualizarUsuario(this.usuario).subscribe((resp: CargarUsuario) => {
           this.functionsService.alert('Ubicaciones', 'Se ha registrado tu centro de eventos', 'success')
           this.loading = false
-          this.functionsService.navigateTo(`core/salones/editar-salon/true/${this.usuario.salon}`)
+          this.functionsService.navigateTo(`salones/editar-salon/true/${this.usuario.salon}`)
 
         },
           (error) => {
@@ -256,7 +256,7 @@ export class RegistarSalonComponent {
       })
   }
   back() {
-    this.functionsService.navigateTo('core/salones/vista-salones')
+    this.functionsService.navigateTo('salones/vista-salones')
   }
   showInfo(content) {
     this.modalService.open(content, { fullscreen: true });

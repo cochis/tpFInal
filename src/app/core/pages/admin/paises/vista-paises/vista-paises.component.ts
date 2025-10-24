@@ -115,7 +115,7 @@ export class VistaPaisesComponent {
   }
   newPais() {
 
-    this.functionsService.navigateTo('core/paises/crear-pais')
+    this.functionsService.navigateTo('paises/crear-pais')
   }
 
 }

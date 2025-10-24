@@ -123,7 +123,7 @@ export class VistaTipoUbicacionesComponent {
   }
   newTipoUbicacion() {
 
-    this.functionsService.navigateTo('core/tipo-ubicaciones/crear-tipo-ubicacion')
+    this.functionsService.navigateTo('tipo-ubicaciones/crear-tipo-ubicacion')
   }
 
 }

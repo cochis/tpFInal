@@ -119,7 +119,7 @@ export class EditarRolComponent {
 
       this.rolesService.actualizarRole(this.rol).subscribe((resp: any) => {
         this.functionsService.alertUpdate('Roles')
-        this.functionsService.navigateTo('core/roles/vista-roles')
+        this.functionsService.navigateTo('roles/vista-roles')
         this.loading = false
       },
         (error) => {
@@ -142,7 +142,7 @@ export class EditarRolComponent {
 
 
   back() {
-    this.functionsService.navigateTo('core/roles/vista-roles')
+    this.functionsService.navigateTo('roles/vista-roles')
   }
 
 }

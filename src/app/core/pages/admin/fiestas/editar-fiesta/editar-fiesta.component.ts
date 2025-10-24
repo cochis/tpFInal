@@ -338,7 +338,7 @@ export class EditarFiestaComponent {
 
           this.invitacionsSevices.actualizarInvitacion(invi).subscribe((resp) => {
 
-            this.functionsService.navigateTo('core/fiestas/vista-fiestas')
+            this.functionsService.navigateTo('fiestas/vista-fiestas')
           },
             (error) => {
               console.error('error::: ', error);
@@ -489,7 +489,7 @@ export class EditarFiestaComponent {
     })
   }
   back() {
-    this.functionsService.navigateTo('core/fiestas/vista-fiestas')
+    this.functionsService.navigateTo('fiestas/vista-fiestas')
   }
 
   calcularItems(items) {

@@ -117,7 +117,7 @@ export class EditarTipoMediaComponent {
       }
       this.tipoMediasService.actualizarTipoMedia(this.tipoMedia).subscribe((resp: any) => {
         this.functionsService.alertUpdate('TipoMedias')
-        this.functionsService.navigateTo('core/tipo-medios/vista-tipo-medios')
+        this.functionsService.navigateTo('tipo-medios/vista-tipo-medios')
         this.loading = false
       },
         (error) => {
@@ -142,7 +142,7 @@ export class EditarTipoMediaComponent {
 
 
   back() {
-    this.functionsService.navigateTo('core/tipo-medios/vista-tipo-medios')
+    this.functionsService.navigateTo('tipo-medios/vista-tipo-medios')
   }
 
 }

@@ -115,7 +115,7 @@ export class EditarEstatusCotizacionComponent {
       }
       this.estatusCotizacionesService.actualizarEstatusCotizacion(this.estatusCotizacion).subscribe((resp: any) => {
         this.functionsService.alertUpdate('EstatusCotizaciones')
-        this.functionsService.navigateTo('core/estatus-cotizaciones/vista-estatus-cotizaciones')
+        this.functionsService.navigateTo('estatus-cotizaciones/vista-estatus-cotizaciones')
         this.loading = false
       },
         (error) => {
@@ -140,7 +140,7 @@ export class EditarEstatusCotizacionComponent {
 
 
   back() {
-    this.functionsService.navigateTo('core/estatus-cotizaciones/vista-estatus-cotizaciones')
+    this.functionsService.navigateTo('estatus-cotizaciones/vista-estatus-cotizaciones')
   }
 
 }

@@ -216,7 +216,7 @@ export class CrearUsuarioComponent {
         this.usuariosService.crearUsuarioSalon(obj, this.uid).subscribe((resp: any) => {
 
           //Message
-          this.functionsService.navigateTo('core/usuarios/vista-usuarios')
+          this.functionsService.navigateTo('usuarios/vista-usuarios')
           this.loading = false
         },
           (error) => {
@@ -241,14 +241,14 @@ export class CrearUsuarioComponent {
             this.usuariosService.actualizarUsuario(usr).subscribe((resp) => {
 
               this.functionsService.alertUpdate('Usuarios')
-              this.functionsService.navigateTo('core/usuarios/vista-usuarios')
+              this.functionsService.navigateTo('usuarios/vista-usuarios')
               this.loading = false
 
             })
           }
           //Message
           this.functionsService.alertUpdate('Usuarios')
-          this.functionsService.navigateTo('core/usuarios/vista-usuarios')
+          this.functionsService.navigateTo('usuarios/vista-usuarios')
           this.loading = false
         },
           (error) => {
@@ -276,7 +276,7 @@ export class CrearUsuarioComponent {
   }
 
   back() {
-    this.functionsService.navigateTo('core/usuarios/vista-usuarios')
+    this.functionsService.navigateTo('usuarios/vista-usuarios')
   }
 
 }

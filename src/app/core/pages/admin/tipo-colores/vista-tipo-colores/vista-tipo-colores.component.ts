@@ -71,7 +71,7 @@ export class VistaTipoColoresComponent {
 
   editTipoColor(id: string) {
 
-    this.functionsService.navigateTo(`core/tipo-colores/editar-tipo-color/true/${id}`)
+    this.functionsService.navigateTo(`tipo-colores/editar-tipo-color/true/${id}`)
 
   }
   isActived(tipoColor: TipoColor) {
@@ -87,7 +87,7 @@ export class VistaTipoColoresComponent {
       })
   }
   viewTipoColor(id: string) {
-    this.functionsService.navigateTo(`core/tipo-colores/editar-tipo-color/false/${id}`)
+    this.functionsService.navigateTo(`tipo-colores/editar-tipo-color/false/${id}`)
 
   }
   stopLoading() {
@@ -97,7 +97,7 @@ export class VistaTipoColoresComponent {
   }
   newTipoColor() {
 
-    this.functionsService.navigateTo('core/tipo-colores/crear-tipo-color')
+    this.functionsService.navigateTo('tipo-colores/crear-tipo-color')
   }
 
 }

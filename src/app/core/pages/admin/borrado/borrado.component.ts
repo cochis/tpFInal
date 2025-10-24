@@ -273,7 +273,7 @@ export class BorradoComponent {
   }
 
   back() {
-    this.functionsService.navigateTo('core/roles/vista-roles')
+    this.functionsService.navigateTo('roles/vista-roles')
   }
 
 }

@@ -64,7 +64,7 @@ export class CrearMonedaComponent {
       this.monedasService.crearMoneda(this.form.value).subscribe((resp: any) => {
 
         this.functionsService.alert('Moneda', 'Moneda creado', 'success')
-        this.functionsService.navigateTo('core/monedas/vista-monedas')
+        this.functionsService.navigateTo('monedas/vista-monedas')
         this.loading = false
       },
         (error) => {
@@ -87,7 +87,7 @@ export class CrearMonedaComponent {
   }
 
   back() {
-    this.functionsService.navigateTo('core/monedas/vista-monedas')
+    this.functionsService.navigateTo('monedas/vista-monedas')
   }
 
 }

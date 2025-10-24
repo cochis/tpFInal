@@ -64,7 +64,7 @@ export class CrearTipoColorComponent {
       this.tipoColorsService.crearTipoColor(this.form.value).subscribe((resp: any) => {
 
         this.functionsService.alert('TipoColor', 'TipoColor creado', 'success')
-        this.functionsService.navigateTo('core/tipo-colores/vista-tipo-colores')
+        this.functionsService.navigateTo('tipo-colores/vista-tipo-colores')
         this.loading = false
       },
         (error) => {
@@ -87,7 +87,7 @@ export class CrearTipoColorComponent {
   }
 
   back() {
-    this.functionsService.navigateTo('core/tipo-colores/vista-tipo-colores')
+    this.functionsService.navigateTo('tipo-colores/vista-tipo-colores')
   }
 
 }

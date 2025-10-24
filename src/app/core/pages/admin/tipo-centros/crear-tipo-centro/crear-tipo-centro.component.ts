@@ -66,7 +66,7 @@ export class CrearTipoCentroComponent {
       this.tipoCentrosService.crearTipoCentro(this.form.value).subscribe((resp: any) => {
 
         this.functionsService.alert('TipoCentro', 'TipoCentro creado', 'success')
-        this.functionsService.navigateTo('core/tipo-centros/vista-tipo-centros')
+        this.functionsService.navigateTo('tipo-centros/vista-tipo-centros')
         this.loading = false
       },
         (error) => {
@@ -89,7 +89,7 @@ export class CrearTipoCentroComponent {
   }
 
   back() {
-    this.functionsService.navigateTo('core/tipo-centros/vista-tipo-centros')
+    this.functionsService.navigateTo('tipo-centros/vista-tipo-centros')
   }
 
 }

@@ -64,7 +64,7 @@ export class CrearRedComponent {
       this.redesService.crearRed(this.form.value).subscribe((resp: any) => {
 
         this.functionsService.alert('Red', 'Red creado', 'success')
-        this.functionsService.navigateTo('core/redes/vista-redes')
+        this.functionsService.navigateTo('redes/vista-redes')
         this.loading = false
       },
         (error) => {
@@ -87,7 +87,7 @@ export class CrearRedComponent {
   }
 
   back() {
-    this.functionsService.navigateTo('core/redes/vista-redes')
+    this.functionsService.navigateTo('redes/vista-redes')
   }
 
 }

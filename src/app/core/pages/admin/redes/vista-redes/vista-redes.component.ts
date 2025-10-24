@@ -122,7 +122,7 @@ export class VistaRedesComponent {
   }
   newRed() {
 
-    this.functionsService.navigateTo('core/redes/crear-red')
+    this.functionsService.navigateTo('redes/crear-red')
   }
 
 }

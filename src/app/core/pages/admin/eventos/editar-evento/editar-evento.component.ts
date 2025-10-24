@@ -113,7 +113,7 @@ export class EditarEventoComponent {
       }
       this.eventosService.actualizarEvento(this.evento).subscribe((resp: any) => {
         this.functionsService.alertUpdate('Eventos')
-        this.functionsService.navigateTo('core/eventos/vista-eventos')
+        this.functionsService.navigateTo('eventos/vista-eventos')
         this.loading = false
       },
         (error) => {
@@ -138,7 +138,7 @@ export class EditarEventoComponent {
 
 
   back() {
-    this.functionsService.navigateTo('core/eventos/vista-eventos')
+    this.functionsService.navigateTo('eventos/vista-eventos')
   }
 
 }

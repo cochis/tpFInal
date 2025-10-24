@@ -70,7 +70,7 @@ export class VistaTipoMediasComponent {
 
   editTipoMedia(id: string) {
 
-    this.functionsService.navigateTo(`core/tipo-medios/editar-tipo-medio/true/${id}`)
+    this.functionsService.navigateTo(`tipo-medios/editar-tipo-medio/true/${id}`)
 
   }
   isActived(tipoMedia: TipoMedia) {
@@ -86,7 +86,7 @@ export class VistaTipoMediasComponent {
       })
   }
   viewTipoMedia(id: string) {
-    this.functionsService.navigateTo(`core/tipo-medios/editar-tipo-medio/false/${id}`)
+    this.functionsService.navigateTo(`tipo-medios/editar-tipo-medio/false/${id}`)
 
   }
   stopLoading() {
@@ -96,7 +96,7 @@ export class VistaTipoMediasComponent {
   }
   newTipoMedia() {
 
-    this.functionsService.navigateTo('core/tipo-medios/crear-tipo-medio')
+    this.functionsService.navigateTo('tipo-medios/crear-tipo-medio')
   }
 
 }

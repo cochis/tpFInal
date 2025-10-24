@@ -117,7 +117,7 @@ export class EditarParametroComponent {
       }
       this.parametrosService.actualizarParametro(this.parametro).subscribe((resp: any) => {
         this.functionsService.alertUpdate('Parametros')
-        this.functionsService.navigateTo('core/parametros/vista-parametros')
+        this.functionsService.navigateTo('parametros/vista-parametros')
         this.loading = false
       },
         (error) => {
@@ -142,7 +142,7 @@ export class EditarParametroComponent {
 
 
   back() {
-    this.functionsService.navigateTo('core/parametros/vista-parametros')
+    this.functionsService.navigateTo('parametros/vista-parametros')
   }
 
 }

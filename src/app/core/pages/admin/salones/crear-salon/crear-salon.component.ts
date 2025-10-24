@@ -141,7 +141,7 @@ export class CrearSalonComponent {
       this.salonesService.crearSalon(this.form.value).subscribe((resp: any) => {
 
         this.functionsService.alert('Centro de eventos', 'Creado', 'success')
-        this.functionsService.navigateTo(`core/salones/editar-salon/true/${resp.salon.uid}`)
+        this.functionsService.navigateTo(`salones/editar-salon/true/${resp.salon.uid}`)
         this.loading = false
       },
         (error) => {
@@ -265,7 +265,7 @@ export class CrearSalonComponent {
   }
   back() {
     this.functionsService.navigateTo('..')
-    /* this.functionsService.navigateTo('core/salones/vista-salones') */
+    /* this.functionsService.navigateTo('salones/vista-salones') */
   }
 
 

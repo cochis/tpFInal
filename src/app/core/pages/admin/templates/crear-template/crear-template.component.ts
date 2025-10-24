@@ -150,7 +150,7 @@ export class CrearTemplateComponent {
 
 
   back() {
-    this.functionsService.navigateTo('core/modulo-templates/vista-modulo-templates')
+    this.functionsService.navigateTo('modulo-templates/vista-modulo-templates')
   }
 
   disabledBtn() {

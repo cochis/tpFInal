@@ -65,7 +65,7 @@ export class CrearStatusCompraComponent {
       this.statusComprasService.crearStatusCompra(this.form.value).subscribe((resp: any) => {
 
         this.functionsService.alert('Estatus de compra', 'Estatus de compra creado', 'success')
-        this.functionsService.navigateTo('core/status-compra/vista-status-compra')
+        this.functionsService.navigateTo('status-compra/vista-status-compra')
         this.loading = false
       },
         (error) => {
@@ -88,7 +88,7 @@ export class CrearStatusCompraComponent {
   }
 
   back() {
-    this.functionsService.navigateTo('core/status-compra/vista-status-compra')
+    this.functionsService.navigateTo('status-compra/vista-status-compra')
   }
 
 }

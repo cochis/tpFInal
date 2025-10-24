@@ -82,7 +82,7 @@ export class CrearPostComponent implements OnDestroy {
       this.postsService.crearPost(this.form.value).subscribe((resp: any) => {
 
         this.functionsService.alert('Post', 'Post creado', 'success')
-        this.functionsService.navigateTo('core/posts/editar-post/true/' + resp.post.uid)
+        this.functionsService.navigateTo('posts/editar-post/true/' + resp.post.uid)
         this.loading = false
       },
         (error) => {
@@ -105,7 +105,7 @@ export class CrearPostComponent implements OnDestroy {
   }
 
   back() {
-    this.functionsService.navigateTo('core/posts/vista-posts')
+    this.functionsService.navigateTo('posts/vista-posts')
   }
   ngOnDestroy() {
     this.contenido.destroy();

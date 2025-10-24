@@ -157,7 +157,7 @@ export class CrearBoletoComponent {
           fiesta.usuarioCreated = undefined
           fiesta.lastEdited = this.functionsService.getToday()
           this.fiestasService.actualizarFiesta(fiesta).subscribe(resp => {
-            this.functionsService.navigateTo('core/boletos/vista-boletos')
+            this.functionsService.navigateTo('boletos/vista-boletos')
             this.loading = false
           })
         })
@@ -184,7 +184,7 @@ export class CrearBoletoComponent {
   }
 
   back() {
-    this.functionsService.navigateTo('core/boletos/vista-boletos')
+    this.functionsService.navigateTo('boletos/vista-boletos')
   }
   get total() {
     var total = 0

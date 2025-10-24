@@ -134,7 +134,7 @@ export class VistaProvedorsComponent {
   }
   newProveedor() {
 
-    this.functionsService.navigateTo('core/proveedores/crear-proveedor')
+    this.functionsService.navigateTo('proveedores/crear-proveedor')
   }
 
 

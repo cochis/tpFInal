@@ -98,7 +98,7 @@ export class VistaTipoContactosComponent {
 
   editTipoContacto(id: string) {
 
-    this.functionsService.navigateTo(`core/tipo-contactos/editar-tipo-contacto/true/${id}`)
+    this.functionsService.navigateTo(`tipo-contactos/editar-tipo-contacto/true/${id}`)
 
   }
   isActived(tipoContacto: TipoContacto) {
@@ -114,7 +114,7 @@ export class VistaTipoContactosComponent {
       })
   }
   viewTipoContacto(id: string) {
-    this.functionsService.navigateTo(`core/tipo-contactos/editar-tipo-contacto/false/${id}`)
+    this.functionsService.navigateTo(`tipo-contactos/editar-tipo-contacto/false/${id}`)
 
   }
   stopLoading() {
@@ -124,7 +124,7 @@ export class VistaTipoContactosComponent {
   }
   newTipoContacto() {
 
-    this.functionsService.navigateTo('core/tipo-contactos/crear-tipo-contacto')
+    this.functionsService.navigateTo('tipo-contactos/crear-tipo-contacto')
   }
 
 }

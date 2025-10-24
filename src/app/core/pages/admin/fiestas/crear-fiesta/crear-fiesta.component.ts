@@ -249,10 +249,10 @@ export class CrearFiestaComponent {
 
           /*   if (rp.fiesta.invitacion.includes('default')) {
   
-              this.functionsService.navigateTo(`core/invitaciones/editar-invitacion/true/${resp.fiesta.uid}`)
+              this.functionsService.navigateTo(`invitaciones/editar-invitacion/true/${resp.fiesta.uid}`)
             } else {
   
-              this.functionsService.navigateTo(`core/fiestas/vista-fiestas`)
+              this.functionsService.navigateTo(`fiestas/vista-fiestas`)
             } */
 
         } else {
@@ -262,7 +262,7 @@ export class CrearFiestaComponent {
           this.usuariosService.actualizarUsuario(this.usuario).subscribe((respU: any) => {
             this.loading = false
             this.functionsService.alert('Fiestas', 'Fiesta creada', 'success')
-            this.functionsService.navigateTo(`core/fiestas/editar-fiesta/true/${resp.fiesta.uid}`)
+            this.functionsService.navigateTo(`fiestas/editar-fiesta/true/${resp.fiesta.uid}`)
             /* if (rp.fiesta.invitacion.includes('default')) {
               Swal.fire({
                 title: "¿ Deseas agregar alguna imagen ?",
@@ -271,13 +271,13 @@ export class CrearFiestaComponent {
                 confirmButtonText: "Si",
                 denyButtonText: `No`
               }).then((result) => {
-                this.functionsService.navigateTo(`core/fiestas/editar-fiesta/true/${resp.fiesta.uid}`)
+                this.functionsService.navigateTo(`fiestas/editar-fiesta/true/${resp.fiesta.uid}`)
               });
-              //this.functionsService.navigateTo(`core/invitaciones/editar-invitacion/true/${resp.fiesta.uid}`)
-              //this.functionsService.navigateTo(`core/mis-fiestas`)
+              //this.functionsService.navigateTo(`invitaciones/editar-invitacion/true/${resp.fiesta.uid}`)
+              //this.functionsService.navigateTo(`mis-fiestas`)
             } else {
 
-              this.functionsService.navigateTo(`core/fiestas/vista-fiestas`)
+              this.functionsService.navigateTo(`fiestas/vista-fiestas`)
             } */
 
           })
@@ -365,7 +365,7 @@ export class CrearFiestaComponent {
     })
   }
   back() {
-    this.functionsService.navigateTo('core/fiestas/vista-fiestas')
+    this.functionsService.navigateTo('fiestas/vista-fiestas')
   }
   showTemplate(id) {
     if (id == 'default') {

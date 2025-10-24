@@ -96,7 +96,7 @@ export class EditarTipoCantidadComponent {
       }
       this.tipoCantidadesService.actualizarTipoCantidad(this.tipoCantidad).subscribe((resp: any) => {
         this.functionsService.alertUpdate('TipoCantidades')
-        this.functionsService.navigateTo('core/tipo-cantidad/vista-tipo-cantidades')
+        this.functionsService.navigateTo('tipo-cantidad/vista-tipo-cantidades')
         this.loading = false
       },
         (error) => {
@@ -111,6 +111,6 @@ export class EditarTipoCantidadComponent {
     }
   }
   back() {
-    this.functionsService.navigateTo('core/tipo-cantidad/vista-tipo-cantidades')
+    this.functionsService.navigateTo('tipo-cantidad/vista-tipo-cantidades')
   }
 }

@@ -181,7 +181,7 @@ export class MisCotizacionesComponent {
 
   newCotizacion() {
 
-    this.functionsService.navigateTo('core/cotizaciones/crear-cotizacion')
+    this.functionsService.navigateTo('cotizaciones/crear-cotizacion')
   }
   getImagen(photos, i) {
     var img = ''

@@ -66,7 +66,7 @@ export class CrearTipoItemComponent {
       this.tipoItemsService.crearTipoItem(this.form.value).subscribe((resp: any) => {
 
         this.functionsService.alert('TipoItem', 'TipoItem creado', 'success')
-        this.functionsService.navigateTo('core/tipo-items/vista-tipo-items')
+        this.functionsService.navigateTo('tipo-items/vista-tipo-items')
         this.loading = false
       },
         (error) => {
@@ -89,7 +89,7 @@ export class CrearTipoItemComponent {
   }
 
   back() {
-    this.functionsService.navigateTo('core/tipo-items/vista-tipo-items')
+    this.functionsService.navigateTo('tipo-items/vista-tipo-items')
   }
 
 }

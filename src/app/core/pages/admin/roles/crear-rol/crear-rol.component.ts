@@ -54,7 +54,7 @@ export class CrearRolComponent {
       this.form.value.clave = this.form.value.clave.toUpperCase().trim()
       this.rolesService.crearRole(this.form.value).subscribe((resp: any) => {
         this.functionsService.alert('Roles', 'Rol creado', 'success')
-        this.functionsService.navigateTo('core/roles/vista-roles')
+        this.functionsService.navigateTo('roles/vista-roles')
         this.loading = false
       },
         (error) => {
@@ -80,7 +80,7 @@ export class CrearRolComponent {
   }
 
   back() {
-    this.functionsService.navigateTo('core/roles/vista-roles')
+    this.functionsService.navigateTo('roles/vista-roles')
   }
 
 }

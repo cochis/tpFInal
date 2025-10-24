@@ -186,7 +186,7 @@ export class VistaItemsComponent {
   }
   newItem() {
 
-    this.functionsService.navigateTo('core/items/crear-item')
+    this.functionsService.navigateTo('items/crear-item')
   }
 
 
