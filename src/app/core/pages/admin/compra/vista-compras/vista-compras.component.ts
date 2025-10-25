@@ -133,7 +133,7 @@ export class VistaComprasComponent {
 
   editRol(id: string) {
 
-    this.functionsService.navigateTo(`/core/mis-compras/editar-compra/true/${id}`)
+    this.functionsService.navigateTo(`/mis-compras/editar-compra/true/${id}`)
 
   }
   isActived(rol: Compra) {
@@ -150,7 +150,7 @@ export class VistaComprasComponent {
       })
   }
   viewCompra(id: string) {
-    this.functionsService.navigateTo(`/core/mis-compras/editar-compra/false/${id}`)
+    this.functionsService.navigateTo(`/mis-compras/editar-compra/false/${id}`)
 
   }
 

@@ -93,7 +93,7 @@ export class VistaRolesComponent {
 
   editRol(id: string) {
 
-    this.functionsService.navigateTo(`/core/roles/editar-rol/true/${id}`)
+    this.functionsService.navigateTo(`/roles/editar-rol/true/${id}`)
 
   }
   isActived(rol: Role) {
@@ -109,7 +109,7 @@ export class VistaRolesComponent {
       })
   }
   viewRol(id: string) {
-    this.functionsService.navigateTo(`/core/roles/editar-rol/false/${id}`)
+    this.functionsService.navigateTo(`/roles/editar-rol/false/${id}`)
 
   }
 

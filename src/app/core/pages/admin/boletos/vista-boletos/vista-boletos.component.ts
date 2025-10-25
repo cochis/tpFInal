@@ -209,7 +209,7 @@ export class VistaBoletosComponent {
     }
   }
   editBoleto(id: string) {
-    this.functionsService.navigateTo(`/core/boletos/editar-boleto/true/${id}`)
+    this.functionsService.navigateTo(`/boletos/editar-boleto/true/${id}`)
   }
   isActived(boleto: Boleto) {
     this.boletosService.isActivedBoleto(boleto).subscribe((resp: any) => {
@@ -219,7 +219,7 @@ export class VistaBoletosComponent {
       })
   }
   viewBoleto(id: string) {
-    this.functionsService.navigateTo(`/core/boletos/editar-boleto/false/${id}`)
+    this.functionsService.navigateTo(`/boletos/editar-boleto/false/${id}`)
   }
   stopLoading() {
     setTimeout(() => {

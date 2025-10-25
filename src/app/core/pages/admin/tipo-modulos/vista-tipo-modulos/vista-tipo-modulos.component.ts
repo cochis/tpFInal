@@ -92,7 +92,7 @@ export class VistaTipoModulosComponent {
 
   editTipoModulo(id: string) {
 
-    this.functionsService.navigateTo(`/core/tipo-modulos/editar-tipo-modulo/true/${id}`)
+    this.functionsService.navigateTo(`/tipo-modulos/editar-tipo-modulo/true/${id}`)
 
   }
   isActived(tipoModulo: TipoModulo) {
@@ -109,7 +109,7 @@ export class VistaTipoModulosComponent {
       })
   }
   viewTipoModulo(id: string) {
-    this.functionsService.navigateTo(`/core/tipo-modulos/editar-tipo-modulo/false/${id}`)
+    this.functionsService.navigateTo(`/tipo-modulos/editar-tipo-modulo/false/${id}`)
 
   }
   stopLoading() {

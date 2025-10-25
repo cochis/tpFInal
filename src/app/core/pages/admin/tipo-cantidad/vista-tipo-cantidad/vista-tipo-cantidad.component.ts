@@ -99,7 +99,7 @@ export class VistaTipoCantidadComponent {
 
   editTipoCantidad(id: string) {
 
-    this.functionsService.navigateTo(`/core/tipo-cantidad/editar-tipo-cantidad/true/${id}`)
+    this.functionsService.navigateTo(`/tipo-cantidad/editar-tipo-cantidad/true/${id}`)
 
   }
   isActived(tipoCantidad: TipoCantidad) {
@@ -116,7 +116,7 @@ export class VistaTipoCantidadComponent {
       })
   }
   viewTipoCantidad(id: string) {
-    this.functionsService.navigateTo(`/core/tipo-cantidad/editar-tipo-cantidad/false/${id}`)
+    this.functionsService.navigateTo(`/tipo-cantidad/editar-tipo-cantidad/false/${id}`)
 
   }
   stopLoading() {

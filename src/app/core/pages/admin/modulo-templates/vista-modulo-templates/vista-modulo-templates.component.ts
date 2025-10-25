@@ -150,7 +150,7 @@ export class VistaModuloTemplatesComponent {
 
   editModuloTemplate(id: string) {
 
-    this.functionsService.navigateTo(`/core/modulo-templates/editar-modulo-template/true/${id}`)
+    this.functionsService.navigateTo(`/modulo-templates/editar-modulo-template/true/${id}`)
 
   }
   isActived(moduloTemplate: ModuloTemplate) {
@@ -167,7 +167,7 @@ export class VistaModuloTemplatesComponent {
       })
   }
   viewModuloTemplate(id: string) {
-    this.functionsService.navigateTo(`/core/modulo-templates/editar-modulo-template/false/${id}`)
+    this.functionsService.navigateTo(`/modulo-templates/editar-modulo-template/false/${id}`)
 
   }
   stopLoading() {

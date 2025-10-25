@@ -121,7 +121,7 @@ export class VistaCpsComponent {
 
   editCp(id: string) {
 
-    this.functionsService.navigateTo(`/core/cps/editar-cp/true/${id}`)
+    this.functionsService.navigateTo(`/cps/editar-cp/true/${id}`)
 
   }
   isActived(cp: Cp) {
@@ -137,7 +137,7 @@ export class VistaCpsComponent {
       })
   }
   viewCp(id: string) {
-    this.functionsService.navigateTo(`/core/cps/editar-cp/false/${id}`)
+    this.functionsService.navigateTo(`/cps/editar-cp/false/${id}`)
 
   }
   stopLoading() {

@@ -97,7 +97,7 @@ export class VistaPostsComponent {
 
   editPost(id: string) {
 
-    this.functionsService.navigateTo(`/core/posts/editar-post/true/${id}`)
+    this.functionsService.navigateTo(`/posts/editar-post/true/${id}`)
 
   }
   isActived(post: Post) {
@@ -113,7 +113,7 @@ export class VistaPostsComponent {
       })
   }
   viewPost(id: string) {
-    this.functionsService.navigateTo(`/core/posts/editar-post/false/${id}`)
+    this.functionsService.navigateTo(`/posts/editar-post/false/${id}`)
 
   }
   stopLoading() {

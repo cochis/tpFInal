@@ -108,7 +108,7 @@ export class VistaProvedorsComponent {
 
   editProveedor(id: string) {
 
-    this.functionsService.navigateTo(`/core/proveedores/editar-proveedor/true/${id}`)
+    this.functionsService.navigateTo(`/proveedores/editar-proveedor/true/${id}`)
 
   }
   isActived(proveedor: Proveedor) {
@@ -124,7 +124,7 @@ export class VistaProvedorsComponent {
       })
   }
   viewProveedor(id: string) {
-    this.functionsService.navigateTo(`/core/proveedores/editar-proveedor/false/${id}`)
+    this.functionsService.navigateTo(`/proveedores/editar-proveedor/false/${id}`)
 
   }
   stopLoading() {

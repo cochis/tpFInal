@@ -186,7 +186,7 @@ export class VistaFiestasComponent {
     }
   }
   comprarPaquete() {
-    this.functionsService.navigateTo(`/core/compras/crear-compra/${this.uid}`)
+    this.functionsService.navigateTo(`/compras/crear-compra/${this.uid}`)
   }
   setFiestas() {
     this.loading = true
@@ -252,7 +252,7 @@ export class VistaFiestasComponent {
     }
   }
   editFiesta(id: string) {
-    this.functionsService.navigateTo(`/core/fiestas/editar-fiesta/true/${id}`)
+    this.functionsService.navigateTo(`/fiestas/editar-fiesta/true/${id}`)
   }
   isActived(fiesta: Fiesta) {
     this.fiestasService.isActivedFiesta(fiesta).subscribe((resp: any) => {
@@ -264,7 +264,7 @@ export class VistaFiestasComponent {
       })
   }
   viewFiesta(id: string) {
-    this.functionsService.navigateTo(`/core/fiestas/editar-fiesta/false/${id}`)
+    this.functionsService.navigateTo(`/fiestas/editar-fiesta/false/${id}`)
   }
   stopLoading() {
     setTimeout(() => {

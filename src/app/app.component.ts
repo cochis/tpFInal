@@ -13,6 +13,7 @@ export class AppComponent {
 
   title = 'TicketParty';
   ver = environment.version
+
   constructor(
     private update: SwUpdate,
     private functionsService: FunctionsService,

@@ -148,15 +148,15 @@ const routes: Routes = [
     children: [
 
       {
-        path: 'funcionalidades',
-        component: FuncionalidadesComponent,
-        data: { titulo: 'Funcionalidades' }
+        path: 'home',
+        component: HomeComponent,
+        data: { titulo: 'Home' }
 
       },
       {
-        path: 'inicio',
-        component: HomeComponent,
-        data: { titulo: 'Home' }
+        path: 'funcionalidades',
+        component: FuncionalidadesComponent,
+        data: { titulo: 'Funcionalidades' }
 
       },
       {

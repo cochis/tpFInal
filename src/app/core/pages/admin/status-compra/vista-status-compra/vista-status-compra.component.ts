@@ -98,7 +98,7 @@ export class VistaStatusCompraComponent {
 
   editStatusCompra(id: string) {
 
-    this.functionsService.navigateTo(`/core/status-compra/editar-status-compra/true/${id}`)
+    this.functionsService.navigateTo(`/status-compra/editar-status-compra/true/${id}`)
 
   }
   isActived(statusCompra: StatusCompra) {
@@ -114,7 +114,7 @@ export class VistaStatusCompraComponent {
       })
   }
   viewStatusCompra(id: string) {
-    this.functionsService.navigateTo(`/core/status-compra/editar-status-compra/false/${id}`)
+    this.functionsService.navigateTo(`/status-compra/editar-status-compra/false/${id}`)
 
   }
   stopLoading() {

@@ -98,7 +98,7 @@ export class VistaEstatusCotizacionesComponent {
 
   editEstatusCotizacion(id: string) {
 
-    this.functionsService.navigateTo(`/core/estatus-cotizaciones/editar-estatus-cotizacion/true/${id}`)
+    this.functionsService.navigateTo(`/estatus-cotizaciones/editar-estatus-cotizacion/true/${id}`)
 
   }
   isActived(estatusCotizacion: EstatusCotizacion) {
@@ -114,7 +114,7 @@ export class VistaEstatusCotizacionesComponent {
       })
   }
   viewEstatusCotizacion(id: string) {
-    this.functionsService.navigateTo(`/core/estatus-cotizaciones/editar-estatus-cotizacion/false/${id}`)
+    this.functionsService.navigateTo(`/estatus-cotizaciones/editar-estatus-cotizacion/false/${id}`)
 
   }
   stopLoading() {

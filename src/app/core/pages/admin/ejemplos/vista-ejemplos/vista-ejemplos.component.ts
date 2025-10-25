@@ -100,7 +100,7 @@ export class VistaEjemplosComponent {
 
   editEjemplo(id: string) {
 
-    this.functionsService.navigateTo(`/core/ejemplos/editar-ejemplo/true/${id}`)
+    this.functionsService.navigateTo(`/ejemplos/editar-ejemplo/true/${id}`)
 
   }
   isActived(ejemplo: Ejemplo) {
@@ -116,7 +116,7 @@ export class VistaEjemplosComponent {
       })
   }
   viewEjemplo(id: string) {
-    this.functionsService.navigateTo(`/core/ejemplos/editar-ejemplo/false/${id}`)
+    this.functionsService.navigateTo(`/ejemplos/editar-ejemplo/false/${id}`)
 
   }
   stopLoading() {

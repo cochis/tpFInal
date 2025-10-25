@@ -160,7 +160,7 @@ export class VistaItemsComponent {
   }
   editItem(id: string) {
 
-    this.functionsService.navigateTo(`/core/items/editar-item/true/${id}`)
+    this.functionsService.navigateTo(`/items/editar-item/true/${id}`)
 
   }
   isActived(item: Item) {
@@ -176,7 +176,7 @@ export class VistaItemsComponent {
       })
   }
   viewItem(id: string) {
-    this.functionsService.navigateTo(`/core/items/editar-item/false/${id}`)
+    this.functionsService.navigateTo(`/items/editar-item/false/${id}`)
 
   }
   stopLoading() {

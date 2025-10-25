@@ -106,7 +106,7 @@ export class GaleriaComponent implements OnInit, OnDestroy {
         this.functionsService.alert('Evento', 'El evento aun no ha empezado', 'error')
 
 
-        this.functionsService.navigateTo(`/core/mis-fiestas`)
+        this.functionsService.navigateTo(`/mis-fiestas`)
       }
 
     },
@@ -129,12 +129,12 @@ export class GaleriaComponent implements OnInit, OnDestroy {
 
         if (this.fiestaDB.invitacion.includes('default')) {
 
-          this.functionsService.navigateTo(`/core/templates/default/${this.fiestaId}/${this.boletoId}`)
+          this.functionsService.navigateTo(`/templates/default/${this.fiestaId}/${this.boletoId}`)
         } else if (this.fiestaDB.invitacion.includes('byFile')) {
-          this.functionsService.navigateTo(`/core/templates/byFile/${this.fiestaId}/${this.boletoId}`)
+          this.functionsService.navigateTo(`/templates/byFile/${this.fiestaId}/${this.boletoId}`)
 
         } else if (this.fiestaDB.invitacion.includes('fancy')) {
-          this.functionsService.navigateTo(`/core/templates/fancy/${this.fiestaId}/${this.boletoId}`)
+          this.functionsService.navigateTo(`/templates/fancy/${this.fiestaId}/${this.boletoId}`)
 
         }
       }

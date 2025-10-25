@@ -93,7 +93,7 @@ export class VistaEmailTemplatesComponent {
     }
   }
   editEmailTemplate(id: string) {
-    this.functionsService.navigateTo(`/core/email-templates/editar-email-template/true/${id}`)
+    this.functionsService.navigateTo(`/email-templates/editar-email-template/true/${id}`)
   }
   isActived(mailTemplate: EmailTemplate) {
     this.emailTemplatesService.isActivedEmailTemplate(mailTemplate).subscribe((resp: any) => {
@@ -104,7 +104,7 @@ export class VistaEmailTemplatesComponent {
       })
   }
   viewEmailTemplate(id: string) {
-    this.functionsService.navigateTo(`/core/email-templates/editar-email-template/false/${id}`)
+    this.functionsService.navigateTo(`/email-templates/editar-email-template/false/${id}`)
   }
   stopLoading() {
     setTimeout(() => {

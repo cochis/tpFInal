@@ -99,7 +99,7 @@ export class VistaMonedasComponent {
 
   editMoneda(id: string) {
 
-    this.functionsService.navigateTo(`/core/monedas/editar-moneda/true/${id}`)
+    this.functionsService.navigateTo(`/monedas/editar-moneda/true/${id}`)
 
   }
   isActived(moneda: Moneda) {
@@ -115,7 +115,7 @@ export class VistaMonedasComponent {
       })
   }
   viewMoneda(id: string) {
-    this.functionsService.navigateTo(`/core/monedas/editar-moneda/false/${id}`)
+    this.functionsService.navigateTo(`/monedas/editar-moneda/false/${id}`)
 
   }
   stopLoading() {

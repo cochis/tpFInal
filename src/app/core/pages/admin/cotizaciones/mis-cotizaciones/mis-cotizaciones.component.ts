@@ -159,7 +159,7 @@ export class MisCotizacionesComponent {
 
   editCotizacion(id: string) {
 
-    this.functionsService.navigateTo(`/core/cotizaciones/editar-cotizacion/true/${id}`)
+    this.functionsService.navigateTo(`/cotizaciones/editar-cotizacion/true/${id}`)
 
   }
   isActived(cotizacion: Cotizacion) {
@@ -175,7 +175,7 @@ export class MisCotizacionesComponent {
       })
   }
   viewCotizacion(id: string) {
-    this.functionsService.navigateTo(`/core/cotizaciones/mi-cotizacion/${id}`)
+    this.functionsService.navigateTo(`/cotizaciones/mi-cotizacion/${id}`)
 
   }
 

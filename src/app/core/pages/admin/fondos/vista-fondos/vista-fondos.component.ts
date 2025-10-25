@@ -98,7 +98,7 @@ export class VistaFondosComponent {
 
   editFondo(id: string) {
 
-    this.functionsService.navigateTo(`/core/fondos/editar-fondo/true/${id}`)
+    this.functionsService.navigateTo(`/fondos/editar-fondo/true/${id}`)
 
   }
   isActived(fondo: Fondo) {
@@ -114,7 +114,7 @@ export class VistaFondosComponent {
       })
   }
   viewFondo(id: string) {
-    this.functionsService.navigateTo(`/core/fondos/editar-fondo/false/${id}`)
+    this.functionsService.navigateTo(`/fondos/editar-fondo/false/${id}`)
 
   }
   stopLoading() {

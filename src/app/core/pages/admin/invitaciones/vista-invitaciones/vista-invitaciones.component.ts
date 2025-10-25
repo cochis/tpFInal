@@ -98,7 +98,7 @@ export class VistaInvitacionesComponent {
 
   editInvitacion(id: string) {
 
-    this.functionsService.navigateTo(`/core/invitaciones/editar-invitacion/true/${id}`)
+    this.functionsService.navigateTo(`/invitaciones/editar-invitacion/true/${id}`)
 
   }
   isActived(rol: Invitacion) {
@@ -114,7 +114,7 @@ export class VistaInvitacionesComponent {
       })
   }
   viewInvitacion(id: string) {
-    this.functionsService.navigateTo(`/core/invitaciones/editar-invitacion/false/${id}`)
+    this.functionsService.navigateTo(`/invitaciones/editar-invitacion/false/${id}`)
 
   }
 

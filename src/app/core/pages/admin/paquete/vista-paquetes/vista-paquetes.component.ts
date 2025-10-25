@@ -100,7 +100,7 @@ export class VistaPaquetesComponent {
 
   editPaquete(id: string) {
 
-    this.functionsService.navigateTo(`/core/paquete/editar-paquete/true/${id}`)
+    this.functionsService.navigateTo(`/paquete/editar-paquete/true/${id}`)
 
   }
   isActived(paquete: Paquete) {
@@ -117,7 +117,7 @@ export class VistaPaquetesComponent {
       })
   }
   viewPaquete(id: string) {
-    this.functionsService.navigateTo(`/core/paquete/editar-paquete/false/${id}`)
+    this.functionsService.navigateTo(`/paquete/editar-paquete/false/${id}`)
 
   }
   stopLoading() {

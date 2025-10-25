@@ -124,7 +124,7 @@ export class VistaSalonesComponent {
 
   editSalon(id: string) {
 
-    this.functionsService.navigateTo(`/core/salones/editar-salon/true/${id}`)
+    this.functionsService.navigateTo(`/salones/editar-salon/true/${id}`)
 
   }
   isActived(salon: Salon) {
@@ -141,7 +141,7 @@ export class VistaSalonesComponent {
       })
   }
   viewSalon(id: string) {
-    this.functionsService.navigateTo(`/core/salones/editar-salon/false/${id}`)
+    this.functionsService.navigateTo(`/salones/editar-salon/false/${id}`)
 
   }
   stopLoading() {

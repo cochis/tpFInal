@@ -230,6 +230,6 @@ export class Xv2Component {
 
   }
   goToGaleria() {
-    this.functionsService.navigateTo(`/core/galeria/fst/${this.fiestaid}/blt/${this.boletoid}`);
+    this.functionsService.navigateTo(`/galeria/fst/${this.fiestaid}/blt/${this.boletoid}`);
   }
 }

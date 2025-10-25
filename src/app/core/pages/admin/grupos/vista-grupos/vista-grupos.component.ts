@@ -97,7 +97,7 @@ export class VistaGruposComponent {
 
   editGrupo(id: string) {
 
-    this.functionsService.navigateTo(`/core/grupos/editar-grupo/true/${id}`)
+    this.functionsService.navigateTo(`/grupos/editar-grupo/true/${id}`)
 
   }
   isActived(grupo: Grupo) {
@@ -113,7 +113,7 @@ export class VistaGruposComponent {
       })
   }
   viewGrupo(id: string) {
-    this.functionsService.navigateTo(`/core/grupos/editar-grupo/false/${id}`)
+    this.functionsService.navigateTo(`/grupos/editar-grupo/false/${id}`)
 
   }
 

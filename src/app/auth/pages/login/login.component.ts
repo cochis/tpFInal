@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
 
         setTimeout(() => {
 
-          this.functionsService.navigateTo('inicio')
+          this.functionsService.navigateTo('home')
           this.loading = false
         }, 2000);
         //message

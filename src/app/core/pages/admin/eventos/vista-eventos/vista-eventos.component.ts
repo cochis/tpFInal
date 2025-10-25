@@ -98,7 +98,7 @@ export class VistaEventosComponent {
 
   editEvento(id: string) {
 
-    this.functionsService.navigateTo(`/core/eventos/editar-evento/true/${id}`)
+    this.functionsService.navigateTo(`/eventos/editar-evento/true/${id}`)
 
   }
   isActived(evento: Evento) {
@@ -114,7 +114,7 @@ export class VistaEventosComponent {
       })
   }
   viewEvento(id: string) {
-    this.functionsService.navigateTo(`/core/eventos/editar-evento/false/${id}`)
+    this.functionsService.navigateTo(`/eventos/editar-evento/false/${id}`)
 
   }
   stopLoading() {

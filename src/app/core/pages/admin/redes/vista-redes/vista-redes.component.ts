@@ -96,7 +96,7 @@ export class VistaRedesComponent {
 
   editRed(id: string) {
 
-    this.functionsService.navigateTo(`/core/redes/editar-red/true/${id}`)
+    this.functionsService.navigateTo(`/redes/editar-red/true/${id}`)
 
   }
   isActived(red: Red) {
@@ -112,7 +112,7 @@ export class VistaRedesComponent {
       })
   }
   viewRed(id: string) {
-    this.functionsService.navigateTo(`/core/redes/editar-red/false/${id}`)
+    this.functionsService.navigateTo(`/redes/editar-red/false/${id}`)
 
   }
   stopLoading() {

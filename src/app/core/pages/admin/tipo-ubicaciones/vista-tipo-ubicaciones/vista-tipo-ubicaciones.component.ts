@@ -97,7 +97,7 @@ export class VistaTipoUbicacionesComponent {
 
   editTipoUbicacion(id: string) {
 
-    this.functionsService.navigateTo(`/core/tipo-ubicaciones/editar-tipo-ubicacion/true/${id}`)
+    this.functionsService.navigateTo(`/tipo-ubicaciones/editar-tipo-ubicacion/true/${id}`)
 
   }
   isActived(tipoUbicacion: TipoUbicacion) {
@@ -113,7 +113,7 @@ export class VistaTipoUbicacionesComponent {
       })
   }
   viewTipoUbicacion(id: string) {
-    this.functionsService.navigateTo(`/core/tipo-ubicaciones/editar-tipo-ubicacion/false/${id}`)
+    this.functionsService.navigateTo(`/tipo-ubicaciones/editar-tipo-ubicacion/false/${id}`)
 
   }
   stopLoading() {

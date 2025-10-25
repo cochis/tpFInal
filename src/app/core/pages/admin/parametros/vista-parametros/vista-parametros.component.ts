@@ -97,7 +97,7 @@ export class VistaParametrosComponent {
 
   editParametro(id: string) {
 
-    this.functionsService.navigateTo(`/core/parametros/editar-parametro/true/${id}`)
+    this.functionsService.navigateTo(`/parametros/editar-parametro/true/${id}`)
 
   }
   isActived(parametro: Parametro) {
@@ -113,7 +113,7 @@ export class VistaParametrosComponent {
       })
   }
   viewParametro(id: string) {
-    this.functionsService.navigateTo(`/core/parametros/editar-parametro/false/${id}`)
+    this.functionsService.navigateTo(`/parametros/editar-parametro/false/${id}`)
 
   }
   stopLoading() {

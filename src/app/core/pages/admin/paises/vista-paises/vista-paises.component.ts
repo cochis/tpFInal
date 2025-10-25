@@ -89,7 +89,7 @@ export class VistaPaisesComponent {
 
   editPais(id: string) {
 
-    this.functionsService.navigateTo(`/core/paises/editar-pais/true/${id}`)
+    this.functionsService.navigateTo(`/paises/editar-pais/true/${id}`)
 
   }
   isActived(pais: Pais) {
@@ -105,7 +105,7 @@ export class VistaPaisesComponent {
       })
   }
   viewPais(id: string) {
-    this.functionsService.navigateTo(`/core/paises/editar-pais/false/${id}`)
+    this.functionsService.navigateTo(`/paises/editar-pais/false/${id}`)
 
   }
   stopLoading() {

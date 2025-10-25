@@ -380,7 +380,7 @@ export class CrearItemComponent implements OnInit, OnDestroy {
         this.item = resp.item
         this.functionsService.alert('Producto o servicio', 'Creado', 'success')
 
-        this.functionsService.navigateTo(`/core/items/editar-item/true/${this.item.uid}`)
+        this.functionsService.navigateTo(`/items/editar-item/true/${this.item.uid}`)
         this.loading = false
       },
         (error) => {
@@ -625,7 +625,7 @@ export class CrearItemComponent implements OnInit, OnDestroy {
                 this.item.photos = fotos
                 this.itemsService.actualizarItem(this.item).subscribe((res: any) => {
                   this.functionsService.alertUpdate('Imagen agregada')
-                  this.functionsService.navigateTo(`/core/items/editar-item/true/${this.item.uid}`)
+                  this.functionsService.navigateTo(`/items/editar-item/true/${this.item.uid}`)
                 })
                 //message
                 //this.functionsService.navigateTo(`items/editar-item/true/${this.item.uid}`)

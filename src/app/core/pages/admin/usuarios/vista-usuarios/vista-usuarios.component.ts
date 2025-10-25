@@ -187,7 +187,7 @@ export class VistaUsuariosComponent {
     }
   }
   editUsuario(id: string) {
-    this.functionsService.navigateTo(`/core/usuarios/editar-usuario/true/${id}`)
+    this.functionsService.navigateTo(`/usuarios/editar-usuario/true/${id}`)
   }
   isActived(usuario: Usuario) {
     this.usuariosService.isActivedUsuario(usuario).subscribe((resp: any) => {
@@ -198,7 +198,7 @@ export class VistaUsuariosComponent {
       })
   }
   viewUsuario(id: string) {
-    this.functionsService.navigateTo(`/core/usuarios/editar-usuario/false/${id}`)
+    this.functionsService.navigateTo(`/usuarios/editar-usuario/false/${id}`)
   }
   newUser() {
     this.functionsService.navigateTo('usuarios/crear-usuario')
