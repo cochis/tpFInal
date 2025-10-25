@@ -14,10 +14,15 @@ export class CoreComponent implements OnInit {
   show = false
 
   // 2. Inyectar en el constructor
-  constructor(private functionsService: FunctionsService,) {
+  constructor(private functionsService: FunctionsService,
 
+    private router: Router
+  ) {
+    if (this.router.url == '/') {
+
+      this.functionsService.navigateTo('home')
+    }
     // 3. Acceder a la propiedad
-    this.functionsService.navigateTo('home')
   }
 
   ngOnInit(): void {
