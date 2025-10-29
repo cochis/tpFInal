@@ -73,6 +73,7 @@ export class VistaEjemplosComponent {
 
         this.ejemplos = resp.ejemplos
 
+
         this.ejemplosTemp = this.ejemplos
         setTimeout(() => {
 

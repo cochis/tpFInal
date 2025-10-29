@@ -911,7 +911,7 @@ export class EditarInvitacionComponent {
     return JSON.stringify(qr)
   }
   getQrGaleria() {
-    let url = this.urlT + 'core/galeria/fst/' + this.fiesta.uid
+    let url = this.urlT + 'galeria/fst/' + this.fiesta.uid
 
 
     return url
@@ -923,7 +923,7 @@ export class EditarInvitacionComponent {
 
 
 
-    this.urlLink = this.urlT + 'core/galeria/fst/' + this.fiesta.uid
+    this.urlLink = this.urlT + 'galeria/fst/' + this.fiesta.uid
 
 
 
@@ -1342,7 +1342,7 @@ export class EditarInvitacionComponent {
     }
 
 
-    this.router.navigate(['/core/templates/' + this.fiesta.invitacion], { queryParams: this.invitacion.data })
+    this.router.navigate(['/templates/' + this.fiesta.invitacion], { queryParams: this.invitacion.data })
 
   }
   async onSubmit() {

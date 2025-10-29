@@ -974,26 +974,26 @@ const routes: Routes = [
 
       },
       {
-        path: 'core/templates/fancy/:fiesta/:boleto/:copy',
+        path: 'templates/fancy/:fiesta/:boleto/:copy',
         component: NewStyleComponent,
         data: { titulo: 'Template Fancy' }
 
       },
       //////
       {
-        path: 'core/templates/fancy',
+        path: 'templates/fancy',
         component: NewStyleComponent,
         data: { titulo: 'Template Fancy' }
 
       },
       {
-        path: 'core/templates/fancy/:fiesta/:boleto',
+        path: 'templates/fancy/:fiesta/:boleto',
         component: NewStyleComponent,
         data: { titulo: 'Template Fancy' }
 
       },
       {
-        path: 'core/templates/fancy/:fiesta/:boleto/:copy',
+        path: 'templates/fancy/:fiesta/:boleto/:copy',
         component: NewStyleComponent,
         data: { titulo: 'Template Fancy' }
 

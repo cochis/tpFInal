@@ -1,5 +1,5 @@
 // --- Se añaden Inject y DOCUMENT para el manejo del tag <link> ---
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, signal, inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common'; // Importación clave para el tag <link>
 import { Meta, MetaDefinition, Title } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
@@ -17,140 +17,69 @@ import Swal from 'sweetalert2';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  // --- DATOS SEO OPTIMIZADOS ---
-  private readonly SEO_TITLE =
-    'MyTicketParty | Crea Invitaciones Digitales Personalizadas con QR ';
-  private readonly SEO_DESCRIPTION =
-    'Diseña tu invitación digital para bodas, XV años y más. Gestiona la logística, envío de invitaciones por WhatsApp y usa la app de check-in con QR. ¡Todo en un solo lugar!';
-  private readonly SEO_IMAGE =
-    'https://www.myticketparty.com/assets/images/logo.svg'; // Asegúrate que esta imagen exista
-  private readonly BASE_URL = 'https://www.myticketparty.com';
+  // Lógica del componente (para el menú móvil)
+  isMobileMenuOpen = signal(false);
 
-  // --- Roles y Estado (Tu lógica de negocio) ---
-  ADM = environment.admin_role;
-  SLN = environment.salon_role;
-  URS = environment.user_role;
-  ANF = environment.anf_role;
-  PRV = environment.prv_role;
-  scannerActive = false;
-  editBoleto = false;
-  today: number = this.functionsService.getToday();
-  role = this.functionsService.getLocal('role');
-  uid = this.functionsService.getLocal('uid');
-  idx: number | undefined;
-  invitado: any;
-  boleto!: Boleto;
+  toggleMenu() {
+    this.isMobileMenuOpen.update(value => !value);
+  }
 
-  constructor(
-    // Servicios de tu lógica
-    private functionsService: FunctionsService,
-    private usuariosService: UsuariosService,
-    private proveedorsService: ProveedorsService,
-    private boletosService: BoletosService,
+  // --- ¡SEO INTEGRADO! ---
+  // Se utiliza inject() (minúscula) como inicializador de propiedad.
+  private title: Title = inject(Title);
+  private meta: Meta = inject(Meta);
 
-    // Servicios de SEO
-    private meta: Meta,
-    private titleService: Title,
-    @Inject(DOCUMENT) private document: Document // Inyecta DOCUMENT
-  ) { }
-
+  constructor() {
+    this.setPageSEO();
+  }
   ngOnInit(): void {
-    // 1. Configura el SEO
-    this.setupMetaTags();
-
-    // 2. Ejecuta tu lógica de carga
-    this.getUser(this.role);
+    throw new Error('Method not implemented.');
   }
 
-  // ===================================================================
-  // --- SECCIÓN DE SEO ---
-  // ===================================================================
+  setPageSEO() {
+    // --- Título de la Página ---
+    // Este es el texto que aparece en la pestaña del navegador y en el resultado de Google.
+    const pageTitle = 'MyTicketParty | Invitaciones Digitales con QR, RSVP y Logística';
+    this.title.setTitle(pageTitle);
 
-  /**
-   * Configura todas las etiquetas Meta y el Título para esta página.
-   */
-  private setupMetaTags(): void {
-    // Define la URL canónica específica para esta página
-    const pageUrl = `${this.BASE_URL}/home`;
+    // --- Meta Etiquetas Esenciales ---
+    this.meta.addTags([
+      {
+        name: 'description',
+        content: 'Crea invitaciones digitales únicas para bodas, XV años y fiestas. Gestiona RSVP, boletos QR, check-in, mapas y más. ¡Prueba MyTicketParty!'
+      },
+      {
+        name: 'keywords',
+        content: 'invitaciones digitales, invitaciones para boda, invitaciones xv años, boletos qr para eventos, rsvp online, check-in eventos, myticketparty, logística de eventos'
+      },
+      { name: 'robots', content: 'index, follow' }, // Indica a Google que rastree esta página
 
-    // 1. Título de la página
-    this.titleService.setTitle(this.SEO_TITLE);
+      // --- Open Graph (para Facebook, WhatsApp, LinkedIn) ---
+      { property: 'og:title', content: pageTitle },
+      {
+        property: 'og:description',
+        content: 'Gestiona RSVP, boletos QR, check-in, mapas y más para tu evento. ¡Diseña tu invitación digital inolvidable!'
+      },
+      {
+        property: 'og:image',
+        // ¡Importante! Reemplaza esta imagen de 1200x630 con una imagen promocional tuya.
+        content: 'assets/myticketparty-og-image.png'
+      }, // Usando la misma imagen para OG
+      { property: 'og:url', content: 'https://myticketparty.com' }, // ¡Importante! Reemplaza con tu dominio real
+      { property: 'og:type', content: 'website' },
 
-    // 2. Meta Descripción
-    this.meta.updateTag({
-      name: 'description',
-      content: this.SEO_DESCRIPTION,
-    });
-
-    // 3. Open Graph (para Facebook, WhatsApp, LinkedIn, etc.)
-    this.meta.updateTag({ property: 'og:title', content: this.SEO_TITLE });
-    this.meta.updateTag({
-      property: 'og:description',
-      content: this.SEO_DESCRIPTION,
-    });
-    this.meta.updateTag({ property: 'og:image', content: this.SEO_IMAGE });
-    this.meta.updateTag({ property: 'og:url', content: pageUrl });
-    this.meta.updateTag({ property: 'og:type', content: 'website' });
-
-    // 4. Twitter Cards (para Twitter)
-    this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
-    this.meta.updateTag({ name: 'twitter:title', content: this.SEO_TITLE });
-    this.meta.updateTag({
-      name: 'twitter:description',
-      content: this.SEO_DESCRIPTION,
-    });
-    this.meta.updateTag({ name: 'twitter:image', content: this.SEO_IMAGE });
-    this.meta.updateTag({ name: 'twitter:site', content: '@My_TicketParty' }); // <-- Opcional: añade tu @ de Twitter
-
-    // 5. Llama a la función para actualizar la URL Canónica
-    this.updateCanonicalUrl(pageUrl);
-  }
-
-  /**
-   * Actualiza o crea la etiqueta <link rel="canonical"> en el <head>.
-   */
-  private updateCanonicalUrl(url: string): void {
-    // Busca el tag <link rel="canonical">
-    let canonicalLink = this.document.querySelector('link[rel="canonical"]');
-
-    if (canonicalLink) {
-      // Si existe, actualiza su href
-      canonicalLink.setAttribute('href', url);
-    } else {
-      // Si no existe, créalo y añádelo al <head>
-      canonicalLink = this.document.createElement('link');
-      canonicalLink.setAttribute('rel', 'canonical');
-      canonicalLink.setAttribute('href', url);
-      this.document.head.appendChild(canonicalLink);
-    }
-  }
-
-  // ===================================================================
-  // --- SECCIÓN DE LÓGICA DE NEGOCIO ---
-  // (Tus funciones originales)
-  // ===================================================================
-
-  getUser(role: string): void {
-    // Aquí va tu lógica para obtener el usuario...
-    console.log('Cargando datos del usuario para el rol:', role);
-  }
-
-  scan(): void {
-    // Tu lógica para iniciar el scanner...
-    this.scannerActive = true;
-  }
-
-  stop(): void {
-    // Tu lógica para detener el scanner...
-    this.scannerActive = false;
-  }
-
-  showQr(qr: any): void {
-    // Tu lógica para mostrar el modal del QR...
-    Swal.fire({
-      title: 'QR Code',
-      text: `Datos: ${qr}`,
-      // ...
-    });
+      // --- Twitter Card (para Twitter) ---
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:title', content: pageTitle },
+      {
+        name: 'twitter:description',
+        content: 'Gestiona RSVP, boletos QR, check-in, mapas y más para tu evento. ¡Diseña tu invitación digital inolvidable!'
+      },
+      {
+        name: 'twitter:image',
+        // ¡Importante! Reemplaza esta imagen con la tuya.
+        content: 'assets/myticketparty-og-image.png'
+      } // Usando la misma imagen para Twitter
+    ]);
   }
 }

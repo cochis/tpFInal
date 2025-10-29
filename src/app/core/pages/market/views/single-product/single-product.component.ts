@@ -88,7 +88,7 @@ export class SingleProductComponent {
       { property: 'og:title', content: titulo },
       { property: 'og:description', content: descripcion },
       { property: 'og:image', content: this.url + '/upload/items/' + this.getImgPrincipal() },
-      { property: 'og:url', content: 'https://www.myticketparty.com/inicio' },
+      { property: 'og:url', content: 'https://www.myticketparty.com/home' },
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:title', content: titulo },
       { name: 'twitter:description', content: descripcion },

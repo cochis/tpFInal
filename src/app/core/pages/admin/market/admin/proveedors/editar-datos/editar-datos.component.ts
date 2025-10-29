@@ -266,14 +266,14 @@ export class EditarDatosComponent {
                 this.functionsService.alert('Proveedor', 'Proveedor creado', 'success')
 
 
-                this.functionsService.navigateTo('/inicio')
+                this.functionsService.navigateTo('/home')
 
               })
             } else {
               if (this.isProveedor) {
 
 
-                this.functionsService.navigateTo('/inicio')
+                this.functionsService.navigateTo('/home')
               } else {
                 setTimeout(() => {
 
@@ -317,7 +317,7 @@ export class EditarDatosComponent {
   }
 
   back() {
-    this.functionsService.navigateTo('/inicio')
+    this.functionsService.navigateTo('/home')
   }
   getCatalogos() {
     this.tipoContactosService.cargarTipoContactosAll().subscribe((resp: CargarTipoContactos) => {
@@ -613,7 +613,7 @@ export class EditarDatosComponent {
           this.functionsService.alertUpdate('Proveedor')
           if (this.isProveedor) {
 
-            this.functionsService.navigateTo('/inicio')
+            this.functionsService.navigateTo('/home')
           } else {
             this.functionsService.navigateTo('proveedores/editar-datos')
 

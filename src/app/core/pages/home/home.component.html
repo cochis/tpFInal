@@ -1,98 +1,237 @@
 <app-header></app-header>
-<header class="hero-section">
-    <div class="container position-relative">
-        <img src="assets/images/logo.svg" alt="Logo de MyTicketParty para crear invitaciones digitales"
-            class="hero-logo">
+<main> <!-- Padding para el navbar fixed-top -->
 
-        <h1 class="display-4">Diseñamos Tu Invitación Digital Única para Tu Evento</h1>
-        <p class="lead" style="color:#fff">Dale vida a tu celebración con una invitación 100% personalizada. Para bodas,
-            XV años, bautizos
-            o cualquier fiesta. Tú pones la creatividad, nosotros la tecnología.</p>
-        <div>
-            <a routerLink="/funcionalidades" class="btn btn-principal mt-3">Ver Funcionalidades</a>
-            <a routerLink="/examples" class="btn btn-secundario mt-3">Ver Ejemplos</a>
-        </div>
-    </div>
-</header>
+    <div class="position-relative" style="background-color: #f8f9fa;">
+        <div class="container-xl py-5">
+            <div class="row align-items-center g-5 py-lg-5">
+                <!-- Texto del Hero -->
+                <div class="col-lg-6 text-center text-lg-start">
+                    <span class="badge rounded-pill fs-6 mb-3"
+                        style="background-color: #5db9b120; color: #2c5f73; padding: 0.6em 1em;">
+                        La fiesta comienza en un clic
+                    </span>
+                    <h1 class="display-4 fw-bold text-dark lh-1 mb-4">
+                        Crea Invitaciones Digitales Inolvidables
+                    </h1>
+                    <p class="fs-5 text-secondary mb-5">
+                        Más que una invitación, es tu asistente de eventos. Gestiona RSVP, boletos QR, check-in, mapas,
+                        mesa de regalos y más.
+                    </p>
 
-<section id="check-in" class="text-center bg-light">
-</section>
-
-<section id="features">
-    <div class="container">
-        <h2 class="section-title">Herramientas Creativas para Tu Invitación</h2>
-        <div class="row g-4">
-
-            <div class="col-md-6 col-lg-3 d-flex align-items-stretch">
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-palette"></i></div>
-                    <h3>Creatividad sin Límites y QR</h3>
-                    <p>Sube tus imágenes, elige colores y tipografías. Diseña desde cero y genera boletos digitales con
-                        código QR para tus invitados.</p>
                 </div>
-            </div>
-
-            <div class="col-md-6 col-lg-3 d-flex align-items-stretch">
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-map-marked-alt"></i></div>
-                    <h3>Mapas y Cuenta Regresiva</h3>
-                    <p>Integra la ubicación exacta de tu evento. Un contador regresivo aumentará la emoción para el gran
-                        día.</p>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-lg-3 d-flex align-items-stretch">
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-gifts"></i></div>
-                    <h3>Mesa de Regalos y Galería</h3>
-                    <p>Facilita la elección de regalos con una lista integrada y comparte los mejores momentos en una
-                        galería de fotos privada.</p>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-lg-3 d-flex align-items-stretch">
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-check-circle"></i></div>
-                    <h3>Confirmación RSVP y Multimedia</h3>
-                    <p>Tus invitados confirman asistencia con un solo clic. Además, puedes añadir música de fondo y
-                        videos personalizados.</p>
+                <!-- Mockup Visual del Hero -->
+                <div class="col-lg-6 d-flex justify-content-center mt-5 mt-lg-0">
+                    <div class="phone-mockup">
+                        <div class="phone-mockup-content"
+                            style="background-image: url('assets/images/myticketparty-hero-mockup.png');"></div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <h3 class="section-title mt-3">Y Más</h3>
-</section>
 
-<section class="testimonials-section">
-    <div class="container">
-        <h2 class="section-title">Clientes que Dieron Vida a sus Eventos</h2>
-        <div class="row g-4">
-            <div class="col-lg-4">
-                <div class="testimonial-card">
-                    <img src="assets/images/logo.png" alt="Pareja de boda" class="testimonial-img">
-                    <p>"Diseñamos nuestra invitación de boda exactamente como la soñamos. A nuestros invitados les
-                        encantó recibir todo en un solo link. ¡Muy moderno!"</p>
-                    <div class="testimonial-author">- Mariana & Diego</div>
-                </div>
+    <!-- ===== Sección de Características (Features) ===== -->
+    <section id="features" class="py-5 bg-white">
+        <div class="container-xl py-lg-5">
+            <div class="text-center mb-5">
+                <h2 class="text-uppercase fw-semibold" style="color: #5db9b1;">Todo en un solo lugar</h2>
+                <p class="display-6 fw-bold text-dark">Funcionalidad y Elegancia</p>
+                <p class="fs-5 text-secondary mt-3 mx-auto" style="max-width: 600px;">
+                    Olvídate del caos de confirmar por WhatsApp. Tus invitados amarán la experiencia.
+                </p>
             </div>
-            <div class="col-lg-4">
-                <div class="testimonial-card">
-                    <img src="assets/images/logo.png" alt="Joven de XV años" class="testimonial-img">
-                    <p>"Pude usar los colores y fotos que yo quería para mi invitación de XV años. La confirmación por
-                        QR fue lo máximo para organizar las mesas."</p>
-                    <div class="testimonial-author">- Valentina G.</div>
+
+            <div class="row g-4">
+                <!-- Feature 1 -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="card shadow-sm h-100 border-0 p-3 text-center"
+                        style="background-color: #f8f9fa; border-radius: 0.75rem;">
+                        <div class="card-body">
+                            <div class="feature-icon d-inline-flex align-items-center justify-content-center text-white rounded-circle mx-auto mb-3"
+                                style="background-color: #5db9b1;">
+                                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor" width="24" height="24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" />
+                                </svg>
+                            </div>
+                            <h3 class="fs-5 fw-semibold text-dark mt-2">Boletos QR y Check-in</h3>
+                            <p class="text-secondary small mt-2 mb-0">
+                                Genera pases únicos para tus invitados. Controla el acceso y la logística de tu evento
+                                como un profesional.
+                            </p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="testimonial-card">
-                    <img src="assets/images/logo.png" alt="Persona en fiesta de cumpleaños" class="testimonial-img">
-                    <p>"¡La mejor herramienta para organizar mi fiesta de cumpleaños! Súper fácil de usar y el resultado
-                        es muy profesional. Todos mis amigos confirmaron al instante."</p>
-                    <div class="testimonial-author">- Ricardo S.</div>
+                <!-- Feature 2 -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="card shadow-sm h-100 border-0 p-3 text-center"
+                        style="background-color: #f8f9fa; border-radius: 0.75rem;">
+                        <div class="card-body">
+                            <div class="feature-icon d-inline-flex align-items-center justify-content-center text-white rounded-circle mx-auto mb-3"
+                                style="background-color: #5db9b1;">
+                                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor" width="24" height="24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                            </div>
+                            <h3 class="fs-5 fw-semibold text-dark mt-2">Logística Completa</h3>
+                            <p class="text-secondary small mt-2 mb-0">
+                                Mapas (Iglesia/Salón), itinerario "paso a paso" y todos los detalles en un solo enlace.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Feature 3 -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="card shadow-sm h-100 border-0 p-3 text-center"
+                        style="background-color: #f8f9fa; border-radius: 0.75rem;">
+                        <div class="card-body">
+                            <div class="feature-icon d-inline-flex align-items-center justify-content-center text-white rounded-circle mx-auto mb-3"
+                                style="background-color: #5db9b1;">
+                                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor" width="24" height="24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                                </svg>
+                            </div>
+                            <h3 class="fs-5 fw-semibold text-dark mt-2">Detalles del Evento</h3>
+                            <p class="text-secondary small mt-2 mb-0">
+                                Organiza Menú, música, código de vestimenta y personas clave (padrinos, papás,
+                                chambelanes).
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Feature 4 -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="card shadow-sm h-100 border-0 p-3 text-center"
+                        style="background-color: #f8f9fa; border-radius: 0.75rem;">
+                        <div class="card-body">
+                            <div class="feature-icon d-inline-flex align-items-center justify-content-center text-white rounded-circle mx-auto mb-3"
+                                style="background-color: #5db9b1;">
+                                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor" width="24" height="24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8v13m0-13C9.832 8 8 6.168 8 4a4 4 0 118 0c0 2.168-1.832 4-4 4zM20 12a8 8 0 10-16 0" />
+                                </svg>
+                            </div>
+                            <h3 class="fs-5 fw-semibold text-dark mt-2">Galería y Regalos</h3>
+                            <p class="text-secondary small mt-2 mb-0">
+                                Sube tus fotos y videos. Conecta tu mesa de regalos de cualquier tienda o recibe
+                                obsequios en efectivo.
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+
+    <!-- ===== Sección de Planes (ByFile, Default, Fancy) ===== -->
+    <section id="plans" class="py-5" style="background-color: #f8f9fa;">
+        <div class="container-xl py-lg-5">
+            <div class="text-center mb-5">
+                <h2 class="display-6 fw-bold text-dark">3 Formas de Crear Tu Invitación</h2>
+                <p class="fs-5 text-secondary mt-3 mx-auto" style="max-width: 600px;">
+                    Tú tienes el control. Elige el plan que se adapte perfectamente a tu necesidad.
+                </p>
+            </div>
+
+            <div class="row g-4 justify-content-center">
+                <!-- Plan 1: ByFile -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card shadow-lg h-100 text-center p-4"
+                        style="border-top: 4px solid #5db9b1; border-radius: 0.75rem;">
+                        <div class="card-body d-flex flex-column">
+                            <div class="feature-icon d-inline-flex align-items-center justify-content-center rounded-circle mx-auto mb-4"
+                                style="width: 64px; height: 64px; background-color: #5db9b120; color: #2c5f73;">
+                                <svg class="h-8 w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor" width="32" height="32">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                                </svg>
+                            </div>
+                            <h3 class="fs-4 fw-bold text-dark">ByFile</h3>
+                            <p class="text-secondary mt-2 mb-0">
+                                ¿Ya tienes tu diseño? Sube tu imagen o video y solo agrega nuestras funciones: mapas,
+                                RSVP, boletos QR, itinerario y más.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Plan 2: Default (Highlighted) -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card shadow-lg h-100 text-center p-4"
+                        style="border-top: 4px solid #5db9b1; border-radius: 0.75rem; transform: scale(1.05);">
+                        <div class="card-body d-flex flex-column">
+                            <div class="feature-icon d-inline-flex align-items-center justify-content-center rounded-circle mx-auto mb-4"
+                                style="width: 64px; height: 64px; background-color: #5db9b120; color: #2c5f73;">
+                                <svg class="h-8 w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor" width="32" height="32">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                                </svg>
+                            </div>
+                            <h3 class="fs-4 fw-bold text-dark">Default</h3>
+                            <p class="text-secondary mt-2 mb-0">
+                                Usa nuestras plantillas premium. Personaliza fotos y textos de forma rápida y elegante.
+                                La opción más popular.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Plan 3: Fancy -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card shadow-lg h-100 text-center p-4"
+                        style="border-top: 4px solid #5db9b1; border-radius: 0.75rem;">
+                        <div class="card-body d-flex flex-column">
+                            <div class="feature-icon d-inline-flex align-items-center justify-content-center rounded-circle mx-auto mb-4"
+                                style="width: 64px; height: 64px; background-color: #5db9b120; color: #2c5f73;">
+                                <svg class="h-8 w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor" width="32" height="32">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 6V4m0 16v-2m0-8v-2m0 12h.01M6 12h.01M18 12h.01M6 18h.01M6 6h.01M18 6h.01M18 18h.01M9 12h6m-6 4h6m-6-8h6" />
+                                </svg>
+                            </div>
+                            <h3 class="fs-4 fw-bold text-dark">Fancy</h3>
+                            <p class="text-secondary mt-2 mb-0">
+                                Control total para un diseño 100% único. Edita fuentes, colores, sombras, tiempos y cada
+                                detalle desde cero.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Sección de Oferta (Pricing/CTA) ===== -->
+    <section id="pricing" class="py-5 text-white text-center"
+        style="background-image: linear-gradient(to right, #5db9b1, #3a8a9e);">
+        <div class="container-xl py-5">
+            <h2 class="display-6 fw-bold text-white">¡Empieza a planear tu evento hoy!</h2>
+            <p class="fs-5 mt-3 mx-auto" style="max-width: 600px; opacity: 0.8;">
+                Sabemos que planear es complicado. Queremos hacértelo fácil.
+                Usa nuestro código de lanzamiento y obtén un descuento especial.
+            </p>
+            <div class="d-inline-block p-4 rounded-3 my-4"
+                style="background-color: rgba(255,255,255,0.2); border: 2px dashed rgba(255,255,0.5); backdrop-filter: blur(5px);">
+                <span class="d-block fs-5">Usa el código:</span>
+                <strong class="d-block fs-2 fw-bold" style="letter-spacing: 2px;">FIESTA25</strong>
+                <p class="mb-0 mt-1 small">Y obtén un 25% de descuento en tu invitación premium.</p>
+            </div>
+            <br>
+            <a href="https://wa.me/525570698830?text=Hola,%20me%20gustaría%20empezar%20y%20aplicar%20mi%20descuento.%20Mi%20código%20es:%20FIESTA25"
+                target="_blank" rel="noopener noreferrer" class="btn btn-light btn-lg px-5 shadow-lg fw-semibold"
+                style="color: #2c5f73; transform: scale(1.0); transition: transform 0.2s ease;">
+                Empezar Ahora y Aplicar Descuento
+            </a>
+        </div>
+    </section>
+</main>
 
 <app-footer></app-footer>
